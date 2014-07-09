@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	   <!-- 
+		**
+		**主页
+		**
+		 -->
+	<package name="main" namespace="/home" extends="school">
+		<action name="main" class="com.zh.base.action.mainAction"
+			method="execute">
+			<result name="success">/default/jsp/login/main.jsp</result>
+			<result name="right">/default/jsp/main/right.jsp</result>
+			<result name="updatePwd">/default/jsp/main/updatePassword.jsp</result>
+			<result name="json" type="json">
+				<param name="root">mainModel.dataMap</param>
+			</result>
+		</action>
+		
+		
+		<!-- 用户管理 -->
+		<action name="user" class="com.zh.base.action.UserInfoAction"
+			method="execute">
+			<result name="success">/default/jsp/user/userList.jsp</result>
+			<result name="updatePwd">/default/jsp/main/updatePassword.jsp</result>
+			<result name="json" type="json">
+				<param name="root">userInfoModel.dataMap</param>
+			</result>
+			<result name="editor">/default/jsp/user/userInfo.jsp</result>
+		</action>
+		
+	</package>
+</struts>
