@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 
+		**
+		**登陆
+		**
+		 -->
+	<package name="login" namespace="/login" extends="struts-default">
+		<!-- <interceptors>菜单权限验证过滤器 -->
+			<!-- from重复提交拦截器
+			<interceptor name="invocationToken"
+				class="com.zh.core.interceptor.TokenAtionInterceptor" />
+			<interceptor-stack name="invocationTokenStack">
+				<interceptor-ref name="invocationToken" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors> -->
+		<action name="login" class="com.zh.base.action.LoginAction"
+			method="excute">
+			<!-- from重复提交拦截器
+			<interceptor-ref name="invocationTokenStack"></interceptor-ref> -->
+			<result name="creater">/default/jsp/login/login.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">main</param>  
+    			<param name="namespace">/home</param>
+			</result>
+			<result name="error">/default/jsp/error/error.jsp</result>
+			<!--
+				result不再跳往jsp页面，以以下方式跳到tiles-defs.xml文件中定义的definition <result
+				type="tiles" name="success" >loginUser</result>
+			-->
+		</action>
+	</package>
+</struts>

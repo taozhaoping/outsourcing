@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="dialect" value="oracle" />
+	</properties>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="User" type="com.zh.base.model.UserInfo" />
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.zh.core.base.interceptor.PaginationInterceptor">
+		</plugin>
+	</plugins>
+	<!-- spring中已经配置,这里不需要在配置 <mappers> <mapper resource="resource/UserMapper.xml" 
+		/> </mappers> -->
+</configuration> 
