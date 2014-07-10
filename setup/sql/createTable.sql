@@ -100,7 +100,7 @@ create table SYS_AUTHORITIES
    id                 NUMBER               not null,
    name               VARCHAR2(25 BYTE), --权限名称
    enabled              NUMBER default '0',-- 是否启用 0启动 1:停用
-   module               NUMBER  --模块
+   module             VARCHAR2(25)  --模块
 );
 
 alter table SYS_AUTHORITIES

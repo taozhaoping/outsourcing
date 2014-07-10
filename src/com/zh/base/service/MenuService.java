@@ -2,6 +2,7 @@ package com.zh.base.service;
 
 import java.util.List;
 
+import com.zh.base.model.Authorities;
 import com.zh.base.model.Menu;
 import com.zh.core.model.Pager;
 
@@ -19,6 +20,13 @@ public interface MenuService {
 	 * @param 
 	 */
 	public void update(Menu object);
+	
+	/**
+	 * 查询列表
+	 * @param 
+	 * @return
+	 */
+	public List<Menu> queryList(Menu menu);
 	
 	/**
 	 * 查询列表，带分页

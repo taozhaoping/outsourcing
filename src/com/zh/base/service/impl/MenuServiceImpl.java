@@ -60,5 +60,11 @@ public class MenuServiceImpl implements MenuService {
 		this.menuDao = menuDao;
 	}
 
+	@Override
+	public List<Menu> queryList(Menu menu) {
+		// TODO Auto-generated method stub
+		return menuDao.queryList(menu);
+	}
+
 	
 }
