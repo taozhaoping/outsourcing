@@ -7,12 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zh.base.model.UserInfo;
+import com.zh.base.model.User;
 import com.zh.base.model.UserInfoModel;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
-import com.zh.core.base.dao.BaseDao;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
@@ -49,9 +48,9 @@ public class UserInfoAction extends BaseAction {
 		boolean bool = true;
 		if(null != userName && !userName.equals(oldUserName))
 		{
-			UserInfo user = new UserInfo();
-			user.setUserName(userName);
-			UserInfo userInfo = userInfoService.loadUserInfo(user);
+			User user = new User();
+			user.setName(userName);
+			User userInfo = userInfoService.loadUserInfo(user);
 			if(null != userInfo)
 			{
 				bool = false;
@@ -106,7 +105,7 @@ public class UserInfoAction extends BaseAction {
 	}
 
 	public String initPwd() {
-		userInfoModel.setUserInfo((UserInfo) this.getSession().getAttribute(
+		userInfoModel.setUserInfo((User) this.getSession().getAttribute(
 				VariableUtil.SESSION_KEY));
 		userInfoModel.getUserInfo().setUserPassword(null);
 		userInfoModel.setReultObject(JSONUtil.bean2json(userInfoModel
@@ -120,7 +119,7 @@ public class UserInfoAction extends BaseAction {
 		{
 			throw new ProjectException("密码不允许为空");
 		}
-		UserInfo userInfo = userInfoModel.getUserInfo();
+		User userInfo = userInfoModel.getUserInfo();
 		userInfo.setUserPassword(BCrypt.hashpw(password, BCrypt.gensalt(12)));
 		userInfoService.updateUserinfo(userInfo);
 		return Action.RETURN_JSON;
@@ -131,7 +130,7 @@ public class UserInfoAction extends BaseAction {
 				.getUserInfo());
 		Pager pageInfo = userInfoModel.getPageInfo();
 		pageInfo.setTotalRow(totalRows);
-		List<UserInfo> userList = userInfoService.listUserInfo(userInfoModel
+		List<User> userList = userInfoService.listUserInfo(userInfoModel
 				.getUserInfo(), pageInfo);
 		userInfoModel.setUserList(userList);
 		// this.setReturnJSON(JSONUtil.list2json(roleList));
@@ -147,7 +146,7 @@ public class UserInfoAction extends BaseAction {
 		}
 		if ("update".equals(userInfoModel.getView())
 				|| "look".equals(userInfoModel.getView())) {
-			UserInfo userInfo = userInfoService.loadUserInfo(userInfoModel.getUserInfo());
+			User userInfo = userInfoService.loadUserInfo(userInfoModel.getUserInfo());
 			userInfo.setUserPassword(null);
 			userInfoModel.setUserInfo(userInfo);
 			userInfoModel.setReultObject(JSONUtil.bean2json(userInfo));
@@ -157,7 +156,7 @@ public class UserInfoAction extends BaseAction {
 	
 	public String save()
 	{
-		UserInfo userInfo = userInfoModel.getUserInfo();
+		User userInfo = userInfoModel.getUserInfo();
 		Long id = userInfo.getId();
 		String password = userInfo.getUserPassword();
 		if( null != password )

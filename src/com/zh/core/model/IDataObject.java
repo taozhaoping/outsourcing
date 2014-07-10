@@ -4,6 +4,17 @@ package com.zh.core.model;
  * @author Flouny.Caesar
  *
  */
-public interface IDataObject {
-	// ...
+public abstract class IDataObject {
+
+	private String orderByClause;
+
+	public String getOrderByClause() {
+		return orderByClause;
+	}
+
+	public void setOrderByClause(String orderByClause) {
+		this.orderByClause = orderByClause;
+	}
+	
+	
 }

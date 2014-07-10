@@ -117,7 +117,7 @@
 		<property name="typeAliasesPackage" value="com.zh.base.model" />
 		-->
 		<!-- mybatis的映射文件 -->
-		<property name="mapperLocations" value="classpath*:sql/sqlmap_*.xml" />
+		<property name="mapperLocations" value="classpath*:sql/*Mapper.xml" />
 
 		<!-- 分页拦截器
 		<property name="plugins">

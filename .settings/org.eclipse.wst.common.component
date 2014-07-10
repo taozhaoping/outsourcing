@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/WEB-APP" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
         <property name="context-root" value="outsourcing"/>
         <property name="java-output-path" value="/outsourcing/build/classes"/>
     </wb-module>

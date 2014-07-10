@@ -4,7 +4,7 @@ import com.zh.core.base.model.BaseModel;
 
 public class MainModel extends BaseModel {
 
-	public UserInfo user;
+	public User user;
 	
 	private String newPassWord;
 	
@@ -15,11 +15,11 @@ public class MainModel extends BaseModel {
 	
 	private String theNextcontactSize;
 
-	public UserInfo getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(UserInfo user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

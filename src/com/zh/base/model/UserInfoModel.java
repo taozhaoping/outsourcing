@@ -9,9 +9,9 @@ import com.zh.core.base.model.BaseModel;
 
 public class UserInfoModel extends BaseModel {
 
-	private UserInfo userInfo = new UserInfo();
+	private User userInfo = new User();
 	
-	private List<UserInfo> userList = new ArrayList<UserInfo>();
+	private List<User> userList = new ArrayList<User>();
 	
 	private String newPassWord;
 	
@@ -25,18 +25,25 @@ public class UserInfoModel extends BaseModel {
 	
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 	
-	public final static String className="userInfo";
 	
 	private String oldUserName;
 	
 	private String userName;
 
-	public UserInfo getUserInfo() {
+	public User getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(User userInfo) {
 		this.userInfo = userInfo;
+	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 
 	public String getNewPassWord() {
@@ -55,8 +62,20 @@ public class UserInfoModel extends BaseModel {
 		this.reultObject = reultObject;
 	}
 
-	public String getClassName() {
-		return className;
+	public String getView() {
+		return view;
+	}
+
+	public void setView(String view) {
+		this.view = view;
+	}
+
+	public String getJsonIDString() {
+		return jsonIDString;
+	}
+
+	public void setJsonIDString(String jsonIDString) {
+		this.jsonIDString = jsonIDString;
 	}
 
 	public Map<String, Object> getDataMap() {
@@ -65,22 +84,6 @@ public class UserInfoModel extends BaseModel {
 
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
-	}
-
-	public List<UserInfo> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<UserInfo> userList) {
-		this.userList = userList;
-	}
-
-	public String getView() {
-		return view;
-	}
-
-	public void setView(String view) {
-		this.view = view;
 	}
 
 	public String getOldUserName() {
@@ -99,12 +102,4 @@ public class UserInfoModel extends BaseModel {
 		this.userName = userName;
 	}
 
-	public String getJsonIDString() {
-		return jsonIDString;
-	}
-
-	public void setJsonIDString(String jsonIDString) {
-		this.jsonIDString = jsonIDString;
-	}	
-	
 }

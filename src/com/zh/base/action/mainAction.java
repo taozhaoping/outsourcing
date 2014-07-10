@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.MainModel;
-import com.zh.base.model.UserInfo;
+import com.zh.base.model.User;
 import com.zh.base.service.MainService;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
@@ -59,7 +59,7 @@ public class mainAction extends BaseAction {
 	}
 	
 	public String initPwd() {
-		mainModel.setUser((UserInfo) this.getSession().getAttribute(
+		mainModel.setUser((User) this.getSession().getAttribute(
 				VariableUtil.SESSION_KEY));
 		mainModel.getUser().setUserPassword(null);
 		mainModel.setReultObject(JSONUtil.bean2json(mainModel.getUser()));
@@ -72,7 +72,7 @@ public class mainAction extends BaseAction {
 		{
 			throw new ProjectException("密码不允许为空");
 		}
-		UserInfo userInfo = mainModel.getUser();
+		User userInfo = mainModel.getUser();
 		userInfo.setUserPassword(BCrypt.hashpw(password, BCrypt.gensalt(12)));
 		userInfoService.updateUserinfo(userInfo);
 		return Action.RETURN_JSON;

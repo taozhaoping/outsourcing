@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zh.base.model.UserInfo;
+import com.zh.base.model.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.VariableUtil;
@@ -27,7 +27,7 @@ public class LoginAction extends BaseAction {
 	@Autowired
 	private UserInfoService userInfoService;
 	
-	private UserInfo userInfo = new UserInfo();;
+	private User userInfo = new User();;
 
 
 	public String excute() {
@@ -56,7 +56,7 @@ public class LoginAction extends BaseAction {
 			return "creater";
 		}
 		userInfo.setUserPassword(null);
-		UserInfo user = userInfoService.loadUserPassWord(userInfo);
+		User user = userInfoService.loadUserPassWord(userInfo);
 		
 		//密码验证
 		if (null != password && null != user && BCrypt.checkpw(password , user.getUserPassword())) {
@@ -90,11 +90,11 @@ public class LoginAction extends BaseAction {
 		this.userInfoService = userInfoService;
 	}
 
-	public UserInfo getUserInfo() {
+	public User getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(User userInfo) {
 		this.userInfo = userInfo;
 	}
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.UserInfoDAO;
-import com.zh.base.model.UserInfo;
+import com.zh.base.model.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.common.SqlCommon;
 import com.zh.core.exception.ProjectException;
@@ -20,29 +20,26 @@ public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoDAO userInfoDAO;
 	
 	
-	public void addUserInfo(UserInfo userInfo) {
-		//获取序列号
-		Long id = userInfoDAO.getSequence(SEQUENCE_NAME);
-		userInfo.setId(id);
+	public void addUserInfo(User userInfo) {
 		userInfoDAO.insert(userInfo);
 	}
 	
-	public void delUserInfo(UserInfo userInfo) {
+	public void delUserInfo(User userInfo) {
 		//逻辑删除(冻结账号使用)
-		userInfo.setIsDelete("1");
+		userInfo.setEnabled("1");
 		this.updateUserinfo(userInfo);
 	}
 
 
-	public UserInfo loadUserPassWord(UserInfo userinfo) {
-		if( null == userinfo.getIsDelete())
+	public User loadUserPassWord(User userinfo) {
+		if( null == userinfo.getEnabled())
 		{
-			userinfo.setIsDelete(SqlCommon.USER_NOT_DELETE);
+			userinfo.setEnabled(SqlCommon.USER_NOT_DELETE);
 		}
 		return userInfoDAO.query(userinfo);
 	}
 	
-	public void updateUserinfo(UserInfo userinfo) {
+	public void updateUserinfo(User userinfo) {
 		try {
 			userInfoDAO.update(userinfo);
 		} catch (Exception e) {
@@ -50,22 +47,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 		
 	}
-	public Integer countUserInfo(UserInfo userInfo) {
+	public Integer countUserInfo(User userInfo) {
 		return userInfoDAO.count(userInfo);
 	}
 
-	public List<UserInfo> listUserInfo(UserInfo userInfo, Pager page) {
+	public List<User> listUserInfo(User userInfo, Pager page) {
 		return userInfoDAO.queryPageList(userInfo,page);
 	}
 
 	public void setUserInfoDAO(UserInfoDAO userInfoDAO) {
 		this.userInfoDAO = userInfoDAO;
 	}
-	public void deluserInfo(UserInfo userInfo) {
+	public void deluserInfo(User userInfo) {
 		
 	}
 
-	public UserInfo loadUserInfo(UserInfo userInfo) {
+	public User loadUserInfo(User userInfo) {
 		return userInfoDAO.query(userInfo);
 	}
 }

@@ -1,16 +1,17 @@
 -- create 
-CREATE TABLESPACE OUTSOURCING
+CREATE TABLESPACE OUTSOURCINGVIEW
 LOGGING
 DATAFILE 'E:\oracle\oradata\orcl\OUTSOURCING_DATA01.DBF' 
 SIZE 300M 
 AUTOEXTEND ON 
 NEXT 100M MAXSIZE UNLIMITED
 EXTENT MANAGEMENT LOCAL;
-CREATE USER OutsourcingOfInformation IDENTIFIED BY agile932 DEFAULT TABLESPACE OUTSOURCING;
+CREATE USER OSFI IDENTIFIED BY agile932 DEFAULT TABLESPACE OUTSOURCINGVIEW;
 -- Grant/Revoke system privileges 
-grant create any sequence to OUTSOURCINGOFINFORMATION;
-grant create session to OUTSOURCINGOFINFORMATION;
-grant create table to OUTSOURCINGOFINFORMATION;
-grant drop any table to OUTSOURCINGOFINFORMATION;
-grant insert any table to OUTSOURCINGOFINFORMATION;
-grant update any table to OUTSOURCINGOFINFORMATION;
+ALTER USER OSFI QUOTA UNLIMITED ON OUTSOURCINGVIEW;
+grant create any sequence to OSFI;
+grant create session to OSFI;
+grant create table to OSFI;
+grant drop any table to OSFI;
+grant insert any table to OSFI;
+grant update any table to OSFI;
