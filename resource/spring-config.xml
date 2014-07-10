@@ -84,12 +84,12 @@
 			<tx:method name="list*" read-only="true" />
 			<tx:method name="count*" read-only="true" />
 			<tx:method name="find*" propagation="NOT_SUPPORTED" read-only="true" />
-			<tx:method name="insert*" propagation="REQUIRED"  read-only="false" rollback-for="java.lang.RuntionException" />
-			<tx:method name="delete*" propagation="REQUIRED"  read-only="false" rollback-for="java.lang.RuntionException"/>
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.RuntionException" />
-			<tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.RuntionException" />
-			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.RuntionException" />
-			<tx:method name="create*" propagation="REQUIRED" rollback-for="java.lang.RuntionException" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
 			<!--除了上面标识的方法,其他方法全是只读方法 -->
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>

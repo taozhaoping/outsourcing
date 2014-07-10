@@ -40,12 +40,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 	
 	public void updateUserinfo(User userinfo) {
-		try {
 			userInfoDAO.update(userinfo);
-		} catch (Exception e) {
-			throw new ProjectException("COM.SCHOOL.ERROR.SQLEXCEPTION" ,e);
-		}
-		
 	}
 	public Integer countUserInfo(User userInfo) {
 		return userInfoDAO.count(userInfo);

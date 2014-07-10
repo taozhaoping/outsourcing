@@ -4,7 +4,6 @@ package test;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.zh.base.model.User;
 import com.zh.base.service.UserInfoService;
 
@@ -22,10 +21,13 @@ public class TestService {
 				.getBean("userInfoService");
 		
 		User userInfo = new User();
-		userInfo.setLoginName("admin");
-		User user = userInfoService.loadUserInfo(userInfo);
-		
-		System.out.println(user.getUserPassword());
+		userInfo.setId(6L);
+		userInfo.setAddress("e");
+		userInfo.setLoginName("1");
+		userInfo.setUserPassword("1");
+		userInfo.setName("1");
+		userInfoService.updateUserinfo(userInfo);
+		System.out.println(userInfo.getAddress());
 	}
 
 

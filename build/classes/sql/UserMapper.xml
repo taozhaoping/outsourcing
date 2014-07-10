@@ -14,7 +14,7 @@
 		<result column="age" property="age" jdbcType="DATE" />
 		<result column="sex" property="sex" jdbcType="VARCHAR" />
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
-		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="QQ" property="qq" jdbcType="VARCHAR" />
 		<result column="mobile_number" property="mobileNumber"
 			jdbcType="VARCHAR" />
 		<result column="entryTime" property="entryTime" jdbcType="DATE" />
@@ -91,7 +91,7 @@
 	</delete>
 
 	<insert id="insert" parameterType="User">
-		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
 			select SEQUENCE_SYS_USER.nextval from dual
 		</selectKey>
 		insert into SYS_USER (id, loginName, userPassword,
@@ -108,13 +108,13 @@
 			#{name,jdbcType=VARCHAR}, 
 			#{enabled,jdbcType=VARCHAR}, 
 			#{userType,jdbcType=VARCHAR},
-			#{roleId}, 
-			#{enterpriseId}, 
+			#{roleId,jdbcType=VARCHAR},
+			#{enterpriseId,jdbcType=VARCHAR},
 			#{email,jdbcType=VARCHAR},
 			#{age,jdbcType=DATE}, 
 			#{sex,jdbcType=VARCHAR}, 
 			#{phone,jdbcType=VARCHAR},
-			#{QQ,jdbcType=VARCHAR},
+			#{qq,jdbcType=VARCHAR},
 			#{mobileNumber,jdbcType=VARCHAR}, 
 			#{entryTime,jdbcType=DATE}, 
 			#{address,jdbcType=VARCHAR},
@@ -124,62 +124,62 @@
 		)
 	</insert>
 
-	<update id="update" parameterType="User">
+	<update id="update" parameterType="User" flushCache="true">
 		update SYS_USER
 		<set>
 			<if test="loginName != null">
-				loginName = #{loginName,jdbcType=VARCHAR},
+				loginName = #{loginName},
 			</if>
 			<if test="userPassword != null">
-				userPassword = #{userPassword,jdbcType=VARCHAR},
+				userPassword = #{userPassword},
 			</if>
 			<if test="name != null">
-				name = #{name,jdbcType=CHAR},
+				name = #{name},
 			</if>
 			<if test="enabled != null">
-				ENABLED = #{enabled,jdbcType=VARCHAR},
+				ENABLED = #{enabled},
 			</if>
 			<if test="userType != null">
-				userType = #{userType,jdbcType=VARCHAR},
+				userType = #{userType},
 			</if>
 			<if test="roleId != null">
-				role_id = #{roleId,jdbcType=DECIMAL},
+				role_id = #{roleId},
 			</if>
 			<if test="enterpriseId != null">
-				enterprise_id = #{enterpriseId,jdbcType=DECIMAL},
+				enterprise_id = #{enterpriseId},
 			</if>
 			<if test="email != null">
-				email = #{email,jdbcType=VARCHAR},
+				email = #{email},
 			</if>
 			<if test="age != null">
-				age = #{age,jdbcType=DATE},
+				age = #{age},
 			</if>
 			<if test="sex != null">
-				sex = #{sex,jdbcType=VARCHAR},
+				sex = #{sex},
 			</if>
 			<if test="phone != null">
-				phone = #{phone,jdbcType=VARCHAR},
+				phone = #{phone},
 			</if>
-			<if test="QQ != null">
-				QQ = #{QQ,jdbcType=VARCHAR},
+			<if test="qq != null">
+				QQ = #{qq},
 			</if>
 			<if test="mobileNumber != null">
-				mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+				mobile_number = #{mobileNumber},
 			</if>
 			<if test="entryTime != null">
-				entryTime = #{entryTime,jdbcType=DATE},
+				entryTime = #{entryTime},
 			</if>
 			<if test="address != null">
-				address = #{address,jdbcType=VARCHAR},
+				address = #{address},
 			</if>
 			<if test="educationBackground != null">
-				education_background = #{educationBackground,jdbcType=VARCHAR},
+				education_background = #{educationBackground},
 			</if>
 			<if test="createTime != null">
-				CreateTime = #{createTime,jdbcType=DATE},
+				CreateTime = #{createTime},
 			</if>
 			<if test="updateTime != null">
-				updateTime = #{updateTime,jdbcType=DATE},
+				updateTime = #{updateTime},
 			</if>
 		</set>
 		where id = #{id}
