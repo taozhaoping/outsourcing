@@ -1,11 +1,15 @@
 package test;
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.zh.base.model.User;
-import com.zh.base.service.UserInfoService;
+
+import com.zh.base.model.Menu;
+import com.zh.base.service.MenuService;
+import com.zh.core.model.Pager;
 
 public class TestService {
 
@@ -17,17 +21,15 @@ public class TestService {
 	public void init() throws  Exception {
 		
 		
-		UserInfoService userInfoService = (UserInfoService) applicationContext
-				.getBean("userInfoService");
+		MenuService menuService = (MenuService) applicationContext
+				.getBean("menuService");
 		
-		User userInfo = new User();
-		userInfo.setId(6L);
-		userInfo.setAddress("e");
-		userInfo.setLoginName("1");
-		userInfo.setUserPassword("1");
-		userInfo.setName("1");
-		userInfoService.updateUserinfo(userInfo);
-		System.out.println(userInfo.getAddress());
+		Menu menu = new Menu();
+		
+		Pager p = new Pager();
+		p.setCurPage(1);
+		List<Menu> list = menuService.queryList(menu, p);
+		System.out.println(list.size());
 	}
 
 

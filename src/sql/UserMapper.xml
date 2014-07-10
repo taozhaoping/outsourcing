@@ -76,7 +76,7 @@
 		</if>
 	</select>
 
-	<select id="count" resultMap="T_User" parameterType="User">
+	<select id="count" resultType="Integer" parameterType="User">
 		
 		select
 		count(id)
