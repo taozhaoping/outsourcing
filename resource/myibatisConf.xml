@@ -16,8 +16,6 @@
 
 	<typeAliases>
 		<!-- 
-		<typeAlias alias="Enterprise" type="com.zh.base.model.Enterprise" />
-		<typeAlias alias="Resourceinfo" type="com.zh.base.model.Resourceinfo" />
 		<typeAlias alias="Role" type="com.zh.base.model.Role" />
 		<typeAlias alias="RoleToAuthorities" type="com.zh.base.model.RoleToAuthorities" />
 		<typeAlias alias="RoleToMenu" type="com.zh.base.model.RoleToMenu" />
@@ -25,6 +23,8 @@
 		<typeAlias alias="User" type="com.zh.base.model.User" />
 		<typeAlias alias="Menu" type="com.zh.base.model.Menu" />
 		<typeAlias alias="Authorities" type="com.zh.base.model.Authorities" />
+		<typeAlias alias="Enterprise" type="com.zh.base.model.Enterprise" />
+		<typeAlias alias="Resourceinfo" type="com.zh.base.model.Resourceinfo" />
 	</typeAliases>
 
 	<plugins>
