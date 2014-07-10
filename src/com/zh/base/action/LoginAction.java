@@ -68,6 +68,25 @@ public class LoginAction extends BaseAction {
 			return "creater";
 		}
 	}
+	
+	/***
+	 * 跳转到获取密码页面
+	 * @return
+	 */
+	public String resetPassword(){
+		LOGGER.debug("resetPassword()");
+		return "reset";
+	}
+	
+	/***
+	 * 重置密码
+	 * @return
+	 */
+	public String doResetPassword(){
+		LOGGER.debug("doResetPassword()");
+		//TODO
+		return "success";
+	}
 
 
 	public String getValidecode() {
