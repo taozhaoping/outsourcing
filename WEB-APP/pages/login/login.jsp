@@ -66,7 +66,7 @@
 					<form method="post" name="loginform" id="loginform" action="login!loginUser.jspa">
 						<input type="hidden" name="token" value="${token}" />
 						<label for="userName">用户名</label>
-						<input type="text" class="span12" id="userName" name="userInfo.userName"> 
+						<input type="text" class="span12" id="userName" name="userInfo.loginName"> 
 						<label for="password">密码</label>
 						<input type="password" class="span12" id="password" name="userInfo.userPassword">
 						<label for="validecode">验证码 </label>

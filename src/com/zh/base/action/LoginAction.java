@@ -40,18 +40,15 @@ public class LoginAction extends BaseAction {
 	}
 
 	public String loginUser() {
-		String code = (String) this.getRequest().getSession().getAttribute(
-				"code");
+		String code = (String) this.getRequest().getSession().getAttribute("code");
 		if (null == validecode || null == code || !validecode.toUpperCase().equals(code)) {
 			this.setErrorMessage(getText("COM.SSI.ERROR.CODE"));
 			return "creater";
 		}
 		String password = null;
-		if(null != userInfo.getUserPassword())
-		{
+		if(null != userInfo.getUserPassword()){
 			password = userInfo.getUserPassword();
-		}else
-		{
+		}else{
 			this.setErrorMessage(getText("COM.SSI.ERROR.USERNAME"));
 			return "creater";
 		}
