@@ -7,9 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zh.base.model.Menu;
-import com.zh.base.service.MenuService;
-import com.zh.core.model.Pager;
+import com.zh.base.model.Enterprise;
+import com.zh.base.service.EnterpriseService;
 
 public class TestService {
 
@@ -21,14 +20,17 @@ public class TestService {
 	public void init() throws  Exception {
 		
 		
-		MenuService menuService = (MenuService) applicationContext
-				.getBean("menuService");
+		EnterpriseService enterpriseService = (EnterpriseService) applicationContext
+				.getBean("enterpriseService");
+		Enterprise enterprise = new Enterprise();
+//		enterprise.setName("测试公司");
+//		enterprise.setAddress("测试地址");
+//		enterprise.setPhonecall("电话");
 		
-		Menu menu = new Menu();
-		
-		Pager p = new Pager();
-		p.setCurPage(1);
-		List<Menu> list = menuService.queryList(menu, p);
+//		Enterprise enterpriseInfo = enterpriseService.query(enterprise);
+//		
+//		System.out.println(enterpriseInfo.getId());
+		List<Enterprise> list = enterpriseService.queryList(enterprise);
 		System.out.println(list.size());
 	}
 

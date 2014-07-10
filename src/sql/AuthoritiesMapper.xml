@@ -20,16 +20,16 @@
    <sql id="where">
 		<where>
 			<if test="id != null" >
-	        #{id},
+	        and id = #{id},
 	      </if>
-	      <if test="name != null" >
-	        #{name,jdbcType=VARCHAR},
+	       <if test="name != null" >
+	        and NAME = #{name,jdbcType=VARCHAR},
 	      </if>
 	      <if test="enabled != null" >
-	        #{enabled},
+	        and ENABLED = #{enabled},
 	      </if>
 	      <if test="module != null" >
-	        #{module,jdbcType=VARCHAR},
+	        and MODULE = #{module,jdbcType=VARCHAR},
 	      </if>
 		</where>
 	</sql>
