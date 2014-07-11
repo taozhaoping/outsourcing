@@ -40,6 +40,9 @@
 	font-weight: bold;
 }
 </style>
+<link href="<%=path%>/img/favicon_32.ico" rel="bookmark" type="image/x-icon" /> 
+<link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" /> 
+<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->

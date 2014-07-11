@@ -40,6 +40,9 @@
 	font-weight: bold;
 }
 </style>
+<link href="<%=path%>/img/favicon_32.ico" rel="bookmark" type="image/x-icon" /> 
+<link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" /> 
+<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
@@ -79,11 +82,11 @@
 		<a href="#dashboard-menu" class="nav-header collapsed"
 			data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统管理</a>
 		<ul id="dashboard-menu" class="nav nav-list collapse in">
-			<li><a href="#">参数配置</a></li>
 			<li><a href="#">用户列表</a></li>
 			<li><a href="#">角色列表</a></li>
 			<li><a href="#">资源列表</a></li>
 			<li><a href="#">企业列表</a></li>
+			<li><a href="#">参数配置</a></li>
 		</ul>
 
 		<a href="#accounts-menu" class="nav-header collapsed"
