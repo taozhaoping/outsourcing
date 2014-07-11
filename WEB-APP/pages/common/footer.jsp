@@ -7,6 +7,6 @@
 		&nbsp;<a href="mailto:caiyingying234@gmail.com">蔡迎迎</a>
 	</p>
 	<p>
-		&copy;2014 <a href="javascript:void(0)" target="_blank">信息管理系统</a>
+		&copy;2014 <a href="javascript:void(0)" target="_blank">信息管理平台</a>
 	</p>
 </footer>
