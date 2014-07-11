@@ -9,8 +9,11 @@
 	</resultMap>
 	
 	<resultMap type="Role" id="Role_To_Menu" extends="T_Role">
-		 <collection property="menuList" column="id"  ofType="Menu"
+		<collection property="menuList" column="id"  ofType="T_Menu"
 			select="AM_Menu.roleToMenu">
+		</collection>
+		<collection property="authoritiesList" column="id"  ofType="T_Authorities"
+			select="M_Authorities.Role_To_Authorities">
 		</collection>
 	</resultMap>
 	
@@ -36,7 +39,7 @@
 		</where>
 	</sql>
 	
-	<select id="RoleToMenu" resultMap="Role_To_Menu">
+	<select id="AuthoritiesToMenu" resultMap="Role_To_Menu">
 		select
 			ID, NAME, CREATETIME, UPDATETIME
 		from SYS_ROLE

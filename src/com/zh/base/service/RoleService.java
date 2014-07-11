@@ -28,11 +28,11 @@ public interface RoleService {
 	public List<Role> queryList(Role role);
 	
 	/**
-	 * 查询角色信息，并带出相应的菜单信息
+	 * 查询角色信息，并带出相应的菜单信息和权限信息
 	 * @param role id不允许为空
 	 * @return
 	 */
-	public Role queryRoleToMenu(Role role);
+	public Role queryAuthoritiesToMenu(Role role);
 	
 	/**
 	 * 查询列表，带分页

@@ -22,9 +22,9 @@ public class RoleDao extends BaseDao<Role> {
 	 * @param role
 	 * @return
 	 */
-	public Role queryRoleToMenu(Role role)
+	public Role queryAuthoritiesToMenu(Role role)
 	{
-		return this.query("RoleToMenu", role);
+		return this.query("AuthoritiesToMenu", role);
 	}
 
 }

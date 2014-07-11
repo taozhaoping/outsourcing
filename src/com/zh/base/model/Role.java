@@ -38,8 +38,24 @@ public class Role extends IDataObject{
      */
     private Date updatetime;
     
+    /**
+     * 菜单信息
+     */
     private List<Menu> menuList;
     
+    /**
+     * 权限信息
+     */
+    private List<Authorities> authoritiesList;
+    
+	public List<Authorities> getAuthoritiesList() {
+		return authoritiesList;
+	}
+
+	public void setAuthoritiesList(List<Authorities> authoritiesList) {
+		this.authoritiesList = authoritiesList;
+	}
+
 	public List<Menu> getMenuList() {
 		return menuList;
 	}

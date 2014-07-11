@@ -12,6 +12,7 @@
     <result column="ENABLED" property="enabled" />
     <result column="MODULE" property="module" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
 
     ID, NAME, ENABLED, MODULE
@@ -33,6 +34,14 @@
 	      </if>
 		</where>
 	</sql>
+	
+	<select id="Role_To_Authorities" parameterType="long" resultMap="T_Authorities">
+		select  
+		 <include refid="Base_Column_List" />
+		from sys_role_to_authorities ra left join SYS_AUTHORITIES a 
+		on ra.authorities_id=a.id
+		where role_id = #{id}
+	</select>
 	
   <select id="select" resultMap="T_Authorities" parameterType="Authorities" >
   

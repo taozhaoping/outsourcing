@@ -67,9 +67,9 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public Role queryRoleToMenu(Role role) {
+	public Role queryAuthoritiesToMenu(Role role) {
 		// TODO Auto-generated method stub
-		return roleDao.queryRoleToMenu(role);
+		return roleDao.queryAuthoritiesToMenu(role);
 	}
 
 }
