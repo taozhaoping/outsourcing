@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zh.base.model.Enterprise;
+import com.zh.base.model.bean.Enterprise;
 import com.zh.base.service.EnterpriseService;
 
 public class TestService {
