@@ -357,6 +357,7 @@
 		</div>
 	</div>
 	<script src="<%=path %>/js/bootstrap.js"></script>
+	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		$(function() {
@@ -364,10 +365,6 @@
 				return false;
 			});
 		});
-		//一个导航卡打开后，其余的关闭
-        $(".collapse").on('show', function (){
-            $(this).siblings(".collapse").siblings(".in").collapse('hide');
-        });
 	</script>
 </body>
 </html>
