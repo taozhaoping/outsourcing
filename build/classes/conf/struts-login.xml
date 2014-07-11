@@ -22,7 +22,7 @@
 			method="excute">
 			<!-- from重复提交拦截器
 			<interceptor-ref name="invocationTokenStack"></interceptor-ref> -->
-			<result name="creater">/default/jsp/login/login.jsp</result>
+			<result name="creater">/pages/login/login.jsp</result>
 			<result name="success" type="redirectAction">
 				<param name="actionName">main</param>  
     			<param name="namespace">/home</param>
@@ -32,6 +32,12 @@
 				result不再跳往jsp页面，以以下方式跳到tiles-defs.xml文件中定义的definition <result
 				type="tiles" name="success" >loginUser</result>
 			-->
+		</action>
+		
+		<action name="resetPasswordAction" class="com.zh.base.action.LoginAction" method="{1}">
+			<result name="reset">/pages/login/resetPassword.jsp</result>
+			<result name="success">/pages/login/login.jsp</result>
+			<result name="error">/default/jsp/error/error.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -11,12 +11,19 @@
 	<package name="main" namespace="/home" extends="school">
 		<action name="main" class="com.zh.base.action.mainAction"
 			method="execute">
-			<result name="success">/default/jsp/login/main.jsp</result>
+			<result name="success">/pages/main/main.jsp</result>
 			<result name="right">/default/jsp/main/right.jsp</result>
 			<result name="updatePwd">/default/jsp/main/updatePassword.jsp</result>
 			<result name="json" type="json">
 				<param name="root">mainModel.dataMap</param>
 			</result>
+		</action>
+		
+		<!-- 企业 管理 -->
+		<action name="enterprise" class="com.zh.base.action.EnterpriseAction"
+			method="execute">
+			<result name="success">/pages/enterprise/List.jsp</result>
+			<result name="editor">/pages/enterprise/edit.jsp</result>
 		</action>
 		
 		

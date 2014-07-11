@@ -58,5 +58,11 @@ public class EnterpriseAction extends BaseAction {
 		return Action.EDITOR;
 		
 	}
+	
+	public String Save()
+	{
+		Enterprise enterprise = this.enterpriseModel.getEnterprise();
+		return Action.SUCCESS;
+	}
 
 }

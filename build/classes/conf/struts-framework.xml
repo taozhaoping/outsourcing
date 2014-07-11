@@ -64,9 +64,9 @@
 		<default-interceptor-ref name="loginStack" />
 
 		<global-results>
-			<result name="returnLogin">/login/loginAction.action
+			<result name="returnLogin">/login/login.jspa
 			</result>
-			<result name="error">/default/jsp/error/error.jsp</result>
+			<result name="error">/pages/exception/500.jsp</result>
 			
 		</global-results>
 	</package>

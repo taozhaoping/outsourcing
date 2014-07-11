@@ -137,7 +137,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<button class="btn btn-primary">
+						<button class="btn btn-primary" onclick="ftn_submit();">
 							<i class="icon-save"></i> 保存
 						</button>
 						<a href="enterprise.jspa" data-toggle="modal" class="btn">
@@ -147,23 +147,24 @@
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								<form id="tab" class="form-horizontal">
+								<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
+									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
 									<div class="control-group">
 										<label class="control-label" for="inputName">企业名称:</label>
 										<div class="controls">
-											<input type="text" id="inputName" value="${enterprise.name}" class="input-xlarge">
+											<input type="text" id="inputName" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="inputaddress">企业地址:</label>
 										<div class="controls">
-											<input type="text" id="inputaddress" value="${enterprise.address}" class="input-xlarge">
+											<input type="text" id="inputaddress" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="inputaddress">企业电话:</label>
 										<div class="controls">
-											<input type="text" id="inputaddress" value="${enterprise.phonecall}" class="input-xlarge">
+											<input type="text" id="inputaddress" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
 										</div>
 									</div>						
 								</form>
@@ -186,6 +187,10 @@
 	        $(".collapse").on('show', function (){
 	            $(this).siblings(".collapse").siblings(".in").collapse('hide');
 	        });
+	      //表单提交按钮
+	    	function ftn_submit() {
+	    		document.getElementsByName("editForm")[0].submit(); 
+	    	}
 		</script>
 </body>
 </html>
