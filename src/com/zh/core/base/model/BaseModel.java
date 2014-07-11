@@ -19,7 +19,7 @@ public class BaseModel {
 	 */
 	private String jsonIDString;
 	
-	private String levelID;
+	private Integer id;
 	
 	/**
 	 * 页面视图
@@ -76,12 +76,12 @@ public class BaseModel {
 		this.dataMap = dataMap;
 	}
 
-	public String getLevelID() {
-		return levelID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setLevelID(String levelID) {
-		this.levelID = levelID;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	
+
 }

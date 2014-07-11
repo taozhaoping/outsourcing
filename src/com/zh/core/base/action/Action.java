@@ -23,6 +23,8 @@ public interface Action extends com.opensymphony.xwork2.Action {
 	
 	public final static String SUCCESS = "success";
 	
+	public final static String EDITOR = "editor";
+	
 	public final static String JSON_ERROR = "json_error";
 	
 	public final static String FORM_ERROR = "form_error";

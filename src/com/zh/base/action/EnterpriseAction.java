@@ -11,6 +11,7 @@ import com.zh.base.model.bean.Enterprise;
 import com.zh.base.service.EnterpriseService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.exception.ProjectException;
 
 public class EnterpriseAction extends BaseAction {
 
@@ -41,6 +42,21 @@ public class EnterpriseAction extends BaseAction {
 		List<Enterprise> List = enterpriseService.queryList(enterprise);
 		this.enterpriseModel.setEnterpriseList(List);
 		return Action.SUCCESS;
+	}
+	
+	public String editor()
+	{
+		Integer id = this.enterpriseModel.getId();
+		if(null == id || "".equals(id))
+		{
+			ProjectException.createException("主建不允许为空!");
+		}
+		Enterprise enterprise = this.enterpriseModel.getEnterprise();
+		enterprise.setId(id);
+		Enterprise enterpriseReult = enterpriseService.query(enterprise);
+		this.enterpriseModel.setEnterprise(enterpriseReult);
+		return Action.EDITOR;
+		
 	}
 
 }

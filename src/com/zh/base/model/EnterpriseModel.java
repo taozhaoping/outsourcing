@@ -10,7 +10,7 @@ public class EnterpriseModel extends BaseModel {
 
 	private List<Enterprise> enterpriseList = new ArrayList<Enterprise>();
 	
-	private Enterprise enterprise;
+	private Enterprise enterprise = new Enterprise();
 
 	public List<Enterprise> getEnterpriseList() {
 		return enterpriseList;
