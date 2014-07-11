@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.EnterpriseDao;
-import com.zh.base.model.Enterprise;
+import com.zh.base.model.bean.Enterprise;
 import com.zh.base.service.EnterpriseService;
 import com.zh.core.model.Pager;
 

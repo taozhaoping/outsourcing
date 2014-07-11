@@ -2,7 +2,7 @@ package com.zh.base.service;
 
 import java.util.List;
 
-import com.zh.base.model.Role;
+import com.zh.base.model.bean.Role;
 import com.zh.core.model.Pager;
 
 public interface RoleService {

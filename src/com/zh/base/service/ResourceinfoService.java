@@ -2,7 +2,7 @@ package com.zh.base.service;
 
 import java.util.List;
 
-import com.zh.base.model.Resourceinfo;
+import com.zh.base.model.bean.Resourceinfo;
 import com.zh.core.model.Pager;
 
 public interface ResourceinfoService {

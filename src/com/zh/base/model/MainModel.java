@@ -1,10 +1,14 @@
 package com.zh.base.model;
 
+import com.zh.base.model.bean.Role;
+import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
 
 public class MainModel extends BaseModel {
 
 	public User user;
+	
+	private Role role;
 	
 	private String newPassWord;
 	
@@ -14,6 +18,14 @@ public class MainModel extends BaseModel {
 	private String contactTimeSize;
 	
 	private String theNextcontactSize;
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public User getUser() {
 		return user;

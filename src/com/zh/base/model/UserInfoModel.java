@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
 
 public class UserInfoModel extends BaseModel {

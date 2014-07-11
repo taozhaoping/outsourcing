@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.RoleDao;
-import com.zh.base.model.Role;
+import com.zh.base.model.bean.Role;
 import com.zh.base.service.RoleService;
 import com.zh.core.model.Pager;
 

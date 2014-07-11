@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.zh.base.model.Resourceinfo;
+import com.zh.base.model.bean.Resourceinfo;
 import com.zh.core.base.dao.BaseDao;
 
 @Component("resourceinfoDao")

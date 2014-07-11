@@ -2,7 +2,8 @@ package com.zh.base.dao;
 
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-import com.zh.base.model.Enterprise;
+
+import com.zh.base.model.bean.Enterprise;
 import com.zh.core.base.dao.BaseDao;
 
 @Component("enterpriseDao")

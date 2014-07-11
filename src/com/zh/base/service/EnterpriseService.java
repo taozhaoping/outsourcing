@@ -2,7 +2,7 @@ package com.zh.base.service;
 
 import java.util.List;
 
-import com.zh.base.model.Enterprise;
+import com.zh.base.model.bean.Enterprise;
 import com.zh.core.model.Pager;
 
 public interface EnterpriseService {

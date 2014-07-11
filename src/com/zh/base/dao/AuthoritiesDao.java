@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.zh.base.model.Authorities;
+import com.zh.base.model.bean.Authorities;
 import com.zh.core.base.dao.BaseDao;
 
 @Component("authoritiesDao")

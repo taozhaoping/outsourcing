@@ -1,4 +1,4 @@
-package com.zh.base.model;
+package com.zh.base.model.bean;
 
 import com.zh.core.model.IDataObject;
 

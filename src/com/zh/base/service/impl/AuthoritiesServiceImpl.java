@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.AuthoritiesDao;
-import com.zh.base.model.Authorities;
+import com.zh.base.model.bean.Authorities;
 import com.zh.base.service.AuthoritiesService;
 import com.zh.core.model.Pager;
 

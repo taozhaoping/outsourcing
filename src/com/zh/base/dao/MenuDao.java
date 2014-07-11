@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.zh.base.model.Menu;
+import com.zh.base.model.bean.Menu;
 import com.zh.core.base.dao.BaseDao;
 
 @Component("menuDao")

@@ -19,6 +19,13 @@
 			</result>
 		</action>
 		
+		<!-- 企业 管理 -->
+		<action name="enterprise" class="com.zh.base.action.EnterpriseAction"
+			method="execute">
+			<result name="success">/pages/enterprise/list.jsp</result>
+			<result name="editor">/default/jsp/user/userInfo.jsp</result>
+		</action>
+		
 		
 		<!-- 用户管理 -->
 		<action name="user" class="com.zh.base.action.UserInfoAction"

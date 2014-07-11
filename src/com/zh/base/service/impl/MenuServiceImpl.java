@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.MenuDao;
-import com.zh.base.model.Menu;
+import com.zh.base.model.bean.Menu;
 import com.zh.base.service.MenuService;
 import com.zh.core.model.Pager;
 

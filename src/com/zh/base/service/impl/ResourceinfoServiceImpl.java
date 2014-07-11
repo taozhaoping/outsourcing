@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.ResourceinfoDao;
-import com.zh.base.model.Resourceinfo;
+import com.zh.base.model.bean.Resourceinfo;
 import com.zh.base.service.ResourceinfoService;
 import com.zh.core.model.Pager;
 

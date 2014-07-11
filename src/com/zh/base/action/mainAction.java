@@ -1,12 +1,17 @@
 package com.zh.base.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.MainModel;
-import com.zh.base.model.User;
-import com.zh.base.service.MainService;
+import com.zh.base.model.bean.Menu;
+import com.zh.base.model.bean.Role;
+import com.zh.base.model.bean.User;
+import com.zh.base.service.RoleService;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
@@ -20,12 +25,12 @@ public class mainAction extends BaseAction {
 	private MainModel mainModel;
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(mainAction.class); 
-
-	@Autowired
-	private MainService mainService;
 	
 	@Autowired
 	private UserInfoService userInfoService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	//private String language;
 
@@ -38,19 +43,24 @@ public class mainAction extends BaseAction {
 	public String execute() {
 //		//设置当前语言
 //		//this.setLanguage(this.getLocale().toString());
-//		mainModel.setUser((UserInfo) this.getSession().getAttribute(
-//				VariableUtil.SESSION_KEY));
+		
+		//获取当前登录用户信息
+		User user = (User) this.getSession().getAttribute(
+				VariableUtil.SESSION_KEY);
 //		// 获取员工信息
 //		mainService.initEmployeeInfo(mainModel);
 //
 //		// 获取公司信息
 //		mainService.initEnterprise(mainModel);
 //
-//		// 获取角色信息和菜单信息
-//		mainService.initRoleMenuInfo(mainModel);
+		// 获取角色信息和菜单信息
+		Role role = new Role();
+		role.setId(user.getId());
+		Role roleReult = roleService.queryAuthoritiesToMenu(role);
+		this.mainModel.setRole(roleReult);
 //		
-//		//保存用户menu菜单中的action权限到session，用于过滤器的验证
-//		setAuthoritySession();
+		//保存用户menu菜单中的action权限到session，用于过滤器的验证
+		setAuthoritySession();
 //		
 //		//保存用户信息到session
 //		this.getSession().setAttribute(VariableUtil.EMPLOYEE, mainModel.getEmployee());
@@ -79,18 +89,15 @@ public class mainAction extends BaseAction {
 	}
 
 
-//	private void setAuthoritySession()
-//	{
-//		ArrayList<String> list = new ArrayList<String>();
-//		List<Menu> menuList = mainModel.getRole().getMenuList();
-//		for (Menu menu : menuList) {
-//			List<Menu> subMenuList = menu.getSubMenuList();
-//			for (Menu submenu : subMenuList) {
-//				list.add(submenu.getAction());
-//			}
-//		}
-//		this.getSession().setAttribute(VariableUtil.AUTHORITY, list);
-//	}
+	private void setAuthoritySession()
+	{
+		ArrayList<String> list = new ArrayList<String>();
+		List<Menu> menuList = mainModel.getRole().getMenuList();
+		for (Menu menu : menuList) {
+			list.add(menu.getAction());
+		}
+		this.getSession().setAttribute(VariableUtil.AUTHORITY, list);
+	}
 	
 	public String rightExecute()
 	{
@@ -125,14 +132,6 @@ public class mainAction extends BaseAction {
 
 	public void setMainModel(MainModel mainModel) {
 		this.mainModel = mainModel;
-	}
-
-	public MainService getMainService() {
-		return mainService;
-	}
-
-	public void setMainService(MainService mainService) {
-		this.mainService = mainService;
 	}
 
 	public void setUserInfoService(UserInfoService userInfoService) {
