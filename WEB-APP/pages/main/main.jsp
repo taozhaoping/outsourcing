@@ -77,11 +77,13 @@
 	 
 	<div class="sidebar-nav">
 		<a href="#dashboard-menu" class="nav-header collapsed"
-			data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统配置</a>
+			data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统管理</a>
 		<ul id="dashboard-menu" class="nav nav-list collapse in">
-			<li><a href="index.html">主页</a></li>
-			<li><a href="users.html">用户列表</a></li>
-			<li><a href="user.html">编辑用户</a></li>
+			<li><a href="#">参数配置</a></li>
+			<li><a href="#">用户列表</a></li>
+			<li><a href="#">角色列表</a></li>
+			<li><a href="#">资源列表</a></li>
+			<li><a href="#">企业列表</a></li>
 		</ul>
 
 		<a href="#accounts-menu" class="nav-header collapsed"
