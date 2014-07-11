@@ -157,7 +157,7 @@ public class UserInfoAction extends BaseAction {
 	public String save()
 	{
 		User userInfo = userInfoModel.getUserInfo();
-		Long id = userInfo.getId();
+		Integer id = userInfo.getId();
 		String password = userInfo.getUserPassword();
 		if( null != password )
 		{

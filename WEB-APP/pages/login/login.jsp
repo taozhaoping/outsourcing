@@ -46,7 +46,7 @@
 <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<body class="" onload="showValidateCode()">
+<body class="">
 	<!--<![endif]-->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -95,6 +95,7 @@
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
+			showValidateCode();
 		});
 		
 		function showValidateCode() {

@@ -24,6 +24,7 @@
 		<result column="CreateTime" property="createTime" jdbcType="DATE" />
 		<result column="updateTime" property="updateTime" jdbcType="DATE" />
 	</resultMap>
+	
 	<sql id="Base_Column_List">
 		id, loginName, userPassword, name, ENABLED, userType, role_id,
 		enterprise_id, email,
@@ -34,7 +35,6 @@
 
 	<sql id="where">
 		<where>
-			
 			<if test="loginName != null">
 				And loginName=#{loginName}
 			</if>
@@ -91,7 +91,7 @@
 	</delete>
 
 	<insert id="insert" parameterType="User">
-		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
 			select SEQUENCE_SYS_USER.nextval from dual
 		</selectKey>
 		insert into SYS_USER (id, loginName, userPassword,
