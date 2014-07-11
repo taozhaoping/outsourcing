@@ -46,32 +46,35 @@
 <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<body class="" onload="showValidateCode()">
-	<!--<![endif]-->
+<body class="">
+<!--<![endif]-->
+	<%@ include file="/pages/common/titleWithNav.jsp"%> 
+	<!-- 
 	<div class="navbar">
 		<div class="navbar-inner">
 			<ul class="nav pull-right">
-
-				<li><a href="#"
-					class="hidden-phone visible-tablet visible-desktop" role="button">设置</a></li>
-				<li id="fat-menu" class="dropdown"><a href="#" role="button"
-					class="dropdown-toggle" data-toggle="dropdown"> <i
-						class="icon-user"></i> 陶照平 <i class="icon-caret-down"></i>
-				</a>
-
+				<li>
+					<a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">设置</a>
+				</li>
+				<li id="fat-menu" class="dropdown">
+					<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+						<i	class="icon-user"></i> 陶照平 <i class="icon-caret-down"></i>
+					</a>
 					<ul class="dropdown-menu">
 						<li><a tabindex="-1" href="#">我的账号</a></li>
 						<li class="divider"></li>
 						<li><a tabindex="-1" class="visible-phone" href="#">设置</a></li>
 						<li class="divider visible-phone"></li>
 						<li><a tabindex="-1" href="sign-in.html">退出</a></li>
-					</ul></li>
-
+					</ul>
+				</li>
 			</ul>
 			<a class="brand" href="index.html"><span class="first">Your</span>
 				<span class="second">信息管理平台</span></a>
 		</div>
 	</div>
+	 -->
+	 
 	<div class="sidebar-nav">
 		<a href="#dashboard-menu" class="nav-header collapsed"
 			data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统配置</a>
@@ -98,8 +101,8 @@
 			<li><a href="503.html">503 page</a></li>
 		</ul>
 	</div>
+	
 	<div class="content">
-
 		<div class="header">
 			<div class="stats">
 				<p class="stat">
