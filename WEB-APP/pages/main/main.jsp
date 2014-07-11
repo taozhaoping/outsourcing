@@ -85,7 +85,7 @@
 			<li><a href="#">用户列表</a></li>
 			<li><a href="#">角色列表</a></li>
 			<li><a href="#">资源列表</a></li>
-			<li><a href="../home/enterprise.jspa">企业列表</a></li>
+			<li><a href="enterprise.jspa">企业列表</a></li>
 			<li><a href="#">参数配置</a></li>
 		</ul>
 
