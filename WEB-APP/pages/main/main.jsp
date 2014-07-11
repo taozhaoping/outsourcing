@@ -364,37 +364,10 @@
 				return false;
 			});
 		});
-
-		$('#dashboard-menu').on('show', function() {
-			if ($('#accounts-menu').hasClass('in')) {
-				$('#accounts-menu').collapse('hide');
-			}
-
-			if ($('#error-menu').hasClass('in')) {
-				$('#error-menu').collapse('hide');
-			}
-
-		});
-
-		$('#accounts-menu').on('show', function() {
-			if ($('#dashboard-menu').hasClass('in')) {
-				$('#dashboard-menu').collapse('hide');
-			}
-
-			if ($('#error-menu').hasClass('in')) {
-				$('#error-menu').collapse('hide');
-			}
-		});
-
-		$('#error-menu').on('show', function() {
-			if ($('#dashboard-menu').hasClass('in')) {
-				$('#dashboard-menu').collapse('hide');
-			}
-			if ($('#accounts-menu').hasClass('in')) {
-				$('#accounts-menu').collapse('hide');
-			}
-
-		});
+		//一个导航卡打开后，其余的关闭
+        $(".collapse").on('show', function (){
+            $(this).siblings(".collapse").siblings(".in").collapse('hide');
+        });
 	</script>
 </body>
 </html>
