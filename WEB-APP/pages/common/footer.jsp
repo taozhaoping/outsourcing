@@ -1,12 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<footer>
-	<hr>
+<div id="footer">
 	<!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
-	<p class="pull-right">
-		Design by <a href="mailto:taozhaoping@gmail.com">陶照平</a>
+	<p class="pagination-centered" style="margin: 10px 0px;">
+		&copy;2014 All Rights Reserved	Design by <a href="mailto:taozhaoping@gmail.com">陶照平</a>
 		&nbsp;<a href="mailto:caiyingying234@gmail.com">蔡迎迎</a>
 	</p>
-	<p>
-		&copy;2014 <a href="#">信息管理平台</a> All Rights Reserved
-	</p>
-</footer>
+</div>
