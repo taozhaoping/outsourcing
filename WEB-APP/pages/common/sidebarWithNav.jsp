@@ -4,18 +4,21 @@
 	<s:if test="%{#request.role.menuList != null}">
 		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
 	</s:if>
-	
-	<s:iterator value="#session.menuList" status="statu" id="menu">  
-		<a href="#<s:property value="action" />" class="nav-header collapsed" data-toggle="collapse">
-			<i class="icon-exclamation-sign"></i><s:property value="name" /></a>
+
+	<s:iterator value="#session.menuList" status="statu" id="menu">
+		<a href="#<s:property value="action" />" class="nav-header collapsed"
+			data-toggle="collapse"> <i class="icon-exclamation-sign"></i>
+		<s:property value="name" /></a>
 
 		<ul id="<s:property value="action" />" class="nav nav-list collapse">
 			<s:iterator value="#menu.menuList" id="menuTwo">
-				<li><a href="<s:property value="url"/>"><s:property value="name"/></a></li>
+				<li><a
+					href="<s:property value="url"/>?menu=<s:property value="#menu.action" />&menu2=<s:property value="action"/>"
+					id="<s:property value="action"/>" url="<s:property value="url"/>"><s:property value="name" /></a></li>
 			</s:iterator>
 		</ul>
 	</s:iterator>
-	
+
 	<!-- 
 	<a href="#dashboard-menu" class="nav-header collapsed"
 		data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统管理</a>
@@ -44,5 +47,5 @@
 		<li><a href="503.html">503 page</a></li>
 	</ul>
 	 -->
-	 
-	</div>
+
+</div>

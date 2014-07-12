@@ -2,3 +2,8 @@
 $(".collapse").on('show', function (){
     $(this).siblings(".collapse").siblings(".in").collapse('hide');
 });
+
+//展开菜单
+function collapseMenu(id){
+	$("#"+id).collapse('show');
+}
