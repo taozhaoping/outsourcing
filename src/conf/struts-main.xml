@@ -27,6 +27,8 @@
 			<result name="editorSuccess" type="redirectAction">
 				<param name="actionName">enterprise</param>  
     			<param name="namespace">/home</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
 			</result>
 		</action>
 		

@@ -21,6 +21,10 @@ public class BaseModel {
 	
 	private Integer id;
 	
+	private String menuId;
+	
+	private String menu2Id;
+	
 	/**
 	 * 页面视图
 	 */
@@ -36,6 +40,22 @@ public class BaseModel {
 	 */
 	private String reultObject;
 	
+	public String getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+
+	public String getMenu2Id() {
+		return menu2Id;
+	}
+
+	public void setMenu2Id(String menu2Id) {
+		this.menu2Id = menu2Id;
+	}
+
 	public Pager getPageInfo() {
 		return pageInfo;
 	}

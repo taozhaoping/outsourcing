@@ -113,7 +113,7 @@
 											<td>停用</td>
 										</s:else>
 										<td>
-											<a href="enterprise!editor.jspa?id=<s:property value='#enterprise.id'/>"><i class="icon-pencil"></i></a> 
+											<a href="enterprise!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
 											<a href="#myModal" role="button" data-toggle="modal"><i
 												class="icon-remove"></i></a>
 										</td>
@@ -133,21 +133,22 @@
 						</ul>
 					</div>
 				</div>
-
-				
-
 			</div>
 		</div>
-			<%@ include file="/pages/common/footer.jsp"%>
 	</div>
+	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
+		var id='${param.menuId}';
 		$(function() {
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
+			text = $("#"+id)[0].innerText;
+			//展开一级菜单
+			collapseMenu(id);
 		});
 	</script>
 </body>

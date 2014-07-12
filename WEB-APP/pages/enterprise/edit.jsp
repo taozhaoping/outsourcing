@@ -83,7 +83,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<button class="btn btn-primary" onclick="ftn_submit('editForm');">
+						<button class="btn btn-primary" onclick="verification();">
 							<i class="icon-save"></i> 保存
 						</button>
 						<a href="enterprise.jspa" data-toggle="modal" class="btn">
@@ -95,10 +95,12 @@
 							<div class="tab-pane active" id="home">
 								<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
 									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
-									<div class="control-group error">
-										<label class="control-label" for="inputName">企业名称:</label>
+									<input type="hidden" name="menuId" value="${menuId}">
+									<input type="hidden" name="menu2Id" value="${menu2Id}">
+									<div class="control-group" id="name_div">
+										<label class="control-label" for="name_input">企业名称:</label>
 										<div class="controls">
-											<input type="text" data-title="必填字段" id="inputName" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
+											<input type="text" check-type="required" required-message="企业名称不能为空！"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
@@ -119,19 +121,28 @@
 					</div>
 				</div>
 			</div>
-			<%@ include file="/pages/common/footer.jsp"%>
 		</div>
+		<%@ include file="/pages/common/footer.jsp"%>
 		<script src="<%=path%>/js/bootstrap.js"></script>
 		<script src="<%=path %>/js/collapsePulg.js"></script>
 		<script src="<%=path %>/js/common.js"></script>
+		<script src="<%=path %>/js/validate/assets/js/jquery.validate.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
+			var id='${param.menuId}';
 			$(function() {
 				$('.demo-cancel-click').click(function() {
 					return false;
 				});
-				$('.typeahead').typeahead()
+				
+				//展开一级菜单
+				collapseMenu(id);
 			});
+			
+			function verification()
+			{
+				ftn_submit('editForm');
+			}
 		</script>
 </body>
 </html>
