@@ -66,7 +66,7 @@
 		<global-results>
 			<result name="returnLogin">/login/login.jspa
 			</result>
-			<result name="error">/pages/exception/500.jsp</result>
+			<result name="error">/pages/exception/error.jsp</result>
 			
 		</global-results>
 	</package>

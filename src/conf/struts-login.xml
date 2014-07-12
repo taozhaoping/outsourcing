@@ -27,7 +27,7 @@
 				<param name="actionName">main</param>  
     			<param name="namespace">/home</param>
 			</result>
-			<result name="error">/default/jsp/error/error.jsp</result>
+			<result name="error">/pages/exception/error.jsp</result>
 			<!--
 				result不再跳往jsp页面，以以下方式跳到tiles-defs.xml文件中定义的definition <result
 				type="tiles" name="success" >loginUser</result>
@@ -37,7 +37,7 @@
 		<action name="resetPasswordAction" class="com.zh.base.action.LoginAction" method="{1}">
 			<result name="reset">/pages/login/resetPassword.jsp</result>
 			<result name="success">/pages/login/login.jsp</result>
-			<result name="error">/default/jsp/error/error.jsp</result>
+			<result name="error">/pages/exception/error.jsp</result>
 		</action>
 	</package>
 </struts>
