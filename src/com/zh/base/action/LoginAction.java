@@ -35,6 +35,7 @@ public class LoginAction extends BaseAction {
 		if( null != user )
 		{
 			this.getSession().removeAttribute(VariableUtil.SESSION_KEY);
+			this.getSession().removeAttribute(VariableUtil.MENULIST);
 		}
 		return "creater";
 	}
