@@ -22,8 +22,8 @@
 		<!-- 企业 管理 -->
 		<action name="enterprise" class="com.zh.base.action.EnterpriseAction"
 			method="execute">
-			<result name="success">/pages/enterprise/List.jsp</result>
-			<result name="editor">/pages/enterprise/edit.jsp</result>
+			<result name="success">/pages/SystemConfig/enterprise/List.jsp</result>
+			<result name="editor">/pages/SystemConfig/enterprise/edit.jsp</result>
 			<result name="editorSuccess" type="redirectAction">
 				<param name="actionName">enterprise</param>  
     			<param name="namespace">/home</param>
