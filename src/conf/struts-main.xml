@@ -32,6 +32,19 @@
 			</result>
 		</action>
 		
+		<!-- 角色列表 -->
+		<action name="role" class="com.zh.base.action.RoleAction"
+			method="execute">
+			<result name="success">/pages/SystemConfig/role/roleList.jsp</result>
+			<result name="editor">/pages/SystemConfig/role/roleEdit.jsp</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">role</param>  
+    			<param name="namespace">/home</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+		</action>
+		
 		
 		<!-- 用户管理 -->
 		<action name="user" class="com.zh.base.action.UserInfoAction"
