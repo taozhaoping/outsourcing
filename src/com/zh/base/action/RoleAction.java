@@ -11,6 +11,8 @@ import com.zh.base.model.bean.Role;
 import com.zh.base.service.RoleService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.exception.ProjectException;
+import com.zh.core.model.Pager;
 
 public class RoleAction extends BaseAction {
 
@@ -38,14 +40,10 @@ public class RoleAction extends BaseAction {
 		LOGGER.debug("execute() ");
 		
 		Role role = this.roleModel.getRole();
-		List<Role> roleList = roleService.queryList(role);
+		Pager page = this.roleModel.getPageInfo();
+		List<Role> roleList = roleService.queryList(role,page);
 		this.roleModel.setRoleList(roleList);
 		
-		/*
-		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		List<Enterprise> List = enterpriseService.queryList(enterprise);
-		this.enterpriseModel.setEnterpriseList(List);
-		*/
 		return Action.SUCCESS;
 	}
 	
@@ -55,6 +53,18 @@ public class RoleAction extends BaseAction {
 	 */
 	public String editor() {
 		LOGGER.debug("editor()");
+		
+		Integer id = this.roleModel.getId();
+		if(null == id || "".equals(id)){
+			ProjectException.createException("主建不允许为空!");
+		}
+		
+		Role role = this.roleModel.getRole();
+		role.setId(id);
+		
+		Role roleRet = roleService.queryAuthoritiesToMenu(role);
+		
+		this.roleModel.setRole(roleRet);
 		/*
 		Integer id = this.enterpriseModel.getId();
 		if(null == id || "".equals(id))

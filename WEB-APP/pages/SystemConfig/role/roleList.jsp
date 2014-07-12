@@ -93,7 +93,7 @@
 								<tr>
 									<th>序号</th>
 									<th>名称</th>
-									<th>资源列表</th>
+									<th>功能权限</th>
 									<th>创建时间</th>
 									<th>修改时间</th>
 									<th style="width: 26px;"></th>
@@ -109,8 +109,9 @@
 										<td><s:property value="#role.updatetime"/></td>
 										<td>
 											<a href="role!editor.jspa?id=<s:property value='#role.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<a href="#myModal" role="button" data-toggle="modal"><i
-												class="icon-remove"></i></a>
+											<!-- 
+											<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+											 -->
 										</td>
 									</tr>
 								</s:iterator>

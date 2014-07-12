@@ -80,7 +80,7 @@
 		</ul>
 		
 		<div class="container-fluid">
-		<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
+		<form id="editForm" class="form-horizontal" action="role!save.jspa" method="post">
 			<div class="row-fluid">
 				<div class="row-fluid">
 				
@@ -95,28 +95,28 @@
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								<input type="hidden" name="enterprise.id" value="${enterprise.id}">
+								<input type="hidden" name="role.id" value="${role.id}">
 								<input type="hidden" name="menuId" value="${menuId}">
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
 								
 								<div class="control-group" id="name_div">
 									<label class="control-label" for="name_input">角色名称:</label>
 									<div class="controls">
-										<input type="text" data-required="true"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
+										<input type="text" data-required="true"  id="nameInput" name="role.name" value="${role.name}" class="input-xlarge">
 									</div>
 								</div>
 								
 								<div class="control-group">
-									<label class="control-label" for="inputaddress">资源列表:</label>
+									<label class="control-label" for="inputaddress">功能权限:</label>
 									<div class="controls">
-										<input type="text" data-required="true" id="inputaddress" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
+										<input type="text" data-required="true" id="authoritiesListInput" name="role.authoritiesList" value="${role.authoritiesList}" class="input-xlarge">
 									</div>
 								</div>
 								
 								<div class="control-group">
 									<label class="control-label" for="inputaddress">菜单权限:</label>
 									<div class="controls">
-										<input type="text" data-required="true" id="inputaddress" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
+										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge">
 									</div>
 								</div>
 													
