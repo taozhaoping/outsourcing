@@ -6,6 +6,7 @@ $(function() {
 				text = $("#"+menuId)[0].innerText;
 				$("#menu2Name")[0].innerText=text;
 				$("#navigation")[0].href=url + "?menuId="+id+"&menu2Id="+menuId;
+				
 				//展开一级菜单
 				collapseMenu(id);
 				
