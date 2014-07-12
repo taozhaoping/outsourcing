@@ -72,7 +72,7 @@
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+			<li><a href="index.html">主页</a> <span class="divider">/</span></li>
 			<li class="active">Dashboard</li>
 		</ul>
 

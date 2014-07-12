@@ -70,12 +70,12 @@
 				</p>
 			</div>
 
-			<h1 class="page-title">企业管理</h1>
+			<h1 class="page-title" id="menu2Name"></h1>
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="main.jspa">Home</a> <span class="divider">/</span></li>
-			<li><a href="enterprise.jspa">企业列表</a> <span class="divider">/</span></li>
+			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
+			<li><a href="enterprise.jspa" id="navigation">企业列表</a> <span class="divider">/</span></li>
 			<li class="active">企业编辑</li>
 		</ul>
 
@@ -129,12 +129,16 @@
 		<script src="<%=path %>/js/validate/assets/js/jquery.validate.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
-			var id='${param.menuId}';
+			var id='${menuId}';
+			var menuId='${menu2Id}';
+			var url=$("#"+menuId)[0].getAttribute("url");
 			$(function() {
 				$('.demo-cancel-click').click(function() {
 					return false;
 				});
-				
+				text = $("#"+menuId)[0].innerText;
+				$("#menu2Name")[0].innerText=text;
+				$("#navigation")[0].href=url + "?menuId="+id+"&menu2Id="+menuId;
 				//展开一级菜单
 				collapseMenu(id);
 			});

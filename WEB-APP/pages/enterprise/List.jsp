@@ -70,11 +70,11 @@
 				</p>
 			</div>
 
-			<h1 class="page-title">企业管理</h1>
+			<h1 class="page-title" id="menu2Name"></h1>
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="main.jspa">Home</a> <span class="divider">/</span></li>
+			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
 			<li class="active">企业列表</li>
 		</ul>
 
@@ -141,12 +141,14 @@
 	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
-		var id='${param.menuId}';
+		var id='${menuId}';
+		var menuid='${menu2Id}';
 		$(function() {
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
-			text = $("#"+id)[0].innerText;
+			text = $("#"+menuid)[0].innerText;
+			$("#menu2Name")[0].innerText=text;
 			//展开一级菜单
 			collapseMenu(id);
 		});
