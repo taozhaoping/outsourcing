@@ -80,7 +80,7 @@
 		</ul>
 		
 		<div class="container-fluid">
-		<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
+		<form id="editForm" class="form-horizontal" action="enterprise!save.jspa" method="post">
 			<div class="row-fluid">
 				<div class="row-fluid">
 				
@@ -108,13 +108,13 @@
 									<div class="control-group">
 										<label class="control-label" for="inputaddress">企业地址:</label>
 										<div class="controls">
-											<input type="text" id="inputaddress" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
+											<input type="text" id="inputaddress" data-required="true" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="inputaddress">企业电话:</label>
 										<div class="controls">
-											<input type="text" id="inputaddress" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
+											<input type="text" id="inputaddress" data-pattern="(^(\d{3,4}-)?\d{7,8})$|(1[3,5,7,8,9]{1}[0-9]{9})" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
 										</div>
 									</div>						
 								

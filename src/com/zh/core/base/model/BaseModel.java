@@ -26,6 +26,11 @@ public class BaseModel {
 	private String menu2Id;
 	
 	/**
+	 * 是否启用或者停用
+	 */
+	private String enabled;
+	
+	/**
 	 * 页面视图
 	 */
 	private String view;
@@ -104,4 +109,13 @@ public class BaseModel {
 		this.id = id;
 	}
 
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	
 }

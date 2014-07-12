@@ -57,12 +57,29 @@ public class EnterpriseAction extends BaseAction {
 		return Action.EDITOR;
 	}
 	
-	public String Save()
+	public String save()
 	{
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		Integer id = enterprise.getId();
+		
+		
+		//判断当前是设置成启动状态还是停用状态
+		String view = this.enterpriseModel.getView();
+		if(null != view && "enabled".equals(view))
+		{
+			String enabled = this.enterpriseModel.getEnabled();
+			Integer id = this.enterpriseModel.getId();
+			if("0".equals(enabled))
+			{
+				enterprise.setEnabled("1");
+			}else
+			{
+				enterprise.setEnabled("0");
+			}
+			enterprise.setId(id);
+		}
 		
 		//判断是新增还是修改
+		Integer id = enterprise.getId();
 		if(null == id || 0 == id)
 		{
 			enterpriseService.insert(enterprise);
