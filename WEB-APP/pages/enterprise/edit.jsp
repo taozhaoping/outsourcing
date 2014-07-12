@@ -125,6 +125,7 @@
 			</div>
 		</form>
 		</div>
+		</div>
 		<%@ include file="/pages/common/footer.jsp"%>
 		<script src="<%=path%>/js/bootstrap.js"></script>
 		<script src="<%=path %>/js/collapsePulg.js"></script>
