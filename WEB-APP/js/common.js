@@ -1,6 +1,25 @@
 //公共js函数
+$(function() {
+				$('.demo-cancel-click').click(function() {
+					return false;
+				});
+				text = $("#"+menuId)[0].innerText;
+				$("#menu2Name")[0].innerText=text;
+				$("#navigation")[0].href=url + "?menuId="+id+"&menu2Id="+menuId;
+				//展开一级菜单
+				collapseMenu(id);
+				
+				//验证
+				$('#editForm').validate({
+					onKeyup : true,
+					onSubmit:true,
+					eachValidField : function() {
 
-//表单提交按钮
-function ftn_submit(formName) {
-	document.getElementsByName(formName)[0].submit(); 
-}
+						$(this).closest('div').parents('div').removeClass('error').addClass('success');
+					},
+					eachInvalidField : function() {
+
+						$(this).closest('div').parents('div').removeClass('success').addClass('error');
+					}
+				});
+			});

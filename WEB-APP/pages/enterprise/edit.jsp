@@ -78,12 +78,14 @@
 			<li><a href="enterprise.jspa" id="navigation">企业列表</a> <span class="divider">/</span></li>
 			<li class="active">企业编辑</li>
 		</ul>
-
+		
 		<div class="container-fluid">
+		<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
 			<div class="row-fluid">
 				<div class="row-fluid">
+				
 					<div class="btn-toolbar">
-						<button class="btn btn-primary" onclick="verification();">
+						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
 						<a href="enterprise.jspa" data-toggle="modal" class="btn">
@@ -93,14 +95,14 @@
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								<form id="editForm" class="form-horizontal" action="enterprise!Save.jspa" method="post">
+								
 									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
 									<div class="control-group" id="name_div">
 										<label class="control-label" for="name_input">企业名称:</label>
 										<div class="controls">
-											<input type="text" check-type="required" required-message="企业名称不能为空！"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
+											<input type="text" data-required="true"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
@@ -115,38 +117,26 @@
 											<input type="text" id="inputaddress" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
 										</div>
 									</div>						
-								</form>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 		<%@ include file="/pages/common/footer.jsp"%>
 		<script src="<%=path%>/js/bootstrap.js"></script>
 		<script src="<%=path %>/js/collapsePulg.js"></script>
 		<script src="<%=path %>/js/common.js"></script>
-		<script src="<%=path %>/js/validate/assets/js/jquery.validate.js"></script>
+		<script src="<%=path %>/js/jquery-validate.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
 			var id='${menuId}';
 			var menuId='${menu2Id}';
 			var url=$("#"+menuId)[0].getAttribute("url");
-			$(function() {
-				$('.demo-cancel-click').click(function() {
-					return false;
-				});
-				text = $("#"+menuId)[0].innerText;
-				$("#menu2Name")[0].innerText=text;
-				$("#navigation")[0].href=url + "?menuId="+id+"&menu2Id="+menuId;
-				//展开一级菜单
-				collapseMenu(id);
-			});
 			
-			function verification()
-			{
-				ftn_submit('editForm');
-			}
+			
 		</script>
 </body>
 </html>
