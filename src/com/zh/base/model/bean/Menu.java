@@ -1,5 +1,7 @@
 package com.zh.base.model.bean;
 
+import java.util.List;
+
 import com.zh.core.model.IDataObject;
 
 public class Menu extends IDataObject {
@@ -66,6 +68,8 @@ public class Menu extends IDataObject {
      * @mbggenerated Thu Jul 10 12:31:01 CST 2014
      */
     private Integer reorder;
+    
+    private List<Menu> menuList;
 
 	public Integer getId() {
 		return id;
@@ -129,6 +133,14 @@ public class Menu extends IDataObject {
 
 	public void setReorder(Integer reorder) {
 		this.reorder = reorder;
+	}
+
+	public List<Menu> getMenuList() {
+		return menuList;
+	}
+
+	public void setMenuList(List<Menu> menuList) {
+		this.menuList = menuList;
 	}
 
 }

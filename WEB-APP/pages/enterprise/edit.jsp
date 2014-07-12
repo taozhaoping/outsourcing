@@ -176,6 +176,8 @@
 			<%@ include file="/pages/common/footer.jsp"%>
 		</div>
 		<script src="<%=path%>/js/bootstrap.js"></script>
+		<script src="<%=path %>/js/collapsePulg.js"></script>
+		<script src="<%=path %>/js/common.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
 			$(function() {
@@ -183,14 +185,6 @@
 					return false;
 				});
 			});
-			//一个导航卡打开后，其余的关闭
-	        $(".collapse").on('show', function (){
-	            $(this).siblings(".collapse").siblings(".in").collapse('hide');
-	        });
-	      //表单提交按钮
-	    	function ftn_submit() {
-	    		document.getElementsByName("editForm")[0].submit(); 
-	    	}
 		</script>
 </body>
 </html>

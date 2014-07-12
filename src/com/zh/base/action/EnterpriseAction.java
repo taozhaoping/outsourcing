@@ -62,7 +62,14 @@ public class EnterpriseAction extends BaseAction {
 	public String Save()
 	{
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		return Action.SUCCESS;
+		Integer id = enterprise.getId();
+		
+		//判断是新增还是修改
+		if(null == id || 0 == id)
+		{
+			
+		}
+		return Action.EDITOR_SUCCESS;
 	}
 
 }

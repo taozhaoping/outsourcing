@@ -1,6 +1,7 @@
 package com.zh.base.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -94,6 +95,14 @@ public class mainAction extends BaseAction {
 		ArrayList<String> list = new ArrayList<String>();
 		List<Menu> menuList = mainModel.getRole().getMenuList();
 		for (Menu menu : menuList) {
+			Integer parentid = menu.getParentid();
+			if(parentid.equals(0))
+			{
+				List<Menu> mList = menu.getMenuList();
+				for (Menu menu2 : mList) {
+					list.add(menu2.getAction());
+				}
+			}
 			list.add(menu.getAction());
 		}
 		this.getSession().setAttribute(VariableUtil.AUTHORITY, list);

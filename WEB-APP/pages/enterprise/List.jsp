@@ -54,32 +54,6 @@
 <body class="">
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
-	<!-- 
-	<div class="navbar">
-		<div class="navbar-inner">
-			<ul class="nav pull-right">
-				<li>
-					<a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">设置</a>
-				</li>
-				<li id="fat-menu" class="dropdown">
-					<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-						<i	class="icon-user"></i> 陶照平 <i class="icon-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#">我的账号</a></li>
-						<li class="divider"></li>
-						<li><a tabindex="-1" class="visible-phone" href="#">设置</a></li>
-						<li class="divider visible-phone"></li>
-						<li><a tabindex="-1" href="sign-in.html">退出</a></li>
-					</ul>
-				</li>
-			</ul>
-			<a class="brand" href="index.html"><span class="first">Your</span>
-				<span class="second">信息管理平台</span></a>
-		</div>
-	</div>
-	 -->
-
 	<div class="sidebar-nav">
 		<a href="#dashboard-menu" class="nav-header collapsed"
 			data-toggle="collapse"><i class="icon-exclamation-sign"></i>系统管理</a>
@@ -195,6 +169,7 @@
 			<%@ include file="/pages/common/footer.jsp"%>
 	</div>
 	<script src="<%=path%>/js/bootstrap.js"></script>
+	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		$(function() {
@@ -202,11 +177,6 @@
 				return false;
 			});
 		});
-
-		//一个导航卡打开后，其余的关闭
-        $(".collapse").on('show', function (){
-            $(this).siblings(".collapse").siblings(".in").collapse('hide');
-        });
 	</script>
 </body>
 </html>

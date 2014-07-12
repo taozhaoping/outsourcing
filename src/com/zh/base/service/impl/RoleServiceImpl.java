@@ -1,11 +1,15 @@
 package com.zh.base.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.RoleDao;
+import com.zh.base.model.bean.Menu;
 import com.zh.base.model.bean.Role;
 import com.zh.base.service.RoleService;
 import com.zh.core.model.Pager;
@@ -69,7 +73,43 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role queryAuthoritiesToMenu(Role role) {
 		// TODO Auto-generated method stub
-		return roleDao.queryAuthoritiesToMenu(role);
+		Role roleReult = roleDao.queryAuthoritiesToMenu(role);
+		
+		//菜单分层（树状）
+		List<Menu> menuList = roleReult.getMenuList();
+		List<Menu> newMenuList = new ArrayList<Menu>();
+		Map<Integer, List<Menu>> map = new HashMap<Integer, List<Menu>>();
+		for (Menu menu : menuList) {
+			
+			Integer parentid = menu.getParentid();
+			if(parentid == 0)
+			{
+				List<Menu> mList;
+				if(map.containsKey(menu.getId()))
+				{
+					mList = map.get(menu.getId());
+				}else
+				{
+					mList = new ArrayList<Menu>();
+				}
+				menu.setMenuList(mList);
+				newMenuList.add(menu);
+				map.put(menu.getId(), mList);
+			}else
+			{
+				if(map.containsKey(parentid))
+				{
+					map.get(parentid).add(menu);
+				}else
+				{
+					ArrayList<Menu> mList = new ArrayList<Menu>();
+					mList.add(menu);
+					map.put(parentid, mList);
+				}
+			}
+		}
+		roleReult.setMenuList(newMenuList);
+		return roleReult;
 	}
 
 }
