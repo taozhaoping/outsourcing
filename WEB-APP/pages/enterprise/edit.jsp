@@ -137,7 +137,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<button class="btn btn-primary" onclick="ftn_submit();">
+						<button class="btn btn-primary" onclick="ftn_submit('editForm');">
 							<i class="icon-save"></i> 保存
 						</button>
 						<a href="enterprise.jspa" data-toggle="modal" class="btn">
