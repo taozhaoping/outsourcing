@@ -5,5 +5,5 @@ $(".collapse").on('show', function (){
 
 //展开菜单
 function collapseMenu(id){
-	$("#"+id).collapse('show');
+	$("#"+id).addClass('in');
 }
