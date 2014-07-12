@@ -82,9 +82,9 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<button class="btn btn-primary">
-							<i class="icon-plus"></i> New User
-						</button>
+						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
+							<i class="icon-plus"></i> 新增企业
+						</a>
 						<div class="btn-group"></div>
 					</div>
 					<div class="well">
@@ -113,7 +113,7 @@
 											<td>停用</td>
 										</s:else>
 										<td>
-											<a href="enterprise!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
+											<a href="${menu2Id}!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
 											<a href="#myModal" role="button" data-toggle="modal"><i
 												class="icon-remove"></i></a>
 										</td>
@@ -152,6 +152,12 @@
 			//展开一级菜单
 			collapseMenu(id);
 		});
+		
+		function addObject(name)
+		{
+			var url=url + "?menuId="+id+"&menu2Id="+menuId;
+			
+		}
 	</script>
 </body>
 </html>

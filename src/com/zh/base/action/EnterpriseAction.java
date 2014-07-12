@@ -47,16 +47,14 @@ public class EnterpriseAction extends BaseAction {
 	public String editor()
 	{
 		Integer id = this.enterpriseModel.getId();
-		if(null == id || "".equals(id))
+		if(null != id && !"".equals(id))
 		{
-			ProjectException.createException("主建不允许为空!");
+			Enterprise enterprise = this.enterpriseModel.getEnterprise();
+			enterprise.setId(id);
+			Enterprise enterpriseReult = enterpriseService.query(enterprise);
+			this.enterpriseModel.setEnterprise(enterpriseReult);
 		}
-		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		enterprise.setId(id);
-		Enterprise enterpriseReult = enterpriseService.query(enterprise);
-		this.enterpriseModel.setEnterprise(enterpriseReult);
 		return Action.EDITOR;
-		
 	}
 	
 	public String Save()
@@ -67,7 +65,10 @@ public class EnterpriseAction extends BaseAction {
 		//判断是新增还是修改
 		if(null == id || 0 == id)
 		{
-			
+			enterpriseService.insert(enterprise);
+		}else
+		{
+			enterpriseService.update(enterprise);
 		}
 		return Action.EDITOR_SUCCESS;
 	}
