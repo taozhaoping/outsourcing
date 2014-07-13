@@ -88,7 +88,7 @@
 						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
-						<a href="enterprise.jspa" data-toggle="modal" class="btn">
+						<a href="enterprise.jspa" class="btn">
 							返回</a>
 						<div class="btn-group"></div>
 					</div>
