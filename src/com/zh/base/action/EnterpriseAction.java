@@ -12,6 +12,7 @@ import com.zh.base.service.EnterpriseService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
+import com.zh.core.model.Pager;
 
 public class EnterpriseAction extends BaseAction {
 
@@ -39,7 +40,10 @@ public class EnterpriseAction extends BaseAction {
 	public String execute()
 	{
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		List<Enterprise> List = enterpriseService.queryList(enterprise);
+		Pager pager = this.enterpriseModel.getPageInfo();
+		Integer count = enterpriseService.count(enterprise);
+		pager.setPageSize(count);
+		List<Enterprise> List = enterpriseService.queryList(enterprise,pager);
 		this.enterpriseModel.setEnterpriseList(List);
 		return Action.SUCCESS;
 	}
