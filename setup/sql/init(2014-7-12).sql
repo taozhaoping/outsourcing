@@ -1,5 +1,5 @@
 prompt PL/SQL Developer import file
-prompt Created on 2014Äê7ÔÂ12ÈÕ by 26078
+prompt Created on 2014å¹´7æœˆ12æ—¥ by 26078
 set feedback off
 set define off
 prompt Disabling triggers for SYS_AUTHORITIES...
@@ -44,40 +44,40 @@ delete from SYS_AUTHORITIES;
 commit;
 prompt Loading SYS_AUTHORITIES...
 insert into SYS_AUTHORITIES (id, name, enabled, module)
-values (1, '²âÊÔ', 0, '²âÊÔ3');
+values (1, 'æµ‹è¯•', 0, 'æµ‹è¯•3');
 insert into SYS_AUTHORITIES (id, name, enabled, module)
-values (2, 'p3p', 0, '²âÊÔ3');
+values (2, 'p3p', 0, 'æµ‹è¯•3');
 commit;
 prompt 2 records loaded
 prompt Loading SYS_ENTERPRISE...
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
-values (3, '²âÊÔ¹«Ë¾', '²âÊÔµØÖ·', 'µç»°', 0);
+values (3, 'æµ‹è¯•å…¬å¸', 'æµ‹è¯•åœ°å€', 'ç”µè¯', 0);
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
-values (4, '²âÊÔÆóÒµ', '²âÊÔµØÖ·', '88888888', 0);
+values (4, 'æµ‹è¯•ä¼ä¸š', 'æµ‹è¯•åœ°å€', '88888888', 0);
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
-values (5, '²âÊÔ¹«Ë¾2', '²âÊÔ¹«Ë¾2', null, 0);
+values (5, 'æµ‹è¯•å…¬å¸2', 'æµ‹è¯•å…¬å¸2', null, 0);
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
 values (6, '12', '12', '12', 0);
 commit;
 prompt 4 records loaded
 prompt Loading SYS_MENU...
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (1, 'ÏµÍ³ÅäÖÃ', 'sysConfig', null, null, '0', 0, null);
+values (1, 'ç³»ç»Ÿé…ç½®', 'sysConfig', null, null, '0', 0, null);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (3, 'ÓÃ»§ÁĞ±í', 'userInfo', 'userInfo.jspa', null, '0', 1, 2);
+values (3, 'ç”¨æˆ·åˆ—è¡¨', 'userInfo', 'userInfo.jspa', null, '0', 1, 2);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (4, '²ÎÊıÅäÖÃ', 'sysItem', 'sysItem.jspa', null, '0', 1, 3);
+values (4, 'å‚æ•°é…ç½®', 'sysItem', 'sysItem.jspa', null, '0', 1, 3);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (5, '½ÇÉ«ÁĞ±í', 'role', 'role.jspa', null, '0', 1, 4);
+values (5, 'è§’è‰²åˆ—è¡¨', 'role', 'role.jspa', null, '0', 1, 4);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (2, 'ÆóÒµÁĞ±í', 'enterprise', 'enterprise.jspa', null, '0', 1, 1);
+values (2, 'ä¼ä¸šåˆ—è¡¨', 'enterprise', 'enterprise.jspa', null, '0', 1, 1);
 commit;
 prompt 5 records loaded
 prompt Loading SYS_RESOURCEINFO...
 prompt Table is empty
 prompt Loading SYS_ROLE...
 insert into SYS_ROLE (id, name, createtime, updatetime)
-values (1, '³¬¼¶¹ÜÀíÔ±', to_date('10-07-2014', 'dd-mm-yyyy'), null);
+values (1, 'è¶…çº§ç®¡ç†å‘˜', to_date('10-07-2014', 'dd-mm-yyyy'), null);
 commit;
 prompt 1 records loaded
 prompt Loading SYS_ROLE_TO_AUTHORITIES...
@@ -100,7 +100,7 @@ commit;
 prompt 5 records loaded
 prompt Loading SYS_USER...
 insert into SYS_USER (id, loginname, userpassword, name, enabled, usertype, role_id, enterprise_id, email, age, sex, phone, qq, mobile_number, entrytime, address, education_background, createtime, updatetime)
-values (1, 'admin', '$2a$12$HE1p3lcWDgqT3MbCnt7qy.wefrXI5a9PThbHa266nZxJhZsEMKI.O', '³¬¼¶¹ÜÀíÔ±', '0', '0', 1, 1, null, null, null, null, null, null, null, null, null, null, null);
+values (1, 'admin', '$2a$12$HE1p3lcWDgqT3MbCnt7qy.wefrXI5a9PThbHa266nZxJhZsEMKI.O', 'è¶…çº§ç®¡ç†å‘˜', '0', '0', 1, 1, null, null, null, null, null, null, null, null, null, null, null);
 commit;
 prompt 1 records loaded
 prompt Enabling triggers for SYS_AUTHORITIES...
