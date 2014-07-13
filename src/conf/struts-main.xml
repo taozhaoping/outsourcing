@@ -45,6 +45,20 @@
 			</result>
 		</action>
 		
+		<!-- 权限列表 -->
+		<action name="authorities" class="com.zh.base.action.AuthoritiesAction">
+			<result name="json" type="json">
+				<param name="root">mainModel.authoritiesList</param>
+			</result>
+		</action>
+		
+		<!-- 菜单列表 -->
+		<action name="menu" class="com.zh.base.action.MenuAction">
+			<result name="json" type="json">
+				<param name="root">mainModel.menuList</param>
+			</result>
+		</action>
+		
 		
 		<!-- 用户管理 -->
 		<action name="user" class="com.zh.base.action.UserInfoAction"
