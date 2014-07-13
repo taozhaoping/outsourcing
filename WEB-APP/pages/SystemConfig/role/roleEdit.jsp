@@ -70,7 +70,7 @@
 				</p>
 			</div>
 
-			<h1 class="page-title" id="menu2Name"></h1>
+			<h1 class="page-title" id="menu2Name">&nbsp;</h1>
 		</div>
 
 		<ul class="breadcrumb">
@@ -100,23 +100,25 @@
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
 								
 								<div class="control-group" id="name_div">
-									<label class="control-label" for="name_input">角色名称:</label>
+									<label class="control-label" for="nameInput">角色名称:</label>
 									<div class="controls">
 										<input type="text" data-required="true"  id="nameInput" name="role.name" value="${role.name}" class="input-xlarge">
 									</div>
 								</div>
 								
 								<div class="control-group">
-									<label class="control-label" for="inputaddress">功能权限:</label>
+									<label class="control-label" for="authoritiesListInput">功能权限:</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="authoritiesListInput" name="role.authoritiesList" value="${role.authoritiesList}" class="input-xlarge">
+										<a href='#authoritiesListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
 									</div>
 								</div>
 								
 								<div class="control-group">
-									<label class="control-label" for="inputaddress">菜单权限:</label>
+									<label class="control-label" for="menuListInput">菜单权限:</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge">
+										<a href='#menuListInputModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
 									</div>
 								</div>
 													
@@ -125,7 +127,85 @@
 					</div>
 				</div>
 			</div>
-		</form>
+
+			<!-- 功能权限 -->
+			<div class="modal small hide fade" id="authoritiesListModal" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">选择功能权限</h3>
+				</div>
+				<div class="modal-body" style="height: 150px;">
+					<s:iterator value="role.authoritiesList" id="auth">
+						<label class="checkbox">
+							<input type="checkbox" name="authorities" value="<s:property value="#auth.id"/>"><s:property value="#auth.name"/>
+						</label>
+					</s:iterator>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+					<button class="btn btn-danger" data-dismiss="modal" id="selectAuthBtn">确认</button>
+				</div>
+			</div>
+			
+			<!-- 菜单权限 -->
+			<div class="modal small hide fade" id="menuListInputModal" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">选择菜单权限</h3>
+				</div>
+				<div class="modal-body" style="height: 250px;">
+					<ul class="nav nav-list">
+						<s:iterator value="role.menuList" id="menu">
+							<li class="nav-header" >
+								<label class="checkbox">
+									<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
+								</label>
+							</li>
+							<s:iterator value="#menu.menuList" id="menu2">
+							<li style="margin-left: 30px;">
+								<label class="checkbox">
+									<input type="checkbox" name="menus" value="<s:property value="#menu2.id"/>"><s:property value="#menu2.name"/>
+								</label>
+							</li>
+							</s:iterator>
+							<!-- 
+							<label class="checkbox">
+								<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
+							</label>
+							 -->
+						</s:iterator>
+						<s:iterator value="role.menuList" id="menu">
+							<li class="nav-header" >
+								<label class="checkbox">
+									<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
+								</label>
+							</li>
+							<s:iterator value="#menu.menuList" id="menu2">
+							<li style="margin-left: 30px;">
+								<label class="checkbox">
+									<input type="checkbox" name="menus" value="<s:property value="#menu2.id"/>"><s:property value="#menu2.name"/>
+								</label>
+							</li>
+							</s:iterator>
+							<!-- 
+							<label class="checkbox">
+								<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
+							</label>
+							 -->
+						</s:iterator>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+					<button class="btn btn-danger" data-dismiss="modal" id="selectMenuBtn">确认</button>
+				</div>
+			</div>
+
+			</form>
 		</div>
 		</div>
 		<%@ include file="/pages/common/footer.jsp"%>
@@ -138,6 +218,39 @@
 			var id='${menuId}';
 			var menuId='${menu2Id}';
 			var url=$("#"+menuId)[0].getAttribute("url");
+			
+			$("#authoritiesListModal").on('show', function () {
+				var localObj = window.location;
+				var contextPath = localObj.pathname.split("/")[1];
+				var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+				$.ajax({
+					type: "POST",   //访问WebService使用Post方式请求
+					url: basePath + "/home/authorities.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+					data: null,  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+					dataType: 'json',   //WebService 会返回Json类型
+					traditional: true,	//不要序列化参数
+					error: function(err,textStatus){
+						//alert("error: " + err + " textStatus: " + textStatus);
+					},
+					
+					success: function(result) {//回调函数，result，返回值
+						//填充到table中
+						alert(result);
+					}
+				});
+			});
+			
+			
+			//选择功能权限
+			$("#selectAuthBtn").bind('click', function() {
+				
+			});
+			
+			//选择菜单权限
+			$("#selectMenuBtn").bind('click', function() {
+				
+			});
+			
 		</script>
 </body>
 </html>
