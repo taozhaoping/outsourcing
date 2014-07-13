@@ -75,7 +75,7 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="enterprise.jspa" id="navigation">角色列表</a> <span class="divider">/</span></li>
+			<li><a href="role.jspa" id="navigation">角色列表</a> <span class="divider">/</span></li>
 			<li class="active">角色编辑</li>
 		</ul>
 		
@@ -88,7 +88,7 @@
 						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
-						<a href="role.jspa" data-toggle="modal" class="btn">
+						<a href="role.jspa" class="btn" id="backList">
 							返回</a>
 						<div class="btn-group"></div>
 					</div>

@@ -68,12 +68,14 @@
 				</p>
 			</div>
 
-			<h1 class="page-title">Dashboard</h1>
+			<h1 class="page-title">主页</h1>
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="index.html">主页</a> <span class="divider">/</span></li>
-			<li class="active">Dashboard</li>
+			<li><a href="#">主页</a> <span class="divider"></span></li>
+			<!-- 
+			<li class="active">主页</li>
+			 -->
 		</ul>
 
 		<div class="container-fluid">
