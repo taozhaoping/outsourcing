@@ -70,7 +70,7 @@
 				</p>
 			</div>
 
-			<h1 class="page-title" id="menu2Name"></h1>
+			<h1 class="page-title" id="menu2Name">&nbsp;</h1>
 		</div>
 
 		<ul class="breadcrumb">
