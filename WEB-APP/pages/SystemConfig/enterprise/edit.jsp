@@ -75,12 +75,12 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="enterprise.jspa" id="navigation">企业列表</a> <span class="divider">/</span></li>
+			<li><a href="" id="navigation">企业列表</a> <span class="divider">/</span></li>
 			<li class="active">企业编辑</li>
 		</ul>
 		
 		<div class="container-fluid">
-		<form id="editForm" class="form-horizontal" action="enterprise!save.jspa" method="post">
+		<form id="editForm" class="form-horizontal" action="${menu2Id}!save.jspa" method="post">
 			<div class="row-fluid">
 				<div class="row-fluid">
 				
@@ -88,14 +88,14 @@
 						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
-						<a href="enterprise.jspa" class="btn">
+						<a class="btn" id="backList" href="">
 							返回</a>
 						<div class="btn-group"></div>
 					</div>
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								
+									<input type="hidden" name="token" value="${token}" />
 									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">

@@ -42,7 +42,7 @@ public class EnterpriseAction extends BaseAction {
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
 		Pager pager = this.enterpriseModel.getPageInfo();
 		Integer count = enterpriseService.count(enterprise);
-		pager.setPageSize(count);
+		pager.setTotalRow(count);
 		List<Enterprise> List = enterpriseService.queryList(enterprise,pager);
 		this.enterpriseModel.setEnterpriseList(List);
 		return Action.SUCCESS;
@@ -64,7 +64,6 @@ public class EnterpriseAction extends BaseAction {
 	public String save()
 	{
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		
 		
 		//判断当前是设置成启动状态还是停用状态
 		String view = this.enterpriseModel.getView();
