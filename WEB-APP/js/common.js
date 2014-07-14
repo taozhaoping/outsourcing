@@ -3,11 +3,12 @@ $(function() {
 	$('.demo-cancel-click').click(function() {
 		return false;
 	});
-	text = $("#" + menuId)[0].innerText;
-	$("#menu2Name")[0].innerText = text;
-	$("#navigation")[0].href = url + "?menuId=" + id + "&menu2Id=" + menuId;
+	var headText = $("#" + menuId).text();
+	$("#menu2Name").text(headText);
+	//导航链接
+	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId);
 	// 返回按钮
-	$("#backList")[0].href = url + "?menuId=" + id + "&menu2Id=" + menuId;
+	$("#backList").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId);
 
 	// 展开一级菜单
 	collapseMenu(id);
