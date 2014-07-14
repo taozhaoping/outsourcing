@@ -76,7 +76,7 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li class="active">企业列表</li>
+			<li class="active" id="navigation"></li>
 		</ul>
 
 		<div class="container-fluid">
@@ -84,7 +84,7 @@
 				<div class="row-fluid">
 					<div class="btn-toolbar">
 						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
-							<i class="icon-plus"></i> 新增企业
+							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
 					</div>
@@ -149,8 +149,9 @@
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
-			var headText = $("#"+menuid).text();
+			var headText = $("#" + menuid).text();
 			$("#menu2Name").text(headText);
+			$("#navigation").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
 			

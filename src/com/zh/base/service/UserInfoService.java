@@ -3,6 +3,7 @@ package com.zh.base.service;
 import java.util.List;
 
 import com.zh.base.model.bean.User;
+import com.zh.base.model.bean.User;
 import com.zh.core.model.Pager;
 
 /**
@@ -13,44 +14,50 @@ import com.zh.core.model.Pager;
 public interface UserInfoService {
 	
 	/**
-	 * 检查当前用户是否登录 (只需要传用户名)
-	 * @param userinfo
+	 * 查询信息
+	 * @param 
 	 * @return
 	 */
-	public User loadUserPassWord(User userInfo);
+	public User query(User user);
 	
 	/**
-	 * 查询用户信息
-	 * @param userInfo
-	 * @return
+	 * 修改
+	 * @param 
 	 */
-	public User loadUserInfo(User userInfo);
-	/**
-	 * 修改密码
-	 * @param userinfo
-	 */
-	public void updateUserinfo(User userInfo);
+	public void update(User user);
 	
 	/**
-	 * 查询用户列表，带分页
-	 * @param userInfo
+	 * 查询列表
+	 * @param 
 	 * @return
 	 */
-	public List<User> listUserInfo(User userInfo , Pager page);
+	public List<User> queryList(User user);
+	
+	/**
+	 * 查询列表，带分页
+	 * @param 
+	 * @return
+	 */
+	public List<User> queryList(User user , Pager page);
 	
 	/**
 	 * 查询数量
-	 * @param userInfo
+	 * @param 
 	 * @return
 	 */
-	public Integer countUserInfo(User userInfo);
+	public Integer count(User user);
 	
 	/**
-	 * 删除角色用户
-	 * @param UserInfo
+	 * 删除
+	 * @param 
 	 */
-	public void delUserInfo(User userInfo);
+	public void delete(User user);
 	
-	public void addUserInfo(User userInfo);
+	/**
+	 * 新增
+	 * @param 
+	 */
+	public void insert(User user);
+	
 
 }

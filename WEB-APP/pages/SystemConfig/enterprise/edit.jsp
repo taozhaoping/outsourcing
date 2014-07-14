@@ -75,8 +75,8 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="" id="navigation">企业列表</a> <span class="divider">/</span></li>
-			<li class="active">企业编辑</li>
+			<li><a href="" id="navigation"></a> <span class="divider">/</span></li>
+			<li class="active">编辑</li>
 		</ul>
 		
 		<div class="container-fluid">
@@ -135,7 +135,7 @@
 			$("[rel=tooltip]").tooltip();
 			var id='${menuId}';
 			var menuId='${menu2Id}';
-			var url=$("#"+menuId)[0].getAttribute("url");
+			var url=$("#"+menuId).attr('url');
 			
 			
 		</script>

@@ -1,7 +1,6 @@
 package com.zh.base.action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -83,9 +82,10 @@ public class mainAction extends BaseAction {
 		{
 			throw new ProjectException("密码不允许为空");
 		}
-		User userInfo = mainModel.getUser();
+		User userInfo = new User();
+		userInfo.setId(mainModel.getId());
 		userInfo.setUserPassword(BCrypt.hashpw(password, BCrypt.gensalt(12)));
-		userInfoService.updateUserinfo(userInfo);
+		userInfoService.update(userInfo);
 		return Action.RETURN_JSON;
 	}
 

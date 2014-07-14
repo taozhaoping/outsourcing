@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.UserInfoModel;
+import com.zh.base.model.bean.Enterprise;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
@@ -37,7 +38,13 @@ public class UserInfoAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-		return "success";
+		User user = this.userInfoModel.getUserInfo();
+		Pager pager = this.userInfoModel.getPageInfo();
+		Integer count = userInfoService.count(user);
+		pager.setTotalRow(count);
+		List<User> userList = userInfoService.queryList(user,pager);
+		this.userInfoModel.setUserList(userList);
+		return Action.SUCCESS;
 
 	}
 	
@@ -50,7 +57,7 @@ public class UserInfoAction extends BaseAction {
 		{
 			User user = new User();
 			user.setName(userName);
-			User userInfo = userInfoService.loadUserInfo(user);
+			User userInfo = userInfoService.query(user);
 			if(null != userInfo)
 			{
 				bool = false;
@@ -66,116 +73,50 @@ public class UserInfoAction extends BaseAction {
 		
 	}
 	
-	/**
-	 * 停用和激活用户
-	 * @return
-	 */
-	public String executeDelete()
-	{
-//		Map<String, Object> dataMap = this.userInfoModel.getDataMap();
-//		Object[] idArray = JSONUtil.jsonStringToarry("id", userInfoModel
-//				.getJsonIDString());
-//		for (Object object : idArray) {
-//			UserInfo user = new UserInfo();
-//			user.setId(Long.valueOf(object.toString()));
-//			UserInfo userInfo = userInfoService.loadUserInfo(user);
-//			if(null == userInfo)
-//			{
-//				dataMap.put("status", "error");
-//				dataMap.put("errorMeage", "请先删除员工对应的系统账号!");
-//				return Action.RETURN_JSON;
-//			}
-//			EmployeeInfo employee = new EmployeeInfo();
-//			employee.setId(userInfo.getEmployeeID());
-//			EmployeeInfo employeeInfo = employeeService.queryEmployee(employee);
-//			if("0".equals(userInfo.getIsDelete()))
-//			{
-//				employeeInfo.setIsDelete("1");
-//				userInfo.setIsDelete("1");
-//			}else
-//			{
-//				employeeInfo.setIsDelete("0");
-//				userInfo.setIsDelete("0");
-//			}
-//			userInfoService.updateUserinfo(userInfo);
-//			employeeService.updateEmployee(employeeInfo);
-//		}
-		//dataMap.put("status", "success");
-		return Action.RETURN_JSON;
-	}
 
-	public String initPwd() {
-		userInfoModel.setUserInfo((User) this.getSession().getAttribute(
-				VariableUtil.SESSION_KEY));
-		userInfoModel.getUserInfo().setUserPassword(null);
-		userInfoModel.setReultObject(JSONUtil.bean2json(userInfoModel
-				.getUserInfo()));
-		return "updatePwd";
-	}
-
-	public String updatepwd() {
-		String password = userInfoModel.getNewPassWord();
-		if(null == password)
-		{
-			throw new ProjectException("密码不允许为空");
-		}
-		User userInfo = userInfoModel.getUserInfo();
-		userInfo.setUserPassword(BCrypt.hashpw(password, BCrypt.gensalt(12)));
-		userInfoService.updateUserinfo(userInfo);
-		return Action.RETURN_JSON;
-	}
-
-	public String executeJson() {
-		int totalRows = userInfoService.countUserInfo(userInfoModel
-				.getUserInfo());
-		Pager pageInfo = userInfoModel.getPageInfo();
-		pageInfo.setTotalRow(totalRows);
-		List<User> userList = userInfoService.listUserInfo(userInfoModel
-				.getUserInfo(), pageInfo);
-		userInfoModel.setUserList(userList);
-		// this.setReturnJSON(JSONUtil.list2json(roleList));
-		userInfoModel.getDataMap().put("Rows", userList);
-		userInfoModel.getDataMap().put("Total", totalRows);
-		return Action.RETURN_JSON;
-	}
-	
 	public String editor()
 	{
-		if (null == userInfoModel.getView()) {
-			return "crud";
+		Integer id = this.userInfoModel.getId();
+		if(null != id && !"".equals(id))
+		{
+			User user = this.userInfoModel.getUserInfo();
+			user.setId(id);
+			User userReult = userInfoService.query(user);
+			this.userInfoModel.setUserInfo(userReult);
 		}
-		if ("update".equals(userInfoModel.getView())
-				|| "look".equals(userInfoModel.getView())) {
-			User userInfo = userInfoService.loadUserInfo(userInfoModel.getUserInfo());
-			userInfo.setUserPassword(null);
-			userInfoModel.setUserInfo(userInfo);
-			userInfoModel.setReultObject(JSONUtil.bean2json(userInfo));
-		}
-		return "editor";
+		return Action.EDITOR;
 	}
 	
 	public String save()
 	{
-		User userInfo = userInfoModel.getUserInfo();
-		Integer id = userInfo.getId();
-		String password = userInfo.getUserPassword();
-		if( null != password )
+		User user = this.userInfoModel.getUserInfo();
+		
+		//判断当前是设置成启动状态还是停用状态
+		String view = this.userInfoModel.getView();
+		if(null != view && "enabled".equals(view))
 		{
-			if("".equals(password)){
-				userInfo.setUserPassword(null);
+			String enabled = this.userInfoModel.getEnabled();
+			Integer id = this.userInfoModel.getId();
+			if("0".equals(enabled))
+			{
+				user.setEnabled("1");
 			}else
 			{
-				userInfo.setUserPassword(BCrypt.hashpw(password, BCrypt.gensalt(12)));
+				user.setEnabled("0");
 			}
+			user.setId(id);
 		}
-		if (null != id && id > 0)
+		
+		//判断是新增还是修改
+		Integer id = user.getId();
+		if(null == id || 0 == id)
 		{
-			userInfoService.updateUserinfo(userInfoModel.getUserInfo());
+			userInfoService.insert(user);
 		}else
 		{
-			userInfoService.addUserInfo(userInfoModel.getUserInfo());
+			userInfoService.update(user);
 		}
-		return Action.RETURN_JSON;
+		return Action.EDITOR_SUCCESS;
 	}
 
 	public Object getModel() {

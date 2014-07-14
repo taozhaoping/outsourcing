@@ -61,14 +61,12 @@
 		
 		
 		<!-- 用户管理 -->
-		<action name="user" class="com.zh.base.action.UserInfoAction"
-			method="execute">
-			<result name="success">/default/jsp/user/userList.jsp</result>
-			<result name="updatePwd">/default/jsp/main/updatePassword.jsp</result>
+		<action name="userInfo" class="com.zh.base.action.UserInfoAction">
+			<result name="success">/pages/SystemConfig/user/List.jsp</result>
+			<result name="editor">/pages/SystemConfig/user/edit.jsp</result>
 			<result name="json" type="json">
 				<param name="root">userInfoModel.dataMap</param>
 			</result>
-			<result name="editor">/default/jsp/user/userInfo.jsp</result>
 		</action>
 		
 	</package>

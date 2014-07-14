@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.UserInfoDAO;
+import com.zh.base.model.bean.Enterprise;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.common.SqlCommon;
@@ -18,46 +19,47 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
-	
-	
-	public void addUserInfo(User userInfo) {
-		userInfoDAO.insert(userInfo);
-	}
-	
-	public void delUserInfo(User userInfo) {
-		//逻辑删除(冻结账号使用)
-		userInfo.setEnabled("1");
-		this.updateUserinfo(userInfo);
+
+	@Override
+	public User query(User user) {
+		// TODO Auto-generated method stub
+		return userInfoDAO.query(user);
 	}
 
-
-	public User loadUserPassWord(User userinfo) {
-		if( null == userinfo.getEnabled())
-		{
-			userinfo.setEnabled(SqlCommon.USER_NOT_DELETE);
-		}
-		return userInfoDAO.query(userinfo);
-	}
-	
-	public void updateUserinfo(User userinfo) {
-			userInfoDAO.update(userinfo);
-	}
-	public Integer countUserInfo(User userInfo) {
-		return userInfoDAO.count(userInfo);
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		userInfoDAO.update(user);
 	}
 
-	public List<User> listUserInfo(User userInfo, Pager page) {
-		return userInfoDAO.queryPageList(userInfo,page);
+	@Override
+	public List<User> queryList(User user) {
+		// TODO Auto-generated method stub
+		return userInfoDAO.queryList(user);
 	}
 
-	public void setUserInfoDAO(UserInfoDAO userInfoDAO) {
-		this.userInfoDAO = userInfoDAO;
+	@Override
+	public List<User> queryList(User user, Pager page) {
+		// TODO Auto-generated method stub
+		return userInfoDAO.queryPageList(user, page);
 	}
-	public void deluserInfo(User userInfo) {
+
+	@Override
+	public Integer count(User user) {
+		// TODO Auto-generated method stub
+		return userInfoDAO.count(user);
+	}
+
+	@Override
+	public void delete(User user) {
+		// TODO Auto-generated method stub
+		userInfoDAO.delete(user);
+	}
+
+	@Override
+	public void insert(User user) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	public User loadUserInfo(User userInfo) {
-		return userInfoDAO.query(userInfo);
-	}
 }

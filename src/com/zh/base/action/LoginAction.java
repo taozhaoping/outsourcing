@@ -54,7 +54,7 @@ public class LoginAction extends BaseAction {
 			return "creater";
 		}
 		userInfo.setUserPassword(null);
-		User user = userInfoService.loadUserPassWord(userInfo);
+		User user = userInfoService.query(userInfo);
 		
 		//密码验证
 		if (null != password && null != user && BCrypt.checkpw(password , user.getUserPassword())) {
