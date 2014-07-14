@@ -17,8 +17,8 @@ public class GetPathListener extends ContextLoaderListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		String webAppRootKey = event.getServletContext().getRealPath("/");
-		System.setProperty("webapp.root", webAppRootKey);
+//		String webAppRootKey = event.getServletContext().getRealPath("/");
+//		System.setProperty("webapp.root", webAppRootKey);
 	}
 
 	

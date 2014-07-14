@@ -41,6 +41,8 @@ public class RoleAction extends BaseAction {
 		
 		Role role = this.roleModel.getRole();
 		Pager page = this.roleModel.getPageInfo();
+		Integer count = roleService.count(role);
+		page.setTotalRow(count);
 		List<Role> roleList = roleService.queryList(role,page);
 		this.roleModel.setRoleList(roleList);
 		

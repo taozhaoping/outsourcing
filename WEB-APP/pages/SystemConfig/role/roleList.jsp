@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jqPaginator.min.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
 #line-chart {
@@ -119,19 +120,16 @@
 						</table>
 					</div>
 					<div class="pagination">
-						<ul>
-							<li><a href="#">上一页</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">下一页</a></li>
-						</ul>
+						<ul id="pagination">
+						</ul>					
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
+		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" />
+	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>
@@ -147,6 +145,25 @@
 			$("#menu2Name")[0].innerText=text;
 			//展开一级菜单
 			collapseMenu(id);
+			
+			$.jqPaginator('#pagination', {
+				//设置分页的总页数
+		        totalPages: ${pageInfo.totalPage},
+		        //设置分页的总条目数
+		        totalCounts:${pageInfo.totalRow},
+		        pageSize:${pageInfo.pageSize},
+		        //最多显示的页码
+		        visiblePages: 10,
+		        currentPage: ${pageInfo.curPage},
+		        onPageChange: function (num, type) {
+		           if("init"==type)
+		        	{
+		        	 	return false;  
+		        	}
+		           $('#curPage')[0].value=num;
+		        	$('#queryForm').submit();
+		        }
+		    });
 		});
 	</script>
 </body>

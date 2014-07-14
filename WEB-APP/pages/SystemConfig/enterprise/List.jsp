@@ -141,24 +141,28 @@
 		$("[rel=tooltip]").tooltip();
 		var id='${menuId}';
 		var menuid='${menu2Id}';
+		var totalPage = ${pageInfo.totalPage};
+		var totalRow = ${pageInfo.totalRow};
+		var pageSize = ${pageInfo.pageSize};
+		var curPage = ${pageInfo.curPage};
 		$(function() {
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
 			text = $("#"+menuid)[0].innerText;
-			$("#menu2Name")[0].innerText=text;
+			$("#menu2Name").innerText=text;
 			//展开一级菜单
 			collapseMenu(id);
 			
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数
-		        totalPages: ${pageInfo.totalPage},
+		        totalPages: totalPage,
 		        //设置分页的总条目数
-		        totalCounts:${pageInfo.totalRow},
-		        pageSize:${pageInfo.pageSize},
+		        totalCounts:totalRow,
+		        pageSize:pageSize,
 		        //最多显示的页码
 		        visiblePages: 10,
-		        currentPage: ${pageInfo.curPage},
+		        currentPage: curPage,
 		        onPageChange: function (num, type) {
 		           if("init"==type)
 		        	{
