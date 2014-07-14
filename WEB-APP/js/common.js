@@ -5,6 +5,7 @@ $(function() {
 	});
 	var headText = $("#" + menuId).text();
 	$("#menu2Name").text(headText);
+	$("#navigation").text(headText);
 	//导航链接
 	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId);
 	// 返回按钮
