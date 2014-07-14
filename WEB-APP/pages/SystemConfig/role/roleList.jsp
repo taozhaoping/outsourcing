@@ -55,7 +55,7 @@
 <body class="">
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
-	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
+	<%@ include file="/pages/common/sidebarWithNav.jsp"%>
 
 	<div class="content">
 		<div class="header">
@@ -103,17 +103,16 @@
 							<tbody>
 								<s:iterator value="roleList" var="role" status="index">
 									<tr>
-										<td><s:property value="#index.index + 1"/></td>
-										<td><s:property value="#role.name"/></td>
-										<td><s:property value="#role.address"/></td>
-										<td><s:property value="#role.createtime"/></td>
-										<td><s:property value="#role.updatetime"/></td>
-										<td>
-											<a href="role!editor.jspa?id=<s:property value='#role.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<!-- 
+										<td><s:property value="#index.index + 1" /></td>
+										<td><s:property value="#role.name" /></td>
+										<td><s:property value="#role.address" /></td>
+										<td><s:property value="#role.createtime" /></td>
+										<td><s:property value="#role.updatetime" /></td>
+										<td><a
+											href="role!editor.jspa?id=<s:property value='#role.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+												class="icon-pencil"></i></a> <!-- 
 											<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-											 -->
-										</td>
+											 --></td>
 									</tr>
 								</s:iterator>
 							</tbody>
@@ -121,49 +120,56 @@
 					</div>
 					<div class="pagination">
 						<ul id="pagination">
-						</ul>					
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
-		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" />
+	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}"
+		id="queryForm" method="post">
+		<input id="curPage" name="pageInfo.curPage"
+			value="${pageInfo.curPage}" />
 	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
-	<script src="<%=path %>/js/collapsePulg.js"></script>
+	<script src="<%=path%>/js/collapsePulg.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
-		var id='${menuId}';
-		var menuid='${menu2Id}';
+		var id = '${menuId}';
+		var menuid = '${menu2Id}';
+		var totalPage = ${pageInfo.totalPage};
+		var totalRow = ${pageInfo.totalRow};
+		var pageSize = ${pageInfo.pageSize};
+		var curPage = ${pageInfo.curPage};
+		
 		$(function() {
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
-			text = $("#"+menuid)[0].innerText;
-			$("#menu2Name")[0].innerText=text;
+			var headText = $("#" + menuid).text();
+			$("#menu2Name").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
-			
+
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数
-		        totalPages: ${pageInfo.totalPage},
-		        //设置分页的总条目数
-		        totalCounts:${pageInfo.totalRow},
-		        pageSize:${pageInfo.pageSize},
-		        //最多显示的页码
-		        visiblePages: 10,
-		        currentPage: ${pageInfo.curPage},
-		        onPageChange: function (num, type) {
-		           if("init"==type)
-		        	{
-		        	 	return false;  
-		        	}
-		           $('#curPage')[0].value=num;
-		        	$('#queryForm').submit();
-		        }
-		    });
+				totalPages : totalPage,
+				//设置分页的总条目数
+				totalCounts : totalRow,
+				pageSize : pageSize,
+				//最多显示的页码
+				visiblePages : 10,
+				currentPage : curPage,
+				onPageChange : function(num, type) {
+					if ("init" == type) {
+						return false;
+					}
+					$('#curPage').val(num);
+					$('#queryForm').submit();
+					//document.getElementsByName("operateForm")[0].submit(); 
+				}
+			});
 		});
 	</script>
 </body>

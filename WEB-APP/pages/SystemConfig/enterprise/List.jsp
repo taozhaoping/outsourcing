@@ -149,8 +149,8 @@
 			$('.demo-cancel-click').click(function() {
 				return false;
 			});
-			text = $("#"+menuid)[0].innerText;
-			$("#menu2Name").innerText=text;
+			var headText = $("#"+menuid).text();
+			$("#menu2Name").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
 			
@@ -168,7 +168,7 @@
 		        	{
 		        	 	return false;  
 		        	}
-		           $('#curPage')[0].value=num;
+		           $('#curPage').val(num);
 		        	$('#queryForm').submit();
 		        	//document.getElementsByName("operateForm")[0].submit(); 
 		        }
