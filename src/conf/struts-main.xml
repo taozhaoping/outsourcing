@@ -43,22 +43,29 @@
     			<param name="menuId">${menuId}</param>
     			<param name="menu2Id">${menu2Id}</param>
 			</result>
+			
+			<result name="authoritiesjson" type="json">
+				<param name="root">roleModel.authoritiesList</param>
+			</result>
+			<result name="menujson" type="json">
+				<param name="root">roleModel.menuList</param>
+			</result>
 		</action>
 		
-		<!-- 权限列表 -->
+		<!-- 权限列表 
 		<action name="authorities" class="com.zh.base.action.AuthoritiesAction">
 			<result name="json" type="json">
-				<param name="root">mainModel.authoritiesList</param>
+				<param name="root">authoritiesModel.authoritiesList</param>
 			</result>
 		</action>
-		
-		<!-- 菜单列表 -->
+		-->
+		<!-- 菜单列表
 		<action name="menu" class="com.zh.base.action.MenuAction">
 			<result name="json" type="json">
-				<param name="root">mainModel.menuList</param>
+				<param name="root">menuModel.menuList</param>
 			</result>
 		</action>
-		
+		 -->
 		
 		<!-- 用户管理 -->
 		<action name="userInfo" class="com.zh.base.action.UserInfoAction">

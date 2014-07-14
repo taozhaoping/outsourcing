@@ -75,8 +75,8 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="role.jspa" id="navigation">角色列表</a> <span class="divider">/</span></li>
-			<li class="active">角色编辑</li>
+			<li><a href="role.jspa" id="navigation"></a> <span class="divider">/</span></li>
+			<li class="active">编辑</li>
 		</ul>
 		
 		<div class="container-fluid">
@@ -137,11 +137,15 @@
 					<h3 id="myModalLabel">选择功能权限</h3>
 				</div>
 				<div class="modal-body" style="height: 150px;">
+					<label class="checkbox" style="display: none;" id="authTemplate">
+						<input type="checkbox" name="authorities"></label>
+					<!-- 
 					<s:iterator value="role.authoritiesList" id="auth">
 						<label class="checkbox">
 							<input type="checkbox" name="authorities" value="<s:property value="#auth.id"/>"><s:property value="#auth.name"/>
 						</label>
 					</s:iterator>
+					 -->
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
@@ -217,7 +221,7 @@
 			$("[rel=tooltip]").tooltip();
 			var id='${menuId}';
 			var menuId='${menu2Id}';
-			var url=$("#"+menuId)[0].getAttribute("url");
+			var url=$("#"+menuId).attr("url");
 			
 			$("#authoritiesListModal").on('show', function () {
 				var localObj = window.location;
@@ -225,20 +229,41 @@
 				var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
 				$.ajax({
 					type: "POST",   //访问WebService使用Post方式请求
-					url: basePath + "/home/authorities.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-					data: null,  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+					url: basePath + "/home/role!authoritiesExecute.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+					data: {},  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
 					dataType: 'json',   //WebService 会返回Json类型
-					traditional: true,	//不要序列化参数
-					error: function(err,textStatus){
+					traditional: false,	//不要序列化参数
+					error: function(err, textStatus){
 						//alert("error: " + err + " textStatus: " + textStatus);
 					},
 					
 					success: function(result) {//回调函数，result，返回值
 						//填充到table中
-						alert(result);
+						fillAuthList(result);
 					}
 				});
 			});
+			
+			//展示权限列表
+			function fillAuthList(authList){
+				$("#authTemplate").nextAll("label").remove();
+				//把查询的结果添加到DIV中
+				for(var i = 0; i<authList.length; i++){
+					var auth = authList[i];
+					$("#authTemplate").clone(true).show().attr("id","auth"+auth.id)
+					.children("input").val(auth.id).after(auth.name)
+					.parent().insertAfter("#authTemplate");
+				}
+				
+				var selAuthList = ${dataMap.authListJson};
+				
+				if(selAuthList != null && selAuthList != "" && selAuthList.length >0){
+					for(var j = 0; j<selAuthList.length; j++){
+						var selAuth = selAuthList[j];
+						$("#auth"+selAuth.id).children("input").attr("checked", "checked");
+					}
+				}
+			}
 			
 			
 			//选择功能权限

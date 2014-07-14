@@ -40,7 +40,24 @@ public class MenuAction extends BaseAction {
 		Menu menu = this.menuModel.getMenu();
 		List<Menu> menuList = menuService.queryList(menu);
 		this.menuModel.setMenuList(menuList);
-		return Action.SUCCESS;
+		return Action.RETURN_JSON;
 	}
 
+	public MenuModel getMenuModel() {
+		return menuModel;
+	}
+
+	public void setMenuModel(MenuModel menuModel) {
+		this.menuModel = menuModel;
+	}
+
+	public MenuService getMenuService() {
+		return menuService;
+	}
+
+	public void setMenuService(MenuService menuService) {
+		this.menuService = menuService;
+	}
+
+	
 }

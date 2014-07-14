@@ -76,7 +76,7 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li class="active">角色列表</li>
+			<li class="active" id="navigation"></li>
 		</ul>
 
 		<div class="container-fluid">
@@ -84,7 +84,7 @@
 				<div class="row-fluid">
 					<div class="btn-toolbar">
 						<button class="btn btn-primary">
-							<i class="icon-plus"></i>新增角色
+							<i class="icon-plus"></i>新增
 						</button>
 						<div class="btn-group"></div>
 					</div>
@@ -149,6 +149,7 @@
 			});
 			var headText = $("#" + menuid).text();
 			$("#menu2Name").text(headText);
+			$("#navigation").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
 

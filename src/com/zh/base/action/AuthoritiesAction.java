@@ -39,6 +39,24 @@ public class AuthoritiesAction extends BaseAction {
 		Authorities authorities = this.authoritiesModel.getAuthorities();
 		List<Authorities> authoritiesList = authoritiesService.queryList(authorities);
 		this.authoritiesModel.setAuthoritiesList(authoritiesList);
-		return Action.SUCCESS;
+		return Action.RETURN_JSON;
 	}
+
+	public AuthoritiesModel getAuthoritiesModel() {
+		return authoritiesModel;
+	}
+
+	public void setAuthoritiesModel(AuthoritiesModel authoritiesModel) {
+		this.authoritiesModel = authoritiesModel;
+	}
+
+	public AuthoritiesService getAuthoritiesService() {
+		return authoritiesService;
+	}
+
+	public void setAuthoritiesService(AuthoritiesService authoritiesService) {
+		this.authoritiesService = authoritiesService;
+	}
+	
+	
 }
