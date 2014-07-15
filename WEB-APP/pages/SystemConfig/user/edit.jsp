@@ -16,6 +16,8 @@
 	href="<%=path%>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
+<link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
+<link rel="stylesheet" href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
@@ -80,102 +82,207 @@
 		</ul>
 
 		<div class="container-fluid">
-			<form id="tab2" class="form-horizontal"
-				action="${menu2Id}!save.jspa" method="post">
+			<form id="tab2" class="form-horizontal" action="${menu2Id}!save.jspa"
+				method="post">
 				<div class="row-fluid">
-						<div class="btn-toolbar">
-							<button class="btn btn-primary" type="submit">
-								<i class="icon-save"></i> 保存
-							</button>
-							<a class="btn" id="backList" href=""> 返回</a>
-							<div class="btn-group"></div>
-						</div>
-						<div class="well">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
-								<li><a href="#password" data-toggle="tab">修改密码</a></li>
-							</ul>
-							<div id="myTabContent" class="tab-content">
-								<div class="tab-pane active" id="home">
-									<input type="hidden" name="token" value="${token}" /> <input
-										type="hidden" name="enterprise.id" value="${enterprise.id}">
-									<input type="hidden" name="menuId" value="${menuId}"> <input
-										type="hidden" name="menu2Id" value="${menu2Id}">
-									<dir class="row">
-										<div class="span5">
-											<div class="control-group" id="name_div">
-												<label class="control-label" for="inputloginName">登录用户名:</label>
-												<div class="controls">
-													<input type="text" data-required="true"
-														id="input_loginName" name="userInfo.loginName"
-														value="${userInfo.loginName}" class="input-xlarge">
-												</div>
+					<div class="btn-toolbar">
+						<button class="btn btn-primary" type="submit">
+							<i class="icon-save"></i> 保存
+						</button>
+						<a class="btn" id="backList" href=""> 返回</a>
+						<div class="btn-group"></div>
+					</div>
+					<div class="well">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
+							<li><a href="#password" data-toggle="tab">修改密码</a></li>
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div class="tab-pane active" id="home">
+								<input type="hidden" name="token" value="${token}" /> <input
+									type="hidden" name="enterprise.id" value="${enterprise.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}">
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputloginName">用户名:</label>
+											<div class="controls">
+												<input type="text" data-required="true" id="input_loginName"
+													name="userInfo.loginName" value="${userInfo.loginName}"
+													class="input-xlarge">
 											</div>
 										</div>
-										<div class="span5">
-											<div class="control-group">
-												<label class="control-label" for="inputaddress">姓名:</label>
-												<div class="controls">
-													<input type="text" id="inputname" data-required="true"
-														name="userInfo.name" value="${userInfo.name}"
-														class="input-xlarge">
-												</div>
-											</div>
-										</div>
-									</dir>
-									<dir class="row">
-										<div class="span5">
-											<div class="control-group">
-												<label class="control-label" for="inputemail">电子邮箱:</label>
-												<div class="controls">
-													<input type="text" id="inputemail" data-pattern=""
-														name="userInfo.email" value="${userInfo.email}"
-														class="input-xlarge">
-												</div>
-											</div>
-										</div>
-										<div class="span5">
-											<div class="control-group">
-												<label class="control-label" for="inputaddress">姓名:</label>
-												<div class="controls">
-													<input type="text" id="inputname" data-required="true"
-														name="userInfo.name" value="${userInfo.name}"
-														class="input-xlarge">
-												</div>
-											</div>
-										</div>
-									</dir>
-
-
-								</div>
-								<div class="tab-pane fade" id="password">
+									</div>
+									<div class="span5">
 										<div class="control-group">
-												<label class="control-label" for="inputaddress">原密码:</label>
-												<div class="controls">
-													<input type="text" id="inputname" data-required="true"
-														name="userInfo.password" value=""
-														class="input-xlarge">
-												</div>
+											<label class="control-label" for="inputaddress">姓名:</label>
+											<div class="controls">
+												<input type="text" id="inputname" data-required="true"
+													name="userInfo.name" value="${userInfo.name}"
+													class="input-xlarge">
 											</div>
-											<div class="control-group">
-												<label class="control-label" for="inputaddress">新密码:</label>
-												<div class="controls">
-													<input type="text" id="inputname" data-required="true"
-														name="userInfo.password" value=""
-														class="input-xlarge">
-												</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputemail">电子邮箱:</label>
+											<div class="controls">
+												<input type="text" id="inputemail" data-pattern=""
+													name="userInfo.email" value="${userInfo.email}"
+													class="input-xlarge">
 											</div>
-											<div class="control-group">
-												<label class="control-label" for="inputaddress">新密码:</label>
-												<div class="controls">
-													<input type="text" id="inputname" data-required="true"
-														name="userInfo.password" value=""
-														class="input-xlarge">
-												</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputage">出生日期:</label>
+											<div class="controls ">
+												<input size="16" id="inputage" name="userInfo.age" type="text" value="${userInfo.age}"
+													readonly class="form_datetime input-xlarge"
+													data-date-format="yyyy-mm-dd">
 											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputroleId">角色:</label>
+											<div class="controls">
+												<select id="inputroleId" class="input-xlarge"
+													name="userInfo.roleId">
+													<s:iterator value="dataMap.roleList" var="role">
+														<option value="<s:property value='#role.id'/>"><s:property value="#role.name"/></option>
+													</s:iterator>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputenterpriseId">企业:</label>
+											<div class="controls">
+												<select id="inputenterpriseId" data-required="true" class="input-xlarge" 
+													name="userInfo.enterpriseId">
+													<s:iterator value="dataMap.enterpriseList" var="enterprise">
+														<option value="<s:property value='#enterprise.id'/>"><s:property value="#enterprise.name"/></option>
+													</s:iterator>
+												</select>
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputsex">性别:</label>
+											<div class="controls">
+												<select id="inputsex" data-required="true" class="input-xlarge" 
+													name="userInfo.sex">
+														<option value="1">男</option>
+														<option value="2">女</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputqq">QQ:</label>
+											<div class="controls">
+												<input type="text" id="inputqq" data-required="true"
+													name="userInfo.qq" value="${userInfo.qq}"
+													class="input-xlarge">
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputphone">座机号码:</label>
+											<div class="controls">
+												<input type="text" id="inputphone" data-pattern=""
+													name="userInfo.phone" value="${userInfo.phone}"
+													class="input-xlarge">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputmobileNumber">手机号码:</label>
+											<div class="controls">
+												<input type="text" id="inputmobileNumber"
+													data-required="true" name="userInfo.mobileNumber"
+													value="${userInfo.mobileNumber}" class="input-xlarge">
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputentryTime">入职时间:</label>
+											<div class="controls"> 
+												<input size="16" id="inputentryTime" name="userInfo.entryTime" type="text"
+													value="${userInfo.entryTime}" readonly
+													class="form_datetime input-xlarge"
+													data-date-format="yyyy-mm-dd">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputeducationBackground">专业:</label>
+											<div class="controls">
+												<input type="text" id="inputeducationBackground"
+													data-required="true" name="userInfo.educationBackground"
+													value="${userInfo.educationBackground}"
+													class="input-xlarge">
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span10">
+										<div class="control-group">
+											<label class="control-label" for="inputaddress">家庭住址:</label>
+											<div class="controls">
+												<input type="text" id="inputaddress" data-pattern=""
+													name="userInfo.address" value="${userInfo.address}"
+													class="input-xxlarge" placeholder="input-xxlarge">
+											</div>
+										</div>
+									</div>
+								</dir>
+							</div>
+							<div class="tab-pane fade" id="password">
+								<div class="control-group">
+									<label class="control-label" for="inputaddress">原密码:</label>
+									<div class="controls">
+										<input type="text" id="inputname" data-required="true"
+											name="userInfo.password" value="" class=".input-xxlarge">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputaddress">新密码:</label>
+									<div class="controls">
+										<input type="text" id="inputname" data-required="true"
+											name="userInfo.password" value="" class="input-xlarge">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputaddress">新密码:</label>
+									<div class="controls">
+										<input type="text" id="inputname" data-required="true"
+											name="userInfo.password" value="" class="input-xlarge">
+									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -185,11 +292,31 @@
 	<script src="<%=path%>/js/collapsePulg.js"></script>
 	<script src="<%=path%>/js/common.js"></script>
 	<script src="<%=path%>/js/jquery-validate.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script src="<%=path%>/js/select2/select2.js"></script>
+	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
 		var url = $("#" + menuId).attr('url');
+		$(".form_datetime").datetimepicker({
+			language : 'zh-CN',
+			format : 'yyyy-mm-dd',
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0
+		});
+		$("#inputroleId").select2();
+		
+		$("#inputenterpriseId").select2();
+		$("#inputenterpriseId").val("${userInfo.enterpriseId}").trigger("change"); 
 	</script>
 </body>
 </html>

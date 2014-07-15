@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.UserInfoModel;
 import com.zh.base.model.bean.Enterprise;
+import com.zh.base.model.bean.Role;
 import com.zh.base.model.bean.User;
+import com.zh.base.service.EnterpriseService;
+import com.zh.base.service.RoleService;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
-import com.zh.core.model.VariableUtil;
-import com.zh.core.util.BCrypt;
-import com.zh.core.util.JSONUtil;
 
 public class UserInfoAction extends BaseAction {
 
@@ -33,7 +33,13 @@ public class UserInfoAction extends BaseAction {
 	 */
 	@Autowired
 	private UserInfoService userInfoService;
-
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private EnterpriseService enterpriseService;
+	
 	private UserInfoModel userInfoModel = new UserInfoModel();
 
 	@Override
@@ -84,6 +90,17 @@ public class UserInfoAction extends BaseAction {
 			User userReult = userInfoService.query(user);
 			this.userInfoModel.setUserInfo(userReult);
 		}
+		
+		//获取角色列表
+		Role role = new Role();
+		List<Role> roleList = roleService.queryList(role);
+		
+		//获取企业信息
+		Enterprise enterprise = new Enterprise();
+		List<Enterprise> enterpriseList = enterpriseService.queryList(enterprise);
+		
+		this.userInfoModel.getDataMap().put("roleList", roleList);
+		this.userInfoModel.getDataMap().put("enterpriseList", enterpriseList);
 		return Action.EDITOR;
 	}
 	
