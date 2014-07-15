@@ -100,19 +100,19 @@
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
 									<div class="control-group" id="name_div">
-										<label class="control-label" for="name_input">企业名称:</label>
+										<label class="control-label" for="name_input">名称：</label>
 										<div class="controls">
 											<input type="text" data-required="true"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="inputaddress">企业地址:</label>
+										<label class="control-label" for="inputaddress">地址：</label>
 										<div class="controls">
 											<input type="text" id="inputaddress" data-required="true" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="inputaddress">企业电话:</label>
+										<label class="control-label" for="inputaddress">电话：</label>
 										<div class="controls">
 											<input type="text" id="inputaddress" data-pattern="(^(\d{3,4}-)?\d{7,8})$|(1[3,5,7,8,9]{1}[0-9]{9})" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
 										</div>
