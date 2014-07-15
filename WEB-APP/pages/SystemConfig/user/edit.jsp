@@ -182,6 +182,7 @@
 											<div class="controls">
 												<select id="inputsex" data-required="true" class="input-xlarge" 
 													name="userInfo.sex">
+														<option value="0">未知</option>
 														<option value="1">男</option>
 														<option value="2">女</option>
 												</select>
@@ -314,9 +315,12 @@
 			forceParse : 0
 		});
 		$("#inputroleId").select2();
-		
+		$("#inputroleId").val("${userInfo.roleId}").trigger("change"); 
 		$("#inputenterpriseId").select2();
 		$("#inputenterpriseId").val("${userInfo.enterpriseId}").trigger("change"); 
+		$("#inputsex").select2();
+		$("#inputsex").val("${userInfo.sex}").trigger("change"); 
+		
 	</script>
 </body>
 </html>

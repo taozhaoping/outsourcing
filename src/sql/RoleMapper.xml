@@ -4,6 +4,7 @@
 	<resultMap id="T_Role" type="Role">
 		<id column="ID" property="id" />
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="DESCRIBE" property="describe" jdbcType="VARCHAR"/>
 		<result column="CREATETIME" property="createtime" jdbcType="DATE" />
 		<result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
 	</resultMap>
@@ -19,7 +20,7 @@
 	
 	
 	<sql id="Base_Column_List">
-		ID, NAME, CREATETIME, UPDATETIME
+		ID, NAME,DESCRIBE, CREATETIME, UPDATETIME
 	</sql>
 
 	<sql id="where">
@@ -41,7 +42,7 @@
 	
 	<select id="AuthoritiesToMenu" resultMap="Role_To_Menu">
 		select
-			ID, NAME, CREATETIME, UPDATETIME
+			ID, NAME,DESCRIBE, CREATETIME, UPDATETIME
 		from SYS_ROLE
 		where id = #{id}
 	</select>
@@ -89,6 +90,9 @@
 			<if test="name != null">
 				NAME,
 			</if>
+			<if test="name != null">
+				DESCRIBE,
+			</if>
 			<if test="createtime != null">
 				CREATETIME,
 			</if>
@@ -102,6 +106,9 @@
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="describe != null">
+				#{DESCRIBE,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				#{createtime,jdbcType=DATE},
@@ -117,6 +124,9 @@
 		<set>
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="describe != null">
+				DESCRIBE = #{describe,jdbcType=DATE},
 			</if>
 			<if test="createtime != null">
 				CREATETIME = #{createtime,jdbcType=DATE},

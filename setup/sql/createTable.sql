@@ -175,6 +175,7 @@ create table SYS_ROLE
 (
    id                 NUMBER               not null,
    name               VARCHAR2(50 BYTE), --角色名称
+   describe           VARCHAR2(100 BYTE), --描述
    createTime         DATE,
    updateTime         DATE
 );
