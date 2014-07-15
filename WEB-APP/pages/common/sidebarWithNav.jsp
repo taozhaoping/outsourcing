@@ -1,10 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="sidebar-nav">
-	<s:if test="%{#request.role.menuList != null}">
-		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
-	</s:if>
-
 	<s:iterator value="#session.menuList" status="statu" id="menu">
 		<a href="#<s:property value="action" />" class="nav-header collapsed"
 			data-toggle="collapse"> <i class="icon-exclamation-sign"></i>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -51,6 +52,11 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
 <!--<![endif]-->
+
+	<s:if test="%{#request.role.menuList != null}">
+		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
+	</s:if>
+	
 	<%@ include file="/pages/common/titleWithNav.jsp"%> 
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
 	
