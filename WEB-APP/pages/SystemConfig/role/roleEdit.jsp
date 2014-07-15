@@ -105,14 +105,21 @@
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
 								
 								<div class="control-group" id="name_div">
-									<label class="control-label" for="nameInput">角色名称:</label>
+									<label class="control-label" for="nameInput">名称：</label>
+									<div class="controls">
+										<input type="text" data-required="true"  id="nameInput" name="role.name" value="${role.name}" class="input-xlarge">
+									</div>
+								</div>
+								
+								<div class="control-group" id="name_div">
+									<label class="control-label" for="nameInput">描述：</label>
 									<div class="controls">
 										<input type="text" data-required="true"  id="nameInput" name="role.name" value="${role.name}" class="input-xlarge">
 									</div>
 								</div>
 								
 								<div class="control-group">
-									<label class="control-label" for="authoritiesListInput">功能权限:</label>
+									<label class="control-label" for="authoritiesListInput">功能权限：</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="authoritiesListInput" name="role.authoritiesList" value="${role.authoritiesList}" class="input-xlarge">
 										<a href='#authoritiesListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
@@ -120,7 +127,7 @@
 								</div>
 								
 								<div class="control-group">
-									<label class="control-label" for="menuListInput">菜单权限:</label>
+									<label class="control-label" for="menuListInput">菜单权限：</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge"> <a href='#menuListModal' data-toggle='modal' title="选择"><i
 												class="icon-edit"></i></a>
@@ -170,7 +177,6 @@
 					<label class="checkbox" id="menuTemplate" style="display: none;">
 						<input type="checkbox" name="menus">
 					</label>
-						
 						<!-- 
 						<s:iterator value="role.menuList" id="menu">
 							<li class="nav-header" >
@@ -188,7 +194,6 @@
 							</s:iterator>
 						</s:iterator>
 						 -->
-					</ul>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
@@ -278,7 +283,7 @@
 				for(var i = 0; i<menuList.length; i++){
 					var menu = menuList[i];
 					$("#menuTemplate").clone(true).show().attr("id","menu"+menu.id)
-					//.addClass("nav-header")
+					.addClass("levelMenu")
 					.children("input").val(menu.id).after(menu.name)
 					.parent().insertBefore("#menuTemplate");
 					//二级菜单
@@ -287,7 +292,7 @@
 						for(var j = 0; j<menu2List.length; j++){
 							var menu2 = menu2List[j];
 							$("#menuTemplate").clone(true).show()
-							.attr("id","menu"+menu2.id)
+							.attr("id","menu"+menu2.id).attr("parentId", "menu"+menu.id)
 							.addClass("offset30")
 							.children("input").val(menu2.id).after(menu2.name)
 							.parent().insertBefore("#menuTemplate");
@@ -315,8 +320,18 @@
 			
 			
 			//选择功能权限
-			$("#selectAuthBtn").bind('click', function() {
-				
+			$(".levelMenu").children("input").click(function() {
+				if ($(this).attr('checked') == 'checked') {
+					$(this).nextAll(".offset30").each(function () {
+						//只对可见的操作
+						$(this).attr("checked", "checked");
+					});
+				}else {
+					$(this).nextAll(".offset30").each(function () {
+						//只对可见的操作
+						$(this).removeAttr("checked");
+					});
+				}
 			});
 			
 			//选择菜单权限

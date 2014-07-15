@@ -94,7 +94,7 @@
 								<tr>
 									<th>序号</th>
 									<th>名称</th>
-									<th>功能权限</th>
+									<th>描述</th>
 									<th>创建时间</th>
 									<th>修改时间</th>
 									<th style="width: 26px;"></th>
@@ -105,7 +105,7 @@
 									<tr>
 										<td><s:property value="#index.index + 1" /></td>
 										<td><s:property value="#role.name" /></td>
-										<td><s:property value="#role.address" /></td>
+										<td><s:property value="#role.describe" /></td>
 										<td><s:property value="#role.createtime" /></td>
 										<td><s:property value="#role.updatetime" /></td>
 										<td><a
