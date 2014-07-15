@@ -20,7 +20,7 @@
 	
 	
 	<sql id="Base_Column_List">
-		ID, NAME,DESCRIBE, CREATETIME, UPDATETIME
+		ID, NAME, DESCRIBE, CREATETIME, UPDATETIME
 	</sql>
 
 	<sql id="where">
@@ -30,6 +30,9 @@
 			</if>
 			<if test="name != null">
 				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="describe != null">
+				and DESCRIBE = #{describe,jdbcType=VARCHAR}
 			</if>
 			<if test="createtime != null">
 				and CREATETIME = #{createtime,jdbcType=DATE}
@@ -42,7 +45,7 @@
 	
 	<select id="AuthoritiesToMenu" resultMap="Role_To_Menu">
 		select
-			ID, NAME,DESCRIBE, CREATETIME, UPDATETIME
+			ID, NAME, DESCRIBE, CREATETIME, UPDATETIME
 		from SYS_ROLE
 		where id = #{id}
 	</select>
@@ -90,7 +93,7 @@
 			<if test="name != null">
 				NAME,
 			</if>
-			<if test="name != null">
+			<if test="describe != null">
 				DESCRIBE,
 			</if>
 			<if test="createtime != null">
