@@ -1,5 +1,6 @@
 package com.zh.base.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,32 @@ public class RoleAction extends BaseAction {
 		LOGGER.debug("execute() ");
 		Menu menu = this.roleModel.getMenu();
 		List<Menu> menuList = menuService.queryList(menu);
-		this.roleModel.setMenuList(menuList);
+		
+		List<Menu> newMenuList = new ArrayList<Menu>();
+		Map<Integer, List<Menu>> map = new HashMap<Integer, List<Menu>>();
+		for (Menu tempMenu : menuList) {
+			Integer parentid = tempMenu.getParentid();
+			if(parentid == 0){
+				List<Menu> mList;
+				if(map.containsKey(tempMenu.getId())){
+					mList = map.get(tempMenu.getId());
+				}else{
+					mList = new ArrayList<Menu>();
+				}
+				tempMenu.setMenuList(mList);
+				newMenuList.add(tempMenu);
+				map.put(tempMenu.getId(), mList);
+			}else{
+				if(map.containsKey(parentid)){
+					map.get(parentid).add(tempMenu);
+				}else{
+					ArrayList<Menu> mList = new ArrayList<Menu>();
+					mList.add(tempMenu);
+					map.put(parentid, mList);
+				}
+			}
+		}
+		this.roleModel.setMenuList(newMenuList);
 		return "menujson";
 	}
 	

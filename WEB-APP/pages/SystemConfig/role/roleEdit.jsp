@@ -39,6 +39,11 @@
 	color: #fff;
 	font-weight: bold;
 }
+
+.offset30{
+	margin-left: 30px;
+}
+
 </style>
 <link href="<%=path%>/img/favicon_32.ico" rel="bookmark"
 	type="image/x-icon" />
@@ -117,9 +122,9 @@
 								<div class="control-group">
 									<label class="control-label" for="menuListInput">菜单权限:</label>
 									<div class="controls">
-										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge">
-										<a href='#menuListInputModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
-									</div>
+										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge"> <a href='#menuListModal' data-toggle='modal' title="选择"><i
+												class="icon-edit"></i></a>
+										</div>
 								</div>
 													
 							</div>
@@ -154,7 +159,7 @@
 			</div>
 			
 			<!-- 菜单权限 -->
-			<div class="modal small hide fade" id="menuListInputModal" tabindex="-1"
+			<div class="modal small hide fade" id="menuListModal" tabindex="-1"
 				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -162,45 +167,27 @@
 					<h3 id="myModalLabel">选择菜单权限</h3>
 				</div>
 				<div class="modal-body" style="height: 250px;">
-					<ul class="nav nav-list">
+					<label class="checkbox" id="menuTemplate" style="display: none;">
+						<input type="checkbox" name="menus">
+					</label>
+						
+						<!-- 
 						<s:iterator value="role.menuList" id="menu">
 							<li class="nav-header" >
 								<label class="checkbox">
 									<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
 								</label>
 							</li>
+							
 							<s:iterator value="#menu.menuList" id="menu2">
-							<li style="margin-left: 30px;">
+							<li class="offset30px">
 								<label class="checkbox">
 									<input type="checkbox" name="menus" value="<s:property value="#menu2.id"/>"><s:property value="#menu2.name"/>
 								</label>
 							</li>
 							</s:iterator>
-							<!-- 
-							<label class="checkbox">
-								<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
-							</label>
-							 -->
 						</s:iterator>
-						<s:iterator value="role.menuList" id="menu">
-							<li class="nav-header" >
-								<label class="checkbox">
-									<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
-								</label>
-							</li>
-							<s:iterator value="#menu.menuList" id="menu2">
-							<li style="margin-left: 30px;">
-								<label class="checkbox">
-									<input type="checkbox" name="menus" value="<s:property value="#menu2.id"/>"><s:property value="#menu2.name"/>
-								</label>
-							</li>
-							</s:iterator>
-							<!-- 
-							<label class="checkbox">
-								<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
-							</label>
-							 -->
-						</s:iterator>
+						 -->
 					</ul>
 				</div>
 				<div class="modal-footer">
@@ -223,10 +210,11 @@
 			var menuId='${menu2Id}';
 			var url=$("#"+menuId).attr("url");
 			
+			var localObj = window.location;
+			var contextPath = localObj.pathname.split("/")[1];
+			var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+			
 			$("#authoritiesListModal").on('show', function () {
-				var localObj = window.location;
-				var contextPath = localObj.pathname.split("/")[1];
-				var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
 				$.ajax({
 					type: "POST",   //访问WebService使用Post方式请求
 					url: basePath + "/home/role!authoritiesExecute.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
@@ -236,7 +224,6 @@
 					error: function(err, textStatus){
 						//alert("error: " + err + " textStatus: " + textStatus);
 					},
-					
 					success: function(result) {//回调函数，result，返回值
 						//填充到table中
 						fillAuthList(result);
@@ -246,13 +233,13 @@
 			
 			//展示权限列表
 			function fillAuthList(authList){
-				$("#authTemplate").nextAll("label").remove();
+				$("#authTemplate").prevAll("label").remove();
 				//把查询的结果添加到DIV中
 				for(var i = 0; i<authList.length; i++){
 					var auth = authList[i];
 					$("#authTemplate").clone(true).show().attr("id","auth"+auth.id)
 					.children("input").val(auth.id).after(auth.name)
-					.parent().insertAfter("#authTemplate");
+					.parent().insertBefore("#authTemplate");
 				}
 				
 				var selAuthList = ${dataMap.authListJson};
@@ -261,6 +248,67 @@
 					for(var j = 0; j<selAuthList.length; j++){
 						var selAuth = selAuthList[j];
 						$("#auth"+selAuth.id).children("input").attr("checked", "checked");
+					}
+				}
+			}
+			
+			//菜单展开 去查询列表
+			$("#menuListModal").on('show', function () {
+				$.ajax({
+					type: "POST",   //访问WebService使用Post方式请求
+					url: basePath + "/home/role!menuExecute.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+					data: {},  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+					dataType: 'json',   //WebService 会返回Json类型
+					traditional: false,	//不要序列化参数
+					error: function(err, textStatus){
+						//alert("error: " + err + " textStatus: " + textStatus);
+					},
+					success: function(result) {//回调函数，result，返回值
+						//填充到table中
+						fillMenuList(result);
+					}
+				});
+			});
+			
+			//展示菜单列表
+			function fillMenuList(menuList){
+				
+				$("#menuTemplate").prevAll("label").remove();
+				//把查询的结果添加到DIV中
+				for(var i = 0; i<menuList.length; i++){
+					var menu = menuList[i];
+					$("#menuTemplate").clone(true).show().attr("id","menu"+menu.id)
+					//.addClass("nav-header")
+					.children("input").val(menu.id).after(menu.name)
+					.parent().insertBefore("#menuTemplate");
+					//二级菜单
+					var menu2List = menu.menuList;
+					if(menu2List != null && menu2List != "" && menu2List.length >0){
+						for(var j = 0; j<menu2List.length; j++){
+							var menu2 = menu2List[j];
+							$("#menuTemplate").clone(true).show()
+							.attr("id","menu"+menu2.id)
+							.addClass("offset30")
+							.children("input").val(menu2.id).after(menu2.name)
+							.parent().insertBefore("#menuTemplate");
+						}
+					}
+				}
+				
+				var selMenuList = ${dataMap.menuListJson};
+				
+				if(selMenuList != null && selMenuList != "" && selMenuList.length >0){
+					for(var j = 0; j<selMenuList.length; j++){
+						var selMenu = selMenuList[j];
+						$("#menu"+selMenu.id).children("input").attr("checked", "checked");
+						
+						var selMenu2List = selMenu.menuList;
+						if(selMenu2List != null && selMenu2List != "" && selMenu2List.length >0){
+							for(var j = 0; j<selMenu2List.length; j++){
+								var selMenu2 = selMenu2List[j];
+								$("#menu"+selMenu2.id).children("input").attr("checked", "checked");
+							}
+						}
 					}
 				}
 			}
