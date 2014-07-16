@@ -17,7 +17,8 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
-<link rel="stylesheet" href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css">
+<link rel="stylesheet"
+	href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
@@ -82,8 +83,8 @@
 		</ul>
 
 		<div class="container-fluid">
-			<form id="tab2" class="form-horizontal" action="${menu2Id}!save.jspa"
-				method="post">
+			<form id="editForm" class="form-horizontal"
+				action="${menu2Id}!save.jspa" method="post">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
 						<button class="btn btn-primary" type="submit">
@@ -100,7 +101,7 @@
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
 								<input type="hidden" name="token" value="${token}" /> <input
-									type="hidden" name="enterprise.id" value="${enterprise.id}">
+									type="hidden" name="userInfo.id" value="${userInfo.id}">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
 								<dir class="row">
@@ -108,9 +109,15 @@
 										<div class="control-group" id="name_div">
 											<label class="control-label" for="inputloginName">用户名:</label>
 											<div class="controls">
-												<input type="text" data-required="true" id="input_loginName"
-													name="userInfo.loginName" value="${userInfo.loginName}"
-													class="input-xlarge">
+												<s:if test="userInfo.id!=null">
+													<span class="input-xlarge uneditable-input">${userInfo.loginName}</span>
+
+												</s:if>
+												<s:else>
+													<input type="text" data-required="true" data-validate="loginName" 
+														id="input_loginName" name="userInfo.loginName"
+														value="${userInfo.loginName}" class="input-xlarge">
+												</s:else>
 											</div>
 										</div>
 									</div>
@@ -120,7 +127,7 @@
 											<div class="controls">
 												<input type="text" id="inputname" data-required="true"
 													name="userInfo.name" value="${userInfo.name}"
-													class="input-xlarge">
+													data-required="true" class="input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -130,7 +137,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputemail">电子邮箱:</label>
 											<div class="controls">
-												<input type="text" id="inputemail" data-pattern=""
+												<input type="text" id="inputemail" data-required="true"
 													name="userInfo.email" value="${userInfo.email}"
 													class="input-xlarge">
 											</div>
@@ -140,9 +147,10 @@
 										<div class="control-group">
 											<label class="control-label" for="inputage">出生日期:</label>
 											<div class="controls ">
-												<input size="16" id="inputage" name="userInfo.age" type="text" value="${userInfo.age}"
-													readonly class="form_datetime input-xlarge"
-													data-date-format="yyyy-mm-dd">
+												<input size="16" id="inputage" name="userInfo.age"
+													type="text"
+													value="<s:date name="userInfo.age" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -153,9 +161,11 @@
 											<label class="control-label" for="inputroleId">角色:</label>
 											<div class="controls">
 												<select id="inputroleId" class="input-xlarge"
-													name="userInfo.roleId">
+													 name="userInfo.roleId">
 													<s:iterator value="dataMap.roleList" var="role">
-														<option value="<s:property value='#role.id'/>"><s:property value="#role.name"/></option>
+														<option value="<s:property value='#role.id'/>">
+															<s:property value="#role.name" />
+														</option>
 													</s:iterator>
 												</select>
 											</div>
@@ -165,10 +175,12 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenterpriseId">企业:</label>
 											<div class="controls">
-												<select id="inputenterpriseId" data-required="true" class="input-xlarge" 
-													name="userInfo.enterpriseId">
+												<select id="inputenterpriseId"
+													class="input-xlarge" name="userInfo.enterpriseId">
 													<s:iterator value="dataMap.enterpriseList" var="enterprise">
-														<option value="<s:property value='#enterprise.id'/>"><s:property value="#enterprise.name"/></option>
+														<option value="<s:property value='#enterprise.id'/>">
+															<s:property value="#enterprise.name" />
+														</option>
 													</s:iterator>
 												</select>
 											</div>
@@ -180,11 +192,11 @@
 										<div class="control-group">
 											<label class="control-label" for="inputsex">性别:</label>
 											<div class="controls">
-												<select id="inputsex" data-required="true" class="input-xlarge" 
+												<select id="inputsex" class="input-xlarge"
 													name="userInfo.sex">
-														<option value="0">未知</option>
-														<option value="1">男</option>
-														<option value="2">女</option>
+													<option value="0">未知</option>
+													<option value="1">男</option>
+													<option value="2">女</option>
 												</select>
 											</div>
 										</div>
@@ -193,9 +205,8 @@
 										<div class="control-group">
 											<label class="control-label" for="inputqq">QQ:</label>
 											<div class="controls">
-												<input type="text" id="inputqq" data-required="true"
-													name="userInfo.qq" value="${userInfo.qq}"
-													class="input-xlarge">
+												<input type="text" id="inputqq" name="userInfo.qq"
+													value="${userInfo.qq}" class="input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -205,9 +216,8 @@
 										<div class="control-group">
 											<label class="control-label" for="inputphone">座机号码:</label>
 											<div class="controls">
-												<input type="text" id="inputphone" data-pattern=""
-													name="userInfo.phone" value="${userInfo.phone}"
-													class="input-xlarge">
+												<input type="text" id="inputphone" name="userInfo.phone"
+													value="${userInfo.phone}" class="input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -226,11 +236,11 @@
 									<div class="span5">
 										<div class="control-group">
 											<label class="control-label" for="inputentryTime">入职时间:</label>
-											<div class="controls"> 
-												<input size="16" id="inputentryTime" name="userInfo.entryTime" type="text"
-													value="${userInfo.entryTime}" readonly
-													class="form_datetime input-xlarge"
-													data-date-format="yyyy-mm-dd">
+											<div class="controls">
+												<input size="16" id="inputentryTime"
+													name="userInfo.entryTime" type="text"
+													value="<s:date name="userInfo.entryTime" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -239,7 +249,7 @@
 											<label class="control-label" for="inputeducationBackground">专业:</label>
 											<div class="controls">
 												<input type="text" id="inputeducationBackground"
-													data-required="true" name="userInfo.educationBackground"
+													name="userInfo.educationBackground"
 													value="${userInfo.educationBackground}"
 													class="input-xlarge">
 											</div>
@@ -251,36 +261,50 @@
 										<div class="control-group">
 											<label class="control-label" for="inputaddress">家庭住址:</label>
 											<div class="controls">
-												<input type="text" id="inputaddress" data-pattern=""
-													name="userInfo.address" value="${userInfo.address}"
-													class="input-xxlarge" placeholder="input-xxlarge">
+												<input type="text" id="inputaddress" name="userInfo.address"
+													value="${userInfo.address}" class="input-xxlarge"
+													placeholder="input-xxlarge">
 											</div>
 										</div>
 									</div>
 								</dir>
 							</div>
 							<div class="tab-pane fade" id="password">
-								<div class="control-group">
-									<label class="control-label" for="inputaddress">原密码:</label>
-									<div class="controls">
-										<input type="text" id="inputname" data-required="true"
-											name="userInfo.password" value="" class=".input-xxlarge">
+								<s:if test="userInfo.id!=null">
+									<div class="control-group">
+										<label class="control-label" for="inputnewPassWord1">新密码:</label>
+										<div class="controls">
+											<input type="password" id="inputnewPassWord1"
+												data-validate="PassWordVali" class="input-xlarge">
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputaddress">新密码:</label>
-									<div class="controls">
-										<input type="text" id="inputname" data-required="true"
-											name="userInfo.password" value="" class="input-xlarge">
+									<div class="control-group">
+										<label class="control-label" for="inputnewPassWord">新密码:</label>
+										<div class="controls">
+											<input type="password" id="inputnewPassWord"
+												data-validate="PassWordVali" name="newPassWord"
+												class="input-xlarge">
+										</div>
 									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputaddress">新密码:</label>
-									<div class="controls">
-										<input type="text" id="inputname" data-required="true"
-											name="userInfo.password" value="" class="input-xlarge">
+								</s:if>
+								<s:else>
+									<div class="control-group">
+										<label class="control-label" for="inputnewPassWord1">新密码:</label>
+										<div class="controls">
+											<input type="password" data-required="true"
+												id="inputnewPassWord1" data-validate="PassWordVali"
+												class="input-xlarge">
+										</div>
 									</div>
-								</div>
+									<div class="control-group">
+										<label class="control-label" for="inputnewPassWord">新密码:</label>
+										<div class="controls">
+											<input type="password" data-required="true"
+												id="inputnewPassWord" data-validate="PassWordVali"
+												name="newPassWord" class="input-xlarge">
+										</div>
+									</div>
+								</s:else>
 							</div>
 						</div>
 					</div>
@@ -296,13 +320,15 @@
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
 	<script src="<%=path%>/js/select2/select2.js"></script>
 	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
-	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script
+		src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
 		var url = $("#" + menuId).attr('url');
+
 		$(".form_datetime").datetimepicker({
 			language : 'zh-CN',
 			format : 'yyyy-mm-dd',
@@ -312,15 +338,62 @@
 			todayHighlight : 1,
 			startView : 2,
 			minView : 2,
-			forceParse : 0
+			forceParse : true
 		});
+
 		$("#inputroleId").select2();
-		$("#inputroleId").val("${userInfo.roleId}").trigger("change"); 
+		$("#inputroleId").val("${userInfo.roleId}").trigger("change");
 		$("#inputenterpriseId").select2();
-		$("#inputenterpriseId").val("${userInfo.enterpriseId}").trigger("change"); 
+		$("#inputenterpriseId").val("${userInfo.enterpriseId}").trigger(
+				"change");
 		$("#inputsex").select2();
-		$("#inputsex").val("${userInfo.sex}").trigger("change"); 
-		
+		$("#inputsex").val("${userInfo.sex}").trigger("change");
+
+		jQuery.validateExtend({
+			PassWordVali : {
+				onChange : true,
+				pattern : /^[A-Za-z0-9]+$/,
+				conditional : function(value) {
+					password = $("#inputnewPassWord").val();
+					password1 = $("#inputnewPassWord1").val();
+					return password == password1;
+				}
+			},
+			loginName : {
+				onKeyup : false,
+				sendForm:true,
+				onSubmit : true,
+				pattern : /^[A-Za-z0-9]{3,}$/,
+				conditional : function(value) {
+					var bool=true;
+					if(value.length<3)
+					{
+						return false;	
+					}
+					$.ajax({
+						type: "POST",   //访问WebService使用Post方式请求
+						url: menuId + "!validatorUserName.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+						async:false,
+						data: {"loginName":value},  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+						dataType: 'json',   //WebService 会返回Json类型
+						traditional: false,	//不要序列化参数
+						error: function(err, textStatus){
+							//alert("error: " + err + " textStatus: " + textStatus);
+						},
+						success: function(result) {//回调函数，result，返回值
+							if(result.success)
+							{
+								bool=true;	
+							}else
+							{
+								bool=false;	
+							}
+						}
+					});
+					return bool;
+				}
+			}
+		});
 	</script>
 </body>
 </html>

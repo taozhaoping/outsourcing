@@ -83,5 +83,33 @@ public class Enterprise extends IDataObject{
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean bool = false;
+		if(obj instanceof Enterprise)
+		{
+			Enterprise enterprise = (Enterprise)obj;
+			if(this.id.toString().equals(enterprise.getId()))
+			{
+				bool = true;
+			}
+		}
+		return bool;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 2;
+		String str = "enterprise";
+		
+	       result = str.hashCode()*result;
+	       if(null != id )
+	       {
+	    	   result = result + (int)id;
+	       }
+
+	       return result;
+	}
 
 }

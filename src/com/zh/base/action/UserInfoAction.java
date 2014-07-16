@@ -1,6 +1,7 @@
 package com.zh.base.action;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
+import com.zh.core.util.BCrypt;
 
 public class UserInfoAction extends BaseAction {
 
@@ -54,15 +56,14 @@ public class UserInfoAction extends BaseAction {
 
 	}
 	
-	public void validatorUserName()
+	public String validatorUserName()
 	{
-		String userName= userInfoModel.getUserName();
-		String oldUserName = userInfoModel.getOldUserName();
+		String loginName= userInfoModel.getLoginName();
 		boolean bool = true;
-		if(null != userName && !userName.equals(oldUserName))
+		if(null != loginName && !"".equals(loginName))
 		{
 			User user = new User();
-			user.setName(userName);
+			user.setLoginName(loginName);
 			User userInfo = userInfoService.query(user);
 			if(null != userInfo)
 			{
@@ -70,13 +71,7 @@ public class UserInfoAction extends BaseAction {
 			}
 		}
 		userInfoModel.getDataMap().put("success", bool);
-		try {
-			this.write(String.valueOf(bool), "UTF-8");
-		} catch (IOException e1) {
-			throw new ProjectException("检查用户失败", e1.getCause());
-		}
-		
-		
+		return Action.RETURN_JSON;
 	}
 	
 
@@ -126,11 +121,26 @@ public class UserInfoAction extends BaseAction {
 		
 		//判断是新增还是修改
 		Integer id = user.getId();
+		String passWord = userInfoModel.getNewPassWord();
 		if(null == id || 0 == id)
 		{
+			
+			if( null == passWord && "".equals(passWord))
+			{
+				ProjectException.createException("密码不允许为空!");
+			}
+			String bcryptPassword = BCrypt.hashpw(passWord, BCrypt.gensalt(12));
+			user.setUserPassword(bcryptPassword);
+			user.setCreateTime(new Date());
 			userInfoService.insert(user);
 		}else
 		{
+			if( null != passWord && !"".equals(passWord))
+			{
+				String bcryptPassword = BCrypt.hashpw(passWord, BCrypt.gensalt(12));
+				user.setUserPassword(bcryptPassword);
+			}
+			user.setUpdateTime(new Date());
 			userInfoService.update(user);
 		}
 		return Action.EDITOR_SUCCESS;

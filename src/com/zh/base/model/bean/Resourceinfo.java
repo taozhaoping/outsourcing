@@ -117,5 +117,48 @@ public class Resourceinfo extends IDataObject{
 		this.enabled = enabled;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean bool = false;
+		if(obj instanceof Resourceinfo)
+		{
+			Resourceinfo resourceinfo = (Resourceinfo)obj;
+			if(id != null &&  null != resourceinfo.getId())
+			{
+				if(id.equals(resourceinfo.getId()))
+				{
+					bool = true;
+				}
+			}else 
+			{
+				if(null != type && null != resourceinfo.getType())
+				{
+					if(type.equals(resourceinfo.getType()))
+					{
+						bool = true;
+					}
+				}
+			}
+		}
+		return bool;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 2;
+		String str = "Resourceinfo";
+		
+	       result = str.hashCode()*result;
+	       if(null != id )
+	       {
+	    	   result = result + (int)id;
+	       }
+	       if(null != type )
+	       {
+	    	   result = result + type.hashCode();
+	       }
+
+	       return result;
+	}
    
 }

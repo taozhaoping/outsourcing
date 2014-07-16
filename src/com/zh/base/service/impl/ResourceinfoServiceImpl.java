@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 import com.zh.base.dao.ResourceinfoDao;
 import com.zh.base.model.bean.Resourceinfo;
 import com.zh.base.service.ResourceinfoService;
+import com.zh.core.cache.MethodCacheAfterAdvice;
 import com.zh.core.model.Pager;
 
 @Component("resourceinfoService")
-public class ResourceinfoServiceImpl implements ResourceinfoService {
+public class ResourceinfoServiceImpl extends MethodCacheAfterAdvice implements ResourceinfoService {
 
 	@Autowired
 	private ResourceinfoDao resourceinfoDao;

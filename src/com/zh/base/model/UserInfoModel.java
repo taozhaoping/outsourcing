@@ -26,10 +26,7 @@ public class UserInfoModel extends BaseModel {
 	
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 	
-	
-	private String oldUserName;
-	
-	private String userName;
+	private String loginName;
 
 	public User getUserInfo() {
 		return userInfo;
@@ -87,20 +84,12 @@ public class UserInfoModel extends BaseModel {
 		this.dataMap = dataMap;
 	}
 
-	public String getOldUserName() {
-		return oldUserName;
+	public String getLoginName() {
+		return loginName;
 	}
 
-	public void setOldUserName(String oldUserName) {
-		this.oldUserName = oldUserName;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
 }

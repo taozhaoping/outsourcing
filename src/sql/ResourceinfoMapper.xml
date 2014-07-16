@@ -23,22 +23,22 @@
 				and id = #{id}
 			</if>
 			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="value != null">
-				VALUE = #{value,jdbcType=VARCHAR},
+				and VALUE = #{value,jdbcType=VARCHAR}
 			</if>
 			<if test="type != null">
-				TYPE = #{type,jdbcType=VARCHAR},
+				and TYPE = #{type,jdbcType=VARCHAR}
 			</if>
 			<if test="createtime != null">
-				CREATETIME = #{createtime,jdbcType=DATE},
+				and CREATETIME = #{createtime,jdbcType=DATE}
 			</if>
 			<if test="updatetime != null">
-				UPDATETIME = #{updatetime,jdbcType=DATE},
+				and UPDATETIME = #{updatetime,jdbcType=DATE}
 			</if>
 			<if test="enabled != null">
-				ENABLED = #{enabled},
+				and ENABLED = #{enabled}
 			</if>
 		</where>
 	</sql>

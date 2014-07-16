@@ -74,6 +74,12 @@
 			<result name="json" type="json">
 				<param name="root">userInfoModel.dataMap</param>
 			</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">userInfo</param>  
+    			<param name="namespace">/home</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
 		</action>
 		
 	</package>

@@ -55,7 +55,7 @@ public class mainAction extends BaseAction {
 //
 		// 获取角色信息和菜单信息
 		Role role = new Role();
-		role.setId(user.getId());
+		role.setId(Integer.valueOf(user.getRoleId()));
 		Role roleReult = roleService.queryAuthoritiesToMenu(role);
 		this.mainModel.setRole(roleReult);
 //		

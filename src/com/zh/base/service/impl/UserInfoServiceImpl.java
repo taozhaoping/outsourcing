@@ -59,7 +59,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void insert(User user) {
 		// TODO Auto-generated method stub
-		
+		userInfoDAO.insert(user);
 	}
 
 }

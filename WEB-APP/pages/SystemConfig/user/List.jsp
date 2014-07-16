@@ -111,8 +111,8 @@
 										<td><s:property value="#userInfo.name"/></td>
 										<td><s:property value="#userInfo.email"/></td>
 										<td><s:property value="#userInfo.mobile_number"/></td>
-										<td><s:property value="#userInfo.entryTime"/></td>
-										<td><s:property value="#userInfo.createTime"/></td>
+										<td><s:date name="#userInfo.entryTime" format="yyyy-MM-dd" /> </td>
+										<td><s:date name="#userInfo.createTime" format="yyyy-MM-dd" /> </td>
 										<s:if test="#userInfo.enabled==0">
 											<td>激活</td>
 										</s:if>

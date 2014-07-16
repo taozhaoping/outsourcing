@@ -35,6 +35,9 @@
 
 	<sql id="where">
 		<where>
+			<if test="id != null">
+				And ID=#{id}
+			</if>
 			<if test="loginName != null">
 				And loginName=#{loginName}
 			</if>

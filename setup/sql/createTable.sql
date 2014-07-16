@@ -156,7 +156,7 @@ create  table SYS_RESOURCEINFO
    id                 NUMBER               not null,
    name               VARCHAR2(30 BYTE), --资源名称
    value              VARCHAR2(30 BYTE), --资源属性
-   type               VARCHAR2(5 BYTE), --资源类别
+   type               VARCHAR2(20 BYTE), --资源类别
    createTime         DATE,
    updateTime         DATE,
    enabled              NUMBER default '0'-- 是否启用 0启动 1:停用
