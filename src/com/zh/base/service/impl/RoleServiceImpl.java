@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.RoleDao;
+import com.zh.base.dao.RoleRelationDao;
 import com.zh.base.model.bean.Menu;
 import com.zh.base.model.bean.Role;
+import com.zh.base.model.bean.RoleAuthorities;
+import com.zh.base.model.bean.RoleMenu;
 import com.zh.base.service.RoleService;
 import com.zh.core.model.Pager;
 
@@ -19,6 +22,9 @@ public class RoleServiceImpl implements RoleService {
 
 	@Autowired
 	private RoleDao roleDao;
+	
+	@Autowired
+	private RoleRelationDao roleRelationDao;
 	
 	@Override
 	public Role query(Role role) {
@@ -110,6 +116,30 @@ public class RoleServiceImpl implements RoleService {
 		}
 		roleReult.setMenuList(newMenuList);
 		return roleReult;
+	}
+
+	@Override
+	public void updateRoleAuthorities(List<RoleAuthorities> roleAuthoritiesList) {
+		if(roleAuthoritiesList.size() > 0){
+			//删除
+			roleRelationDao.deleteRoleAuthorities(roleAuthoritiesList.get(0));
+			//增加
+			for(RoleAuthorities roleAuthorities : roleAuthoritiesList){
+				roleRelationDao.insertRoleAuthorities(roleAuthorities);
+			}
+		}
+	}
+
+	@Override
+	public void updateRoleMenu(List<RoleMenu> roleMenuList) {
+		if(roleMenuList.size() > 0){
+			//删除
+			roleRelationDao.deleteRoleMenu(roleMenuList.get(0));
+			//增加
+			for(RoleMenu roleMenu : roleMenuList){
+				roleRelationDao.insertRoleMenu(roleMenu);
+			}
+		}
 	}
 
 }

@@ -15,6 +15,8 @@ import com.zh.base.model.RoleModel;
 import com.zh.base.model.bean.Authorities;
 import com.zh.base.model.bean.Menu;
 import com.zh.base.model.bean.Role;
+import com.zh.base.model.bean.RoleAuthorities;
+import com.zh.base.model.bean.RoleMenu;
 import com.zh.base.service.AuthoritiesService;
 import com.zh.base.service.MenuService;
 import com.zh.base.service.RoleService;
@@ -158,9 +160,57 @@ public class RoleAction extends BaseAction {
 		//判断是新增还是修改
 		if(null == id || 0 == id){
 			roleService.insert(role);
+			//菜单集合
+			String menuListJsonValue = this.roleModel.getMenuListJsonValue();
+			if(menuListJsonValue != null && !menuListJsonValue.isEmpty()){
+				JSONArray menuJsonArray = JSONArray.fromObject(menuListJsonValue);
+				Menu[] menus = (Menu[]) JSONArray.toArray(menuJsonArray ,Menu.class);
+				
+			}
+			
+			//权限集合
+			String authoritiesListJsonValue = this.roleModel.getAuthoritiesListJsonValue();
+			if(authoritiesListJsonValue != null && !authoritiesListJsonValue.isEmpty()){
+				JSONArray authJsonArray = JSONArray.fromObject(authoritiesListJsonValue);
+				Authorities[] authorities = (Authorities[]) JSONArray.toArray(authJsonArray ,Authorities.class);
+				System.out.println("authorities " + authorities);
+			}
+			
 		}else{
 			roleService.update(role);
+
+			//菜单集合
+			String menuListJsonValue = this.roleModel.getMenuListJsonValue();
+			
+			JSONArray menuJsonArray = JSONArray.fromObject(menuListJsonValue);
+			Menu[] menus = (Menu[]) JSONArray.toArray(menuJsonArray ,Menu.class);
+			
+			List<RoleMenu> roleMenuList = new ArrayList<RoleMenu>(); 
+			for(Menu menu : menus){
+				RoleMenu roleMenu = new RoleMenu();
+				roleMenu.setRoleId(id);
+				roleMenu.setMenuId(menu.getId());
+				roleMenuList.add(roleMenu);
+			}
+			roleService.updateRoleMenu(roleMenuList);
+			
+			//权限集合
+			String authoritiesListJsonValue = this.roleModel.getAuthoritiesListJsonValue();
+			
+			JSONArray authJsonArray = JSONArray.fromObject(authoritiesListJsonValue);
+			Authorities[] authorities = (Authorities[]) JSONArray.toArray(authJsonArray ,Authorities.class);
+			
+			List<RoleAuthorities> roleAuthoritiesList = new ArrayList<RoleAuthorities>();
+			for(Authorities auth : authorities){
+				RoleAuthorities roleAuthorities = new RoleAuthorities();
+				roleAuthorities.setRoleId(id);
+				roleAuthorities .setAuthoritiesId(auth.getId());
+				roleAuthoritiesList.add(roleAuthorities);
+			}
+			roleService.updateRoleAuthorities(roleAuthoritiesList);
 		}
+		
+		
 		
 		return Action.EDITOR_SUCCESS;
 	}
