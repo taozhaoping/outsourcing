@@ -21,6 +21,27 @@ public class RoleModel extends BaseModel {
 	private Authorities authorities = new Authorities();
 	
 	private List<Authorities> authoritiesList = new ArrayList<Authorities>();
+	
+	
+	private String authoritiesListJsonValue;
+	
+	private String menuListJsonValue;
+
+	public String getAuthoritiesListJsonValue() {
+		return authoritiesListJsonValue;
+	}
+
+	public void setAuthoritiesListJsonValue(String authoritiesListJsonValue) {
+		this.authoritiesListJsonValue = authoritiesListJsonValue;
+	}
+
+	public String getMenuListJsonValue() {
+		return menuListJsonValue;
+	}
+
+	public void setMenuListJsonValue(String menuListJsonValue) {
+		this.menuListJsonValue = menuListJsonValue;
+	}
 
 	public List<Role> getRoleList() {
 		return roleList;

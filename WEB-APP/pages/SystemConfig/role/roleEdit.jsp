@@ -112,16 +112,17 @@
 								</div>
 								
 								<div class="control-group" id="name_div">
-									<label class="control-label" for="nameInput">描述：</label>
+									<label class="control-label" for="describeInput">描述：</label>
 									<div class="controls">
-										<input type="text" data-required="true"  id="nameInput" name="role.name" value="${role.name}" class="input-xlarge">
+										<input type="text" data-required="true"  id="describeInput" name="role.describe" value="${role.describe}" class="input-xlarge">
 									</div>
 								</div>
 								
 								<div class="control-group">
 									<label class="control-label" for="authoritiesListInput">功能权限：</label>
 									<div class="controls">
-										<input type="text" data-required="true" id="authoritiesListInput" name="role.authoritiesList" value="${role.authoritiesList}" class="input-xlarge">
+										<input type="text" data-required="true" id="authoritiesListInput" readonly="readonly" class="input-xlarge">
+										<input type="hidden" id="authoritiesListInputJson" name="authoritiesListJsonValue">
 										<a href='#authoritiesListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
 									</div>
 								</div>
@@ -129,9 +130,10 @@
 								<div class="control-group">
 									<label class="control-label" for="menuListInput">菜单权限：</label>
 									<div class="controls">
-										<input type="text" data-required="true" id="menuListInput" name="role.menuList" value="${role.menuList}" class="input-xlarge"> <a href='#menuListModal' data-toggle='modal' title="选择"><i
-												class="icon-edit"></i></a>
-										</div>
+										<input type="text" data-required="true" id="menuListInput" readonly="readonly" class="input-xlarge">
+										<input type="hidden" id="menuListInputJson" name="menuListJsonValue">
+										<a href='#menuListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
+									</div>
 								</div>
 													
 							</div>
@@ -150,7 +152,8 @@
 				</div>
 				<div class="modal-body" style="height: 150px;">
 					<label class="checkbox" style="display: none;" id="authTemplate">
-						<input type="checkbox" name="authorities"></label>
+						<input type="checkbox">
+					</label>
 					<!-- 
 					<s:iterator value="role.authoritiesList" id="auth">
 						<label class="checkbox">
@@ -175,7 +178,7 @@
 				</div>
 				<div class="modal-body" style="height: 250px;">
 					<label class="checkbox" id="menuTemplate" style="display: none;">
-						<input type="checkbox" name="menus">
+						<input type="checkbox">
 					</label>
 						<!-- 
 						<s:iterator value="role.menuList" id="menu">
@@ -247,7 +250,7 @@
 					.parent().insertBefore("#authTemplate");
 				}
 				
-				var selAuthList = ${dataMap.authListJson};
+				var selAuthList = JSON.parse($("#authoritiesListInput").attr("jsonval"));
 				
 				if(selAuthList != null && selAuthList != "" && selAuthList.length >0){
 					for(var j = 0; j<selAuthList.length; j++){
@@ -256,6 +259,23 @@
 					}
 				}
 			}
+			
+
+			(function initAuth(){
+				var selAuthList = ${dataMap.authListJson};
+				
+				if(selAuthList != null && selAuthList != "" && selAuthList.length >0){
+					var selAuthsName = "";
+					for(var j = 0; j<selAuthList.length; j++){
+						var selAuth = selAuthList[j];
+						selAuthsName = selAuthsName + selAuth.name + ";";
+					}
+					
+					$("#authoritiesListInput").attr("jsonval", JSON.stringify(selAuthList));
+					$("#authoritiesListInputJson").val(JSON.stringify(selAuthList));
+					$("#authoritiesListInput").val(selAuthsName);
+				}
+			})();
 			
 			//菜单展开 去查询列表
 			$("#menuListModal").on('show', function () {
@@ -300,13 +320,12 @@
 					}
 				}
 				
-				var selMenuList = ${dataMap.menuListJson};
+				var selMenuList = JSON.parse($("#menuListInput").attr("jsonval"));
 				
-				if(selMenuList != null && selMenuList != "" && selMenuList.length >0){
+				if(selMenuList != null && selMenuList != "" && selMenuList.length > 0){
 					for(var j = 0; j<selMenuList.length; j++){
 						var selMenu = selMenuList[j];
 						$("#menu"+selMenu.id).children("input").attr("checked", "checked");
-						
 						var selMenu2List = selMenu.menuList;
 						if(selMenu2List != null && selMenu2List != "" && selMenu2List.length >0){
 							for(var j = 0; j<selMenu2List.length; j++){
@@ -316,10 +335,36 @@
 						}
 					}
 				}
+				
 			}
+			
+			(function initMenu(){
+				var selMenuList = ${dataMap.menuListJson};
+				
+				var selMenuListValue = "";
+				if(selMenuList != null && selMenuList != "" && selMenuList.length >0){
+					for(var j = 0; j<selMenuList.length; j++){
+						var selMenu = selMenuList[j];
+						selMenuListValue = selMenuListValue + selMenu.name + ";";
+						var selMenu2List = selMenu.menuList;
+						if(selMenu2List != null && selMenu2List != "" && selMenu2List.length >0){
+							for(var j = 0; j<selMenu2List.length; j++){
+								var selMenu2 = selMenu2List[j];
+								selMenuListValue = selMenuListValue + selMenu2.name + ";";
+							}
+						}
+					}
+				}
+				
+				$("#menuListInput").attr("jsonval",JSON.stringify(selMenuList));
+				$("#menuListInputJson").val(JSON.stringify(selMenuList));
+				$("#menuListInput").val(selMenuListValue);
+				
+			})();
 			
 			
 			//选择功能权限
+			/*
 			$(".levelMenu").children("input").click(function() {
 				if ($(this).attr('checked') == 'checked') {
 					$(this).nextAll(".offset30").each(function () {
@@ -333,10 +378,43 @@
 					});
 				}
 			});
+			*/
+			//选择功能权限
+			$("#selectAuthBtn").bind('click', function() {
+				var curSelectAuth = "";
+				var selectedAuths = new Array();
+				$("#authoritiesListModal div label input[type='checkbox']:checked").each(function () {
+					var parentText = $(this).parent("label").text();
+					var authName = $.trim(parentText);
+					curSelectAuth = curSelectAuth + authName + ";";
+					var tempAuth = new Object();
+					tempAuth.name = authName;
+					tempAuth.id = $(this).val();
+					selectedAuths.push(tempAuth);
+				});
+				
+				$("#authoritiesListInput").attr("jsonval", JSON.stringify(selectedAuths));
+				$("#authoritiesListInputJson").val(JSON.stringify(selectedAuths));
+				$("#authoritiesListInput").val(curSelectAuth);
+			});
 			
 			//选择菜单权限
 			$("#selectMenuBtn").bind('click', function() {
+				var curSelectMenu = "";
+				var selectedMenus = new Array();
+				$("#menuListModal div label input[type='checkbox']:checked").each(function () {
+					var parentText = $(this).parent("label").text();
+					menuName = $.trim(parentText);
+					curSelectMenu = curSelectMenu + menuName + ";";
+					var tempMenu = new Object();
+					tempMenu.name = menuName;
+					tempMenu.id = $(this).val();
+					selectedMenus.push(tempMenu);
+				});
 				
+				$("#menuListInput").attr("jsonval", JSON.stringify(selectedMenus));
+				$("#menuListInputJson").val(JSON.stringify(selectedMenus));
+				$("#menuListInput").val(curSelectMenu);
 			});
 			
 		</script>

@@ -20,7 +20,6 @@ import com.zh.base.service.MenuService;
 import com.zh.base.service.RoleService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
-import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 
 public class RoleAction extends BaseAction {
@@ -120,26 +119,28 @@ public class RoleAction extends BaseAction {
 		
 		Integer id = this.roleModel.getId();
 		if(null == id || "".equals(id)){
-			ProjectException.createException("主建不允许为空!");
+			Role role = this.roleModel.getRole();
+			role.setId(id);
+		}else{
+			Role role = this.roleModel.getRole();
+			role.setId(id);
+			
+			Role roleRet = roleService.queryAuthoritiesToMenu(role);
+			//权限
+			List<Authorities> authoritiesList= roleRet.getAuthoritiesList();
+			String authListJson = JSONArray.fromObject(authoritiesList.toArray()).toString();
+			//菜单
+			List<Menu> menuList = roleRet.getMenuList();
+			String menuListJson = JSONArray.fromObject(menuList.toArray()).toString();
+			
+			Map<String, Object> dataMap = new HashMap<String, Object>();
+			dataMap.put("authListJson", authListJson);
+			dataMap.put("menuListJson", menuListJson);
+			this.roleModel.setDataMap(dataMap );
+			this.roleModel.setRole(roleRet);
 		}
 		
-		Role role = this.roleModel.getRole();
-		role.setId(id);
 		
-		Role roleRet = roleService.queryAuthoritiesToMenu(role);
-		//权限
-		List<Authorities> authoritiesList= roleRet.getAuthoritiesList();
-		String authListJson = JSONArray.fromObject(authoritiesList.toArray()).toString();
-		//菜单
-		List<Menu> menuList = roleRet.getMenuList();
-		String menuListJson = JSONArray.fromObject(menuList.toArray()).toString();
-		
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("authListJson", authListJson);
-		dataMap.put("menuListJson", menuListJson);
-		this.roleModel.setDataMap(dataMap );
-		
-		this.roleModel.setRole(roleRet);
 		return Action.EDITOR;
 		
 	}
@@ -150,19 +151,17 @@ public class RoleAction extends BaseAction {
 	 */
 	public String save() {
 		LOGGER.debug("save()");
-		/*
-		Enterprise enterprise = this.enterpriseModel.getEnterprise();
-		Integer id = enterprise.getId();
+		
+		Role role = this.roleModel.getRole();
+		Integer id = role.getId();
 		
 		//判断是新增还是修改
-		if(null == id || 0 == id)
-		{
-			enterpriseService.insert(enterprise);
-		}else
-		{
-			enterpriseService.update(enterprise);
+		if(null == id || 0 == id){
+			roleService.insert(role);
+		}else{
+			roleService.update(role);
 		}
-		*/
+		
 		return Action.EDITOR_SUCCESS;
 	}
 
