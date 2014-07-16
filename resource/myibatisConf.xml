@@ -26,6 +26,8 @@
 		<typeAlias alias="Enterprise" type="com.zh.base.model.bean.Enterprise" />
 		<typeAlias alias="Resourceinfo" type="com.zh.base.model.bean.Resourceinfo" />
 		<typeAlias alias="Role" type="com.zh.base.model.bean.Role" />
+		<typeAlias alias="RoleAuthorities" type="com.zh.base.model.bean.RoleAuthorities" />
+		<typeAlias alias="RoleMenu" type="com.zh.base.model.bean.RoleMenu" />
 	</typeAliases>
 
 	<plugins>

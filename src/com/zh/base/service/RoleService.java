@@ -3,6 +3,8 @@ package com.zh.base.service;
 import java.util.List;
 
 import com.zh.base.model.bean.Role;
+import com.zh.base.model.bean.RoleAuthorities;
+import com.zh.base.model.bean.RoleMenu;
 import com.zh.core.model.Pager;
 
 public interface RoleService {
@@ -59,4 +61,16 @@ public interface RoleService {
 	 * @param 
 	 */
 	public void insert(Role role);
+	
+	/***
+	 * 更新角色权限关系
+	 * @param roleAuthorities
+	 */
+	public void updateRoleAuthorities(List<RoleAuthorities> roleAuthoritiesList);
+	
+	/**
+	 * 更新角色菜单关系
+	 * @param roleMenu
+	 */
+	public void updateRoleMenu(List<RoleMenu> roleMenuList);
 }
