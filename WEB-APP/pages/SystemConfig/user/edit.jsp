@@ -100,7 +100,7 @@
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								<input type="hidden" id="token" name="token" value="${token}" /> 
+								
 								<input type="hidden" name="userInfo.id" value="${userInfo.id}">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
@@ -394,7 +394,6 @@
 							{
 								bool=false;	
 							}
-							$("#token").val(result.token);
 						}
 					});
 					return bool;

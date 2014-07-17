@@ -95,7 +95,6 @@
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-									<input type="hidden" name="token" value="${token}" />
 									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">

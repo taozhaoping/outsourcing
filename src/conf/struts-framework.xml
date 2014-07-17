@@ -48,9 +48,10 @@
 			 <interceptor name="authorityInterceptor" class="com.zh.core.interceptor.AuthorityInterceptor"></interceptor>
 			 <!-- ERROR 过滤器 -->
 			 <interceptor name="exceptionInterceptor" class="com.zh.core.interceptor.ExceptionInterceptor"></interceptor>
-			<!-- from重复提交拦截器 -->
+			<!-- from重复提交拦截器
 			<interceptor name="invocationToken"
 				class="com.zh.core.interceptor.TokenAtionInterceptor" />
+			-->
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="language" />
 				<interceptor-ref name="invocationToken" />
