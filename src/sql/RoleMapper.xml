@@ -111,7 +111,7 @@
 				#{name,jdbcType=VARCHAR},
 			</if>
 			<if test="describe != null">
-				#{DESCRIBE,jdbcType=VARCHAR},
+				#{describe,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				#{createtime,jdbcType=DATE},

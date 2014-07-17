@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.Map"%>
 <%
 	String path = request.getContextPath();
+	Map map = (Map)request.getAttribute("dataMap");
+	String osValue = map.get("osValue").toString();
+	boolean isEdit = osValue.equalsIgnoreCase("edit");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -250,7 +254,7 @@
 					.parent().insertBefore("#authTemplate");
 				}
 				
-				var selAuthList = JSON.parse($("#authoritiesListInput").attr("jsonval"));
+				var selAuthList = JSON.parse($("#authoritiesListInputJson").val());
 				
 				if(selAuthList != null && selAuthList != "" && selAuthList.length >0){
 					for(var j = 0; j<selAuthList.length; j++){
@@ -259,23 +263,22 @@
 					}
 				}
 			}
-			
-
+			<% if(isEdit){%>
 			(function initAuth(){
-				var selAuthList = ${dataMap.authListJson};
-				
-				if(selAuthList != null && selAuthList != "" && selAuthList.length >0){
+				var selAuthList = ${dataMap.authListJson};//JSON.parse($("#authListJsonId").val());
+				if(selAuthList != null && selAuthList != "" && selAuthList.length > 0){
 					var selAuthsName = "";
 					for(var j = 0; j<selAuthList.length; j++){
 						var selAuth = selAuthList[j];
 						selAuthsName = selAuthsName + selAuth.name + ";";
 					}
 					
-					$("#authoritiesListInput").attr("jsonval", JSON.stringify(selAuthList));
+					//$("#authoritiesListInput").attr("jsonval", JSON.stringify(selAuthList));
 					$("#authoritiesListInputJson").val(JSON.stringify(selAuthList));
 					$("#authoritiesListInput").val(selAuthsName);
 				}
 			})();
+			<% }%>
 			
 			//菜单展开 去查询列表
 			$("#menuListModal").on('show', function () {
@@ -320,7 +323,7 @@
 					}
 				}
 				
-				var selMenuList = JSON.parse($("#menuListInput").attr("jsonval"));
+				var selMenuList = JSON.parse($("#menuListInputJson").val());
 				
 				if(selMenuList != null && selMenuList != "" && selMenuList.length > 0){
 					for(var j = 0; j<selMenuList.length; j++){
@@ -335,14 +338,15 @@
 						}
 					}
 				}
-				
 			}
 			
+			<% 
+			if(isEdit){
+			%>
 			(function initMenu(){
-				var selMenuList = ${dataMap.menuListJson};
-				
-				var selMenuListValue = "";
-				if(selMenuList != null && selMenuList != "" && selMenuList.length >0){
+				var selMenuList = ${dataMap.menuListJson}; //JSON.parse($("#menuListJsonId").val());
+				if(selMenuList != null && selMenuList != "" && selMenuList.length > 0){
+					var selMenuListValue = "";
 					for(var j = 0; j<selMenuList.length; j++){
 						var selMenu = selMenuList[j];
 						selMenuListValue = selMenuListValue + selMenu.name + ";";
@@ -354,14 +358,13 @@
 							}
 						}
 					}
+					
+					//$("#menuListInput").attr("jsonval",JSON.stringify(selMenuList));
+					$("#menuListInputJson").val(JSON.stringify(selMenuList));
+					$("#menuListInput").val(selMenuListValue);
 				}
-				
-				$("#menuListInput").attr("jsonval",JSON.stringify(selMenuList));
-				$("#menuListInputJson").val(JSON.stringify(selMenuList));
-				$("#menuListInput").val(selMenuListValue);
-				
 			})();
-			
+			<%}%>
 			
 			//选择功能权限
 			/*
@@ -393,7 +396,7 @@
 					selectedAuths.push(tempAuth);
 				});
 				
-				$("#authoritiesListInput").attr("jsonval", JSON.stringify(selectedAuths));
+				//$("#authoritiesListInput").attr("jsonval", JSON.stringify(selectedAuths));
 				$("#authoritiesListInputJson").val(JSON.stringify(selectedAuths));
 				$("#authoritiesListInput").val(curSelectAuth);
 			});
@@ -412,7 +415,7 @@
 					selectedMenus.push(tempMenu);
 				});
 				
-				$("#menuListInput").attr("jsonval", JSON.stringify(selectedMenus));
+				//$("#menuListInput").attr("jsonval", JSON.stringify(selectedMenus));
 				$("#menuListInputJson").val(JSON.stringify(selectedMenus));
 				$("#menuListInput").val(curSelectMenu);
 			});

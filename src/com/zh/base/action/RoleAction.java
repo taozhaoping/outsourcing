@@ -1,6 +1,7 @@
 package com.zh.base.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,11 +124,17 @@ public class RoleAction extends BaseAction {
 		if(null == id || "".equals(id)){
 			Role role = this.roleModel.getRole();
 			role.setId(id);
+			
+			Map<String, Object> dataMap = new HashMap<String, Object>();
+			dataMap.put("osValue", "add");
+			this.roleModel.setDataMap(dataMap );
 		}else{
 			Role role = this.roleModel.getRole();
 			role.setId(id);
 			
 			Role roleRet = roleService.queryAuthoritiesToMenu(role);
+
+			Map<String, Object> dataMap = new HashMap<String, Object>();
 			//权限
 			List<Authorities> authoritiesList= roleRet.getAuthoritiesList();
 			String authListJson = JSONArray.fromObject(authoritiesList.toArray()).toString();
@@ -135,7 +142,7 @@ public class RoleAction extends BaseAction {
 			List<Menu> menuList = roleRet.getMenuList();
 			String menuListJson = JSONArray.fromObject(menuList.toArray()).toString();
 			
-			Map<String, Object> dataMap = new HashMap<String, Object>();
+			dataMap.put("osValue", "edit");
 			dataMap.put("authListJson", authListJson);
 			dataMap.put("menuListJson", menuListJson);
 			this.roleModel.setDataMap(dataMap );
@@ -159,13 +166,24 @@ public class RoleAction extends BaseAction {
 		
 		//判断是新增还是修改
 		if(null == id || 0 == id){
+			role.setCreatetime(new Date());
 			roleService.insert(role);
+			
+			Integer newRoleId = role.getId();
 			//菜单集合
 			String menuListJsonValue = this.roleModel.getMenuListJsonValue();
 			if(menuListJsonValue != null && !menuListJsonValue.isEmpty()){
 				JSONArray menuJsonArray = JSONArray.fromObject(menuListJsonValue);
 				Menu[] menus = (Menu[]) JSONArray.toArray(menuJsonArray ,Menu.class);
 				
+				List<RoleMenu> roleMenuList = new ArrayList<RoleMenu>(); 
+				for(Menu menu : menus){
+					RoleMenu roleMenu = new RoleMenu();
+					roleMenu.setRoleId(newRoleId);
+					roleMenu.setMenuId(menu.getId());
+					roleMenuList.add(roleMenu);
+				}
+				roleService.updateRoleMenu(roleMenuList);
 			}
 			
 			//权限集合
@@ -173,10 +191,19 @@ public class RoleAction extends BaseAction {
 			if(authoritiesListJsonValue != null && !authoritiesListJsonValue.isEmpty()){
 				JSONArray authJsonArray = JSONArray.fromObject(authoritiesListJsonValue);
 				Authorities[] authorities = (Authorities[]) JSONArray.toArray(authJsonArray ,Authorities.class);
-				System.out.println("authorities " + authorities);
+				
+				List<RoleAuthorities> roleAuthoritiesList = new ArrayList<RoleAuthorities>();
+				for(Authorities auth : authorities){
+					RoleAuthorities roleAuthorities = new RoleAuthorities();
+					roleAuthorities.setRoleId(newRoleId);
+					roleAuthorities .setAuthoritiesId(auth.getId());
+					roleAuthoritiesList.add(roleAuthorities);
+				}
+				roleService.updateRoleAuthorities(roleAuthoritiesList);
 			}
 			
 		}else{
+			role.setUpdatetime(new Date());
 			roleService.update(role);
 
 			//菜单集合
@@ -209,8 +236,6 @@ public class RoleAction extends BaseAction {
 			}
 			roleService.updateRoleAuthorities(roleAuthoritiesList);
 		}
-		
-		
 		
 		return Action.EDITOR_SUCCESS;
 	}
