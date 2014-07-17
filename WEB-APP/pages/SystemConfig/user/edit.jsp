@@ -262,8 +262,8 @@
 											<label class="control-label" for="inputaddress">家庭住址:</label>
 											<div class="controls">
 												<input type="text" id="inputaddress" name="userInfo.address"
-													value="${userInfo.address}" class="input-xxlarge"
-													placeholder="input-xxlarge">
+													value="${userInfo.address}"
+													class="input-xxlarge">
 											</div>
 										</div>
 									</div>

@@ -84,7 +84,7 @@
 				<div class="row-fluid">
 					<div class="btn-toolbar">
 						<a class="btn btn-primary" href="role!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
-							<i class="icon-plus"></i>新增
+							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
 					</div>
