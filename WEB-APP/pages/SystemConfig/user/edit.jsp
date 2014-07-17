@@ -114,7 +114,7 @@
 
 												</s:if>
 												<s:else>
-													<input type="text" data-required="true" data-validate="loginName" 
+													<input type="text" data-required="true" maxlength="15" data-validate="loginName" 
 														id="input_loginName" name="userInfo.loginName"
 														value="${userInfo.loginName}" class="input-xlarge">
 												</s:else>
@@ -137,7 +137,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputemail">电子邮箱:</label>
 											<div class="controls">
-												<input type="text" id="inputemail" data-required="true"
+												<input type="text" id="inputemail" maxlength="20" data-required="true"
 													name="userInfo.email" value="${userInfo.email}"
 													class="input-xlarge">
 											</div>
@@ -219,7 +219,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputphone">座机号码:</label>
 											<div class="controls">
-												<input type="text" id="inputphone" name="userInfo.phone"
+												<input type="text" id="inputphone"  maxlength="15" name="userInfo.phone"
 													value="${userInfo.phone}" class="input-xlarge">
 											</div>
 										</div>
@@ -228,7 +228,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputmobileNumber">手机号码:</label>
 											<div class="controls">
-												<input type="text" id="inputmobileNumber"
+												<input type="text" id="inputmobileNumber"  maxlength="15"
 													data-required="true" name="userInfo.mobileNumber"
 													value="${userInfo.mobileNumber}" class="input-xlarge">
 											</div>
@@ -240,7 +240,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputqq">QQ:</label>
 											<div class="controls">
-												<input type="text" id="inputqq" name="userInfo.qq"
+												<input type="text" id="inputqq" name="userInfo.qq"  maxlength="18"
 													value="${userInfo.qq}" class="input-xlarge">
 											</div>
 										</div>
@@ -264,7 +264,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputaddress">家庭住址:</label>
 											<div class="controls">
-												<input type="text" id="inputaddress" name="userInfo.address"
+												<input type="text"  maxlength="95" id="inputaddress" name="userInfo.address"
 													value="${userInfo.address}"
 													class="input-xxlarge">
 											</div>
@@ -277,14 +277,14 @@
 									<div class="control-group">
 										<label class="control-label" for="inputnewPassWord1">新密码:</label>
 										<div class="controls">
-											<input type="password" id="inputnewPassWord1"
+											<input type="password" id="inputnewPassWord1"  maxlength="15"
 												data-validate="PassWordVali" class="input-xlarge">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="inputnewPassWord">新密码:</label>
 										<div class="controls">
-											<input type="password" id="inputnewPassWord"
+											<input type="password" id="inputnewPassWord" maxlength="15"
 												data-validate="PassWordVali" name="newPassWord"
 												class="input-xlarge">
 										</div>

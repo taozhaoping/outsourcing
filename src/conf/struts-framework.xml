@@ -54,7 +54,7 @@
 			-->
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="language" />
-				<interceptor-ref name="invocationToken" />
+				<!--<interceptor-ref name="invocationToken" />-->
 				<interceptor-ref name="authorityInterceptor" />
 				<!-- <interceptor-ref name="authority" /> -->
 				<interceptor-ref name="defaultStack" />
