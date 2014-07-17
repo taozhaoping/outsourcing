@@ -1,4 +1,4 @@
-package com.zh.base.uril;
+package com.zh.base.util;
 
 import java.util.ArrayList;
 import java.util.List;
