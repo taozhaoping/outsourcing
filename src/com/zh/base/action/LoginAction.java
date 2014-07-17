@@ -1,11 +1,14 @@
 package com.zh.base.action;
 
+import javax.mail.MessagingException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
+import com.zh.base.util.MailUtil;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.VariableUtil;
 import com.zh.core.util.BCrypt;
@@ -82,7 +85,30 @@ public class LoginAction extends BaseAction {
 	 */
 	public String doResetPassword(){
 		LOGGER.debug("doResetPassword()");
-		//TODO
+		//验证码不对，返回
+		String code = (String) this.getRequest().getSession().getAttribute("code");
+		if (null == validecode || null == code || !validecode.toUpperCase().equals(code)) {
+			this.setErrorMessage(getText("COM.SSI.ERROR.CODE"));
+			return "reset";
+		}
+		User user = userInfoService.query(userInfo);
+		if(user != null){
+			String email = user.getEmail();
+			if(email != null && !email.isEmpty()){
+				//发送邮件
+				userInfo.setEmail(email);
+				try {
+					MailUtil.sendMail(email, "", "重置密码", "重置密码");
+				} catch (MessagingException e) {
+					e.printStackTrace();
+					return "error";
+				}
+			}else{
+				return "error";
+			}
+		}else{
+			return "error";
+		}
 		return "success";
 	}
 
