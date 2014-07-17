@@ -394,7 +394,7 @@
 							{
 								bool=false;	
 							}
-							$("#token").text(result.token);
+							$("#token").val(result.token);
 						}
 					});
 					return bool;

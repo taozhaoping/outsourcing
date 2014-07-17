@@ -39,9 +39,10 @@ public class TokenAtionInterceptor extends AbstractInterceptor {
 		if (strRequestToken != null && strToken != null
 
 		&& !strRequestToken.equals(strToken)) {
-			// 重复提交，重置令牌
+			// 重复提交，重置yi令牌
 			session.put("request_token", strGUID);
 			request.setAttribute("token", strGUID);
+			request.setAttribute("errorMsg", "重复提交表单");
 			return "error";
 
 		}
