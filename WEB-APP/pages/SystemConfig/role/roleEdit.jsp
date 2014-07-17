@@ -6,6 +6,10 @@
 	Map map = (Map)request.getAttribute("dataMap");
 	String osValue = map.get("osValue").toString();
 	boolean isEdit = osValue.equalsIgnoreCase("edit");
+	String curNavigation = "新增";
+	if(isEdit){
+		curNavigation = "编辑";
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,7 +89,7 @@
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
 			<li><a href="role.jspa" id="navigation"></a> <span class="divider">/</span></li>
-			<li class="active">编辑</li>
+			<li class="active"><%=curNavigation%></li>
 		</ul>
 		
 		<div class="container-fluid">
@@ -107,6 +111,8 @@
 								<input type="hidden" name="role.id" value="${role.id}">
 								<input type="hidden" name="menuId" value="${menuId}">
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" id="authoritiesListInputJson" name="authoritiesListJsonValue">
+								<input type="hidden" id="menuListInputJson" name="menuListJsonValue">
 								
 								<div class="control-group" id="name_div">
 									<label class="control-label" for="nameInput">名称：</label>
@@ -126,7 +132,6 @@
 									<label class="control-label" for="authoritiesListInput">功能权限：</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="authoritiesListInput" readonly="readonly" class="input-xlarge">
-										<input type="hidden" id="authoritiesListInputJson" name="authoritiesListJsonValue">
 										<a href='#authoritiesListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
 									</div>
 								</div>
@@ -135,7 +140,6 @@
 									<label class="control-label" for="menuListInput">菜单权限：</label>
 									<div class="controls">
 										<input type="text" data-required="true" id="menuListInput" readonly="readonly" class="input-xlarge">
-										<input type="hidden" id="menuListInputJson" name="menuListJsonValue">
 										<a href='#menuListModal' data-toggle='modal' title="选择"><i class="icon-edit"></i></a>
 									</div>
 								</div>
@@ -158,13 +162,6 @@
 					<label class="checkbox" style="display: none;" id="authTemplate">
 						<input type="checkbox">
 					</label>
-					<!-- 
-					<s:iterator value="role.authoritiesList" id="auth">
-						<label class="checkbox">
-							<input type="checkbox" name="authorities" value="<s:property value="#auth.id"/>"><s:property value="#auth.name"/>
-						</label>
-					</s:iterator>
-					 -->
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
@@ -184,23 +181,6 @@
 					<label class="checkbox" id="menuTemplate" style="display: none;">
 						<input type="checkbox">
 					</label>
-						<!-- 
-						<s:iterator value="role.menuList" id="menu">
-							<li class="nav-header" >
-								<label class="checkbox">
-									<input type="checkbox" name="menus" value="<s:property value="#menu.id"/>"><s:property value="#menu.name"/>
-								</label>
-							</li>
-							
-							<s:iterator value="#menu.menuList" id="menu2">
-							<li class="offset30px">
-								<label class="checkbox">
-									<input type="checkbox" name="menus" value="<s:property value="#menu2.id"/>"><s:property value="#menu2.name"/>
-								</label>
-							</li>
-							</s:iterator>
-						</s:iterator>
-						 -->
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
@@ -345,22 +325,36 @@
 			%>
 			(function initMenu(){
 				var selMenuList = ${dataMap.menuListJson}; //JSON.parse($("#menuListJsonId").val());
+				
 				if(selMenuList != null && selMenuList != "" && selMenuList.length > 0){
+					var selectedMenus = new Array();
 					var selMenuListValue = "";
 					for(var j = 0; j<selMenuList.length; j++){
 						var selMenu = selMenuList[j];
+						
+						var tempMenu = new Object();
+						tempMenu.name = selMenu.name;
+						tempMenu.id = selMenu.id;
+						selectedMenus.push(tempMenu);
+						
 						selMenuListValue = selMenuListValue + selMenu.name + ";";
 						var selMenu2List = selMenu.menuList;
 						if(selMenu2List != null && selMenu2List != "" && selMenu2List.length >0){
 							for(var j = 0; j<selMenu2List.length; j++){
 								var selMenu2 = selMenu2List[j];
 								selMenuListValue = selMenuListValue + selMenu2.name + ";";
+								
+								var tempMenu2 = new Object();
+								tempMenu2.name = selMenu2.name;
+								tempMenu2.id = selMenu2.id;
+								selectedMenus.push(tempMenu2);
+								
 							}
 						}
 					}
 					
 					//$("#menuListInput").attr("jsonval",JSON.stringify(selMenuList));
-					$("#menuListInputJson").val(JSON.stringify(selMenuList));
+					$("#menuListInputJson").val(JSON.stringify(selectedMenus));
 					$("#menuListInput").val(selMenuListValue);
 				}
 			})();
