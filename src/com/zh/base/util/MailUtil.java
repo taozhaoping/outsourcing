@@ -26,6 +26,8 @@ public class MailUtil {
 	private static String USERNAME = "username";
 	private static String PASSWORD = "password"; 
 	private static String FROMEMAIL = "fromEmail"; 
+	private static String ISAUTH = "isAuth"; 
+	
 	
 	static {
 		PropertyResourceBundle prb = (PropertyResourceBundle) PropertyResourceBundle.getBundle("jdbc");
@@ -34,6 +36,8 @@ public class MailUtil {
 		USERNAME = prb.getString(USERNAME);
 		PASSWORD = prb.getString(PASSWORD);
 		FROMEMAIL = prb.getString(FROMEMAIL);
+		ISAUTH = prb.getString(ISAUTH);
+		
 	}
 	
 	/**
@@ -72,7 +76,8 @@ public class MailUtil {
 
 		// 添加smtp服务器属性
 		props.put("mail.smtp.host", SMTPSERVER);
-		props.put("mail.smtp.auth", "false"); // 163的smtp不是免费的也不公用的，需要验证
+		
+		props.put("mail.smtp.auth", ISAUTH); // 163的smtp不是免费的也不公用的，需要验证
 
 		// 创建邮件会话
 		Session session = Session.getInstance(props, new Authenticator() { // 验账账户
