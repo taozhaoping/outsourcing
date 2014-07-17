@@ -16,8 +16,9 @@ $(function() {
 
 	// 验证
 	$('#editForm').validate( {
-		onKeyup : true,
+		onKeyup : false,
 		onSubmit : true,
+		onChange : true,
 		eachValidField : function() {
 
 			$(this).closest('div').parents('div').removeClass('error')
