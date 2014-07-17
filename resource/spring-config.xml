@@ -180,7 +180,7 @@
 			</list>
 		</property>
 	</bean>
-
+<!-- 
 	<bean id="methodCachePointCutAdvice"
 		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
 		<property name="advice">
@@ -197,5 +197,5 @@
 			</list>
 		</property>
 	</bean> 
-
+ -->
 </beans>
