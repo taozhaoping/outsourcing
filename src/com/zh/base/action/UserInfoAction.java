@@ -1,6 +1,5 @@
 package com.zh.base.action;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -70,7 +69,9 @@ public class UserInfoAction extends BaseAction {
 				bool = false;
 			}
 		}
+		String token = (String)this.getRequest().getAttribute("token");
 		userInfoModel.getDataMap().put("success", bool);
+		userInfoModel.getDataMap().put("token", token);
 		return Action.RETURN_JSON;
 	}
 	

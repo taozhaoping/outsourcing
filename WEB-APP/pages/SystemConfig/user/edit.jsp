@@ -100,8 +100,8 @@
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								<input type="hidden" name="token" value="${token}" /> <input
-									type="hidden" name="userInfo.id" value="${userInfo.id}">
+								<input type="hidden" id="token" name="token" value="${token}" /> 
+								<input type="hidden" name="userInfo.id" value="${userInfo.id}">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
 								<dir class="row">
@@ -203,13 +203,16 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputqq">QQ:</label>
+											<label class="control-label" for="inputentryTime">入职时间:</label>
 											<div class="controls">
-												<input type="text" id="inputqq" name="userInfo.qq"
-													value="${userInfo.qq}" class="input-xlarge">
+												<input size="16" id="inputentryTime"
+													name="userInfo.entryTime" type="text"
+													value="<s:date name="userInfo.entryTime" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-xlarge">
 											</div>
 										</div>
 									</div>
+									
 								</dir>
 								<dir class="row">
 									<div class="span5">
@@ -235,12 +238,10 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputentryTime">入职时间:</label>
+											<label class="control-label" for="inputqq">QQ:</label>
 											<div class="controls">
-												<input size="16" id="inputentryTime"
-													name="userInfo.entryTime" type="text"
-													value="<s:date name="userInfo.entryTime" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-xlarge">
+												<input type="text" id="inputqq" name="userInfo.qq"
+													value="${userInfo.qq}" class="input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -248,10 +249,12 @@
 										<div class="control-group">
 											<label class="control-label" for="inputeducationBackground">专业:</label>
 											<div class="controls">
-												<input type="text" id="inputeducationBackground"
-													name="userInfo.educationBackground"
-													value="${userInfo.educationBackground}"
-													class="input-xlarge">
+												<select id="inputeducationBackground" class="input-xlarge"
+													name="userInfo.educationBackground">
+													<option value="0">大专</option>
+													<option value="1">本科</option>
+													<option value="2">研究生</option>
+												</select>
 											</div>
 										</div>
 									</div>
@@ -348,6 +351,9 @@
 				"change");
 		$("#inputsex").select2();
 		$("#inputsex").val("${userInfo.sex}").trigger("change");
+		
+		$("#inputeducationBackground").select2();
+		$("#inputeducationBackground").val("${userInfo.educationBackground}").trigger("change");
 
 		jQuery.validateExtend({
 			PassWordVali : {
@@ -388,6 +394,7 @@
 							{
 								bool=false;	
 							}
+							$("#token").text(result.token);
 						}
 					});
 					return bool;

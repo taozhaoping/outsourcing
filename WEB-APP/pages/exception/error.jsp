@@ -66,6 +66,7 @@
 			</p>
 			<p>
 				<a href="<%=path %>/login/login.jspa">Back to the home page</a>
+				${errorMsg}
 			</p>
 		</div>
 	</div>

@@ -25,6 +25,8 @@ public class BaseModel {
 	
 	private String menu2Id;
 	
+	private String token;
+	
 	/**
 	 * 是否启用或者停用
 	 */
@@ -115,6 +117,14 @@ public class BaseModel {
 
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	
