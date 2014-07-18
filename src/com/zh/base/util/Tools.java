@@ -1,5 +1,7 @@
 package com.zh.base.util;
 
+import java.io.UnsupportedEncodingException;
+
 public class Tools {
 	
 	/**
@@ -38,6 +40,7 @@ public class Tools {
 	}
 	
 	public static void main(String[] args) {
+		/*
 		System.out.println(mailCover("a"));
 		System.out.println(mailCover("a@"));
 		System.out.println(mailCover("a@163.com"));
@@ -48,5 +51,26 @@ public class Tools {
 		System.out.println(mailCover("a55555@163.com"));
 		System.out.println(mailCover("a666666@163.com"));
 		System.out.println(mailCover("a7777777@163.com"));
+		*/
+		String nonce = "oQsDzjKbtB+0oGwResHXQQ==";
+		
+		try {
+			System.out.println(Base64.decode(nonce).length);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String created = "2014-05-30T02:03:27.890Z";
+		String password = "test";
+		
+		String passwordDigest;
+		try {
+			passwordDigest = PasswordDigestUtil.doPasswordDigest(nonce, created, password);
+			System.out.println("passwordDigest: " + passwordDigest);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//g1TfaGQppwtPpxhKLhFOCrFhKZk=
 	}
 }
