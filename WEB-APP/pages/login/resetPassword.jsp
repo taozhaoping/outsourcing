@@ -68,10 +68,10 @@
 						<input type="hidden" value="${userInfo.loginName}" name="userInfo.loginName" id="loginName">
 						
 						<label>新密码</label>
-						<input type="text" data-required="true" class="span12" id="password">
+						<input type="password" data-required="true" class="span12" id="password">
 						
 						<label>确认密码</label>
-						<input type="text" data-required="true" class="span12" id="password2" name="userInfo.userPassword">
+						<input type="password" data-required="true" class="span12" id="password2" name="newPassWord">
 						
 						<input type="submit" class="btn btn-primary pull-right" value="重置密码">
 						<div class="clearfix"></div>

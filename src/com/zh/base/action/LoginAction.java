@@ -1,5 +1,7 @@
 package com.zh.base.action;
 
+import java.util.Date;
+
 import javax.mail.MessagingException;
 
 import org.slf4j.Logger;
@@ -24,6 +26,9 @@ public class LoginAction extends BaseAction {
 
 	// 前台传入的验证码
 	private String validecode;
+	
+	//新密码
+	private String newPassWord;
 
 	/**
 	 * 系统用户接口
@@ -133,7 +138,16 @@ public class LoginAction extends BaseAction {
 	 */
 	public String resetPwdSubmit(){
 		LOGGER.debug("resetPwdSubmit()");
-		//TODO 密码重置
+		User user = userInfoService.query(userInfo);
+		//重置密码
+		if(null != user && null != newPassWord  && !"".equals(newPassWord)) {
+			String bcryptPassword = BCrypt.hashpw(newPassWord, BCrypt.gensalt(12));
+			user.setUserPassword(bcryptPassword);
+			user.setUpdateTime(new Date());
+			userInfoService.update(user);
+		}else{
+			return "error";
+		}
 		
 		return "success";
 	}
@@ -167,5 +181,12 @@ public class LoginAction extends BaseAction {
 		this.userInfo = userInfo;
 	}
 
+	public String getNewPassWord() {
+		return newPassWord;
+	}
+
+	public void setNewPassWord(String newPassWord) {
+		this.newPassWord = newPassWord;
+	}
 	
 }
