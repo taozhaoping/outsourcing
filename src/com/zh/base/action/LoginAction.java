@@ -1,6 +1,9 @@
 package com.zh.base.action;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.mail.MessagingException;
@@ -14,7 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.ActionContext;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
+import com.zh.base.util.Base64;
+import com.zh.base.util.DateUtil;
 import com.zh.base.util.MailUtil;
+import com.zh.base.util.PasswordDigestUtil;
 import com.zh.base.util.Tools;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.VariableUtil;
@@ -33,6 +39,15 @@ public class LoginAction extends BaseAction {
 	
 	//新密码
 	private String newPassWord;
+	
+	//随机数
+	private String nonce;
+	
+	//创建时间
+	private String created;
+	
+	//加密后的字符串
+	private String passwordDigest;
 
 	/**
 	 * 系统用户接口
@@ -113,11 +128,23 @@ public class LoginAction extends BaseAction {
 					String path = request.getContextPath(); 
 					String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 					
+					byte[] nonceValue = PasswordDigestUtil.generateNonce(16);
+					String nonce = Base64.encode(nonceValue);
+					
+					String created = DateUtil.getCreated();
+					
+					String password = "whoisyourdaddy";
+					
+					String passwordDigest = PasswordDigestUtil.doPasswordDigest(nonce, created, password);
+					
 					StringBuffer url = new StringBuffer();
 					url.append(basePath)
 						.append("login/emailVerification.jspa?")
 						.append("userInfo.loginName=")
-						.append(userInfo.getLoginName());
+						.append(URLEncoder.encode(userInfo.getLoginName(),"utf-8"))
+						.append("&nonce=").append(URLEncoder.encode(nonce,"utf-8"))
+						.append("&created=").append(URLEncoder.encode(created,"utf-8"))
+						.append("&passwordDigest=").append(URLEncoder.encode(passwordDigest,"utf-8"));
 					
 					StringBuffer text = new StringBuffer();
 					String rn = "<br/>";
@@ -132,6 +159,9 @@ public class LoginAction extends BaseAction {
 					e.printStackTrace();
 					return "error";
 				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+					return "error";
+				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 					return "error";
 				}
@@ -150,7 +180,26 @@ public class LoginAction extends BaseAction {
 	 */
 	public String verify(){
 		LOGGER.debug("verify()");
-		//TODO URL校验
+		String passwordDigestNew;
+		try {
+			passwordDigestNew = PasswordDigestUtil.doPasswordDigest(nonce, created, "whoisyourdaddy");
+			//通过校验
+			if(passwordDigest != null && passwordDigest.equals(passwordDigestNew)){
+				Date createdDate = DateUtil.getDate(created);
+				//验证有没过期，30分钟过期,后续可以修改为配置
+				if(DateUtil.verifyCreated(createdDate, 1800, 0)){
+					
+				}else{
+					return "verifyError";
+				}
+			}else{
+				return "verifyError";
+			}
+		} catch (UnsupportedEncodingException e) {
+			return "verifyError";
+		} catch (ParseException e) {
+			return "verifyError";
+		}
 		return "verifySuccess";
 	}
 	
@@ -197,6 +246,30 @@ public class LoginAction extends BaseAction {
 
 	public User getUserInfo() {
 		return userInfo;
+	}
+
+	public String getNonce() {
+		return nonce;
+	}
+
+	public void setNonce(String nonce) {
+		this.nonce = nonce;
+	}
+
+	public String getCreated() {
+		return created;
+	}
+
+	public void setCreated(String created) {
+		this.created = created;
+	}
+
+	public String getPasswordDigest() {
+		return passwordDigest;
+	}
+
+	public void setPasswordDigest(String passwordDigest) {
+		this.passwordDigest = passwordDigest;
 	}
 
 	public void setUserInfo(User userInfo) {

@@ -46,6 +46,7 @@
 		<action name="emailVerification" class="com.zh.base.action.LoginAction" method="verify">
 			<result name="verifySuccess">/pages/login/resetPassword.jsp</result>
 			<result name="error">/pages/login/resetError.jsp</result>
+			<result name="verifyError">/pages/login/urlInvalid.jsp</result>
 		</action>
 		
 		
