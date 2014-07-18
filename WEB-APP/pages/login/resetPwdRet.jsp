@@ -64,15 +64,8 @@
 			<div class="block">
 				<p class="block-heading">重置密码</p>
 				<div class="block-body">
-					<form action="<%=path %>/login/resetPasswordAction!doResetPassword.jspa">
-						<label>用户名</label>
-						<input type="text" class="span12" id="userName" name="userInfo.loginName">
-						<label for="validecode">验证码 </label>
-						<div class="row-fluid">
-							<input name="validecode" class="span8" type="text" id="validecode">
-							<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
-						</div>
-						<input type="submit" class="btn btn-primary pull-right" value="发送邮件">
+					<form>
+						<label>已经向您的邮箱  ${userInfo.email} 发送邮件，请登录邮箱进行操作.</label>
 						<div class="clearfix"></div>
 					</form>
 				</div>
@@ -85,21 +78,8 @@
 	    $("[rel=tooltip]").tooltip();
 	    $(function() {
 	        $('.demo-cancel-click').click(function(){return false;});
-	        showValidateCode();
 	    });
 	    
-		function showValidateCode() {
-			var url = "../validatecode/validate!showValidateCode.jspa";
-			$.ajax({
-				type : "POST",
-				url : url,
-				success : function(data) {
-					//var myObject = JSON2.parse(data);
-					//var myObject = eval('(' + data + ')');
-					document.getElementById('imgUrl').src = data.imgUrl;
-				}
-			});
-		}
 	</script>
 </body>
 </html>

@@ -36,8 +36,8 @@
 		
 		<action name="resetPasswordAction" class="com.zh.base.action.LoginAction" method="{1}">
 			<result name="reset">/pages/login/resetPassword.jsp</result>
-			<result name="success">/pages/login/login.jsp</result>
-			<result name="error">/pages/exception/error.jsp</result>
+			<result name="success">/pages/login/resetPwdRet.jsp</result>
+			<result name="error">/pages/login/resetError.jsp</result>
 		</action>
 	</package>
 </struts>

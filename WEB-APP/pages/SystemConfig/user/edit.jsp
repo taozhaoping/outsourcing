@@ -137,7 +137,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputemail">电子邮箱:</label>
 											<div class="controls">
-												<input type="text" id="inputemail" maxlength="20" data-required="true"
+												<input type="text" id="inputemail" maxlength="60" data-required="true"
 													name="userInfo.email" value="${userInfo.email}"
 													class="input-xlarge">
 											</div>
