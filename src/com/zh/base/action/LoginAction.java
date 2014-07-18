@@ -77,7 +77,7 @@ public class LoginAction extends BaseAction {
 	 */
 	public String resetPassword(){
 		LOGGER.debug("resetPassword()");
-		return "reset";
+		return "sendEmail";
 	}
 	
 	/***
@@ -99,7 +99,11 @@ public class LoginAction extends BaseAction {
 				//发送邮件
 				userInfo.setEmail(Tools.mailCover(email));
 				try {
-					MailUtil.sendMail(email, "", "重置密码", "重置密码");
+					StringBuffer text = new StringBuffer();
+					text.append("http://127.0.0.1:8080/outsourcing/login/emailVerification.jspa?")
+						.append("userInfo.loginName=")
+						.append(userInfo.getLoginName());
+					MailUtil.sendMail(email, "", "重置密码", text.toString());
 				} catch (MessagingException e) {
 					e.printStackTrace();
 					return "error";
@@ -110,6 +114,27 @@ public class LoginAction extends BaseAction {
 		}else{
 			return "error";
 		}
+		return "sendSuccess";
+	}
+	
+	/***
+	 * 校验邮件中的URL
+	 * @return
+	 */
+	public String verify(){
+		LOGGER.debug("verify()");
+		//TODO URL校验
+		return "verifySuccess";
+	}
+	
+	/***
+	 * 重置密码提交
+	 * @return
+	 */
+	public String resetPwdSubmit(){
+		LOGGER.debug("resetPwdSubmit()");
+		//TODO 密码重置
+		
 		return "success";
 	}
 

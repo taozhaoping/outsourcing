@@ -35,9 +35,19 @@
 		</action>
 		
 		<action name="resetPasswordAction" class="com.zh.base.action.LoginAction" method="{1}">
-			<result name="reset">/pages/login/resetPassword.jsp</result>
-			<result name="success">/pages/login/resetPwdRet.jsp</result>
+			<result name="sendEmail">/pages/login/sendEmail.jsp</result>
+			<result name="resetPwd">/pages/login/resetPassword.jsp</result>
+			<result name="sendSuccess">/pages/login/resetPwdRet.jsp</result>
+			<result name="success">/pages/login/resetPwdSuccess.jsp</result>
 			<result name="error">/pages/login/resetError.jsp</result>
 		</action>
+		
+		<!-- 校验重置密码URL -->
+		<action name="emailVerification" class="com.zh.base.action.LoginAction" method="verify">
+			<result name="verifySuccess">/pages/login/resetPassword.jsp</result>
+			<result name="error">/pages/login/resetError.jsp</result>
+		</action>
+		
+		
 	</package>
 </struts>
