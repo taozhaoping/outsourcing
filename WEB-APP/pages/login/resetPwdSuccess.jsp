@@ -64,16 +64,8 @@
 			<div class="block">
 				<p class="block-heading">重置密码</p>
 				<div class="block-body">
-					<form id="resetPwdForm" action="<%=path %>/login/resetPasswordAction!resetPwdSubmit.jspa">
-						<input type="hidden" value="${userInfo.loginName}" name="userInfo.loginName" id="loginName">
-						
-						<label>新密码</label>
-						<input type="text" data-required="true" class="span12" id="password">
-						
-						<label>确认密码</label>
-						<input type="text" data-required="true" class="span12" id="password2" name="userInfo.userPassword">
-						
-						<input type="submit" class="btn btn-primary pull-right" value="重置密码">
+					<form>
+						<label>重置密码成功.</label>
 						<div class="clearfix"></div>
 					</form>
 				</div>
@@ -82,25 +74,11 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=path%>/js/bootstrap.js"></script>
-	<script src="<%=path %>/js/jquery-validate.js"></script>
 	<script type="text/javascript">
 	    $("[rel=tooltip]").tooltip();
 	    $(function() {
 	        $('.demo-cancel-click').click(function(){return false;});
 	    });
-	    
-		// 验证
-		$('form').validate( {
-			onKeyup : false,
-			onSubmit : true,
-			onChange : true,
-			eachValidField : function() {
-				$(this).removeClass('error').addClass('success');
-			},
-			eachInvalidField : function() {
-				$(this).removeClass('success').addClass('error');
-			}
-		});
 	    
 	</script>
 </body>
