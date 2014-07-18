@@ -1,13 +1,17 @@
 package com.zh.base.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.base.util.MailUtil;
@@ -104,12 +108,30 @@ public class LoginAction extends BaseAction {
 				//发送邮件
 				userInfo.setEmail(Tools.mailCover(email));
 				try {
-					StringBuffer text = new StringBuffer();
-					text.append("http://127.0.0.1:8080/outsourcing/login/emailVerification.jspa?")
+					ActionContext context = ActionContext.getContext();
+					HttpServletRequest request = (HttpServletRequest)context.get(ServletActionContext.HTTP_REQUEST);
+					String path = request.getContextPath(); 
+					String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+					
+					StringBuffer url = new StringBuffer();
+					url.append(basePath)
+						.append("login/emailVerification.jspa?")
 						.append("userInfo.loginName=")
 						.append(userInfo.getLoginName());
+					
+					StringBuffer text = new StringBuffer();
+					String rn = "<br/>";
+					text.append("尊敬的").append(user.getName()).append("，您好：").append(rn)
+						.append("&nbsp;&nbsp;").append("点击下面链接重置密码").append(rn)
+						.append("<a href=\"").append(url.toString()).append("\"").append(" target=_blank>重置密码</a>").append(rn)
+						.append("如果点击无效，请复制下方网页地址到浏览器地址栏中打开：").append(rn)
+						.append(url.toString());
+					
 					MailUtil.sendMail(email, "", "重置密码", text.toString());
 				} catch (MessagingException e) {
+					e.printStackTrace();
+					return "error";
+				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 					return "error";
 				}

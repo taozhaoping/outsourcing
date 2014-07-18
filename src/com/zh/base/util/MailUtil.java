@@ -1,5 +1,6 @@
 package com.zh.base.util;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
 import java.util.PropertyResourceBundle;
@@ -14,6 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 /**
  * 邮件工具
@@ -65,9 +67,10 @@ public class MailUtil {
 	 * @param subject
 	 * @param text
 	 * @throws MessagingException
+	 * @throws UnsupportedEncodingException 
 	 */
 	public static void sendMail(String toEmail_TO, String toEmail_CC, String subject,
-			String text) throws MessagingException {
+			String text) throws MessagingException, UnsupportedEncodingException {
 		final String username = USERNAME; // 发件人的邮件帐户
 		final String password = PASSWORD; // 发件人的邮件密码
 
@@ -108,14 +111,17 @@ public class MailUtil {
 		MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(FROMEMAIL));
 		message.addRecipients(Message.RecipientType.TO, adds_to);
+		message.setSentDate(new java.util.Date());
+		message.setSubject(MimeUtility.encodeText(subject,"utf-8","B"));
+		message.setContent(text, "text/html;charset=utf-8");
 		
 		// 抄送人员不存在则不抄送
 		if (null != adds_cc && adds_cc.length > 0) {
 			message.addRecipients(Message.RecipientType.CC, adds_cc);
 		}
 
-		message.setSubject(subject);
-		message.setText(text);
+		//message.setSubject(subject);
+		//message.setText(text);
 
 		// 发送消息
 		// session.getTransport("smtp").send(message); //也可以这样创建Transport对象
