@@ -20,6 +20,8 @@ insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorde
 values (22, '客户跟踪', '6', '6', null, '0', 20, 2);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
 values (2, '企业列表', 'enterprise', 'enterprise.jspa', null, '0', 1, 1);
+commit;
+
 
 insert into SYS_AUTHORITIES (id, name, enabled, module)
 values (1, '测试', 0, 'main');
@@ -33,6 +35,7 @@ insert into SYS_AUTHORITIES (id, name, enabled, module)
 values (5, '测试5', 0, 'main');
 insert into SYS_AUTHORITIES (id, name, enabled, module)
 values (6, '测试6', 0, 'main');
+commit;
 
 insert into SYS_ROLE_TO_AUTHORITIES (role_id, authorities_id)
 values (2, 4);
@@ -78,6 +81,7 @@ insert into SYS_ROLE_TO_AUTHORITIES (role_id, authorities_id)
 values (13, 3);
 insert into SYS_ROLE_TO_AUTHORITIES (role_id, authorities_id)
 values (7, 1);
+commit;
 
 insert into SYS_ROLE_TO_MENU (menu_id, role_id)
 values (10, 13);
@@ -163,6 +167,7 @@ insert into SYS_ROLE_TO_MENU (menu_id, role_id)
 values (21, 1);
 insert into SYS_ROLE_TO_MENU (menu_id, role_id)
 values (22, 1);
+commit;
 
 insert into SYS_ROLE (id, name, createtime, updatetime, describe)
 values (17, '测试角色1', to_date('17-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014', 'dd-mm-yyyy'), '测试角色2');
@@ -200,6 +205,8 @@ insert into SYS_ROLE (id, name, createtime, updatetime, describe)
 values (13, '角色13', to_date('15-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014', 'dd-mm-yyyy'), '角色13');
 insert into SYS_ROLE (id, name, createtime, updatetime, describe)
 values (16, '新增3', to_date('16-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014', 'dd-mm-yyyy'), '333');
+commit;
+
 
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
 values (18, '测试公司7', '测试公司71', null, 0);
@@ -225,6 +232,8 @@ insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
 values (5, '测试公司2', '测试公司2', null, 0);
 insert into SYS_ENTERPRISE (id, name, address, phonecall, enabled)
 values (6, '12', '12', '12', 0);
+commit;
+
 
 insert into SYS_USER (id, loginname, userpassword, name, enabled, usertype, role_id, enterprise_id, email, age, sex, phone, qq, mobile_number, entrytime, address, education_background, createtime, updatetime)
 values (12, 'taozhaoping', '$2a$12$ITxFgPdEMngegUXaA.5CbedR.sLAtGf0Kj.31NVVeALULA3QkLZiu', '陶照平1', '0', null, 1, 18, 'taozhaoping@gmail.com', to_date('16-07-2014', 'dd-mm-yyyy'), '1', '11', '11', '18758084122', to_date('24-07-2014', 'dd-mm-yyyy'), '1', '1', to_date('16-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014 17:12:45', 'dd-mm-yyyy hh24:mi:ss'));
@@ -238,6 +247,8 @@ insert into SYS_USER (id, loginname, userpassword, name, enabled, usertype, role
 values (16, 'caca', '$2a$12$dArWACGkMFPS6v2SYDwKtuk8ww9Ujo9S4V4mdI4CDN13gcXxz90gi', '11', '1', null, null, null, '1wq@gmail.com', null, null, null, null, '18758084122', null, null, null, to_date('17-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014 16:35:45', 'dd-mm-yyyy hh24:mi:ss'));
 insert into SYS_USER (id, loginname, userpassword, name, enabled, usertype, role_id, enterprise_id, email, age, sex, phone, qq, mobile_number, entrytime, address, education_background, createtime, updatetime)
 values (18, 'cyy', '$2a$12$b4Mk4JojxzVUELMBw72TRe0lkimiBBKba0t2/fqDwy4pulNZpUvzy', '蔡迎迎', '0', null, 1, 18, 'caiyingying234@163.com', to_date('17-07-2014', 'dd-mm-yyyy'), '1', '01088888888', '88888888', '18888888888', to_date('17-07-2014', 'dd-mm-yyyy'), 'aaaa', '0', to_date('17-07-2014', 'dd-mm-yyyy'), to_date('17-07-2014 19:59:56', 'dd-mm-yyyy hh24:mi:ss'));
+commit;
+
 
 insert into SYS_RESOURCEINFO (id, name, value, type, createtime, updatetime, enabled)
 values (1, '男', '1', 'sex', to_date('16-07-2014', 'dd-mm-yyyy'), null, 0);
@@ -247,7 +258,8 @@ insert into SYS_RESOURCEINFO (id, name, value, type, createtime, updatetime, ena
 values (3, '大专', '1', 'education', null, null, 0);
 insert into SYS_RESOURCEINFO (id, name, value, type, createtime, updatetime, enabled)
 values (4, '未知', '0', 'sex', to_date('16-07-2014', 'dd-mm-yyyy'), null, 0);
-
+commit;
 
 insert into SYS_USER (ID, LOGINNAME, USERPASSWORD, NAME, ENABLED, USERTYPE, ROLE_ID, ENTERPRISE_ID, EMAIL, AGE, SEX, PHONE, QQ, MOBILE_NUMBER, ENTRYTIME, ADDRESS, EDUCATION_BACKGROUND, CREATETIME, UPDATETIME)
 values (1, 'admin', '$2a$12$HE1p3lcWDgqT3MbCnt7qy.wefrXI5a9PThbHa266nZxJhZsEMKI.O', '超级管理员', '0', '0', 0, 0, null, null, null, null, null, null, null, null, null, null, null);
+commit;
