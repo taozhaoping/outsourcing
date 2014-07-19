@@ -68,19 +68,30 @@
 				<div class="block-body">
 					<form method="post" name="loginform" id="loginform" action="login!loginUser.jspa">
 						<input type="hidden" name="token" value="${token}" />
-						<label for="userName">用户名</label>
-						<input type="text" class="span12" id="userName" name="userInfo.loginName"> 
-						<label for="password">密码</label>
-						<input type="password" class="span12" id="password" name="userInfo.userPassword">
-						<label for="validecode">验证码 </label>
-						<div class="row-fluid">
-							<input name="validecode" class="span8" type="text" id="validecode">
-							<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
+						
+						<div class="control-group">
+							<label for="userName">用户名</label>
+							<div class="controls">
+								<input type="text" class="span12" id="userName" name="userInfo.loginName" data-required="true"> 
+							</div>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">登陆</button>
-						<!-- 
-						<a href="index.html" class="btn btn-primary pull-right">登陆</a>
-						 --> 
+						
+						<div class="control-group">
+							<label for="password">密码</label>
+							<div class="controls">
+								<input type="password" class="span12" id="password" name="userInfo.userPassword" data-required="true">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="validecode">验证码 </label>
+							<div class="row-fluid">
+								<input name="validecode" class="span8" type="text" id="validecode" data-required="true">
+								<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
+							</div>
+						</div>
+						<input type="submit" class="btn btn-primary pull-right" value="登陆">
+						
 						<label class="remember-me"><input type="checkbox">记住密码</label>
 						<div class="clearfix"></div>
 					</form>
@@ -92,6 +103,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=path %>/js/bootstrap.js"></script>
+	<script src="<%=path %>/js/jquery-validate.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		$(function() {
@@ -113,6 +125,21 @@
 				}
 			});
 		}
+		
+		// 验证
+		$('form').validate( {
+			onKeyup : false,
+			onSubmit : true,
+			onChange : true,
+			eachValidField : function() {
+				$(this).closest('div').parents('div').removeClass('error')
+				.addClass('success');
+			},
+			eachInvalidField : function() {
+				$(this).closest('div').parents('div').removeClass('success')
+				.addClass('error');
+			}
+		});
 	</script>
 </body>
 </html>

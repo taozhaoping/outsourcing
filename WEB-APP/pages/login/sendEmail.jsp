@@ -65,12 +65,19 @@
 				<p class="block-heading">重置密码</p>
 				<div class="block-body">
 					<form action="<%=path %>/login/resetPasswordAction!doResetPassword.jspa">
-						<label>用户名</label>
-						<input type="text" class="span12" id="userName" name="userInfo.loginName">
-						<label for="validecode">验证码 </label>
-						<div class="row-fluid">
-							<input name="validecode" class="span8" type="text" id="validecode">
-							<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
+						<div class="control-group">
+							<label>用户名</label>
+							<div class="controls">
+								<input type="text" class="span12" data-required="true" id="userName" name="userInfo.loginName">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label for="validecode">验证码 </label>
+							<div class="row-fluid">
+								<input name="validecode" data-required="true" class="span8" type="text" id="validecode">
+								<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
+							</div>
 						</div>
 						<input type="submit" class="btn btn-primary pull-right" value="发送邮件">
 						<div class="clearfix"></div>
@@ -81,6 +88,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="<%=path%>/js/bootstrap.js"></script>
+	<script src="<%=path %>/js/jquery-validate.js"></script>
 	<script type="text/javascript">
 	    $("[rel=tooltip]").tooltip();
 	    $(function() {
@@ -100,6 +108,21 @@
 				}
 			});
 		}
+		
+		// 验证
+		$('form').validate( {
+			onKeyup : false,
+			onSubmit : true,
+			onChange : true,
+			eachValidField : function() {
+				$(this).closest('div').parents('div').removeClass('error')
+				.addClass('success');
+			},
+			eachInvalidField : function() {
+				$(this).closest('div').parents('div').removeClass('success')
+				.addClass('error');
+			}
+		});
 	</script>
 </body>
 </html>

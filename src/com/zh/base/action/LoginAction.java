@@ -114,7 +114,7 @@ public class LoginAction extends BaseAction {
 		String code = (String) this.getRequest().getSession().getAttribute("code");
 		if (null == validecode || null == code || !validecode.toUpperCase().equals(code)) {
 			this.setErrorMessage(getText("COM.SSI.ERROR.CODE"));
-			return "reset";
+			return "sendEmail";
 		}
 		User user = userInfoService.query(userInfo);
 		if(user != null){

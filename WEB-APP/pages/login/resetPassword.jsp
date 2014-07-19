@@ -66,12 +66,15 @@
 				<div class="block-body">
 					<form id="resetPwdForm" action="<%=path %>/login/resetPasswordAction!resetPwdSubmit.jspa">
 						<input type="hidden" value="${userInfo.loginName}" name="userInfo.loginName" id="loginName">
+						<div class="control-group">
+							<label>新密码</label>
+							<input type="password" data-required="true" class="span12" id="password">
+						</div>
 						
-						<label>新密码</label>
-						<input type="password" data-required="true" class="span12" id="password">
-						
-						<label>确认密码</label>
-						<input type="password" data-required="true" class="span12" id="password2" name="newPassWord">
+						<div class="control-group">
+							<label>确认密码</label>
+							<input type="password" data-validate="password2" class="span12" id="password2" name="newPassWord">
+						</div>
 						
 						<input type="submit" class="btn btn-primary pull-right" value="重置密码">
 						<div class="clearfix"></div>
@@ -95,10 +98,20 @@
 			onSubmit : true,
 			onChange : true,
 			eachValidField : function() {
-				$(this).removeClass('error').addClass('success');
+				$(this).closest('div').removeClass('error').addClass('success');
 			},
 			eachInvalidField : function() {
-				$(this).removeClass('success').addClass('error');
+				$(this).closest('div').removeClass('success').addClass('error');
+			}
+		});
+		
+		jQuery.validateExtend({
+			password2 : {
+				required : true,
+				//pattern : /^[0-9]+$/,
+				conditional : function(value) {
+					return $("#password2").val() == $("#password").val();
+				}
 			}
 		});
 	    
