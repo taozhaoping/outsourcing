@@ -156,6 +156,12 @@ public class User extends IDataObject{
      * @mbggenerated Wed Jul 09 16:36:05 CST 2014
      */
     private Date updateTime;
+    
+    
+    /***
+     * 重置密码时候保存的随机数
+     */
+    private String nonce;
 
 	public Integer getId() {
 		return id;
@@ -307,6 +313,14 @@ public class User extends IDataObject{
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getNonce() {
+		return nonce;
+	}
+
+	public void setNonce(String nonce) {
+		this.nonce = nonce;
 	}
 
 }

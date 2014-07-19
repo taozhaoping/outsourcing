@@ -230,7 +230,8 @@ create table SYS_USER
    address            VARCHAR2(100 BYTE), --家庭住址
    education_background VARCHAR2(1 BYTE),
    createTime         DATE, --创建时间
-   updateTime         DATE --修改时间
+   updateTime         DATE, --修改时间
+   nonce			  VARCHAR2(50 BYTE) --Email重置密码保存的随机数
 );
 
 

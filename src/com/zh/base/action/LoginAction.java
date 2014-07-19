@@ -121,7 +121,6 @@ public class LoginAction extends BaseAction {
 			String email = user.getEmail();
 			if(email != null && !email.isEmpty()){
 				//发送邮件
-				userInfo.setEmail(Tools.mailCover(email));
 				try {
 					ActionContext context = ActionContext.getContext();
 					HttpServletRequest request = (HttpServletRequest)context.get(ServletActionContext.HTTP_REQUEST);
@@ -154,7 +153,11 @@ public class LoginAction extends BaseAction {
 						.append("如果点击无效，请复制下方网页地址到浏览器地址栏中打开：").append(rn)
 						.append(url.toString());
 					
+					userInfo.setNonce(nonce);
+					userInfo.setId(user.getId());
+					userInfoService.update(userInfo);
 					MailUtil.sendMail(email, "", "重置密码", text.toString());
+					userInfo.setEmail(Tools.mailCover(email));
 				} catch (MessagingException e) {
 					e.printStackTrace();
 					return "error";
@@ -181,14 +184,22 @@ public class LoginAction extends BaseAction {
 	public String verify(){
 		LOGGER.debug("verify()");
 		String passwordDigestNew;
+		User user = userInfoService.query(userInfo);
+		String serverNonce = user.getNonce();
 		try {
-			passwordDigestNew = PasswordDigestUtil.doPasswordDigest(nonce, created, "whoisyourdaddy");
-			//通过校验
-			if(passwordDigest != null && passwordDigest.equals(passwordDigestNew)){
-				Date createdDate = DateUtil.getDate(created);
-				//验证有没过期，30分钟过期,后续可以修改为配置
-				if(DateUtil.verifyCreated(createdDate, 1800, 0)){
-					
+			if(nonce != null && nonce.equalsIgnoreCase(serverNonce)){
+				passwordDigestNew = PasswordDigestUtil.doPasswordDigest(nonce, created, "whoisyourdaddy");
+				//通过校验
+				if(passwordDigest != null && passwordDigest.equals(passwordDigestNew)){
+					Date createdDate = DateUtil.getDate(created);
+					//验证有没过期，30分钟过期,后续可以修改为配置
+					if(DateUtil.verifyCreated(createdDate, 1800, 0)){
+						//初始化随机码，防止一次链接可以重置密码多次
+						userInfo.setNonce("0");
+						userInfoService.update(userInfo);
+					}else{
+						return "verifyError";
+					}
 				}else{
 					return "verifyError";
 				}
