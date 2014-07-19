@@ -41,7 +41,7 @@ public class LoginAction extends BaseAction {
 	private String newPassWord;
 	
 	//随机数
-	private String nonce;
+	private String hash;
 	
 	//创建时间
 	private String created;
@@ -141,7 +141,7 @@ public class LoginAction extends BaseAction {
 						.append("login/emailVerification.jspa?")
 						.append("userInfo.loginName=")
 						.append(URLEncoder.encode(userInfo.getLoginName(),"utf-8"))
-						.append("&nonce=").append(URLEncoder.encode(nonce,"utf-8"))
+						.append("&hash=").append(URLEncoder.encode(nonce,"utf-8"))
 						.append("&created=").append(URLEncoder.encode(created,"utf-8"))
 						.append("&passwordDigest=").append(URLEncoder.encode(passwordDigest,"utf-8"));
 					
@@ -187,8 +187,8 @@ public class LoginAction extends BaseAction {
 		User user = userInfoService.query(userInfo);
 		String serverNonce = user.getNonce();
 		try {
-			if(nonce != null && nonce.equalsIgnoreCase(serverNonce)){
-				passwordDigestNew = PasswordDigestUtil.doPasswordDigest(nonce, created, "whoisyourdaddy");
+			if(hash != null && hash.equalsIgnoreCase(serverNonce)){
+				passwordDigestNew = PasswordDigestUtil.doPasswordDigest(hash, created, "whoisyourdaddy");
 				//通过校验
 				if(passwordDigest != null && passwordDigest.equals(passwordDigestNew)){
 					Date createdDate = DateUtil.getDate(created);
@@ -196,6 +196,7 @@ public class LoginAction extends BaseAction {
 					if(DateUtil.verifyCreated(createdDate, 1800, 0)){
 						//初始化随机码，防止一次链接可以重置密码多次
 						userInfo.setNonce("0");
+						userInfo.setId(user.getId());
 						userInfoService.update(userInfo);
 					}else{
 						return "verifyError";
@@ -259,12 +260,12 @@ public class LoginAction extends BaseAction {
 		return userInfo;
 	}
 
-	public String getNonce() {
-		return nonce;
+	public String getHash() {
+		return hash;
 	}
 
-	public void setNonce(String nonce) {
-		this.nonce = nonce;
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 	public String getCreated() {
