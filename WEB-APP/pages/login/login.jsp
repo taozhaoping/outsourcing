@@ -68,11 +68,14 @@
 				<div class="block-body">
 					<form method="post" name="loginform" id="loginform" action="login!loginUser.jspa">
 						<input type="hidden" name="token" value="${token}" />
+						<div class="control-group">
+							<span style="color: red">${errorMessage}</span>
+						</div>
 						
 						<div class="control-group">
 							<label for="userName">用户名</label>
 							<div class="controls">
-								<input type="text" class="span12" id="userName" name="userInfo.loginName" data-required="true"> 
+								<input type="text" class="span12" id="userName" name="userInfo.loginName" value="${userInfo.loginName}" data-required="true"> 
 							</div>
 						</div>
 						

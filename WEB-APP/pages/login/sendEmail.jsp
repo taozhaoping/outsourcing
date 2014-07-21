@@ -66,9 +66,13 @@
 				<div class="block-body">
 					<form action="<%=path %>/login/resetPasswordAction!doResetPassword.jspa">
 						<div class="control-group">
+							<span style="color: red">${errorMessage}</span>
+						</div>
+						
+						<div class="control-group">
 							<label>用户名</label>
 							<div class="controls">
-								<input type="text" class="span12" data-required="true" id="userName" name="userInfo.loginName">
+								<input type="text" class="span12" id="userName" name="userInfo.loginName" value="${userInfo.loginName}" data-required="true">
 							</div>
 						</div>
 						

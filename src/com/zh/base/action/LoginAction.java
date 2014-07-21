@@ -160,19 +160,24 @@ public class LoginAction extends BaseAction {
 					userInfo.setEmail(Tools.mailCover(email));
 				} catch (MessagingException e) {
 					e.printStackTrace();
-					return "error";
+					this.setErrorMessage("用户不存在，或者用户没有配置邮箱地址，请确认后重试。");
+					return "sendEmail";
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
-					return "error";
+					this.setErrorMessage("用户不存在，或者用户没有配置邮箱地址，请确认后重试。");
+					return "sendEmail";
 				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
-					return "error";
+					this.setErrorMessage("用户不存在，或者用户没有配置邮箱地址，请确认后重试。");
+					return "sendEmail";
 				}
 			}else{
-				return "error";
+				this.setErrorMessage("用户不存在，或者用户没有配置邮箱地址，请确认后重试。");
+				return "sendEmail";
 			}
 		}else{
-			return "error";
+			this.setErrorMessage("用户不存在，或者用户没有配置邮箱地址，请确认后重试。");
+			return "sendEmail";
 		}
 		return "sendSuccess";
 	}
