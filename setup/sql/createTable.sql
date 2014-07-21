@@ -208,6 +208,23 @@ comment on table SYS_ROLE_TO_MENU is
 '角色和菜单中间表（一对多）';
 
 /*==============================================================*/
+/* Table: sys_system                                           */
+/*==============================================================*/
+create table SYS_PARAM
+(
+  id                 NUMBER               not null,
+  emailService       VARCHAR2(50 BYTE)    ,--邮箱服务器地址
+  emailForm          VARCHAR2(50 BYTE)    ,--服务器邮箱名
+  emailUserName      VARCHAR2(50 BYTE)    ,--邮箱账号
+  emailPassword      VARCHAR2(50 BYTE)    , --邮箱密码
+  emailisAuth        VARCHAR2(1 BYTE)    ,--是否验证 0:验证，1不验证
+  emailUrlPassword   VARCHAR2(30 BYTE) 
+);
+
+alter table SYS_PARAM
+  add constraint PK_SYS_PARAM_ID primary key (id);
+  
+/*==============================================================*/
 /* Table: sys_user                                            */
 /*==============================================================*/
 create table SYS_USER 

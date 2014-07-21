@@ -260,6 +260,6 @@ insert into SYS_RESOURCEINFO (id, name, value, type, createtime, updatetime, ena
 values (4, '未知', '0', 'sex', to_date('16-07-2014', 'dd-mm-yyyy'), null, 0);
 commit;
 
-insert into SYS_USER (ID, LOGINNAME, USERPASSWORD, NAME, ENABLED, USERTYPE, ROLE_ID, ENTERPRISE_ID, EMAIL, AGE, SEX, PHONE, QQ, MOBILE_NUMBER, ENTRYTIME, ADDRESS, EDUCATION_BACKGROUND, CREATETIME, UPDATETIME)
-values (1, 'admin', '$2a$12$HE1p3lcWDgqT3MbCnt7qy.wefrXI5a9PThbHa266nZxJhZsEMKI.O', '超级管理员', '0', '0', 0, 0, null, null, null, null, null, null, null, null, null, null, null);
+insert into SYS_PARAM (id, emailservice, emailform, emailusername, emailpassword, emailisauth, emailurlpassword)
+values (1, 'smtp.163.com', 'noreplay101@163.com', 'noreplay101', '123qwe!@#', '0', '');
 commit;
