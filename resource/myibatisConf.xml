@@ -28,6 +28,7 @@
 		<typeAlias alias="Role" type="com.zh.base.model.bean.Role" />
 		<typeAlias alias="RoleAuthorities" type="com.zh.base.model.bean.RoleAuthorities" />
 		<typeAlias alias="RoleMenu" type="com.zh.base.model.bean.RoleMenu" />
+		<typeAlias alias="Param" type="com.zh.base.model.bean.Param" />
 	</typeAliases>
 
 	<plugins>
