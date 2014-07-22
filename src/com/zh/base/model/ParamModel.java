@@ -5,15 +5,14 @@ import com.zh.core.base.model.BaseModel;
 
 public class ParamModel extends BaseModel {
 
-	private Param param =  new Param();
+	private Param sysParam =  new Param();
 
-	public Param getParam() {
-		return param;
+	public Param getSysParam() {
+		return sysParam;
 	}
 
-	public void setParam(Param param) {
-		this.param = param;
+	public void setSysParam(Param sysParam) {
+		this.sysParam = sysParam;
 	}
 
-	
 }

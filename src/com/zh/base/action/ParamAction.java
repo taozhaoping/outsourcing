@@ -34,13 +34,17 @@ public class ParamAction extends BaseAction {
 	public String execute()
 	{
 		Param param = paramService.query();
-		paramModel.setParam(param);
+		paramModel.setSysParam(param);
 		return Action.SUCCESS;
 	}
 	
 	public String save()
 	{
+		Param param = this.paramModel.getSysParam();
 		
+		//系统配置表只有一条主建为1的数据
+		param.setId(1);
+		paramService.update(param);
 		return Action.EDITOR;
 	}
 
