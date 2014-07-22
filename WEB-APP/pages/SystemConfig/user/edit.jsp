@@ -115,7 +115,7 @@
 												</s:if>
 												<s:else>
 													<input type="text" data-required="true" maxlength="15" data-validate="loginName" 
-														id="input_loginName" name="userInfo.loginName"
+														id="inputloginName" name="userInfo.loginName"
 														value="${userInfo.loginName}" class="input-xlarge">
 												</s:else>
 											</div>
@@ -123,7 +123,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputaddress">姓名:</label>
+											<label class="control-label" for="inputname">姓名:</label>
 											<div class="controls">
 												<input type="text" id="inputname" data-required="true"
 													name="userInfo.name" value="${userInfo.name}"

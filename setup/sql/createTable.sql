@@ -218,7 +218,7 @@ create table SYS_PARAM
   emailUserName      VARCHAR2(50 BYTE)    ,--邮箱账号
   emailPassword      VARCHAR2(50 BYTE)    , --邮箱密码
   emailisAuth        VARCHAR2(1 BYTE)    ,--是否验证 0:验证，1不验证
-  emailUrlPassword   VARCHAR2(30 BYTE) 
+  emailUrlPassword   VARCHAR2(30 BYTE)   -- url秘钥
 );
 
 alter table SYS_PARAM

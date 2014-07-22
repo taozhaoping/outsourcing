@@ -78,10 +78,9 @@
 
 		<ul class="breadcrumb">
 			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="" id="navigation"></a> <span class="divider">/</span></li>
 			<li class="active">编辑</li>
 		</ul>
-
+	
 		<div class="container-fluid">
 			<form id="editForm" class="form-horizontal"
 				action="${menu2Id}!save.jspa" method="post">
@@ -94,39 +93,30 @@
 						<div class="btn-group"></div>
 					</div>
 					<div class="well">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
-							<li><a href="#password" data-toggle="tab">修改密码</a></li>
-						</ul>
+						
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
 								
-								<input type="hidden" name="userInfo.id" value="${userInfo.id}">
+								<input type="hidden" name="userInfo.id" value="${param.id}">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group" id="name_div">
-											<label class="control-label" for="inputloginName">用户名:</label>
+											<label class="control-label" for="inputemailservice">邮箱服务器地址:</label>
 											<div class="controls">
-												<s:if test="userInfo.id!=null">
-													<span class="input-xlarge uneditable-input">${userInfo.loginName}</span>
-
-												</s:if>
-												<s:else>
-													<input type="text" data-required="true" maxlength="15" data-validate="loginName" 
-														id="input_loginName" name="userInfo.loginName"
-														value="${userInfo.loginName}" class="input-xlarge">
-												</s:else>
+													<input type="text" data-required="true" maxlength="15" 
+														id="inputemailservice" name="param.emailservice"
+														value="${param.emailservice}" class="input-xlarge">
 											</div>
 										</div>
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputaddress">姓名:</label>
+											<label class="control-label" for="inputemailform">服务器邮箱名:</label>
 											<div class="controls">
-												<input type="text" id="inputname" data-required="true"
-													name="userInfo.name" value="${userInfo.name}"
+												<input type="text" id="inputemailform" data-required="true"
+													name="param.emailform" value="${param.emailform}"
 													data-required="true" class="input-xlarge">
 											</div>
 										</div>
@@ -135,22 +125,22 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputemail">电子邮箱:</label>
+											<label class="control-label" for="inputemailusername">邮箱账号:</label>
 											<div class="controls">
-												<input type="text" id="inputemail" maxlength="60" data-required="true"
-													name="userInfo.email" value="${userInfo.email}"
+												<input type="text" id="inputemailusername" maxlength="60" data-required="true"
+													name="param.emailusername" value="${param.emailusername}"
 													class="input-xlarge">
 											</div>
 										</div>
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputage">出生日期:</label>
+											<label class="control-label" for="inputemailpassword">邮箱密码:</label>
 											<div class="controls ">
-												<input size="16" id="inputage" name="userInfo.age"
+												<input size="16" id="inputemailpassword" name="param.emailpassword"
 													type="text"
-													value="<s:date name="userInfo.age" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-xlarge">
+													value="${param.emailpassword}"
+													readonly class="input-xlarge">
 											</div>
 										</div>
 									</div>
@@ -158,157 +148,32 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputroleId">角色:</label>
+											<label class="control-label" for="inputemailisauth">是否验证:</label>
 											<div class="controls">
-												<select id="inputroleId" class="input-xlarge"
-													 name="userInfo.roleId">
-													<s:iterator value="dataMap.roleList" var="role">
-														<option value="<s:property value='#role.id'/>">
-															<s:property value="#role.name" />
-														</option>
-													</s:iterator>
+												<select id="inputemailisauth" class="input-xlarge"
+													 name="param。emailisauth">
+														<option value="0">是</option>
+														<option value="1">否</option>
 												</select>
 											</div>
 										</div>
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputenterpriseId">企业:</label>
+											<label class="control-label" for="inputemailurlpassword">url秘钥:</label>
 											<div class="controls">
-												<select id="inputenterpriseId"
-													class="input-xlarge" name="userInfo.enterpriseId">
-													<s:iterator value="dataMap.enterpriseList" var="enterprise">
-														<option value="<s:property value='#enterprise.id'/>">
-															<s:property value="#enterprise.name" />
-														</option>
-													</s:iterator>
-												</select>
+											
+												<input size="16" id="inputemailurlpassword" name="param.emailurlpassword"
+													type="text"
+													value="${param.emailurlpassword}"
+													readonly class="input-xlarge">
 											</div>
 										</div>
 									</div>
 								</dir>
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputsex">性别:</label>
-											<div class="controls">
-												<select id="inputsex" class="input-xlarge"
-													name="userInfo.sex">
-													<option value="0">未知</option>
-													<option value="1">男</option>
-													<option value="2">女</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputentryTime">入职时间:</label>
-											<div class="controls">
-												<input size="16" id="inputentryTime"
-													name="userInfo.entryTime" type="text"
-													value="<s:date name="userInfo.entryTime" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-xlarge">
-											</div>
-										</div>
-									</div>
-									
-								</dir>
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputphone">座机号码:</label>
-											<div class="controls">
-												<input type="text" id="inputphone"  maxlength="15" name="userInfo.phone"
-													value="${userInfo.phone}" class="input-xlarge">
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputmobileNumber">手机号码:</label>
-											<div class="controls">
-												<input type="text" id="inputmobileNumber"  maxlength="15"
-													data-required="true" name="userInfo.mobileNumber"
-													value="${userInfo.mobileNumber}" class="input-xlarge">
-											</div>
-										</div>
-									</div>
-								</dir>
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputqq">QQ:</label>
-											<div class="controls">
-												<input type="text" id="inputqq" name="userInfo.qq"  maxlength="18"
-													value="${userInfo.qq}" class="input-xlarge">
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputeducationBackground">专业:</label>
-											<div class="controls">
-												<select id="inputeducationBackground" class="input-xlarge"
-													name="userInfo.educationBackground">
-													<option value="0">大专</option>
-													<option value="1">本科</option>
-													<option value="2">研究生</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</dir>
-								<dir class="row">
-									<div class="span10">
-										<div class="control-group">
-											<label class="control-label" for="inputaddress">家庭住址:</label>
-											<div class="controls">
-												<input type="text"  maxlength="95" id="inputaddress" name="userInfo.address"
-													value="${userInfo.address}"
-													class="input-xxlarge">
-											</div>
-										</div>
-									</div>
-								</dir>
+								
 							</div>
-							<div class="tab-pane fade" id="password">
-								<s:if test="userInfo.id!=null">
-									<div class="control-group">
-										<label class="control-label" for="inputnewPassWord1">新密码:</label>
-										<div class="controls">
-											<input type="password" id="inputnewPassWord1"  maxlength="15"
-												data-validate="PassWordVali" class="input-xlarge">
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="inputnewPassWord">新密码:</label>
-										<div class="controls">
-											<input type="password" id="inputnewPassWord" maxlength="15"
-												data-validate="PassWordVali" name="newPassWord"
-												class="input-xlarge">
-										</div>
-									</div>
-								</s:if>
-								<s:else>
-									<div class="control-group">
-										<label class="control-label" for="inputnewPassWord1">新密码:</label>
-										<div class="controls">
-											<input type="password" data-required="true"
-												id="inputnewPassWord1" data-validate="PassWordVali"
-												class="input-xlarge">
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="inputnewPassWord">新密码:</label>
-										<div class="controls">
-											<input type="password" data-required="true"
-												id="inputnewPassWord" data-validate="PassWordVali"
-												name="newPassWord" class="input-xlarge">
-										</div>
-									</div>
-								</s:else>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -332,74 +197,9 @@
 		var menuId = '${menu2Id}';
 		var url = $("#" + menuId).attr('url');
 
-		$(".form_datetime").datetimepicker({
-			language : 'zh-CN',
-			format : 'yyyy-mm-dd',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : true
-		});
-
-		$("#inputroleId").select2();
-		$("#inputroleId").val("${userInfo.roleId}").trigger("change");
-		$("#inputenterpriseId").select2();
-		$("#inputenterpriseId").val("${userInfo.enterpriseId}").trigger(
-				"change");
-		$("#inputsex").select2();
-		$("#inputsex").val("${userInfo.sex}").trigger("change");
+		$("#inputemailisauth").select2();
+		$("#inputemailisauth").val("${param.inputemailisauth}").trigger("change");
 		
-		$("#inputeducationBackground").select2();
-		$("#inputeducationBackground").val("${userInfo.educationBackground}").trigger("change");
-
-		jQuery.validateExtend({
-			PassWordVali : {
-				onChange : true,
-				pattern : /^[A-Za-z0-9]+$/,
-				conditional : function(value) {
-					password = $("#inputnewPassWord").val();
-					password1 = $("#inputnewPassWord1").val();
-					return password == password1;
-				}
-			},
-			loginName : {
-				onKeyup : false,
-				sendForm:true,
-				onSubmit : true,
-				pattern : /^[A-Za-z0-9]{3,}$/,
-				conditional : function(value) {
-					var bool=true;
-					if(value.length<3)
-					{
-						return false;	
-					}
-					$.ajax({
-						type: "POST",   //访问WebService使用Post方式请求
-						url: menuId + "!validatorUserName.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-						async:false,
-						data: {"loginName":value},  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
-						dataType: 'json',   //WebService 会返回Json类型
-						traditional: false,	//不要序列化参数
-						error: function(err, textStatus){
-							//alert("error: " + err + " textStatus: " + textStatus);
-						},
-						success: function(result) {//回调函数，result，返回值
-							if(result.success)
-							{
-								bool=true;	
-							}else
-							{
-								bool=false;	
-							}
-						}
-					});
-					return bool;
-				}
-			}
-		});
 	</script>
 </body>
 </html>

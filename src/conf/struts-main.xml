@@ -18,6 +18,8 @@
 				<param name="root">mainModel.dataMap</param>
 			</result>
 		</action>
+		
+		<!-- 系统参数配置 -->
 		<action name="param" class="com.zh.base.action.ParamAction"
 			method="execute">
 			<result name="success">/pages/SystemConfig/param/edit.jsp</result>
@@ -28,7 +30,7 @@
     			<param name="menu2Id">${menu2Id}</param>
 			</result>
 		</action>
-		<!-- 系统参数配置 -->
+		
 		
 		<!-- 企业 管理 -->
 		<action name="enterprise" class="com.zh.base.action.EnterpriseAction"
