@@ -3,7 +3,7 @@ values (1, '系统配置', 'sysConfig', null, null, '0', 0, null);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
 values (3, '用户列表', 'userInfo', 'userInfo.jspa', null, '0', 1, 2);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
-values (4, '参数配置', 'sysItem', 'sysItem.jspa', null, '0', 1, 3);
+values (4, '参数配置', 'param', 'param.jspa', null, '0', 1, 3);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
 values (5, '角色列表', 'role', 'role.jspa', null, '0', 1, 4);
 insert into SYS_MENU (id, name, action, url, i18n_key, enabled, parentid, reorder)
