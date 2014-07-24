@@ -88,6 +88,7 @@
 		<load-on-startup>0</load-on-startup> </servlet> -->
 	<!-- - =============================================== - JSTL Config - @author 
 		Flouny.Caesar - @date 2009-12-25 - =============================================== -->
+	<!-- 
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
@@ -98,6 +99,7 @@
 			<taglib-location>/WEB-INF/tlds/h.tld</taglib-location>
 		</taglib>
 	</jsp-config>
+	 -->
 	<!-- tiles配置 <context-param> <param-name>org.apache.tiles.CONTAINER_FACTORY</param-name> 
 		<param-value> org.apache.struts2.tiles.StrutsTilesContainerFactory </param-value> 
 		</context-param> <context-param> <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name> 
