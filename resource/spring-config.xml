@@ -198,4 +198,5 @@
 		</property>
 	</bean> 
  -->
+ <import resource="applicationContext.xml"/>
 </beans>
