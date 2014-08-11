@@ -103,8 +103,4 @@
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService"/>
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService"/>
     <!-- Activiti end -->
-
-	<!-- 
-    <jaxws:endpoint id="leaveWebService" implementor="me.kafeitu.demo.activiti.webservice.LeaveWebServiceImpl" address="/leave"/>
-	 -->
 </beans>
