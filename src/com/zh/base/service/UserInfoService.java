@@ -3,7 +3,6 @@ package com.zh.base.service;
 import java.util.List;
 
 import com.zh.base.model.bean.User;
-import com.zh.base.model.bean.User;
 import com.zh.core.model.Pager;
 
 /**

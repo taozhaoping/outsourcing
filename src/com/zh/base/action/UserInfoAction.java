@@ -45,6 +45,7 @@ public class UserInfoAction extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
+		LOGGER.debug("execute()");
 		User user = this.userInfoModel.getUserInfo();
 		Pager pager = this.userInfoModel.getPageInfo();
 		Integer count = userInfoService.count(user);
@@ -55,8 +56,8 @@ public class UserInfoAction extends BaseAction {
 
 	}
 	
-	public String validatorUserName()
-	{
+	public String validatorUserName(){
+		LOGGER.debug("validatorUserName()");
 		String loginName= userInfoModel.getLoginName();
 		boolean bool = true;
 		if(null != loginName && !"".equals(loginName))
@@ -74,11 +75,10 @@ public class UserInfoAction extends BaseAction {
 	}
 	
 
-	public String editor()
-	{
+	public String editor(){
+		LOGGER.debug("editor()");
 		Integer id = this.userInfoModel.getId();
-		if(null != id && !"".equals(id))
-		{
+		if(null != id && !"".equals(id)){
 			User user = this.userInfoModel.getUserInfo();
 			user.setId(id);
 			User userReult = userInfoService.query(user);
@@ -98,8 +98,9 @@ public class UserInfoAction extends BaseAction {
 		return Action.EDITOR;
 	}
 	
-	public String save()
-	{
+	public String save(){
+		LOGGER.debug("save()");
+		
 		User user = this.userInfoModel.getUserInfo();
 		
 		//判断当前是设置成启动状态还是停用状态

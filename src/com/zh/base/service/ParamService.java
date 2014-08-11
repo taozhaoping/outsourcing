@@ -1,6 +1,5 @@
 package com.zh.base.service;
 
-import com.zh.base.model.bean.Menu;
 import com.zh.base.model.bean.Param;
 
 public interface ParamService {

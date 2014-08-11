@@ -2,7 +2,6 @@ package com.zh.base.service;
 
 import java.util.List;
 
-import com.zh.base.model.bean.Authorities;
 import com.zh.base.model.bean.Menu;
 import com.zh.core.model.Pager;
 

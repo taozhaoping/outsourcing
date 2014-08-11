@@ -3,10 +3,6 @@ package com.zh.base.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
-import net.sf.ehcache.Cache;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;

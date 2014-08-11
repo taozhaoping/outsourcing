@@ -11,7 +11,6 @@ import com.zh.base.model.bean.Enterprise;
 import com.zh.base.service.EnterpriseService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
-import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 
 public class EnterpriseAction extends BaseAction {

@@ -41,6 +41,7 @@ public class mainAction extends BaseAction {
 
 	@Override
 	public String execute() {
+		LOGGER.debug("execute()");
 //		//设置当前语言
 //		//this.setLanguage(this.getLocale().toString());
 		
@@ -69,6 +70,7 @@ public class mainAction extends BaseAction {
 	}
 	
 	public String initPwd() {
+		LOGGER.debug("initPwd()");
 		mainModel.setUser((User) this.getSession().getAttribute(
 				VariableUtil.SESSION_KEY));
 		mainModel.getUser().setUserPassword(null);
@@ -77,6 +79,7 @@ public class mainAction extends BaseAction {
 	}
 	
 	public String updatepwd() {
+		LOGGER.debug("updatepwd()");
 		String password = mainModel.getNewPassWord();
 		if(null == password)
 		{
@@ -90,8 +93,8 @@ public class mainAction extends BaseAction {
 	}
 
 
-	private void setAuthoritySession()
-	{
+	private void setAuthoritySession(){
+		LOGGER.debug("setAuthoritySession()");
 		ArrayList<String> list = new ArrayList<String>();
 		List<Menu> menuList = mainModel.getRole().getMenuList();
 		for (Menu menu : menuList) {
@@ -118,8 +121,7 @@ public class mainAction extends BaseAction {
 	/**
 	 * 获取配置参数中的属性
 	 */
-	private void getSystem()
-	{
+	private void getSystem(){
 		
 	}
 

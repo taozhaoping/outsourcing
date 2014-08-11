@@ -2,8 +2,6 @@ package com.zh.core.model;
 
 import java.io.Serializable;
 
-import com.zh.core.base.model.IdataObject;
-
 /**
  * 数据对象接口
  * @author Flouny.Caesar
@@ -11,6 +9,10 @@ import com.zh.core.base.model.IdataObject;
  */
 public abstract class IDataObject implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4051045946051357056L;
 	private String orderByClause;
 
 	public String getOrderByClause() {

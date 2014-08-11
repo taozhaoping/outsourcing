@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.UserInfoDAO;
-import com.zh.base.model.bean.Enterprise;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
-import com.zh.core.common.SqlCommon;
-import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 
 @Component("userInfoService")

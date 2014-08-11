@@ -31,15 +31,15 @@ public class ParamAction extends BaseAction {
 		return paramModel;
 	}
 	
-	public String execute()
-	{
+	public String execute() {
+		LOGGER.debug("execute()");
 		Param param = paramService.query();
 		paramModel.setSysParam(param);
 		return Action.SUCCESS;
 	}
 	
-	public String save()
-	{
+	public String save(){
+		LOGGER.debug("save()");
 		Param param = this.paramModel.getSysParam();
 		
 		//系统配置表只有一条主建为1的数据
