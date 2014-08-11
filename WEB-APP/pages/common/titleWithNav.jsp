@@ -25,7 +25,27 @@
 			</li>
 		</ul>
 		<a class="brand" href="#"><span class="first">Your</span>
-			<span class="second">信息管理平台</span></a>
+			<span class="second">信息管理平台</span>
+		</a>
+		
+		<ul class="nav">
+			<li id="fat-menu" class="dropdown">
+				<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+					新建<i class="icon-caret-down"></i>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a tabindex="-1" href="#">外事招聘流程</a>
+					</li>
+					<!-- 
+					<li class="divider"></li>
+					 -->
+					<li>
+						<a tabindex="-1" href="#">外教入职流程</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 </div>
 
