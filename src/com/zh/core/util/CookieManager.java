@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieManager {
 	
 	private HttpServletRequest request;
+	@SuppressWarnings("unused")
 	private HttpServletResponse response;
 	
 	public CookieManager(HttpServletRequest request, HttpServletResponse response) {

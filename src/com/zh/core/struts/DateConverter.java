@@ -8,7 +8,8 @@ import ognl.DefaultTypeConverter;
 
 
 public class DateConverter extends DefaultTypeConverter {
-    public Object convertValue(Map context, Object value, Class toType) {
+    @SuppressWarnings("rawtypes")
+	public Object convertValue(Map context, Object value, Class toType) {
         try {
             if (toType == Date.class) { 
             	// 如果想转换的是Date类型时将做以下操作

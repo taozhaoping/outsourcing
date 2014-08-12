@@ -36,8 +36,8 @@ public class EnterpriseAction extends BaseAction {
 	/**
 	 * 企业管理入口
 	 */
-	public String execute()
-	{
+	public String execute()	{
+		LOGGER.debug("execute()");
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
 		Pager pager = this.enterpriseModel.getPageInfo();
 		Integer count = enterpriseService.count(enterprise);
@@ -47,8 +47,8 @@ public class EnterpriseAction extends BaseAction {
 		return Action.SUCCESS;
 	}
 	
-	public String editor()
-	{
+	public String editor(){
+		LOGGER.debug("editor()");
 		Integer id = this.enterpriseModel.getId();
 		if(null != id && !"".equals(id))
 		{
@@ -60,8 +60,8 @@ public class EnterpriseAction extends BaseAction {
 		return Action.EDITOR;
 	}
 	
-	public String save()
-	{
+	public String save(){
+		LOGGER.debug("save()");
 		Enterprise enterprise = this.enterpriseModel.getEnterprise();
 		
 		//判断当前是设置成启动状态还是停用状态

@@ -34,9 +34,10 @@ import net.sf.json.JSONObject;
  */
 public class JSONUtil {
 
-	private static Logger Logger = LoggerFactory.getLogger(JSONUtil.class); 
+	private static Logger LOGGER = LoggerFactory.getLogger(JSONUtil.class); 
 
 	public static String object2json(Object obj) {
+		LOGGER.debug("object2json()");
 		StringBuilder json = new StringBuilder();
 		if (obj == null) {
 			json.append("\"\"");
@@ -61,6 +62,7 @@ public class JSONUtil {
 	}
 
 	public static String bean2json(Object bean) {
+		LOGGER.debug("bean2json()");
 		StringBuilder json = new StringBuilder();
 		json.append("{");
 		PropertyDescriptor[] props = null;
@@ -204,7 +206,7 @@ public class JSONUtil {
 	{
 		JSONArray jsonArray =JSONArray.fromObject(jsonString);
 		List<String> dataString = new ArrayList<String>();
-		for (Iterator iterator = jsonArray.iterator(); iterator.hasNext();) {
+		for (Iterator<?> iterator = jsonArray.iterator(); iterator.hasNext();) {
 			JSONObject object = JSONObject.fromObject(iterator.next());
 				String id = object.get(key).toString();
 				dataString.add(id.toString());

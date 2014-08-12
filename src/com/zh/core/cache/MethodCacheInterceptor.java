@@ -1,17 +1,14 @@
 package com.zh.core.cache;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.List;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
- 
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.aop.AfterReturningAdvice;
 import org.springframework.beans.factory.InitializingBean;
 
 public class MethodCacheInterceptor implements MethodInterceptor,
@@ -34,6 +31,7 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 	 * 
 	 * 拦截Service/DAO的方法，并查找该结果是否存在，如果存在就返回cache中的值， 否则，返回数据库查询结果，并将查询结果放入cache
 	 */
+	@SuppressWarnings("deprecation")
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		String targetName = invocation.getThis().getClass().getName();
 		String methodName = invocation.getMethod().getName();

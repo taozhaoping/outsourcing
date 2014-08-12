@@ -66,6 +66,7 @@ public class GlobEnv extends PropertiesUtil {
 		return get(prefixPath);
 	}
 	
+	@SuppressWarnings("unused")
 	private static String getURL(String base, String path) {
 		if (StringUtil.isBlank(base)) return null;
 		

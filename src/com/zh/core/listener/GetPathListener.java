@@ -4,9 +4,6 @@ import javax.servlet.ServletContextEvent;
 
 import org.springframework.web.context.ContextLoaderListener;
 
-import com.zh.core.base.dao.SystemDao;
-import com.zh.core.util.BCrypt;
-
 public class GetPathListener extends ContextLoaderListener {
 
 	@Override

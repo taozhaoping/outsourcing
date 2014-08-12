@@ -121,6 +121,7 @@ public class mainAction extends BaseAction {
 	/**
 	 * 获取配置参数中的属性
 	 */
+	@SuppressWarnings("unused")
 	private void getSystem(){
 		
 	}

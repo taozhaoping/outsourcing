@@ -30,6 +30,7 @@ public class JspFilter implements Filter  {
 		
 	}
 
+	@SuppressWarnings("unused")
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -38,9 +39,8 @@ public class JspFilter implements Filter  {
 		if(request.getRequestURI().endsWith(".jsp"))
 		{
 			String url = redirectURL;
-			if(session.getAttribute(VariableUtil.SESSION_KEY) != null)
-			{
-				url=mainURL;
+			if(session.getAttribute(VariableUtil.SESSION_KEY) != null) {
+				url = mainURL;
 			}
 			return;
 		}

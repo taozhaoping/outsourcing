@@ -9,10 +9,12 @@ import com.opensymphony.xwork2.XWorkException;
 
 public class TimestampConverter extends StrutsTypeConverter {
 
+	@SuppressWarnings("rawtypes")
 	public Object convertFromString(Map map, String as[], Class class1) {
 		return parseStringToTimestamp(as[0]);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public String convertToString(Map map, Object obj) {
 		String s = null;
 		if (obj instanceof Timestamp) {

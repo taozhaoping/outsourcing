@@ -36,10 +36,10 @@ public class ResourceInfoUtil implements BeanFactoryAware{
 	
 	}
 	
+	@SuppressWarnings("static-access")
 	public synchronized static ResourceInfoUtil getInstance() {
 		
-		if(null == resourceInfoUtil)
-		{
+		if(null == resourceInfoUtil){
 			resourceInfoUtil = (ResourceInfoUtil)beanFactory.getBean("resourceInfoUtil");
 			resourceInfoUtil.setResourceinfoService((ResourceinfoService)beanFactory.getBean("resourceinfoService"));
 		}
@@ -47,6 +47,7 @@ public class ResourceInfoUtil implements BeanFactoryAware{
 	}
 
 	public static List<Resourceinfo> typeQueryList(String type) {
+		LOGGER.debug("typeQueryList()");
 		List<Resourceinfo> list = new ArrayList<Resourceinfo>();
 		if (null == type || "".equals(type)) {
 			return list;
@@ -57,8 +58,8 @@ public class ResourceInfoUtil implements BeanFactoryAware{
 		return list;
 	}
 	
-	public static Resourceinfo queryResoure(Integer id)
-	{
+	public static Resourceinfo queryResoure(Integer id)	{
+		LOGGER.debug("queryResoure()");
 		Resourceinfo resourceinfo = new Resourceinfo();
 		if(null == id)
 		{
