@@ -1,46 +1,453 @@
---‰∏öÂä°Ë°®ÂàõÂª∫
+
+drop table t_Activities cascade constraints;
+drop table t_ActivitiesUser cascade constraints;
+drop table t_Certificates cascade constraints;
+drop table t_Express cascade constraints;
+drop table t_FileInfo cascade constraints;
+drop table t_FinancialAffairs cascade constraints;
+drop table t_Flight cascade constraints;
+drop table t_Hotel cascade constraints;
+drop table t_PhysicalExamination cascade constraints;
 drop table T_Personnel cascade constraints;
+drop table T_Personnel_Record cascade constraints;
+drop table t_TechnologicalProcess cascade constraints;
+drop table t_TrainCourse cascade constraints;
+drop table t_trainingOfPersonnel cascade constraints;
+
+drop sequence SEQUENCE_t_Activities;
+drop sequence SEQUENCE_t_ActivitiesUser;
+drop sequence SEQUENCE_t_Certificates;
+drop sequence SEQUENCE_t_Express;
+drop sequence SEQUENCE_t_FileInfo;
+drop sequence SEQUENCE_t_FinancialAffairs;
+drop sequence SEQUENCE_t_Flight;
+drop sequence SEQUENCE_t_Hotel;
+drop sequence SEQUENCE_t_PhysicalExamination;
+drop sequence SEQUENCE_T_Personnel;
+drop sequence SEQUENCE_T_Personnel_Record;
+drop sequence SEQUENCE_t_TechnologicalProcess;
+drop sequence SEQUENCE_t_TrainCourse;
+drop sequence SEQUENCE_t_trainingOfPersonnel;
+
 
 /*==============================================================*/
-/* Table: T_Personnel                                         */
+/* DBMS name:      ORACLE Version 11g                           */
+/* Created on:     2014/8/12 8:46:12                            */
+/*==============================================================*/
+
+/*==============================================================*/
+/* Table: "Activities"                                          */
+/* Table: ªÓ∂Ø–≈œ¢±Ì                                          */
+/*==============================================================*/
+create table t_Activities 
+(
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(20),  --ªÓ∂Ø√˚≥∆
+   "Description"        VARCHAR(50),  --ªÓ∂Ø√Ë ˆ
+   "ScheduleDate"       DATE,         --‘§∂® ±º‰
+   "setTime"            VARCHAR(10),  --ºØ∫œ ±º‰
+   "setPlace"           VARCHAR(20),  --ºØ∫œµÿµ„
+   "ScheduleTime"       VARCHAR(10),  --‘§º∆ªÓ∂Ø ±º‰
+   "userid"             NUMBER,       --∏∫‘»À
+   "Telephone"          VARCHAR(15),  --∏∫‘»ÀµÁª∞
+   "createDate"         VARCHAR(20),  --¥¥Ω® ±º‰
+   "updateDate"         VARCHAR(20),  --–ﬁ∏ƒ ±º‰
+   constraint PK_ACTIVITIES primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "ActivitiesUser"                                      */
+/* Table: ªÓ∂Ø»À‘±±Ì                                      */
+/*==============================================================*/
+create table t_ActivitiesUser 
+(
+   "id"                 NUMBER,
+   "ActivitiesId"       NUMBER,  --ªÓ∂Ø–≈œ¢id
+   "Userid"             NUMBER   --»À‘±id
+);
+
+/*==============================================================*/
+/* Table: "Certificates"                                        */
+/* Table: ÷§º˛–≈œ¢                                              */
+/*==============================================================*/
+create table t_Certificates 
+(
+   "id"                 NUMBER               not null,
+   "workflowId"                 VARCHAR(10),  --¡˜≥ÃΩ⁄µ„
+   "name"               VARCHAR(30),          --÷§º˛√˚≥∆
+   "handleDate"         DATE,                 --∞Ï¿Ì»’∆⁄
+   "ReceiveDate"        DATE,                 --¡Ï»°»’∆⁄
+   "ValidStartDate"     DATE,                 --÷§º˛”––ßø™ º»’∆⁄
+   "ValidEndDate"       DATE,                 --÷§º˛”––ßΩ· ¯»’∆⁄
+   "type"               VARCHAR(3),           --÷÷¿‡
+   "createDate"         VARCHAR(20),          --¥¥Ω® ±º‰
+   "updateDate"         VARCHAR(20),          --–ﬁ∏ƒ ±º‰
+   "status"                   VARCHAR(2),     --◊¥Ã¨
+   "TechnologicalProcessID" NUMBER,
+   constraint PK_CERTIFICATES primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "Express"                                             */
+/* øÏµ›–≈œ¢                                                     */
+/*==============================================================*/
+create table t_Express 
+(
+   "id"                 NUMBER               not null,
+   "ExpressNumber"      VARCHAR(30),      --øÏµ›∫≈
+   "Company"            VARCHAR(30),      --øÏµ›π´Àæ
+   "Telephone"          VARCHAR(15),      --π´ÀæµÁª∞
+   "DeliverGoodsDate"   DATE,             --∑¢ªı»’∆⁄
+   "ArriveDate"         DATE,             --‘§º∆µΩªı»’∆⁄
+   "TechnologicalProcessID" NUMBER,       --»À‘±id
+   constraint PK_EXPRESS primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: FileInfo                                            */
+/* Table: Œƒº˛–≈œ¢                                            */
+/*==============================================================*/
+create table t_FileInfo 
+(
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(30),        --Œƒº˛√˚
+   "nameType"           VARCHAR(10),        --Œƒº˛¿‡–Õ
+   TYPE                 VARCHAR(20),        --÷÷¿‡
+   "Descr"              VARCHAR(100),       --√Ë ˆ
+   "createDate"         VARCHAR(30),        --¥¥Ω® ±º‰
+   "updateDate"         VARCHAR(30),        --–ﬁ∏ƒ ±º‰
+   "state"              VARCHAR(2),         --◊¥Ã¨
+   "TechnologicalProcessID" NUMBER,
+   constraint PK_FILEINFO primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "FinancialAffairs"                                    */
+/* Table: ≤∆ŒÒ–≈œ¢                                        */
+/*==============================================================*/
+create table t_FinancialAffairs 
+(
+   "id"                 NUMBER               not null,
+   "contractType"       VARCHAR(20),        --∫œÕ¨÷÷¿‡
+   π´ÀæµÁª∞∫≈¬Î               VARCHAR(20),  --π´ÀæµÁª∞∫≈¬Î
+   π§◊ ø®“¯––                VARCHAR(20),   --π§◊ ø®“¯––
+   π§◊ ø®∫≈¬Î                VARCHAR(30),   --π§◊ ø®∫≈¬Î
+   π§◊                    NUMBER,           --π§◊ 
+   ∫œÕ¨ø™ º»’∆⁄               DATE,         --∫œÕ¨ø™ º»’∆⁄
+   ∫œÕ¨Ω· ¯»’∆⁄               DATE,         --∫œÕ¨Ω· ¯»’∆⁄ 
+   "TypeOfVisa"         VARCHAR(10),        --«©÷§¿‡–Õ
+   "TypeOfVisaDate"     DATE,               --«©÷§µΩ∆⁄»’
+   "SigningContractDate" DATE,              --∫œÕ¨’˝ Ω«©∂©»’∆⁄
+   "CopyToStaff"        VARCHAR(1),         --∫œÕ¨∏±±æ «∑Ò∏¯Õ‚ΩÃ
+   "TechnologicalProcessID" NUMBER,         --»À‘±ID
+   constraint PK_FINANCIALAFFAIRS primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "Flight"                                              */
+/* ∫Ω∞‡–≈œ¢                                                     */
+/*==============================================================*/
+create table t_Flight 
+(
+   "id"                 NUMBER               not null,
+   "TechnologicalProcessID" NUMBER,            --»À‘±ID
+   "FlightNumber"       VARCHAR(20),           --∫Ω∞‡∫≈
+   "startDate"          DATE,                  --∆∑… ±º‰
+   "endDate"            DATE,                  --µΩ¥Ô ±º‰
+   "Place"              VARCHAR(30),           --µΩ¥Ôª˙≥°
+   "airportPeopleId"    NUMBER,                --Ω”ª˙»À
+   constraint PK_FLIGHT primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "Hotel"                                               */
+/* Table: "æ∆µÍ–≈œ¢"                                            */
+/*==============================================================*/
+create table t_Hotel 
+(
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(20), --æ∆µÍ√˚≥∆
+   "Address"            VARCHAR(50), --æ∆µÍµÿ÷∑
+   "Telephone"          VARCHAR(15), --æ∆µÍµÁª∞
+   "RoomNumber"         VARCHAR(10), --∑øº‰∫≈
+   "RoomType"           VARCHAR(2),  --∑øº‰¿‡–Õ
+   "ScheduleDate"       DATE,        --‘§∂® ±º‰
+   "ScheduleDay"        VARCHAR(2),  --‘§∂®ÃÏ ˝
+   "CheckInDate"        DATE,        --»Î◊° ±º‰
+   "CheckInDay"         VARCHAR(2),  --»Î◊°ÃÏ ˝
+   "Price"              VARCHAR(5),  --º€∏Ò
+   "createDate"         VARCHAR(20), --¥¥Ω® ±º‰
+   "updateDate"         VARCHAR(20), --–ﬁ∏ƒ ±º‰
+   "TechnologicalProcessID" NUMBER,  --»À‘±ID
+   constraint PK_HOTEL primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "PhysicalExamination"                                 */
+/* Table: ÃÂºÏ–≈œ¢                                 */
+/*==============================================================*/
+create table t_PhysicalExamination 
+(
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(20), --ÃÂºÏ“Ω‘∫
+   "Address"            VARCHAR(30), --ÃÂºÏµÿ÷∑
+   "Telephone"          VARCHAR(20), --“Ω‘∫µÁª∞
+   "Remarks"            VARCHAR(50), --“Ω‘∫±∏◊¢
+   "type"               VARCHAR(2),  --÷÷¿‡
+   "ScheduleDate"       DATE,        --‘§∂® ±º‰
+   "ReceiveDate"        DATE,        --±®∏Ê¡Ï»°»’∆⁄ 
+   "TechnologicalProcessID" NUMBER,  --»À‘±ID
+   constraint PK_PHYSICALEXAMINATION primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "T_Personnel"                                         */
+/* Table: »À‘±’˝ Ω±Ì                                            */
 /*==============================================================*/
 create table T_Personnel 
 (
-   id                 NUMBER               not null,
-   name                   VARCHAR(25), --ÂêçÂ≠ó
-   EnglishName                  VARCHAR(25),--Ëã±ÊñáÂêçÂ≠ó
-   Nationality        VARCHAR(20),--ÂõΩÁ±ç
-   YearBirth          VARCHAR(6),--Âá∫ÁîüÂπ¥
-   Birthday           DATE,--ÁîüÊó•
-   State              VARCHAR(2),--ÂΩìÂâçÁä∂ÊÄÅ:0,Êú™ËÅîÁ≥ªÔºå1Â∑≤ËÅîÁ≥ªÔºå2.Êó†ÊïàËÆ∞ÂΩïÔºå3.Ê≠£Âú®ÂÖ•ËÅåÔºå4.Â∑≤ÂÖ•ËÅå
-   PassportDate       DATE,--Êä§ÁÖßÂà∞ÊúüÊó•
-   visaType           VARCHAR(1),--Á≠æËØÅÁ±ªÂûã
-   visaDate           DATE,--Á≠æËØÅÂà∞ÊúüÊó•
-   contractType       VARCHAR(1),--ÂêàÂêåÁ±ªÂûã
-   contractStartDate  DATE,--ÂêàÂêåÂà∞ÊúüÊó•
-   InsuranceEndDate   DATE,--‰øùÈô©Âà∞ÊúüÊó•
-   school             VARCHAR(50),--ÊâÄÂú®Â≠¶Ê†°
-   intentionSchool    VARCHAR(50),--ÊÑèÂêëÂ≠¶Ê†°
-   schoolFeedback     VARCHAR(100),--Â≠¶Ê†°ÂèçÈ¶à
-   createTime         DATE,--ÂàõÂª∫Êó•Êúü
-   updateTime         DATE,--‰øÆÊîπÊó•ÊúüÔºàÂøÖÈ°ªÈöèÊó∂Êõ¥Êñ∞Ôºâ
-   mail               VARCHAR(25),--ÁîµÂ≠êÈÇÆÁÆ±
-   constraint PK_T_PERSONNEL primary key (id)
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(25), --–’√˚
+   "EnglishName"        VARCHAR(25), --”¢Œƒ√˚
+   "Nationality"        VARCHAR(20), --π˙ºÆ
+   "YearBirth"          VARCHAR(6),  --≥ˆ…˙ƒÍ∑›
+   "Birthday"           DATE,        --…˙»’
+   "State"              VARCHAR(2),  --◊¥Ã¨
+   "PassportDate"       DATE,        --ª§’’»’∆⁄
+   "visaType"           VARCHAR(1),  --«©÷§¿‡–Õ
+   "visaDate"           DATE,        --«©÷§»’∆⁄
+   "contractType"       VARCHAR(1),  --∫œÕ¨¿‡–Õ
+   "contractStartDate"  DATE,        --∫œÕ¨«©∂©»’∆⁄
+   "InsuranceEndDate"   DATE,        --±£œ’µΩ∆⁄»’ 
+   "school"             VARCHAR(50), --À˘‘⁄—ß–£
+   "intentionSchool"    VARCHAR(50), --“‚œÚ—ß–£
+   "schoolFeedback"     VARCHAR(100),--—ß–£∑¥¿°
+   "createTime"         DATE,        --¥¥Ω®»’∆⁄
+   "updateTime"         DATE,        --–ﬁ∏ƒ»’∆⁄
+   "mail"               VARCHAR(25), --µÁ◊”” œ‰
+   constraint PK_T_PERSONNEL primary key ("id")
 );
-
-
-drop table "T_Personnel_Record" cascade constraints;
 
 /*==============================================================*/
 /* Table: "T_Personnel_Record"                                  */
+/* Table: º«¬º±Ì                                                */
 /*==============================================================*/
-create table "T_Personnel_Record" 
+create table T_Personnel_Record 
 (
-   "id"                 NUMBER, --‰∏ªÂª∫
-   "PersonnelType"      VARCHAR(1),--Á±ªÂûã
-   "appointmentDate"    DATE,--È¢ÑÁ∫¶Êó∂Èó¥
-   "Content"            VARCHAR(500),--ËÆ∞ÂΩï
-   "createTime"         DATE,--ÂàõÂª∫Êó•Êúü
-   "PersonnelID"        NUMBER--Personnel‰∏ªË°®ID
+   "id"                 NUMBER,
+   "PersonnelType"      VARCHAR(1),  --¿‡–Õ
+   "appointmentDate"    DATE,        --‘§‘º ±º‰
+   "Content"            VARCHAR(500),--º«¬ºƒ⁄»›
+   "createTime"         DATE,        --¥¥Ω® ±º‰
+   "PersonnelID"        NUMBER       --»À‘±ID
 );
 
+/*==============================================================*/
+/* Table: "TechnologicalProcess"                                */
+/*==============================================================*/
+create table t_TechnologicalProcess 
+(
+   "id"                 NUMBER               not null,
+   "name"               VARCHAR(25),         --–’√˚
+   "englishName"        VARCHAR(25),         --”¢Œƒ√˚
+   "Nationality"        VARCHAR(20),         --π˙ºÆ
+   "yearBirth"          VARCHAR(6),          --≥ˆ…˙ƒÍ∑›
+   "Birthday"           DATE,                --…˙»’
+   "state"              VARCHAR(2),          --◊¥Ã¨
+   "mail"               VARCHAR(25),         --µÁ◊”” º˛
+   "createTime"         VARCHAR(20),         --¥¥Ω®»’∆⁄
+   "updateTime"         VARCHAR(20),         --–ﬁ∏ƒ»’∆⁄
+   "workUserId"         NUMBER,              --¡˜≥Ã∑¢∆»À
+   "contractType"       VARCHAR(2),          --∫œÕ¨÷÷¿‡
+   "PassportNo"         VARCHAR(30),         --ª§’’∫≈
+   "PassportNoDate"     VARCHAR(20),         --ª§’’”––ß∆⁄
+   "contractDate"       VARCHAR(20),         --∫œÕ¨”––ß∆⁄
+   "currentLocation"    VARCHAR(20),         --ƒø«∞À˘‘⁄µÿ
+   "workflowId"         VARCHAR(64),         --¡˜ÀÆ∫≈
+   "res1"               VARCHAR(50),         --¿©’π◊÷∂Œ
+   "res2"               VARCHAR(50),         --
+   "res3"               VARCHAR(50),         --
+   "res4"               VARCHAR(50),         --
+   "res5"               VARCHAR(50),         --
+   "res6"               VARCHAR(50),         --
+   constraint PK_TECHNOLOGICALPROCESS primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "TrainCourse"                                         */
+/* ≈‡—µøŒ≥Ã–≈œ¢                                                 */
+/*==============================================================*/
+create table t_TrainCourse 
+(
+   "id"                 NUMBER               not null,
+   "TrainType"          VARCHAR(2),  --≈‡—µ¿‡±
+   "ScheduleDate"       DATE,        --‘§∂® ±º‰
+   "Address"            VARCHAR(20), --µÿ÷∑
+   "CourseDate"         VARCHAR(2),  --øŒ≥Ã ±º‰
+   "Description"        VARCHAR(50), --øŒ≥Ã√Ë ˆ
+   "name"               VARCHAR(20), --øŒ≥Ã√˚≥∆
+   "userId"             NUMBER,      --øŒ≥ÃΩÃ ¶
+   "createDate"         VARCHAR(20), --¥¥Ω® ±º‰
+   "updateDate"         VARCHAR(20), --–ﬁ∏ƒ ±º‰
+   constraint PK_TRAINCOURSE primary key ("id")
+);
+
+/*==============================================================*/
+/* Table: "trainingOfPersonnel"                                 */
+/* ≈‡—µ»À‘±–≈œ¢±Ì                                               */
+/*==============================================================*/
+create table t_trainingOfPersonnel 
+(
+   "id"                 NUMBER               not null,
+   "TrainCourseId"      NUMBER,     --≈‡—µøŒ≥Ãid
+   "TechnologicalProcessId" NUMBER, --≈‡—µ»À‘±id
+   constraint PK_TRAININGOFPERSONNEL primary key ("id")
+);
+
+/* ±ÌµƒÕ‚º¸¥¥Ω®  ø™ º                                               */
+/* 
+alter table t_ActivitiesUser
+   add constraint FK_ACTIVITI_REFERENCE_TECHNOLO foreign key ("Userid")
+      references t_TechnologicalProcess ("id");
+
+alter table t_ActivitiesUser
+   add constraint FK_ACTIVITI_REFERENCE_ACTIVITI foreign key ("ActivitiesId")
+      references t_Activities ("id");
+
+alter table t_Certificates
+   add constraint FK_CERTIFIC_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_Express
+   add constraint FK_EXPRESS_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_FileInfo
+   add constraint FK_FILEINFO_REFERENCE_TECHNOLO foreign key ("id")
+      references t_TechnologicalProcess ("id");
+
+alter table t_FinancialAffairs
+   add constraint FK_FINANCIA_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_Flight
+   add constraint FK_FLIGHT_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_Hotel
+   add constraint FK_HOTEL_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_PhysicalExamination
+   add constraint FK_PHYSICAL_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessID")
+      references t_TechnologicalProcess ("id");
+
+alter table t_trainingOfPersonnel
+   add constraint FK_TRAINING_REFERENCE_TRAINCOU foreign key ("TrainCourseId")
+      references t_TrainCourse ("id");
+
+alter table t_trainingOfPersonnel
+   add constraint FK_TRAINING_REFERENCE_TECHNOLO foreign key ("TechnologicalProcessId")
+      references t_TechnologicalProcess ("id");
+	   */
+/* ±ÌµƒÕ‚º¸¥¥Ω®  Ω· ¯                                               */
+
+/* ±Ì –Ú¡–                                               */
+
+create sequence SEQUENCE_t_ActivitiesUser
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_ActivitiesUser
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_Certificates
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_Express
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_FileInfo
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_FinancialAffairs
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_Flight
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_Hotel
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_PhysicalExamination
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_T_Personnel
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_T_Personnel_Record
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_TechnologicalProcess
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_TrainCourse
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_t_trainingOfPersonnel
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
