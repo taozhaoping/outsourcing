@@ -35,13 +35,13 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="-1" href="#">外事招聘流程</a>
+						<a tabindex="-1" id="recruitmentBtn" href="javascript:void();">外事招聘流程</a>
 					</li>
 					<!-- 
 					<li class="divider"></li>
 					 -->
 					<li>
-						<a tabindex="-1" href="#">外教入职流程</a>
+						<a tabindex="-1" id="inductionBtn" href="javascript:void();">外教入职流程</a>
 					</li>
 				</ul>
 			</li>
@@ -71,4 +71,22 @@
 		//跳转到登陆页面
 		window.location.href = basePath + "/login/login.jspa";
 	});
+	
+	$("#recruitmentBtn").click( function () {
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		//跳转到登陆页面
+		window.location.href = basePath + "/workflow/recruitment.jspa";
+	});
+	
+	$("#inductionBtn").click( function () {
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		//跳转到登陆页面
+		window.location.href = basePath + "/workflow/induction.jspa	";
+	});
+	
+	
 </script>

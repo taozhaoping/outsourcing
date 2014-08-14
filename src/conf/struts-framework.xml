@@ -35,7 +35,7 @@
 	<!-- 设置是否每次请求，都重新加载资源文件，默认值为false. -->
 	<constant name="struts.i18n.reload" value="false" />
 	<!-- 所有package 继承这个schoolcontrol的package -->
-	<package name="school" extends="struts-default,json-default" abstract="ture">
+	<package name="struts-base" extends="struts-default,json-default" abstract="ture">
 		<interceptors>
 			<!-- 动态语言切换 -->
 			<interceptor name="language"
