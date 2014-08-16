@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zh.base.model.ParamModel;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.web.model.InductionModel;
 import com.zh.web.model.TechnologicalProcessModel;
 import com.zh.web.service.TechnologicalProcessService;
 
@@ -17,7 +17,7 @@ public class InductionAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private TechnologicalProcessModel technologicalProcessModel = new TechnologicalProcessModel();
+	private InductionModel inductionModel = new InductionModel();
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(InductionAction.class); 
 	
@@ -28,7 +28,7 @@ public class InductionAction extends BaseAction {
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub
-		return technologicalProcessModel;
+		return inductionModel;
 	}
 	
 	public String execute() {
@@ -43,13 +43,13 @@ public class InductionAction extends BaseAction {
 		return Action.EDITOR;
 	}
 
-	public TechnologicalProcessModel getTechnologicalProcessModel() {
-		return technologicalProcessModel;
+	
+	public InductionModel getInductionModel() {
+		return inductionModel;
 	}
 
-	public void setTechnologicalProcessModel(
-			TechnologicalProcessModel technologicalProcessModel) {
-		this.technologicalProcessModel = technologicalProcessModel;
+	public void setInductionModel(InductionModel inductionModel) {
+		this.inductionModel = inductionModel;
 	}
 
 	public TechnologicalProcessService getTechnologicalProcessService() {

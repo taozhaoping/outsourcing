@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.zh.base.model.ParamModel;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.web.model.RecruitmentModel;
 
 public class RecruitmentAction extends BaseAction {
 	
@@ -14,7 +15,7 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ParamModel paramModel = new ParamModel();
+	private RecruitmentModel recruitmentModel = new RecruitmentModel();
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(RecruitmentAction.class); 
 	
@@ -22,7 +23,7 @@ public class RecruitmentAction extends BaseAction {
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub
-		return paramModel;
+		return recruitmentModel;
 	}
 	
 	public String execute() {
@@ -37,12 +38,12 @@ public class RecruitmentAction extends BaseAction {
 		return Action.EDITOR;
 	}
 
-	public ParamModel getParamModel() {
-		return paramModel;
+	public RecruitmentModel getRecruitmentModel() {
+		return recruitmentModel;
 	}
 
-	public void setParamModel(ParamModel paramModel) {
-		this.paramModel = paramModel;
+	public void setRecruitmentModel(RecruitmentModel recruitmentModel) {
+		this.recruitmentModel = recruitmentModel;
 	}
 
 }
