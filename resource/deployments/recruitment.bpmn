@@ -11,11 +11,11 @@
     <sequenceFlow id="flow6" sourceRef="UT_BZheng" targetRef="UT_YQing"></sequenceFlow>
     <sequenceFlow id="flow7" sourceRef="UT_YQing" targetRef="exclusivegateway1"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
-    <sequenceFlow id="flow13" name="不同意" sourceRef="exclusivegateway1" targetRef="endevent1">
+    <sequenceFlow id="flow13" name="拒绝" sourceRef="exclusivegateway1" targetRef="endevent1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!invitationPass}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow15" name="不同意" sourceRef="exclusivegateway2" targetRef="endevent1">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[flightConfirm]]></conditionExpression>
+    <sequenceFlow id="flow15" name="拒绝" sourceRef="exclusivegateway2" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!flightConfirm}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow17" name="同意" sourceRef="exclusivegateway1" targetRef="usertask2">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${invitationPass}]]></conditionExpression>
@@ -94,7 +94,7 @@
         <omgdi:waypoint x="760.0" y="178.0"></omgdi:waypoint>
         <omgdi:waypoint x="820.0" y="177.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="770.0" y="178.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="770.0" y="178.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
