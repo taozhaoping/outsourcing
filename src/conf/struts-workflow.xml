@@ -11,7 +11,7 @@
 	<package name="workflow" namespace="/workflow" extends="struts-base">
 		<!-- 外教入职流程-->
 		<action name="induction" class="com.zh.web.action.InductionAction" method="execute">
-			<result name="success">/pages/workflow/Invitation/induction.jsp</result>
+			<result name="success">/pages/workflow/induction/induction.jsp</result>
 			
 			<result name="editor" type="redirectAction">
 				<param name="actionName">induction</param>  
@@ -23,7 +23,7 @@
 		
 		<!-- 外事招聘流程 -->
 		<action name="recruitment" class="com.zh.web.action.RecruitmentAction" method="execute">
-			<result name="success">/pages/workflow/Entry/recruitment.jsp</result>
+			<result name="success">/pages/workflow/recruitment/recruitment.jsp</result>
 			
 			<result name="editor" type="redirectAction">
 				<param name="actionName">recruitment</param>  

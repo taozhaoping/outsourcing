@@ -78,7 +78,7 @@
 
 		<ul class="breadcrumb">
 			<li><a href="<%=path%>/home/main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><span class="active" id="navigation1"></span> <span class="divider">/</span></li>
+			<li><span class="active" id="navigation1"></span></li>
 		</ul>
 
 		<div class="container-fluid">
@@ -92,87 +92,29 @@
 						<div class="btn-group"></div>
 					</div>
 					<div class="well">
-
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
+							<li><a href="#certificates" data-toggle="tab">证件信息</a></li>
+							<li><a href="#flight" data-toggle="tab">航班信息</a></li>
+							<li><a href="#workflow" data-toggle="tab">工作流</a></li>
+							<li><a href="#annex" data-toggle="tab">附件</a></li>
+						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-
-								<input type="hidden" name="sysParam.id" value="${sysParam.id}">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}">
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group" id="name_div">
-											<label class="control-label" for="inputemailservice">邮箱服务器地址:</label>
-											<div class="controls">
-												<input type="text" data-required="true" maxlength="15"
-													id="inputemailservice" name="sysParam.emailservice"
-													value="${sysParam.emailservice}" class="input-xlarge" />
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputemailform">服务器邮箱名:</label>
-											<div class="controls">
-												<input type="text" id="inputemailform" data-required="true"
-													name="sysParam.emailform" value="${sysParam.emailform}"
-													data-required="true" class="input-xlarge" />
-											</div>
-										</div>
-									</div>
-								</dir>
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputemailusername">邮箱账号:</label>
-											<div class="controls">
-												<input type="text" id="inputemailusername" maxlength="60"
-													data-required="true" name="sysParam.emailusername"
-													value="${sysParam.emailusername}" class="input-xlarge" />
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputemailpassword">邮箱密码:</label>
-											<div class="controls ">
-												<input size="16" id="inputemailpassword"
-													name="sysParam.emailpassword" type="text"
-													value="${sysParam.emailpassword}" readonly
-													class="input-xlarge" />
-											</div>
-										</div>
-									</div>
-								</dir>
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputemailisauth">是否验证:</label>
-											<div class="controls">
-												<select id="inputemailisauth" class="input-xlarge"
-													name="sysParam.emailisauth">
-													<option value="0">是</option>
-													<option value="1">否</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="inputemailurlpassword">url秘钥:</label>
-											<div class="controls">
-
-												<input size="16" id="inputemailurlpassword"
-													name="sysParam.emailurlpassword" type="text"
-													value="${sysParam.emailurlpassword}" readonly
-													class="input-xlarge" />
-											</div>
-										</div>
-									</div>
-								</dir>
-
+								
 							</div>
-
+							<div class="tab-pane fade" id="certificates">
+								
+							</div>
+							<div class="tab-pane fade" id="flight">
+								
+							</div>
+							<div class="tab-pane fade" id="workflow">
+								
+							</div>
+							<div class="tab-pane fade" id="annex">
+								
+							</div>
 						</div>
 					</div>
 				</div>

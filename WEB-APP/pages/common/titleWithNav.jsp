@@ -77,7 +77,7 @@
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
 		//跳转到登陆页面
-		window.location.href = basePath + "/workflow/recruitment.jspa";
+		window.location.href = basePath + "/workflow/recruitment.jspa?menuId=workflow&menu2Id=recruitment";
 	});
 	
 	$("#inductionBtn").click( function () {
@@ -85,7 +85,7 @@
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
 		//跳转到登陆页面
-		window.location.href = basePath + "/workflow/induction.jspa	";
+		window.location.href = basePath + "/workflow/induction.jspa?menuId=workflow&menu2Id=induction";
 	});
 	
 	

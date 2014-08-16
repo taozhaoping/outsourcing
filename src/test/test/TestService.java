@@ -5,7 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.zh.base.model.bean.Role;
-import com.zh.base.service.RoleService;
+import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.service.TechnologicalProcessService;
 
 public class TestService {
 
@@ -14,13 +15,15 @@ public class TestService {
 
 	@Test
 	public void init() throws  Exception {
-		RoleService roleService = (RoleService) applicationContext
-				.getBean("roleService");
+		TechnologicalProcessService technologicalProcessService = (TechnologicalProcessService) applicationContext
+				.getBean("technologicalProcessService");
 		
-		Role role = new Role();
-		role.setId(1);
-		Role roleReult = roleService.queryAuthoritiesToMenu(role);
-		System.out.println(roleReult.getMenuList().size());
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(1);
+		technologicalProcess.setName("测试");
+		technologicalProcessService.insert(technologicalProcess);
+		//TechnologicalProcess reult = technologicalProcessService.query(technologicalProcess);
+		//System.out.println(reult.);
 	}
 
 
