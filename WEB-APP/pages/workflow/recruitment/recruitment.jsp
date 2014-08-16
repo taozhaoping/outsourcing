@@ -92,7 +92,7 @@
 						</button>
 
 						<div class="pull-right">
-							<button class="btn" type="button" id="approveBtn">
+							<button class="btn" type="button" id="approveBtn" data-toggle="modal" data-target="#submitConfirm">
 								<i class="icon-ok"></i> 批准
 							</button>
 							<button class="btn" type="button" id="rejectBtn">
@@ -205,10 +205,9 @@
 										<div class="control-group">
 											<label class="control-label" for="inputMail">邮件:</label>
 											<div class="controls">
-<input type="text" maxlength="15" id="inputMail"
+												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail"
 													value="${technologicalProcess.mail}" class="input-large">
-												
 											</div>
 										</div>
 									</div>
@@ -284,7 +283,34 @@
 					</div>
 				</div>
 			</form>
+			
+			<!-- 创建工作流 -->
+			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId">
+				<input type="hidden" name="assign" id="cwf_assign">
+			</form>
 		</div>
+	</div>
+	
+	<div class="modal small hide fade" id="submitConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">启动流程</h3>
+	  </div>
+	  <div class="modal-body">
+	    <!-- 
+	    <p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认要退出系统吗?</p>
+	     -->
+		<div class="control-group">
+			<label class="control-label" for="inputContractdate">审批人:</label>
+			<input type="text" id="modal_assign" class="input-large">
+		</div>
+
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn btn-danger" data-dismiss="modal" id="approveBtn">确认</button>
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	  </div>
 	</div>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
@@ -304,7 +330,21 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-
+		
+		//批准按钮
+		$("#approveBtn").click(function(){
+			var assign = $("#modal_assign").val();
+			if(assign == null || assign == ""){
+				return;
+			}
+			
+			var formId = $("#inputId").val();
+			
+			$("#cwf_formId").val(formId);
+			$("#cwf_assign").val(assign);
+			
+			$("#createWF").submit();
+		});
 		
 	</script>
 </body>

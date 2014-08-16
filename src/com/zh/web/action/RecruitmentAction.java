@@ -1,10 +1,18 @@
 package com.zh.web.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.activiti.engine.FormService;
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zh.base.model.ParamModel;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.web.model.RecruitmentModel;
@@ -25,6 +33,21 @@ public class RecruitmentAction extends BaseAction {
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
 	
+	@Autowired
+	protected RuntimeService runtimeService;
+
+	@Autowired
+	protected TaskService taskService;
+
+	@Autowired
+	protected RepositoryService repositoryService;
+	
+	@Autowired
+	protected FormService FormService;
+
+	@Autowired
+	protected IdentityService identityService;
+	
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub
@@ -37,6 +60,7 @@ public class RecruitmentAction extends BaseAction {
 		return Action.SUCCESS;
 	}
 	
+	//保存表单
 	public String save(){
 		LOGGER.debug("save()");
 		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
@@ -50,6 +74,26 @@ public class RecruitmentAction extends BaseAction {
 		}
 		return Action.EDITOR;
 	}
+	
+	
+	//创建工作流
+	public String createWorkflow(){
+		LOGGER.debug("createWorkflow()");
+		
+		String businessKey = this.recruitmentModel.getFormId();
+		String assignee = this.recruitmentModel.getAssign();
+		Map<String, Object> variables = new HashMap<String, Object>();
+		//variables.put("period", "2015-06");  
+		variables.put("nextAssignee", assignee);
+		
+		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("recruitment", businessKey, variables);
+		
+		String id = processInstance.getId();
+		LOGGER.debug("processInstance.id: " + id);
+		
+		return Action.EDITOR;
+	}
+	
 
 	public RecruitmentModel getRecruitmentModel() {
 		return recruitmentModel;

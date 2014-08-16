@@ -38,7 +38,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 		LOGGER.debug("update(User user)");
 		userInfoDAO.update(user);
 		//同步更新用户
-		String userId = user.getId().toString();
+		User updateUser = userInfoDAO.query(user);
+		String userId = updateUser.getLoginName();
 		//查询activiti user
 		UserQuery userQuery = identityService.createUserQuery();
 		List<org.activiti.engine.identity.User> activitiUsers = userQuery.userId(userId).list();
@@ -95,7 +96,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		LOGGER.debug("insert(User user)");
 		userInfoDAO.insert(user);
 		//同步用户到工作流用户
-		org.activiti.engine.identity.User activitiUser = identityService.newUser(user.getId().toString());
+		org.activiti.engine.identity.User activitiUser = identityService.newUser(user.getLoginName().toString());
 		cloneAndSaveActivitiUser(user, activitiUser);
         LOGGER.debug("sync add activiti user");
 	}
