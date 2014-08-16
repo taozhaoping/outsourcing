@@ -58,8 +58,8 @@
     <p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认要退出系统吗?</p>
   </div>
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
     <button class="btn btn-danger" data-dismiss="modal" id="exitBtn">确认</button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
   </div>
 </div>
 
