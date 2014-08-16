@@ -10,7 +10,7 @@
     <userTask id="UT_JDYDing" name="酒店预定"></userTask>
     <userTask id="UT_TJian" name="体检"></userTask>
     <userTask id="UT_RZPXun" name="入职培训"></userTask>
-    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="UT_JDYDing"></sequenceFlow>
+    <sequenceFlow id="flow1" name="发起" sourceRef="startevent1" targetRef="UT_JDYDing"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="UT_JDYDing" targetRef="UT_JJi"></sequenceFlow>
     <sequenceFlow id="flow3" sourceRef="UT_JJi" targetRef="UT_TJian"></sequenceFlow>
     <sequenceFlow id="flow4" sourceRef="UT_TJian" targetRef="UT_RZSXu"></sequenceFlow>
@@ -51,6 +51,9 @@
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="54.0" y="197.0"></omgdi:waypoint>
         <omgdi:waypoint x="100.0" y="197.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="100.0" x="64.0" y="197.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="205.0" y="197.0"></omgdi:waypoint>
