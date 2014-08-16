@@ -10,6 +10,8 @@
 		<result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
 		<result column="STATE" property="state" jdbcType="VARCHAR" />
 		<result column="MAIL" property="mail" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		
 		<result column="CREATETIME" property="createtime" jdbcType="VARCHAR" />
 		<result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
 		<result column="WORKUSERID" property="workuserid" />
@@ -30,6 +32,7 @@
 	<sql id="Base_Column_List">
 		ID, NAME, ENGLISHNAME, NATIONALITY, YEARBIRTH, BIRTHDAY,
 		STATE, MAIL,
+		PHONE,
 		CREATETIME,
 		UPDATETIME, WORKUSERID, CONTRACTTYPE,
 		PASSPORTNO, PASSPORTNODATE, CONTRACTDATE,
@@ -60,6 +63,9 @@
 			</if>
 			<if test="mail != null">
 				MAIL = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				MAIL = #{phone,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				CREATETIME = #{createtime,jdbcType=VARCHAR},
@@ -169,6 +175,10 @@
 			<if test="mail != null">
 				MAIL,
 			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			
 			<if test="createtime != null">
 				CREATETIME,
 			</if>
@@ -239,6 +249,9 @@
 			</if>
 			<if test="mail != null">
 				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				#{createtime,jdbcType=VARCHAR},
@@ -311,6 +324,9 @@
 			</if>
 			<if test="mail != null">
 				MAIL = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				CREATETIME = #{createtime,jdbcType=VARCHAR},

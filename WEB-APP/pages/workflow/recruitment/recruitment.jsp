@@ -77,7 +77,8 @@
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="<%=path%>/home/main.jspa">主页</a> <span class="divider">/</span></li>
+			<li><a href="<%=path%>/home/main.jspa">主页</a> <span
+				class="divider">/</span></li>
 			<li><span class="active" id="navigation1"></span></li>
 		</ul>
 
@@ -89,7 +90,15 @@
 						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
-						<div class="btn-group"></div>
+
+						<div class="pull-right">
+							<button class="btn" type="button" id="approveBtn">
+								<i class="icon-ok"></i> 同意
+							</button>
+							<button class="btn" type="button" id="rejectBtn">
+								<i class="icon-remove"></i> 拒绝
+							</button>
+						</div>
 					</div>
 					<div class="well">
 						<ul class="nav nav-tabs">
@@ -101,20 +110,174 @@
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-								
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}">
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputId">编号:</label>
+											<div class="controls">
+												<input type="text" maxlength="15" disabled="disabled"
+													id="inputId" name="technologicalProcess.id"
+													value="${technologicalProcess.id}" class="input-large">
+											</div>
+										</div>
+									</div>
+
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputName">姓名:</label>
+											<div class="controls">
+												<input type="text" data-required="true" maxlength="15"
+													data-required="true" id="inputName"
+													name="technologicalProcess.name"
+													value="${technologicalProcess.name}" class="input-large">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputEnglishname">英文名:</label>
+											<div class="controls">
+												<input type="text" id="inputEnglishname"
+													name="technologicalProcess.englishname"
+													value="${technologicalProcess.englishname}"
+													data-required="true" class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputnationality">国籍:</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputnationality"
+													name="technologicalProcess.nationality"
+													value="${technologicalProcess.name}" class="input-large">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputState">状态:</label>
+											<div class="controls">
+												<input type="text" id="inputState"
+													name="technologicalProcess.state"
+													value="${technologicalProcess.state}" class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputyearbirth">出生年份:</label>
+											<div class="controls">
+												<input type="text" id="inputyearbirth"
+													name="technologicalProcess.yearbirth"
+													value="${technologicalProcess.yearbirth}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputBirthday">生日:</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputBirthday"
+													name="technologicalProcess.birthday"
+													value="${technologicalProcess.birthday}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+
+								</dir>
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputMail">邮件:</label>
+											<div class="controls">
+<input type="text" maxlength="15" id="inputMail"
+													name="technologicalProcess.mail"
+													value="${technologicalProcess.mail}" class="input-large">
+												
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputPhone">手机号码:</label>
+											<div class="controls">
+												<input type="text" id="inputPhone"
+													name="technologicalProcess.Phone"
+													value="${technologicalProcess.phone}" class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5 left">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputContracttype">合同种类:</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputContracttype"
+													name="technologicalProcess.contracttype"
+													value="${technologicalProcess.contracttype}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+									<div class="span5 left">
+										<div class="control-group">
+											<label class="control-label" for="inputContractdate">合同有效期:</label>
+											<div class="controls">
+												<input type="text" id="inputContractdate"
+													name="technologicalProcess.contractdate"
+													value="${technologicalProcess.contractdate}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group" id="name_div">
+											<label class="control-label" for="inputPassportno">护照号:</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputPassportno"
+													name="technologicalProcess.passportno"
+													value="${technologicalProcess.passportno}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputPassportnodate">护照有效期:</label>
+											<div class="controls">
+												<input type="text" id="inputPassportnodate"
+													name="technologicalProcess.passportnodate"
+													value="${technologicalProcess.passportnodate}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
 							</div>
-							<div class="tab-pane fade" id="certificates">
-								
-							</div>
-							<div class="tab-pane fade" id="flight">
-								
-							</div>
-							<div class="tab-pane fade" id="workflow">
-								
-							</div>
-							<div class="tab-pane fade" id="annex">
-								
-							</div>
+							<div class="tab-pane fade" id="certificates"></div>
+							<div class="tab-pane fade" id="flight"></div>
+							<div class="tab-pane fade" id="workflow"></div>
+							<div class="tab-pane fade" id="annex"></div>
 						</div>
 					</div>
 				</div>
