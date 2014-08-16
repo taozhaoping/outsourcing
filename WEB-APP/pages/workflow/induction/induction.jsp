@@ -89,13 +89,15 @@
 						<button class="btn btn-primary" type="submit">
 							<i class="icon-save"></i> 保存
 						</button>
-						<div class="btn-group"></div>
-						<button class="btn" type="submit">
-							<i class="icon-save"></i> 通过
-						</button>
-						<button class="btn" type="submit">
-							<i class="icon-save"></i> 拒绝
-						</button>
+						
+						<div class="pull-right">
+							<button class="btn" type="button" id="approveBtn">
+								<i class="icon-ok"></i> 同意
+							</button>
+							<button class="btn" type="button" id="rejectBtn">
+								<i class="icon-remove"></i> 拒绝
+							</button>
+						</div>
 					</div>
 					<div class="well">
 						<ul class="nav nav-tabs">
