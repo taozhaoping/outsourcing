@@ -161,7 +161,7 @@
 	</bean>
 
 	<!-- flush cache拦截器 -->
-	
+	<!-- 
 	<bean id="methodCacheAfterAdvice" class="com.zh.core.cache.MethodCacheAfterAdvice">
 		<property name="cache">
 			<ref local="ehCache" />
@@ -180,7 +180,7 @@
 			</list>
 		</property>
 	</bean>
-<!-- 
+
 	<bean id="methodCachePointCutAdvice"
 		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
 		<property name="advice">

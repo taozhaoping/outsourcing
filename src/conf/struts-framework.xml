@@ -71,6 +71,43 @@
 			
 		</global-results>
 	</package>
+	
+	<package name="struts-workflow" extends="struts-default,json-default" abstract="ture">
+		<interceptors>
+			<!-- 动态语言切换 -->
+			<interceptor name="language"
+				class="com.zh.core.interceptor.LanguageInterceptor" />
+			<!-- 菜单权限验证过滤器
+			<interceptor name="authority"
+				class="com.zh.core.interceptor.LoginInterceptor" />
+			 -->
+			  <!-- action的权限访问过滤器 -->
+			 <interceptor name="authorityInterceptor" class="com.zh.core.interceptor.AuthorityInterceptor"></interceptor>
+			 <!-- ERROR 过滤器 -->
+			 <interceptor name="exceptionInterceptor" class="com.zh.core.interceptor.ExceptionInterceptor"></interceptor>
+			<!-- from重复提交拦截器
+			<interceptor name="invocationToken"
+				class="com.zh.core.interceptor.TokenAtionInterceptor" />
+			-->
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="language" />
+				<!--<interceptor-ref name="invocationToken" />-->
+				<!--<interceptor-ref name="authorityInterceptor" />-->
+				<!-- <interceptor-ref name="authority" /> -->
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="exceptionInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="loginStack" />
+
+		<global-results>
+			<result name="returnLogin">/login/login.jspa
+			</result>
+			<result name="error">/pages/exception/error.jsp</result>
+			
+		</global-results>
+	</package>
 
 
 </struts>

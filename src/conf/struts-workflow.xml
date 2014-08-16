@@ -8,7 +8,7 @@
 		* 工作流
 		*
 		* -->
-	<package name="workflow" namespace="/workflow" extends="struts-base">
+	<package name="workflow" namespace="/workflow" extends="struts-workflow">
 		<!-- 外教入职流程 -->
 		<action name="induction" class="com.zh.core.base.action.InductionAction" method="execute">
 			<result name="success">/pages/form/induction.jsp</result>
