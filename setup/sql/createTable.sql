@@ -134,6 +134,7 @@ create table SYS_MENU
 (
    id                 NUMBER               not null,
    name               VARCHAR2(150 BYTE), --菜单名称
+   NAMESPACE          VARCHAR2(30 BYTE), --NAMESPACE
    action             VARCHAR2(150 BYTE), --菜单action
    url                VARCHAR2(150 BYTE), --url地址
    i18n_key           VARCHAR2(100 BYTE), --国际化

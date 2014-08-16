@@ -77,7 +77,7 @@
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="main.jspa">主页</a> <span class="divider">/</span></li>
+			<li><a href="<%=path%>/home/main.jspa">主页</a> <span class="divider">/</span></li>
 			<li><span class="active" id="navigation1"></span> <span class="divider">/</span></li>
 		</ul>
 

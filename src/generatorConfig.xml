@@ -4,8 +4,8 @@
 <classPathEntry location="E:\workspace\outsourcing\WEB-APP\WEB-INF\lib\ojdbc14.jar" />
 <!--驱动包的绝对路径-->   
   <context id="context1" >
-    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.18.106.216:1521:orcl" userId="OSFI" password="agile932" />
-    <javaModelGenerator targetPackage="com.zh.base.model" targetProject="outsourcing" />
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.18.124.32:1521:orcl" userId="OSFI" password="agile932" />
+    <javaModelGenerator targetPackage="com.zh.web.model" targetProject="outsourcing" />
     <sqlMapGenerator targetPackage="sql" targetProject="outsourcing" />
     <!-- 要生成哪些表-->  
  
@@ -17,7 +17,7 @@
     <table tableName="SYS_ENTERPRISE" domainObjectName="Enterprise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="SYS_RESOURCEINFO" domainObjectName="Resourceinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
      -->
-    <table tableName="SYS_ROLE" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+    <table tableName="t_TechnologicalProcess" domainObjectName="TechnologicalProcess" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
      
   <!-- 未生成
     <table tableName="SYS_ROLE_TO_AUTHORITIES" domainObjectName="RoleToAuthorities" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  

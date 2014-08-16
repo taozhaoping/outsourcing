@@ -4,6 +4,7 @@
 	<resultMap id="T_Menu" type="Menu">
 		<id column="ID" property="id" />
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="NAMESPACE" property="nameSpace" jdbcType="VARCHAR" />
 		<result column="ACTION" property="action" jdbcType="VARCHAR" />
 		<result column="URL" property="url" jdbcType="VARCHAR" />
 		<result column="I18N_KEY" property="i18nKey" jdbcType="VARCHAR" />
@@ -12,7 +13,7 @@
 		<result column="REORDER" property="reorder" javaType="java.lang.Integer" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER
+		ID, NAME, nameSpace,ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER
 	</sql>
 
 	<sql id="where">
@@ -22,6 +23,9 @@
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="nameSpace != null">
+				#{nameSpace,jdbcType=VARCHAR},
 			</if>
 			<if test="action != null">
 				#{action,jdbcType=VARCHAR},
@@ -48,6 +52,7 @@
 		select 
 			id,
 			NAME, 
+			NAMESPACE,
 			ACTION, 
 			URL, 
 			I18N_KEY, 
@@ -99,6 +104,9 @@
 			<if test="name != null">
 				NAME,
 			</if>
+			<if test="nameSpace != null">
+				NAMESPACE,
+			</if>
 			<if test="action != null">
 				ACTION,
 			</if>
@@ -124,6 +132,9 @@
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="nameSpace != null">
+				#{nameSpace,jdbcType=VARCHAR},
 			</if>
 			<if test="action != null">
 				#{action,jdbcType=VARCHAR},
@@ -153,6 +164,9 @@
 		<set>
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="nameSpace != null">
+				NAMESPACE = #{nameSpace,jdbcType=VARCHAR},
 			</if>
 			<if test="action != null">
 				ACTION = #{action,jdbcType=VARCHAR},

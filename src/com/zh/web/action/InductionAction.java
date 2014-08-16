@@ -1,20 +1,22 @@
-package com.zh.core.base.action;
+package com.zh.web.action;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zh.base.model.ParamModel;
+import com.zh.core.base.action.Action;
+import com.zh.core.base.action.BaseAction;
 
-public class RecruitmentAction extends BaseAction {
+public class InductionAction extends BaseAction {
 	
 	/**
-	 * 招聘工作流
+	 * 入职工作流
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private ParamModel paramModel = new ParamModel();
 	
-	private static Logger LOGGER = LoggerFactory.getLogger(RecruitmentAction.class); 
+	private static Logger LOGGER = LoggerFactory.getLogger(InductionAction.class); 
 	
 	
 	@Override

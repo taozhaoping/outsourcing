@@ -32,6 +32,9 @@ public class Menu extends IDataObject {
      *
      * @mbggenerated Thu Jul 10 12:31:01 CST 2014
      */
+    
+    private String nameSpace;
+    
     private String action;
 
     /**
@@ -146,6 +149,14 @@ public class Menu extends IDataObject {
 
 	public void setMenuList(List<Menu> menuList) {
 		this.menuList = menuList;
+	}
+
+	public String getNameSpace() {
+		return nameSpace;
+	}
+
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
 	}
 
 }

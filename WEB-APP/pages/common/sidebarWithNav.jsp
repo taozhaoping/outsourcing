@@ -1,5 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String pathTop = request.getContextPath();
+%>
 <div class="sidebar-nav">
 	<s:iterator value="#session.menuList" status="statu" id="menu">
 		<a href="#<s:property value="action" />" class="nav-header collapsed"
@@ -8,9 +11,9 @@
 
 		<ul id="<s:property value="action" />" class="nav nav-list collapse">
 			<s:iterator value="#menu.menuList" id="menuTwo">
-				<li><a
-					href="<s:property value="url"/>?menuId=<s:property value="#menu.action" />&menu2Id=<s:property value="action"/>"
-					id="<s:property value="action"/>" url="<s:property value="url"/>"><s:property value="name" /></a></li>
+				<li><a 
+					href="<%=pathTop %>/<s:property value="nameSpace"/>/<s:property value="url"/>?menuId=<s:property value="#menu.action" />&menu2Id=<s:property value="action"/>"
+					id="<s:property value="action"/>" url="<%=pathTop %>/<s:property value="nameSpace"/>/<s:property value="url"/>"><s:property value="name" /></a></li>
 			</s:iterator>
 		</ul>
 	</s:iterator>
