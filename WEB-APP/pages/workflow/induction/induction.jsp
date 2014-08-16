@@ -92,7 +92,7 @@
 						
 						<div class="pull-right">
 							<button class="btn" type="button" id="approveBtn">
-								<i class="icon-ok"></i> 同意
+								<i class="icon-ok"></i> 批准
 							</button>
 							<button class="btn" type="button" id="rejectBtn">
 								<i class="icon-remove"></i> 拒绝
