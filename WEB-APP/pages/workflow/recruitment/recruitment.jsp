@@ -105,7 +105,7 @@
 							<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
 							<li><a href="#certificates" data-toggle="tab">证件信息</a></li>
 							<li><a href="#flight" data-toggle="tab">航班信息</a></li>
-							<li><a href="#workflow" data-toggle="tab">工作流</a></li>
+							<li><a href="#workflow1" data-toggle="tab">工作流</a></li>
 							<li><a href="#annex" data-toggle="tab">附件</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
@@ -115,7 +115,7 @@
 
 								<dir class="row">
 									<div class="span5">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputId">编号:</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
@@ -128,7 +128,7 @@
 								</dir>
 								<dir class="row">
 									<div class="span5 pull-left">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputName">姓名:</label>
 											<div class="controls">
 												<input type="text" data-required="true" maxlength="15"
@@ -153,12 +153,12 @@
 
 								<dir class="row">
 									<div class="span5">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputnationality">国籍:</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
-													value="${technologicalProcess.name}" class="input-large">
+													value="${technologicalProcess.nationality}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -187,13 +187,13 @@
 										</div>
 									</div>
 									<div class="span5">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputBirthday">生日:</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputBirthday"
+												<input type="text" size="15" id="inputBirthday"
 													name="technologicalProcess.birthday"
-													value="${technologicalProcess.birthday}"
-													class="input-large">
+													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -202,7 +202,7 @@
 
 								<dir class="row">
 									<div class="span5">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputMail">邮件:</label>
 											<div class="controls">
 <input type="text" maxlength="15" id="inputMail"
@@ -226,7 +226,7 @@
 
 								<dir class="row">
 									<div class="span5 left">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputContracttype">合同种类:</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputContracttype"
@@ -251,7 +251,7 @@
 
 								<dir class="row">
 									<div class="span5">
-										<div class="control-group" id="name_div">
+										<div class="control-group">
 											<label class="control-label" for="inputPassportno">护照号:</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputPassportno"
@@ -274,9 +274,11 @@
 									</div>
 								</dir>
 							</div>
-							<div class="tab-pane fade" id="certificates"></div>
+							<div class="tab-pane fade" id="certificates">
+								
+							</div>
 							<div class="tab-pane fade" id="flight"></div>
-							<div class="tab-pane fade" id="workflow"></div>
+							<div class="tab-pane fade" id="workflow1"></div>
 							<div class="tab-pane fade" id="annex"></div>
 						</div>
 					</div>
@@ -303,8 +305,7 @@
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
 
-		$("#inputemailisauth").select2();
-		$("#inputemailisauth").val("${sysParam.emailisauth}").trigger("change");
+		
 	</script>
 </body>
 </html>

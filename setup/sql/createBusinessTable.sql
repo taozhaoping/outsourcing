@@ -213,7 +213,7 @@ create table T_Personnel
    Nationality        VARCHAR(20), --国籍
    YearBirth          VARCHAR(6),  --出生年份
    Birthday           DATE,        --生日
-   State              VARCHAR(2),  --状态
+   State              VARCHAR(20),  --状态
    PassportDate       DATE,        --护照日期
    visaType           VARCHAR(1),  --签证类型
    visaDate           DATE,        --签证日期

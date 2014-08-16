@@ -8,6 +8,7 @@ import com.zh.base.model.ParamModel;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.web.model.RecruitmentModel;
+import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.TechnologicalProcessService;
 
 public class RecruitmentAction extends BaseAction {
@@ -38,7 +39,15 @@ public class RecruitmentAction extends BaseAction {
 	
 	public String save(){
 		LOGGER.debug("save()");
-		//TODO
+		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+		Integer id = technologicalProcess.getId();
+		if(null != id && id>0)
+		{
+			technologicalProcessService.update(technologicalProcess);
+		}else
+		{
+			technologicalProcessService.insert(technologicalProcess);
+		}
 		return Action.EDITOR;
 	}
 
