@@ -2,11 +2,13 @@ package com.zh.web.action;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.ParamModel;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.web.model.RecruitmentModel;
+import com.zh.web.service.TechnologicalProcessService;
 
 public class RecruitmentAction extends BaseAction {
 	
@@ -19,6 +21,8 @@ public class RecruitmentAction extends BaseAction {
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(RecruitmentAction.class); 
 	
+	@Autowired
+	private TechnologicalProcessService technologicalProcessService;
 	
 	@Override
 	public Object getModel() {
@@ -44,6 +48,15 @@ public class RecruitmentAction extends BaseAction {
 
 	public void setRecruitmentModel(RecruitmentModel recruitmentModel) {
 		this.recruitmentModel = recruitmentModel;
+	}
+
+	public TechnologicalProcessService getTechnologicalProcessService() {
+		return technologicalProcessService;
+	}
+
+	public void setTechnologicalProcessService(
+			TechnologicalProcessService technologicalProcessService) {
+		this.technologicalProcessService = technologicalProcessService;
 	}
 
 }
