@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/workflow/induction">
+  <process id="induction" name="外教入职流程" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="UT_JJi" name="接机"></userTask>
+    <userTask id="UT_JXPXun" name="教学培训"></userTask>
+    <userTask id="UT_RZSXu" name="入职手续"></userTask>
+    <userTask id="UT_GSHDong" name="公司活动"></userTask>
+    <userTask id="UT_JDYDing" name="酒店预定"></userTask>
+    <userTask id="UT_TJian" name="体检"></userTask>
+    <userTask id="UT_RZPXun" name="入职培训"></userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="UT_JDYDing"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="UT_JDYDing" targetRef="UT_JJi"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="UT_JJi" targetRef="UT_TJian"></sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="UT_TJian" targetRef="UT_RZSXu"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="UT_RZSXu" targetRef="UT_RZPXun"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="UT_RZPXun" targetRef="UT_JXPXun"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="UT_JXPXun" targetRef="UT_GSHDong"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="UT_GSHDong" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_induction">
+    <bpmndi:BPMNPlane bpmnElement="induction" id="BPMNPlane_induction">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="19.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="135.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_JJi" id="BPMNShape_UT_JJi">
+        <omgdc:Bounds height="55.0" width="105.0" x="268.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_JXPXun" id="BPMNShape_UT_JXPXun">
+        <omgdc:Bounds height="55.0" width="105.0" x="438.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_RZSXu" id="BPMNShape_UT_RZSXu">
+        <omgdc:Bounds height="55.0" width="105.0" x="618.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_GSHDong" id="BPMNShape_UT_GSHDong">
+        <omgdc:Bounds height="55.0" width="105.0" x="268.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_JDYDing" id="BPMNShape_UT_JDYDing">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_TJian" id="BPMNShape_UT_TJian">
+        <omgdc:Bounds height="55.0" width="105.0" x="438.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT_RZPXun" id="BPMNShape_UT_RZPXun">
+        <omgdc:Bounds height="55.0" width="105.0" x="618.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="54.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="205.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="268.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="373.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="438.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="543.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="618.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="670.0" y="225.0"></omgdi:waypoint>
+        <omgdi:waypoint x="670.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="618.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="543.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="438.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="373.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="268.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="170.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
