@@ -83,13 +83,18 @@ public class RecruitmentAction extends BaseAction {
 		String businessKey = this.recruitmentModel.getFormId();
 		String assignee = this.recruitmentModel.getAssign();
 		Map<String, Object> variables = new HashMap<String, Object>();
-		//variables.put("period", "2015-06");  
+		//variables.put("period", "2015-06");
 		variables.put("nextAssignee", assignee);
 		
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("recruitment", businessKey, variables);
 		
-		String id = processInstance.getId();
-		LOGGER.debug("processInstance.id: " + id);
+		String workflowId = processInstance.getId();
+		LOGGER.debug("processInstance.id: " + workflowId);
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(Integer.parseInt(businessKey));
+		technologicalProcess.setWorkflowid(workflowId);
+		//TODO 更新表单状态
+		technologicalProcessService.update(technologicalProcess);
 		
 		return Action.EDITOR;
 	}

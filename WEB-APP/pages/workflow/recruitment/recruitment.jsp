@@ -301,10 +301,8 @@
 	    <!-- 
 	    <p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认要退出系统吗?</p>
 	     -->
-		<div class="control-group">
-			<label class="control-label" for="inputContractdate">审批人:</label>
-			<input type="text" id="modal_assign" class="input-large">
-		</div>
+			<label class="control-label pull-left" for="modal_assign">审批人：</label>
+			<input type="text" id="modal_assign" class="input-large pull-right">
 
 	  </div>
 	  <div class="modal-footer">
