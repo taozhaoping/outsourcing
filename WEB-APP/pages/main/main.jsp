@@ -67,7 +67,7 @@
 					<span class="number">53</span>tickets
 				</p>
 				<p class="stat">
-					<span class="number">27</span>tasks
+					<span class="number"><s:property value="taskList.size()"/></span>tasks
 				</p>
 				<p class="stat">
 					<span class="number">15</span>waiting
