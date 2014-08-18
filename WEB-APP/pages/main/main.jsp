@@ -209,7 +209,7 @@
 							<span class="block-icon pull-right"> <a href="#"
 								class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i
 									class="icon-refresh"></i></a>
-							</span> <a href="#widget2container" data-toggle="collapse">待处理工作流</a>
+							</span> <a href="#widget2container" data-toggle="collapse">待处理任务</a>
 						</div>
 						<div id="widget2container" class="block-body collapse in">
 							<table class="table list">
