@@ -3,6 +3,8 @@ package com.zh.base.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class mainAction extends BaseAction {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	protected TaskService taskService;
 
 	//private String language;
 
@@ -46,8 +51,8 @@ public class mainAction extends BaseAction {
 //		//this.setLanguage(this.getLocale().toString());
 		
 		//获取当前登录用户信息
-		User user = (User) this.getSession().getAttribute(
-				VariableUtil.SESSION_KEY);
+		User user = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
+		
 //		// 获取员工信息
 //		mainService.initEmployeeInfo(mainModel);
 //
@@ -65,7 +70,18 @@ public class mainAction extends BaseAction {
 //		
 //		//保存用户信息到session
 //		this.getSession().setAttribute(VariableUtil.EMPLOYEE, mainModel.getEmployee());
-//		
+		String userName = user.getLoginName();
+		//需要认领的任务
+		List<Task> tasks = taskService.createTaskQuery().taskCandidateUser(userName).list();
+		if(tasks.size() > 0){
+			for(Task task : tasks){
+				taskService.claim(task.getId(), userName);
+			}
+		}
+		//当前用户待处理的任务
+		List<Task> taskList = taskService.createTaskQuery().taskAssignee(userName).list();
+		this.mainModel.setTaskList(taskList);
+		
 		return Action.SUCCESS;
 	}
 	

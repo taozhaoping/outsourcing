@@ -1,5 +1,9 @@
 package com.zh.base.model;
 
+import java.util.List;
+
+import org.activiti.engine.task.Task;
+
 import com.zh.base.model.bean.Role;
 import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
@@ -18,6 +22,8 @@ public class MainModel extends BaseModel {
 	private String contactTimeSize;
 	
 	private String theNextcontactSize;
+	
+	private List<Task> taskList;
 	
 	public Role getRole() {
 		return role;
@@ -57,6 +63,14 @@ public class MainModel extends BaseModel {
 
 	public void setTheNextcontactSize(String theNextcontactSize) {
 		this.theNextcontactSize = theNextcontactSize;
+	}
+
+	public List<Task> getTaskList() {
+		return taskList;
+	}
+
+	public void setTaskList(List<Task> taskList) {
+		this.taskList = taskList;
 	}
 
 }

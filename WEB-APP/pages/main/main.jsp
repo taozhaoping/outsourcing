@@ -78,7 +78,7 @@
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="#">主页</a> <span class="divider"></span></li>
+			<li><a href="<%=path%>/home/main.jspa">主页</a> <span class="divider"></span></li>
 			<!-- 
 			<li class="active">主页</li>
 			 -->
@@ -209,64 +209,20 @@
 							<span class="block-icon pull-right"> <a href="#"
 								class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i
 									class="icon-refresh"></i></a>
-							</span> <a href="#widget2container" data-toggle="collapse">History</a>
+							</span> <a href="#widget2container" data-toggle="collapse">待处理工作流</a>
 						</div>
 						<div id="widget2container" class="block-body collapse in">
 							<table class="table list">
 								<tbody>
-									<tr>
-										<td>
-											<p>
-												<i class="icon-user"></i> Mark Otto
-											</p>
-										</td>
-										<td>
-											<p>Amount: $1,247</p>
-										</td>
-										<td>
-											<p>Date: 7/19/2012</p> <a href="#">View Transaction</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<p>
-												<i class="icon-user"></i> Audrey Ann
-											</p>
-										</td>
-										<td>
-											<p>Amount: $2,793</p>
-										</td>
-										<td>
-											<p>Date: 7/12/2012</p> <a href="#">View Transaction</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<p>
-												<i class="icon-user"></i> Mark Tompson
-											</p>
-										</td>
-										<td>
-											<p>Amount: $2,349</p>
-										</td>
-										<td>
-											<p>Date: 3/10/2012</p> <a href="#">View Transaction</a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<p>
-												<i class="icon-user"></i> Ashley Jacobs
-											</p>
-										</td>
-										<td>
-											<p>Amount: $1,192</p>
-										</td>
-										<td>
-											<p>Date: 1/19/2012</p> <a href="#">View Transaction</a>
-										</td>
-									</tr>
-
+									<s:iterator value="taskList" var="task" status="index">
+										<tr>
+											<td><s:property value="#task.id"/></td>
+											<td><s:property value="#task.name"/></td>
+											<td>
+												<a href="#">查看</a> 
+											</td>
+										</tr>
+									</s:iterator>
 								</tbody>
 							</table>
 						</div>
