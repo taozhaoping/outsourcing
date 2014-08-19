@@ -133,7 +133,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from T_TECHNOLOGICALPROCESS
-		where ID = #{id}
+		<include refid="where" />
 		<if test="orderByClause != null">
 			order by ${orderByClause}
 		</if>
