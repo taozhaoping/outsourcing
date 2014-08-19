@@ -83,35 +83,35 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<a class="btn btn-primary" href="#">
-							<i class="icon-plus"></i> 新增
-						</a>
+						
 						<div class="btn-group"></div>
 					</div>
 					<div class="well">
 						<table class="table">
 							<thead>
 								<tr>
-									<th>序号</th>
-									<th>登录用户名</th>
+									<th>流程编号</th>
 									<th>姓名</th>
+									<th>英文名</th>
 									<th>电子邮件</th>
 									<th>手机号码</th>
-									<th>入职日期</th>
+									<th>流程发起人</th>
+									<th>修改时间</th>
 									<th>创建时间</th>
 									<th>状态</th>
-									<th style="width: 26px;">操作</th>
+									<th style="width: 32px;">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
-										<td><s:property value="#index.index + 1"/></td>
-										<td><s:property value="#tp.loginName"/></td>
+										<td><s:property value="#tp.id"/></td>
 										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.email"/></td>
-										<td><s:property value="#tp.mobileNumber"/></td>
-										<td><s:date name="#tp.entryTime" format="yyyy-MM-dd" /> </td>
+										<td><s:property value="#tp.englishname" />
+										<td><s:property value="#tp.mail"/></td>
+										<td><s:property value="#tp.phone"/></td>
+										<td><s:property value="#tp.workuserid"/></td>
+										<td><s:date name="#tp.updateTime" format="yyyy-MM-dd" /> </td>
 										<td><s:date name="#tp.createTime" format="yyyy-MM-dd" /> </td>
 										<td><s:property value="#tp.mobileNumber"/></td>
 										<td>
