@@ -1,5 +1,8 @@
 package com.zh.web.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.zh.core.base.model.BaseModel;
 import com.zh.web.model.bean.TechnologicalProcess;
 
@@ -16,6 +19,11 @@ public class RecruitmentModel extends BaseModel {
 	 * 审批者
 	 */
 	private String assign;
+	
+	/***
+	 * 
+	 */
+	private List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
 
 	public TechnologicalProcess getTechnologicalProcess() {
 		return technologicalProcess;
@@ -39,6 +47,15 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setAssign(String assign) {
 		this.assign = assign;
+	}
+
+	public List<TechnologicalProcess> getTechnologicalProcessList() {
+		return technologicalProcessList;
+	}
+
+	public void setTechnologicalProcessList(
+			List<TechnologicalProcess> technologicalProcessList) {
+		this.technologicalProcessList = technologicalProcessList;
 	}
 	
 }

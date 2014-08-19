@@ -16,7 +16,7 @@
 		
 		<!-- 外事招聘流程 -->
 		<action name="recruitment" class="com.zh.web.action.RecruitmentAction" method="execute">
-			<result name="success">/pages/workflow/recruitment/recruitment.jsp</result>
+			<result name="success">/pages/workflow/recruitment/recruitmentList.jsp</result>
 			<result name="editor">/pages/workflow/recruitment/recruitment.jsp</result>
 			
 			<!-- 

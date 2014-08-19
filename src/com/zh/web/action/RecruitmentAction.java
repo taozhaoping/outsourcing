@@ -1,6 +1,7 @@
 package com.zh.web.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.FormService;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.model.Pager;
 import com.zh.web.model.RecruitmentModel;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.TechnologicalProcessService;
@@ -56,7 +58,21 @@ public class RecruitmentAction extends BaseAction {
 	
 	public String execute() {
 		LOGGER.debug("execute()");
-		//TODO
+		/*
+		//获取工作流的实例
+		List<ProcessInstance> procInstList = runtimeService.createProcessInstanceQuery()
+				.processDefinitionKey("recruitment").list();
+		for(ProcessInstance pi : procInstList){
+			System.out.println("businessKey: " + pi.getBusinessKey() + " id: " + pi.getId());
+		}
+		*/
+		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+		Pager pager = this.recruitmentModel.getPageInfo();
+		Integer count = technologicalProcessService.count(technologicalProcess);
+		pager.setTotalRow(count);
+		List<TechnologicalProcess> technologicalProcessList = technologicalProcessService.queryList(technologicalProcess, pager);
+		this.recruitmentModel.setTechnologicalProcessList(technologicalProcessList);
+		
 		return Action.SUCCESS;
 	}
 	

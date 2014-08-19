@@ -83,7 +83,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
+						<a class="btn btn-primary" href="#">
 							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
@@ -100,11 +100,25 @@
 									<th>入职日期</th>
 									<th>创建时间</th>
 									<th>状态</th>
-									<th style="width: 26px;"></th>
+									<th style="width: 26px;">操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								
+								<s:iterator value="technologicalProcessList" var="tp" status="index">
+									<tr>
+										<td><s:property value="#index.index + 1"/></td>
+										<td><s:property value="#tp.loginName"/></td>
+										<td><s:property value="#tp.name"/></td>
+										<td><s:property value="#tp.email"/></td>
+										<td><s:property value="#tp.mobileNumber"/></td>
+										<td><s:date name="#tp.entryTime" format="yyyy-MM-dd" /> </td>
+										<td><s:date name="#tp.createTime" format="yyyy-MM-dd" /> </td>
+										<td><s:property value="#tp.mobileNumber"/></td>
+										<td>
+											<a href="#">查看</a> 
+										</td>
+									</tr>
+								</s:iterator>
 							</tbody>
 						</table>
 					</div>
