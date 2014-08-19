@@ -95,6 +95,39 @@ public class RecruitmentAction extends BaseAction {
 		return Action.EDITOR;
 	}
 	
+	/**
+	 * 编辑页面
+	 * 当传入id的时候为修改界面
+	 * 当id为null的时候，进入新增页面
+	 * @return
+	 */
+	public String editor()
+	{
+		LOGGER.debug("进入编辑页面");
+		String businessKey = this.recruitmentModel.getFormId();
+		if(null != businessKey && Integer.parseInt(businessKey) >0)
+		{
+			//获取当前登陆的用户id
+			Integer userID = queryUserId();
+			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+			technologicalProcess.setId(Integer.parseInt(businessKey));
+			//technologicalProcess.setWorkuserid(queryUserId());
+			TechnologicalProcess Process = technologicalProcessService.query(technologicalProcess);
+			
+			//判断数据库中是否存在该数据
+			if(null != Process && Process.getId() == null && Process.getId() >0)
+			{
+				//获取工作流信息
+				String workflowId = Process.getWorkflowid();
+				
+				
+				//判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
+				
+				
+			}
+		}
+		return Action.EDITOR;
+	}
 	
 	//创建工作流
 	public String createWorkflow(){
