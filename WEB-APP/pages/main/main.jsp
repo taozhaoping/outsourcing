@@ -56,6 +56,12 @@
 	<s:if test="%{#request.role.menuList != null}">
 		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
 	</s:if>
+
+	<s:if test="%{#request.taskList != null}">
+		<s:set name="taskSize" scope="session" value="#request.taskList.size()"></s:set>
+	</s:if>
+	
+	
 	
 	<%@ include file="/pages/common/titleWithNav.jsp"%> 
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
@@ -67,7 +73,7 @@
 					<span class="number">53</span>tickets
 				</p>
 				<p class="stat">
-					<span class="number"><s:property value="taskList.size()"/></span>tasks
+					<span class="number"><s:property value="#session.taskSize"/></span>tasks
 				</p>
 				<p class="stat">
 					<span class="number">15</span>waiting

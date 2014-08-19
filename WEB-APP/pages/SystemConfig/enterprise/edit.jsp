@@ -63,7 +63,7 @@
 					<span class="number">53</span>tickets
 				</p>
 				<p class="stat">
-					<span class="number">27</span>tasks
+					<span class="number"><s:property value="#session.taskSize"/></span>tasks
 				</p>
 				<p class="stat">
 					<span class="number">15</span>waiting
