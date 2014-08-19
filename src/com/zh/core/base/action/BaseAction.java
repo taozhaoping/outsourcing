@@ -10,7 +10,9 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.zh.base.model.bean.User;
 import com.zh.core.model.Pager;
+import com.zh.core.model.VariableUtil;
 
 public abstract class BaseAction extends ActionSupport implements
 		ModelDriven<Object> {
@@ -116,6 +118,16 @@ public abstract class BaseAction extends ActionSupport implements
 	 */
 	public HttpSession getSession() {
 		return getRequest().getSession();
+	}
+	
+	/**
+	 * 获取当前登陆的用户id
+	 * @return
+	 */
+	public Integer queryUserId()
+	{
+		User user = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
+		return user.getId();
 	}
 
 	/**

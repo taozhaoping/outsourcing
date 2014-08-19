@@ -81,11 +81,15 @@ public class RecruitmentAction extends BaseAction {
 		LOGGER.debug("save()");
 		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
 		Integer id = technologicalProcess.getId();
+		
 		if(null != id && id>0)
 		{
 			technologicalProcessService.update(technologicalProcess);
 		}else
 		{
+			//设置当前用户为流程发起人
+			Integer userID = queryUserId();
+			technologicalProcess.setWorkuserid(userID);
 			technologicalProcessService.insert(technologicalProcess);
 		}
 		return Action.EDITOR;
