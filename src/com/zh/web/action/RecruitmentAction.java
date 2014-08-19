@@ -133,4 +133,44 @@ public class RecruitmentAction extends BaseAction {
 		this.technologicalProcessService = technologicalProcessService;
 	}
 
+	public RuntimeService getRuntimeService() {
+		return runtimeService;
+	}
+
+	public void setRuntimeService(RuntimeService runtimeService) {
+		this.runtimeService = runtimeService;
+	}
+
+	public TaskService getTaskService() {
+		return taskService;
+	}
+
+	public void setTaskService(TaskService taskService) {
+		this.taskService = taskService;
+	}
+
+	public RepositoryService getRepositoryService() {
+		return repositoryService;
+	}
+
+	public void setRepositoryService(RepositoryService repositoryService) {
+		this.repositoryService = repositoryService;
+	}
+
+	public FormService getFormService() {
+		return FormService;
+	}
+
+	public void setFormService(FormService formService) {
+		FormService = formService;
+	}
+
+	public IdentityService getIdentityService() {
+		return identityService;
+	}
+
+	public void setIdentityService(IdentityService identityService) {
+		this.identityService = identityService;
+	}
+
 }
