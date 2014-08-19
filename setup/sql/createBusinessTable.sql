@@ -55,6 +55,17 @@ create table t_Activities
    constraint PK_ACTIVITIES primary key (id)
 );
 
+/*注释*/
+COMMENT ON table t_Activities IS '活动信息表 ';
+comment on column t_Activities.name is '活动名称';
+comment on column t_Activities.Description is '活动描述';
+comment on column t_Activities.ScheduleDate is '预定时间';
+comment on column t_Activities.setTime is '集合时间';
+comment on column t_Activities.setPlace is '集合地点';
+comment on column t_Activities.ScheduleTime is '预计活动时间';
+comment on column t_Activities.userid is '负责人';
+comment on column t_Activities.Telephone is '负责人电话';
+
 /*==============================================================*/
 /* Table: ActivitiesUser                                      */
 /* Table: 活动人员表                                      */
@@ -66,6 +77,11 @@ create table t_ActivitiesUser
    Userid             NUMBER,   --人员id
    constraint PK_ActivitiesUser primary key (id)
 );
+
+/*注释*/
+COMMENT ON table t_ActivitiesUser IS '活动人员表 ';
+comment on column t_ActivitiesUser.ActivitiesId is '活动信息id';
+comment on column t_ActivitiesUser.Userid is '人员id';
 
 /*==============================================================*/
 /* Table: Certificates                                        */
@@ -88,6 +104,18 @@ create table t_Certificates
    constraint PK_CERTIFICATES primary key (id)
 );
 
+/*注释*/
+COMMENT ON table t_Certificates IS '证件信息 ';
+comment on column t_Certificates.workflowId is '流程节点';
+comment on column t_Certificates.name is '证件名称';
+comment on column t_Certificates.handleDate is '办理日期';
+comment on column t_Certificates.ReceiveDate is '领取日期';
+comment on column t_Certificates.ValidStartDate is '证件有效开始日期';
+comment on column t_Certificates.ValidEndDate is '证件有效结束日期';
+comment on column t_Certificates.type is '种类';
+comment on column t_Certificates.status is '状态';
+comment on column t_Certificates.TechnologicalProcessID is '人员信息表ID';
+
 /*==============================================================*/
 /* Table: Express                                             */
 /* 快递信息                                                     */
@@ -104,6 +132,14 @@ create table t_Express
    constraint PK_EXPRESS primary key (id)
 );
 
+/*注释*/
+COMMENT ON table t_Express IS '快递信息 ';
+comment on column t_Express.ExpressNumber is '快递号';
+comment on column t_Express.Company is '快递公司';
+comment on column t_Express.Telephone is '公司电话';
+comment on column t_Express.DeliverGoodsDate is '发货日期';
+comment on column t_Express.ArriveDate is '预计到货日期';
+comment on column t_Express.TechnologicalProcessID is '人员id';
 /*==============================================================*/
 /* Table: FileInfo                                            */
 /* Table: 文件信息                                            */
@@ -121,6 +157,14 @@ create table t_FileInfo
    TechnologicalProcessID NUMBER,
    constraint PK_FILEINFO primary key (id)
 );
+
+/*注释*/
+COMMENT ON table t_FileInfo IS '文件信息 ';
+comment on column t_FileInfo.name is '文件名';
+comment on column t_FileInfo.nameType is '文件类型';
+comment on column t_FileInfo.TYPE is '种类';
+comment on column t_FileInfo.Descr is '描述';
+comment on column t_FileInfo.state is '状态';
 
 /*==============================================================*/
 /* Table: FinancialAffairs                                      */
@@ -160,6 +204,15 @@ create table t_Flight
    constraint PK_FLIGHT primary key (id)
 );
 
+/*注释*/
+COMMENT ON table t_Flight IS '航班信息 ';
+comment on column t_Flight.TechnologicalProcessID is '人员ID';
+comment on column t_Flight.FlightNumber is '航班号';
+comment on column t_Flight.startDate is '起飞时间';
+comment on column t_Flight.endDate is '到达时间';
+comment on column t_Flight.Place is '到达机场';
+comment on column t_Flight.airportPeopleId is '接机人';
+
 /*==============================================================*/
 /* Table: Hotel                                               */
 /* Table: 酒店信息                                            */
@@ -182,6 +235,19 @@ create table t_Hotel
    TechnologicalProcessID NUMBER,  --人员ID
    constraint PK_HOTEL primary key (id)
 );
+
+/*注释*/
+COMMENT ON table t_Hotel IS '酒店信息 ';
+comment on column t_Hotel.name is '酒店名称';
+comment on column t_Hotel.Address is '酒店地址';
+comment on column t_Hotel.Telephone is '酒店电话';
+comment on column t_Hotel.RoomNumber is '房间号';
+comment on column t_Hotel.RoomType is '房间类型';
+comment on column t_Hotel.ScheduleDate is '预定时间';
+comment on column t_Hotel.ScheduleDay is '预定天数';
+comment on column t_Hotel.CheckInDay is '入住时间';
+comment on column t_Hotel.Price is '价格';
+comment on column t_Hotel.TechnologicalProcessID is '人员ID';
 
 /*==============================================================*/
 /* Table: PhysicalExamination                                 */
@@ -306,6 +372,11 @@ create table t_trainingOfPersonnel
    TechnologicalProcessId NUMBER, --培训人员id
    constraint PK_TRAININGOFPERSONNEL primary key (id)
 );
+
+/*注释*/
+COMMENT ON table t_trainingOfPersonnel IS '培训人员信息表 ';
+comment on column t_trainingOfPersonnel.TrainCourseId is '培训课程id';
+comment on column t_trainingOfPersonnel.TechnologicalProcessId is '培训人员id';
 
 /* 表的外键创建  开始                                               */
 /* 
