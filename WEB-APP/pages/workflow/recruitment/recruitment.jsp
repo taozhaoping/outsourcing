@@ -488,6 +488,18 @@
 		$("#airportpeopleid").val("${flight.airportpeopleid}")
 				.trigger("change");
 
+		//判断表单是否修改过
+		//$("#editForm :input").change(function() {
+     		//$("#editForm").data("changed",true);
+     	//	$("#homeButt").addClass("icon-tags");
+		//});
+
+		//提交前判断
+		//if ($("#editForm").data("changed")) {
+     		// submit the form
+			//alert("修改");
+		//}
+
 		//头部-基本信息
 		$("#homeButt").click(function() {
 
@@ -500,7 +512,7 @@
 
 		//头部-航班信息
 		$("#flightButt").click(function() {
-
+			
 		});
 
 		//头部-工作流
