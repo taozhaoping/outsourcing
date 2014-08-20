@@ -332,18 +332,6 @@
 		var menuId = '${menu2Id}';
 		var url = $("#" + menuId).attr('url');
 
-		$(".form_datetime").datetimepicker({
-			language : 'zh-CN',
-			format : 'yyyy-mm-dd',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : true
-		});
-
 		$("#inputroleId").select2();
 		$("#inputroleId").val("${userInfo.roleId}").trigger("change");
 		$("#inputenterpriseId").select2();

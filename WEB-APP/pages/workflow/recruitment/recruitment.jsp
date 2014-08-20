@@ -66,7 +66,7 @@
 					<span class="number">53</span>tickets
 				</p>
 				<p class="stat">
-					<span class="number"><s:property value="#session.taskSize"/></span>tasks
+					<span class="number"><s:property value="#session.taskSize" /></span>tasks
 				</p>
 				<p class="stat">
 					<span class="number">15</span>waiting
@@ -92,7 +92,8 @@
 						</button>
 
 						<div class="pull-right">
-							<button class="btn" type="button" id="approveBtn" data-toggle="modal" data-target="#submitConfirm">
+							<button class="btn" type="button" id="approveBtn"
+								data-toggle="modal" data-target="#submitConfirm">
 								<i class="icon-ok"></i> 批准
 							</button>
 							<button class="btn" type="button" id="rejectBtn">
@@ -102,11 +103,11 @@
 					</div>
 					<div class="well">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#home" data-toggle="tab">基本信息</a></li>
-							<li><a href="#certificates" data-toggle="tab">证件信息</a></li>
-							<li><a href="#flight" data-toggle="tab">航班信息</a></li>
-							<li><a href="#workflow1" data-toggle="tab">工作流</a></li>
-							<li><a href="#annex" data-toggle="tab">附件</a></li>
+							<li class="active"><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
+							<li><a id="certificatesButt" href="#certificates" data-toggle="tab">证件信息</a></li>
+							<li><a id="flightButt" href="#flight" data-toggle="tab">航班信息</a></li>
+							<li><a id="workflow1Butt" href="#workflow1" data-toggle="tab">工作流</a></li>
+							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
@@ -132,8 +133,7 @@
 											<label class="control-label" for="inputName">姓名:</label>
 											<div class="controls">
 												<input type="text" data-required="true" maxlength="15"
-													data-required="true" id="inputName"
-													name="technologicalProcess.name"
+													id="inputName" name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
 											</div>
 										</div>
@@ -158,7 +158,8 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
-													value="${technologicalProcess.nationality}" class="input-large">
+													value="${technologicalProcess.nationality}"
+													class="input-large">
 											</div>
 										</div>
 									</div>
@@ -226,12 +227,14 @@
 								<dir class="row">
 									<div class="span5 left">
 										<div class="control-group">
-											<label class="control-label" for="inputContracttype">合同种类:</label>
+											<label class="control-label" for="contracttype">合同种类:</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputContracttype"
-													name="technologicalProcess.contracttype"
-													value="${technologicalProcess.contracttype}"
-													class="input-large">
+												<select id="contracttype" class="input-large"
+													name="technologicalProcess.contracttype">
+													<option value="A">A类</option>
+													<option value="B">B类</option>
+													<option value="C">C类</option>
+												</select>
 											</div>
 										</div>
 									</div>
@@ -273,42 +276,163 @@
 									</div>
 								</dir>
 							</div>
+							<!-- 证件信息 -->
 							<div class="tab-pane fade" id="certificates">
-								
+								<table class="table">
+							<thead>
+								<tr>
+									<th>证件类型</th>
+									<th>办理日期</th>
+									<th>领取日期</th>
+									<th>有效日期</th>
+									<th>结束日期</th>
+									<th>修改时间</th>
+									<th style="width: 50px;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<select id="certificatesType" class="input-small"
+													name="certificates.type">
+													<option value="1">工作许可</option>
+													<option value="2">邀请函</option>
+										</select>
+									</td>
+									<td>
+										<input type="text" size="15" id="certificatesHandledate"
+													name="certificates.handledate"
+													readonly class="form_datetime input-small">
+									</td>
+									<td>
+										<input type="text" size="15" id="certificatesReceivedate"
+													name="certificates.receivedate"
+													readonly class="form_datetime input-small">
+									</td>
+									<td>
+										<input type="text" size="15" id="certificatesValidstartdate"
+													name="certificates.validstartdate"
+													readonly class="form_datetime input-small">
+									</td>
+									<td>
+										<input type="text" size="15" id="certificatesValidenddate"
+													name="certificates.validenddate"
+													readonly class="form_datetime input-small">
+									</td>
+									<td>
+										<input type="text" size="15" id="certificatesUpdateDate"
+													name="certificates.updateDate"
+													readonly class="form_datetime input-small">
+									</td>
+									<td>
+										<p>
+										<button class="btn btn-mini icon-plus" type="button"></button>
+										<button class="btn btn-mini icon-minus" type="button"></button>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 							</div>
-							<div class="tab-pane fade" id="flight"></div>
+							<!-- 航班信息 -->
+							<div class="tab-pane fade" id="flight">
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="flightnumber">航班号:</label>
+											<div class="controls">
+												<input type="text" data-required="true" maxlength="15"
+													id="flightnumber" name="flight.flightnumber"
+													value="${flight.flightnumber}" class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="airportPeopleId">接机人:</label>
+											<div class="controls">
+												<select id="airportPeopleId" class="input-large"
+													name="flight.airportPeopleId">
+													<option value="A">测试1</option>
+													<option value="B">测试2</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputstartdate">起飞时间:</label>
+											<div class="controls">
+												<input type="text" size="15" id="inputstartdate"
+													name="flight.startdate"
+													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputenddate">到达时间:</label>
+											<div class="controls">
+												<input type="text" size="15" id="inputenddate"
+													name="flight.enddate"
+													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="place">到达机场:</label>
+											<div class="controls">
+												<input type="text" data-required="true" maxlength="15"
+													data-required="true" id="place" name="flight.place"
+													value="${flight.place}" class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+							</div>
 							<div class="tab-pane fade" id="workflow1"></div>
 							<div class="tab-pane fade" id="annex"></div>
 						</div>
 					</div>
 				</div>
 			</form>
-			
+
 			<!-- 创建工作流 -->
-			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
-				<input type="hidden" name="formId" id="cwf_formId">
-				<input type="hidden" name="assign" id="cwf_assign">
+			<form action="${menu2Id}!createWorkflow.jspa" method="post"
+				id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId"> <input
+					type="hidden" name="assign" id="cwf_assign">
 			</form>
 		</div>
 	</div>
-	
-	<div class="modal small hide fade" id="submitConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">启动流程</h3>
-	  </div>
-	  <div class="modal-body">
-	    <!-- 
+
+	<div class="modal small hide fade" id="submitConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">启动流程</h3>
+		</div>
+		<div class="modal-body">
+			<!-- 
 	    <p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认要退出系统吗?</p>
 	     -->
 			<label class="control-label pull-left" for="modal_assign">审批人：</label>
 			<input type="text" id="modal_assign" class="input-large pull-right">
 
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn btn-danger" data-dismiss="modal" id="approveBtnConfirm">确认</button>
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	  </div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="approveBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
 	</div>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
@@ -329,21 +453,59 @@
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
 		
-		//批准按钮
-		$("#approveBtnConfirm").click(function(){
-			var assign = $("#modal_assign").val();
-			if(assign == null || assign == ""){
-				return;
-			}
-			
-			var formId = $("#inputId").val();
-			
-			$("#cwf_formId").val(formId);
-			$("#cwf_assign").val(assign);
-			
-			$("#createWF").submit();
+		//证件信息初始化
+		$("#certificatesType").select2();
+		$("#certificatesType").val("${certificates.type}").trigger(
+				"change");
+		
+
+		$("#contracttype").select2();
+		$("#contracttype").val("${technologicalProcess.contracttype}").trigger(
+				"change");
+
+		$("#airportPeopleId").select2();
+		$("#airportpeopleid").val("${flight.airportpeopleid}")
+				.trigger("change");
+
+		//头部-基本信息
+		$("#homeButt").click(function() {
+
 		});
 		
+		//头部-证件信息
+		$("#certificatesButt").click(function() {
+
+		});
+		
+		//头部-航班信息
+		$("#flightButt").click(function() {
+
+		});
+		
+		//头部-工作流
+		$("#workflow1Butt").click(function() {
+
+		});
+		
+		//头部-附件
+		$("#annexButt").click(function() {
+
+		});
+
+		//批准按钮
+		$("#approveBtnConfirm").click(function() {
+			var assign = $("#modal_assign").val();
+			if (assign == null || assign == "") {
+				return;
+			}
+
+			var formId = $("#inputId").val();
+
+			$("#cwf_formId").val(formId);
+			$("#cwf_assign").val(assign);
+
+			$("#createWF").submit();
+		});
 	</script>
 </body>
 </html>
