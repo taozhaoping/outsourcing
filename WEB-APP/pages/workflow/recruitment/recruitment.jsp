@@ -306,7 +306,7 @@
 
 	  </div>
 	  <div class="modal-footer">
-	    <button class="btn btn-danger" data-dismiss="modal" id="approveBtn">确认</button>
+	    <button class="btn btn-danger" data-dismiss="modal" id="approveBtnConfirm">确认</button>
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	  </div>
 	</div>
@@ -330,7 +330,7 @@
 		$("#navigation1").text(headText);
 		
 		//批准按钮
-		$("#approveBtn").click(function(){
+		$("#approveBtnConfirm").click(function(){
 			var assign = $("#modal_assign").val();
 			if(assign == null || assign == ""){
 				return;
