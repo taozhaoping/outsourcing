@@ -108,7 +108,7 @@
 							<li><a id="certificatesButt" href="#certificates"
 								data-toggle="tab">证件信息</a></li>
 							<li><a id="flightButt" href="#flight" data-toggle="tab">航班信息</a></li>
-							<li><a id="workflow1Butt" href="#workflow1"
+							<li><a id="workflowTabButt" href="#workflowTab"
 								data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</ul>
@@ -390,7 +390,11 @@
 									</div>
 								</dir>
 							</div>
-							<div class="tab-pane fade" id="workflow1"></div>
+							
+							<!-- 工作流 -->
+							<div class="tab-pane fade" id="workflowTab">
+								<img alt="工作流" src="" id="workflowShowPic">	
+							</div>
 							<!-- 附件 -->
 							<div class="tab-pane fade" id="annex">
 								<table class="table">
@@ -591,8 +595,8 @@ $("select").select2();
 		});
 
 		//头部-工作流
-		$("#workflow1Butt").click(function() {
-
+		$("#workflowTabButt").click(function() {
+			alert(111);
 		});
 
 		//头部-附件

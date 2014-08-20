@@ -49,6 +49,11 @@ public class RecruitmentModel extends BaseModel {
 	 * 
 	 */
 	private List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
+	
+	/***
+	 * 流程实例id
+	 */
+	private String processInstanceId;
 
 	public TechnologicalProcess getTechnologicalProcess() {
 		return technologicalProcess;
@@ -121,6 +126,14 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setFileInfoList(List<FileInfo> fileInfoList) {
 		this.fileInfoList = fileInfoList;
+	}
+
+	public String getProcessInstanceId() {
+		return processInstanceId;
+	}
+
+	public void setProcessInstanceId(String processInstanceId) {
+		this.processInstanceId = processInstanceId;
 	}
 	
 }
