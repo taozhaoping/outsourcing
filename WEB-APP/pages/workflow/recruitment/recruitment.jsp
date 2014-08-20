@@ -335,7 +335,7 @@
 										<div class="control-group">
 											<label class="control-label" for="flightnumber">航班号:</label>
 											<div class="controls">
-												<input type="text" data-required="true" maxlength="15"
+												<input type="text" maxlength="15"
 													id="flightnumber" name="flight.flightnumber"
 													value="${flight.flightnumber}" class="input-large" />
 											</div>
@@ -383,8 +383,7 @@
 										<div class="control-group">
 											<label class="control-label" for="place">到达机场:</label>
 											<div class="controls">
-												<input type="text" data-required="true" maxlength="15"
-													data-required="true" id="place" name="flight.place"
+												<input type="text" maxlength="15" id="place" name="flight.place"
 													value="${flight.place}" class="input-large" />
 											</div>
 										</div>
