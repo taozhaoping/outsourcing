@@ -188,6 +188,21 @@ create table T_FINANCIALAFFAIRS
   constraint PK_FINANCIALAFFAIRS primary key (id)
 );
 
+/*注释*/
+COMMENT ON table T_FINANCIALAFFAIRS IS '财务信息 ';
+comment on column T_FINANCIALAFFAIRS.contracttype is '合同种类';
+comment on column T_FINANCIALAFFAIRS.companyphone is '公司电话号码';
+comment on column T_FINANCIALAFFAIRS.bankcard is '工资卡银行';
+comment on column T_FINANCIALAFFAIRS.bankcardnumber is '工资卡号码';
+comment on column T_FINANCIALAFFAIRS.wage is '工资';
+comment on column T_FINANCIALAFFAIRS.contract_start_date is '合同开始日期';
+comment on column T_FINANCIALAFFAIRS.contract_end_date is '合同结束日期';
+comment on column T_FINANCIALAFFAIRS.typeofvisa is '签证类型';
+comment on column T_FINANCIALAFFAIRS.typeofvisadate is '签证到期日';
+comment on column T_FINANCIALAFFAIRS.signingcontractdate is '合同正式签订日期';
+comment on column T_FINANCIALAFFAIRS.copytostaff is '合同副本是否给外教';
+comment on column T_FINANCIALAFFAIRS.technologicalprocessid is '人员id';
+
 /*==============================================================*/
 /* Table: Flight                                              */
 /* 航班信息                                                     */
