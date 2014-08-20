@@ -10,6 +10,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,15 +142,24 @@ public class RecruitmentAction extends BaseAction {
 		
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("recruitment", businessKey, variables);
 		
+		//流程id
 		String workflowId = processInstance.getId();
+		//任务节点
+		String activityId = processInstance.getActivityId();
+		
+		Task currentTask = taskService.createTaskQuery().processInstanceId(workflowId).taskDefinitionKey(activityId)
+                .singleResult();
+		//当前任务的名称
+		String state = currentTask.getName();
+				
 		LOGGER.debug("processInstance.id: " + workflowId);
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 		technologicalProcess.setWorkflowid(workflowId);
-		//TODO 更新表单状态
+		technologicalProcess.setState(state);
 		technologicalProcessService.update(technologicalProcess);
 		
-		return Action.EDITOR;
+		return "createSuccess";
 	}
 	
 
