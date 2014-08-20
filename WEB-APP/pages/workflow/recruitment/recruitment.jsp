@@ -103,10 +103,13 @@
 					</div>
 					<div class="well">
 						<ul class="nav nav-tabs">
-							<li class="active"><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
-							<li><a id="certificatesButt" href="#certificates" data-toggle="tab">证件信息</a></li>
+							<li class="active"><a id="homeButt" href="#home"
+								data-toggle="tab">基本信息</a></li>
+							<li><a id="certificatesButt" href="#certificates"
+								data-toggle="tab">证件信息</a></li>
 							<li><a id="flightButt" href="#flight" data-toggle="tab">航班信息</a></li>
-							<li><a id="workflow1Butt" href="#workflow1" data-toggle="tab">工作流</a></li>
+							<li><a id="workflow1Butt" href="#workflow1"
+								data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
@@ -279,60 +282,51 @@
 							<!-- 证件信息 -->
 							<div class="tab-pane fade" id="certificates">
 								<table class="table">
-							<thead>
-								<tr>
-									<th>证件类型</th>
-									<th>办理日期</th>
-									<th>领取日期</th>
-									<th>有效日期</th>
-									<th>结束日期</th>
-									<th>修改时间</th>
-									<th style="width: 50px;">操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<select id="certificatesType" class="input-small"
-													name="certificates.type">
+									<thead>
+										<tr>
+											<th>证件类型</th>
+											<th>办理日期</th>
+											<th>领取日期</th>
+											<th>有效日期</th>
+											<th>结束日期</th>
+											<th>修改时间</th>
+											<th style="width: 50px;">操作</th>
+										</tr>
+									</thead>
+									<tbody id="certificatesSearch">
+										<tr>
+											<td><select id="certificatesType" class="input-small"
+												name="certificates.type">
 													<option value="1">工作许可</option>
 													<option value="2">邀请函</option>
-										</select>
-									</td>
-									<td>
-										<input type="text" size="15" id="certificatesHandledate"
-													name="certificates.handledate"
-													readonly class="form_datetime input-small">
-									</td>
-									<td>
-										<input type="text" size="15" id="certificatesReceivedate"
-													name="certificates.receivedate"
-													readonly class="form_datetime input-small">
-									</td>
-									<td>
-										<input type="text" size="15" id="certificatesValidstartdate"
-													name="certificates.validstartdate"
-													readonly class="form_datetime input-small">
-									</td>
-									<td>
-										<input type="text" size="15" id="certificatesValidenddate"
-													name="certificates.validenddate"
-													readonly class="form_datetime input-small">
-									</td>
-									<td>
-										<input type="text" size="15" id="certificatesUpdateDate"
-													name="certificates.updateDate"
-													readonly class="form_datetime input-small">
-									</td>
-									<td>
-										<p>
-										<button class="btn btn-mini icon-plus" type="button"></button>
-										<button class="btn btn-mini icon-minus" type="button"></button>
-										</p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											</select></td>
+											<td><input type="text" size="15"
+												id="certificatesHandledate" name="certificates.handledate"
+												readonly class="form_datetime input-small"></td>
+											<td><input type="text" size="15"
+												id="certificatesReceivedate" name="certificates.receivedate"
+												readonly class="form_datetime input-small"></td>
+											<td><input type="text" size="15"
+												id="certificatesValidstartdate"
+												name="certificates.validstartdate" readonly
+												class="form_datetime input-small"></td>
+											<td><input type="text" size="15"
+												id="certificatesValidenddate"
+												name="certificates.validenddate" readonly
+												class="form_datetime input-small"></td>
+											<td><input type="text" size="15"
+												id="certificatesUpdateDate" name="certificates.updateDate"
+												readonly class="form_datetime input-small"></td>
+											<td>
+												<p>
+													<button class="btn btn-mini icon-plus" type="button"
+														onclick="addNew();"></button>
+													<button class="btn btn-mini icon-minus" type="button"></button>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 							<!-- 航班信息 -->
 							<div class="tab-pane fade" id="flight">
@@ -452,12 +446,40 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-		
+
 		//证件信息初始化
 		$("#certificatesType").select2();
-		$("#certificatesType").val("${certificates.type}").trigger(
-				"change");
-		
+		$("#certificatesType").val("${certificates.type}").trigger("change");
+
+		//新增证件行信息
+		var row_count = 0;
+		function addNew() {
+			row_count++;
+			var search = $('#certificatesSearch');
+			var row = $("<tr></tr>");
+			addTd(row,"<select id='certificatesType' class='input-small' name='certificates.type'><option value='1'>工作许可</option><option value='2'>邀请函</option></select>");
+			addTd(row,"<input type='text' size='15' id='certificatesHandledate' name='certificates.handledate' readonly class='form_datetime input-small'>");
+			addTd(row,"<input type='text' size='15' id='certificatesReceivedate' name='certificates.receivedate' readonly class='form_datetime input-small'>");
+			addTd(row,"<input type='text' size='15' id='certificatesValidstartdate' name='certificates.validstartdate' readonly class='form_datetime input-small'>");
+			addTd(row,"<input type='text' size='15' id='certificatesValidenddate' name='certificates.validenddate' readonly class='form_datetime input-small'>");
+			addTd(row,"<input type='text' size='15' id='certificatesUpdateDate' name='certificates.updateDate' readonly class='form_datetime input-small'>");
+			addTd(row,"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
+			search.append(row);
+			$("#select").select2();
+		}
+
+		function addTd(row, str) {
+			var td = $("<td></td>");
+			td.append($(str));
+			row.append(td);
+
+		}
+
+		function del(butt) {
+			var tr = butt.parentNode.parentNode.parentNode;
+			tr.parentNode.removeChild(tr);
+			row_count--;
+		}
 
 		$("#contracttype").select2();
 		$("#contracttype").val("${technologicalProcess.contracttype}").trigger(
@@ -471,22 +493,22 @@
 		$("#homeButt").click(function() {
 
 		});
-		
+
 		//头部-证件信息
 		$("#certificatesButt").click(function() {
 
 		});
-		
+
 		//头部-航班信息
 		$("#flightButt").click(function() {
 
 		});
-		
+
 		//头部-工作流
 		$("#workflow1Butt").click(function() {
 
 		});
-		
+
 		//头部-附件
 		$("#annexButt").click(function() {
 
