@@ -506,7 +506,7 @@ start with 1
 order;
 
 create sequence SEQUENCE_t_Technological
-start with 1
+start with 1000000
  maxvalue 999999999
  minvalue 1
  cache 10

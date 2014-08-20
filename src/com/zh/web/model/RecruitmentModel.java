@@ -4,11 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zh.core.base.model.BaseModel;
+import com.zh.web.model.bean.Certificates;
+import com.zh.web.model.bean.FileInfo;
+import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
 
 public class RecruitmentModel extends BaseModel {
 
+	/**
+	 * 基础信息
+	 */
 	private TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+	
+	/**
+	 * 证件信息
+	 */
+	private Certificates certificates = new Certificates();
+	
+	private List<Certificates> certificatesList = new ArrayList<Certificates>();
+	
+	/**
+	 * 航班信息
+	 */
+	private Flight flight = new Flight();
+	
+	/**
+	 * 文件信息
+	 */
+	private FileInfo fileInfo = new FileInfo();
+	
+	private List<FileInfo> fileInfoList = new ArrayList<FileInfo>();
 	
 	/**
 	 * 表单的编号 
@@ -56,6 +81,46 @@ public class RecruitmentModel extends BaseModel {
 	public void setTechnologicalProcessList(
 			List<TechnologicalProcess> technologicalProcessList) {
 		this.technologicalProcessList = technologicalProcessList;
+	}
+
+	public Certificates getCertificates() {
+		return certificates;
+	}
+
+	public void setCertificates(Certificates certificates) {
+		this.certificates = certificates;
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public FileInfo getFileInfo() {
+		return fileInfo;
+	}
+
+	public void setFileInfo(FileInfo fileInfo) {
+		this.fileInfo = fileInfo;
+	}
+
+	public List<Certificates> getCertificatesList() {
+		return certificatesList;
+	}
+
+	public void setCertificatesList(List<Certificates> certificatesList) {
+		this.certificatesList = certificatesList;
+	}
+
+	public List<FileInfo> getFileInfoList() {
+		return fileInfoList;
+	}
+
+	public void setFileInfoList(List<FileInfo> fileInfoList) {
+		this.fileInfoList = fileInfoList;
 	}
 	
 }
