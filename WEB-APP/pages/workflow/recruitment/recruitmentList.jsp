@@ -115,7 +115,7 @@
 										<td><s:date name="#tp.createTime" format="yyyy-MM-dd" /> </td>
 										<td><s:property value="#tp.mobileNumber"/></td>
 										<td>
-											<a href="${menu2Id}!editor.jspa?id=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>
