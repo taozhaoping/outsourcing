@@ -295,7 +295,7 @@
 									</thead>
 									<tbody id="certificatesSearch">
 										<tr>
-											<td><select id="certificatesType" class="input-small"
+											<td><select id="certificatesType" class="input-medium"
 												name="certificates.type">
 													<option value="1">工作许可</option>
 													<option value="2">邀请函</option>
@@ -316,7 +316,7 @@
 												class="form_datetime input-small"></td>
 											<td><input type="text" size="15"
 												id="certificatesUpdateDate" name="certificates.updateDate"
-												readonly class="form_datetime input-small"></td>
+												readonly class="input-small"></td>
 											<td>
 												<p>
 													<button class="btn btn-mini icon-plus" type="button"
@@ -391,7 +391,55 @@
 								</dir>
 							</div>
 							<div class="tab-pane fade" id="workflow1"></div>
-							<div class="tab-pane fade" id="annex"></div>
+							<!-- 附件 -->
+							<div class="tab-pane fade" id="annex">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>文件名</th>
+											<th>种类</th>
+											<th>描述</th>
+											<th>创建时间</th>
+											<th style="width: 50px;">操作</th>
+										</tr>
+									</thead>
+									<tbody id="FileInfoSearch">
+										<tr>
+											<td>
+												<input type="file" title="上传" id="fileInfoname" name="fileInfo.name"  class="input-small" />
+											</td>
+											<td>
+												<select id="fileInfoNametype" class="input-small"
+												name="fileInfo.nametype">
+													<option value="1">护照</option>
+													<option value="2">毕业证</option>
+													<option value="3">简历</option>
+													<option value="4">无犯罪记录</option>
+													<option value="5">TEFL证</option>
+													<option value="6">档案表</option>
+												</select>
+											</td>
+											<td>
+												<input type="text" maxlength="15" id="fileInfoDescr"
+													name="fileInfo.descr"
+													value="${fileInfo.descr}"
+													class="input-medium">
+											</td>
+											<td>
+												<input type="text" size="15"
+												id="fileInfoCreatedate" class="input-small" readonly />
+											</td>
+											<td>
+												<p>
+													<button class="btn btn-mini icon-plus" type="button"
+														onclick="addNewFile();"></button>
+													<button class="btn btn-mini icon-minus" type="button"></button>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -446,17 +494,30 @@
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
 
+		//基本信息
+		//$("#contracttype").select2();
+		$("#contracttype").val("${technologicalProcess.contracttype}").trigger(
+				"change");
+		
 		//证件信息初始化
-		$("#certificatesType").select2();
+		//$("#certificatesType").select2();
 		$("#certificatesType").val("${certificates.type}").trigger("change");
-
+		
+		//航班信息
+		//$("#airportPeopleId").select2();
+		$("#airportpeopleid").val("${flight.airportpeopleid}")
+				.trigger("change");
+		
+		//附件
+		//$("#fileInfoNametype").select2();
+$("select").select2();
 		//新增证件行信息
 		var row_count = 0;
 		function addNew() {
 			row_count++;
 			var search = $('#certificatesSearch');
 			var row = $("<tr></tr>");
-			addTd(row,"<select id='certificatesType' class='input-small' name='certificates.type'><option value='1'>工作许可</option><option value='2'>邀请函</option></select>");
+			addTd(row,"<select id='certificatesType' class='input-medium' name='certificates.type'><option value='1'>工作许可</option><option value='2'>邀请函</option></select>");
 			addTd(row,"<input type='text' size='15' id='certificatesHandledate' name='certificates.handledate' readonly class='form_datetime input-small'>");
 			addTd(row,"<input type='text' size='15' id='certificatesReceivedate' name='certificates.receivedate' readonly class='form_datetime input-small'>");
 			addTd(row,"<input type='text' size='15' id='certificatesValidstartdate' name='certificates.validstartdate' readonly class='form_datetime input-small'>");
@@ -464,9 +525,23 @@
 			addTd(row,"<input type='text' size='15' id='certificatesUpdateDate' name='certificates.updateDate' readonly class='form_datetime input-small'>");
 			addTd(row,"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
-			$("#select").select2();
+			$("select").select2();
 		}
-
+		
+		//新增上传文件行
+		var file_row_count = 0;
+		function addNewFile() {
+			file_row_count++;
+			var search = $('#FileInfoSearch');
+			var row = $("<tr></tr>");
+			addTd(row,"<input type='file' title='上传' id='fileInfoname' name='fileInfo.name'  class='input-small' />");
+			addTd(row,"<select id='fileInfoNametype' class='input-small' name='fileInfo.nametype'> <option value='1'>护照</option> <option value='2'>毕业证</option> <option value='3'>简历</option> <option value='4'>无犯罪记录</option><option value='5'>TEFL证</option> <option value='6'>档案表</option> </select>");
+			addTd(row,"<input type='text' maxlength='15' id='fileInfoDescr' name='fileInfo.descr' value='${fileInfo.descr}' class='input-large'>");
+			addTd(row,"<input type='text' size='15' id='fileInfoCreatedate' class='input-small' readonly />");
+			addTd(row,"<p><button class='btn btn-mini icon-plus' onclick='addNewFile();' type='button'></button><button class='btn btn-mini icon-minus' onclick='delFile(this);' type='button'></button></p>");
+			search.append(row);
+			$("select").select2();
+		}
 		function addTd(row, str) {
 			var td = $("<td></td>");
 			td.append($(str));
@@ -474,19 +549,19 @@
 
 		}
 
+		function delFile(butt) {
+			var tr = butt.parentNode.parentNode.parentNode;
+			tr.parentNode.removeChild(tr);
+			file_row_count--;
+		}
+		
 		function del(butt) {
 			var tr = butt.parentNode.parentNode.parentNode;
 			tr.parentNode.removeChild(tr);
 			row_count--;
 		}
 
-		$("#contracttype").select2();
-		$("#contracttype").val("${technologicalProcess.contracttype}").trigger(
-				"change");
 
-		$("#airportPeopleId").select2();
-		$("#airportpeopleid").val("${flight.airportpeopleid}")
-				.trigger("change");
 
 		//判断表单是否修改过
 		//$("#editForm :input").change(function() {
