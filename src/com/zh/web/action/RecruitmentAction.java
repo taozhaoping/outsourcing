@@ -122,13 +122,13 @@ public class RecruitmentAction extends BaseAction {
 					.query(technologicalProcess);
 
 			// 判断数据库中是否存在该数据
-			if (null != Process && Process.getId() == null
+			if (null != Process && Process.getId() != null
 					&& Process.getId() > 0) {
 				// 获取工作流信息
 				String workflowId = Process.getWorkflowid();
 
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
-
+				this.recruitmentModel.setTechnologicalProcess(Process);
 			}
 		}
 		return Action.EDITOR;
@@ -174,27 +174,29 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	public void loadByProcessInstance() {
 		
-		String processInstanceId = this.recruitmentModel.getProcessInstanceId();
+//		String processInstanceId = this.recruitmentModel.getProcessInstanceId();
+		String processInstanceId = "4017";
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		InputStream resourceAsStream = null;
 		ProcessInstance processInstance = runtimeService
 				.createProcessInstanceQuery()
 				.processInstanceId(processInstanceId).singleResult();
+		
 		ProcessDefinition processDefinition = repositoryService
 				.createProcessDefinitionQuery()
 				.processDefinitionId(processInstance.getProcessDefinitionId())
 				.singleResult();
 
-		String resourceName = "image";
+		String resourceName = "recruitment.png";
 		/*
 		 * if (resourceType.equals("image")) { resourceName =
 		 * processDefinition.getDiagramResourceName(); } else if
 		 * (resourceType.equals("xml")) { resourceName =
 		 * processDefinition.getResourceName(); }
 		 */
-		resourceAsStream = repositoryService.getResourceAsStream(
-				processDefinition.getDeploymentId(), resourceName);
+		resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), resourceName);
+		
 		byte[] b = new byte[1024];
 		int len = -1;
 		try {
