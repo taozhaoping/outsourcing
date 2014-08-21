@@ -174,8 +174,8 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	public void loadByProcessInstance() {
 		
-//		String processInstanceId = this.recruitmentModel.getProcessInstanceId();
-		String processInstanceId = "4017";
+		String processInstanceId = this.recruitmentModel.getProcessInstanceId();
+//		String processInstanceId = "4017";
 		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		InputStream resourceAsStream = null;
