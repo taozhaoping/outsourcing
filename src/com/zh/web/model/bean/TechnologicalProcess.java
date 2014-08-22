@@ -149,6 +149,7 @@ public class TechnologicalProcess extends IDataObject{
      * This field corresponds to the database column T_TECHNOLOGICALPROCESS.RES1
      *
      * @mbggenerated Sat Aug 16 09:53:43 CST 2014
+     * 当前审批人
      */
     private String res1;
 

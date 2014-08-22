@@ -91,14 +91,16 @@
 							<thead>
 								<tr>
 									<th>流程编号</th>
+									<th>描述</th>
+									<!-- 
 									<th>姓名</th>
 									<th>英文名</th>
-									<th>电子邮件</th>
-									<th>手机号码</th>
+									 -->
 									<th>流程发起人</th>
-									<th>修改时间</th>
 									<th>创建时间</th>
+									<th>修改时间</th>
 									<th>状态</th>
+									<th>当前审批人</th>
 									<th style="width: 32px;">操作</th>
 								</tr>
 							</thead>
@@ -106,14 +108,16 @@
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
 										<td><s:property value="#tp.id"/></td>
+										<td>&nbsp;</td>
+										<!-- 
 										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.englishname" />
-										<td><s:property value="#tp.mail"/></td>
-										<td><s:property value="#tp.phone"/></td>
+										 -->
 										<td><s:property value="#tp.workuserid"/></td>
-										<td><s:date name="#tp.updateTime" format="yyyy-MM-dd" /> </td>
-										<td><s:date name="#tp.createTime" format="yyyy-MM-dd" /> </td>
+										<td><s:property value="#tp.createtime"/> </td>
+										<td><s:property value="#tp.updatetime"/> </td>
 										<td><s:property value="#tp.state"/></td>
+										<td><s:property value="#tp.res1"/></td>
 										<td>
 											<a href="${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>

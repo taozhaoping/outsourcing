@@ -92,13 +92,21 @@
 						</button>
 
 						<div class="pull-right">
-							<button class="btn" type="button" id="approveBtn"
-								data-toggle="modal" data-target="#submitConfirm">
-								<i class="icon-ok"></i> 批准
-							</button>
+							<s:if test="%{technologicalProcess.state!=null && technologicalProcess.state!=''}">
+								<button class="btn" type="button" id="approveBtn"
+									data-toggle="modal" data-target="#submitConfirm">
+									<i class="icon-ok"></i> 批准</button>
+							</s:if>
+							<s:elseif test="%{technologicalProcess.id!=null}">
+								<button class="btn" type="button" id="approveBtn"
+									data-toggle="modal" data-target="#submitConfirm">
+									<i class="icon-ok"></i> 发起</button>
+							</s:elseif>
+							<!-- 
 							<button class="btn" type="button" id="rejectBtn">
 								<i class="icon-remove"></i> 拒绝
 							</button>
+							 -->
 						</div>
 					</div>
 					<div class="well">

@@ -170,12 +170,13 @@ public class RecruitmentAction extends BaseAction {
 				.singleResult();
 		// 当前任务的名称
 		String state = currentTask.getName();
-
+		
 		LOGGER.debug("processInstance.id: " + workflowId);
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 		technologicalProcess.setWorkflowid(workflowId);
 		technologicalProcess.setState(state);
+		technologicalProcess.setRes1(assignee);
 		technologicalProcessService.update(technologicalProcess);
 
 		return "createSuccess";

@@ -12,6 +12,7 @@ ALTER USER OSFI QUOTA UNLIMITED ON OUTSOURCINGVIEW;
 grant create any sequence to OSFI;
 grant create session to OSFI;
 grant create table to OSFI;
+grant create trigger to OSFI;
 grant drop any table to OSFI;
 grant insert any table to OSFI;
 grant update any table to OSFI;
