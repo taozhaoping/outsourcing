@@ -8,14 +8,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.FormService;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.impl.bpmn.diagram.ProcessDiagramGenerator;
+import org.activiti.engine.impl.context.Context;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.activiti.spring.ProcessEngineFactoryBean;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +61,9 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	protected IdentityService identityService;
+	
+	@Autowired
+	ProcessEngineFactoryBean processEngine;
 
 	@Override
 	public Object getModel() {
@@ -201,6 +208,35 @@ public class RecruitmentAction extends BaseAction {
 		int len = -1;
 		try {
 			while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+				response.getOutputStream().write(b, 0, len);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/***
+	 * 获取带跟踪的流程图片
+	 */
+	public void loadTraceImg() {
+		
+		String executionId = this.recruitmentModel.getProcessInstanceId();
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
+        List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
+
+        // 使用spring注入引擎请使用下面的这行代码
+        Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
+
+        InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
+		
+		byte[] b = new byte[1024];
+		int len = -1;
+		try {
+			while ((len = imageStream.read(b, 0, 1024)) != -1) {
 				response.getOutputStream().write(b, 0, len);
 			}
 		} catch (IOException e) {
