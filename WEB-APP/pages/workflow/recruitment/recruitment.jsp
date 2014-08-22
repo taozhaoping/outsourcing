@@ -450,10 +450,11 @@
 			</form>
 
 			<!-- 创建工作流 -->
-			<form action="${menu2Id}!createWorkflow.jspa" method="post"
-				id="createWF">
-				<input type="hidden" name="formId" id="cwf_formId"> <input
-					type="hidden" name="assign" id="cwf_assign">
+			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId">
+				<input type="hidden" name="assign" id="cwf_assign">
+				<input type="hidden" name="menu2Id" value="${menu2Id}">
+				<input type="hidden" name="menuId" value="${menuId}">
 			</form>
 		</div>
 	</div>

@@ -38,6 +38,11 @@ public class RecruitmentAction extends BaseAction {
 	 * 招聘工作流
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	//一级菜单
+	private String menuId;
+	//二级菜单
+	private String menu2Id;
 
 	private RecruitmentModel recruitmentModel = new RecruitmentModel();
 
@@ -299,6 +304,22 @@ public class RecruitmentAction extends BaseAction {
 
 	public void setIdentityService(IdentityService identityService) {
 		this.identityService = identityService;
+	}
+
+	public String getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+
+	public String getMenu2Id() {
+		return menu2Id;
+	}
+
+	public void setMenu2Id(String menu2Id) {
+		this.menu2Id = menu2Id;
 	}
 
 }
