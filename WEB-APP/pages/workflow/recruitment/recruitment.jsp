@@ -393,7 +393,7 @@
 							
 							<!-- 工作流 -->
 							<div class="tab-pane fade" id="workflowTab">
-								<img alt="工作流" src="${menu2Id}!loadByProcessInstance.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}" id="workflowShowPic">	
+								<img alt="没有有效的工作流" src="${menu2Id}!loadByProcessInstance.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}" id="workflowShowPic">	
 							</div>
 							<!-- 附件 -->
 							<div class="tab-pane fade" id="annex">
