@@ -133,6 +133,19 @@
 												<input type="text" maxlength="15" disabled="disabled"
 													id="inputId" name="technologicalProcess.id"
 													value="${technologicalProcess.id}" class="input-large">
+												<input type="hidden" name="technologicalProcess.id"
+													value="${technologicalProcess.id}">
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="description">描述:</label>
+											<div class="controls">
+												<input type="text" id="description"
+													name="technologicalProcess.res2"
+													value="${technologicalProcess.res2}"
+													data-required="true" class="input-large">
 											</div>
 										</div>
 									</div>

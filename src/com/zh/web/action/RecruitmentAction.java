@@ -107,11 +107,13 @@ public class RecruitmentAction extends BaseAction {
 
 		if (null != id && id > 0) {
 			technologicalProcessService.update(technologicalProcess);
+			LOGGER.debug("update()...");
 		} else {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			technologicalProcess.setWorkuserid(userID);
 			technologicalProcessService.insert(technologicalProcess);
+			LOGGER.debug("insert()...");
 		}
 		return Action.EDITOR;
 	}

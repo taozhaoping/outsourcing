@@ -91,7 +91,7 @@
 							<thead>
 								<tr>
 									<th>流程编号</th>
-									<th>描述</th>
+									<th>流程描述</th>
 									<!-- 
 									<th>姓名</th>
 									<th>英文名</th>
@@ -99,7 +99,7 @@
 									<th>流程发起人</th>
 									<th>创建时间</th>
 									<th>修改时间</th>
-									<th>状态</th>
+									<th>当前状态</th>
 									<th>当前审批人</th>
 									<th style="width: 32px;">操作</th>
 								</tr>
@@ -108,7 +108,7 @@
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
 										<td><s:property value="#tp.id"/></td>
-										<td>&nbsp;</td>
+										<td><s:property value="#tp.res2"/></td>
 										<!-- 
 										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.englishname" />
