@@ -103,8 +103,7 @@ public class RecruitmentAction extends BaseAction {
 	// 保存表单
 	public String save() {
 		LOGGER.debug("save()");
-		TechnologicalProcess technologicalProcess = this.recruitmentModel
-				.getTechnologicalProcess();
+		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
 		Integer id = technologicalProcess.getId();
 
 		if (null != id && id > 0) {
@@ -117,6 +116,10 @@ public class RecruitmentAction extends BaseAction {
 			technologicalProcessService.insert(technologicalProcess);
 			LOGGER.debug("insert()...");
 		}
+		//设置权限标志位
+		setAuthFlag(technologicalProcess);
+		
+		
 		return Action.EDITOR;
 	}
 
@@ -130,7 +133,7 @@ public class RecruitmentAction extends BaseAction {
 		String businessKey = this.recruitmentModel.getFormId();
 		if (null != businessKey && Integer.parseInt(businessKey) > 0) {
 			// 获取当前登陆的用户id
-			Integer userID = queryUserId();
+			//Integer userID = queryUserId();
 			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 			technologicalProcess.setId(Integer.parseInt(businessKey));
 			// technologicalProcess.setWorkuserid(queryUserId());
@@ -139,39 +142,9 @@ public class RecruitmentAction extends BaseAction {
 			// 判断数据库中是否存在该数据
 			if (null != process && process.getId() != null && process.getId() > 0) {
 				// 获取工作流信息
-				String workflowId = process.getWorkflowid();
-				//表单的当前审批人
-				String assignee = process.getRes1();
-				//当前登录的用户
-				User curUser = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
-				
-				String curUserName = curUser.getLoginName();
-				
-				//流程状态
-				String state = process.getState();
-				//流程是否发起
-				boolean isStart = false;
-				if(state != null && !state.isEmpty()){
-					isStart = true;
-				}else{
-					isStart = false;
-				}
-				
-				//当前用户是审批者, 并且流程已经发起了
-				if(curUserName.equals(assignee) && isStart){
-					this.recruitmentModel.setHasApprove("1");
-				}
-				
-				//当前用户的id
-				Integer curUserId =curUser.getId();
-
-				//流程创建者的id
-				Integer workUserId = process.getWorkuserid();
-				
-				//如果创建者为当前用户，且流程没有发起，即流程状态为空，则具有发起权限
-				if(curUserId == workUserId && !isStart){
-					this.recruitmentModel.setHasSubmitAuth("1");
-				}
+				//String workflowId = process.getWorkflowid();
+				//设置权限标识
+				setAuthFlag(process);
 				
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
@@ -281,6 +254,46 @@ public class RecruitmentAction extends BaseAction {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	
+	/***
+	 * 设置权限标识
+	 * @param process
+	 */
+	private void setAuthFlag(TechnologicalProcess process){
+		//表单的当前审批人
+		String assignee = process.getRes1();
+		//当前登录的用户
+		User curUser = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
+		
+		String curUserName = curUser.getLoginName();
+		
+		//流程状态
+		String state = process.getState();
+		//流程是否发起
+		boolean isStart = false;
+		if(state != null && !state.isEmpty()){
+			isStart = true;
+		}else{
+			isStart = false;
+		}
+		
+		//当前用户是审批者, 并且流程已经发起了
+		if(curUserName.equals(assignee) && isStart){
+			this.recruitmentModel.setHasApprove("1");
+		}
+		
+		//当前用户的id
+		Integer curUserId =curUser.getId();
+
+		//流程创建者的id
+		Integer workUserId = process.getWorkuserid();
+		
+		//如果创建者为当前用户，且流程没有发起，即流程状态为空，则具有发起权限
+		if(curUserId == workUserId && !isStart){
+			this.recruitmentModel.setHasSubmitAuth("1");
 		}
 	}
 

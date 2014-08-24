@@ -92,13 +92,13 @@
 						</button>
 
 						<div class="pull-right">
-							<s:if test="%{technologicalProcess.hasApprove != null && technologicalProcess.hasApprove == '1'}">
+							<s:if test='%{technologicalProcess.hasApprove!=null && technologicalProcess.hasApprove=="1"}'>
 								<button class="btn" type="button" id="approveBtn"
 									data-toggle="modal" data-target="#submitConfirm">
 									<i class="icon-ok"></i> 批准</button>
 							</s:if>
 							
-							<s:if test="%{technologicalProcess.hasSubmitAuth != null && technologicalProcess.hasSubmitAuth == '1'}">
+							<s:if test='%{technologicalProcess.hasSubmitAuth!=null && technologicalProcess.hasSubmitAuth=="1"}'>
 								<button class="btn" type="button" id="approveBtn"
 									data-toggle="modal" data-target="#submitConfirm">
 									<i class="icon-ok"></i> 发起</button>
@@ -415,7 +415,13 @@
 							
 							<!-- 工作流 -->
 							<div class="tab-pane fade" id="workflowTab">
-								<img alt="没有有效的工作流" src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}" id="workflowShowPic">	
+								<!-- 如果发起了则显示工作 -->
+								<s:if test="%{technologicalProcess.state != null && technologicalProcess.state != ''}">
+									<img alt="工作流" src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}" id="workflowShowPic">	
+								</s:if>
+								<s:else>
+									<span>没有发起或者匹配的工作流</span>
+								</s:else>
 							</div>
 							<!-- 附件 -->
 							<div class="tab-pane fade" id="annex">
