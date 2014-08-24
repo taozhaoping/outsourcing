@@ -54,7 +54,17 @@ public class RecruitmentModel extends BaseModel {
 	 * 流程实例id
 	 */
 	private String processInstanceId;
-
+	
+	/***
+	 * 是否有批准权限 0 没有 1 有
+	 */
+	private String hasApprove;
+	
+	/***
+	 * 是否具有发起流程的权限 0 没有 1 有
+	 */
+	private String hasSubmitAuth;
+	
 	public TechnologicalProcess getTechnologicalProcess() {
 		return technologicalProcess;
 	}
@@ -134,6 +144,22 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setProcessInstanceId(String processInstanceId) {
 		this.processInstanceId = processInstanceId;
+	}
+
+	public String getHasApprove() {
+		return hasApprove;
+	}
+
+	public void setHasApprove(String hasApprove) {
+		this.hasApprove = hasApprove;
+	}
+
+	public String getHasSubmitAuth() {
+		return hasSubmitAuth;
+	}
+
+	public void setHasSubmitAuth(String hasSubmitAuth) {
+		this.hasSubmitAuth = hasSubmitAuth;
 	}
 	
 }

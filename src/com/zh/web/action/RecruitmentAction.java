@@ -25,9 +25,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.Pager;
+import com.zh.core.model.VariableUtil;
 import com.zh.web.model.RecruitmentModel;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.TechnologicalProcessService;
@@ -132,17 +134,47 @@ public class RecruitmentAction extends BaseAction {
 			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 			technologicalProcess.setId(Integer.parseInt(businessKey));
 			// technologicalProcess.setWorkuserid(queryUserId());
-			TechnologicalProcess Process = technologicalProcessService
-					.query(technologicalProcess);
+			TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 
 			// 判断数据库中是否存在该数据
-			if (null != Process && Process.getId() != null
-					&& Process.getId() > 0) {
+			if (null != process && process.getId() != null && process.getId() > 0) {
 				// 获取工作流信息
-				String workflowId = Process.getWorkflowid();
+				String workflowId = process.getWorkflowid();
+				//表单的当前审批人
+				String assignee = process.getRes1();
+				//当前登录的用户
+				User curUser = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
+				
+				String curUserName = curUser.getLoginName();
+				
+				//流程状态
+				String state = process.getState();
+				//流程是否发起
+				boolean isStart = false;
+				if(state != null && !state.isEmpty()){
+					isStart = true;
+				}else{
+					isStart = false;
+				}
+				
+				//当前用户是审批者, 并且流程已经发起了
+				if(curUserName.equals(assignee) && isStart){
+					this.recruitmentModel.setHasApprove("1");
+				}
+				
+				//当前用户的id
+				Integer curUserId =curUser.getId();
 
+				//流程创建者的id
+				Integer workUserId = process.getWorkuserid();
+				
+				//如果创建者为当前用户，且流程没有发起，即流程状态为空，则具有发起权限
+				if(curUserId == workUserId && !isStart){
+					this.recruitmentModel.setHasSubmitAuth("1");
+				}
+				
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
-				this.recruitmentModel.setTechnologicalProcess(Process);
+				this.recruitmentModel.setTechnologicalProcess(process);
 			}
 		}
 		return Action.EDITOR;

@@ -92,16 +92,17 @@
 						</button>
 
 						<div class="pull-right">
-							<s:if test="%{technologicalProcess.state!=null && technologicalProcess.state!=''}">
+							<s:if test="%{technologicalProcess.hasApprove != null && technologicalProcess.hasApprove == '1'}">
 								<button class="btn" type="button" id="approveBtn"
 									data-toggle="modal" data-target="#submitConfirm">
 									<i class="icon-ok"></i> 批准</button>
 							</s:if>
-							<s:elseif test="%{technologicalProcess.id!=null}">
+							
+							<s:if test="%{technologicalProcess.hasSubmitAuth != null && technologicalProcess.hasSubmitAuth == '1'}">
 								<button class="btn" type="button" id="approveBtn"
 									data-toggle="modal" data-target="#submitConfirm">
 									<i class="icon-ok"></i> 发起</button>
-							</s:elseif>
+							</s:if>
 							<!-- 
 							<button class="btn" type="button" id="rejectBtn">
 								<i class="icon-remove"></i> 拒绝
