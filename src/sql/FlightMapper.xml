@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="M_FLIGHT">
+<mapper namespace="M_Flight">
 	<resultMap id="T_Flight" type="Flight">
 		<id column="ID" property="id" />
 		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
@@ -12,9 +12,13 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		ID, TECHNOLOGICALPROCESSID, FLIGHTNUMBER, STARTDATE,
-		ENDDATE, PLACE,
-		AIRPORTPEOPLEID
+		id, 
+		technologicalprocessid, 
+		flightnumber, 
+		startdate,
+		enddate, 
+		place,
+		airportpeopleid
 	</sql>
 
 	<sql id="where">
@@ -44,7 +48,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from T_FLIGHT
-		where ID = #{id}
+		where TECHNOLOGICALPROCESSID = #{technologicalprocessid}
 	</select>
 
 	<select id="list" resultMap="T_Flight" parameterType="Flight">

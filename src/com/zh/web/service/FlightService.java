@@ -9,7 +9,7 @@ public interface FlightService {
 
 	/**
 	 * 查询信息
-	 * @param 
+	 * @param 根据员工id查询
 	 * @return
 	 */
 	public Flight query(Flight flight);

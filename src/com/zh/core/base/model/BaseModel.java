@@ -38,6 +38,11 @@ public class BaseModel {
 	private String view;
 	
 	/**
+	 * 需要展示的tab页面
+	 */
+	private String tabID;
+	
+	/**
 	 * 返回界面列表使用
 	 */
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -127,5 +132,12 @@ public class BaseModel {
 		this.token = token;
 	}
 
-	
+	public String getTabID() {
+		return tabID;
+	}
+
+	public void setTabID(String tabID) {
+		this.tabID = tabID;
+	}
+
 }

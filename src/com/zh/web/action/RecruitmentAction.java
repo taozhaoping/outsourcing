@@ -28,10 +28,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
 import com.zh.web.model.RecruitmentModel;
+import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.service.FlightService;
 import com.zh.web.service.TechnologicalProcessService;
 
 public class RecruitmentAction extends BaseAction {
@@ -53,6 +56,9 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
+	
+	@Autowired
+	private FlightService flightService;
 
 	@Autowired
 	protected RuntimeService runtimeService;
@@ -100,6 +106,28 @@ public class RecruitmentAction extends BaseAction {
 		return Action.SUCCESS;
 	}
 
+	//保存航班信息
+	public String saveFlight()
+	{
+		String formId = this.recruitmentModel.getFormId();
+		if(null == formId && "".equals(formId))
+		{
+			throw ProjectException.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		Flight flight = this.recruitmentModel.getFlight();
+		flight.setTechnologicalprocessid(Integer.valueOf(formId));
+		Integer id = flight.getId();
+		if(null != id && id > 0)
+		{
+			flightService.update(flight);
+		}else
+		{
+			flightService.insert(flight);
+		}
+		
+		return editor();
+	}
+	
 	// 保存表单
 	public String save() {
 		LOGGER.debug("save()");
@@ -137,8 +165,15 @@ public class RecruitmentAction extends BaseAction {
 			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 			technologicalProcess.setId(Integer.parseInt(businessKey));
 			// technologicalProcess.setWorkuserid(queryUserId());
+			
+			//获取基本信息
 			TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 
+			//获取航班信息
+			Flight flight = new Flight();
+			flight.setTechnologicalprocessid(process.getId());
+			Flight flightReult = flightService.query(flight);
+			
 			// 判断数据库中是否存在该数据
 			if (null != process && process.getId() != null && process.getId() > 0) {
 				// 获取工作流信息
@@ -148,6 +183,7 @@ public class RecruitmentAction extends BaseAction {
 				
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
+				this.recruitmentModel.setFlight(flightReult);
 			}
 		}
 		return Action.EDITOR;
