@@ -91,7 +91,14 @@
 						<button id="formButton" class="btn btn-primary" type="button">
 							<i class="icon-save"></i> 保存
 						</button>
+						<input type="hidden" id="hasEditAuth" value="1">
 					</s:if>
+					<s:else>
+						<button class="btn" type="button" disabled="disabled">
+							<i class="icon-save"></i> 保存
+						</button>
+						<input type="hidden" id="hasEditAuth" value="0">
+					</s:else>
 
 					<div class="pull-right">
 						<s:if
@@ -561,6 +568,15 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
+		
+		//是否具有编辑权限
+		var hasEdit = $("#hasEditAuth").val();
+		if(hasEdit == "1"){
+		}else{
+			$("input").attr("disabled","disabled");
+			$("select").attr("disabled","disabled");
+			$("button").attr("disabled","disabled");
+		}
 
 		//基本信息
 		//$("#contracttype").select2();
@@ -681,6 +697,7 @@
 		$("#formButton").click(function() {
 			saveForm();
 		});
+		
 		$("#formChangefirmBtn").click(function() {
 			saveForm();
 		});
@@ -692,14 +709,14 @@
 		function saveForm()
 		{
 			var action;
-			if("homeButt" == currTab)
-			{
+			if("homeButt" == currTab) {
+				
 				action=$("#editForm").attr("action");
 				$("#editForm").attr("action",action + "?tabID="+$("#tabID").val());
 				validate = $('#editForm').validate();
 				$("#editForm").submit();
-			}else if ("flightButt" == currTab)
-			{
+			}else if ("flightButt" == currTab){
+				
 				action=$("#flightForm").attr("action");
 				$("#flightForm").attr("action",action + "?tabID="+$("#tabID").val());
 				$("#flightForm").submit();

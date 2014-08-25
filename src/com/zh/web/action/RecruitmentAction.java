@@ -117,14 +117,14 @@ public class RecruitmentAction extends BaseAction {
 		Flight flight = this.recruitmentModel.getFlight();
 		flight.setTechnologicalprocessid(Integer.valueOf(formId));
 		Integer id = flight.getId();
-		if(null != id && id > 0)
-		{
+		
+		if(null != id && id > 0){
 			flightService.update(flight);
-		}else
-		{
+		}else{
 			flightService.insert(flight);
 		}
-		
+		//设置权限标志位
+		setAuthFlag(flight.getTechnologicalprocessid());
 		return editor();
 	}
 	
@@ -145,7 +145,7 @@ public class RecruitmentAction extends BaseAction {
 			LOGGER.debug("insert()...");
 		}
 		//设置权限标志位
-		setAuthFlag(technologicalProcess);
+		setAuthFlag(technologicalProcess.getId());
 		
 		
 		return Action.EDITOR;
@@ -179,7 +179,7 @@ public class RecruitmentAction extends BaseAction {
 				// 获取工作流信息
 				//String workflowId = process.getWorkflowid();
 				//设置权限标识
-				setAuthFlag(process);
+				setAuthFlag(process.getId());
 				
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
@@ -295,10 +295,14 @@ public class RecruitmentAction extends BaseAction {
 	
 	
 	/***
-	 * 设置权限标识
-	 * @param process
+	 * 表单的id
+	 * @param id
 	 */
-	private void setAuthFlag(TechnologicalProcess process){
+	private void setAuthFlag(Integer id){
+		
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(id);
+		TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 		//表单的当前审批人
 		String assignee = process.getRes1();
 		//当前登录的用户
