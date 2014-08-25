@@ -87,13 +87,15 @@
 
 			<div class="row-fluid">
 				<div class="btn-toolbar">
-					<button id="formButton" class="btn btn-primary" type="button">
-						<i class="icon-save"></i> 保存
-					</button>
+					<s:if test='hasApprove=="1" || hasSubmitAuth=="1"'>
+						<button id="formButton" class="btn btn-primary" type="button">
+							<i class="icon-save"></i> 保存
+						</button>
+					</s:if>
 
 					<div class="pull-right">
 						<s:if
-							test='%{technologicalProcess.hasApprove!=null && technologicalProcess.hasApprove=="1"}'>
+							test='%{hasApprove!=null && hasApprove=="1"}'>
 							<button class="btn" type="button" id="approveBtn"
 								data-toggle="modal" data-target="#submitConfirm">
 								<i class="icon-ok"></i> 批准
@@ -101,7 +103,7 @@
 						</s:if>
 
 						<s:if
-							test='%{technologicalProcess.hasSubmitAuth!=null && technologicalProcess.hasSubmitAuth=="1"}'>
+							test='%{hasSubmitAuth!=null && hasSubmitAuth=="1"}'>
 							<button class="btn" type="button" id="approveBtn"
 								data-toggle="modal" data-target="#submitConfirm">
 								<i class="icon-ok"></i> 发起
