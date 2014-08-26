@@ -695,6 +695,7 @@
 		
 		//提交按钮
 		$("#formButton").click(function() {
+			currTab = $("#tabID").val();
 			saveForm();
 		});
 		
