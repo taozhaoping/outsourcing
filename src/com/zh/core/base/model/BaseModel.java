@@ -52,6 +52,11 @@ public class BaseModel {
 	 */
 	private String reultObject;
 	
+	/**
+	 * 传入的json格式列表
+	 */
+	private String jsonList;
+	
 	public String getMenuId() {
 		return menuId;
 	}
@@ -140,4 +145,12 @@ public class BaseModel {
 		this.tabID = tabID;
 	}
 
+	public String getJsonList() {
+		return jsonList;
+	}
+
+	public void setJsonList(String jsonList) {
+		this.jsonList = jsonList;
+	}
+	
 }

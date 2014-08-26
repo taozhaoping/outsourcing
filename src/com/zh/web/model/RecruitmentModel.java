@@ -1,5 +1,6 @@
 package com.zh.web.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,15 @@ public class RecruitmentModel extends BaseModel {
 	 * 是否具有发起流程的权限 0 没有 1 有
 	 */
 	private String hasSubmitAuth;
+	
+	/**
+	 * 文件上传参数
+	 */
+	private File files = null;
+	private String title = null;
+	private String filesFileName = null;
+	private String filesContentType = null;
+	private String fileNumber;
 	
 	public TechnologicalProcess getTechnologicalProcess() {
 		return technologicalProcess;
@@ -161,5 +171,46 @@ public class RecruitmentModel extends BaseModel {
 	public void setHasSubmitAuth(String hasSubmitAuth) {
 		this.hasSubmitAuth = hasSubmitAuth;
 	}
+
+	public File getFiles() {
+		return files;
+	}
+
+	public void setFiles(File files) {
+		this.files = files;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getFilesFileName() {
+		return filesFileName;
+	}
+
+	public void setFilesFileName(String filesFileName) {
+		this.filesFileName = filesFileName;
+	}
+
+	public String getFilesContentType() {
+		return filesContentType;
+	}
+
+	public void setFilesContentType(String filesContentType) {
+		this.filesContentType = filesContentType;
+	}
+
+	public String getFileNumber() {
+		return fileNumber;
+	}
+
+	public void setFileNumber(String fileNumber) {
+		this.fileNumber = fileNumber;
+	}
+	
 	
 }

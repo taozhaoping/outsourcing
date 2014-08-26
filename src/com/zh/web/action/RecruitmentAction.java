@@ -29,11 +29,16 @@ import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
+import com.zh.core.model.IDataObject;
 import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
+import com.zh.core.util.JSONUtil;
+import com.zh.core.util.LoggerUtil;
 import com.zh.web.model.RecruitmentModel;
+import com.zh.web.model.bean.Certificates;
 import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.service.CertificatesService;
 import com.zh.web.service.FlightService;
 import com.zh.web.service.TechnologicalProcessService;
 
@@ -68,6 +73,9 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	protected RepositoryService repositoryService;
+	
+	@Autowired
+	private CertificatesService certificatesService;
 
 	@Autowired
 	protected FormService FormService;
@@ -105,6 +113,31 @@ public class RecruitmentAction extends BaseAction {
 
 		return Action.SUCCESS;
 	}
+	
+	/**
+	 * 保存证件列表信息(传入的事json格式对象字符串)
+	 * @return
+	 */
+	public String saveCertificates()
+	{
+		String jsonList = this.recruitmentModel.getJsonList();
+		if(null == jsonList || "".equals(jsonList))
+		{
+			LoggerUtil.error(LOGGER, "ERROR: saveCertificates jsonList String is null!");
+		}
+		List<IDataObject> list = (List<IDataObject>)JSONUtil.jsonArrToListObject(jsonList, Certificates.class);
+		certificatesService.insertList(list);
+		return editor();
+	}
+	/**
+	 * 上传附件
+	 * @return
+	 */
+	public String saveFile()
+	{
+		
+		return editor();
+	}
 
 	//保存航班信息
 	public String saveFlight()
@@ -123,6 +156,7 @@ public class RecruitmentAction extends BaseAction {
 		}else{
 			flightService.insert(flight);
 		}
+		
 		//设置权限标志位
 		setAuthFlag(flight.getTechnologicalprocessid());
 		return editor();
@@ -169,6 +203,10 @@ public class RecruitmentAction extends BaseAction {
 			//获取基本信息
 			TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 
+			//获取证件信息
+			Certificates certificates = new Certificates();
+			certificates.setTechnologicalprocessid(process.getId());
+			List<Certificates> certificatesList = certificatesService.queryList(certificates);
 			//获取航班信息
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(process.getId());
@@ -183,6 +221,7 @@ public class RecruitmentAction extends BaseAction {
 				
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
+				this.recruitmentModel.setCertificatesList(certificatesList);
 				this.recruitmentModel.setFlight(flightReult);
 			}
 		}

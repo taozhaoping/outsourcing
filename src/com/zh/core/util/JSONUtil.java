@@ -19,10 +19,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import com.zh.core.exception.ProjectException;
+import com.zh.core.model.IDataObject;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -212,5 +212,51 @@ public class JSONUtil {
 				dataString.add(id.toString());
 		}
 		return dataString.toArray();
+	}
+	
+	/**
+	 *  json数组对象转换为list对象返回
+	 * @param jsonString
+	 * @param beanClass
+	 * @return
+	 * @throws AgileException
+	 */
+	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class beanClass) throws ProjectException
+	{
+		ArrayList<IDataObject> arrayList = new ArrayList<IDataObject>();
+		if(null ==jsonString ||"".equals(jsonString))
+		{
+			LoggerUtil.error(LOGGER, "json String is null error!");
+		}
+		JSONArray arr = JSONArray.fromObject(jsonString);
+		for (int i = 0; i < arr.size(); i++) {
+			JSONObject obj= (JSONObject)arr.get(i);
+			IDataObject advancedSearch = (IDataObject)JSONObject.toBean(obj, beanClass);
+			arrayList.add(advancedSearch);
+		}
+		return arrayList;
+	}
+	
+	/**
+	 *  json数组对象转换为list对象返回
+	 * @param jsonString
+	 * @param beanClass
+	 * @return
+	 * @throws AgileException
+	 */
+	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class beanClass,Map classMap) throws ProjectException
+	{
+		ArrayList<IDataObject> arrayList = new ArrayList<IDataObject>();
+		if(null ==jsonString ||"".equals(jsonString))
+		{
+			LoggerUtil.error(LOGGER, "json String is null error!");
+		}
+		JSONArray arr = JSONArray.fromObject(jsonString);
+		for (int i = 0; i < arr.size(); i++) {
+			JSONObject obj= (JSONObject)arr.get(i);
+			IDataObject advancedSearch = (IDataObject)JSONObject.toBean(obj, beanClass,classMap);
+			arrayList.add(advancedSearch);
+		}
+		return arrayList;
 	}
 }

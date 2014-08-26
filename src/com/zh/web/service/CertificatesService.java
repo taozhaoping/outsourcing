@@ -1,7 +1,7 @@
 package com.zh.web.service;
 
 import java.util.List;
-
+import com.zh.core.model.IDataObject;
 import com.zh.core.model.Pager;
 import com.zh.web.model.bean.Certificates;
 
@@ -52,4 +52,10 @@ public interface CertificatesService {
 	 * @param 
 	 */
 	public void insert(Certificates certificates);
+	
+	/**
+	 * 批量新增或者修改（id不为null的时候为修改，否则新增）
+	 * @param
+	 */
+	public void insertList(List<IDataObject> certificatesList);
 }

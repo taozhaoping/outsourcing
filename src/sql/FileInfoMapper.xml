@@ -22,28 +22,28 @@
 	<sql id="where">
 		<where>
 			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="nametype != null">
-				NAMETYPE = #{nametype,jdbcType=VARCHAR},
+				and NAMETYPE = #{nametype,jdbcType=VARCHAR}
 			</if>
 			<if test="type != null">
-				TYPE = #{type,jdbcType=VARCHAR},
+				and TYPE = #{type,jdbcType=VARCHAR}
 			</if>
 			<if test="descr != null">
-				DESCR = #{descr,jdbcType=VARCHAR},
+				and DESCR = #{descr,jdbcType=VARCHAR}
 			</if>
 			<if test="createdate != null">
-				CREATEDATE = #{createdate,jdbcType=VARCHAR},
+				and CREATEDATE = #{createdate,jdbcType=VARCHAR}
 			</if>
 			<if test="updatedate != null">
-				UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+				and UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
 			</if>
 			<if test="state != null">
-				STATE = #{state,jdbcType=VARCHAR},
+				and STATE = #{state,jdbcType=VARCHAR}
 			</if>
 			<if test="technologicalprocessid != null">
-				TECHNOLOGICALPROCESSID = #{technologicalprocessid},
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
 			</if>
 		</where>
 	</sql>

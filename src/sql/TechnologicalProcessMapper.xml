@@ -59,73 +59,73 @@
 	<sql id="where">
 		<where>
 			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="englishname != null">
-				ENGLISHNAME = #{englishname,jdbcType=VARCHAR},
+				and ENGLISHNAME = #{englishname,jdbcType=VARCHAR}
 			</if>
 			<if test="nationality != null">
-				NATIONALITY = #{nationality,jdbcType=VARCHAR},
+				and NATIONALITY = #{nationality,jdbcType=VARCHAR}
 			</if>
 			<if test="yearbirth != null">
-				YEARBIRTH = #{yearbirth,jdbcType=VARCHAR},
+				and YEARBIRTH = #{yearbirth,jdbcType=VARCHAR}
 			</if>
 			<if test="birthday != null">
-				BIRTHDAY = #{birthday,jdbcType=DATE},
+				and BIRTHDAY = #{birthday,jdbcType=DATE}
 			</if>
 			<if test="state != null">
-				STATE = #{state,jdbcType=VARCHAR},
+				and STATE = #{state,jdbcType=VARCHAR}
 			</if>
 			<if test="mail != null">
-				MAIL = #{mail,jdbcType=VARCHAR},
+				and MAIL = #{mail,jdbcType=VARCHAR}
 			</if>
 			<if test="phone != null">
-				MAIL = #{phone,jdbcType=VARCHAR},
+				and MAIL = #{phone,jdbcType=VARCHAR}
 			</if>
 			<if test="createtime != null">
-				CREATETIME = #{createtime,jdbcType=VARCHAR},
+				and CREATETIME = #{createtime,jdbcType=VARCHAR}
 			</if>
 			<if test="updatetime != null">
-				UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+				and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
 			</if>
 			<if test="workuserid != null">
-				WORKUSERID = #{workuserid},
+				and WORKUSERID = #{workuserid}
 			</if>
 			<if test="contracttype != null">
-				CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR},
+				and CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR}
 			</if>
 			<if test="passportno != null">
-				PASSPORTNO = #{passportno,jdbcType=VARCHAR},
+				and PASSPORTNO = #{passportno,jdbcType=VARCHAR}
 			</if>
 			<if test="passportnodate != null">
-				PASSPORTNODATE = #{passportnodate,jdbcType=VARCHAR},
+				and PASSPORTNODATE = #{passportnodate,jdbcType=VARCHAR}
 			</if>
 			<if test="contractdate != null">
-				CONTRACTDATE = #{contractdate,jdbcType=VARCHAR},
+				and CONTRACTDATE = #{contractdate,jdbcType=VARCHAR}
 			</if>
 			<if test="currentlocation != null">
-				CURRENTLOCATION = #{currentlocation,jdbcType=VARCHAR},
+				and CURRENTLOCATION = #{currentlocation,jdbcType=VARCHAR}
 			</if>
 			<if test="workflowid != null">
-				WORKFLOWID = #{workflowid,jdbcType=VARCHAR},
+				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR}
 			</if>
 			<if test="res1 != null">
-				RES1 = #{res1,jdbcType=VARCHAR},
+				and RES1 = #{res1,jdbcType=VARCHAR}
 			</if>
 			<if test="res2 != null">
-				RES2 = #{res2,jdbcType=VARCHAR},
+				and RES2 = #{res2,jdbcType=VARCHAR}
 			</if>
 			<if test="res3 != null">
-				RES3 = #{res3,jdbcType=VARCHAR},
+				and RES3 = #{res3,jdbcType=VARCHAR}
 			</if>
 			<if test="res4 != null">
-				RES4 = #{res4,jdbcType=VARCHAR},
+				and RES4 = #{res4,jdbcType=VARCHAR}
 			</if>
 			<if test="res5 != null">
-				RES5 = #{res5,jdbcType=VARCHAR},
+				and RES5 = #{res5,jdbcType=VARCHAR}
 			</if>
 			<if test="res6 != null">
-				RES6 = #{res6,jdbcType=VARCHAR},
+				and RES6 = #{res6,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</sql>

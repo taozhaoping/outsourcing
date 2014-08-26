@@ -29,40 +29,40 @@
 	<sql id="where">
 		<where>
 			<if test="id != null">
-				and id = #{id},
+				and id = #{id}
 			</if>
 			<if test="workflowid != null">
-				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR},
+				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR}
 			</if>
 			<if test="name != null">
-				and NAME = #{name,jdbcType=VARCHAR},
+				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="handledate != null">
-				and HANDLEDATE = #{handledate,jdbcType=DATE},
+				and HANDLEDATE = #{handledate,jdbcType=DATE}
 			</if>
 			<if test="receivedate != null">
-				and RECEIVEDATE = #{receivedate,jdbcType=DATE},
+				and RECEIVEDATE = #{receivedate,jdbcType=DATE}
 			</if>
 			<if test="validstartdate != null">
-				and VALIDSTARTDATE = #{validstartdate,jdbcType=DATE},
+				and VALIDSTARTDATE = #{validstartdate,jdbcType=DATE}
 			</if>
 			<if test="validenddate != null">
-				and VALIDENDDATE = #{validenddate,jdbcType=DATE},
+				and VALIDENDDATE = #{validenddate,jdbcType=DATE}
 			</if>
 			<if test="type != null">
-				and TYPE = #{type,jdbcType=VARCHAR},
+				and TYPE = #{type,jdbcType=VARCHAR}
 			</if>
 			<if test="createdate != null">
-				and CREATEDATE = #{createdate,jdbcType=VARCHAR},
+				and CREATEDATE = #{createdate,jdbcType=VARCHAR}
 			</if>
 			<if test="updatedate != null">
-				and UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+				and UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
 			</if>
 			<if test="status != null">
-				and STATUS = #{status,jdbcType=VARCHAR},
+				and STATUS = #{status,jdbcType=VARCHAR}
 			</if>
 			<if test="technologicalprocessid != null">
-				and TECHNOLOGICALPROCESSID = #{technologicalprocessid},
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
 			</if>
 		</where>
 	</sql>

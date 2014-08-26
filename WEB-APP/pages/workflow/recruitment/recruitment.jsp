@@ -327,6 +327,7 @@
 							<table class="table">
 								<thead>
 									<tr>
+										<th>编号</th>
 										<th>证件类型</th>
 										<th>办理日期</th>
 										<th>领取日期</th>
@@ -338,27 +339,35 @@
 								</thead>
 								<tbody id="certificatesSearch">
 									<tr>
-										<td><select id="certificatesType" class="input-medium"
-											name="certificates.type">
+										<td>
+											<input type="hidden" size="15"
+											id="certificatesId">
+										</td>
+										<td><select id="certificatesType" class="input-medium">
 												<option value="1">工作许可</option>
 												<option value="2">邀请函</option>
+												<option value="3">公司邀请函</option>
+												<option value="4">暂住证</option>
+												<option value="5">工作签</option>
+												<option value="6">入境章页</option>
+												<option value="7">保险</option>
+												<option value="8">保险</option>
+												<option value="9">外国专家证</option>
 										</select></td>
 										<td><input type="text" size="15"
-											id="certificatesHandledate" name="certificates.handledate"
+											id="certificatesHandledate"
 											readonly class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesReceivedate" name="certificates.receivedate"
+											id="certificatesReceivedate"
 											readonly class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesValidstartdate"
-											name="certificates.validstartdate" readonly
+											id="certificatesValidstartdate" readonly
 											class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesValidenddate"
-											name="certificates.validenddate" readonly
+											id="certificatesValidenddate" readonly
 											class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesUpdateDate" name="certificates.updateDate"
+											id="certificatesUpdateDate" 
 											readonly class="input-small"></td>
 										<td>
 											<p>
@@ -455,11 +464,13 @@
 								<span>没有发起或者匹配的工作流</span>
 							</s:else>
 						</div>
+						
 						<!-- 附件 -->
 						<div class="tab-pane fade" id="annex">
 							<table class="table">
 								<thead>
 									<tr>
+										<th>编号</th>
 										<th>文件名</th>
 										<th>种类</th>
 										<th>描述</th>
@@ -469,8 +480,15 @@
 								</thead>
 								<tbody id="FileInfoSearch">
 									<tr>
-										<td><input type="file" title="上传" id="fileInfoname"
-											name="fileInfo.name" class="input-small" /></td>
+										<td>
+											<s:label name="#fileInfo.id"></s:label>
+											<input type="hidden" id="fileInfoId"
+											name="fileInfo.id" class="input-small" />
+										</td>
+										<td>
+											<input type="file" title="上传" id="fileInfoname"
+											name="fileInfo.name" class="input-small" />
+										</td>
 										<td><select id="fileInfoNametype" class="input-small"
 											name="fileInfo.nametype">
 												<option value="1">护照</option>
@@ -512,6 +530,26 @@
 		</div>
 	</div>
 
+<!-- 保存证件列表 -->
+<div class="hide">
+	<form id="certificatesForm" class="form-horizontal"
+		action="${menu2Id}!saveCertificates.jspa" method="post">
+		<input type="hidden" id="jsonList" name="jsonList" />
+	</form>
+</div>
+
+<!-- 上传文件 -->
+<div class="hide">
+	<form id="fileForm" class="form-horizontal"
+		action="${menu2Id}!saveFile.jspa" method="post">
+		<input type="file" title="上传" id="fileInfoname"
+			name="fileInfo.name" class="input-small" />
+		<input type="hidden" title="上传" id="fileInfoNametype"
+			name="fileInfo.nametype" class="input-small" />
+		<input type="hidden" maxlength="15" id="fileInfoDescr"
+				   name="fileInfo.descr" value="">
+	</form>
+</div>
 <div class="hide">
 	<a  id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm" data-toggle="modal"></a>
 </div>
@@ -557,6 +595,7 @@
 	<script src="<%=path%>/js/common.js"></script>
 	<script src="<%=path%>/js/jquery-validate.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script src="<%=path%>/js/json2.js"></script>
 	<script src="<%=path%>/js/select2/select2.js"></script>
 	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
 	<script
@@ -596,35 +635,52 @@
 		//附件
 		//$("#fileInfoNametype").select2();
 		$("select").select2();
+		
 		//新增证件行信息
-		var row_count = 0;
+		var row_count = 1;
 		function addNew() {
 			row_count++;
 			var search = $('#certificatesSearch');
 			var row = $("<tr></tr>");
 			addTd(
-					row,
-					"<select id='certificatesType' class='input-medium' name='certificates.type'><option value='1'>工作许可</option><option value='2'>邀请函</option></select>");
+					row,"<input type='hidden' size='15' id='certificatesId'>");
 			addTd(
 					row,
-					"<input type='text' size='15' id='certificatesHandledate' name='certificates.handledate' readonly class='form_datetime input-small'>");
+					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>保险</option><option value='9'>外国专家证</option></select>");
 			addTd(
 					row,
-					"<input type='text' size='15' id='certificatesReceivedate' name='certificates.receivedate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
 			addTd(
 					row,
-					"<input type='text' size='15' id='certificatesValidstartdate' name='certificates.validstartdate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='15' id='certificatesReceivedate' readonly class='form_datetime input-small'>");
 			addTd(
 					row,
-					"<input type='text' size='15' id='certificatesValidenddate' name='certificates.validenddate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='15' id='certificatesValidstartdate' readonly class='form_datetime input-small'>");
 			addTd(
 					row,
-					"<input type='text' size='15' id='certificatesUpdateDate' name='certificates.updateDate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='15' id='certificatesValidenddate' readonly class='form_datetime input-small'>");
+			addTd(
+					row,
+					"<input type='text' size='15' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
 			addTd(
 					row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
 			$("select[id='certificatesType']").last().select2();
+		}
+		
+		//获取证件 table中行的的对象
+		function queryCertificates(index)
+		{
+			var obj=new Object();
+			obj.id=$("input[id='certificatesId']")[index].value;
+			obj.type=$("select[id='certificatesType']")[index].value;
+			obj.handledate=$("input[id='certificatesHandledate']")[index].value;
+			obj.receivedate=$("input[id='certificatesReceivedate']")[index].value;
+			obj.validstartdate=$("input[id='certificatesValidstartdate']")[index].value;
+			obj.validenddate=$("input[id='certificatesValidenddate']")[index].value;
+			obj.technologicalprocessid =$("#inputId").val();
+			return obj;
 		}
 
 		//新增上传文件行
@@ -689,8 +745,8 @@
 		var tabID = "${tabID}";
 		if(null != tabID && "" != tabID)
 		{
-			$("#" + tabID).parent().addClass("active");	
-			$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");
+				$("#" + tabID).parent().addClass("active");	
+				$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");				
 		}else
 		{
 			tabID = "homeButt";
@@ -722,6 +778,15 @@
 				$("#editForm").attr("action",action + "?tabID="+$("#tabID").val());
 				validate = $('#editForm').validate();
 				$("#editForm").submit();
+			}else if ("certificatesButt" == currTab){
+				var arrCertificates=new Array();
+				for ( var index = 0; index < row_count; index++) {
+					arrCertificates[index] = queryCertificates(index);
+					alert(arrCertificates[index].type);
+				}
+				var tex=JSON2.stringify(arrCertificates);
+				$("input[id='jsonList']").val(tex);
+				$("#certificatesForm").submit();
 			}else if ("flightButt" == currTab){
 				
 				action=$("#flightForm").attr("action");

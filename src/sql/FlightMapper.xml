@@ -24,22 +24,22 @@
 	<sql id="where">
 		<where>
 			<if test="technologicalprocessid != null">
-				and TECHNOLOGICALPROCESSID = #{technologicalprocessid},
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
 			</if>
 			<if test="flightnumber != null">
-				and FLIGHTNUMBER = #{flightnumber,jdbcType=VARCHAR},
+				and FLIGHTNUMBER = #{flightnumber,jdbcType=VARCHAR}
 			</if>
 			<if test="startdate != null">
-				and STARTDATE = #{startdate,jdbcType=DATE},
+				and STARTDATE = #{startdate,jdbcType=DATE}
 			</if>
 			<if test="enddate != null">
-				and ENDDATE = #{enddate,jdbcType=DATE},
+				and ENDDATE = #{enddate,jdbcType=DATE}
 			</if>
 			<if test="place != null">
-				and PLACE = #{place,jdbcType=VARCHAR},
+				and PLACE = #{place,jdbcType=VARCHAR}
 			</if>
 			<if test="airportpeopleid != null">
-				and AIRPORTPEOPLEID = #{airportpeopleid},
+				and AIRPORTPEOPLEID = #{airportpeopleid}
 			</if>
 		</where>
 	</sql>
