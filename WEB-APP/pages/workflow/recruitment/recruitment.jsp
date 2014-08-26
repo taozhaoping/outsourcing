@@ -675,7 +675,13 @@
 			$("#formChanged").val("1");
 		});
 		
+		//所有时间控件变更
 		$(".form_datetime").change(function() {
+			$("#formChanged").val("1");
+		});
+		
+		//所有select控件变更
+		$("tbody select").change(function() {
 			$("#formChanged").val("1");
 		});
 		
