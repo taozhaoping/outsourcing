@@ -219,10 +219,17 @@
 						</div>
 						<div id="widget2container" class="block-body collapse in">
 							<table class="table list">
+								<thead>
+									<tr>
+										<th>编号</th>
+										<th>描述</th>
+										<th>状态</th>
+									</tr>
+								</thead>
 								<tbody>
 									<s:iterator value="taskList" var="task" status="index">
 										<tr>
-											<td><s:property value="#task.id"/></td>
+											<td><a href="#"><s:property value="#task.id"/></a></td>
 											<td><s:property value="#task.name"/></td>
 											<td>
 												<a href="#">查看</a> 
