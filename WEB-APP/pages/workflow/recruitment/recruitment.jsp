@@ -623,7 +623,7 @@
 					row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
-			$("select").select2();
+			$("select[id='certificatesType']").last().select2();
 		}
 
 		//新增上传文件行
@@ -648,7 +648,7 @@
 					row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNewFile();' type='button'></button><button class='btn btn-mini icon-minus' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
-			$("select").select2();
+			$("select[id='fileInfoNametype']").last().select2();
 		}
 		function addTd(row, str) {
 			var td = $("<td></td>");
