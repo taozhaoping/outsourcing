@@ -128,7 +128,7 @@
 				<s:set name="ProcessId" value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
 				<div class="well">
 					<ul class="nav nav-tabs">
-						<li><a id="homeButt" href="#home" id="homeButt"
+						<li><a id="homeButt" href="#home"
 							data-toggle="tab">基本信息</a></li>
 							
 						<s:if test="#ProcessId">
@@ -683,16 +683,14 @@
 		var tabID = "${tabID}";
 		if(null != tabID && "" != tabID)
 		{
-			$("#" + tabID).parent().addClass("active");
-			$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade");
-			$("#" + tabID.substring(0,tabID.length-4)).addClass("active");
+			$("#" + tabID).parent().addClass("active");	
+			$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");
 		}else
 		{
 			tabID = "homeButt";
 			$("#tabID").val("homeButt");
 			$("#homeButt").parent().addClass("active");
-			$("#home").removeClass("fade");
-			$("#home").addClass("active");
+			$("#home").removeClass("fade").addClass("active");
 		}
 		
 		//提交按钮
