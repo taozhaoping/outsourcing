@@ -735,9 +735,11 @@
 		var technologicalProcessId="${technologicalProcess.id}";
 		function ischangeForm(id)
 		{
+			//获取当前需要保存的tabid
 			currTab = $("#tabID").val();
-			$("#tabID").val(id);
 			//设置新的tab
+			$("#tabID").val(id);
+			//判断是否变更过
 			if("1" == $("#formChanged").val())
 			{
 				$("#Ejectfirm").click();
