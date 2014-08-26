@@ -124,7 +124,7 @@
 					</div>
 				</div>
 				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
-				<input type="text" id="formChanged" name="formChanged" value="0" />
+				<input type="hidden" id="formChanged" name="formChanged" value="0" />
 				<s:set name="ProcessId" value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
 				<div class="well">
 					<ul class="nav nav-tabs">
