@@ -124,7 +124,7 @@
 					</div>
 				</div>
 				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
-				<input type="hidden" id="formChanged" name="formChanged" value="0" />
+				<input type="text" id="formChanged" name="formChanged" value="0" />
 				<s:set name="ProcessId" value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
 				<div class="well">
 					<ul class="nav nav-tabs">
@@ -479,10 +479,11 @@
 												<option value="4">无犯罪记录</option>
 												<option value="5">TEFL证</option>
 												<option value="6">档案表</option>
-										</select></td>
+										</select>
+										</td>
 										<td><input type="text" maxlength="15" id="fileInfoDescr"
 											name="fileInfo.descr" value="${fileInfo.descr}"
-											class="input-medium"></td>
+											class="input-large"></td>
 										<td><input type="text" size="15" id="fileInfoCreatedate"
 											class="input-small" readonly /></td>
 										<td>
@@ -670,10 +671,11 @@
 		}
 
 		//判断表单是否修改过
-		$("#editForm :input").change(function() {
+		$("form :input").change(function() {
 			$("#formChanged").val("1");
 		});
-		$("#flightForm :input").change(function() {
+		
+		$(".form_datetime").change(function() {
 			$("#formChanged").val("1");
 		});
 		
@@ -729,11 +731,6 @@
 		var technologicalProcessId="${technologicalProcess.id}";
 		function ischangeForm(id)
 		{
-			//判断当前基本信息是否已经保存
-			//if(null == technologicalProcessId || ""==technologicalProcessId)
-			//{
-			//	saveForm();
-			//}
 			currTab = $("#tabID").val();
 			$("#tabID").val(id);
 			//设置新的tab
@@ -744,31 +741,11 @@
 			}
 		}
 		
-		//头部-基本信息
-		$("#homeButt").click(function() {
+		//tab页签添加事件
+		$("li a[data-toggle='tab']").click(function() {
 			ischangeForm(this.id);
 		});
-
-		//头部-证件信息
-		$("#certificatesButt").click(function() {
-			ischangeForm(this.id);
-		});
-
-		//头部-航班信息
-		$("#flightButt").click(function() {
-			ischangeForm(this.id);
-		});
-
-		//头部-工作流
-		$("#workflowTabButt").click(function() {
-			ischangeForm(this.id);
-		});
-
-		//头部-附件
-		$("#annexButt").click(function() {
-			ischangeForm(this.id);
-		});
-
+		
 		//批准按钮
 		$("#approveBtnConfirm").click(function() {
 			var assign = $("#modal_assign").val();
