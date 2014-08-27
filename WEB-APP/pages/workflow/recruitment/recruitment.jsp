@@ -613,9 +613,9 @@
 		var hasEdit = $("#hasEditAuth").val();
 		if(hasEdit == "1"){
 		}else{
-			$("input").attr("disabled","disabled");
-			$("select").attr("disabled","disabled");
-			$("button").attr("disabled","disabled");
+			$(".container-fluid input").attr("disabled","disabled");
+			$(".container-fluid select").attr("disabled","disabled");
+			$(".container-fluid button").attr("disabled","disabled");
 		}
 
 		//基本信息
