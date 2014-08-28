@@ -297,9 +297,9 @@ public class RecruitmentAction extends BaseAction {
 		// variables.put("period", "2015-06");
 		variables.put("nextAssignee", assignee);
 		if("0".equals(assignFlag)){
-			variables.put("assigneeFlag", false);
+			variables.put("assignFlag", false);
 		}else if("1".equals(assignFlag)){
-			variables.put("assigneeFlag", true);
+			variables.put("assignFlag", true);
 		}
 		
 		//完成任务
