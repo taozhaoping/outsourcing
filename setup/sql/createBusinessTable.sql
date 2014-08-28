@@ -568,7 +568,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
 	BEGIN
-		select SYS_EXTRACT_UTC(SYSTIMESTAMP) into modifyDate from dual;
+		select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
 		:new.UPDATETIME := modifyDate;
 		EXCEPTION
 		WHEN OTHERS THEN

@@ -193,6 +193,7 @@ public class RecruitmentAction extends BaseAction {
 	public String editor() {
 		LOGGER.debug("进入编辑页面");
 		String businessKey = this.recruitmentModel.getFormId();
+		
 		if (null != businessKey && Integer.parseInt(businessKey) > 0) {
 			// 获取当前登陆的用户id
 			//Integer userID = queryUserId();
@@ -224,7 +225,19 @@ public class RecruitmentAction extends BaseAction {
 				this.recruitmentModel.setCertificatesList(certificatesList);
 				this.recruitmentModel.setFlight(flightReult);
 			}
+			
+		}else{
+			//新建表单时候
+			TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+			// 设置当前用户为流程发起人
+			Integer userID = queryUserId();
+			technologicalProcess.setWorkuserid(userID);
+			technologicalProcess.setState("发起");
+			technologicalProcessService.insert(technologicalProcess);
+			this.recruitmentModel.setHasSubmitAuth("1");
+			LOGGER.debug("create form()...");
 		}
+		
 		return Action.EDITOR;
 	}
 
@@ -353,14 +366,14 @@ public class RecruitmentAction extends BaseAction {
 		String state = process.getState();
 		//流程是否发起
 		boolean isStart = false;
-		if(state != null && !state.isEmpty()){
+		if(state != null && state.equals("发起")){
 			isStart = true;
 		}else{
 			isStart = false;
 		}
 		
-		//当前用户是审批者, 并且流程已经发起了
-		if(curUserName.equals(assignee) && isStart){
+		//当前用户是审批者, 并且流程在<发起>节点
+		if(curUserName.equals(assignee) && !isStart){
 			this.recruitmentModel.setHasApprove("1");
 		}
 		
@@ -370,8 +383,8 @@ public class RecruitmentAction extends BaseAction {
 		//流程创建者的id
 		Integer workUserId = process.getWorkuserid();
 		
-		//如果创建者为当前用户，且流程没有发起，即流程状态为空，则具有发起权限
-		if(curUserId == workUserId && !isStart){
+		//如果创建者为当前用户，且流程没有发起，即流程状态为<发起>，则具有发起权限
+		if(curUserId == workUserId && isStart){
 			this.recruitmentModel.setHasSubmitAuth("1");
 		}
 	}
