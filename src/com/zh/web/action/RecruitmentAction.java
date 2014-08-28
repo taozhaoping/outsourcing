@@ -272,7 +272,7 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setWorkflowid(workflowId);
 		technologicalProcess.setState(state);
 		technologicalProcess.setRes1(assignee);
-		technologicalProcess.setRes2(currentTask.getId());
+		technologicalProcess.setRes3(currentTask.getId());
 		
 		technologicalProcessService.update(technologicalProcess);
 
@@ -286,14 +286,21 @@ public class RecruitmentAction extends BaseAction {
 		
 		String businessKey = this.recruitmentModel.getFormId();
 		String assignee = this.recruitmentModel.getAssign();
+		String assignFlag = this.recruitmentModel.getAssignFlag();
+		
 		//当前任务的id
-		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getRes2();
+		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getRes3();
 		//工作流的id，即流程的id
 		String workflowId = this.recruitmentModel.getTechnologicalProcess().getWorkflowid(); 
 
 		Map<String, Object> variables = new HashMap<String, Object>();
 		// variables.put("period", "2015-06");
 		variables.put("nextAssignee", assignee);
+		if("0".equals(assignFlag)){
+			variables.put("assigneeFlag", false);
+		}else if("1".equals(assignFlag)){
+			variables.put("assigneeFlag", true);
+		}
 		
 		//完成任务
 		taskService.complete(curTaskId, variables);
@@ -313,7 +320,7 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 		technologicalProcess.setState(state);
 		technologicalProcess.setRes1(assignee);
-		technologicalProcess.setRes2(currentTask.getId());
+		technologicalProcess.setRes3(currentTask.getId());
 		
 		technologicalProcessService.update(technologicalProcess);
 		

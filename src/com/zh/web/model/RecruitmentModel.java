@@ -47,6 +47,11 @@ public class RecruitmentModel extends BaseModel {
 	private String assign;
 	
 	/***
+	 * 批准、拒绝  <0：拒绝 1：批准>
+	 */
+	private String assignFlag;
+	
+	/***
 	 * 
 	 */
 	private List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
@@ -97,6 +102,14 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setAssign(String assign) {
 		this.assign = assign;
+	}
+
+	public String getAssignFlag() {
+		return assignFlag;
+	}
+
+	public void setAssignFlag(String assignFlag) {
+		this.assignFlag = assignFlag;
 	}
 
 	public List<TechnologicalProcess> getTechnologicalProcessList() {

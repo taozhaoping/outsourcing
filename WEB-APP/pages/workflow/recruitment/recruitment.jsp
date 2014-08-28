@@ -531,8 +531,9 @@
 			<form action="${menu2Id}!approveWorkflow.jspa" method="post" id="approveWF">
 				<input type="hidden" name="formId" id="awf_formId" value="${technologicalProcess.id}">
 				<input type="hidden" name="technologicalProcess.workflowid" id="awf_formId" value="${technologicalProcess.workflowid}">
-				<input type="hidden" name="technologicalProcess.res2" id="taskId" value="${technologicalProcess.res2}">
+				<input type="hidden" name="technologicalProcess.res3" id="taskId" value="${technologicalProcess.res3}">
 				<input type="hidden" name="assign" id="awf_assign"> 
+				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
 				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 				<input type="hidden" name="menuId" value="${menuId}">
 			</form>
@@ -862,6 +863,7 @@
 				return;
 			}else{
 				$("#awf_assign").val(assign);
+				$("#awf_assignFlag").val("1");
 				$("#approveWF").submit();
 			}
 			
