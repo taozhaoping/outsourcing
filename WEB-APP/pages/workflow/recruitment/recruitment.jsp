@@ -210,10 +210,10 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputState">状态:</label>
+											<label class="control-label" for="inputState">当前节点:</label>
 											<div class="controls">
 												<input type="text" id="inputState"
-													name="technologicalProcess.state"
+													name="technologicalProcess.state" readonly="readonly"
 													value="${technologicalProcess.state}" class="input-large">
 											</div>
 										</div>
