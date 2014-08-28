@@ -104,15 +104,15 @@
 						<s:if
 							test='%{hasApprove!=null && hasApprove=="1"}'>
 							<button class="btn" type="button" id="approveBtn"
-								data-toggle="modal" data-target="#submitConfirm">
+								data-toggle="modal" data-target="#approveConfirm">
 								<i class="icon-ok"></i> 批准
 							</button>
 						</s:if>
 
 						<s:if
 							test='%{hasSubmitAuth!=null && hasSubmitAuth=="1"}'>
-							<button class="btn" type="button" id="approveBtn"
-								data-toggle="modal" data-target="#submitConfirm">
+							<button class="btn" type="button" id="startBtn"
+								data-toggle="modal" data-target="#startConfirm">
 								<i class="icon-ok"></i> 发起
 							</button>
 						</s:if>
@@ -149,7 +149,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputId">编号:</label>
+											<label class="control-label" for="inputId">编号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
 													id="inputId" name="technologicalProcess.id"
@@ -161,7 +161,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="description">描述:</label>
+											<label class="control-label" for="description">描述：</label>
 											<div class="controls">
 												<input type="text" id="description"
 													name="technologicalProcess.res2"
@@ -175,7 +175,7 @@
 								<dir class="row">
 									<div class="span5 pull-left">
 										<div class="control-group">
-											<label class="control-label" for="inputName">姓名:</label>
+											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
 												<input type="text" data-required="true" maxlength="15"
 													id="inputName" name="technologicalProcess.name"
@@ -185,7 +185,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputEnglishname">英文名:</label>
+											<label class="control-label" for="inputEnglishname">英文名：</label>
 											<div class="controls">
 												<input type="text" id="inputEnglishname"
 													name="technologicalProcess.englishname"
@@ -199,7 +199,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputnationality">国籍:</label>
+											<label class="control-label" for="inputnationality">国籍：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
@@ -210,7 +210,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputState">当前节点:</label>
+											<label class="control-label" for="inputState">当前状态：</label>
 											<div class="controls">
 												<input type="text" id="inputState"
 													name="technologicalProcess.state" readonly="readonly"
@@ -223,7 +223,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputyearbirth">出生年份:</label>
+											<label class="control-label" for="inputyearbirth">出生年份：</label>
 											<div class="controls">
 												<input type="text" id="inputyearbirth"
 													name="technologicalProcess.yearbirth"
@@ -234,7 +234,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputBirthday">生日:</label>
+											<label class="control-label" for="inputBirthday">生日：</label>
 											<div class="controls">
 												<input type="text" size="15" id="inputBirthday"
 													name="technologicalProcess.birthday"
@@ -249,7 +249,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputMail">邮件:</label>
+											<label class="control-label" for="inputMail">邮件：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail"
@@ -259,7 +259,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputPhone">手机号码:</label>
+											<label class="control-label" for="inputPhone">手机号码：</label>
 											<div class="controls">
 												<input type="text" id="inputPhone"
 													name="technologicalProcess.Phone"
@@ -272,7 +272,7 @@
 								<dir class="row">
 									<div class="span5 left">
 										<div class="control-group">
-											<label class="control-label" for="contracttype">合同种类:</label>
+											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
 												<select id="contracttype" class="input-large"
 													name="technologicalProcess.contracttype">
@@ -285,7 +285,7 @@
 									</div>
 									<div class="span5 left">
 										<div class="control-group">
-											<label class="control-label" for="inputContractdate">合同有效期:</label>
+											<label class="control-label" for="inputContractdate">合同有效期：</label>
 											<div class="controls">
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
@@ -299,7 +299,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputPassportno">护照号:</label>
+											<label class="control-label" for="inputPassportno">护照号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputPassportno"
 													name="technologicalProcess.passportno"
@@ -310,7 +310,7 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputPassportnodate">护照有效期:</label>
+											<label class="control-label" for="inputPassportnodate">护照有效期：</label>
 											<div class="controls">
 												<input type="text" id="inputPassportnodate"
 													name="technologicalProcess.passportnodate"
@@ -391,7 +391,7 @@
 							<dir class="row">
 								<div class="span5">
 									<div class="control-group">
-										<label class="control-label" for="flightnumber">航班号:</label>
+										<label class="control-label" for="flightnumber">航班号：</label>
 										<div class="controls">
 											<input type="text" maxlength="15" id="flightnumber"
 												name="flight.flightnumber" value="${flight.flightnumber}"
@@ -401,7 +401,7 @@
 								</div>
 								<div class="span5">
 									<div class="control-group">
-										<label class="control-label" for="airportPeopleId">接机人:</label>
+										<label class="control-label" for="airportPeopleId">接机人：</label>
 										<div class="controls">
 											<select id="airportPeopleId" class="input-large"
 												name="flight.airportPeopleId">
@@ -415,7 +415,7 @@
 							<dir class="row">
 								<div class="span5 pull-left">
 									<div class="control-group">
-										<label class="control-label" for="inputstartdate">起飞时间:</label>
+										<label class="control-label" for="inputstartdate">起飞时间：</label>
 										<div class="controls">
 											<input type="text" size="15" id="inputstartdate"
 												name="flight.startdate"
@@ -426,7 +426,7 @@
 								</div>
 								<div class="span5">
 									<div class="control-group">
-										<label class="control-label" for="inputenddate">到达时间:</label>
+										<label class="control-label" for="inputenddate">到达时间：</label>
 										<div class="controls">
 											<input type="text" size="15" id="inputenddate"
 												name="flight.enddate"
@@ -439,7 +439,7 @@
 							<dir class="row">
 								<div class="span5 pull-left">
 									<div class="control-group">
-										<label class="control-label" for="place">到达机场:</label>
+										<label class="control-label" for="place">到达机场：</label>
 										<div class="controls">
 											<input type="text" maxlength="15" id="place"
 												name="flight.place" value="${flight.place}"
@@ -520,10 +520,19 @@
 			</div>
 
 			<!-- 创建工作流 -->
-			<form action="${menu2Id}!createWorkflow.jspa" method="post"
-				id="createWF">
-				<input type="hidden" name="formId" id="cwf_formId">
+			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId" value="${technologicalProcess.id}">
 				<input type="hidden" name="assign" id="cwf_assign"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+				<input type="hidden" name="menuId" value="${menuId}">
+			</form>
+			
+			<!-- 批准工作流 -->
+			<form action="${menu2Id}!approveWorkflow.jspa" method="post" id="approveWF">
+				<input type="hidden" name="formId" id="awf_formId" value="${technologicalProcess.id}">
+				<input type="hidden" name="technologicalProcess.workflowid" id="awf_formId" value="${technologicalProcess.workflowid}">
+				<input type="hidden" name="technologicalProcess.res2" id="taskId" value="${technologicalProcess.res2}">
+				<input type="hidden" name="assign" id="awf_assign"> 
 				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 				<input type="hidden" name="menuId" value="${menuId}">
 			</form>
@@ -553,27 +562,45 @@
 <div class="hide">
 	<a  id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm" data-toggle="modal"></a>
 </div>
-	<div class="modal small hide fade" id="submitConfirm" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">启动流程</h3>
-		</div>
-		<div class="modal-body">
-			<!-- 
-	    <p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认要退出系统吗?</p>
-	     -->
-			<label class="control-label pull-left" for="modal_assign">审批人：</label>
-			<input type="text" id="modal_assign" class="input-large pull-right">
-
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-danger" data-dismiss="modal"
-				id="approveBtnConfirm">确认</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-		</div>
+<!-- 发起流程 -->
+<div class="modal small hide fade" id="startConfirm" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="startModalLabel">流程发起</h3>
 	</div>
+	<div class="modal-body">
+		<label class="control-label pull-left" for="modalAssign">审批人：</label>
+		<input type="text" id="modalAssign" class="input-large pull-right">
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" data-dismiss="modal"
+			id="startBtnConfirm">确认</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	</div>
+</div>
+
+<!-- 批准流程 -->
+<div class="modal small hide fade" id="approveConfirm" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="approveModalLabel">流程审批</h3>
+	</div>
+	<div class="modal-body">
+		<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
+		<input type="text" id="modalNextAssign" class="input-large pull-right">
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" data-dismiss="modal"
+			id="approveBtnConfirm">确认</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	</div>
+</div>
 
 <div class="modal small hide fade" id="forMchangefirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -817,19 +844,27 @@
 			ischangeForm(this.id);
 		});
 		
-		//批准按钮
-		$("#approveBtnConfirm").click(function() {
-			var assign = $("#modal_assign").val();
+		//发起按钮确认
+		$("#startBtnConfirm").click(function() {
+			var assign = $("#modalAssign").val();
 			if (assign == null || assign == "") {
 				return;
+			}else{
+				$("#cwf_assign").val(assign);
+				$("#createWF").submit();
 			}
-
-			var formId = $("#inputId").val();
-
-			$("#cwf_formId").val(formId);
-			$("#cwf_assign").val(assign);
-
-			$("#createWF").submit();
+		});
+		
+		//批准按钮确认
+		$("#approveBtnConfirm").click(function() {
+			var assign = $("#modalNextAssign").val();
+			if (assign == null || assign == "") {
+				return;
+			}else{
+				$("#awf_assign").val(assign);
+				$("#approveWF").submit();
+			}
+			
 		});
 	</script>
 </body>

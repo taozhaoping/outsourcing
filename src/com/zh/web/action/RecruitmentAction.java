@@ -241,7 +241,7 @@ public class RecruitmentAction extends BaseAction {
 		return Action.EDITOR;
 	}
 
-	// 创建工作流
+	//发起工作流
 	public String createWorkflow() {
 		LOGGER.debug("createWorkflow()");
 
@@ -272,8 +272,51 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setWorkflowid(workflowId);
 		technologicalProcess.setState(state);
 		technologicalProcess.setRes1(assignee);
+		technologicalProcess.setRes2(currentTask.getId());
+		
 		technologicalProcessService.update(technologicalProcess);
 
+		return "createSuccess";
+	}
+	
+	
+	// 批准工作流
+	public String approveWorkflow() {
+		LOGGER.debug("approveWorkflow()");
+		
+		String businessKey = this.recruitmentModel.getFormId();
+		String assignee = this.recruitmentModel.getAssign();
+		//当前任务的id
+		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getRes2();
+		//工作流的id，即流程的id
+		String workflowId = this.recruitmentModel.getTechnologicalProcess().getWorkflowid(); 
+
+		Map<String, Object> variables = new HashMap<String, Object>();
+		// variables.put("period", "2015-06");
+		variables.put("nextAssignee", assignee);
+		
+		//完成任务
+		taskService.complete(curTaskId, variables);
+		//获取流程实例
+		ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(workflowId).singleResult();
+		// 任务节点
+		String activityId = processInstance.getActivityId();
+		
+		Task currentTask = taskService.createTaskQuery()
+				.processInstanceId(workflowId).taskDefinitionKey(activityId)
+				.singleResult();
+		// 当前任务的名称
+		String state = currentTask.getName();
+		
+		LOGGER.debug("processInstance.id: " + workflowId);
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(Integer.parseInt(businessKey));
+		technologicalProcess.setState(state);
+		technologicalProcess.setRes1(assignee);
+		technologicalProcess.setRes2(currentTask.getId());
+		
+		technologicalProcessService.update(technologicalProcess);
+		
 		return "createSuccess";
 	}
 
