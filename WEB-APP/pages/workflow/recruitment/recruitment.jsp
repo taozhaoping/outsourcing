@@ -164,8 +164,8 @@
 											<label class="control-label" for="description">描述：</label>
 											<div class="controls">
 												<input type="text" id="description"
-													name="technologicalProcess.res2"
-													value="${technologicalProcess.res2}" data-required="true"
+													name="technologicalProcess.description"
+													value="${technologicalProcess.description}" data-required="true"
 													class="input-large">
 											</div>
 										</div>
@@ -531,7 +531,7 @@
 			<form action="${menu2Id}!approveWorkflow.jspa" method="post" id="approveWF">
 				<input type="hidden" name="formId" id="awf_formId" value="${technologicalProcess.id}">
 				<input type="hidden" name="technologicalProcess.workflowid" id="awf_formId" value="${technologicalProcess.workflowid}">
-				<input type="hidden" name="technologicalProcess.res3" id="taskId" value="${technologicalProcess.res3}">
+				<input type="hidden" name="technologicalProcess.taskId" id="taskId" value="${technologicalProcess.taskId}">
 				<input type="hidden" name="assign" id="awf_assign"> 
 				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
 				<input type="hidden" name="menu2Id" value="${menu2Id}"> 

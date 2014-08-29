@@ -235,7 +235,7 @@ public class RecruitmentAction extends BaseAction {
 			String menu2Id = this.recruitmentModel.getMenu2Id();
 			//保存表单的链接信息
 			String url = path + "/workflow/" + menu2Id +"!editor.jspa?menuId="+menuId+"&menu2Id="+menu2Id;
-			technologicalProcess.setRes6(url);
+			technologicalProcess.setUrl(url);
 			technologicalProcessService.insert(technologicalProcess);
 			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
@@ -274,8 +274,8 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 		technologicalProcess.setWorkflowid(workflowId);
 		technologicalProcess.setState(state);
-		technologicalProcess.setRes1(assignee);
-		technologicalProcess.setRes3(currentTask.getId());
+		technologicalProcess.setApprover(assignee);
+		technologicalProcess.setTaskId(currentTask.getId());
 		
 		technologicalProcessService.update(technologicalProcess);
 
@@ -292,7 +292,7 @@ public class RecruitmentAction extends BaseAction {
 		String assignFlag = this.recruitmentModel.getAssignFlag();
 		
 		//当前任务的id
-		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getRes3();
+		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getTaskId();
 		//工作流的id，即流程的id
 		String workflowId = this.recruitmentModel.getTechnologicalProcess().getWorkflowid(); 
 
@@ -322,8 +322,8 @@ public class RecruitmentAction extends BaseAction {
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 		technologicalProcess.setState(state);
-		technologicalProcess.setRes1(assignee);
-		technologicalProcess.setRes3(currentTask.getId());
+		technologicalProcess.setApprover(assignee);
+		technologicalProcess.setTaskId(currentTask.getId());
 		
 		technologicalProcessService.update(technologicalProcess);
 		
@@ -409,7 +409,7 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setId(id);
 		TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 		//表单的当前审批人
-		String assignee = process.getRes1();
+		String assignee = process.getApprover();
 		//当前登录的用户
 		User curUser = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
 		

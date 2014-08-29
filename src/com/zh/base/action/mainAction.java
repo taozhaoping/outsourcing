@@ -96,7 +96,7 @@ public class mainAction extends BaseAction {
 			
 			
 			technologicalProcess.setWorkflowid(processInstanceId);
-			technologicalProcess.setRes3(taskId);
+			technologicalProcess.setTaskId(taskId);
 			
 			technologicalProcessList.addAll(technologicalProcessService.queryList(technologicalProcess));
 			

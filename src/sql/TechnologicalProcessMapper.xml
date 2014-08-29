@@ -4,6 +4,7 @@
 	<resultMap id="T_TechnologicalProcess" type="TechnologicalProcess">
 		<id column="ID" property="id" />
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
 		<result column="ENGLISHNAME" property="englishname" jdbcType="VARCHAR" />
 		<result column="NATIONALITY" property="nationality" jdbcType="VARCHAR" />
 		<result column="YEARBIRTH" property="yearbirth" jdbcType="VARCHAR" />
@@ -21,6 +22,11 @@
 		<result column="CONTRACTDATE" property="contractdate" jdbcType="VARCHAR" />
 		<result column="CURRENTLOCATION" property="currentlocation" jdbcType="VARCHAR" />
 		<result column="WORKFLOWID" property="workflowid" jdbcType="VARCHAR" />
+		
+		<result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+		<result column="TASKID" property="taskId" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		
 		<result column="RES1" property="res1" jdbcType="VARCHAR" />
 		<result column="RES2" property="res2" jdbcType="VARCHAR" />
 		<result column="RES3" property="res3" jdbcType="VARCHAR" />

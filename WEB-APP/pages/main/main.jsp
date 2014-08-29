@@ -157,11 +157,11 @@
 									<s:iterator value="technologicalProcessList" var="task" status="index">
 										<tr>
 											<td>
-												<a href="<s:property value='#task.res6'/>&formId=<s:property value='#task.id'/>">
+												<a href="<s:property value='#task.url'/>&formId=<s:property value='#task.id'/>">
 													<s:property value="#task.id"/>
 												</a>
 											</td>
-											<td><s:property value="#task.res2"/></td>
+											<td><s:property value="#task.description"/></td>
 											<td><s:property value="#task.state"/></td>
 										</tr>
 									</s:iterator>
