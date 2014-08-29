@@ -65,7 +65,7 @@ public class RoleAction extends BaseAction {
 	 * 获取菜单接口,json返回格式
 	 */
 	public String menuExecute() {
-		LOGGER.debug("execute() ");
+		LOGGER.debug("menuExecute() ");
 		Menu menu = this.roleModel.getMenu();
 		List<Menu> menuList = menuService.queryList(menu);
 		

@@ -105,15 +105,13 @@ public class UserInfoAction extends BaseAction {
 		
 		//判断当前是设置成启动状态还是停用状态
 		String view = this.userInfoModel.getView();
-		if(null != view && "enabled".equals(view))
-		{
+		if(null != view && "enabled".equals(view)){
+			
 			String enabled = this.userInfoModel.getEnabled();
 			Integer id = this.userInfoModel.getId();
-			if("0".equals(enabled))
-			{
+			if("0".equals(enabled)){
 				user.setEnabled("1");
-			}else
-			{
+			}else{
 				user.setEnabled("0");
 			}
 			user.setId(id);
@@ -122,21 +120,17 @@ public class UserInfoAction extends BaseAction {
 		//判断是新增还是修改
 		Integer id = user.getId();
 		String passWord = userInfoModel.getNewPassWord();
-		if(null == id || 0 == id)
-		{
-			
-			if( null == passWord && "".equals(passWord))
-			{
+		
+		if(null == id || 0 == id){
+			if( null == passWord && "".equals(passWord)){
 				ProjectException.createException("密码不允许为空!");
 			}
 			String bcryptPassword = BCrypt.hashpw(passWord, BCrypt.gensalt(12));
 			user.setUserPassword(bcryptPassword);
 			user.setCreateTime(new Date());
 			userInfoService.insert(user);
-		}else
-		{
-			if( null != passWord && !"".equals(passWord))
-			{
+		}else{
+			if( null != passWord && !"".equals(passWord)){
 				String bcryptPassword = BCrypt.hashpw(passWord, BCrypt.gensalt(12));
 				user.setUserPassword(bcryptPassword);
 			}
@@ -144,6 +138,20 @@ public class UserInfoAction extends BaseAction {
 			userInfoService.update(user);
 		}
 		return Action.EDITOR_SUCCESS;
+	}
+	
+	
+	/**
+	 * 获取用户接口,json返回格式
+	 */
+	public String queryUsers() {
+		LOGGER.debug("queryUsers() ");
+		//所有所有激活的用户
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.userInfoModel.setUserList(userList);
+		return "usersjson";
 	}
 
 	public Object getModel() {

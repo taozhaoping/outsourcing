@@ -87,6 +87,10 @@
 			<result name="json" type="json">
 				<param name="root">userInfoModel.dataMap</param>
 			</result>
+			<!-- 查询所有的用户 -->
+			<result name="usersjson" type="json">
+				<param name="root">userInfoModel.userList</param>
+			</result>
 			<result name="editorSuccess" type="redirectAction">
 				<param name="actionName">userInfo</param>  
     			<param name="namespace">/home</param>
