@@ -21,6 +21,8 @@ import com.zh.core.exception.ProjectException;
 import com.zh.core.model.VariableUtil;
 import com.zh.core.util.BCrypt;
 import com.zh.core.util.JSONUtil;
+import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.service.TechnologicalProcessService;
 
 public class mainAction extends BaseAction {
 
@@ -39,6 +41,9 @@ public class mainAction extends BaseAction {
 
 	//private String language;
 
+	@Autowired
+	private TechnologicalProcessService technologicalProcessService;
+	
 	/**
 	 * 
 	 */
@@ -80,7 +85,33 @@ public class mainAction extends BaseAction {
 		}
 		//当前用户待处理的任务
 		List<Task> taskList = taskService.createTaskQuery().taskAssignee(userName).list();
-		this.mainModel.setTaskList(taskList);
+		
+		List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
+		
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		for(Task task : taskList){
+			String processInstanceId = task.getProcessInstanceId();
+			String taskId = task.getId();
+			
+			
+			
+			technologicalProcess.setWorkflowid(processInstanceId);
+			technologicalProcess.setRes3(taskId);
+			
+			technologicalProcessList.addAll(technologicalProcessService.queryList(technologicalProcess));
+			
+		}
+		
+		//任务数量
+		int taskNumber = technologicalProcessList.size();
+		
+		this.mainModel.setTaskNumber(taskNumber);
+		
+		if(taskNumber > 5){
+			technologicalProcessList = technologicalProcessList.subList(0, 5);
+		}
+		
+		this.mainModel.setTechnologicalProcessList(technologicalProcessList);
 		
 		return Action.SUCCESS;
 	}

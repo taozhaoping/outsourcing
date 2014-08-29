@@ -108,7 +108,7 @@
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
@@ -123,7 +123,7 @@
 										<td><s:property value="#tp.state"/></td>
 										<td><s:property value="#tp.res1"/></td>
 										<td>
-											<a href="${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>

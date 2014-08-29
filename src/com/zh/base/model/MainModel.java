@@ -2,11 +2,10 @@ package com.zh.base.model;
 
 import java.util.List;
 
-import org.activiti.engine.task.Task;
-
 import com.zh.base.model.bean.Role;
 import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
+import com.zh.web.model.bean.TechnologicalProcess;
 
 public class MainModel extends BaseModel {
 
@@ -23,7 +22,12 @@ public class MainModel extends BaseModel {
 	
 	private String theNextcontactSize;
 	
-	private List<Task> taskList;
+	private List<TechnologicalProcess> technologicalProcessList;
+	
+	/**
+	 * 任务数量
+	 */
+	private int taskNumber;
 	
 	public Role getRole() {
 		return role;
@@ -65,12 +69,21 @@ public class MainModel extends BaseModel {
 		this.theNextcontactSize = theNextcontactSize;
 	}
 
-	public List<Task> getTaskList() {
-		return taskList;
+	public List<TechnologicalProcess> getTechnologicalProcessList() {
+		return technologicalProcessList;
 	}
 
-	public void setTaskList(List<Task> taskList) {
-		this.taskList = taskList;
+	public void setTechnologicalProcessList(
+			List<TechnologicalProcess> technologicalProcessList) {
+		this.technologicalProcessList = technologicalProcessList;
+	}
+
+	public int getTaskNumber() {
+		return taskNumber;
+	}
+
+	public void setTaskNumber(int taskNumber) {
+		this.taskNumber = taskNumber;
 	}
 
 }

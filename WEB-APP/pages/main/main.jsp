@@ -57,8 +57,8 @@
 		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
 	</s:if>
 
-	<s:if test="%{#request.taskList != null}">
-		<s:set name="taskSize" scope="session" value="#request.taskList.size()"></s:set>
+	<s:if test="%{#request.taskNumber != null}">
+		<s:set name="taskSize" scope="session" value="#request.taskNumber"></s:set>
 	</s:if>
 	
 	
@@ -139,47 +139,32 @@
 				<div class="row-fluid">
 					<div class="block span6">
 						<a href="#tablewidget" class="block-heading"
-							data-toggle="collapse">Users<span class="label label-warning">+10</span></a>
+							data-toggle="collapse">待处理任务
+						</a>
+						<!-- 
+						<span class="label label-warning">+10</span>
+						 -->
 						<div id="tablewidget" class="block-body collapse in">
 							<table class="table">
 								<thead>
 									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Username</th>
+										<th>流程编号</th>
+										<th>流程描述</th>
+										<th>当前状态</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Mark</td>
-										<td>Tompson</td>
-										<td>the_mark7</td>
-									</tr>
-									<tr>
-										<td>Ashley</td>
-										<td>Jacobs</td>
-										<td>ash11927</td>
-									</tr>
-									<tr>
-										<td>Audrey</td>
-										<td>Ann</td>
-										<td>audann84</td>
-									</tr>
-									<tr>
-										<td>John</td>
-										<td>Robinson</td>
-										<td>jr5527</td>
-									</tr>
-									<tr>
-										<td>Aaron</td>
-										<td>Butler</td>
-										<td>aaron_butler</td>
-									</tr>
-									<tr>
-										<td>Chris</td>
-										<td>Albert</td>
-										<td>cab79</td>
-									</tr>
+									<s:iterator value="technologicalProcessList" var="task" status="index">
+										<tr>
+											<td>
+												<a href="<s:property value='#task.res6'/>&formId=<s:property value='#task.id'/>">
+													<s:property value="#task.id"/>
+												</a>
+											</td>
+											<td><s:property value="#task.res2"/></td>
+											<td><s:property value="#task.state"/></td>
+										</tr>
+									</s:iterator>
 								</tbody>
 							</table>
 							<p>

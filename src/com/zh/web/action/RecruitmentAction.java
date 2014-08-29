@@ -49,15 +49,9 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//一级菜单
-	private String menuId;
-	//二级菜单
-	private String menu2Id;
-
 	private RecruitmentModel recruitmentModel = new RecruitmentModel();
 
-	private static Logger LOGGER = LoggerFactory
-			.getLogger(RecruitmentAction.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(RecruitmentAction.class);
 
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
@@ -233,6 +227,15 @@ public class RecruitmentAction extends BaseAction {
 			Integer userID = queryUserId();
 			technologicalProcess.setWorkuserid(userID);
 			technologicalProcess.setState("发起");
+			
+			String path = this.getRequest().getContextPath();
+			//一级菜单
+			String menuId = this.recruitmentModel.getMenuId();
+			//二级菜单
+			String menu2Id = this.recruitmentModel.getMenu2Id();
+			//保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id +"!editor.jspa?menuId="+menuId+"&menu2Id="+menu2Id;
+			technologicalProcess.setRes6(url);
 			technologicalProcessService.insert(technologicalProcess);
 			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
@@ -495,21 +498,4 @@ public class RecruitmentAction extends BaseAction {
 	public void setIdentityService(IdentityService identityService) {
 		this.identityService = identityService;
 	}
-
-	public String getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(String menuId) {
-		this.menuId = menuId;
-	}
-
-	public String getMenu2Id() {
-		return menu2Id;
-	}
-
-	public void setMenu2Id(String menu2Id) {
-		this.menu2Id = menu2Id;
-	}
-
 }

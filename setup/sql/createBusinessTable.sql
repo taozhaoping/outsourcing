@@ -348,12 +348,12 @@ create table t_TechnologicalProcess
    contractDate       VARCHAR(20),         --合同有效期
    currentLocation    VARCHAR(20),         --目前所在地
    workflowId         VARCHAR(64),         --流水号
-   res1               VARCHAR(50),         --扩展字段
-   res2               VARCHAR(50),         --
-   res3               VARCHAR(50),         --
-   res4               VARCHAR(50),         --
-   res5               VARCHAR(50),         --
-   res6               VARCHAR(50),         --
+   res1               VARCHAR(150),        --当前审批人
+   res2               VARCHAR(150),        --描述
+   res3               VARCHAR(150),        --当前任务id
+   res4               VARCHAR(150),        --
+   res5               VARCHAR(150),        --
+   res6               VARCHAR(150),        --表单的url
    constraint PK_TECHNOLOGICALPROCESS primary key (id)
 );
 
