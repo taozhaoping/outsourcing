@@ -904,11 +904,15 @@
 		//展示用户选择列表
 		function fillUserList(userList, id){
 			//清空上次的查询结果
-			$("#"+id).nextAll("option").remove();
+			$("#"+id+"Option").nextAll("option").remove();
+			//动态生成用户列表
 			for(var i = 0; i<userList.length; i++){
 				var user = userList[i];
-				$("#"+id+"Option").clone(true).removeAttr("selected").attr("id",user.id)
-				.val(user.loginName).html(user.name+"("+user.loginName+")").insertAfter("#"+id+"Option");
+				$("#"+id+"Option").clone(true).removeAttr("selected")
+				.attr("id",user.id)
+				.val(user.loginName)
+				.html(user.name+"("+user.loginName+")")
+				.insertAfter("#"+id+"Option");
 			}
 		}
 		
