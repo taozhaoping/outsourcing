@@ -1,30 +1,34 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%
+	String pathTitle = request.getContextPath();
+%>
 <div class="navbar">
 	<div class="navbar-inner">
 		<ul class="nav pull-right">
-			<li>
-				<a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">设置</a>
-			</li>
 			<li id="fat-menu" class="dropdown">
-				<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+				<a href="javascript:void(0)" role="button" class="dropdown-toggle" data-toggle="dropdown">
 					<i	class="icon-user"></i>${sessionScope.userInfo.name}(${sessionScope.userInfo.loginName}) <i class="icon-caret-down"></i>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#">我的账号</a></li>
+					<li><a tabindex="-1" href="javascript:void(0)">我的账号</a></li>
 					<li class="divider"></li>
-					<li><a tabindex="-1" class="visible-phone" href="#">设置</a></li>
+					<li><a tabindex="-1" class="visible-phone" href="javascript:void(0)">设置</a></li>
 					<li class="divider visible-phone"></li>
 					<li>
 						<!-- 
 						<a tabindex="-1" href="login/login.jspa">退出</a>
 						 -->
-						<a tabindex="-1" href="#quitConfirm" data-toggle="modal">退出</a>
+						<a href="javascript:void(0)" class="hidden-phone visible-tablet visible-desktop" role="button">设置</a>
 					</li>
 				</ul>
 			</li>
+			
+			<li>
+				<a tabindex="-1" href="#quitConfirm" data-toggle="modal">登出</a>
+			</li>
 		</ul>
-		<a class="brand" href="#"><span class="first">Your</span>
+		<a class="brand" href="<%=pathTitle%>/home/main.jspa"><span class="first">Your</span>
 			<span class="second">信息管理平台</span>
 		</a>
 		
