@@ -107,7 +107,11 @@
 							<tbody>
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
-										<td><s:property value="#tp.id"/></td>
+										<td>
+											<a href="${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+												<s:property value="#tp.id"/>
+											</a>
+										</td>
 										<td><s:property value="#tp.res2"/></td>
 										<!-- 
 										<td><s:property value="#tp.name"/></td>
