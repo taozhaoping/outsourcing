@@ -337,7 +337,7 @@ create table t_TechnologicalProcess
    Nationality        VARCHAR(20),         --国籍
    yearBirth          VARCHAR(6),          --出生年份
    Birthday           DATE,                --生日
-   state              VARCHAR(2),          --状态
+   state              VARCHAR(12),          --状态
    mail               VARCHAR(25),         --电子邮件
    Phone              VARCHAR(20),         --手机号码
    createTime         VARCHAR(20),         --创建日期

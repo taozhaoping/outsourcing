@@ -36,7 +36,8 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		ID, 
+		ID,
+		DESCRIPTION,
 		NAME, 
 		ENGLISHNAME, 
 		NATIONALITY, 
@@ -54,6 +55,9 @@
 		CONTRACTDATE,
 		CURRENTLOCATION,
 		WORKFLOWID,
+		APPROVER,
+		TASKID,
+		URL,
 		RES1, 
 		RES2, 
 		RES3, 
@@ -66,6 +70,9 @@
 		<where>
 			<if test="name != null">
 				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				and DESCRIPTION = #{description,jdbcType=VARCHAR}
 			</if>
 			<if test="englishname != null">
 				and ENGLISHNAME = #{englishname,jdbcType=VARCHAR}
@@ -114,6 +121,15 @@
 			</if>
 			<if test="workflowid != null">
 				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR}
+			</if>
+			<if test="approver != null">
+				and APPROVER = #{approver, jdbcType=VARCHAR}
+			</if>
+			<if test="taskId != null">
+				and TASKID = #{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				and URL = #{url,jdbcType=VARCHAR}
 			</if>
 			<if test="res1 != null">
 				and RES1 = #{res1,jdbcType=VARCHAR}
@@ -175,6 +191,9 @@
 			<if test="id != null">
 				ID,
 			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
 			<if test="name != null">
 				NAME,
 			</if>
@@ -199,7 +218,6 @@
 			<if test="phone != null">
 				PHONE,
 			</if>
-			
 			<if test="createtime != null">
 				CREATETIME,
 			</if>
@@ -227,6 +245,15 @@
 			<if test="workflowid != null">
 				WORKFLOWID,
 			</if>
+			<if test="approver != null">
+				APPROVER,
+			</if>
+			<if test="taskId != null">
+				TASKID,
+			</if>
+			<if test="url != null">
+				URL,
+			</if>
 			<if test="res1 != null">
 				RES1,
 			</if>
@@ -249,6 +276,9 @@
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				#{id},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
@@ -301,6 +331,15 @@
 			<if test="workflowid != null">
 				#{workflowid,jdbcType=VARCHAR},
 			</if>
+			<if test="approver != null">
+				#{approver, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				#{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
 			<if test="res1 != null">
 				#{res1,jdbcType=VARCHAR},
 			</if>
@@ -327,6 +366,9 @@
 		<set>
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
 			</if>
 			<if test="englishname != null">
 				ENGLISHNAME = #{englishname,jdbcType=VARCHAR},
@@ -375,6 +417,15 @@
 			</if>
 			<if test="workflowid != null">
 				WORKFLOWID = #{workflowid,jdbcType=VARCHAR},
+			</if>
+			<if test="approver != null">
+				APPROVER = #{approver, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				TASKID = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url,jdbcType=VARCHAR},
 			</if>
 			<if test="res1 != null">
 				RES1 = #{res1,jdbcType=VARCHAR},

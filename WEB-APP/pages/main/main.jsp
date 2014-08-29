@@ -167,8 +167,12 @@
 									</s:iterator>
 								</tbody>
 							</table>
-							<p>
+							
+							<p class="">
+								默认最多显示5条.
+								<!-- 
 								<a href="users.html">More...</a>
+								 -->
 							</p>
 						</div>
 					</div>
