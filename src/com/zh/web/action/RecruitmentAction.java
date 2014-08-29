@@ -334,67 +334,79 @@ public class RecruitmentAction extends BaseAction {
 	 * 获取流程图片
 	 */
 	public void loadByProcessInstance() {
-		
-		String processInstanceId = this.recruitmentModel.getProcessInstanceId();
-//		String processInstanceId = "4017";
-		
-		HttpServletResponse response = ServletActionContext.getResponse();
-		InputStream resourceAsStream = null;
-		ProcessInstance processInstance = runtimeService
-				.createProcessInstanceQuery()
-				.processInstanceId(processInstanceId).singleResult();
-		
-		ProcessDefinition processDefinition = repositoryService
-				.createProcessDefinitionQuery()
-				.processDefinitionId(processInstance.getProcessDefinitionId())
-				.singleResult();
-
-		String resourceName = "recruitment.png";
-		/*
-		 * if (resourceType.equals("image")) { resourceName =
-		 * processDefinition.getDiagramResourceName(); } else if
-		 * (resourceType.equals("xml")) { resourceName =
-		 * processDefinition.getResourceName(); }
-		 */
-		resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), resourceName);
-		
-		byte[] b = new byte[1024];
-		int len = -1;
-		try {
-			while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
-				response.getOutputStream().write(b, 0, len);
+		LOGGER.debug("loadByProcessInstance()");
+		try{
+			String processInstanceId = this.recruitmentModel.getProcessInstanceId();
+			
+			HttpServletResponse response = ServletActionContext.getResponse();
+			InputStream resourceAsStream = null;
+			ProcessInstance processInstance = runtimeService
+					.createProcessInstanceQuery()
+					.processInstanceId(processInstanceId).singleResult();
+			
+			ProcessDefinition processDefinition = repositoryService
+					.createProcessDefinitionQuery()
+					.processDefinitionId(processInstance.getProcessDefinitionId())
+					.singleResult();
+			
+			String resourceName = "recruitment.png";
+			/*
+			 * if (resourceType.equals("image")) { resourceName =
+			 * processDefinition.getDiagramResourceName(); } else if
+			 * (resourceType.equals("xml")) { resourceName =
+			 * processDefinition.getResourceName(); }
+			 */
+			resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), resourceName);
+			
+			byte[] b = new byte[1024];
+			int len = -1;
+			try {
+				while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
+					response.getOutputStream().write(b, 0, len);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
+			
+		}catch(Exception e){
 			e.printStackTrace();
+			LOGGER.error("message: " + e.getMessage() + " cause:" + e.getCause());
 		}
+		
 	}
 	
 	/***
 	 * 获取带跟踪的流程图片
 	 */
 	public void loadTraceImg() {
-		
-		String executionId = this.recruitmentModel.getProcessInstanceId();
-		
-		HttpServletResponse response = ServletActionContext.getResponse();
-		
-        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
-        BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
-        List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
-
-        // 使用spring注入引擎请使用下面的这行代码
-        Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
-
-        InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
-		
-		byte[] b = new byte[1024];
-		int len = -1;
-		try {
-			while ((len = imageStream.read(b, 0, 1024)) != -1) {
-				response.getOutputStream().write(b, 0, len);
+		LOGGER.debug("loadTraceImg()");
+		try{
+			String executionId = this.recruitmentModel.getProcessInstanceId();
+			
+			HttpServletResponse response = ServletActionContext.getResponse();
+			
+			ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
+			BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
+			List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
+			
+			// 使用spring注入引擎请使用下面的这行代码
+			Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
+			
+			InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
+			
+			byte[] b = new byte[1024];
+			int len = -1;
+			try {
+				while ((len = imageStream.read(b, 0, 1024)) != -1) {
+					response.getOutputStream().write(b, 0, len);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
+			
+		}catch(Exception e){
 			e.printStackTrace();
+			LOGGER.error("message:" + e.getMessage() + " cause:" + e.getCause());
 		}
 	}
 	
