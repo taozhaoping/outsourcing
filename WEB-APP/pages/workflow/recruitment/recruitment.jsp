@@ -165,7 +165,8 @@
 											<div class="controls">
 												<input type="text" id="description"
 													name="technologicalProcess.description"
-													value="${technologicalProcess.description}" data-required="true"
+													value="${technologicalProcess.description}" 
+													data-required="true" desc="描述"
 													class="input-large">
 											</div>
 										</div>
@@ -177,7 +178,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" maxlength="15"
+												<input type="text" data-required="true" desc="姓名" maxlength="15"
 													id="inputName" name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
 											</div>
@@ -190,7 +191,7 @@
 												<input type="text" id="inputEnglishname"
 													name="technologicalProcess.englishname"
 													value="${technologicalProcess.englishname}"
-													data-required="true" class="input-large">
+													data-required="true" desc="英文名" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -204,7 +205,7 @@
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
 													value="${technologicalProcess.nationality}"
-													class="input-large">
+													data-required="true" desc="国籍" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -228,7 +229,7 @@
 												<input type="text" id="inputyearbirth"
 													name="technologicalProcess.yearbirth"
 													value="${technologicalProcess.yearbirth}"
-													class="input-large">
+													data-required="true" desc="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -249,11 +250,12 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputMail">邮件：</label>
+											<label class="control-label" for="inputMail">电子邮箱：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail"
-													value="${technologicalProcess.mail}" class="input-large">
+													value="${technologicalProcess.mail}"
+													data-required="true" desc="电子邮箱" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -572,14 +574,18 @@
 		<h3 id="startModalLabel">流程发起</h3>
 	</div>
 	<div class="modal-body">
-		<label class="control-label pull-left" for="modalAssign">审批人：</label>
-		<!-- 
-		<input type="text" id="modalAssign" class="input-large pull-right">
-		 -->
-		<select id="modalAssign" class="input-large pull-right">
-			<option selected="selected" id="modalAssignOption">&nbsp;</option>
-		</select>
-
+		<div class="control-group">
+			<p class="text-error" id="startConfirmMsg"></p>
+		</div>
+		<div class="control-group">
+			<label class="control-label pull-left" for="modalAssign">审批人：</label>
+			<!-- 
+			<input type="text" id="modalAssign" class="input-large pull-right">
+			 -->
+			<select id="modalAssign" class="input-large pull-right">
+				<option selected="selected" id="modalAssignOption">&nbsp;</option>
+			</select>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-danger" data-dismiss="modal"
@@ -597,13 +603,18 @@
 		<h3 id="approveModalLabel">流程审批</h3>
 	</div>
 	<div class="modal-body">
-		<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
-		<!-- 
-		<input type="text" id="modalNextAssign" class="input-large pull-right">
-		 -->
-		<select id="modalNextAssign" class="input-large pull-right">
-			<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
-		</select>
+		<div class="control-group">
+			<p class="text-error" id="approveConfirmMsg"></p>
+		</div>
+		<div class="control-group">
+			<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
+			<!-- 
+			<input type="text" id="modalNextAssign" class="input-large pull-right">
+			 -->
+			<select id="modalNextAssign" class="input-large pull-right">
+				<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
+			</select>
+		</div>
 
 	</div>
 	<div class="modal-footer">
@@ -788,8 +799,8 @@
 		var tabID = "${tabID}";
 		if(null != tabID && "" != tabID)
 		{
-				$("#" + tabID).parent().addClass("active");	
-				$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");				
+			$("#" + tabID).parent().addClass("active");	
+			$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");				
 		}else
 		{
 			tabID = "homeButt";
@@ -816,7 +827,6 @@
 		{
 			var action;
 			if("homeButt" == currTab) {
-				
 				action=$("#editForm").attr("action");
 				$("#editForm").attr("action",action + "?tabID="+$("#tabID").val());
 				validate = $('#editForm').validate();
@@ -864,6 +874,14 @@
 		$('#startConfirm').on('show.bs.modal', function () {
 			  // 执行一些动作...
 			  selectUsers("modalAssign");
+			  //审核状态
+			  var auditRet = auditStatus();
+			  //存在必填没有填写
+			  if(auditRet.length > 0){
+				  $("#startBtnConfirm").attr("disabled","disabled");
+				  $("#startBtnConfirm").removeClass("btn-danger");
+				  $("#startConfirmMsg").html("缺少下列必填字段：" + auditRet);
+			  }
 		});
 		
 		//选择框隐藏
@@ -876,6 +894,15 @@
 		$('#approveConfirm').on('show.bs.modal', function () {
 			  // 执行一些动作...
 			  selectUsers("modalNextAssign");
+			  //审核状态
+			  var auditRet = auditStatus();
+			  //存在必填没有填写
+			  if(auditRet.length > 0){
+				  $("#approveBtnConfirm").attr("disabled","disabled");
+				  $("#approveBtnConfirm").removeClass("btn-danger");
+				  $("#approveConfirmMsg").html("缺少下列必填字段：" + auditRet);
+				  
+			  }
 		});
 		
 		//选择框隐藏
@@ -940,6 +967,27 @@
 				$("#approveWF").submit();
 			}
 		});
+		
+		/**
+		 * 审核当前的必填字段是否填写
+		 * 
+		 */
+		function auditStatus(){
+			var curState = "${technologicalProcess.state}";
+			var auditRet = new Array();
+			if(curState == "发起"){
+				//检查必填字段
+				$("#myTabContent input[data-required='true']").each(function () {
+					var inputValue = $.trim($(this).val());
+					if (inputValue == null || inputValue == "") {
+						var desc = $(this).attr("desc");
+						auditRet.push(desc);
+					}
+				});
+				
+			}
+			return auditRet;
+		}
 	</script>
 </body>
 </html>
