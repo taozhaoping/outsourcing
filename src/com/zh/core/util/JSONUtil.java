@@ -15,6 +15,7 @@ import java.beans.PropertyDescriptor;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,9 @@ public class JSONUtil {
 				|| obj instanceof Long || obj instanceof BigDecimal
 				|| obj instanceof BigInteger || obj instanceof Byte) {
 			json.append("\"").append(string2json(obj.toString())).append("\"");
+		} else if (obj instanceof Date) {
+			Date date = (Date)obj;
+			json.append(date.getTime());
 		} else if (obj instanceof Object[]) {
 			json.append(array2json((Object[]) obj));
 		} else if (obj instanceof List) {
@@ -93,7 +97,7 @@ public class JSONUtil {
 
 	public static String list2json(List<?> list) {
 		StringBuilder json = new StringBuilder();
-		json.append("{Rows:");
+		
 		json.append("[");
 		if (list != null && list.size() > 0) {
 			for (Object obj : list) {
@@ -104,7 +108,21 @@ public class JSONUtil {
 		} else {
 			json.append("]");
 		}
-		json.append("}");
+		return json.toString();
+	}
+	
+	public static String list2jsonRows(List<?> list) {
+		StringBuilder json = new StringBuilder();
+		json.append("[");
+		if (list != null && list.size() > 0) {
+			for (Object obj : list) {
+				json.append(object2json(obj));
+				json.append(",");
+			}
+			json.setCharAt(json.length() - 1, ']');
+		} else {
+			json.append("]");
+		}
 		return json.toString();
 	}
 

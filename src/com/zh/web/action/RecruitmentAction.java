@@ -217,6 +217,7 @@ public class RecruitmentAction extends BaseAction {
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
 				this.recruitmentModel.setCertificatesList(certificatesList);
+				this.recruitmentModel.setCertificatesListJson(JSONUtil.list2json(certificatesList));
 				this.recruitmentModel.setFlight(flightReult);
 			}
 			

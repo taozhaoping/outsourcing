@@ -25,6 +25,11 @@ public class RecruitmentModel extends BaseModel {
 	private List<Certificates> certificatesList = new ArrayList<Certificates>();
 	
 	/**
+	 * 页面js获取集合对象
+	 */
+	private String certificatesListJson;
+	
+	/**
 	 * 航班信息
 	 */
 	private Flight flight = new Flight();
@@ -223,6 +228,14 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setFileNumber(String fileNumber) {
 		this.fileNumber = fileNumber;
+	}
+
+	public String getCertificatesListJson() {
+		return certificatesListJson;
+	}
+
+	public void setCertificatesListJson(String certificatesListJson) {
+		this.certificatesListJson = certificatesListJson;
 	}
 	
 	

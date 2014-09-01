@@ -679,8 +679,26 @@
 
 		//证件信息初始化
 		//$("#certificatesType").select2();
-		$("#certificatesType").val("${certificates.type}").trigger("change");
-
+		//$("#certificatesType").val("${certificates.type}").trigger("change");
+		certificatesListStr = '${certificatesListJson}';
+		certificatesList = new Array();
+		if(""!=certificatesListStr)
+		{
+			certificatesList = JSON2.parse(certificatesListStr);			
+		}
+		for ( var x = 0; x < certificatesList.length; x++) {
+			var certificates = certificatesList[x];
+			//获取最后一行数据进行赋值
+			$("#certificatesId").last().val(certificates.id);
+			$("#certificatesType").last().val(certificates.type).trigger("change");
+			//$("#certificatesType").last().select2();
+			$("#certificatesHandledate").last().val(new Date(certificates.handledate).format("yyyy-MM-dd"));
+			$("#certificatesReceivedate").last().val(new Date(certificates.receivedate).format("yyyy-MM-dd"));
+			$("#certificatesValidstartdate").last().val(new Date(certificates.validstartdate).format("yyyy-MM-dd"));
+			$("#certificatesValidenddate").last().val(new Date(certificates.validenddate).format("yyyy-MM-dd"));
+			//$("#certificatesUpdateDate").last().val(new Date(certificates.updateDate).format("yyyy-MM-dd"));
+			addNew();
+		}
 		//航班信息
 		//$("#airportPeopleId").select2();
 		$("#airportpeopleid").val("${flight.airportpeopleid}")
@@ -761,6 +779,7 @@
 			search.append(row);
 			$("select[id='fileInfoNametype']").last().select2();
 		}
+		
 		function addTd(row, str) {
 			var td = $("<td></td>");
 			td.append($(str));
