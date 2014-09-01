@@ -42,12 +42,11 @@
         <!--<property name="history" value="full"/>-->
         <property name="processDefinitionCacheLimit" value="10"/>
 
-        <!-- mail 
-        <property name="mailServerHost" value="localhost"/>
-        <property name="mailServerUsername" value="kafeitu"/>
-        <property name="mailServerPassword" value="000000"/>
-        <property name="mailServerPort" value="2025"/>
-        -->
+        <!-- mail -->
+        <property name="mailServerHost" value="${mail.smtpServer}"/>
+        <property name="mailServerDefaultFrom" value="${mail.fromEmail}"/>
+        <property name="mailServerUsername" value="${mail.username}"/>
+        <property name="mailServerPassword" value="${mail.password}"/>
 
         <!-- UUID作为主键生成策略
         <property name="idGenerator" ref="uuidGenerator" />

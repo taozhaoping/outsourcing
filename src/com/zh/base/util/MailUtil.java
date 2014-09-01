@@ -24,11 +24,11 @@ import javax.mail.internet.MimeUtility;
  */
 public class MailUtil {
 
-	private static String SMTPSERVER = "smtpServer";
-	private static String USERNAME = "username";
-	private static String PASSWORD = "password"; 
-	private static String FROMEMAIL = "fromEmail"; 
-	private static String ISAUTH = "isAuth"; 
+	private static String SMTPSERVER = "mail.smtpServer";
+	private static String USERNAME = "mail.username";
+	private static String PASSWORD = "mail.password"; 
+	private static String FROMEMAIL = "mail.fromEmail"; 
+	private static String ISAUTH = "mail.isAuth"; 
 	
 	
 	static {
