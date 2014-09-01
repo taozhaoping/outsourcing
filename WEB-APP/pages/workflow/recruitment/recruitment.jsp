@@ -654,6 +654,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
+		var row_count = 1;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
@@ -684,7 +685,8 @@
 		certificatesList = new Array();
 		if(""!=certificatesListStr)
 		{
-			certificatesList = JSON2.parse(certificatesListStr);			
+			certificatesList = JSON2.parse(certificatesListStr);	
+			row_count = certificatesList.length;
 		}
 		for ( var x = 0; x < certificatesList.length; x++) {
 			var certificates = certificatesList[x];
@@ -706,10 +708,10 @@
 
 		//附件
 		//$("#fileInfoNametype").select2();
-		$("select").select2();
+		//$("select").select2();
 		
 		//新增证件行信息
-		var row_count = 1;
+		
 		function addNew() {
 			row_count++;
 			var search = $('#certificatesSearch');
@@ -853,8 +855,14 @@
 			}else if ("certificatesButt" == currTab){
 				var arrCertificates=new Array();
 				for ( var index = 0; index < row_count; index++) {
-					arrCertificates[index] = queryCertificates(index);
-					alert(arrCertificates[index].type);
+					arrCertificatesIndex = queryCertificates(index);
+					if(arrCertificatesIndex.handledate !="" &&
+							arrCertificatesIndex.receivedate !="" &&
+							arrCertificatesIndex.validstartdate !="" &&
+							arrCertificatesIndex.validenddate !="")
+					{
+					arrCertificates[index] = arrCertificatesIndex;		
+					}
 				}
 				var tex=JSON2.stringify(arrCertificates);
 				$("input[id='jsonList']").val(tex);

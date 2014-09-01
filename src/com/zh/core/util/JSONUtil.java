@@ -22,11 +22,14 @@ import java.util.Map;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.IDataObject;
 
+import net.sf.ezmorph.object.DateMorpher;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 
 /**
  * 
@@ -249,6 +252,8 @@ public class JSONUtil {
 		JSONArray arr = JSONArray.fromObject(jsonString);
 		for (int i = 0; i < arr.size(); i++) {
 			JSONObject obj= (JSONObject)arr.get(i);
+			String[] dateFormats = new String[] {"yyyy-MM-dd"};    
+			JSONUtils.getMorpherRegistry().registerMorpher(new DateMorpher(dateFormats));   
 			IDataObject advancedSearch = (IDataObject)JSONObject.toBean(obj, beanClass);
 			arrayList.add(advancedSearch);
 		}
