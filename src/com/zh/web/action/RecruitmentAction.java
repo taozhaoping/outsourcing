@@ -299,32 +299,38 @@ public class RecruitmentAction extends BaseAction {
 
 		Map<String, Object> variables = new HashMap<String, Object>();
 		// variables.put("period", "2015-06");
-		variables.put("nextAssignee", assignee);
 		if("0".equals(assignFlag)){
 			variables.put("assignFlag", false);
 		}else if("1".equals(assignFlag)){
 			variables.put("assignFlag", true);
+			variables.put("nextAssignee", assignee);
 		}
 		
 		//完成任务
 		taskService.complete(curTaskId, variables);
 		//获取流程实例
 		ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(workflowId).singleResult();
-		// 任务节点
-		String activityId = processInstance.getActivityId();
 		
-		Task currentTask = taskService.createTaskQuery()
-				.processInstanceId(workflowId).taskDefinitionKey(activityId)
-				.singleResult();
-		// 当前任务的名称
-		String state = currentTask.getName();
-		
-		LOGGER.debug("processInstance.id: " + workflowId);
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
-		technologicalProcess.setState(state);
-		technologicalProcess.setApprover(assignee);
-		technologicalProcess.setTaskId(currentTask.getId());
+
+		if(processInstance != null){
+			// 任务节点
+			String activityId = processInstance.getActivityId();
+			
+			Task currentTask = taskService.createTaskQuery()
+					.processInstanceId(workflowId).taskDefinitionKey(activityId)
+					.singleResult();
+			// 当前任务的名称
+			String state = currentTask.getName();
+			
+			LOGGER.debug("processInstance.id: " + workflowId);
+			technologicalProcess.setState(state);
+			technologicalProcess.setApprover(assignee);
+			technologicalProcess.setTaskId(currentTask.getId());
+		}else{
+			technologicalProcess.setState("结束");
+		}
 		
 		technologicalProcessService.update(technologicalProcess);
 		
@@ -387,6 +393,7 @@ public class RecruitmentAction extends BaseAction {
 			HttpServletResponse response = ServletActionContext.getResponse();
 			
 			ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
+			
 			BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
 			List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
 			

@@ -107,6 +107,11 @@
 								data-toggle="modal" data-target="#approveConfirm">
 								<i class="icon-ok"></i> 批准
 							</button>
+							
+							<button class="btn" type="button" id="rejectBtn"
+								data-toggle="modal" data-target="#rejectConfirm">
+								<i class="icon-ok"></i> 拒绝
+							</button>
 						</s:if>
 
 						<s:if
@@ -624,6 +629,30 @@
 	</div>
 </div>
 
+<!-- 拒绝流程 -->
+<div class="modal small hide fade" id="rejectConfirm" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="approveModalLabel">流程审批</h3>
+	</div>
+	<div class="modal-body">
+		<div class="control-group">
+			<p class="text-error" id="approveConfirmMsg"></p>
+		</div>
+		<div class="control-group">
+			<p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认拒绝流程吗?</p>
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-danger" data-dismiss="modal"
+			id="rejectBtnConfirm">确认</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	</div>
+</div>
+
 <div class="modal small hide fade" id="forMchangefirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -993,6 +1022,13 @@
 				$("#awf_assignFlag").val("1");
 				$("#approveWF").submit();
 			}
+		});
+		
+		
+		//拒绝按钮确认
+		$("#rejectBtnConfirm").click(function() {
+			$("#awf_assignFlag").val("0");
+			$("#approveWF").submit();
 		});
 		
 		/**
