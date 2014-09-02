@@ -330,6 +330,8 @@ public class RecruitmentAction extends BaseAction {
 			technologicalProcess.setTaskId(currentTask.getId());
 		}else{
 			technologicalProcess.setState("结束");
+			technologicalProcess.setApprover("-1");
+			technologicalProcess.setTaskId("-1");
 		}
 		
 		technologicalProcessService.update(technologicalProcess);
