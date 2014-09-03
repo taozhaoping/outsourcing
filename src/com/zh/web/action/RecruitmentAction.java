@@ -396,22 +396,29 @@ public class RecruitmentAction extends BaseAction {
 			
 			ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
 			
-			BpmnModel bpmnModel = repositoryService.getBpmnModel(processInstance.getProcessDefinitionId());
-			List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
-			
-			// 使用spring注入引擎请使用下面的这行代码
-			Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
-			
-			InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
-			
-			byte[] b = new byte[1024];
-			int len = -1;
-			try {
-				while ((len = imageStream.read(b, 0, 1024)) != -1) {
-					response.getOutputStream().write(b, 0, len);
+			if(null != processInstance){
+				String proDefId = processInstance.getProcessDefinitionId();
+				
+				BpmnModel bpmnModel = repositoryService.getBpmnModel(proDefId);
+				
+				List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
+				
+				// 使用spring注入引擎请使用下面的这行代码
+				Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
+				
+				InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
+				
+				byte[] b = new byte[1024];
+				int len = -1;
+				try {
+					while ((len = imageStream.read(b, 0, 1024)) != -1) {
+						response.getOutputStream().write(b, 0, len);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			}else{
+				LOGGER.debug("流程没有发起或者流程已经结束.");
 			}
 			
 		}catch(Exception e){
@@ -459,7 +466,7 @@ public class RecruitmentAction extends BaseAction {
 		Integer workUserId = process.getWorkuserid();
 		
 		//如果创建者为当前用户，且流程没有发起，即流程状态为<发起>，则具有发起权限
-		if(curUserId == workUserId && isStart){
+		if(curUserId.equals(workUserId) && isStart){
 			this.recruitmentModel.setHasSubmitAuth("1");
 		}
 	}

@@ -463,7 +463,7 @@
 							<!-- 如果发起了则显示工作 -->
 							<s:if
 								test="%{technologicalProcess.state != null && technologicalProcess.state != ''}">
-								<img alt="工作流"
+								<img alt="流程没有发起或已结束"
 									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}"
 									id="workflowShowPic">
 							</s:if>
