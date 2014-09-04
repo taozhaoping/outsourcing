@@ -1,10 +1,12 @@
 package com.zh.web.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PropertyResourceBundle;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +23,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.apache.struts2.ServletActionContext;
+import org.aspectj.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +35,16 @@ import com.zh.core.exception.ProjectException;
 import com.zh.core.model.IDataObject;
 import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
+import com.zh.core.util.GlobEnv;
 import com.zh.core.util.JSONUtil;
 import com.zh.core.util.LoggerUtil;
 import com.zh.web.model.RecruitmentModel;
 import com.zh.web.model.bean.Certificates;
+import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.CertificatesService;
+import com.zh.web.service.FileInfoService;
 import com.zh.web.service.FlightService;
 import com.zh.web.service.TechnologicalProcessService;
 
@@ -70,6 +76,9 @@ public class RecruitmentAction extends BaseAction {
 	
 	@Autowired
 	private CertificatesService certificatesService;
+	
+	@Autowired
+	private FileInfoService fileInfoService;
 
 	@Autowired
 	protected FormService FormService;
@@ -131,8 +140,32 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	public String saveFile()
 	{
+		String fromId = this.getRecruitmentModel().getFormId();
 		
-
+		if(null == fromId || "".equals(fromId))
+		{
+			throw new ProjectException("编号不允许为null");
+		}
+		//组装文件保存路径
+		StringBuffer filePath = GlobEnv.getUploadFilePath();
+		String fileName = this.getRecruitmentModel().getFilesFileName();
+		filePath.append(fromId);
+		filePath.append("//");
+		filePath.append(fileName);
+		File file = new File(filePath.toString());
+		try {
+			FileUtil.copyFile(this.getRecruitmentModel().getFiles(), file);
+		} catch (IOException e) {
+			throw new ProjectException("上传文件失败");
+		}
+		
+		//保存文件到数据库
+		FileInfo fileInfo = this.getRecruitmentModel().getFileInfo();
+		fileInfo.setTechnologicalprocessid(Integer.valueOf(fromId));
+		fileInfo.setName(fileName);
+		fileInfo.setType(this.getRecruitmentModel().getFilesContentType());
+		
+		fileInfoService.insert(fileInfo);
 		return "save";
 	}
 
@@ -210,6 +243,11 @@ public class RecruitmentAction extends BaseAction {
 			flight.setTechnologicalprocessid(process.getId());
 			Flight flightReult = flightService.query(flight);
 			
+			//获取附件信息
+			FileInfo fileInfo = new FileInfo();
+			fileInfo.setTechnologicalprocessid(process.getId());
+			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
+			
 			// 判断数据库中是否存在该数据
 			if (null != process && process.getId() != null && process.getId() > 0) {
 				// 获取工作流信息
@@ -221,6 +259,7 @@ public class RecruitmentAction extends BaseAction {
 				this.recruitmentModel.setTechnologicalProcess(process);
 				this.recruitmentModel.setCertificatesList(certificatesList);
 				this.recruitmentModel.setCertificatesListJson(JSONUtil.list2json(certificatesList));
+				this.recruitmentModel.setFileInfoListJson(JSONUtil.list2json(fileInfoList));
 				this.recruitmentModel.setFlight(flightReult);
 			}
 			

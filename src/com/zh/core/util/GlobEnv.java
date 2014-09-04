@@ -87,9 +87,19 @@ public class GlobEnv extends PropertiesUtil {
 		return url;
 	}
 	
-	public static String getUploadFilePath()
+	/**
+	 * 获取上传文件保存目录
+	 * @return
+	 */
+	public static StringBuffer getUploadFilePath()
 	{
-		return get(FILE_LOAD_PATH);
+		String fileDiv = get(FILE_LOAD_PATH);
+		StringBuffer filePath = new StringBuffer(fileDiv);
+		if(!fileDiv.endsWith("//"))
+		{
+			filePath.append("//");
+		}
+		return filePath;
 	}
 	
 	public static String getUploadFilePath(String numberID)

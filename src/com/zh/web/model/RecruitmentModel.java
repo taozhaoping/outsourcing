@@ -30,6 +30,10 @@ public class RecruitmentModel extends BaseModel {
 	private String certificatesListJson;
 	
 	/**
+	 * 页面js获取的file对象集合
+	 */
+	private String fileInfoListJson;
+	/**
 	 * 航班信息
 	 */
 	private Flight flight = new Flight();
@@ -236,6 +240,14 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setCertificatesListJson(String certificatesListJson) {
 		this.certificatesListJson = certificatesListJson;
+	}
+
+	public String getFileInfoListJson() {
+		return fileInfoListJson;
+	}
+
+	public void setFileInfoListJson(String fileInfoListJson) {
+		this.fileInfoListJson = fileInfoListJson;
 	}
 	
 	

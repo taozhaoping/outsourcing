@@ -535,14 +535,17 @@
 				aria-hidden="true">×</button>
 			<h3 id="startModalLabel">附件上传</h3>
 		</div>
-		<form id="fileForm" class="form-horizontal"
+		<form id="fileForm" class="form-horizontal" enctype="multipart/form-data"
 			action="${menu2Id}!saveFile.jspa" method="post">
+			<input type="hidden" name="menuId" value="${menuId}"> 
+			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="formId" value="${technologicalProcess.id}">
 			<div class="modal-body">
 				<dir class="row">
 					<div class="control-group">
 						<label class="control-label" for="inputId">文件</label>
 						<div class="controls">
-							<input type="file" title="上传" id="files"
+							<input type="file" data-required="true" title="上传" id="files"
 								name="files" class="input-large" />
 						</div>
 					</div>
@@ -551,7 +554,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputId">类型</label>
 						<div class="controls">
-							<select id="fileInfoNametype" class="input-large"
+							<select id="fileInfoNametype" data-required="true" class="input-large"
 								name="fileInfo.nametype">
 								<option value="1">护照</option>
 								<option value="2">毕业证</option>
@@ -763,8 +766,26 @@
 				.trigger("change");
 
 		//附件
-		//$("#fileInfoNametype").select2();
+		$("#fileInfoNametype").select2();
 		//$("select").select2();
+		$('#fileForm').validate();
+		
+		//附件信息列表初始化
+		fileInfoListStr = '${fileInfoListJson}';
+		fileInfoList = new Array();
+		if ("" != fileInfoListStr) {
+			fileInfoList = JSON2.parse(fileInfoListStr);
+			file_row_count = fileInfoList.length;
+		}
+		for ( var x = 0; x < fileInfoList.length; x++) {
+			var fileInfo = fileInfoList[x];
+			addNewFile();
+			//<th>编号</th>
+			//<th>文件名</th>
+			//<th>类型</th>
+			//<th>描述</th>
+			//<th>创建时间</th>
+		}
 
 		//新增证件行信息
 

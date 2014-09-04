@@ -1,10 +1,12 @@
 package com.zh.web.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.zh.base.util.DateUtil;
 import com.zh.core.model.Pager;
 import com.zh.web.dao.FileInfoDao;
 import com.zh.web.model.bean.FileInfo;
@@ -55,6 +57,8 @@ public class FileInfoServiceImpl implements FileInfoService {
 	@Override
 	public void insert(FileInfo fileInfo) {
 		// TODO Auto-generated method stub
+		String createdate = DateUtil.getCreated();
+		fileInfo.setCreatedate(createdate);
 		fileInfoDao.insert(fileInfo);
 	}
 
