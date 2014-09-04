@@ -101,21 +101,19 @@
 					</s:else>
 
 					<div class="pull-right">
-						<s:if
-							test='%{hasApprove!=null && hasApprove=="1"}'>
+						<s:if test='%{hasApprove!=null && hasApprove=="1"}'>
 							<button class="btn" type="button" id="approveBtn"
 								data-toggle="modal" data-target="#approveConfirm">
 								<i class="icon-ok"></i> 批准
 							</button>
-							
+
 							<button class="btn" type="button" id="rejectBtn"
 								data-toggle="modal" data-target="#rejectConfirm">
 								<i class="icon-ok"></i> 拒绝
 							</button>
 						</s:if>
 
-						<s:if
-							test='%{hasSubmitAuth!=null && hasSubmitAuth=="1"}'>
+						<s:if test='%{hasSubmitAuth!=null && hasSubmitAuth=="1"}'>
 							<button class="btn" type="button" id="startBtn"
 								data-toggle="modal" data-target="#startConfirm">
 								<i class="icon-ok"></i> 发起
@@ -130,12 +128,12 @@
 				</div>
 				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 				<input type="hidden" id="formChanged" name="formChanged" value="0" />
-				<s:set name="ProcessId" value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
+				<s:set name="ProcessId"
+					value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
 				<div class="well">
 					<ul class="nav nav-tabs">
-						<li><a id="homeButt" href="#home"
-							data-toggle="tab">基本信息</a></li>
-							
+						<li><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
+
 						<s:if test="#ProcessId">
 							<li><a id="certificatesButt" href="#certificates"
 								data-toggle="tab">证件信息</a></li>
@@ -149,8 +147,8 @@
 						<div class="tab-pane fade" id="home">
 							<form id="editForm" class="form-horizontal"
 								action="${menu2Id}!save.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> 
-								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -170,9 +168,8 @@
 											<div class="controls">
 												<input type="text" id="description"
 													name="technologicalProcess.description"
-													value="${technologicalProcess.description}" 
-													data-required="true" desc="描述"
-													class="input-large">
+													value="${technologicalProcess.description}"
+													data-required="true" desc="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -183,8 +180,9 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名" maxlength="15"
-													id="inputName" name="technologicalProcess.name"
+												<input type="text" data-required="true" desc="姓名"
+													maxlength="15" id="inputName"
+													name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
 											</div>
 										</div>
@@ -259,8 +257,8 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail"
-													value="${technologicalProcess.mail}"
-													data-required="true" desc="电子邮箱" class="input-large">
+													value="${technologicalProcess.mail}" data-required="true"
+													desc="电子邮箱" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -346,9 +344,7 @@
 								</thead>
 								<tbody id="certificatesSearch">
 									<tr>
-										<td>
-											<input type="hidden" size="15"
-											id="certificatesId">
+										<td><input type="hidden" size="15" id="certificatesId">
 										</td>
 										<td><select id="certificatesType" class="input-medium">
 												<option value="1">工作许可</option>
@@ -362,11 +358,11 @@
 												<option value="9">外国专家证</option>
 										</select></td>
 										<td><input type="text" size="15"
-											id="certificatesHandledate"
-											readonly class="form_datetime input-small"></td>
+											id="certificatesHandledate" readonly
+											class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesReceivedate"
-											readonly class="form_datetime input-small"></td>
+											id="certificatesReceivedate" readonly
+											class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
 											id="certificatesValidstartdate" readonly
 											class="form_datetime input-small"></td>
@@ -374,8 +370,7 @@
 											id="certificatesValidenddate" readonly
 											class="form_datetime input-small"></td>
 										<td><input type="text" size="15"
-											id="certificatesUpdateDate" 
-											readonly class="input-small"></td>
+											id="certificatesUpdateDate" readonly class="input-small"></td>
 										<td>
 											<p>
 												<button class="btn btn-mini icon-plus" type="button"
@@ -391,70 +386,70 @@
 						<div class="tab-pane fade" id="flight">
 							<form id="flightForm" class="form-horizontal"
 								action="${menu2Id}!saveFlight.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> 
-								<input type="hidden" name="menu2Id" value="${menu2Id}">
-								<input type="hidden" name="formId" value="${technologicalProcess.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${technologicalProcess.id}">
 								<input type="hidden" name="flight.id" value="${flight.id}">
-							<dir class="row">
-								<div class="span5">
-									<div class="control-group">
-										<label class="control-label" for="flightnumber">航班号：</label>
-										<div class="controls">
-											<input type="text" maxlength="15" id="flightnumber"
-												name="flight.flightnumber" value="${flight.flightnumber}"
-												class="input-large" />
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="flightnumber">航班号：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="flightnumber"
+													name="flight.flightnumber" value="${flight.flightnumber}"
+													class="input-large" />
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="span5">
-									<div class="control-group">
-										<label class="control-label" for="airportPeopleId">接机人：</label>
-										<div class="controls">
-											<select id="airportPeopleId" class="input-large"
-												name="flight.airportPeopleId">
-												<option value="A">测试1</option>
-												<option value="B">测试2</option>
-											</select>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="airportPeopleId">接机人：</label>
+											<div class="controls">
+												<select id="airportPeopleId" class="input-large"
+													name="flight.airportPeopleId">
+													<option value="A">测试1</option>
+													<option value="B">测试2</option>
+												</select>
+											</div>
 										</div>
 									</div>
-								</div>
-							</dir>
-							<dir class="row">
-								<div class="span5 pull-left">
-									<div class="control-group">
-										<label class="control-label" for="inputstartdate">起飞时间：</label>
-										<div class="controls">
-											<input type="text" size="15" id="inputstartdate"
-												name="flight.startdate"
-												value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
-												readonly class="form_datetime input-large" />
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputstartdate">起飞时间：</label>
+											<div class="controls">
+												<input type="text" size="15" id="inputstartdate"
+													name="flight.startdate"
+													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="span5">
-									<div class="control-group">
-										<label class="control-label" for="inputenddate">到达时间：</label>
-										<div class="controls">
-											<input type="text" size="15" id="inputenddate"
-												name="flight.enddate"
-												value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
-												readonly class="form_datetime input-large" />
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputenddate">到达时间：</label>
+											<div class="controls">
+												<input type="text" size="15" id="inputenddate"
+													name="flight.enddate"
+													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
 										</div>
 									</div>
-								</div>
-							</dir>
-							<dir class="row">
-								<div class="span5 pull-left">
-									<div class="control-group">
-										<label class="control-label" for="place">到达机场：</label>
-										<div class="controls">
-											<input type="text" maxlength="15" id="place"
-												name="flight.place" value="${flight.place}"
-												class="input-large" />
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="place">到达机场：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="place"
+													name="flight.place" value="${flight.place}"
+													class="input-large" />
+											</div>
 										</div>
 									</div>
-								</div>
-							</dir>
+								</dir>
 							</form>
 						</div>
 
@@ -471,54 +466,24 @@
 								<span>没有发起或者匹配的工作流</span>
 							</s:else>
 						</div>
-						
+
 						<!-- 附件 -->
 						<div class="tab-pane fade" id="annex">
+							<button class="btn btn-small icon-file btn-primary" type="button"
+								data-toggle="modal" data-target="#filefirm">上传附件</button>
 							<table class="table">
 								<thead>
 									<tr>
 										<th>编号</th>
 										<th>文件名</th>
-										<th>种类</th>
+										<th>类型</th>
 										<th>描述</th>
 										<th>创建时间</th>
 										<th style="width: 50px;">操作</th>
 									</tr>
 								</thead>
 								<tbody id="FileInfoSearch">
-									<tr>
-										<td>
-											<s:label name="#fileInfo.id"></s:label>
-											<input type="hidden" id="fileInfoId"
-											name="fileInfo.id" class="input-small" />
-										</td>
-										<td>
-											<input type="file" title="上传" id="fileInfoname"
-											name="fileInfo.name" class="input-small" />
-										</td>
-										<td><select id="fileInfoNametype" class="input-small"
-											name="fileInfo.nametype">
-												<option value="1">护照</option>
-												<option value="2">毕业证</option>
-												<option value="3">简历</option>
-												<option value="4">无犯罪记录</option>
-												<option value="5">TEFL证</option>
-												<option value="6">档案表</option>
-										</select>
-										</td>
-										<td><input type="text" maxlength="15" id="fileInfoDescr"
-											name="fileInfo.descr" value="${fileInfo.descr}"
-											class="input-large"></td>
-										<td><input type="text" size="15" id="fileInfoCreatedate"
-											class="input-small" readonly /></td>
-										<td>
-											<p>
-												<button class="btn btn-mini icon-plus" type="button"
-													onclick="addNewFile();"></button>
-												<button class="btn btn-mini icon-minus" type="button"></button>
-											</p>
-										</td>
-									</tr>
+
 								</tbody>
 							</table>
 						</div>
@@ -527,145 +492,202 @@
 			</div>
 
 			<!-- 创建工作流 -->
-			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
-				<input type="hidden" name="formId" id="cwf_formId" value="${technologicalProcess.id}">
-				<input type="hidden" name="assign" id="cwf_assign"> 
-				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
-				<input type="hidden" name="menuId" value="${menuId}">
+			<form action="${menu2Id}!createWorkflow.jspa" method="post"
+				id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId"
+					value="${technologicalProcess.id}"> <input type="hidden"
+					name="assign" id="cwf_assign"> <input type="hidden"
+					name="menu2Id" value="${menu2Id}"> <input type="hidden"
+					name="menuId" value="${menuId}">
 			</form>
-			
+
 			<!-- 批准工作流 -->
-			<form action="${menu2Id}!approveWorkflow.jspa" method="post" id="approveWF">
-				<input type="hidden" name="formId" id="awf_formId" value="${technologicalProcess.id}">
-				<input type="hidden" name="technologicalProcess.workflowid" id="awf_formId" value="${technologicalProcess.workflowid}">
-				<input type="hidden" name="technologicalProcess.taskId" id="taskId" value="${technologicalProcess.taskId}">
-				<input type="hidden" name="assign" id="awf_assign"> 
-				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
-				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
-				<input type="hidden" name="menuId" value="${menuId}">
+			<form action="${menu2Id}!approveWorkflow.jspa" method="post"
+				id="approveWF">
+				<input type="hidden" name="formId" id="awf_formId"
+					value="${technologicalProcess.id}"> <input type="hidden"
+					name="technologicalProcess.workflowid" id="awf_formId"
+					value="${technologicalProcess.workflowid}"> <input
+					type="hidden" name="technologicalProcess.taskId" id="taskId"
+					value="${technologicalProcess.taskId}"> <input
+					type="hidden" name="assign" id="awf_assign"> <input
+					type="hidden" name="assignFlag" id="awf_assignFlag"> <input
+					type="hidden" name="menu2Id" value="${menu2Id}"> <input
+					type="hidden" name="menuId" value="${menuId}">
 			</form>
 		</div>
 	</div>
 
-<!-- 保存证件列表 -->
-<div class="hide">
-	<form id="certificatesForm" class="form-horizontal"
-		action="${menu2Id}!saveCertificates.jspa" method="post">
-		<input type="hidden" id="jsonList" name="jsonList" />
-	</form>
-</div>
-
-<!-- 上传文件 -->
-<div class="hide">
-	<form id="fileForm" class="form-horizontal"
-		action="${menu2Id}!saveFile.jspa" method="post">
-		<input type="file" title="上传" id="fileInfoname"
-			name="fileInfo.name" class="input-small" />
-		<input type="hidden" title="上传" id="fileInfoNametype"
-			name="fileInfo.nametype" class="input-small" />
-		<input type="hidden" maxlength="15" id="fileInfoDescr"
-				   name="fileInfo.descr" value="">
-	</form>
-</div>
-<div class="hide">
-	<a  id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm" data-toggle="modal"></a>
-</div>
-<!-- 发起流程 -->
-<div class="modal small hide fade" id="startConfirm" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="startModalLabel">流程发起</h3>
+	<!-- 保存证件列表 -->
+	<div class="hide">
+		<form id="certificatesForm" class="form-horizontal"
+			action="${menu2Id}!saveCertificates.jspa" method="post">
+			<input type="hidden" id="jsonList" name="jsonList" />
+		</form>
 	</div>
-	<div class="modal-body">
-		<div class="control-group">
-			<p class="text-error" id="startConfirmMsg"></p>
+
+	<!-- 上传文件 -->
+	<div class="modal small hide fade" id="filefirm" tabindex="-1"
+		style="width: 550px;" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">附件上传</h3>
 		</div>
-		<div class="control-group">
-			<label class="control-label pull-left" for="modalAssign">审批人：</label>
-			<!-- 
+		<form id="fileForm" class="form-horizontal"
+			action="${menu2Id}!saveFile.jspa" method="post">
+			<div class="modal-body">
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">文件</label>
+						<div class="controls">
+							<input type="file" title="上传" id="files"
+								name="files" class="input-large" />
+						</div>
+					</div>
+				</dir>
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">类型</label>
+						<div class="controls">
+							<select id="fileInfoNametype" class="input-large"
+								name="fileInfo.nametype">
+								<option value="1">护照</option>
+								<option value="2">毕业证</option>
+								<option value="3">简历</option>
+								<option value="4">无犯罪记录</option>
+								<option value="5">TEFL证</option>
+								<option value="6">档案表</option>
+							</select>
+						</div>
+					</div>
+				</dir>
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">描述</label>
+						<div class="controls">
+							<input type="text" maxlength="15" class="input-large"
+								id="fileInfoDescr" name="fileInfo.descr" value="">
+						</div>
+					</div>
+				</dir>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="submit">确认</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			</div>
+		</form>
+	</div>
+	<div class="hide">
+		<a id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm"
+			data-toggle="modal"></a>
+	</div>
+	<!-- 发起流程 -->
+	<div class="modal small hide fade" id="startConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">流程发起</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="startConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<label class="control-label pull-left" for="modalAssign">审批人：</label>
+				<!-- 
 			<input type="text" id="modalAssign" class="input-large pull-right">
 			 -->
-			<select id="modalAssign" class="input-large pull-right">
-				<option selected="selected" id="modalAssignOption">&nbsp;</option>
-			</select>
+				<select id="modalAssign" class="input-large pull-right">
+					<option selected="selected" id="modalAssignOption">&nbsp;</option>
+				</select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="startBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>
-	<div class="modal-footer">
-		<button class="btn btn-danger" data-dismiss="modal"
-			id="startBtnConfirm">确认</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	</div>
-</div>
 
-<!-- 批准流程 -->
-<div class="modal small hide fade" id="approveConfirm" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="approveModalLabel">流程审批</h3>
-	</div>
-	<div class="modal-body">
-		<div class="control-group">
-			<p class="text-error" id="approveConfirmMsg"></p>
+	<!-- 批准流程 -->
+	<div class="modal small hide fade" id="approveConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="approveModalLabel">流程审批</h3>
 		</div>
-		<div class="control-group">
-			<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
-			<!-- 
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="approveConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
+				<!-- 
 			<input type="text" id="modalNextAssign" class="input-large pull-right">
 			 -->
-			<select id="modalNextAssign" class="input-large pull-right">
-				<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
-			</select>
+				<select id="modalNextAssign" class="input-large pull-right">
+					<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
+				</select>
+			</div>
+
 		</div>
-
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-danger" data-dismiss="modal"
-			id="approveBtnConfirm">确认</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	</div>
-</div>
-
-<!-- 拒绝流程 -->
-<div class="modal small hide fade" id="rejectConfirm" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="approveModalLabel">流程审批</h3>
-	</div>
-	<div class="modal-body">
-		<div class="control-group">
-			<p class="text-error" id="approveConfirmMsg"></p>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="approveBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
-		<div class="control-group">
-			<p class="error-text"><i class="icon-warning-sign modal-icon"></i>您确认拒绝流程吗?</p>
+	</div>
+
+	<!-- 拒绝流程 -->
+	<div class="modal small hide fade" id="rejectConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="approveModalLabel">流程审批</h3>
 		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="approveConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<p class="error-text">
+					<i class="icon-warning-sign modal-icon"></i>您确认拒绝流程吗?
+				</p>
+			</div>
 
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="rejectBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
 	</div>
-	<div class="modal-footer">
-		<button class="btn btn-danger" data-dismiss="modal"
-			id="rejectBtnConfirm">确认</button>
-		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	</div>
-</div>
 
-<div class="modal small hide fade" id="forMchangefirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">警告</h3>
-  </div>
-  <div class="modal-body">
-    <p class="error-text"><i class="icon-warning-sign modal-icon"></i>当前页面已经修改过,请先保存."确认" 保存 "取消" 不保存</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-danger" data-dismiss="modal" id="formChangefirmBtn">确认</button>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-  </div>
-</div>
+	<div class="modal small hide fade" id="forMchangefirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">警告</h3>
+		</div>
+		<div class="modal-body">
+			<p class="error-text">
+				<i class="icon-warning-sign modal-icon"></i>当前页面已经修改过,请先保存."确认" 保存
+				"取消" 不保存
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="formChangefirmBtn">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
 
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
@@ -687,19 +709,20 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-		
+
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
-		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
-		
+		var basePath = localObj.protocol + "//" + localObj.host + "/"
+				+ contextPath;
+
 		//是否具有编辑权限
 		var hasEdit = $("#hasEditAuth").val();
-		if(hasEdit == "1"){
-			
-		}else{
-			$(".container-fluid input").attr("disabled","disabled");
-			$(".container-fluid select").attr("disabled","disabled");
-			$(".container-fluid button").attr("disabled","disabled");
+		if (hasEdit == "1") {
+
+		} else {
+			$(".container-fluid input").attr("disabled", "disabled");
+			$(".container-fluid select").attr("disabled", "disabled");
+			$(".container-fluid button").attr("disabled", "disabled");
 		}
 
 		//基本信息
@@ -712,21 +735,25 @@
 		//$("#certificatesType").val("${certificates.type}").trigger("change");
 		certificatesListStr = '${certificatesListJson}';
 		certificatesList = new Array();
-		if(""!=certificatesListStr)
-		{
-			certificatesList = JSON2.parse(certificatesListStr);	
+		if ("" != certificatesListStr) {
+			certificatesList = JSON2.parse(certificatesListStr);
 			row_count = certificatesList.length;
 		}
 		for ( var x = 0; x < certificatesList.length; x++) {
 			var certificates = certificatesList[x];
 			//获取最后一行数据进行赋值
 			$("#certificatesId").last().val(certificates.id);
-			$("#certificatesType").last().val(certificates.type).trigger("change");
+			$("#certificatesType").last().val(certificates.type).trigger(
+					"change");
 			//$("#certificatesType").last().select2();
-			$("#certificatesHandledate").last().val(new Date(certificates.handledate).format("yyyy-MM-dd"));
-			$("#certificatesReceivedate").last().val(new Date(certificates.receivedate).format("yyyy-MM-dd"));
-			$("#certificatesValidstartdate").last().val(new Date(certificates.validstartdate).format("yyyy-MM-dd"));
-			$("#certificatesValidenddate").last().val(new Date(certificates.validenddate).format("yyyy-MM-dd"));
+			$("#certificatesHandledate").last().val(
+					new Date(certificates.handledate).format("yyyy-MM-dd"));
+			$("#certificatesReceivedate").last().val(
+					new Date(certificates.receivedate).format("yyyy-MM-dd"));
+			$("#certificatesValidstartdate").last().val(
+					new Date(certificates.validstartdate).format("yyyy-MM-dd"));
+			$("#certificatesValidenddate").last().val(
+					new Date(certificates.validenddate).format("yyyy-MM-dd"));
 			//$("#certificatesUpdateDate").last().val(new Date(certificates.updateDate).format("yyyy-MM-dd"));
 			addNew();
 		}
@@ -738,51 +765,42 @@
 		//附件
 		//$("#fileInfoNametype").select2();
 		//$("select").select2();
-		
+
 		//新增证件行信息
-		
+
 		function addNew() {
 			row_count++;
 			var search = $('#certificatesSearch');
 			var row = $("<tr></tr>");
-			addTd(
-					row,"<input type='hidden' size='15' id='certificatesId'>");
-			addTd(
-					row,
+			addTd(row, "<input type='hidden' size='15' id='certificatesId'>");
+			addTd(row,
 					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>保险</option><option value='9'>外国专家证</option></select>");
-			addTd(
-					row,
+			addTd(row,
 					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
-			addTd(
-					row,
+			addTd(row,
 					"<input type='text' size='15' id='certificatesReceivedate' readonly class='form_datetime input-small'>");
-			addTd(
-					row,
+			addTd(row,
 					"<input type='text' size='15' id='certificatesValidstartdate' readonly class='form_datetime input-small'>");
-			addTd(
-					row,
+			addTd(row,
 					"<input type='text' size='15' id='certificatesValidenddate' readonly class='form_datetime input-small'>");
-			addTd(
-					row,
+			addTd(row,
 					"<input type='text' size='15' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
-			addTd(
-					row,
+			addTd(row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
 			$("select[id='certificatesType']").last().select2();
 		}
-		
+
 		//获取证件 table中行的的对象
-		function queryCertificates(index)
-		{
-			var obj=new Object();
-			obj.id=$("input[id='certificatesId']")[index].value;
-			obj.type=$("select[id='certificatesType']")[index].value;
-			obj.handledate=$("input[id='certificatesHandledate']")[index].value;
-			obj.receivedate=$("input[id='certificatesReceivedate']")[index].value;
-			obj.validstartdate=$("input[id='certificatesValidstartdate']")[index].value;
-			obj.validenddate=$("input[id='certificatesValidenddate']")[index].value;
-			obj.technologicalprocessid =$("#inputId").val();
+		function queryCertificates(index) {
+			var obj = new Object();
+			obj.id = $("input[id='certificatesId']")[index].value;
+			obj.type = $("select[id='certificatesType']")[index].value;
+			obj.handledate = $("input[id='certificatesHandledate']")[index].value;
+			obj.receivedate = $("input[id='certificatesReceivedate']")[index].value;
+			obj.validstartdate = $("input[id='certificatesValidstartdate']")[index].value;
+			obj.validenddate = $("input[id='certificatesValidenddate']")[index].value;
+			obj.technologicalprocessid = $("#inputId").val();
 			return obj;
 		}
 
@@ -810,7 +828,7 @@
 			search.append(row);
 			$("select[id='fileInfoNametype']").last().select2();
 		}
-		
+
 		function addTd(row, str) {
 			var td = $("<td></td>");
 			td.append($(str));
@@ -834,220 +852,214 @@
 		$("form :input").change(function() {
 			$("#formChanged").val("1");
 		});
-		
+
 		//所有时间控件变更
 		$(".form_datetime").change(function() {
 			$("#formChanged").val("1");
 		});
-		
+
 		//所有select控件变更
 		$("tbody select").change(function() {
 			$("#formChanged").val("1");
 		});
-		
+
 		//进入指定的tbs
 		var tabID = "${tabID}";
-		if(null != tabID && "" != tabID)
-		{
-			$("#" + tabID).parent().addClass("active");	
-			$("#" + tabID.substring(0,tabID.length-4)).removeClass("fade").addClass("active");				
-		}else
-		{
+		if (null != tabID && "" != tabID) {
+			$("#" + tabID).parent().addClass("active");
+			$("#" + tabID.substring(0, tabID.length - 4)).removeClass("fade")
+					.addClass("active");
+		} else {
 			tabID = "homeButt";
 			$("#tabID").val("homeButt");
 			$("#homeButt").parent().addClass("active");
 			$("#home").removeClass("fade").addClass("active");
 		}
-		
+
 		//提交按钮
 		$("#formButton").click(function() {
 			currTab = $("#tabID").val();
 			saveForm();
 		});
-		
+
 		$("#formChangefirmBtn").click(function() {
 			saveForm();
 		});
-		
+
 		//当前tbs
-		var currTab=tabID;
-		
+		var currTab = tabID;
+
 		//判读当前tab，需要保存那个form
-		function saveForm()
-		{
+		function saveForm() {
 			var action;
-			if("homeButt" == currTab) {
-				action=$("#editForm").attr("action");
-				$("#editForm").attr("action",action + "?tabID="+$("#tabID").val());
+			if ("homeButt" == currTab) {
+				action = $("#editForm").attr("action");
+				$("#editForm").attr("action",
+						action + "?tabID=" + $("#tabID").val());
 				validate = $('#editForm').validate();
 				$("#editForm").submit();
-			}else if ("certificatesButt" == currTab){
-				var arrCertificates=new Array();
+			} else if ("certificatesButt" == currTab) {
+				var arrCertificates = new Array();
 				for ( var index = 0; index < row_count; index++) {
 					arrCertificatesIndex = queryCertificates(index);
-					if(arrCertificatesIndex.handledate !="" &&
-							arrCertificatesIndex.receivedate !="" &&
-							arrCertificatesIndex.validstartdate !="" &&
-							arrCertificatesIndex.validenddate !="")
-					{
-					arrCertificates[index] = arrCertificatesIndex;		
+					if (arrCertificatesIndex.handledate != ""
+							&& arrCertificatesIndex.receivedate != ""
+							&& arrCertificatesIndex.validstartdate != ""
+							&& arrCertificatesIndex.validenddate != "") {
+						arrCertificates[index] = arrCertificatesIndex;
 					}
 				}
-				var tex=JSON2.stringify(arrCertificates);
+				var tex = JSON2.stringify(arrCertificates);
 				$("input[id='jsonList']").val(tex);
 				$("#certificatesForm").submit();
-			}else if ("flightButt" == currTab){
-				
-				action=$("#flightForm").attr("action");
-				$("#flightForm").attr("action",action + "?tabID="+$("#tabID").val());
+			} else if ("flightButt" == currTab) {
+
+				action = $("#flightForm").attr("action");
+				$("#flightForm").attr("action",
+						action + "?tabID=" + $("#tabID").val());
 				$("#flightForm").submit();
 			}
-			
+
 		}
-		
+
 		/*判断当前form是否变更*/
-		var technologicalProcessId="${technologicalProcess.id}";
-		function ischangeForm(id)
-		{
+		var technologicalProcessId = "${technologicalProcess.id}";
+		function ischangeForm(id) {
 			//获取当前需要保存的tabid
 			currTab = $("#tabID").val();
 			//设置新的tab
 			$("#tabID").val(id);
 			//判断是否变更过
-			if("1" == $("#formChanged").val())
-			{
+			if ("1" == $("#formChanged").val()) {
 				$("#Ejectfirm").click();
 				$("#formChanged").val("0");
 			}
 		}
-		
+
 		//tab页签添加事件
 		$("li a[data-toggle='tab']").click(function() {
 			ischangeForm(this.id);
 		});
-		
+
 		//开始选择，用户选择框打开
-		$('#startConfirm').on('show.bs.modal', function () {
-			  // 执行一些动作...
-			  selectUsers("modalAssign");
-			  //审核状态
-			  var auditRet = auditStatus();
-			  //存在必填没有填写
-			  if(auditRet.length > 0){
-				  $("#startBtnConfirm").attr("disabled","disabled");
-				  $("#startBtnConfirm").removeClass("btn-danger");
-				  $("#startConfirmMsg").html("缺少下列必填字段：" + auditRet);
-			  }
-		});
-		
-		//选择框隐藏
-		$('#startConfirm').on('hidden.bs.modal', function () {
-			  // 执行一些动作...
+		$('#startConfirm').on('show.bs.modal', function() {
+			// 执行一些动作...
+			selectUsers("modalAssign");
+			//审核状态
+			var auditRet = auditStatus();
+			//存在必填没有填写
+			if (auditRet.length > 0) {
+				$("#startBtnConfirm").attr("disabled", "disabled");
+				$("#startBtnConfirm").removeClass("btn-danger");
+				$("#startConfirmMsg").html("缺少下列必填字段：" + auditRet);
+			}
 		});
 
-	
-		//批准选择，用户选择框打开
-		$('#approveConfirm').on('show.bs.modal', function () {
-			  // 执行一些动作...
-			  selectUsers("modalNextAssign");
-			  //审核状态
-			  var auditRet = auditStatus();
-			  //存在必填没有填写
-			  if(auditRet.length > 0){
-				  $("#approveBtnConfirm").attr("disabled","disabled");
-				  $("#approveBtnConfirm").removeClass("btn-danger");
-				  $("#approveConfirmMsg").html("缺少下列必填字段：" + auditRet);
-				  
-			  }
-		});
-		
 		//选择框隐藏
-		$('#approveConfirm').on('hidden.bs.modal', function () {
-			  // 执行一些动作...
+		$('#startConfirm').on('hidden.bs.modal', function() {
+			// 执行一些动作...
 		});
-		
+
+		//批准选择，用户选择框打开
+		$('#approveConfirm').on('show.bs.modal', function() {
+			// 执行一些动作...
+			selectUsers("modalNextAssign");
+			//审核状态
+			var auditRet = auditStatus();
+			//存在必填没有填写
+			if (auditRet.length > 0) {
+				$("#approveBtnConfirm").attr("disabled", "disabled");
+				$("#approveBtnConfirm").removeClass("btn-danger");
+				$("#approveConfirmMsg").html("缺少下列必填字段：" + auditRet);
+
+			}
+		});
+
+		//选择框隐藏
+		$('#approveConfirm').on('hidden.bs.modal', function() {
+			// 执行一些动作...
+		});
+
 		// 选择用户
-		function selectUsers(id){
+		function selectUsers(id) {
 			$.ajax({
-				type: "POST",   //访问WebService使用Post方式请求
-				url: basePath + "/home/userInfo!queryUsers.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-				data: {},  //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
-				dataType: 'json',   //WebService 会返回Json类型
-				traditional: false,	//不要序列化参数
-				error: function(err, textStatus){
+				type : "POST", //访问WebService使用Post方式请求
+				url : basePath + "/home/userInfo!queryUsers.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+				data : {}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+				dataType : 'json', //WebService 会返回Json类型
+				traditional : false, //不要序列化参数
+				error : function(err, textStatus) {
 					//alert("error: " + err + " textStatus: " + textStatus);
 				},
-				success: function(result) {//回调函数，result，返回值
+				success : function(result) {//回调函数，result，返回值
 					//填充到table中
 					fillUserList(result, id);
 				}
 			});
 		}
-		
+
 		//展示用户选择列表
-		function fillUserList(userList, id){
+		function fillUserList(userList, id) {
 			//清空上次的查询结果
-			$("#"+id+"Option").nextAll("option").remove();
+			$("#" + id + "Option").nextAll("option").remove();
 			//动态生成用户列表
-			for(var i = 0; i<userList.length; i++){
+			for ( var i = 0; i < userList.length; i++) {
 				var user = userList[i];
-				$("#"+id+"Option").clone(true).removeAttr("selected")
-				.attr("id",user.id)
-				.val(user.loginName)
-				.html(user.name+"("+user.loginName+")")
-				.insertAfter("#"+id+"Option");
+				$("#" + id + "Option").clone(true).removeAttr("selected").attr(
+						"id", user.id).val(user.loginName).html(
+						user.name + "(" + user.loginName + ")").insertAfter(
+						"#" + id + "Option");
 			}
 		}
-		
+
 		//发起按钮确认
 		$("#startBtnConfirm").click(function() {
 			var assign = $("#modalAssign").val();
 			assign = $.trim(assign);
 			if (assign == null || assign == "") {
 				return;
-			}else{
+			} else {
 				$("#cwf_assign").val(assign);
 				$("#createWF").submit();
 			}
 		});
-		
+
 		//批准按钮确认
 		$("#approveBtnConfirm").click(function() {
 			var assign = $("#modalNextAssign").val();
 			assign = $.trim(assign);
 			if (assign == null || assign == "") {
 				return;
-			}else{
+			} else {
 				$("#awf_assign").val(assign);
 				$("#awf_assignFlag").val("1");
 				$("#approveWF").submit();
 			}
 		});
-		
-		
+
 		//拒绝按钮确认
 		$("#rejectBtnConfirm").click(function() {
 			$("#awf_assignFlag").val("0");
 			$("#approveWF").submit();
 		});
-		
+
 		/**
 		 * 审核当前的必填字段是否填写
 		 * 
 		 */
-		function auditStatus(){
+		function auditStatus() {
 			var curState = "${technologicalProcess.state}";
 			var auditRet = new Array();
-			if(curState == "发起"){
+			if (curState == "发起") {
 				//检查必填字段
-				$("#myTabContent input[data-required='true']").each(function () {
+				$("#myTabContent input[data-required='true']").each(function() {
 					var inputValue = $.trim($(this).val());
 					if (inputValue == null || inputValue == "") {
 						var desc = $(this).attr("desc");
 						auditRet.push(desc);
 					}
 				});
-				
+
 			}
 			return auditRet;
 		}

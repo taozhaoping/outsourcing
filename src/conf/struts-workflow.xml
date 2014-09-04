@@ -17,7 +17,17 @@
 		<!-- 外事招聘流程 -->
 		<action name="recruitment" class="com.zh.web.action.RecruitmentAction" method="execute">
 			<result name="success">/pages/workflow/recruitment/recruitmentList.jsp</result>
+			 
 			<result name="editor">/pages/workflow/recruitment/recruitment.jsp</result>
+			 
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">recruitment</param>  
+    			<param name="namespace">/workflow</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+    			<param name="formId">${formId}</param>
+			</result>
 			<result name="createSuccess" type="redirectAction">
 				<param name="actionName">recruitment</param>  
     			<param name="namespace">/workflow</param>

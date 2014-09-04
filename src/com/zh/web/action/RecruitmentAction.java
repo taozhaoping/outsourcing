@@ -121,7 +121,9 @@ public class RecruitmentAction extends BaseAction {
 		}
 		List<IDataObject> list = (List<IDataObject>)JSONUtil.jsonArrToListObject(jsonList, Certificates.class);
 		certificatesService.insertList(list);
-		return editor();
+		Certificates certificates = (Certificates)list.get(0);
+		this.recruitmentModel.setFormId(certificates.getTechnologicalprocessid().toString());
+		return "save";
 	}
 	/**
 	 * 上传附件
@@ -130,7 +132,8 @@ public class RecruitmentAction extends BaseAction {
 	public String saveFile()
 	{
 		
-		return editor();
+
+		return "save";
 	}
 
 	//保存航班信息
@@ -153,7 +156,8 @@ public class RecruitmentAction extends BaseAction {
 		
 		//设置权限标志位
 		setAuthFlag(flight.getTechnologicalprocessid());
-		return editor();
+		this.recruitmentModel.setFormId(flight.getTechnologicalprocessid().toString());
+		return "save";
 	}
 	
 	// 保存表单
@@ -174,9 +178,8 @@ public class RecruitmentAction extends BaseAction {
 		}
 		//设置权限标志位
 		setAuthFlag(technologicalProcess.getId());
-		
-		
-		return Action.EDITOR;
+		this.recruitmentModel.setFormId(technologicalProcess.getId().toString());
+		return "save";
 	}
 
 	/**

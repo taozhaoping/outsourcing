@@ -91,6 +91,7 @@
 							<thead>
 								<tr>
 									<th>流程编号</th>
+									<th>姓名</th>
 									<th>流程描述</th>
 									<!-- 
 									<th>姓名</th>
@@ -112,6 +113,7 @@
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
+										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.description"/></td>
 										<!-- 
 										<td><s:property value="#tp.name"/></td>
