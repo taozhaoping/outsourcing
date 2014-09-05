@@ -21,10 +21,10 @@
 				and name = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="address != null">
-				and address = #{address,jdbcType=VARCHAR},
+				and address = #{address,jdbcType=VARCHAR}
 			</if>
 			<if test="phonecall != null">
-				and phonecall = #{phonecall,jdbcType=VARCHAR},
+				and phonecall = #{phonecall,jdbcType=VARCHAR}
 			</if>
 			<if test="enabled != null">
 				and enabled = #{enabled}

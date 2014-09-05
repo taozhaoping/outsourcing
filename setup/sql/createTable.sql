@@ -38,6 +38,8 @@ drop index USER_LOGINNAME_INDEX;
 
 drop table SYS_USER cascade constraints;
 
+drop table SYS_NOTICE cascade constraints;
+
 drop sequence SEQUENCE_SYS_AUTHORITIES;
 
 drop sequence SEQUENCE_SYS_ENTERPRISE;
@@ -49,6 +51,8 @@ drop sequence SEQUENCE_SYS_RESOURCEINFO;
 drop sequence SEQUENCE_SYS_ROLE;
 
 drop sequence SEQUENCE_SYS_USER;
+
+drop sequence SEQUENCE_SYS_NOTICE;
 
 create sequence SEQUENCE_SYS_AUTHORITIES
 start with 1
@@ -91,6 +95,14 @@ start with 1
  minvalue 1
 order
  cache 10;
+ 
+ 
+create sequence SEQUENCE_SYS_NOTICE
+start with 1
+ maxvalue 99999999
+ minvalue 1
+ cache 5
+order;
 
 /*==============================================================*/
 /* Table: SYS_AUTHORITIES                                       */
@@ -262,6 +274,42 @@ alter table SYS_USER
 create index USER_LOGINNAME_INDEX on SYS_USER (
    loginName ASC
 );
+
+/*==============================================================*/
+/* Table: 公司公告                                            */
+/*==============================================================*/
+create table SYS_NOTICE 
+(
+   ID                   NUMBER               not null,
+   TITLE                VARCHAR(60),
+   CONTENT              VARCHAR(200),
+   USERID               NUMBER,
+   CREATEDATE           DATE,
+   UPDATEDATE           DATE,
+   constraint PK_SYS_NOTICE primary key (ID)
+);
+
+comment on table SYS_NOTICE is
+'公司公告';
+
+comment on column SYS_NOTICE.ID is
+'ID';
+
+comment on column SYS_NOTICE.TITLE is
+'标题';
+
+comment on column SYS_NOTICE.CONTENT is
+'内容';
+
+comment on column SYS_NOTICE.USERID is
+'创建人';
+
+comment on column SYS_NOTICE.CREATEDATE is
+'创建时间';
+
+comment on column SYS_NOTICE.UPDATEDATE is
+'修改时间';
+
 
 /*
 alter table sys_role_to_authorities

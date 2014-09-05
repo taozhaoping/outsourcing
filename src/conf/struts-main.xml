@@ -19,6 +19,18 @@
 			</result>
 		</action>
 		
+		<!-- 公司公告 -->
+		<action name="notice" class="com.zh.base.action.NoticeAction"
+			method="execute">
+			<result name="success">/pages/SystemConfig/notice/List.jsp</result>
+			<result name="editor">/pages/SystemConfig/notice/edit.jsp</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">notice</param>  
+    			<param name="namespace">/home</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+		</action>
 		<!-- 系统参数配置 -->
 		<action name="param" class="com.zh.base.action.ParamAction"
 			method="execute">
