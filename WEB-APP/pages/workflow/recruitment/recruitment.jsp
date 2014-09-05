@@ -933,6 +933,7 @@
 			var tr = butt.parentNode.parentNode.parentNode;
 			tr.parentNode.removeChild(tr);
 			row_count--;
+			$("#formChanged").val("1");
 		}
 
 		//判断表单是否修改过
