@@ -30,13 +30,16 @@ public class TechnologicalProcessServiceImpl implements
 	@Override
 	public List<TechnologicalProcess> queryList(TechnologicalProcess technologicalProcess) {
 		// TODO Auto-generated method stub
+		//排序-创建时间，降序
+				technologicalProcess.setOrderByClause("CREATETIME DESC");
 		return technologicalProcessDao.queryList(technologicalProcess);
 	}
 
 	@Override
 	public List<TechnologicalProcess> queryList(TechnologicalProcess technologicalProcess,
 			Pager page) {
-		// TODO Auto-generated method stub
+		//排序-创建时间，降序
+				technologicalProcess.setOrderByClause("CREATETIME DESC");
 		return technologicalProcessDao.queryPageList(technologicalProcess, page);
 	}
 
