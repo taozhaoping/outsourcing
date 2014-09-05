@@ -26,7 +26,8 @@ public class FileInfoServiceImpl implements FileInfoService {
 
 	@Override
 	public void update(FileInfo fileInfo) {
-		// TODO Auto-generated method stub
+		String update = DateUtil.getCreated();
+		fileInfo.setUpdatedate(update);
 		fileInfoDao.update(fileInfo);
 	}
 

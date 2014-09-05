@@ -354,8 +354,7 @@
 												<option value="5">工作签</option>
 												<option value="6">入境章页</option>
 												<option value="7">保险</option>
-												<option value="8">保险</option>
-												<option value="9">外国专家证</option>
+												<option value="8">外国专家证</option>
 										</select></td>
 										<td><input type="text" size="15"
 											id="certificatesHandledate" readonly
@@ -583,6 +582,66 @@
 			</div>
 		</form>
 	</div>
+	
+	<!-- 修改上传文件信息 -->
+	<div class="modal small hide fade" id="fileEditorfirm" tabindex="-1"
+		style="width: 550px;" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">附件上传</h3>
+		</div>
+		<form id="fileEditorForm" class="form-horizontal"
+			action="${menu2Id}!saveFile.jspa" method="post">
+			<input type="hidden" name="menuId" value="${menuId}"> 
+			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="formId" value="${technologicalProcess.id}">
+			<input type="hidden" id="FileInfoId" name="fileInfo.id" value="">
+			<div class="modal-body">
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">文件</label>
+						<div class="controls">
+							<input type="text" readonly="readonly" title="上传" id="FileInfoName"
+								name="fileInfo.name" class="input-large" />
+						</div>
+					</div>
+				</dir>
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">类型</label>
+						<div class="controls">
+							<select id="fileInfoNametype" data-required="true" class="input-large"
+								name="fileInfo.nametype">
+								<option value="1">护照</option>
+								<option value="2">毕业证</option>
+								<option value="3">简历</option>
+								<option value="4">无犯罪记录</option>
+								<option value="5">TEFL证</option>
+								<option value="6">档案表</option>
+							</select>
+						</div>
+					</div>
+				</dir>
+				<dir class="row">
+					<div class="control-group">
+						<label class="control-label" for="inputId">描述</label>
+						<div class="controls">
+							<input type="text" maxlength="15" class="input-large"
+								id="fileInfoDescr" name="fileInfo.descr" value="">
+						</div>
+					</div>
+				</dir>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" type="submit">确认</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			</div>
+		</form>
+	</div>
+	
 	<div class="hide">
 		<a id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm"
 			data-toggle="modal"></a>
@@ -645,7 +704,6 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>
-
 	<!-- 拒绝流程 -->
 	<div class="modal small hide fade" id="rejectConfirm" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -766,25 +824,20 @@
 				.trigger("change");
 
 		//附件
-		$("#fileInfoNametype").select2();
 		//$("select").select2();
 		$('#fileForm').validate();
+		$('#fileEditorForm').validate();
 		
 		//附件信息列表初始化
 		fileInfoListStr = '${fileInfoListJson}';
 		fileInfoList = new Array();
 		if ("" != fileInfoListStr) {
 			fileInfoList = JSON2.parse(fileInfoListStr);
-			file_row_count = fileInfoList.length;
 		}
 		for ( var x = 0; x < fileInfoList.length; x++) {
 			var fileInfo = fileInfoList[x];
-			addNewFile();
-			//<th>编号</th>
-			//<th>文件名</th>
-			//<th>类型</th>
-			//<th>描述</th>
-			//<th>创建时间</th>
+			addNewFile(fileInfo);
+			
 		}
 
 		//新增证件行信息
@@ -795,7 +848,7 @@
 			var row = $("<tr></tr>");
 			addTd(row, "<input type='hidden' size='15' id='certificatesId'>");
 			addTd(row,
-					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>保险</option><option value='9'>外国专家证</option></select>");
+					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>外国专家证</option></select>");
 			addTd(row,
 					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
 			addTd(row,
@@ -826,28 +879,55 @@
 		}
 
 		//新增上传文件行
-		var file_row_count = 0;
-		function addNewFile() {
-			file_row_count++;
+		
+		function addNewFile(fileInfo) {
 			var search = $('#FileInfoSearch');
 			var row = $("<tr></tr>");
-			addTd(
-					row,
-					"<input type='file' title='上传' id='fileInfoname' name='fileInfo.name'  class='input-small' />");
-			addTd(
-					row,
-					"<select id='fileInfoNametype' class='input-small' name='fileInfo.nametype'> <option value='1'>护照</option> <option value='2'>毕业证</option> <option value='3'>简历</option> <option value='4'>无犯罪记录</option><option value='5'>TEFL证</option> <option value='6'>档案表</option> </select>");
-			addTd(
-					row,
-					"<input type='text' maxlength='15' id='fileInfoDescr' name='fileInfo.descr' value='${fileInfo.descr}' class='input-large'>");
-			addTd(
-					row,
-					"<input type='text' size='15' id='fileInfoCreatedate' class='input-small' readonly />");
-			addTd(
-					row,
-					"<p><button class='btn btn-mini icon-plus' onclick='addNewFile();' type='button'></button><button class='btn btn-mini icon-minus' onclick='delFile(this);' type='button'></button></p>");
+			addTd(row,"<lable id='id'>" + fileInfo.id + "</label>");
+			addTd(row,"<lable  id='name'>" + fileInfo.name + "</label>");
+			var nametype = "";
+			switch(fileInfo.nametype)
+			{
+			case '2':
+				nametype="毕业证";
+			  break;
+			case '3':
+				nametype="简历";
+			  break;
+			case '4':
+				nametype="无犯罪记录";
+			  break;
+			case '5':
+				nametype="TEFL证";
+			  break;
+			case '6':
+				nametype="档案表";
+			  break;
+			default:
+				nametype="护照";
+			}
+			addTd(row,"<lable  id='nametype'>" + nametype + "</label>");
+			addTd(row,"<lable>" + fileInfo.descr + "</label>");
+			addTd(row,"<lable>" + fileInfo.createdate + "</label>");
+			addTd(row,
+					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button><button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
 			$("select[id='fileInfoNametype']").last().select2();
+		}
+		
+		function initFileInfo(obj,nameType)
+		{
+			var tr = obj.parentNode.parentNode.parentNode;
+			cells = tr.cells;
+			var id=cells[0].textContent;
+			var name=cells[1].textContent;
+			//var nametype=cells[2].textContent;
+			var descr=cells[3].textContent;
+			$("#fileEditorForm input[id='FileInfoId']").val(id);
+			$("#fileEditorForm input[id='FileInfoName']").val(name);
+			$("#fileInfoNametype").last().val(nameType).trigger(
+			"change");
+			$("#fileEditorForm input[id='fileInfoDescr']").val(descr);
 		}
 
 		function addTd(row, str) {
@@ -860,7 +940,6 @@
 		function delFile(butt) {
 			var tr = butt.parentNode.parentNode.parentNode;
 			tr.parentNode.removeChild(tr);
-			file_row_count--;
 		}
 
 		function del(butt) {

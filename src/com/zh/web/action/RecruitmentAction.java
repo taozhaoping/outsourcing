@@ -54,14 +54,15 @@ public class RecruitmentAction extends BaseAction {
 	 * 招聘工作流
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private RecruitmentModel recruitmentModel = new RecruitmentModel();
 
-	private static Logger LOGGER = LoggerFactory.getLogger(RecruitmentAction.class);
+	private static Logger LOGGER = LoggerFactory
+			.getLogger(RecruitmentAction.class);
 
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
-	
+
 	@Autowired
 	private FlightService flightService;
 
@@ -73,10 +74,10 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	protected RepositoryService repositoryService;
-	
+
 	@Autowired
 	private CertificatesService certificatesService;
-	
+
 	@Autowired
 	private FileInfoService fileInfoService;
 
@@ -85,7 +86,7 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	protected IdentityService identityService;
-	
+
 	@Autowired
 	ProcessEngineFactoryBean processEngine;
 
@@ -116,87 +117,97 @@ public class RecruitmentAction extends BaseAction {
 
 		return Action.SUCCESS;
 	}
-	
+
 	/**
 	 * 保存证件列表信息(传入的事json格式对象字符串)
+	 * 
 	 * @return
 	 */
-	public String saveCertificates()
-	{
+	public String saveCertificates() {
 		String jsonList = this.recruitmentModel.getJsonList();
-		if(null == jsonList || "".equals(jsonList))
-		{
-			LoggerUtil.error(LOGGER, "ERROR: saveCertificates jsonList String is null!");
+		if (null == jsonList || "".equals(jsonList)) {
+			LoggerUtil.error(LOGGER,
+					"ERROR: saveCertificates jsonList String is null!");
 		}
-		List<IDataObject> list = (List<IDataObject>)JSONUtil.jsonArrToListObject(jsonList, Certificates.class);
+		List<IDataObject> list = (List<IDataObject>) JSONUtil
+				.jsonArrToListObject(jsonList, Certificates.class);
 		certificatesService.insertList(list);
-		Certificates certificates = (Certificates)list.get(0);
-		this.recruitmentModel.setFormId(certificates.getTechnologicalprocessid().toString());
-		return "save";
-	}
-	/**
-	 * 上传附件
-	 * @return
-	 */
-	public String saveFile()
-	{
-		String fromId = this.getRecruitmentModel().getFormId();
-		
-		if(null == fromId || "".equals(fromId))
-		{
-			throw new ProjectException("编号不允许为null");
-		}
-		//组装文件保存路径
-		StringBuffer filePath = GlobEnv.getUploadFilePath();
-		String fileName = this.getRecruitmentModel().getFilesFileName();
-		filePath.append(fromId);
-		filePath.append("//");
-		filePath.append(fileName);
-		File file = new File(filePath.toString());
-		try {
-			FileUtil.copyFile(this.getRecruitmentModel().getFiles(), file);
-		} catch (IOException e) {
-			throw new ProjectException("上传文件失败");
-		}
-		
-		//保存文件到数据库
-		FileInfo fileInfo = this.getRecruitmentModel().getFileInfo();
-		fileInfo.setTechnologicalprocessid(Integer.valueOf(fromId));
-		fileInfo.setName(fileName);
-		fileInfo.setType(this.getRecruitmentModel().getFilesContentType());
-		
-		fileInfoService.insert(fileInfo);
+		Certificates certificates = (Certificates) list.get(0);
+		this.recruitmentModel.setFormId(certificates
+				.getTechnologicalprocessid().toString());
 		return "save";
 	}
 
-	//保存航班信息
-	public String saveFlight()
-	{
-		String formId = this.recruitmentModel.getFormId();
-		if(null == formId && "".equals(formId))
+	/**
+	 * 上传附件
+	 * 
+	 * @return
+	 */
+	public String saveFile() {
+		String fromId = this.getRecruitmentModel().getFormId();
+
+		if (null == fromId || "".equals(fromId)) {
+			throw new ProjectException("编号不允许为null");
+		}
+		FileInfo fileInfo = this.getRecruitmentModel().getFileInfo();
+
+		if (null == fileInfo.getId() || "".equals(fileInfo.getId())) {
+			// 组装文件保存路径
+			StringBuffer filePath = GlobEnv.getUploadFilePath();
+			String fileName = this.getRecruitmentModel().getFilesFileName();
+			filePath.append(fromId);
+			filePath.append("//");
+			filePath.append(fileName);
+			File file = new File(filePath.toString());
+			try {
+				FileUtil.copyFile(this.getRecruitmentModel().getFiles(), file);
+			} catch (IOException e) {
+				throw new ProjectException("上传文件失败");
+			}
+
+			// 保存文件到数据库
+			fileInfo.setTechnologicalprocessid(Integer.valueOf(fromId));
+			fileInfo.setName(fileName);
+			fileInfo.setType(this.getRecruitmentModel().getFilesContentType());
+			fileInfoService.insert(fileInfo);
+		}else
 		{
-			throw ProjectException.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+			//修改数据
+			fileInfo.setTechnologicalprocessid(Integer.valueOf(fromId));
+			fileInfoService.update(fileInfo);
+		}
+		return "save";
+	}
+
+	// 保存航班信息
+	public String saveFlight() {
+		String formId = this.recruitmentModel.getFormId();
+		if (null == formId && "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
 		}
 		Flight flight = this.recruitmentModel.getFlight();
 		flight.setTechnologicalprocessid(Integer.valueOf(formId));
 		Integer id = flight.getId();
-		
-		if(null != id && id > 0){
+
+		if (null != id && id > 0) {
 			flightService.update(flight);
-		}else{
+		} else {
 			flightService.insert(flight);
 		}
-		
-		//设置权限标志位
+
+		// 设置权限标志位
 		setAuthFlag(flight.getTechnologicalprocessid());
-		this.recruitmentModel.setFormId(flight.getTechnologicalprocessid().toString());
+		this.recruitmentModel.setFormId(flight.getTechnologicalprocessid()
+				.toString());
 		return "save";
 	}
-	
+
 	// 保存表单
 	public String save() {
 		LOGGER.debug("save()");
-		TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+		TechnologicalProcess technologicalProcess = this.recruitmentModel
+				.getTechnologicalProcess();
 		Integer id = technologicalProcess.getId();
 
 		if (null != id && id > 0) {
@@ -209,9 +220,10 @@ public class RecruitmentAction extends BaseAction {
 			technologicalProcessService.insert(technologicalProcess);
 			LOGGER.debug("insert()...");
 		}
-		//设置权限标志位
+		// 设置权限标志位
 		setAuthFlag(technologicalProcess.getId());
-		this.recruitmentModel.setFormId(technologicalProcess.getId().toString());
+		this.recruitmentModel
+				.setFormId(technologicalProcess.getId().toString());
 		return "save";
 	}
 
@@ -223,71 +235,78 @@ public class RecruitmentAction extends BaseAction {
 	public String editor() {
 		LOGGER.debug("进入编辑页面");
 		String businessKey = this.recruitmentModel.getFormId();
-		
+
 		if (null != businessKey && Integer.parseInt(businessKey) > 0) {
 			// 获取当前登陆的用户id
-			//Integer userID = queryUserId();
+			// Integer userID = queryUserId();
 			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 			technologicalProcess.setId(Integer.parseInt(businessKey));
 			// technologicalProcess.setWorkuserid(queryUserId());
-			
-			//获取基本信息
-			TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
 
-			//获取证件信息
+			// 获取基本信息
+			TechnologicalProcess process = technologicalProcessService
+					.query(technologicalProcess);
+
+			// 获取证件信息
 			Certificates certificates = new Certificates();
 			certificates.setTechnologicalprocessid(process.getId());
-			List<Certificates> certificatesList = certificatesService.queryList(certificates);
-			//获取航班信息
+			List<Certificates> certificatesList = certificatesService
+					.queryList(certificates);
+			// 获取航班信息
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(process.getId());
 			Flight flightReult = flightService.query(flight);
-			
-			//获取附件信息
+
+			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
 			fileInfo.setTechnologicalprocessid(process.getId());
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
-			
+
 			// 判断数据库中是否存在该数据
-			if (null != process && process.getId() != null && process.getId() > 0) {
+			if (null != process && process.getId() != null
+					&& process.getId() > 0) {
 				// 获取工作流信息
-				//String workflowId = process.getWorkflowid();
-				//设置权限标识
+				// String workflowId = process.getWorkflowid();
+				// 设置权限标识
 				setAuthFlag(process.getId());
-				
+
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.recruitmentModel.setTechnologicalProcess(process);
 				this.recruitmentModel.setCertificatesList(certificatesList);
-				this.recruitmentModel.setCertificatesListJson(JSONUtil.list2json(certificatesList));
-				this.recruitmentModel.setFileInfoListJson(JSONUtil.list2json(fileInfoList));
+				this.recruitmentModel.setCertificatesListJson(JSONUtil
+						.list2json(certificatesList));
+				this.recruitmentModel.setFileInfoListJson(JSONUtil
+						.list2json(fileInfoList));
 				this.recruitmentModel.setFlight(flightReult);
 			}
-			
-		}else{
-			//新建表单时候
-			TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+
+		} else {
+			// 新建表单时候
+			TechnologicalProcess technologicalProcess = this.recruitmentModel
+					.getTechnologicalProcess();
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			technologicalProcess.setWorkuserid(userID);
 			technologicalProcess.setState("发起");
-			
+
 			String path = this.getRequest().getContextPath();
-			//一级菜单
+			// 一级菜单
 			String menuId = this.recruitmentModel.getMenuId();
-			//二级菜单
+			// 二级菜单
 			String menu2Id = this.recruitmentModel.getMenu2Id();
-			//保存表单的链接信息
-			String url = path + "/workflow/" + menu2Id +"!editor.jspa?menuId="+menuId+"&menu2Id="+menu2Id;
+			// 保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
+					+ menuId + "&menu2Id=" + menu2Id;
 			technologicalProcess.setUrl(url);
 			technologicalProcessService.insert(technologicalProcess);
 			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}
-		
+
 		return Action.EDITOR;
 	}
 
-	//发起工作流
+	// 发起工作流
 	public String createWorkflow() {
 		LOGGER.debug("createWorkflow()");
 
@@ -311,7 +330,7 @@ public class RecruitmentAction extends BaseAction {
 				.singleResult();
 		// 当前任务的名称
 		String state = currentTask.getName();
-		
+
 		LOGGER.debug("processInstance.id: " + workflowId);
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
@@ -319,65 +338,68 @@ public class RecruitmentAction extends BaseAction {
 		technologicalProcess.setState(state);
 		technologicalProcess.setApprover(assignee);
 		technologicalProcess.setTaskId(currentTask.getId());
-		
+
 		technologicalProcessService.update(technologicalProcess);
 
 		return "createSuccess";
 	}
-	
-	
+
 	// 批准工作流
 	public String approveWorkflow() {
 		LOGGER.debug("approveWorkflow()");
-		
+
 		String businessKey = this.recruitmentModel.getFormId();
 		String assignee = this.recruitmentModel.getAssign();
 		String assignFlag = this.recruitmentModel.getAssignFlag();
-		
-		//当前任务的id
-		String curTaskId = this.recruitmentModel.getTechnologicalProcess().getTaskId();
-		//工作流的id，即流程的id
-		String workflowId = this.recruitmentModel.getTechnologicalProcess().getWorkflowid(); 
+
+		// 当前任务的id
+		String curTaskId = this.recruitmentModel.getTechnologicalProcess()
+				.getTaskId();
+		// 工作流的id，即流程的id
+		String workflowId = this.recruitmentModel.getTechnologicalProcess()
+				.getWorkflowid();
 
 		Map<String, Object> variables = new HashMap<String, Object>();
 		// variables.put("period", "2015-06");
-		if("0".equals(assignFlag)){
+		if ("0".equals(assignFlag)) {
 			variables.put("assignFlag", false);
-		}else if("1".equals(assignFlag)){
+		} else if ("1".equals(assignFlag)) {
 			variables.put("assignFlag", true);
 			variables.put("nextAssignee", assignee);
 		}
-		
-		//完成任务
+
+		// 完成任务
 		taskService.complete(curTaskId, variables);
-		//获取流程实例
-		ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(workflowId).singleResult();
-		
+		// 获取流程实例
+		ProcessInstance processInstance = runtimeService
+				.createProcessInstanceQuery().processInstanceId(workflowId)
+				.singleResult();
+
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(Integer.parseInt(businessKey));
 
-		if(processInstance != null){
+		if (processInstance != null) {
 			// 任务节点
 			String activityId = processInstance.getActivityId();
-			
+
 			Task currentTask = taskService.createTaskQuery()
-					.processInstanceId(workflowId).taskDefinitionKey(activityId)
-					.singleResult();
+					.processInstanceId(workflowId)
+					.taskDefinitionKey(activityId).singleResult();
 			// 当前任务的名称
 			String state = currentTask.getName();
-			
+
 			LOGGER.debug("processInstance.id: " + workflowId);
 			technologicalProcess.setState(state);
 			technologicalProcess.setApprover(assignee);
 			technologicalProcess.setTaskId(currentTask.getId());
-		}else{
+		} else {
 			technologicalProcess.setState("结束");
 			technologicalProcess.setApprover("-1");
 			technologicalProcess.setTaskId("-1");
 		}
-		
+
 		technologicalProcessService.update(technologicalProcess);
-		
+
 		return "createSuccess";
 	}
 
@@ -386,20 +408,22 @@ public class RecruitmentAction extends BaseAction {
 	 */
 	public void loadByProcessInstance() {
 		LOGGER.debug("loadByProcessInstance()");
-		try{
-			String processInstanceId = this.recruitmentModel.getProcessInstanceId();
-			
+		try {
+			String processInstanceId = this.recruitmentModel
+					.getProcessInstanceId();
+
 			HttpServletResponse response = ServletActionContext.getResponse();
 			InputStream resourceAsStream = null;
 			ProcessInstance processInstance = runtimeService
 					.createProcessInstanceQuery()
 					.processInstanceId(processInstanceId).singleResult();
-			
+
 			ProcessDefinition processDefinition = repositoryService
 					.createProcessDefinitionQuery()
-					.processDefinitionId(processInstance.getProcessDefinitionId())
+					.processDefinitionId(
+							processInstance.getProcessDefinitionId())
 					.singleResult();
-			
+
 			String resourceName = "recruitment.png";
 			/*
 			 * if (resourceType.equals("image")) { resourceName =
@@ -407,8 +431,9 @@ public class RecruitmentAction extends BaseAction {
 			 * (resourceType.equals("xml")) { resourceName =
 			 * processDefinition.getResourceName(); }
 			 */
-			resourceAsStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), resourceName);
-			
+			resourceAsStream = repositoryService.getResourceAsStream(
+					processDefinition.getDeploymentId(), resourceName);
+
 			byte[] b = new byte[1024];
 			int len = -1;
 			try {
@@ -418,38 +443,44 @@ public class RecruitmentAction extends BaseAction {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			LOGGER.error("message: " + e.getMessage() + " cause:" + e.getCause());
+			LOGGER.error("message: " + e.getMessage() + " cause:"
+					+ e.getCause());
 		}
-		
+
 	}
-	
+
 	/***
 	 * 获取带跟踪的流程图片
 	 */
 	public void loadTraceImg() {
 		LOGGER.debug("loadTraceImg()");
-		try{
+		try {
 			String executionId = this.recruitmentModel.getProcessInstanceId();
-			
+
 			HttpServletResponse response = ServletActionContext.getResponse();
-			
-			ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(executionId).singleResult();
-			
-			if(null != processInstance){
+
+			ProcessInstance processInstance = runtimeService
+					.createProcessInstanceQuery()
+					.processInstanceId(executionId).singleResult();
+
+			if (null != processInstance) {
 				String proDefId = processInstance.getProcessDefinitionId();
-				
+
 				BpmnModel bpmnModel = repositoryService.getBpmnModel(proDefId);
-				
-				List<String> activeActivityIds = runtimeService.getActiveActivityIds(executionId);
-				
+
+				List<String> activeActivityIds = runtimeService
+						.getActiveActivityIds(executionId);
+
 				// 使用spring注入引擎请使用下面的这行代码
-				Context.setProcessEngineConfiguration(processEngine.getProcessEngineConfiguration());
-				
-				InputStream imageStream = ProcessDiagramGenerator.generateDiagram(bpmnModel, "png", activeActivityIds);
-				
+				Context.setProcessEngineConfiguration(processEngine
+						.getProcessEngineConfiguration());
+
+				InputStream imageStream = ProcessDiagramGenerator
+						.generateDiagram(bpmnModel, "png", activeActivityIds);
+
 				byte[] b = new byte[1024];
 				int len = -1;
 				try {
@@ -459,56 +490,58 @@ public class RecruitmentAction extends BaseAction {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}else{
+			} else {
 				LOGGER.debug("流程没有发起或者流程已经结束.");
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("message:" + e.getMessage() + " cause:" + e.getCause());
 		}
 	}
-	
-	
+
 	/***
 	 * 表单的id
+	 * 
 	 * @param id
 	 */
-	private void setAuthFlag(Integer id){
-		
+	private void setAuthFlag(Integer id) {
+
 		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 		technologicalProcess.setId(id);
-		TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
-		//表单的当前审批人
+		TechnologicalProcess process = technologicalProcessService
+				.query(technologicalProcess);
+		// 表单的当前审批人
 		String assignee = process.getApprover();
-		//当前登录的用户
-		User curUser = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
-		
+		// 当前登录的用户
+		User curUser = (User) this.getSession().getAttribute(
+				VariableUtil.SESSION_KEY);
+
 		String curUserName = curUser.getLoginName();
-		
-		//流程状态
+
+		// 流程状态
 		String state = process.getState();
-		//流程是否发起
+		// 流程是否发起
 		boolean isStart = false;
-		if(state != null && state.equals("发起")){
+		if (state != null && state.equals("发起")) {
 			isStart = true;
-		}else{
+		} else {
 			isStart = false;
 		}
-		
-		//当前用户是审批者, 并且流程在<发起>节点
-		if(curUserName.equals(assignee) && !isStart){
+
+		// 当前用户是审批者, 并且流程在<发起>节点
+		if (curUserName.equals(assignee) && !isStart) {
 			this.recruitmentModel.setHasApprove("1");
 		}
-		
-		//当前用户的id
-		Integer curUserId =curUser.getId();
 
-		//流程创建者的id
+		// 当前用户的id
+		Integer curUserId = curUser.getId();
+
+		// 流程创建者的id
 		Integer workUserId = process.getWorkuserid();
-		
-		//如果创建者为当前用户，且流程没有发起，即流程状态为<发起>，则具有发起权限
-		if(curUserId.equals(workUserId) && isStart){
+
+		// 如果创建者为当前用户，且流程没有发起，即流程状态为<发起>，则具有发起权限
+		if (curUserId.equals(workUserId) && isStart) {
 			this.recruitmentModel.setHasSubmitAuth("1");
 		}
 	}
