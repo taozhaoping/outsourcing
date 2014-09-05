@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@  page import="com.zh.base.action.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -56,7 +57,7 @@
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
-
+<jsp:useBean id="userName" class="com.zh.base.action.JspUtil" scope="page"></jsp:useBean>
 	<div class="content">
 		<div class="header">
 			<div class="stats">
@@ -106,7 +107,11 @@
 									<tr>
 										<td><s:property value="#index.index + 1"/></td>
 										<td><s:property value="#notice.title"/></td>
-										<td><s:property value="#notice.userid"/></td>
+										<td>
+											<s:set id="userid" value="#notice.userid"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userid").toString()) %>
+											<s:property value="#notice.userid"/>
+										</td>
 										<td><s:date name="#notice.createdate" format="yyyy-MM-dd" /> </td>
 										<td><s:date name="#notice.updatedate" format="yyyy-MM-dd" /> </td>
 										<s:if test="#notice.enabled==0">
@@ -117,10 +122,8 @@
 										</s:else>
 										<td>
 											<a href="${menu2Id}!editor.jspa?id=<s:property value='#notice.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<s:if test="#userInfo.id!=1">
 											<a href="${menu2Id}!save.jspa?id=<s:property value='#notice.id'/>&view=enabled&enabled=<s:property value='#notice.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-remove"></i></a>											
-											</s:if>
 										</td>
 									</tr>
 								</s:iterator>
