@@ -1,8 +1,10 @@
 package com.zh.web.service.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.avalon.framework.parameters.ParameterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,13 +80,41 @@ public class CertificatesServiceImpl implements CertificatesService {
 	}
 
 	@Override
-	public void insertList(List<IDataObject> certificatesList) {
+	public void insertList(List<IDataObject> certificatesList)
+			throws ParameterException {
 		// TODO Auto-generated method stub
 		if (null == certificatesList) {
 			LoggerUtil.error(LOGGER,
 					"ERROR : insert List Certificates is null!");
 		}
-		for (Iterator iterator = certificatesList.iterator(); iterator
+		
+		//获取不存在的数据，进行删除
+		ArrayList<Integer> idList = new ArrayList<Integer>();
+		Integer technologicalprocessid = null;
+		for (Iterator<IDataObject> iterator2 = certificatesList.iterator(); iterator2
+				.hasNext();) {
+			Certificates certificates = (Certificates) iterator2.next();
+			Integer id = certificates.getId();
+			if(null != id)
+			{
+				idList.add(id);
+				technologicalprocessid = certificates.getTechnologicalprocessid();
+			}
+		}
+		
+		//删除不需要添加或者修改的数据
+		if (null != technologicalprocessid) {
+			Certificates certificatesQuery = new Certificates();
+			certificatesQuery.setTechnologicalprocessid(technologicalprocessid);
+			List<Certificates> list = this.queryList(certificatesQuery);
+			for (Certificates certificates : list) {
+				if(!idList.contains(certificates.getId()))
+				{
+					this.delete(certificates);
+				}
+			}
+		}
+		for (Iterator<IDataObject> iterator = certificatesList.iterator(); iterator
 				.hasNext();) {
 			Certificates certificates = (Certificates) iterator.next();
 			Integer id = certificates.getId();

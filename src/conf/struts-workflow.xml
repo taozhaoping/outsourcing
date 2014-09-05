@@ -27,6 +27,7 @@
     			<param name="menuId">${menuId}</param>
     			<param name="menu2Id">${menu2Id}</param>
     			<param name="formId">${formId}</param>
+    			<param name="tabID">${tabID}</param>
 			</result>
 			<result name="createSuccess" type="redirectAction">
 				<param name="actionName">recruitment</param>  

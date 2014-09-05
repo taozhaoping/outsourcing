@@ -343,41 +343,7 @@
 									</tr>
 								</thead>
 								<tbody id="certificatesSearch">
-									<tr>
-										<td><input type="hidden" size="15" id="certificatesId">
-										</td>
-										<td><select id="certificatesType" class="input-medium">
-												<option value="1">工作许可</option>
-												<option value="2">邀请函</option>
-												<option value="3">公司邀请函</option>
-												<option value="4">暂住证</option>
-												<option value="5">工作签</option>
-												<option value="6">入境章页</option>
-												<option value="7">保险</option>
-												<option value="8">外国专家证</option>
-										</select></td>
-										<td><input type="text" size="15"
-											id="certificatesHandledate" readonly
-											class="form_datetime input-small"></td>
-										<td><input type="text" size="15"
-											id="certificatesReceivedate" readonly
-											class="form_datetime input-small"></td>
-										<td><input type="text" size="15"
-											id="certificatesValidstartdate" readonly
-											class="form_datetime input-small"></td>
-										<td><input type="text" size="15"
-											id="certificatesValidenddate" readonly
-											class="form_datetime input-small"></td>
-										<td><input type="text" size="15"
-											id="certificatesUpdateDate" readonly class="input-small"></td>
-										<td>
-											<p>
-												<button class="btn btn-mini icon-plus" type="button"
-													onclick="addNew();"></button>
-												<button class="btn btn-mini icon-minus" type="button"></button>
-											</p>
-										</td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -521,6 +487,9 @@
 	<div class="hide">
 		<form id="certificatesForm" class="form-horizontal"
 			action="${menu2Id}!saveCertificates.jspa" method="post">
+			<input type="hidden" name="formId" value="${technologicalProcess.id}">
+			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="menuId" value="${menuId}">
 			<input type="hidden" id="jsonList" name="jsonList" />
 		</form>
 	</div>
@@ -539,6 +508,7 @@
 			<input type="hidden" name="menuId" value="${menuId}"> 
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 			<input type="hidden" name="formId" value="${technologicalProcess.id}">
+			<input type="hidden" name="tabID" value="annexButt">
 			<div class="modal-body">
 				<dir class="row">
 					<div class="control-group">
@@ -597,6 +567,7 @@
 			<input type="hidden" name="menuId" value="${menuId}"> 
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 			<input type="hidden" name="formId" value="${technologicalProcess.id}">
+			<input type="hidden" name="tabID" value="annexButt">
 			<input type="hidden" id="FileInfoId" name="fileInfo.id" value="">
 			<div class="modal-body">
 				<dir class="row">
@@ -766,7 +737,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var row_count = 1;
+		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
@@ -798,24 +769,29 @@
 		certificatesList = new Array();
 		if ("" != certificatesListStr) {
 			certificatesList = JSON2.parse(certificatesListStr);
-			row_count = certificatesList.length;
 		}
 		for ( var x = 0; x < certificatesList.length; x++) {
 			var certificates = certificatesList[x];
 			//获取最后一行数据进行赋值
-			$("#certificatesId").last().val(certificates.id);
-			$("#certificatesType").last().val(certificates.type).trigger(
+			addNew();
+			$("#certificatesSearch input[id='certificatesId']").last().val(certificates.id);
+			$("#certificatesSearch select[id='certificatesType']").last().val(certificates.type).trigger(
 					"change");
 			//$("#certificatesType").last().select2();
-			$("#certificatesHandledate").last().val(
+			$("#certificatesSearch input[id='certificatesHandledate']").last().val(
 					new Date(certificates.handledate).format("yyyy-MM-dd"));
-			$("#certificatesReceivedate").last().val(
+			$("#certificatesSearch input[id='certificatesReceivedate']").last().val(
 					new Date(certificates.receivedate).format("yyyy-MM-dd"));
-			$("#certificatesValidstartdate").last().val(
+			$("#certificatesSearch input[id='certificatesValidstartdate']").last().val(
 					new Date(certificates.validstartdate).format("yyyy-MM-dd"));
-			$("#certificatesValidenddate").last().val(
+			$("#certificatesSearch input[id='certificatesValidenddate']").last().val(
 					new Date(certificates.validenddate).format("yyyy-MM-dd"));
 			//$("#certificatesUpdateDate").last().val(new Date(certificates.updateDate).format("yyyy-MM-dd"));
+			
+			
+		}
+		if(certificatesList.length == 0 )
+		{
 			addNew();
 		}
 		//航班信息
@@ -863,6 +839,17 @@
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
 			$("select[id='certificatesType']").last().select2();
+			$("#certificatesSearch .form_datetime").datetimepicker({
+				language : 'zh-CN',
+				format : 'yyyy-mm-dd',
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : true
+			});
 		}
 
 		//获取证件 table中行的的对象
@@ -1011,6 +998,9 @@
 				}
 				var tex = JSON2.stringify(arrCertificates);
 				$("input[id='jsonList']").val(tex);
+				action = $("#certificatesForm").attr("action");
+				$("#certificatesForm").attr("action",
+						action + "?tabID=" + $("#tabID").val());
 				$("#certificatesForm").submit();
 			} else if ("flightButt" == currTab) {
 

@@ -22,6 +22,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.spring.ProcessEngineFactoryBean;
+import org.apache.avalon.framework.parameters.ParameterException;
 import org.apache.struts2.ServletActionContext;
 import org.aspectj.util.FileUtil;
 import org.slf4j.Logger;
@@ -122,8 +123,9 @@ public class RecruitmentAction extends BaseAction {
 	 * 保存证件列表信息(传入的事json格式对象字符串)
 	 * 
 	 * @return
+	 * @throws ParameterException 
 	 */
-	public String saveCertificates() {
+	public String saveCertificates() throws ParameterException {
 		String jsonList = this.recruitmentModel.getJsonList();
 		if (null == jsonList || "".equals(jsonList)) {
 			LoggerUtil.error(LOGGER,
@@ -132,9 +134,6 @@ public class RecruitmentAction extends BaseAction {
 		List<IDataObject> list = (List<IDataObject>) JSONUtil
 				.jsonArrToListObject(jsonList, Certificates.class);
 		certificatesService.insertList(list);
-		Certificates certificates = (Certificates) list.get(0);
-		this.recruitmentModel.setFormId(certificates
-				.getTechnologicalprocessid().toString());
 		return "save";
 	}
 
