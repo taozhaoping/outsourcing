@@ -140,6 +140,9 @@
 			<if test="updatedate != null">
 				UPDATEDATE = #{updatedate,jdbcType=DATE},
 			</if>
+			<if test="enabled != null">
+				enabled = #{enabled,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where ID = #{id}
 	</update>

@@ -75,6 +75,8 @@ public class NoticeAction extends BaseAction {
 		// 判断是新增还是修改
 		Integer id = notice.getId();
 		if (null == id || 0 == id) {
+			Integer userid = this.queryUserId();
+			notice.setUserid(userid);
 			noticeService.insert(notice);
 		} else {
 			noticeService.update(notice);

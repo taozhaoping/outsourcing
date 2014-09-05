@@ -1,5 +1,6 @@
 package com.zh.base.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import com.zh.base.dao.NoticeDao;
 import com.zh.base.model.bean.Notice;
 import com.zh.base.service.NoticeService;
 import com.zh.core.model.Pager;
+import com.zh.core.util.DateUtil;
 
 @Component("noticeService")
 public class NoticeServiceImpl implements NoticeService {
@@ -25,6 +27,8 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void update(Notice notice) {
 		// TODO Auto-generated method stub
+		Date date = DateUtil.getNow();
+		notice.setUpdatedate(date);
 		noticeDao.update(notice);
 	}
 
@@ -59,6 +63,9 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		//激活
 		notice.setEnabled("0");
+		Date date = DateUtil.getNow();
+		notice.setCreatedate(date);
+		notice.setUpdatedate(date);
 		noticeDao.insert(notice);
 	}
 

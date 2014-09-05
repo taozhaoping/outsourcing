@@ -19,31 +19,31 @@
 	<sql id="where">
 		<where>
 			<if test="id != null">
-				#{id},
+				#{id}
 			</if>
 			<if test="name != null">
-				#{name,jdbcType=VARCHAR},
+				#{name,jdbcType=VARCHAR}
 			</if>
 			<if test="nameSpace != null">
-				#{nameSpace,jdbcType=VARCHAR},
+				#{nameSpace,jdbcType=VARCHAR}
 			</if>
 			<if test="action != null">
-				#{action,jdbcType=VARCHAR},
+				#{action,jdbcType=VARCHAR}
 			</if>
 			<if test="url != null">
-				#{url,jdbcType=VARCHAR},
+				#{url,jdbcType=VARCHAR}
 			</if>
 			<if test="i18nKey != null">
-				#{i18nKey,jdbcType=VARCHAR},
+				#{i18nKey,jdbcType=VARCHAR}
 			</if>
 			<if test="enabled != null">
-				#{enabled,jdbcType=VARCHAR},
+				#{enabled,jdbcType=VARCHAR}
 			</if>
 			<if test="parentid != null">
-				#{parentid},
+				#{parentid}
 			</if>
 			<if test="reorder != null">
-				#{reorder},
+				#{reorder}
 			</if>
 		</where>
 	</sql>
