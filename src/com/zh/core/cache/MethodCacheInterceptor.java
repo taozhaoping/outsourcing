@@ -36,9 +36,7 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 		String targetName = invocation.getThis().getClass().getName();
 		Object[] arguments = invocation.getArguments();
 		Object result;
-
 		logger.debug("Find object from cache is " + cache.getName());
-
 		String cacheKey = getCacheKey(targetName, arguments);
 		Element element = cache.get(cacheKey);
 
