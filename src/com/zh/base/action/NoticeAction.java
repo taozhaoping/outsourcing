@@ -59,6 +59,11 @@ public class NoticeAction extends BaseAction {
 		LOGGER.debug("save()");
 		Notice notice = this.noticeModel.getNotice();
 
+		//去除空格
+		if(null != notice.getContent())
+		{
+			notice.getContent().trim();
+		}
 		// 判断当前是设置成启动状态还是停用状态
 		String view = this.noticeModel.getView();
 		if (null != view && "enabled".equals(view)) {

@@ -110,17 +110,17 @@
 											<div class="controls">
 													<input type="text" data-required="true" maxlength="30"
 														id="inputTitle" name="notice.title"
-														value="${notice.title}" class="input-xlarge">
+														value="${notice.title}" class="input-xxlarge">
 											</div>
 										</div>
 								</dir>
 								<dir class="row">
 										<div class="control-group">
-											<label class="control-label" for="inputContent">电子邮箱:</label>
+											<label class="control-label" for="inputContent">内容:</label>
 											<div class="controls">
-												<input type="text" id="inputContent" maxlength="200" data-required="true"
-													name="notice.content" value="${notice.content}"
-													class="input-xlarge">
+												<Textarea rows="10"  id="inputContent" maxlength="250" data-required="true"
+													name="notice.content" class="input-xxlarge">${notice.content}
+												</Textarea>
 											</div>
 										</div>
 								</dir>
