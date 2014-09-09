@@ -1,10 +1,8 @@
 package com.zh.base.util;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 

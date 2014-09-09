@@ -132,9 +132,6 @@
 		/> </bean> <bean id="loginService" class="com.dahuatech.web.agile.LoginService" 
 		init-method="init"> <property name="apiName" value="901" /> </bean> -->
 
-<!-- 获取用户名实例注册 -->
-	<bean id="jspUtil" class="com.zh.base.util.JspUtil" />
-
 	<!-- 引用ehCache的配置  -->
 	
 	<bean id="defaultCacheManager"
@@ -154,15 +151,31 @@
 			<value>DEFAULT_CACHE</value>
 		</property>
 	</bean>
-
-	<!-- find/create cache拦截器 -->
 	
+	<!-- 获取用户名实例注册 -->
+	<bean id="jspUtil" class="com.zh.base.util.JspUtil">
+	</bean>
+	
+	<!-- find/create cache拦截器 -->
 	<bean id="methodCacheInterceptor" class="com.zh.core.cache.MethodCacheInterceptor">
 		<property name="cache">
 			<ref local="ehCache" />
 		</property>
 	</bean>
-
+	
+	<bean id="methodCachePointCut"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="methodCacheInterceptor" />
+		</property>
+		<!-- 需要拦截的对象方法 ,查询的对象必须重写equals和hashCode方法-->
+		<property name="patterns">
+			<list>
+				<value>com.zh.base.service.impl.UserInfoServiceImpl.query</value>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- flush cache拦截器 -->
 	<!-- 
 	<bean id="methodCacheAfterAdvice" class="com.zh.core.cache.MethodCacheAfterAdvice">
@@ -170,19 +183,6 @@
 			<ref local="ehCache" />
 		</property>
 	</bean> 
-	
-	<bean id="methodCachePointCut"
-		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-		<property name="advice">
-			<ref local="methodCacheInterceptor" />
-		</property>
-		<property name="patterns">
-			<list>
-				<value>.*find.*</value>
-				<value>.*query.*</value>
-			</list>
-		</property>
-	</bean>
 
 	<bean id="methodCachePointCutAdvice"
 		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
@@ -200,6 +200,6 @@
 			</list>
 		</property>
 	</bean> 
- -->
+	 -->
  <import resource="applicationContext.xml"/>
 </beans>

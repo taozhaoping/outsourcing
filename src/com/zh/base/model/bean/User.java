@@ -167,6 +167,32 @@ public class User extends IDataObject{
      * 重置密码时候保存的随机数
      */
     private String nonce;
+    
+	@Override
+	public boolean equals(Object obj) {
+		boolean bool = false;
+		if(null != obj && obj instanceof User)
+		{
+			User u = (User)obj;
+			if(this.id.toString().equals(u.getId()))
+			{
+				bool = true;
+			}
+		}
+		return bool;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 2;
+		String str = "User";
+	       result = str.hashCode()*result;
+	       if(null != id )
+	       {
+	    	   result = result + (int)id;
+	       }
+		return result;
+	}
 
 	public Integer getId() {
 		return id;
