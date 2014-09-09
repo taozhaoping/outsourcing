@@ -286,6 +286,7 @@ create table SYS_NOTICE
    USERID               NUMBER,
    CREATEDATE           DATE,
    UPDATEDATE           DATE,
+   ENABLED              NUMBER default '0',-- 是否启用 0启动 1:停用
    constraint PK_SYS_NOTICE primary key (ID)
 );
 
@@ -309,6 +310,9 @@ comment on column SYS_NOTICE.CREATEDATE is
 
 comment on column SYS_NOTICE.UPDATEDATE is
 '修改时间';
+
+comment on column SYS_NOTICE.ENABLED is
+'是否启用';
 
 
 /*
