@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@  page import="com.zh.base.action.JspUtil" %>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -57,7 +57,7 @@
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
-<jsp:useBean id="userName" class="com.zh.base.action.JspUtil" scope="page"></jsp:useBean>
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="page"></jsp:useBean>
 	<div class="content">
 		<div class="header">
 			<div class="stats">
