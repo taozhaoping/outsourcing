@@ -26,6 +26,8 @@ public class MainModel extends BaseModel {
 	
 	private List<TechnologicalProcess> technologicalProcessList;
 	
+	private Notice notice;
+	
 	/**
 	 * 系统公告
 	 */
@@ -99,6 +101,14 @@ public class MainModel extends BaseModel {
 
 	public void setNoticeList(List<Notice> noticeList) {
 		this.noticeList = noticeList;
+	}
+
+	public Notice getNotice() {
+		return notice;
+	}
+
+	public void setNotice(Notice notice) {
+		this.notice = notice;
 	}
 
 	

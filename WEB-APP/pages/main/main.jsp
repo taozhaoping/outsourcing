@@ -190,6 +190,7 @@
 								</thead>
 								<tbody>
 									<s:iterator value="noticeList" var="notice" status="index">
+										<a href="main!queryNotice.jspa?id=<s:property value='#notice.id'/>">
 										<tr>
 											<td>
 												<s:property value="#index.index+1"/>
@@ -197,6 +198,7 @@
 											<td><s:property value="#notice.title"/></td>
 											<td><s:property value="#notice.createdate"/></td>
 										</tr>
+										</a>
 									</s:iterator>
 								</tbody>
 							</table>

@@ -130,6 +130,28 @@ public class mainAction extends BaseAction {
 		return Action.SUCCESS;
 	}
 	
+	/**
+	 * 查看系统公告
+	 * @return
+	 */
+	public String queryNotice()
+	{
+		Integer id = this.getMainModel().getId();
+		if(null == id || "".equals(id.toString()))
+		{
+			return Action.SUCCESS;
+		}
+		Notice notice = new Notice();
+		notice.setId(id);
+		Notice reult = noticeService.query(notice);
+		if(null ==reult)
+		{
+			return Action.SUCCESS;
+		}
+		this.getMainModel().setNotice(reult);
+		return "notice";
+	}
+	
 	public String initPwd() {
 		LOGGER.debug("initPwd()");
 		mainModel.setUser((User) this.getSession().getAttribute(

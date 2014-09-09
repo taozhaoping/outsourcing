@@ -43,7 +43,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from SYS_NOTICE
-		<include refid="where" />
+		where id = #{id}
 	</select>
 	
 	<select id="list" resultMap="T_NOTICE" parameterType="Notice">
