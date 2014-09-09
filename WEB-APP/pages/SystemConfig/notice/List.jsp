@@ -54,10 +54,10 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
-<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="page"></jsp:useBean>
 	<div class="content">
 		<div class="header">
 			<div class="stats">
@@ -108,9 +108,8 @@
 										<td><s:property value="#index.index + 1"/></td>
 										<td><s:property value="#notice.title"/></td>
 										<td>
-											<s:set id="userid" value="#notice.userid"></s:set>
-											<%=userName.queryUserName(request.getAttribute("userid").toString()) %>
-											<s:property value="#notice.userid"/>
+											<s:set id="userNameid" value="#notice.userid"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
 										</td>
 										<td><s:date name="#notice.createdate" format="yyyy-MM-dd" /> </td>
 										<td><s:date name="#notice.updatedate" format="yyyy-MM-dd" /> </td>

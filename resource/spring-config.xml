@@ -132,6 +132,9 @@
 		/> </bean> <bean id="loginService" class="com.dahuatech.web.agile.LoginService" 
 		init-method="init"> <property name="apiName" value="901" /> </bean> -->
 
+<!-- 获取用户名实例注册 -->
+	<bean id="jspUtil" class="com.zh.base.util.JspUtil" />
+
 	<!-- 引用ehCache的配置  -->
 	
 	<bean id="defaultCacheManager"

@@ -52,7 +52,6 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
 <!--<![endif]-->
-
 	<s:if test="%{#request.role.menuList != null}">
 		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
 	</s:if>

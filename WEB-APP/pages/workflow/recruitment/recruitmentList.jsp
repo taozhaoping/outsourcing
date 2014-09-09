@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -56,7 +57,7 @@
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
-
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<div class="content">
 		<div class="header">
 			<div class="stats">
@@ -119,11 +120,17 @@
 										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.englishname" />
 										 -->
-										<td><s:property value="#tp.workuserid"/></td>
+										<td>
+											<s:set id="userNameid" value="#tp.workuserid"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+											<s:property value="#"/>
+										</td>
 										<td><s:property value="#tp.createtime"/> </td>
 										<td><s:property value="#tp.updatetime"/> </td>
 										<td><s:property value="#tp.state"/></td>
-										<td><s:property value="#tp.approver"/></td>
+										<td>
+											<s:property value="#tp.approver"/>
+										</td>
 										<td>
 											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
