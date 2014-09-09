@@ -34,13 +34,12 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 	@SuppressWarnings("deprecation")
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		String targetName = invocation.getThis().getClass().getName();
-		String methodName = invocation.getMethod().getName();
 		Object[] arguments = invocation.getArguments();
 		Object result;
 
 		logger.debug("Find object from cache is " + cache.getName());
 
-		String cacheKey = getCacheKey(targetName, methodName, arguments);
+		String cacheKey = getCacheKey(targetName, arguments);
 		Element element = cache.get(cacheKey);
 
 		if (element == null) {
@@ -58,10 +57,10 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 	 * 获得cache key的方法，cache key是Cache中一个Element的唯一标识 cache key包括
 	 * 包名+类名+方法名，如com.co.cache.service.UserServiceImpl.getAllUser
 	 */
-	private String getCacheKey(String targetName, String methodName,
+	private String getCacheKey(String targetName,
 			Object[] arguments) {
 		StringBuffer sb = new StringBuffer();
-		sb.append(targetName).append(".").append(methodName);
+		sb.append(targetName);
 		if ((arguments != null) && (arguments.length != 0)) {
 			for (int i = 0; i < arguments.length; i++) {
 				sb.append(".").append(arguments[i]);

@@ -189,12 +189,12 @@
 		<property name="advice">
 			<ref local="methodCacheAfterAdvice" />
 		</property>
+		<!--  -->
 		<property name="patterns">
 			<list>
 				<value>.*UserInfoServiceImpl.insert</value>
 				<value>.*UserInfoServiceImpl.delete</value>
 				<value>.*UserInfoServiceImpl.update</value>
-				
 			</list>
 		</property>
 	</bean>

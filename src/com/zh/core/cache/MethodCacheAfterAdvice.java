@@ -32,15 +32,24 @@ public class MethodCacheAfterAdvice implements AfterReturningAdvice,
 			java.lang.reflect.Method method, Object[] args, Object classObj)
 			throws Throwable {
 		String className = classObj.getClass().getName();
+		String cacheKey = getCacheKey(className, args);
 		List<?> list = cache.getKeys();
-		for (int i = 0; i < list.size(); i++) {
-			String cacheKey = String.valueOf(list.get(i));
-			if (cacheKey.startsWith(className)) {
-				cache.remove(cacheKey);
-				logger.debug("remove cache " + cacheKey);
+		if(list.contains(cacheKey))
+		{
+			cache.remove(cacheKey);
+		}
+	}
+	
+	private String getCacheKey(String targetName,
+			Object[] arguments) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(targetName);
+		if ((arguments != null) && (arguments.length != 0)) {
+			for (int i = 0; i < arguments.length; i++) {
+				sb.append(".").append(arguments[i]);
 			}
 		}
-
+		return sb.toString();
 	}
 
 }
