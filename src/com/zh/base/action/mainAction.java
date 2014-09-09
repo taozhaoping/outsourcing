@@ -11,13 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.MainModel;
 import com.zh.base.model.bean.Menu;
+import com.zh.base.model.bean.Notice;
 import com.zh.base.model.bean.Role;
 import com.zh.base.model.bean.User;
+import com.zh.base.service.NoticeService;
 import com.zh.base.service.RoleService;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
+import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
 import com.zh.core.util.BCrypt;
 import com.zh.core.util.JSONUtil;
@@ -38,6 +41,9 @@ public class mainAction extends BaseAction {
 	
 	@Autowired
 	protected TaskService taskService;
+	
+	@Autowired
+	private NoticeService noticeService;
 
 	//private String language;
 
@@ -113,6 +119,14 @@ public class mainAction extends BaseAction {
 		
 		this.mainModel.setTechnologicalProcessList(technologicalProcessList);
 		
+		//系统公告
+		Notice notice = new Notice();
+		Pager page = this.getMainModel().getPageInfo();
+		//Integer size = noticeService.count(notice);
+		page.setPageSize(5);
+		//page.setTotalRow(size);
+		List<Notice> noticeList = noticeService.queryList(notice, page);
+		this.getMainModel().setNoticeList(noticeList);
 		return Action.SUCCESS;
 	}
 	

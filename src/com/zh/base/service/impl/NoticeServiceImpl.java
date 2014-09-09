@@ -35,7 +35,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<Notice> queryList(Notice notice) {
 		// TODO Auto-generated method stub
-		notice.setOrderByClause("CREATEDATE DESC");
+		notice.setOrderByClause("id DESC");
 		return noticeDao.queryList(notice);
 	}
 

@@ -178,22 +178,28 @@
 					</div>
 					<div class="block span6">
 						<a href="#widget1container" class="block-heading"
-							data-toggle="collapse">Collapsible </a>
+							data-toggle="collapse">系统公告 </a>
 						<div id="widget1container" class="block-body collapse in">
-							<h2>Using Ruby?</h2>
-							<p>
-								This template was developed with <a
-									href="http://middlemanapp.com/" target="_blank">Middleman</a>
-								and includes .erb layouts and views.
-							</p>
-							<p>All of the views you see here (sign in, sign up, users,
-								etc) are already split up so you don't have to waste your time
-								doing it yourself!</p>
-							<p>The layout.erb file includes the header, footer, and side
-								navigation and all of the views are broken out into their own
-								files.</p>
-							<p>If you aren't using Ruby, there is also a set of plain
-								HTML files for each page, just like you would expect.</p>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>编号</th>
+										<th>标题</th>
+										<th>时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<s:iterator value="noticeList" var="notice" status="index">
+										<tr>
+											<td>
+												<s:property value="#index.index+1"/>
+											</td>
+											<td><s:property value="#notice.title"/></td>
+											<td><s:property value="#notice.createdate"/></td>
+										</tr>
+									</s:iterator>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
