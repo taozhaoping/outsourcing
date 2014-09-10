@@ -4,21 +4,19 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zh.base.model.bean.Role;
-import com.zh.web.model.bean.Certificates;
-import com.zh.web.model.bean.TechnologicalProcess;
-import com.zh.web.service.TechnologicalProcessService;
+import com.zh.base.service.UserInfoService;
 
 public class TestService {
 
-//	public ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-//			"spring-config.xml");
+	public ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+			"spring-config.xml");
 
 	@Test
 	public void init() throws  Exception {
-//		TechnologicalProcessService technologicalProcessService = (TechnologicalProcessService) applicationContext
-//				.getBean("technologicalProcessService");
-//		
+		UserInfoService userInfoService = (UserInfoService) applicationContext
+				.getBean("userInfoService");
+		String str = userInfoService.queryListJson();
+		System.out.println(str);
 //		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 //		technologicalProcess.setId(1);
 //		technologicalProcess.setName("测试");

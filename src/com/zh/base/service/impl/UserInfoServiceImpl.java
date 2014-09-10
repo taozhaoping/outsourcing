@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zh.base.dao.UserInfoDAO;
+import com.zh.base.dao.UserNameDao;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
+import com.zh.core.base.model.KeyObject;
 import com.zh.core.model.Pager;
+import com.zh.core.util.JSONUtil;
 
 @Component("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
@@ -23,6 +26,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
+	
+	@Autowired
+	private UserNameDao userNameDao;
 	
 	@Autowired
 	private IdentityService identityService;
@@ -119,5 +125,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     		identityService.saveUser(activitiUser);
     	}
     }
+
+	@Override
+	public String queryListJson() {
+		// TODO Auto-generated method stub
+		List<KeyObject> list = userNameDao.queryUserName();
+		String str = JSONUtil.list2json(list);
+		return str;
+	}
 
 }

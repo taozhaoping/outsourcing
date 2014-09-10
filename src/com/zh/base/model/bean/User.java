@@ -190,6 +190,9 @@ public class User extends IDataObject{
 	       if(null != id )
 	       {
 	    	   result = result + (int)id;
+	       }else if(null != loginName)
+	       {
+	    	   result = result + loginName.hashCode();
 	       }
 		return result;
 	}

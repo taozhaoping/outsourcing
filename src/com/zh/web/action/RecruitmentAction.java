@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.bean.User;
+import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
@@ -90,6 +91,9 @@ public class RecruitmentAction extends BaseAction {
 
 	@Autowired
 	ProcessEngineFactoryBean processEngine;
+	
+	@Autowired
+	private UserInfoService userInfoService;
 
 	@Override
 	public Object getModel() {
@@ -301,7 +305,11 @@ public class RecruitmentAction extends BaseAction {
 			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}
-
+		
+		//获取用户列表，
+		User user = new User();
+		List<User> List = userInfoService.queryList(user);
+		
 		return Action.EDITOR;
 	}
 

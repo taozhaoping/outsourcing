@@ -33,6 +33,13 @@ public interface UserInfoService {
 	public List<User> queryList(User user);
 	
 	/**
+	 * 查询用户列表，返回json格式
+	 * @param user
+	 * @return
+	 */
+	public String queryListJson();
+	
+	/**
 	 * 查询列表，带分页
 	 * @param 
 	 * @return

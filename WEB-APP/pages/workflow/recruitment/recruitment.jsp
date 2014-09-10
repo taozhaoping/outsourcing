@@ -290,20 +290,6 @@
 									</div>
 									<div class="span5 left">
 										<div class="control-group">
-											<label class="control-label" for="inputContractdate">合同有效期：</label>
-											<div class="controls">
-												<input type="text" id="inputContractdate"
-													name="technologicalProcess.contractdate"
-													value="${technologicalProcess.contractdate}"
-													class="input-large">
-											</div>
-										</div>
-									</div>
-								</dir>
-
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
 											<label class="control-label" for="inputPassportno">护照号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputPassportno"
@@ -313,14 +299,28 @@
 											</div>
 										</div>
 									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputContractdate">合同有效期：</label>
+											<div class="controls">
+												<input type="text" id="inputContractdate"
+													name="technologicalProcess.contractdate"
+													value="<s:date name="technologicalProcess.contractdate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large">
+											</div>
+										</div>
+									</div>
 									<div class="span5">
 										<div class="control-group">
 											<label class="control-label" for="inputPassportnodate">护照有效期：</label>
 											<div class="controls">
 												<input type="text" id="inputPassportnodate"
-													name="technologicalProcess.passportnodate"
-													value="${technologicalProcess.passportnodate}"
-													class="input-large">
+													name="technologicalProcess.passportnodate" 
+													value="<s:date name="technologicalProcess.passportnodate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
