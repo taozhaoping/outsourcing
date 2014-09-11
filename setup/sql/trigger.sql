@@ -394,7 +394,7 @@ END;
 /
 
 prompt
-prompt Creating trigger T_PERSONNEL_T
+prompt Creating trigger PERSONNEL_T
 prompt ==============================
 prompt
 CREATE OR REPLACE TRIGGER T_PERSONNEL_T
