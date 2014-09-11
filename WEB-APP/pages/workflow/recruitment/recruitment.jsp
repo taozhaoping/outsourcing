@@ -59,6 +59,7 @@
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%>
+	<jsp:useBean id="userNameQuery" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 
 	<div class="content">
 		<div class="header">
@@ -215,11 +216,12 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputState">当前状态：</label>
+											<label class="control-label" for="inputCurrentlocation">目前所在地(国家)：</label>
 											<div class="controls">
-												<input type="text" id="inputState"
-													name="technologicalProcess.state" readonly="readonly"
-													value="${technologicalProcess.state}" class="input-large">
+												<input type="text" id="inputCurrentlocation"
+													name="technologicalProcess.currentlocation" 
+													value="${technologicalProcess.currentlocation}"
+													data-required="true" desc="目前所在地(国家)" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -244,13 +246,67 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="technologicalProcess.birthday"
 													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-large">
+													data-required="true" desc="生日" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
 
 								</dir>
 
+								<dir class="row">
+									<div class="span5 left">
+										<div class="control-group">
+											<label class="control-label" for="contracttype">合同种类：</label>
+											<div class="controls">
+												<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+													name="technologicalProcess.contracttype">
+													<option value="A">A类</option>
+													<option value="B">B类</option>
+													<option value="C">C类</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputContractdate">合同有效期：</label>
+											<div class="controls">
+												<input type="text" id="inputContractdate"
+													name="technologicalProcess.contractdate"
+													value="<s:date name="technologicalProcess.contractdate" format="yyyy-MM-dd" />"
+													data-required="true" desc="合同有效期" readonly class="form_datetime input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+
+								<dir class="row">
+									<div class="span5 left">
+										<div class="control-group">
+											<label class="control-label" for="inputPassportno">护照号：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputPassportno"
+													name="technologicalProcess.passportno"
+													value="${technologicalProcess.passportno}"
+													data-required="true" desc="护照号" class="input-large">
+											</div>
+										</div>
+									</div>
+								
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputPassportnodate">护照有效期：</label>
+											<div class="controls">
+												<input type="text" id="inputPassportnodate"
+													name="technologicalProcess.passportnodate" 
+													value="<s:date name="technologicalProcess.passportnodate" format="yyyy-MM-dd" />"
+													data-required="true" desc="护照有效期" readonly class="form_datetime input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+								
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -274,54 +330,27 @@
 										</div>
 									</div>
 								</dir>
-
-								<dir class="row">
-									<div class="span5 left">
-										<div class="control-group">
-											<label class="control-label" for="contracttype">合同种类：</label>
-											<div class="controls">
-												<select id="contracttype" class="input-large"
-													name="technologicalProcess.contracttype">
-													<option value="A">A类</option>
-													<option value="B">B类</option>
-													<option value="C">C类</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="span5 left">
-										<div class="control-group">
-											<label class="control-label" for="inputPassportno">护照号：</label>
-											<div class="controls">
-												<input type="text" maxlength="15" id="inputPassportno"
-													name="technologicalProcess.passportno"
-													value="${technologicalProcess.passportno}"
-													class="input-large">
-											</div>
-										</div>
-									</div>
-								</dir>
-
+								
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputContractdate">合同有效期：</label>
+											<label class="control-label" for="inputWorkuserid">创建者：</label>
 											<div class="controls">
-												<input type="text" id="inputContractdate"
-													name="technologicalProcess.contractdate"
-													value="<s:date name="technologicalProcess.contractdate" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-large">
+												<s:set id="userNameid" value="technologicalProcess.workuserid"></s:set>
+												<input type="text" id="inputWorkuserid" disabled="disabled"
+													name="technologicalProcess.workuserid"
+													value=<%=userNameQuery.queryUserName(request.getAttribute("userNameid").toString()) %>
+													readonly class="input-large">
 											</div>
 										</div>
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputPassportnodate">护照有效期：</label>
+											<label class="control-label" for="inputState">当前状态：</label>
 											<div class="controls">
-												<input type="text" id="inputPassportnodate"
-													name="technologicalProcess.passportnodate" 
-													value="<s:date name="technologicalProcess.passportnodate" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-large">
+												<input type="text" id="inputState"
+													name="technologicalProcess.state" readonly="readonly"
+													value="${technologicalProcess.state}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -361,7 +390,7 @@
 										<div class="control-group">
 											<label class="control-label" for="flightnumber">航班号：</label>
 											<div class="controls">
-												<input type="text" maxlength="25"  data-required="true" id="flightnumber"
+												<input type="text" maxlength="25"  data-required="true" desc="航班号" id="flightnumber"
 													name="flight.flightnumber" value="${flight.flightnumber}"
 													class="input-large" />
 											</div>
@@ -385,7 +414,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputstartdate">起飞时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" id="inputstartdate"
+												<input type="text" data-required="true" desc="起飞时间" id="inputstartdate"
 													name="flight.startdate"
 													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -396,7 +425,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenddate">到达时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" id="inputenddate"
+												<input type="text" data-required="true" desc="到达时间" id="inputenddate"
 													name="flight.enddate"
 													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -409,7 +438,7 @@
 										<div class="control-group">
 											<label class="control-label" for="place">到达机场：</label>
 											<div class="controls">
-												<input type="text" maxlength="25" id="place" data-required="true"
+												<input type="text" maxlength="25" id="place" data-required="true" desc="到达机场"
 													name="flight.place" value="${flight.place}"
 													class="input-large" />
 											</div>
@@ -432,7 +461,7 @@
 										<div class="control-group">
 											<label class="control-label" for="expressnumber">快递号：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="expressnumber" data-required="true"
+												<input type="text" maxlength="15" id="expressnumber" data-required="true" desc="快递号"
 													name="express.expressnumber" value="${express.expressnumber}"
 													class="input-large" />
 											</div>
@@ -442,7 +471,7 @@
 										<div class="control-group">
 											<label class="control-label" for="company">快递公司：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="company" data-required="true"
+												<input type="text" maxlength="15" id="company" data-required="true" desc="快递公司"
 													name="express.company" value="${express.company}"
 													class="input-large" />
 												
@@ -456,7 +485,7 @@
 											<label class="control-label" for="inputstartdate">公司电话：</label>
 											<div class="controls">
 												<input type="text" size="20" id="inputstartdate"
-													name="express.telephone" data-required="true"
+													name="express.telephone" data-required="true" desc="公司电话"
 													value="${express.telephone}" class=" input-large" />
 											</div>
 										</div>
@@ -468,7 +497,7 @@
 											<label class="control-label" for="delivergoodsdate">发货日期：</label>
 											<div class="controls">
 												<input type="text" id="delivergoodsdate"
-													name="express.delivergoodsdate" data-required="true"
+													name="express.delivergoodsdate" data-required="true" desc="发货日期"
 													value="<s:date name="express.delivergoodsdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
 											</div>
@@ -478,7 +507,7 @@
 										<div class="control-group">
 											<label class="control-label" for="arrivedate">到货日期：</label>
 											<div class="controls">
-												<input type="text" id="arrivedate" data-required="true"
+												<input type="text" id="arrivedate" data-required="true" desc="到货日期"
 													name="express.arrivedate" value="<s:date name="express.arrivedate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
 											</div>

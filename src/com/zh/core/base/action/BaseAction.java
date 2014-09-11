@@ -129,6 +129,16 @@ public abstract class BaseAction extends ActionSupport implements
 		User user = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
 		return user.getId();
 	}
+	
+	/**
+	 * 获取当前登陆的用户
+	 * @return
+	 */
+	public User queryUser()
+	{
+		User user = (User) this.getSession().getAttribute(VariableUtil.SESSION_KEY);
+		return user;
+	}
 
 	/**
 	 * 获取当前Response对象
