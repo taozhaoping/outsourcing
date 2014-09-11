@@ -400,10 +400,16 @@
 										<div class="control-group">
 											<label class="control-label" for="airportPeopleId">接机人：</label>
 											<div class="controls">
+												<!-- 
 												<select id="airportPeopleId" class="input-large"
 													name="flight.airportPeopleId">
 													<option value="A">测试1</option>
 													<option value="B">测试2</option>
+												</select>
+												 -->
+												
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid">
+													<option selected="selected" id="airportPeopleIdOption">&nbsp;</option>
 												</select>
 											</div>
 										</div>
@@ -856,6 +862,9 @@
 			$(".container-fluid button").attr("disabled", "disabled");
 		}
 
+		//初始化接机人
+		selectUsers("airportPeopleId");
+		
 		//基本信息
 		//$("#contracttype").select2();
 		$("#contracttype").val("${technologicalProcess.contracttype}").trigger(
