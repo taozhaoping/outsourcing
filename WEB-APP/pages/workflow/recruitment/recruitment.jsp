@@ -408,8 +408,8 @@
 												</select>
 												 -->
 												
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid">
-													<option selected="selected" id="airportPeopleIdOption">&nbsp;</option>
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" value="${flight.airportpeopleid}">
+													<option id="airportPeopleIdOption">&nbsp;</option>
 												</select>
 											</div>
 										</div>
@@ -1218,13 +1218,30 @@
 		function fillUserList(userList, id) {
 			//清空上次的查询结果
 			$("#" + id + "Option").nextAll("option").remove();
+			var selectOptionValue = $("#" + id).attr("value");
 			//动态生成用户列表
 			for ( var i = 0; i < userList.length; i++) {
 				var user = userList[i];
-				$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-						"id", user.id).val(user.loginName).html(
-						user.name + "(" + user.loginName + ")").insertAfter(
-						"#" + id + "Option");
+				if("airportPeopleId" == id){
+					if(user.id == selectOptionValue){
+						$("#" + id + "Option").clone(true).attr("selected", "selected").attr(
+								"id", user.id).val(user.id).html(
+								user.name + "(" + user.loginName + ")").insertAfter(
+								"#" + id + "Option");
+						
+					}else{
+						$("#" + id + "Option").clone(true).removeAttr("selected").attr(
+								"id", user.id).val(user.id).html(
+								user.name + "(" + user.loginName + ")").insertAfter(
+								"#" + id + "Option");
+						
+					}
+				}else{
+					$("#" + id + "Option").clone(true).removeAttr("selected").attr(
+							"id", user.id).val(user.loginName).html(
+							user.name + "(" + user.loginName + ")").insertAfter(
+							"#" + id + "Option");
+				}
 			}
 		}
 
