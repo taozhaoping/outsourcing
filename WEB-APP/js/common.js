@@ -15,7 +15,7 @@ $(function() {
 	collapseMenu(id);
 
 	// 验证
-	$('#editForm').validate( {
+	$('form').validate( {
 		onKeyup : false,
 		onSubmit : true,
 		onChange : true,

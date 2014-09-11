@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_Express">
+	<resultMap id="T_Express" type="Express">
+		<id column="ID" property="id" />
+		<result column="EXPRESSNUMBER" property="expressnumber"
+			jdbcType="VARCHAR" />
+		<result column="COMPANY" property="company" jdbcType="VARCHAR" />
+		<result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+		<result column="DELIVERGOODSDATE" property="delivergoodsdate"
+			jdbcType="DATE" />
+		<result column="ARRIVEDATE" property="arrivedate" jdbcType="DATE" />
+		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		ID, EXPRESSNUMBER, COMPANY, TELEPHONE, DELIVERGOODSDATE, ARRIVEDATE,
+		TECHNOLOGICALPROCESSID
+	</sql>
+	
+	<sql id="where">
+		<where>
+			<if test="expressnumber != null">
+				and EXPRESSNUMBER = #{expressnumber,jdbcType=VARCHAR}
+			</if>
+			<if test="company != null">
+				and COMPANY = #{company,jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null">
+				and TELEPHONE = #{telephone,jdbcType=VARCHAR}
+			</if>
+			<if test="delivergoodsdate != null">
+				and DELIVERGOODSDATE = #{delivergoodsdate,jdbcType=DATE}
+			</if>
+			<if test="arrivedate != null">
+				and ARRIVEDATE = #{arrivedate,jdbcType=DATE}
+			</if>
+			<if test="technologicalprocessid != null">
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="count" resultType="Integer" parameterType="Express">
+		select
+			count(id)
+		from T_EXPRESS
+		<include refid="where" />
+	</select>
+	
+	<select id="select" resultMap="T_Express" parameterType="Express">
+		select
+		<include refid="Base_Column_List" />
+		from T_EXPRESS
+		where 1=1
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="technologicalprocessid != null">
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
+			</if>
+	</select>
+	
+	<select id="list" resultMap="T_Express" parameterType="Express">
+		select
+		<include refid="Base_Column_List" />
+		from T_EXPRESS
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType="Express">
+		delete from T_EXPRESS
+		where ID = #{id}
+	</delete>
+	
+	<insert id="insert" parameterType="Express">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_T_EXPRESS.nextval from dual
+		</selectKey>
+		insert into T_EXPRESS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="expressnumber != null">
+				EXPRESSNUMBER,
+			</if>
+			<if test="company != null">
+				COMPANY,
+			</if>
+			<if test="telephone != null">
+				TELEPHONE,
+			</if>
+			<if test="delivergoodsdate != null">
+				DELIVERGOODSDATE,
+			</if>
+			<if test="arrivedate != null">
+				ARRIVEDATE,
+			</if>
+			<if test="technologicalprocessid != null">
+				TECHNOLOGICALPROCESSID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="expressnumber != null">
+				#{expressnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="delivergoodsdate != null">
+				#{delivergoodsdate,jdbcType=DATE},
+			</if>
+			<if test="arrivedate != null">
+				#{arrivedate,jdbcType=DATE},
+			</if>
+			<if test="technologicalprocessid != null">
+				#{technologicalprocessid},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="Express">
+		update T_EXPRESS
+		<set>
+			<if test="expressnumber != null">
+				EXPRESSNUMBER = #{expressnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				COMPANY = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="delivergoodsdate != null">
+				DELIVERGOODSDATE = #{delivergoodsdate,jdbcType=DATE},
+			</if>
+			<if test="arrivedate != null">
+				ARRIVEDATE = #{arrivedate,jdbcType=DATE},
+			</if>
+			<if test="technologicalprocessid != null">
+				TECHNOLOGICALPROCESSID = #{technologicalprocessid},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+</mapper>

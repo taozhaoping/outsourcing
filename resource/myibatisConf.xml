@@ -36,6 +36,7 @@
 		<typeAlias alias="Certificates" type="com.zh.web.model.bean.Certificates" />
 		<typeAlias alias="FileInfo" type="com.zh.web.model.bean.FileInfo" />
 		<typeAlias alias="Flight" type="com.zh.web.model.bean.Flight" />
+		<typeAlias alias="Express" type="com.zh.web.model.bean.Express" />
 	</typeAliases>
 
 	<plugins>

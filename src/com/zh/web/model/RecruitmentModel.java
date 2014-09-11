@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.zh.core.base.model.BaseModel;
 import com.zh.web.model.bean.Certificates;
+import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
@@ -33,6 +34,12 @@ public class RecruitmentModel extends BaseModel {
 	 * 页面js获取的file对象集合
 	 */
 	private String fileInfoListJson;
+	
+	/**
+	 * 快递信息
+	 */
+	private Express express = new Express();
+	
 	/**
 	 * 航班信息
 	 */
@@ -249,6 +256,13 @@ public class RecruitmentModel extends BaseModel {
 	public void setFileInfoListJson(String fileInfoListJson) {
 		this.fileInfoListJson = fileInfoListJson;
 	}
-	
+
+	public Express getExpress() {
+		return express;
+	}
+
+	public void setExpress(Express express) {
+		this.express = express;
+	}
 	
 }

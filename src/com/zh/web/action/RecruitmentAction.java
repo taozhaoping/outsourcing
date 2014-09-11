@@ -42,10 +42,12 @@ import com.zh.core.util.JSONUtil;
 import com.zh.core.util.LoggerUtil;
 import com.zh.web.model.RecruitmentModel;
 import com.zh.web.model.bean.Certificates;
+import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.CertificatesService;
+import com.zh.web.service.ExpressService;
 import com.zh.web.service.FileInfoService;
 import com.zh.web.service.FlightService;
 import com.zh.web.service.TechnologicalProcessService;
@@ -94,6 +96,9 @@ public class RecruitmentAction extends BaseAction {
 	
 	@Autowired
 	private UserInfoService userInfoService;
+	
+	@Autowired
+	private ExpressService expressService;
 
 	@Override
 	public Object getModel() {
@@ -138,6 +143,25 @@ public class RecruitmentAction extends BaseAction {
 		List<IDataObject> list = (List<IDataObject>) JSONUtil
 				.jsonArrToListObject(jsonList, Certificates.class);
 		certificatesService.insertList(list);
+		return "save";
+	}
+	
+	public String saveExpress()
+	{
+		Express express = this.recruitmentModel.getExpress();
+		Integer id = express.getId();
+		String fromID = this.recruitmentModel.getFormId();
+		if (null == fromID || "".equals(fromID)) {
+			throw new ProjectException("编号不允许为null");
+		}
+		if(null != id&& id > 0)
+		{
+			expressService.update(express);
+		}else
+		{
+			express.setTechnologicalprocessid(Integer.valueOf(fromID));
+			expressService.insert(express);
+		}
 		return "save";
 	}
 
@@ -259,6 +283,11 @@ public class RecruitmentAction extends BaseAction {
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(process.getId());
 			Flight flightReult = flightService.query(flight);
+			
+			//快递信息
+			Express express = new Express();
+			express.setTechnologicalprocessid(process.getId());
+			Express expressReult = expressService.query(express);
 
 			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
@@ -280,6 +309,7 @@ public class RecruitmentAction extends BaseAction {
 						.list2json(certificatesList));
 				this.recruitmentModel.setFileInfoListJson(JSONUtil
 						.list2json(fileInfoList));
+				this.recruitmentModel.setExpress(expressReult);
 				this.recruitmentModel.setFlight(flightReult);
 			}
 

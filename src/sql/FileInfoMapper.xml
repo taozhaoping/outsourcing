@@ -54,6 +54,13 @@
 		from T_FILEINFO
 		where ID = #{id}
 	</select>
+	
+	<select id="count" resultType="Integer" parameterType="FileInfo">
+		select
+			count(id)
+		from T_FILEINFO
+		<include refid="where" />
+	</select>
 
 	<select id="list" resultMap="T_FileInfo" parameterType="FileInfo">
 		select

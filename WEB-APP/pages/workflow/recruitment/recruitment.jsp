@@ -138,6 +138,7 @@
 							<li><a id="certificatesButt" href="#certificates"
 								data-toggle="tab">证件信息</a></li>
 							<li><a id="flightButt" href="#flight" data-toggle="tab">航班信息</a></li>
+							<li><a id="expressButt" href="#express" data-toggle="tab">快递信息</a></li>
 							<li><a id="workflowTabButt" href="#workflowTab"
 								data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
@@ -360,7 +361,7 @@
 										<div class="control-group">
 											<label class="control-label" for="flightnumber">航班号：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="flightnumber"
+												<input type="text" maxlength="25"  data-required="true" id="flightnumber"
 													name="flight.flightnumber" value="${flight.flightnumber}"
 													class="input-large" />
 											</div>
@@ -384,7 +385,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputstartdate">起飞时间：</label>
 											<div class="controls">
-												<input type="text" size="15" id="inputstartdate"
+												<input type="text" data-required="true" id="inputstartdate"
 													name="flight.startdate"
 													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -395,7 +396,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenddate">到达时间：</label>
 											<div class="controls">
-												<input type="text" size="15" id="inputenddate"
+												<input type="text" data-required="true" id="inputenddate"
 													name="flight.enddate"
 													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -408,9 +409,78 @@
 										<div class="control-group">
 											<label class="control-label" for="place">到达机场：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="place"
+												<input type="text" maxlength="25" id="place" data-required="true"
 													name="flight.place" value="${flight.place}"
 													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+							</form>
+						</div>
+						
+						<!-- 快递信息 -->
+						<div class="tab-pane fade" id="express">
+							<form id="expressForm" class="form-horizontal"
+								action="${menu2Id}!saveExpress.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${technologicalProcess.id}">
+								<input type="hidden" name="express.id" value="${express.id}">
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="expressnumber">快递号：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="expressnumber" data-required="true"
+													name="express.expressnumber" value="${express.expressnumber}"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="company">快递公司：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="company" data-required="true"
+													name="express.company" value="${express.company}"
+													class="input-large" />
+												
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputstartdate">公司电话：</label>
+											<div class="controls">
+												<input type="text" size="20" id="inputstartdate"
+													name="express.telephone" data-required="true"
+													value="${express.telephone}" class=" input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="delivergoodsdate">发货日期：</label>
+											<div class="controls">
+												<input type="text" id="delivergoodsdate"
+													name="express.delivergoodsdate" data-required="true"
+													value="<s:date name="express.delivergoodsdate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="arrivedate">到货日期：</label>
+											<div class="controls">
+												<input type="text" id="arrivedate" data-required="true"
+													name="express.arrivedate" value="<s:date name="express.arrivedate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
 											</div>
 										</div>
 									</div>
@@ -788,7 +858,6 @@
 					new Date(certificates.validenddate).format("yyyy-MM-dd"));
 			//$("#certificatesUpdateDate").last().val(new Date(certificates.updateDate).format("yyyy-MM-dd"));
 			
-			
 		}
 		if(certificatesList.length == 0 )
 		{
@@ -801,8 +870,12 @@
 
 		//附件
 		//$("select").select2();
-		$('#fileForm').validate();
-		$('#fileEditorForm').validate();
+		//$('#fileForm').validate();
+		//$('#fileEditorForm').validate();
+		
+		//快递信息
+		//$('#expressForm').validate();
+		
 		
 		//附件信息列表初始化
 		fileInfoListStr = '${fileInfoListJson}';
@@ -982,9 +1055,8 @@
 			var action;
 			if ("homeButt" == currTab) {
 				action = $("#editForm").attr("action");
-				$("#editForm").attr("action",
-						action + "?tabID=" + $("#tabID").val());
-				validate = $('#editForm').validate();
+				setTabID("editForm",action);
+				//validate = $('#editForm').validate();
 				$("#editForm").submit();
 			} else if ("certificatesButt" == currTab) {
 				var arrCertificates = new Array();
@@ -1000,17 +1072,32 @@
 				var tex = JSON2.stringify(arrCertificates);
 				$("input[id='jsonList']").val(tex);
 				action = $("#certificatesForm").attr("action");
-				$("#certificatesForm").attr("action",
-						action + "?tabID=" + $("#tabID").val());
+				setTabID("certificatesForm",action);
 				$("#certificatesForm").submit();
 			} else if ("flightButt" == currTab) {
 
 				action = $("#flightForm").attr("action");
-				$("#flightForm").attr("action",
-						action + "?tabID=" + $("#tabID").val());
+				setTabID("flightForm",action);
 				$("#flightForm").submit();
-			}
+			} else if ("expressButt" == currTab) {
 
+				//validate = $('#expressForm').validate();
+				action = $("#expressForm").attr("action");
+				setTabID("expressForm",action);
+				$("#expressForm").submit();
+			}
+		}
+		
+		function setTabID(name,action)
+		{
+			var index=action.indexOf("?tabID=");
+			actionName=action;
+			if(  index > 0 )
+			{
+				actionName = action.substring(0,index);
+			}
+			$("#" + name).attr("action",
+					actionName + "?tabID=" + $("#tabID").val());	
 		}
 
 		/*判断当前form是否变更*/
