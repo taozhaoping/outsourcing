@@ -25,7 +25,7 @@
 			</li>
 			
 			<li>
-				<a tabindex="-1" href="#quitConfirm" data-toggle="modal">登出</a>
+				<a tabindex="-1" href="#quitConfirm" data-toggle="modal"><i	class="icon-off"></i>登出</a>
 			</li>
 		</ul>
 		<a class="brand" href="<%=pathTitle%>/home/main.jspa"><span class="first">Your</span>
