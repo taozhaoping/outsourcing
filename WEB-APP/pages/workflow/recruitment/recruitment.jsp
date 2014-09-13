@@ -408,8 +408,8 @@
 												</select>
 												 -->
 												
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" value="${flight.airportpeopleid}">
-													<option id="airportPeopleIdOption">&nbsp;</option>
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人"  >
+													<option id="airportPeopleIdOption" value=""></option>
 												</select>
 											</div>
 										</div>
