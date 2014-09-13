@@ -3,6 +3,8 @@ package com.zh.web.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -536,6 +538,110 @@ public class RecruitmentAction extends BaseAction {
 			LOGGER.error("message:" + e.getMessage() + " cause:" + e.getCause());
 		}
 	}
+	
+	
+	/***
+	 * 审核工作流的发放
+	 */
+	public String auditRelease(){
+		//不同的节点去查不同的数据库表
+		//当前节点
+		String curState = this.recruitmentModel.getState();
+		//表单Id
+		String formId = this.recruitmentModel.getFormId();
+		
+		//审核结果
+		List<String> auditRet = new ArrayList<String>();
+		
+		if("发起".equalsIgnoreCase(curState)){
+			TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+			technologicalProcess.setId(Integer.parseInt(formId));
+			
+			// 获取基本信息
+			TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
+			String description = process.getDescription();
+			if(null == description || description.isEmpty()){
+				auditRet.add("描述");
+			}
+			String name = process.getName();
+			if(null == name || name.isEmpty()){
+				auditRet.add("姓名");
+			}
+			
+			String englishName = process.getEnglishname();
+			if(null == englishName || englishName.isEmpty()){
+				auditRet.add("英文名");
+			}
+			
+			String nationality = process.getNationality();
+			if(null == nationality || nationality.isEmpty()){
+				auditRet.add("国籍");
+			}
+			
+			String currentlocation = process.getCurrentlocation();
+			if(null == currentlocation || currentlocation.isEmpty()){
+				auditRet.add("目前所在地(国家)");
+			}
+			
+			String yearbirth = process.getYearbirth();
+			if(null == yearbirth || yearbirth.isEmpty()){
+				auditRet.add("出生年份");
+			}
+			
+			Date birthday = process.getBirthday();
+			if(null == birthday){
+				auditRet.add("生日");
+			}
+			
+			String contracttype = process.getContracttype();
+			if(null == contracttype || contracttype.isEmpty()){
+				auditRet.add("合同种类");
+			}
+			
+			String contractdate = process.getContractdate();
+			if(null == contractdate || contractdate.isEmpty()){
+				auditRet.add("合同有效期");
+			}
+			
+			String passportNO = process.getPassportno();
+			if(null == passportNO || passportNO.isEmpty()){
+				auditRet.add("护照号");
+			}
+			
+			String passportDate = process.getPassportnodate();
+			if(null == passportDate || passportDate.isEmpty()){
+				auditRet.add("护照有效期");
+			}
+			
+			String mail = process.getMail();
+			if(null == mail || mail.isEmpty()){
+				auditRet.add("电子邮箱");
+			}
+			this.recruitmentModel.setAuditRet(auditRet);
+		}
+
+		// 获取证件信息
+		Certificates certificates = new Certificates();
+		certificates.setTechnologicalprocessid(Integer.parseInt(formId));
+		List<Certificates> certificatesList = certificatesService.queryList(certificates);
+		// 获取航班信息
+		Flight flight = new Flight();
+		flight.setTechnologicalprocessid(Integer.parseInt(formId));
+		Flight flightReult = flightService.query(flight);
+		
+		//快递信息
+		Express express = new Express();
+		express.setTechnologicalprocessid(Integer.parseInt(formId));
+		Express expressReult = expressService.query(express);
+
+		// 获取附件信息
+		FileInfo fileInfo = new FileInfo();
+		fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
+		List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
+		
+		return "audit";
+	}
+	
 
 	/***
 	 * 表单的id

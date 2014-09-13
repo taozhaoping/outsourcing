@@ -88,6 +88,16 @@ public class RecruitmentModel extends BaseModel {
 	private String hasSubmitAuth;
 	
 	/**
+	 * 当前工作流的状态
+	 */
+	private String state;
+	
+	/**
+	 * 审核结果
+	 */
+	private List<String> auditRet;
+	
+	/**
 	 * 文件上传参数
 	 */
 	private File files = null;
@@ -263,6 +273,22 @@ public class RecruitmentModel extends BaseModel {
 
 	public void setExpress(Express express) {
 		this.express = express;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public List<String> getAuditRet() {
+		return auditRet;
+	}
+
+	public void setAuditRet(List<String> auditRet) {
+		this.auditRet = auditRet;
 	}
 	
 }

@@ -260,6 +260,7 @@
 											<div class="controls">
 												<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
 													name="technologicalProcess.contracttype">
+													<option value=""></option>
 													<option value="A">A类</option>
 													<option value="B">B类</option>
 													<option value="C">C类</option>
