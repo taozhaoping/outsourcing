@@ -618,28 +618,88 @@ public class RecruitmentAction extends BaseAction {
 				auditRet.add("电子邮箱");
 			}
 			
-			this.recruitmentModel.setAuditRet(auditRet);
-		}else {
+			
+		}else if("办证".equalsIgnoreCase(curState)){
 			// 获取证件信息
 			Certificates certificates = new Certificates();
 			certificates.setTechnologicalprocessid(Integer.parseInt(formId));
 			List<Certificates> certificatesList = certificatesService.queryList(certificates);
-			// 获取航班信息
-			Flight flight = new Flight();
-			flight.setTechnologicalprocessid(Integer.parseInt(formId));
-			Flight flightReult = flightService.query(flight);
 			
-			//快递信息
-			Express express = new Express();
-			express.setTechnologicalprocessid(Integer.parseInt(formId));
-			Express expressReult = expressService.query(express);
 			
 			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
 			fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
+		
+		}else if("邀请".equalsIgnoreCase(curState)){
+			//快递信息
+			Express express = new Express();
+			express.setTechnologicalprocessid(Integer.parseInt(formId));
+			Express expressResult = expressService.query(express);
+			//快递单号
+			String expressNumber = expressResult.getExpressnumber();
+			if(null == expressNumber || expressNumber.isEmpty()){
+				auditRet.add("快递单号");
+			}
+			
+			//快递公司
+			String company = expressResult.getCompany();
+			if(null == company || company.isEmpty()){
+				auditRet.add("快递公司");
+			}
+			
+			//发货日期
+			Date delivergoodsdate = expressResult.getDelivergoodsdate();
+			if(null == delivergoodsdate){
+				auditRet.add("发货日期");
+			}
+			
+			//公司电话
+			String telephone = expressResult.getTelephone();
+			if(null == telephone || telephone.isEmpty()){
+				auditRet.add("公司电话");
+			}
+		
+		}else if("航班确认".equalsIgnoreCase(curState)){
+			// 获取航班信息
+			Flight flight = new Flight();
+			flight.setTechnologicalprocessid(Integer.parseInt(formId));
+			Flight flightResult = flightService.query(flight);
+			
+			//航班号
+			String flightNumber = flightResult.getFlightnumber();
+			if(null == flightNumber || flightNumber.isEmpty()){
+				auditRet.add("航班号");
+			}
+			
+			//接机人
+			Integer airportpeopleid = flightResult.getAirportpeopleid();
+			if(null == airportpeopleid){
+				auditRet.add("接机人");
+			}
+			
+			//起飞时间
+			Date startdate = flightResult.getStartdate();
+			if(null == startdate){
+				auditRet.add("起飞时间");
+			}
+			
+			//到达时间
+			Date enddate = flightResult.getEnddate();
+			if(null == enddate){
+				auditRet.add("到达时间");
+			}
+			
+			//到达机场
+			String place = flightResult.getPlace();
+			if(null == place || place.isEmpty()){
+				auditRet.add("到达机场");
+			}
+		}else {
+			
 		}
 
+		this.recruitmentModel.setAuditRet(auditRet);
 		return "audit";
 	}
 	

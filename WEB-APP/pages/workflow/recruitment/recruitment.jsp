@@ -486,18 +486,7 @@
 										</div>
 									</div>
 								</dir>
-								<dir class="row">
-									<div class="span5 pull-left">
-										<div class="control-group">
-											<label class="control-label" for="inputstartdate">公司电话：</label>
-											<div class="controls">
-												<input type="text" size="20" id="inputstartdate"
-													name="express.telephone" data-required="true" desc="公司电话"
-													value="${express.telephone}" class=" input-large" />
-											</div>
-										</div>
-									</div>
-								</dir>
+								
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -514,9 +503,22 @@
 										<div class="control-group">
 											<label class="control-label" for="arrivedate">到货日期：</label>
 											<div class="controls">
-												<input type="text" id="arrivedate" data-required="true" desc="到货日期"
+												<input type="text" id="arrivedate" desc="到货日期"
 													name="express.arrivedate" value="<s:date name="express.arrivedate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputTelephone">公司电话：</label>
+											<div class="controls">
+												<input type="text" size="20" id="inputTelephone"
+													name="express.telephone" data-required="true" desc="公司电话"
+													value="${express.telephone}" class=" input-large" />
 											</div>
 										</div>
 									</div>
