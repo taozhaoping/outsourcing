@@ -617,28 +617,29 @@ public class RecruitmentAction extends BaseAction {
 			if(null == mail || mail.isEmpty()){
 				auditRet.add("电子邮箱");
 			}
+			
 			this.recruitmentModel.setAuditRet(auditRet);
+		}else {
+			// 获取证件信息
+			Certificates certificates = new Certificates();
+			certificates.setTechnologicalprocessid(Integer.parseInt(formId));
+			List<Certificates> certificatesList = certificatesService.queryList(certificates);
+			// 获取航班信息
+			Flight flight = new Flight();
+			flight.setTechnologicalprocessid(Integer.parseInt(formId));
+			Flight flightReult = flightService.query(flight);
+			
+			//快递信息
+			Express express = new Express();
+			express.setTechnologicalprocessid(Integer.parseInt(formId));
+			Express expressReult = expressService.query(express);
+			
+			// 获取附件信息
+			FileInfo fileInfo = new FileInfo();
+			fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
+			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
 		}
 
-		// 获取证件信息
-		Certificates certificates = new Certificates();
-		certificates.setTechnologicalprocessid(Integer.parseInt(formId));
-		List<Certificates> certificatesList = certificatesService.queryList(certificates);
-		// 获取航班信息
-		Flight flight = new Flight();
-		flight.setTechnologicalprocessid(Integer.parseInt(formId));
-		Flight flightReult = flightService.query(flight);
-		
-		//快递信息
-		Express express = new Express();
-		express.setTechnologicalprocessid(Integer.parseInt(formId));
-		Express expressReult = expressService.query(express);
-
-		// 获取附件信息
-		FileInfo fileInfo = new FileInfo();
-		fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
-		List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
-		
 		return "audit";
 	}
 	

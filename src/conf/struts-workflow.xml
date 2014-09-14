@@ -35,6 +35,11 @@
     			<param name="menuId">${menuId}</param>
     			<param name="menu2Id">${menu2Id}</param>
 			</result>
+			
+			<!-- 审核当前状态的必填字段 -->
+			<result name="audit" type="json">
+				<param name="root">recruitmentModel.auditRet</param>
+			</result>
 		</action>
 		
 	</package>
