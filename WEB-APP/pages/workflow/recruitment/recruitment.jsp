@@ -275,7 +275,7 @@
 											<div class="controls">
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
-													value="<s:date name="technologicalProcess.contractdate" format="yyyy-MM-dd" />"
+													value="${technologicalProcess.contractdate}"
 													data-required="true" desc="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
@@ -301,7 +301,7 @@
 											<div class="controls">
 												<input type="text" id="inputPassportnodate"
 													name="technologicalProcess.passportnodate" 
-													value="<s:date name="technologicalProcess.passportnodate" format="yyyy-MM-dd" />"
+													value="${technologicalProcess.passportnodate}"
 													data-required="true" desc="护照有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
