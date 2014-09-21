@@ -698,7 +698,7 @@ public class RecruitmentAction extends BaseAction {
 			fileRequiredField.add("12");
 			
 			for(FileInfo file : fileInfoList){
-				fileRequiredField.remove(file.getType());
+				fileRequiredField.remove(file.getNametype());
 			}
 		
 			if(!fileRequiredField.isEmpty()){
