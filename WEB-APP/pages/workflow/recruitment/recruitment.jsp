@@ -636,9 +636,15 @@
 								<option value="1">护照</option>
 								<option value="2">毕业证</option>
 								<option value="3">简历</option>
-								<option value="4">无犯罪记录</option>
-								<option value="5">TEFL证</option>
-								<option value="6">档案表</option>
+								<option value="4">Profile Form</option>
+								<option value="5">其他证件(TEFL、家属证明)</option>
+								<option value="6">合同word版本</option>
+								<option value="7">合同签字版本</option>
+								<option value="8">工作许可证</option>
+								<option value="9">邀请函</option>
+								<option value="10">公司邀请函</option>
+								<option value="11">外国专家证</option>
+								<option value="12">居留许可</option>
 							</select>
 						</div>
 					</div>
@@ -696,9 +702,15 @@
 								<option value="1">护照</option>
 								<option value="2">毕业证</option>
 								<option value="3">简历</option>
-								<option value="4">无犯罪记录</option>
-								<option value="5">TEFL证</option>
-								<option value="6">档案表</option>
+								<option value="4">Profile Form</option>
+								<option value="5">其他证件(TEFL、家属证明)</option>
+								<option value="6">合同word版本</option>
+								<option value="7">合同签字版本</option>
+								<option value="8">工作许可证</option>
+								<option value="9">邀请函</option>
+								<option value="10">公司邀请函</option>
+								<option value="11">外国专家证</option>
+								<option value="12">居留许可</option>
 							</select>
 						</div>
 					</div>
@@ -938,7 +950,7 @@
 			var row = $("<tr></tr>");
 			addTd(row, "<input type='hidden' size='15' id='certificatesId'>");
 			addTd(row,
-					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>外国专家证</option></select>");
+					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可证</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>外国专家证</option><option value='9'>居留许可</option></select>");
 			addTd(row,
 					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
 			addTd(row,

@@ -624,13 +624,114 @@ public class RecruitmentAction extends BaseAction {
 			Certificates certificates = new Certificates();
 			certificates.setTechnologicalprocessid(Integer.parseInt(formId));
 			List<Certificates> certificatesList = certificatesService.queryList(certificates);
+			List<String> requiredField = new ArrayList<String>();
+			requiredField.add("1");
+			requiredField.add("2");
+			requiredField.add("8");
+			requiredField.add("9");
+			/**
+			<select id='certificatesType' class='input-medium' >
+				<option value='1'>工作许可证</option>
+				<option value='2'>邀请函</option>
+				<option value='3'>公司邀请函</option>
+				<option value='4'>暂住证</option>
+				<option value='5'>工作签</option>
+				<option value='6'>入境章页</option>
+				<option value='7'>保险</option>
+				<option value='8'>外国专家证</option>
+				<option value='9'>居留许可</option>
+			</select>
+			*/
 			
+			for(Certificates cer : certificatesList){
+				requiredField.remove(cer.getType());
+			}
+			
+			if(!requiredField.isEmpty()){
+				auditRet.add("证件信息:");
+				for(String str : requiredField){
+					if("1".equals(str)){
+						auditRet.add("工作许可证");
+					}else if("2".equals(str)){
+						auditRet.add("邀请函");
+						
+					}else if("8".equals(str)){
+						auditRet.add("外国专家证");
+						
+					}else if("9".equals(str)){
+						auditRet.add("居留许可");
+					}
+				}
+			}
 			
 			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
 			fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
+			
+			/***
+  			<option value="1">护照</option>
+			<option value="2">毕业证</option>
+			<option value="3">简历</option>
+			<option value="4">Profile Form</option>
+			<option value="5">其他证件(TEFL、家属证明)</option>
+			<option value="6">合同word版本</option>
+			<option value="7">合同签字版本</option>
+			<option value="8">工作许可证</option>
+			<option value="9">邀请函</option>
+			<option value="10">公司邀请函</option>
+			<option value="11">外国专家证</option>
+			<option value="12">居留许可</option
+			 */
+			List<String> fileRequiredField = new ArrayList<String>();
+			fileRequiredField.add("1");
+			fileRequiredField.add("2");
+			fileRequiredField.add("3");
+			fileRequiredField.add("4");
+			fileRequiredField.add("5");
+			fileRequiredField.add("6");
+			fileRequiredField.add("7");
+			fileRequiredField.add("8");
+			fileRequiredField.add("9");
+			fileRequiredField.add("10");
+			fileRequiredField.add("11");
+			fileRequiredField.add("12");
+			
+			for(FileInfo file : fileInfoList){
+				fileRequiredField.remove(file.getType());
+			}
 		
+			if(!fileRequiredField.isEmpty()){
+				auditRet.add("附件信息(需要上传的附件):");
+				for(String str : fileRequiredField){
+					if("1".equals(str)){
+						auditRet.add("护照");
+					}else if("2".equals(str)){
+						auditRet.add("毕业证");
+					}else if("3".equals(str)){
+						auditRet.add("简历");
+					}else if("4".equals(str)){
+						auditRet.add("Profile Form");
+					}else if("5".equals(str)){
+						auditRet.add("其他证件(TEFL、家属证明)");
+					}else if("6".equals(str)){
+						auditRet.add("合同word版本");
+					}else if("7".equals(str)){
+						auditRet.add("合同签字版本");
+					}else if("8".equals(str)){
+						auditRet.add("工作许可证");
+					}else if("9".equals(str)){
+						auditRet.add("邀请函");
+					}else if("10".equals(str)){
+						auditRet.add("公司邀请函");
+					}else if("11".equals(str)){
+						auditRet.add("外国专家证");
+					}else if("12".equals(str)){
+						auditRet.add("居留许可");
+					}
+				}
+			}
+			
 		}else if("邀请".equalsIgnoreCase(curState)){
 			//快递信息
 			Express express = new Express();
