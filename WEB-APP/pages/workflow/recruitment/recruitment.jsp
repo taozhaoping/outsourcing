@@ -530,13 +530,13 @@
 						<div class="tab-pane fade" id="workflowTab">
 							<!-- 如果发起了则显示工作 -->
 							<s:if
-								test="%{technologicalProcess.state != null && technologicalProcess.state != ''}">
+								test="%{technologicalProcess.state != null && technologicalProcess.state != ''&& technologicalProcess.state != '发起' && technologicalProcess.state != '结束'}">
 								<img alt="流程没有发起或已结束"
 									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${technologicalProcess.workflowid}"
 									id="workflowShowPic">
 							</s:if>
 							<s:else>
-								<span>没有发起或者匹配的工作流</span>
+								<span>没有匹配的工作流(没有发起或已结束)</span>
 							</s:else>
 						</div>
 
