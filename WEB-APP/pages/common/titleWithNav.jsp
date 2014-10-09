@@ -29,7 +29,7 @@
 			</li>
 		</ul>
 		<a class="brand" href="<%=pathTitle%>/home/main.jspa"><span class="first">Your</span>
-			<span class="second">信息管理平台</span>
+			<span class="second"><s:property value="getText('COM.OSFI.WINDOW.TITLE')" /></span>
 		</a>
 		
 		<ul class="nav">

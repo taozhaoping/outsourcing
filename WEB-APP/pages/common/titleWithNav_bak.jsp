@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -7,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>信息管理平台</title>
+<title><s:property value="getText('COM.OSFI.WINDOW.TITLE')" /></title>
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -69,7 +70,7 @@
 				</li>
 			</ul>
 			<a class="brand" href="index.html"><span class="first">Your</span>
-				<span class="second">信息管理平台</span></a>
+				<span class="second"><s:property value="getText('COM.OSFI.WINDOW.TITLE')" /></span></a>
 		</div>
 	</div>
 	
