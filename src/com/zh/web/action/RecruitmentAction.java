@@ -759,6 +759,12 @@ public class RecruitmentAction extends BaseAction {
 			if(null == telephone || telephone.isEmpty()){
 				auditRet.add("公司电话");
 			}
+			
+			//收货地址
+			String address = expressResult.getAddress();
+			if(null == address || address.isEmpty()){
+				auditRet.add("收货地址");
+			}
 		
 		}else if("航班确认".equalsIgnoreCase(curState)){
 			// 获取航班信息
