@@ -405,11 +405,14 @@
 									<tr>
 										<th>编号</th>
 										<th>证件类型</th>
+										<th>证件编号</th>
 										<th>办理日期</th>
 										<th>领取日期</th>
 										<th>有效日期</th>
 										<th>结束日期</th>
+										<!-- 
 										<th>修改时间</th>
+										 -->
 										<th style="width: 50px;">操作</th>
 									</tr>
 								</thead>
@@ -950,6 +953,7 @@
 			//获取最后一行数据进行赋值
 			addNew();
 			$("#certificatesSearch input[id='certificatesId']").last().val(certificates.id);
+			$("#certificatesSearch input[id='certificatesSerialNumber']").last().val(certificates.serialNumber);
 			$("#certificatesSearch select[id='certificatesType']").last().val(certificates.type).trigger(
 					"change");
 			//$("#certificatesType").last().select2();
@@ -1004,6 +1008,8 @@
 			addTd(row,
 					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可证</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>外国专家证</option><option value='9'>居留许可</option></select>");
 			addTd(row,
+					"<input type='text' size='15' id='certificatesSerialNumber' class='input-small'>");
+			addTd(row,
 					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
 			addTd(row,
 					"<input type='text' size='15' id='certificatesReceivedate' readonly class='form_datetime input-small'>");
@@ -1011,8 +1017,10 @@
 					"<input type='text' size='15' id='certificatesValidstartdate' readonly class='form_datetime input-small'>");
 			addTd(row,
 					"<input type='text' size='15' id='certificatesValidenddate' readonly class='form_datetime input-small'>");
+			/*
 			addTd(row,
 					"<input type='text' size='15' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
+			*/
 			addTd(row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
 			search.append(row);
@@ -1034,6 +1042,7 @@
 		function queryCertificates(index) {
 			var obj = new Object();
 			obj.id = $("input[id='certificatesId']")[index].value;
+			obj.serialNumber = $("input[id='certificatesSerialNumber']")[index].value;
 			obj.type = $("select[id='certificatesType']")[index].value;
 			obj.handledate = $("input[id='certificatesHandledate']")[index].value;
 			obj.receivedate = $("input[id='certificatesReceivedate']")[index].value;
@@ -1168,9 +1177,11 @@
 				for ( var index = 0; index < row_count; index++) {
 					arrCertificatesIndex = queryCertificates(index);
 					if (arrCertificatesIndex.handledate != ""
-							&& arrCertificatesIndex.receivedate != ""
-							&& arrCertificatesIndex.validstartdate != ""
-							&& arrCertificatesIndex.validenddate != "") {
+						&& arrCertificatesIndex.receivedate != ""
+						&& arrCertificatesIndex.validstartdate != ""
+						&& arrCertificatesIndex.validenddate != ""
+						&& arrCertificatesIndex.serialNumber != "") {
+						
 						arrCertificates[index] = arrCertificatesIndex;
 					}
 				}
