@@ -10,12 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mchange.v2.log.LogUtils;
-import com.opensymphony.xwork2.util.logging.LoggerUtils;
 import com.zh.core.model.IDataObject;
 import com.zh.core.model.Pager;
 import com.zh.core.util.LoggerUtil;
-import com.zh.web.action.RecruitmentAction;
 import com.zh.web.dao.CertificatesDao;
 import com.zh.web.model.bean.Certificates;
 import com.zh.web.service.CertificatesService;

@@ -4,6 +4,11 @@ import com.zh.core.model.IDataObject;
 
 public class KeyObject extends IDataObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4827339282617825104L;
+
 	private Integer id;
 	
 	private String text;

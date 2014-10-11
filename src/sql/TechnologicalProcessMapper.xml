@@ -13,6 +13,10 @@
 		<result column="MAIL" property="mail" jdbcType="VARCHAR" />
 		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
 		
+		<result column="DOMICILE" property="domicile" jdbcType="VARCHAR" />
+		<result column="SKYPE" property="skype" jdbcType="VARCHAR" />
+		<result column="WECHAT" property="wechat" jdbcType="VARCHAR" />
+		
 		<result column="CREATETIME" property="createtime" jdbcType="VARCHAR" />
 		<result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
 		<result column="WORKUSERID" property="workuserid" />
@@ -46,6 +50,9 @@
 		STATE, 
 		MAIL,
 		PHONE,
+		DOMICILE,
+		SKYPE,
+		WECHAT,
 		CREATETIME,
 		UPDATETIME, 
 		WORKUSERID, 
@@ -93,7 +100,16 @@
 				and MAIL = #{mail,jdbcType=VARCHAR}
 			</if>
 			<if test="phone != null">
-				and MAIL = #{phone,jdbcType=VARCHAR}
+				and PHONE = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="domicile != null">
+				and DOMICILE = #{domicile,jdbcType=VARCHAR}
+			</if>
+			<if test="skype != null">
+				and SKYPE = #{skype,jdbcType=VARCHAR}
+			</if>
+			<if test="wechat != null">
+				and WECHAT = #{wechat,jdbcType=VARCHAR}
 			</if>
 			<if test="createtime != null">
 				and CREATETIME = #{createtime,jdbcType=VARCHAR}
@@ -218,6 +234,15 @@
 			<if test="phone != null">
 				PHONE,
 			</if>
+			<if test="domicile != null">
+				DOMICILE,
+			</if>
+			<if test="skype != null">
+				SKYPE,
+			</if>
+			<if test="wechat != null">
+				WECHAT,
+			</if>
 			<if test="createtime != null">
 				CREATETIME,
 			</if>
@@ -303,6 +328,15 @@
 			</if>
 			<if test="phone != null">
 				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				#{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="skype != null">
+				#{skype,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				#{wechat,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				#{createtime,jdbcType=VARCHAR},
@@ -390,6 +424,15 @@
 			</if>
 			<if test="phone != null">
 				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				DOMICILE = #{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="skype != null">
+				SKYPE = #{skype,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				WECHAT = #{wechat,jdbcType=VARCHAR},
 			</if>
 			<if test="createtime != null">
 				CREATETIME = #{createtime,jdbcType=VARCHAR},

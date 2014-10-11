@@ -242,7 +242,7 @@ public class JSONUtil {
 	 * @return
 	 * @throws AgileException
 	 */
-	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class beanClass) throws ProjectException
+	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class<?> beanClass) throws ProjectException
 	{
 		ArrayList<IDataObject> arrayList = new ArrayList<IDataObject>();
 		if(null ==jsonString ||"".equals(jsonString))
@@ -267,7 +267,7 @@ public class JSONUtil {
 	 * @return
 	 * @throws AgileException
 	 */
-	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class beanClass,Map classMap) throws ProjectException
+	public static List<IDataObject>  jsonArrToListObject(String jsonString,Class<?> beanClass,Map<?, ?> classMap) throws ProjectException
 	{
 		ArrayList<IDataObject> arrayList = new ArrayList<IDataObject>();
 		if(null ==jsonString ||"".equals(jsonString))

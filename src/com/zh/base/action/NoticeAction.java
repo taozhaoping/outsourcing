@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.NoticeModel;
-import com.zh.base.model.bean.Enterprise;
 import com.zh.base.model.bean.Notice;
 import com.zh.base.service.NoticeService;
 import com.zh.core.base.action.Action;
@@ -15,6 +14,11 @@ import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.Pager;
 
 public class NoticeAction extends BaseAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4413452191876013540L;
 
 	private static Logger LOGGER = LoggerFactory.getLogger(NoticeAction.class);
 

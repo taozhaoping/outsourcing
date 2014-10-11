@@ -31,6 +31,7 @@ public class MethodCacheAfterAdvice implements AfterReturningAdvice,
 	public void afterReturning(Object returnValue,
 			java.lang.reflect.Method method, Object[] args, Object classObj)
 			throws Throwable {
+		logger.debug("afterReturning()");
 		String className = classObj.getClass().getName();
 		String cacheKey = getCacheKey(className, args);
 		List<?> list = cache.getKeys();

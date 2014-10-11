@@ -90,8 +90,9 @@ comment on column t_ActivitiesUser.Userid is '人员id';
 create table t_Certificates 
 (
    id                 NUMBER               not null,
-   workflowId                 VARCHAR(10),  --流程节点
+   workflowId         VARCHAR(10),  		--流程节点
    name               VARCHAR(30),          --证件名称
+   serialNumber       VARCHAR(50),          --证件编号
    handleDate         DATE,                 --办理日期
    ReceiveDate        DATE,                 --领取日期
    ValidStartDate     DATE,                 --证件有效开始日期
@@ -99,7 +100,7 @@ create table t_Certificates
    type               VARCHAR(3),           --种类
    createDate         VARCHAR(20),          --创建时间
    updateDate         VARCHAR(20),          --修改时间
-   status                   VARCHAR(2),     --状态
+   status             VARCHAR(2),     		--状态
    TechnologicalProcessID NUMBER,
    constraint PK_CERTIFICATES primary key (id)
 );
@@ -108,6 +109,7 @@ create table t_Certificates
 COMMENT ON table t_Certificates IS '证件信息 ';
 comment on column t_Certificates.workflowId is '流程节点';
 comment on column t_Certificates.name is '证件名称';
+comment on column t_Certificates.serialNumber is '证件编号';
 comment on column t_Certificates.handleDate is '办理日期';
 comment on column t_Certificates.ReceiveDate is '领取日期';
 comment on column t_Certificates.ValidStartDate is '证件有效开始日期';
@@ -128,6 +130,7 @@ create table t_Express
    Telephone          VARCHAR(15),      --公司电话
    DeliverGoodsDate   DATE,             --发货日期
    ArriveDate         DATE,             --预计到货日期
+   ADDRESS         	  VARCHAR(200),     --收件地址
    TechnologicalProcessID NUMBER,       --人员id
    constraint PK_EXPRESS primary key (id)
 );
@@ -139,6 +142,7 @@ comment on column t_Express.Company is '快递公司';
 comment on column t_Express.Telephone is '公司电话';
 comment on column t_Express.DeliverGoodsDate is '发货日期';
 comment on column t_Express.ArriveDate is '预计到货日期';
+comment on column t_Express.ADDRESS is '收件地址';
 comment on column t_Express.TechnologicalProcessID is '人员id';
 /*==============================================================*/
 /* Table: FileInfo                                            */
@@ -335,11 +339,14 @@ create table t_TechnologicalProcess
    name               VARCHAR(25),         --姓名
    englishName        VARCHAR(25),         --英文名
    Nationality        VARCHAR(20),         --国籍
+   Domicile			  VARCHAR(100),        --户籍地址
    yearBirth          VARCHAR(6),          --出生年份
    Birthday           DATE,                --生日
-   state              VARCHAR(12),          --状态
+   state              VARCHAR(12),         --状态
    mail               VARCHAR(25),         --电子邮件
    Phone              VARCHAR(20),         --手机号码
+   skype              VARCHAR(50),         --skype
+   wechat             VARCHAR(50),         --wechat
    createTime         VARCHAR(20),         --创建日期
    updateTime         VARCHAR(20),         --修改日期
    workUserId         NUMBER,              --流程发起人

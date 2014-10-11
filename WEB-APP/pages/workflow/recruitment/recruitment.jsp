@@ -336,6 +336,31 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
+											<label class="control-label" for="inputWechat">wechat：</label>
+											<div class="controls">
+												<input type="text" id="inputWechat"	
+													name="technologicalProcess.wechat"										name="technologicalProcess.workuserid"
+													value="${technologicalProcess.wechat}"
+													class="input-large">
+											</div>
+										</div>
+									</div>
+
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputSkype">skype：</label>
+											<div class="controls">
+												<input type="text" id="inputSkype"
+													name="technologicalProcess.skype"
+													value="${technologicalProcess.skype}" class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+								
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
 											<label class="control-label" for="inputWorkuserid">创建者：</label>
 											<div class="controls">
 												<s:set id="userNameid" value="technologicalProcess.workuserid"></s:set>
@@ -353,6 +378,20 @@
 												<input type="text" id="inputState"
 													name="technologicalProcess.state" readonly="readonly"
 													value="${technologicalProcess.state}" class="input-large">
+											</div>
+										</div>
+									</div>
+								</dir>
+								
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="inputDomicile">户籍地址：</label>
+											<div class="controls">
+												<input type="text" maxlength="15" id="inputDomicile"
+													name="technologicalProcess.domicile"
+													value="${technologicalProcess.domicile}"
+													desc="户籍地址" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -489,6 +528,30 @@
 								</dir>
 								
 								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputTelephone">公司电话：</label>
+											<div class="controls">
+												<input type="text" size="20" id="inputTelephone"
+													name="express.telephone" data-required="true" desc="公司电话"
+													value="${express.telephone}" class=" input-large" />
+											</div>
+										</div>
+									</div>
+									
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="inputAddress">收货地址：</label>
+											<div class="controls">
+												<input type="text" size="20" id="inputAddress"
+													name="express.address" data-required="true" desc="收货地址"
+													value="${express.address}" class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								
+								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
 											<label class="control-label" for="delivergoodsdate">发货日期：</label>
@@ -512,18 +575,6 @@
 									</div>
 								</dir>
 								
-								<dir class="row">
-									<div class="span5 pull-left">
-										<div class="control-group">
-											<label class="control-label" for="inputTelephone">公司电话：</label>
-											<div class="controls">
-												<input type="text" size="20" id="inputTelephone"
-													name="express.telephone" data-required="true" desc="公司电话"
-													value="${express.telephone}" class=" input-large" />
-											</div>
-										</div>
-									</div>
-								</dir>
 							</form>
 						</div>
 

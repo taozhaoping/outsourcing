@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.web.model.InductionModel;
-import com.zh.web.model.TechnologicalProcessModel;
 import com.zh.web.service.TechnologicalProcessService;
 
 public class InductionAction extends BaseAction {

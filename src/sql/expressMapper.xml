@@ -10,6 +10,7 @@
 		<result column="DELIVERGOODSDATE" property="delivergoodsdate"
 			jdbcType="DATE" />
 		<result column="ARRIVEDATE" property="arrivedate" jdbcType="DATE" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
 		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
 	</resultMap>
 	
@@ -34,6 +35,9 @@
 			</if>
 			<if test="arrivedate != null">
 				and ARRIVEDATE = #{arrivedate,jdbcType=DATE}
+			</if>
+			<if test="address != null">
+				and ADDRESS = #{address,jdbcType=VARCHAR}
 			</if>
 			<if test="technologicalprocessid != null">
 				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
@@ -100,6 +104,9 @@
 			<if test="arrivedate != null">
 				ARRIVEDATE,
 			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
 			<if test="technologicalprocessid != null">
 				TECHNOLOGICALPROCESSID,
 			</if>
@@ -122,6 +129,9 @@
 			</if>
 			<if test="arrivedate != null">
 				#{arrivedate,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
 			</if>
 			<if test="technologicalprocessid != null">
 				#{technologicalprocessid},
@@ -146,6 +156,9 @@
 			</if>
 			<if test="arrivedate != null">
 				ARRIVEDATE = #{arrivedate,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
 			</if>
 			<if test="technologicalprocessid != null">
 				TECHNOLOGICALPROCESSID = #{technologicalprocessid},
