@@ -336,7 +336,7 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputWechat">Wechat：</label>
+											<label class="control-label" for="inputWechat">WeChat：</label>
 											<div class="controls">
 												<input type="text" id="inputWechat"	
 													name="technologicalProcess.wechat"										name="technologicalProcess.workuserid"
