@@ -115,13 +115,13 @@
 								<div class="span4">
 									<label class="control-label">创建时间：
 										<input type="text" id="createTimeStart"
-											name=""
-											value="${technologicalProcess.createtime}"
+											name="technologicalProcess.createtimeStart"
+											value="${technologicalProcess.createtimeStart}"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="createTimeEnd"
-											name=""
-											value="${technologicalProcess.createtime}"
+											name="technologicalProcess.createtimeEnd"
+											value="${technologicalProcess.createtimeEnd}"
 											class="form_datetime input-small">
 									</label>
 								</div>
@@ -261,11 +261,10 @@
 		        visiblePages: 10,
 		        currentPage: curPage,
 		        onPageChange: function (num, type) {
-		           if("init"==type)
-		        	{
+		           if("init"==type){
 		        	 	return false;  
 		        	}
-		           $('#curPage').val(num);
+		           	$('#curPage').val(num);
 		        	$('#queryForm').submit();
 		        	//document.getElementsByName("operateForm")[0].submit(); 
 		        }

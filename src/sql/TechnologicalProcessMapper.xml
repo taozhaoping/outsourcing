@@ -117,6 +117,12 @@
 			<if test="createtime != null and createtime != ''">
 				and CREATETIME = #{createtime,jdbcType=VARCHAR}
 			</if>
+			<if test="createtimeStart != null and createtimeStart != ''">
+				and CREATETIME <![CDATA[>=]]> #{createtimeStart,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeEnd != null and createtimeEnd != ''">
+				and CREATETIME <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
+			</if>
 			<if test="updatetime != null">
 				and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
 			</if>
