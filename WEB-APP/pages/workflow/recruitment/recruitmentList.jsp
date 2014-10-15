@@ -43,11 +43,10 @@
 	font-weight: bold;
 }
 </style>
-<link href="<%=path%>/img/favicon_32.ico" rel="bookmark"
-	type="image/x-icon" />
+<link href="<%=path%>/img/favicon_32.ico" rel="bookmark" type="image/x-icon"/>
 <link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" />
-<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon"
-	type="image/x-icon" />
+<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon" type="image/x-icon"/>
+<link rel="stylesheet" href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css"/>
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
@@ -84,10 +83,63 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="row-fluid">
-					<div class="btn-toolbar">
-						
-						<div class="btn-group"></div>
+				
+					<div class="container">
+						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
+							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+							
+							<dir class="row">
+								<div class="span4">
+									<label class="control-label">流程编号：
+										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
+											value="${technologicalProcess.id}" class="input-large">
+										</label>
+								</div>
+								<div class="span4">
+									<label class="control-label">流程描述：
+									<input type="text" id="inputDescription"
+										name="technologicalProcess.description"
+										value="${technologicalProcess.description}"
+										class="input-large">
+										</label>
+								</div>
+							</dir>
+							
+							<dir class="row">
+								<div class="span4">
+									<label class="control-label">当前状态：
+									<input type="text" maxlength="15" id="inputState" name="technologicalProcess.state"
+										value="${technologicalProcess.state}" class="input-large">
+										</label>
+								</div>
+								<div class="span4">
+									<label class="control-label">创建时间：
+										<input type="text" id="createTimeStart"
+											name=""
+											value="${technologicalProcess.createtime}"
+											class="form_datetime input-small">
+											至
+										<input type="text" id="createTimeEnd"
+											name=""
+											value="${technologicalProcess.createtime}"
+											class="form_datetime input-small">
+									</label>
+								</div>
+								
+								<div class="span2">
+									<button class="btn" type="submit">
+										<i class=" icon-search"></i> 搜索
+									</button>
+			
+									<button class="btn" type="button" id="btnClear">
+										<i class="icon-remove"></i> 清除
+									</button>
+								</div>
+							</dir>
+						</form>
 					</div>
+					
+					
 					<div class="well">
 						<table class="table">
 							<thead>
@@ -149,12 +201,15 @@
 			</div>
 		</div>
 	</div>
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
+	
+	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" method="post">
 		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
 	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		var id='${menuId}';
@@ -172,6 +227,29 @@
 			$("#navigation").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
+			
+			//日期控件
+			$(".form_datetime").datetimepicker({
+				language : 'zh-CN',
+				format : 'yyyy-mm-dd',
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : true
+			});
+			
+			//清空按钮
+			$("#btnClear").click(function(){
+				$("#inputId").val("");
+				$("#inputDescription").val("");
+				$("#inputState").val("");
+				$("#createTimeStart").val("");
+				$("#createTimeEnd").val("");
+				$('#curPage').val("");
+			});
 			
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数

@@ -75,11 +75,14 @@
 
 	<sql id="where">
 		<where>
+			<if test="id != null and id != ''">
+				and ID = #{id,jdbcType=VARCHAR}
+			</if>
 			<if test="name != null">
 				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
-			<if test="description != null">
-				and DESCRIPTION = #{description,jdbcType=VARCHAR}
+			<if test="description != null and description !=''">
+				and DESCRIPTION like CONCAT('${description}','%' )
 			</if>
 			<if test="englishname != null">
 				and ENGLISHNAME = #{englishname,jdbcType=VARCHAR}
@@ -93,7 +96,7 @@
 			<if test="birthday != null">
 				and BIRTHDAY = #{birthday,jdbcType=DATE}
 			</if>
-			<if test="state != null">
+			<if test="state != null and state != ''">
 				and STATE = #{state,jdbcType=VARCHAR}
 			</if>
 			<if test="mail != null">
@@ -111,7 +114,7 @@
 			<if test="wechat != null">
 				and WECHAT = #{wechat,jdbcType=VARCHAR}
 			</if>
-			<if test="createtime != null">
+			<if test="createtime != null and createtime != ''">
 				and CREATETIME = #{createtime,jdbcType=VARCHAR}
 			</if>
 			<if test="updatetime != null">
