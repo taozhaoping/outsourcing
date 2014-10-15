@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_EntryProcess">
+	<resultMap id="T_EntryProcess" type="EntryProcess">
+		<id column="ID" property="id" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="ENGLISHNAME" property="englishname" jdbcType="VARCHAR" />
+		<result column="NATIONALITY" property="nationality" jdbcType="VARCHAR" />
+		<result column="YEARBIRTH" property="yearbirth" jdbcType="VARCHAR" />
+		<result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="MAIL" property="mail" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		
+		<result column="DOMICILE" property="domicile" jdbcType="VARCHAR" />
+		<result column="SKYPE" property="skype" jdbcType="VARCHAR" />
+		<result column="WECHAT" property="wechat" jdbcType="VARCHAR" />
+		
+		<result column="CREATETIME" property="createtime" jdbcType="VARCHAR" />
+		<result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
+		<result column="WORKUSERID" property="workuserid" />
+		<result column="CONTRACTTYPE" property="contracttype" jdbcType="VARCHAR" />
+		<result column="PASSPORTNO" property="passportno" jdbcType="VARCHAR" />
+		<result column="PASSPORTNODATE" property="passportnodate" jdbcType="VARCHAR" />
+		<result column="CONTRACTDATE" property="contractdate" jdbcType="VARCHAR" />
+		<result column="CURRENTLOCATION" property="currentlocation" jdbcType="VARCHAR" />
+		<result column="WORKFLOWID" property="workflowid" jdbcType="VARCHAR" />
+		
+		<result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+		<result column="TASKID" property="taskId" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		
+		<result column="RES1" property="res1" jdbcType="VARCHAR" />
+		<result column="RES2" property="res2" jdbcType="VARCHAR" />
+		<result column="RES3" property="res3" jdbcType="VARCHAR" />
+		<result column="RES4" property="res4" jdbcType="VARCHAR" />
+		<result column="RES5" property="res5" jdbcType="VARCHAR" />
+		<result column="RES6" property="res6" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID,
+		DESCRIPTION,
+		NAME, 
+		ENGLISHNAME, 
+		NATIONALITY, 
+		YEARBIRTH,
+		BIRTHDAY,
+		STATE, 
+		MAIL,
+		PHONE,
+		DOMICILE,
+		SKYPE,
+		WECHAT,
+		CREATETIME,
+		UPDATETIME, 
+		WORKUSERID, 
+		CONTRACTTYPE,
+		PASSPORTNO, 
+		PASSPORTNODATE, 
+		CONTRACTDATE,
+		CURRENTLOCATION,
+		WORKFLOWID,
+		APPROVER,
+		TASKID,
+		URL,
+		RES1, 
+		RES2, 
+		RES3, 
+		RES4, 
+		RES5, 
+		RES6
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="name != null">
+				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				and DESCRIPTION = #{description,jdbcType=VARCHAR}
+			</if>
+			<if test="englishname != null">
+				and ENGLISHNAME = #{englishname,jdbcType=VARCHAR}
+			</if>
+			<if test="nationality != null">
+				and NATIONALITY = #{nationality,jdbcType=VARCHAR}
+			</if>
+			<if test="yearbirth != null">
+				and YEARBIRTH = #{yearbirth,jdbcType=VARCHAR}
+			</if>
+			<if test="birthday != null">
+				and BIRTHDAY = #{birthday,jdbcType=DATE}
+			</if>
+			<if test="state != null">
+				and STATE = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="mail != null">
+				and MAIL = #{mail,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and PHONE = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="domicile != null">
+				and DOMICILE = #{domicile,jdbcType=VARCHAR}
+			</if>
+			<if test="skype != null">
+				and SKYPE = #{skype,jdbcType=VARCHAR}
+			</if>
+			<if test="wechat != null">
+				and WECHAT = #{wechat,jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				and CREATETIME = #{createtime,jdbcType=VARCHAR}
+			</if>
+			<if test="updatetime != null">
+				and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
+			</if>
+			<if test="workuserid != null">
+				and WORKUSERID = #{workuserid}
+			</if>
+			<if test="contracttype != null">
+				and CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR}
+			</if>
+			<if test="passportno != null">
+				and PASSPORTNO = #{passportno,jdbcType=VARCHAR}
+			</if>
+			<if test="passportnodate != null">
+				and PASSPORTNODATE = #{passportnodate,jdbcType=VARCHAR}
+			</if>
+			<if test="contractdate != null">
+				and CONTRACTDATE = #{contractdate,jdbcType=VARCHAR}
+			</if>
+			<if test="currentlocation != null">
+				and CURRENTLOCATION = #{currentlocation,jdbcType=VARCHAR}
+			</if>
+			<if test="workflowid != null">
+				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR}
+			</if>
+			<if test="approver != null">
+				and APPROVER = #{approver, jdbcType=VARCHAR}
+			</if>
+			<if test="taskId != null">
+				and TASKID = #{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				and URL = #{url,jdbcType=VARCHAR}
+			</if>
+			<if test="res1 != null">
+				and RES1 = #{res1,jdbcType=VARCHAR}
+			</if>
+			<if test="res2 != null">
+				and RES2 = #{res2,jdbcType=VARCHAR}
+			</if>
+			<if test="res3 != null">
+				and RES3 = #{res3,jdbcType=VARCHAR}
+			</if>
+			<if test="res4 != null">
+				and RES4 = #{res4,jdbcType=VARCHAR}
+			</if>
+			<if test="res5 != null">
+				and RES5 = #{res5,jdbcType=VARCHAR}
+			</if>
+			<if test="res6 != null">
+				and RES6 = #{res6,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+	<select id="count" resultType="Integer" parameterType="EntryProcess">
+		select
+		count(id)
+		from t_Entry_Process
+		<include refid="where" />
+	</select>
+
+	<select id="select" resultMap="T_EntryProcess" parameterType="EntryProcess">
+		select
+		<include refid="Base_Column_List" />
+		from t_Entry_Process
+		where ID = #{id}
+	</select>
+
+	<select id="list" resultMap="T_EntryProcess" parameterType="EntryProcess">
+		select
+		<include refid="Base_Column_List" />
+		from t_Entry_Process
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="EntryProcess">
+		delete from
+		t_Entry_Process
+		where ID = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="EntryProcess">
+		<!-- 
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_Technological.nextval from dual
+		</selectKey>
+		 -->
+		insert into t_Entry_Process
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="englishname != null">
+				ENGLISHNAME,
+			</if>
+			<if test="nationality != null">
+				NATIONALITY,
+			</if>
+			<if test="yearbirth != null">
+				YEARBIRTH,
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="mail != null">
+				MAIL,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="domicile != null">
+				DOMICILE,
+			</if>
+			<if test="skype != null">
+				SKYPE,
+			</if>
+			<if test="wechat != null">
+				WECHAT,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME,
+			</if>
+			<if test="workuserid != null">
+				WORKUSERID,
+			</if>
+			<if test="contracttype != null">
+				CONTRACTTYPE,
+			</if>
+			<if test="passportno != null">
+				PASSPORTNO,
+			</if>
+			<if test="passportnodate != null">
+				PASSPORTNODATE,
+			</if>
+			<if test="contractdate != null">
+				CONTRACTDATE,
+			</if>
+			<if test="currentlocation != null">
+				CURRENTLOCATION,
+			</if>
+			<if test="workflowid != null">
+				WORKFLOWID,
+			</if>
+			<if test="approver != null">
+				APPROVER,
+			</if>
+			<if test="taskId != null">
+				TASKID,
+			</if>
+			<if test="url != null">
+				URL,
+			</if>
+			<if test="res1 != null">
+				RES1,
+			</if>
+			<if test="res2 != null">
+				RES2,
+			</if>
+			<if test="res3 != null">
+				RES3,
+			</if>
+			<if test="res4 != null">
+				RES4,
+			</if>
+			<if test="res5 != null">
+				RES5,
+			</if>
+			<if test="res6 != null">
+				RES6,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null">
+				#{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="nationality != null">
+				#{nationality,jdbcType=VARCHAR},
+			</if>
+			<if test="yearbirth != null">
+				#{yearbirth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				#{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="skype != null">
+				#{skype,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				#{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="workuserid != null">
+				#{workuserid},
+			</if>
+			<if test="contracttype != null">
+				#{contracttype,jdbcType=VARCHAR},
+			</if>
+			<if test="passportno != null">
+				#{passportno,jdbcType=VARCHAR},
+			</if>
+			<if test="passportnodate != null">
+				#{passportnodate,jdbcType=VARCHAR},
+			</if>
+			<if test="contractdate != null">
+				#{contractdate,jdbcType=VARCHAR},
+			</if>
+			<if test="currentlocation != null">
+				#{currentlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="workflowid != null">
+				#{workflowid,jdbcType=VARCHAR},
+			</if>
+			<if test="approver != null">
+				#{approver, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				#{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="res1 != null">
+				#{res1,jdbcType=VARCHAR},
+			</if>
+			<if test="res2 != null">
+				#{res2,jdbcType=VARCHAR},
+			</if>
+			<if test="res3 != null">
+				#{res3,jdbcType=VARCHAR},
+			</if>
+			<if test="res4 != null">
+				#{res4,jdbcType=VARCHAR},
+			</if>
+			<if test="res5 != null">
+				#{res5,jdbcType=VARCHAR},
+			</if>
+			<if test="res6 != null">
+				#{res6,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="EntryProcess">
+		update t_Entry_Process
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="englishname != null">
+				ENGLISHNAME = #{englishname,jdbcType=VARCHAR},
+			</if>
+			<if test="nationality != null">
+				NATIONALITY = #{nationality,jdbcType=VARCHAR},
+			</if>
+			<if test="yearbirth != null">
+				YEARBIRTH = #{yearbirth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				MAIL = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				DOMICILE = #{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="skype != null">
+				SKYPE = #{skype,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				WECHAT = #{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="workuserid != null">
+				WORKUSERID = #{workuserid},
+			</if>
+			<if test="contracttype != null">
+				CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR},
+			</if>
+			<if test="passportno != null">
+				PASSPORTNO = #{passportno,jdbcType=VARCHAR},
+			</if>
+			<if test="passportnodate != null">
+				PASSPORTNODATE = #{passportnodate,jdbcType=VARCHAR},
+			</if>
+			<if test="contractdate != null">
+				CONTRACTDATE = #{contractdate,jdbcType=VARCHAR},
+			</if>
+			<if test="currentlocation != null">
+				CURRENTLOCATION = #{currentlocation,jdbcType=VARCHAR},
+			</if>
+			<if test="workflowid != null">
+				WORKFLOWID = #{workflowid,jdbcType=VARCHAR},
+			</if>
+			<if test="approver != null">
+				APPROVER = #{approver, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				TASKID = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="res1 != null">
+				RES1 = #{res1,jdbcType=VARCHAR},
+			</if>
+			<if test="res2 != null">
+				RES2 = #{res2,jdbcType=VARCHAR},
+			</if>
+			<if test="res3 != null">
+				RES3 = #{res3,jdbcType=VARCHAR},
+			</if>
+			<if test="res4 != null">
+				RES4 = #{res4,jdbcType=VARCHAR},
+			</if>
+			<if test="res5 != null">
+				RES5 = #{res5,jdbcType=VARCHAR},
+			</if>
+			<if test="res6 != null">
+				RES6 = #{res6,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+</mapper>

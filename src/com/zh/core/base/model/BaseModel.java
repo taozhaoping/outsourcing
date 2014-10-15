@@ -56,22 +56,6 @@ public class BaseModel {
 	 * 传入的json格式列表
 	 */
 	private String jsonList;
-	
-	public String getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(String menuId) {
-		this.menuId = menuId;
-	}
-
-	public String getMenu2Id() {
-		return menu2Id;
-	}
-
-	public void setMenu2Id(String menu2Id) {
-		this.menu2Id = menu2Id;
-	}
 
 	public Pager getPageInfo() {
 		return pageInfo;
@@ -89,30 +73,6 @@ public class BaseModel {
 		this.jsonIDString = jsonIDString;
 	}
 
-	public String getView() {
-		return view;
-	}
-
-	public void setView(String view) {
-		this.view = view;
-	}
-
-	public String getReultObject() {
-		return reultObject;
-	}
-
-	public void setReultObject(String reultObject) {
-		this.reultObject = reultObject;
-	}
-
-	public Map<String, Object> getDataMap() {
-		return dataMap;
-	}
-
-	public void setDataMap(Map<String, Object> dataMap) {
-		this.dataMap = dataMap;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -121,12 +81,20 @@ public class BaseModel {
 		this.id = id;
 	}
 
-	public String getEnabled() {
-		return enabled;
+	public String getMenuId() {
+		return menuId;
 	}
 
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+
+	public String getMenu2Id() {
+		return menu2Id;
+	}
+
+	public void setMenu2Id(String menu2Id) {
+		this.menu2Id = menu2Id;
 	}
 
 	public String getToken() {
@@ -137,12 +105,44 @@ public class BaseModel {
 		this.token = token;
 	}
 
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getView() {
+		return view;
+	}
+
+	public void setView(String view) {
+		this.view = view;
+	}
+
 	public String getTabID() {
 		return tabID;
 	}
 
 	public void setTabID(String tabID) {
 		this.tabID = tabID;
+	}
+
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
+	}
+
+	public String getReultObject() {
+		return reultObject;
+	}
+
+	public void setReultObject(String reultObject) {
+		this.reultObject = reultObject;
 	}
 
 	public String getJsonList() {

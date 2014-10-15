@@ -13,6 +13,7 @@ drop table T_Personnel_Record cascade constraints;
 drop table t_TechnologicalProcess cascade constraints;
 drop table t_TrainCourse cascade constraints;
 drop table t_trainingOfPersonnel cascade constraints;
+drop table t_Entry_Process cascade constraints;
 
 drop sequence SEQUENCE_t_Activities;
 drop sequence SEQUENCE_t_ActivitiesUser;
@@ -366,6 +367,42 @@ create table t_TechnologicalProcess
    res5               VARCHAR(150),        --扩展字段5
    res6               VARCHAR(150),        --扩展字段6
    constraint PK_TECHNOLOGICALPROCESS primary key (id)
+);
+
+/*==============================================================*/
+/* Table: t_Entry_Process  入职流程                                */
+/*==============================================================*/
+create table t_Entry_Process
+(
+   id                 NUMBER               not null,
+   description		  varchar(200),		   --描述
+   name               VARCHAR(25),         --姓名
+   englishName        VARCHAR(25),         --英文名
+   Nationality        VARCHAR(20),         --国籍
+   yearBirth          VARCHAR(6),          --出生年份
+   Birthday           DATE,                --生日
+   state              VARCHAR(12),          --状态
+   mail               VARCHAR(25),         --电子邮件
+   Phone              VARCHAR(20),         --手机号码
+   createTime         VARCHAR(20),         --创建日期
+   updateTime         VARCHAR(20),         --修改日期
+   workUserId         NUMBER,              --流程发起人
+   contractType       VARCHAR(2),          --合同种类
+   PassportNo         VARCHAR(30),         --护照号
+   PassportNoDate     VARCHAR(20),         --护照有效期
+   contractDate       VARCHAR(20),         --合同有效期
+   currentLocation    VARCHAR(20),         --目前所在地
+   workflowId         VARCHAR(64),         --流水号
+   approver			  VARCHAR(150),		   --当前审批人
+   taskId			  VARCHAR(50),         --当前任务id
+   url				  VARCHAR(150),        --表单的url
+   res1               VARCHAR(150),        --扩展字段1
+   res2               VARCHAR(150),        --扩展字段2
+   res3               VARCHAR(150),        --扩展字段3
+   res4               VARCHAR(150),        --扩展字段4
+   res5               VARCHAR(150),        --扩展字段5
+   res6               VARCHAR(150),        --扩展字段6
+   constraint PK_Entry_Process primary key (id)
 );
 
 /*==============================================================*/

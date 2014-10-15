@@ -134,4 +134,28 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return str;
 	}
 
+	public UserInfoDAO getUserInfoDAO() {
+		return userInfoDAO;
+	}
+
+	public void setUserInfoDAO(UserInfoDAO userInfoDAO) {
+		this.userInfoDAO = userInfoDAO;
+	}
+
+	public UserNameDao getUserNameDao() {
+		return userNameDao;
+	}
+
+	public void setUserNameDao(UserNameDao userNameDao) {
+		this.userNameDao = userNameDao;
+	}
+
+	public IdentityService getIdentityService() {
+		return identityService;
+	}
+
+	public void setIdentityService(IdentityService identityService) {
+		this.identityService = identityService;
+	}
+
 }
