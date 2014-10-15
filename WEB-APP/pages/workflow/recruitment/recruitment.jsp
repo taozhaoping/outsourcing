@@ -4,7 +4,6 @@
 <%
 	String path = request.getContextPath();
 %>
-<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,7 +59,6 @@
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%>
-	<jsp:useBean id="userNameQuery" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 
 	<div class="content">
 		<div class="header">
@@ -366,8 +364,8 @@
 											<div class="controls">
 												<s:set id="userNameid" value="technologicalProcess.workuserid"></s:set>
 												<input type="text" id="inputWorkuserid" disabled="disabled"
-													name="technologicalProcess.workuserid"
-													value=<%=userNameQuery.queryUserName(request.getAttribute("userNameid").toString()) %>
+													name="technologicalProcess.workUserName"
+													value="${technologicalProcess.workUserName}"
 													readonly class="input-large">
 											</div>
 										</div>

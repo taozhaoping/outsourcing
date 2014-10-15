@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.zh.base.dao.UserInfoDAO;
+import com.zh.base.model.bean.User;
 import com.zh.core.model.Pager;
 import com.zh.web.dao.TechnologicalProcessDao;
 import com.zh.web.model.bean.TechnologicalProcess;
@@ -16,10 +18,18 @@ public class TechnologicalProcessServiceImpl implements
 	
 	@Autowired
 	private TechnologicalProcessDao technologicalProcessDao;
+	
+	@Autowired
+	private UserInfoDAO userInfoDAO;
 
 	@Override
 	public TechnologicalProcess query(TechnologicalProcess technologicalProcess) {
-		return technologicalProcessDao.query(technologicalProcess);
+		TechnologicalProcess tp = technologicalProcessDao.query(technologicalProcess);
+		User user = new User();
+		user.setId(Integer.valueOf(tp.getWorkuserid()));
+		User reult = userInfoDAO.query(user);
+		tp.setWorkUserName(reult.getName());
+		return tp;
 	}
 
 	@Override
@@ -31,7 +41,7 @@ public class TechnologicalProcessServiceImpl implements
 	public List<TechnologicalProcess> queryList(TechnologicalProcess technologicalProcess) {
 		// TODO Auto-generated method stub
 		//排序-创建时间，降序
-				technologicalProcess.setOrderByClause("CREATETIME DESC");
+		technologicalProcess.setOrderByClause("CREATETIME DESC");
 		return technologicalProcessDao.queryList(technologicalProcess);
 	}
 
@@ -39,8 +49,15 @@ public class TechnologicalProcessServiceImpl implements
 	public List<TechnologicalProcess> queryList(TechnologicalProcess technologicalProcess,
 			Pager page) {
 		//排序-创建时间，降序
-				technologicalProcess.setOrderByClause("CREATETIME DESC");
-		return technologicalProcessDao.queryPageList(technologicalProcess, page);
+		technologicalProcess.setOrderByClause("CREATETIME DESC");
+		List<TechnologicalProcess> retList = technologicalProcessDao.queryPageList(technologicalProcess, page);
+		for(TechnologicalProcess tp : retList){
+			User user = new User();
+			user.setId(Integer.valueOf(tp.getWorkuserid()));
+			User reult = userInfoDAO.query(user);
+			tp.setWorkUserName(reult.getName());
+		}
+		return retList;
 	}
 
 	@Override
