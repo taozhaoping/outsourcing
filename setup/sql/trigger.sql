@@ -25,8 +25,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATEDATE := createDate;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
@@ -36,7 +36,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
@@ -68,8 +68,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATEDATE := createDate;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
@@ -79,7 +79,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
@@ -111,8 +111,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATEDATE := createDate;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
@@ -122,7 +122,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
@@ -154,8 +154,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATEDATE := createDate;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
@@ -165,7 +165,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
@@ -326,8 +326,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATETIME := createDate;
     :new.UPDATETIME := modifyDate;
     EXCEPTION
@@ -337,7 +337,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATETIME := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
@@ -369,8 +369,8 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into createDate from dual;
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.CREATEDATE := createDate;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
@@ -380,7 +380,7 @@ IF INSERTING THEN
 END IF;
 IF UPDATING THEN
   BEGIN
-    select TO_CHAR(SYSDATE,'YYYY/MM/DD HH24:MI:SS') into modifyDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
     :new.UPDATEDATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
