@@ -82,12 +82,12 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 				
-					<div class="container">
+					<div>
 						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
 							
 							<dir class="row">
-								<div class="span4">
+								<div class="span5">
 									<label class="control-label">流程编号：
 										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
 											value="${technologicalProcess.id}" class="input-large">
@@ -104,7 +104,7 @@
 							</dir>
 							
 							<dir class="row">
-								<div class="span4">
+								<div class="span5">
 									<label class="control-label">当前状态：
 									<input type="text" maxlength="15" id="inputState" name="technologicalProcess.state"
 										value="${technologicalProcess.state}" class="input-large">
@@ -124,7 +124,7 @@
 									</label>
 								</div>
 								
-								<div class="span2">
+								<div class="span3">
 									<button class="btn" type="button" id="btnSubmit">
 										<i class=" icon-search"></i> 搜索
 									</button>
