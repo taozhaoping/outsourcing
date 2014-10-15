@@ -125,7 +125,7 @@
 								</div>
 								
 								<div class="span2">
-									<button class="btn" type="submit">
+									<button class="btn" type="button" id="btnSubmit">
 										<i class=" icon-search"></i> 搜索
 									</button>
 			
@@ -233,6 +233,12 @@
 				startView : 2,
 				minView : 2,
 				forceParse : true
+			});
+			
+			//提交按钮
+			$("#btnSubmit").click(function(){
+				$('#curPage').val("");
+				$('#queryForm').submit();
 			});
 			
 			//清空按钮
