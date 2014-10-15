@@ -236,7 +236,7 @@
 												<input type="text" id="inputyearbirth"
 													name="technologicalProcess.yearbirth"
 													value="${technologicalProcess.yearbirth}"
-													data-required="true" desc="出生年份" class="input-large">
+													data-required="true" data-pattern="^[0-9]{4}$" desc="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -317,6 +317,7 @@
 												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail"
 													value="${technologicalProcess.mail}" data-required="true"
+													data-pattern="^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$"
 													desc="电子邮箱" class="input-large">
 											</div>
 										</div>
