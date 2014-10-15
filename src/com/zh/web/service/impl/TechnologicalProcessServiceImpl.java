@@ -53,9 +53,23 @@ public class TechnologicalProcessServiceImpl implements
 		List<TechnologicalProcess> retList = technologicalProcessDao.queryPageList(technologicalProcess, page);
 		for(TechnologicalProcess tp : retList){
 			User user = new User();
+			//创建者
 			user.setId(Integer.valueOf(tp.getWorkuserid()));
 			User reult = userInfoDAO.query(user);
-			tp.setWorkUserName(reult.getName());
+			if(null != reult){
+				tp.setWorkUserName(reult.getName());
+			}
+			//当前审批者
+			String approver = tp.getApprover();
+			if(null != approver && !"".equals(approver.trim())){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					tp.setApprover(ret.getName());
+				}
+			}
+			
 		}
 		return retList;
 	}
