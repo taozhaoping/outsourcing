@@ -63,7 +63,7 @@ public class InductionAction extends BaseAction {
 	private InductionModel inductionModel = new InductionModel();
 
 	private static Logger LOGGER = LoggerFactory
-			.getLogger(RecruitmentAction.class);
+			.getLogger(InductionAction.class);
 
 	@Autowired
 	private EntryProcessService entryProcessService;
@@ -355,7 +355,7 @@ public class InductionAction extends BaseAction {
 		variables.put("nextAssignee", assignee);
 
 		ProcessInstance processInstance = runtimeService
-				.startProcessInstanceByKey("recruitment", businessKey,
+				.startProcessInstanceByKey("induction", businessKey,
 						variables);
 
 		// 流程id
@@ -462,7 +462,7 @@ public class InductionAction extends BaseAction {
 							processInstance.getProcessDefinitionId())
 					.singleResult();
 
-			String resourceName = "recruitment.png";
+			String resourceName = "induction.png";
 			/*
 			 * if (resourceType.equals("image")) { resourceName =
 			 * processDefinition.getDiagramResourceName(); } else if

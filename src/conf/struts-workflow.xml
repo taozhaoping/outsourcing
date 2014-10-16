@@ -11,7 +11,30 @@
 	<package name="workflow" namespace="/workflow" extends="struts-base">
 		<!-- 外教入职流程-->
 		<action name="induction" class="com.zh.web.action.InductionAction" method="execute">
-			<result name="success">/pages/workflow/induction/induction.jsp</result>
+			<result name="success">/pages/workflow/induction/inductionList.jsp</result>
+			
+			<result name="editor">/pages/workflow/induction/induction.jsp</result>
+			 
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">induction</param>  
+    			<param name="namespace">/workflow</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+    			<param name="formId">${formId}</param>
+    			<param name="tabID">${tabID}</param>
+			</result>
+			<result name="createSuccess" type="redirectAction">
+				<param name="actionName">induction</param>  
+    			<param name="namespace">/workflow</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+			
+			<!-- 审核当前状态的必填字段 -->
+			<result name="audit" type="json">
+				<param name="root">inductionModel.auditRet</param>
+			</result>
 		</action>
 		
 		<!-- 外事招聘流程 -->
