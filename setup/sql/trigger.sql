@@ -350,6 +350,50 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_TECHNOLOGICALPRO
 END;
 /
 
+
+prompt
+prompt Creating trigger ENTRY_PROCESS_T
+prompt =======================================
+prompt
+CREATE OR REPLACE TRIGGER ENTRY_PROCESS_T
+BEFORE DELETE OR INSERT OR UPDATE
+ON T_ENTRY_PROCESS
+FOR EACH ROW
+DECLARE
+createDate    varchar2(20);
+modifyDate    varchar2(20);
+BEGIN
+IF DELETING THEN
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Delete Trigger Operation in table T_ENTRY_PROCESS');
+  END;
+END IF;
+IF INSERTING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
+    :new.CREATETIME := createDate;
+    :new.UPDATETIME := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_ENTRY_PROCESS');
+  END;
+END IF;
+IF UPDATING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
+    :new.UPDATETIME := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Update Trigger Operation in table T_ENTRY_PROCESS');
+  END;
+END IF;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ENTRY_PROCESS');
+END;
+/
+
 prompt
 prompt Creating trigger TRAINCOURSE_T
 prompt ==============================
