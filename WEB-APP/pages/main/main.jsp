@@ -94,39 +94,38 @@
 				<div class="row-fluid">
 					<div class="alert alert-info">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>Just a quick note:</strong> Hope you like the theme!
+						<strong>预约提醒：</strong> 今天预约人数8人!
 					</div>
 
 					<div class="block">
-						<a href="#page-stats" class="block-heading" data-toggle="collapse">Latest
-							Stats</a>
+						<a href="#page-stats" class="block-heading" data-toggle="collapse">信息统计</a>
 						<div id="page-stats" class="block-body collapse in">
 							<div class="stat-widget-container">
 								<div class="stat-widget">
 									<div class="stat-button">
-										<p class="title">2,500</p>
-										<p class="detail">Accounts</p>
+										<p class="title">500</p>
+										<p class="detail">外派员工</p>
 									</div>
 								</div>
 
 								<div class="stat-widget">
 									<div class="stat-button">
-										<p class="title">3,299</p>
-										<p class="detail">Subscribers</p>
+										<p class="title">299</p>
+										<p class="detail">未外派员工</p>
 									</div>
 								</div>
 
 								<div class="stat-widget">
 									<div class="stat-button">
-										<p class="title">$1,500</p>
-										<p class="detail">Pending</p>
+										<p class="title">87</p>
+										<p class="detail">正在签约</p>
 									</div>
 								</div>
 
 								<div class="stat-widget">
 									<div class="stat-button">
-										<p class="title">$12,675</p>
-										<p class="detail">Completed</p>
+										<p class="title">636</p>
+										<p class="detail">签约合同</p>
 									</div>
 								</div>
 
@@ -211,7 +210,7 @@
 							<span class="block-icon pull-right"> <a href="#"
 								class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i
 									class="icon-refresh"></i></a>
-							</span> <a href="#widget2container" data-toggle="collapse">待处理任务</a>
+							</span> <a href="#widget2container" data-toggle="collapse">新入职员工</a>
 						</div>
 						<div id="widget2container" class="block-body collapse in">
 							<table class="table list">
@@ -237,7 +236,7 @@
 						</div>
 					</div>
 					<div class="block span6">
-						<p class="block-heading">Not Collapsible</p>
+						<p class="block-heading">员工合同到期</p>
 						<div class="block-body">
 							<h2>Built with Less</h2>
 							<p>The CSS is built with Less. There is a compiled version
