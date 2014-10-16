@@ -338,7 +338,7 @@
 											<label class="control-label" for="inputWechat">WeChat：</label>
 											<div class="controls">
 												<input type="text" id="inputWechat"	
-													name="technologicalProcess.wechat"										name="technologicalProcess.workuserid"
+													name="technologicalProcess.wechat"
 													value="${technologicalProcess.wechat}"
 													class="input-large">
 											</div>

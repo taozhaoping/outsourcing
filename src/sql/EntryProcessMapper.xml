@@ -199,11 +199,11 @@
 	</delete>
 
 	<insert id="insert" parameterType="EntryProcess">
-		<!-- 
+		
 		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
 			select SEQUENCE_t_Technological.nextval from dual
 		</selectKey>
-		 -->
+		 
 		insert into t_Entry_Process
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
