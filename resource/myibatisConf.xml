@@ -38,6 +38,17 @@
 		<typeAlias alias="FileInfo" type="com.zh.web.model.bean.FileInfo" />
 		<typeAlias alias="Flight" type="com.zh.web.model.bean.Flight" />
 		<typeAlias alias="Express" type="com.zh.web.model.bean.Express" />
+
+		<!-- 公司活动 -->
+		<typeAlias alias="Activities" type="com.zh.web.model.bean.Activities" />
+		<!-- 酒店信息 -->
+		<typeAlias alias="Hotel" type="com.zh.web.model.bean.Hotel" />
+		<!-- 体检信息 -->
+		<typeAlias alias="PhysicalExam" type="com.zh.web.model.bean.PhysicalExam" />
+		<!-- 培训课程 -->
+		<typeAlias alias="TrainCourse" type="com.zh.web.model.bean.TrainCourse" />
+		
+		
 	</typeAliases>
 
 	<plugins>

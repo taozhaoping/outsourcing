@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_TRAINCOURSE" >
+ 
+<resultMap id="T_TrainCourse" type="TrainCourse" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="TRAINTYPE" property="traintype" jdbcType="VARCHAR" />
+    <result column="SCHEDULEDATE" property="scheduledate" jdbcType="DATE" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="COURSEDATE" property="coursedate" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, 
+    TRAINTYPE, 
+    SCHEDULEDATE, 
+    ADDRESS, 
+    COURSEDATE, 
+    DESCRIPTION, 
+    NAME, 
+    USERID, 
+    CREATEDATE, 
+    UPDATEDATE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_TRAINCOURSE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_TRAINCOURSE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  
+  <insert id="insert" parameterType="TrainCourse" >
+    insert into T_TRAINCOURSE (ID, TRAINTYPE, SCHEDULEDATE, 
+      ADDRESS, COURSEDATE, DESCRIPTION, 
+      NAME, USERID, CREATEDATE, 
+      UPDATEDATE)
+    values (#{id,jdbcType=DECIMAL}, #{traintype,jdbcType=VARCHAR}, #{scheduledate,jdbcType=DATE}, 
+      #{address,jdbcType=VARCHAR}, #{coursedate,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{userid,jdbcType=DECIMAL}, #{createdate,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="TrainCourse" >
+    insert into T_TRAINCOURSE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="traintype != null" >
+        TRAINTYPE,
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="coursedate != null" >
+        COURSEDATE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="traintype != null" >
+        #{traintype,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="coursedate != null" >
+        #{coursedate,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="TrainCourse" >
+    update T_TRAINCOURSE
+    <set >
+      <if test="traintype != null" >
+        TRAINTYPE = #{traintype,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="coursedate != null" >
+        COURSEDATE = #{coursedate,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="TrainCourse" >
+    update T_TRAINCOURSE
+    set TRAINTYPE = #{traintype,jdbcType=VARCHAR},
+      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      COURSEDATE = #{coursedate,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=DECIMAL},
+      CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

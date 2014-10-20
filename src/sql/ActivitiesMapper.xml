@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_ACTIVITIES" >
+
+  <resultMap id="T_Activities" type="Activities" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
+    <result column="SETTIME" property="setTime" jdbcType="VARCHAR" />
+    <result column="SETPLACE" property="setPlace" jdbcType="VARCHAR" />
+    <result column="SCHEDULETIME" property="scheduleTime" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="DECIMAL" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, 
+    NAME, 
+    DESCRIPTION, 
+    SCHEDULEDATE, 
+    SETTIME, 
+    SETPLACE, 
+    SCHEDULETIME, 
+    USERID, 
+    TELEPHONE, 
+    CREATEDATE, 
+    UPDATEDATE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="T_Activities" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_ACTIVITIES
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_ACTIVITIES
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  
+  <insert id="insert" parameterType="Activities" >
+    insert into T_ACTIVITIES (
+      ID, 
+      NAME, 
+      DESCRIPTION, 
+      SCHEDULEDATE, 
+      SETTIME, 
+      SETPLACE, 
+      SCHEDULETIME, 
+      USERID, 
+      TELEPHONE, 
+      CREATEDATE, 
+      UPDATEDATE
+      )values (
+      #{id,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, 
+      #{scheduledate,jdbcType=DATE}, 
+      #{settime,jdbcType=VARCHAR}, 
+      #{setplace,jdbcType=VARCHAR}, 
+      #{scheduletime,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=DECIMAL}, 
+      #{telephone,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="Activities" >
+    insert into T_ACTIVITIES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE,
+      </if>
+      <if test="settime != null" >
+        SETTIME,
+      </if>
+      <if test="setplace != null" >
+        SETPLACE,
+      </if>
+      <if test="scheduletime != null" >
+        SCHEDULETIME,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="settime != null" >
+        #{settime,jdbcType=VARCHAR},
+      </if>
+      <if test="setplace != null" >
+        #{setplace,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduletime != null" >
+        #{scheduletime,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="Activities" >
+    update T_ACTIVITIES
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="settime != null" >
+        SETTIME = #{settime,jdbcType=VARCHAR},
+      </if>
+      <if test="setplace != null" >
+        SETPLACE = #{setplace,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduletime != null" >
+        SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="Activities" >
+    update T_ACTIVITIES
+    set NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      SETTIME = #{settime,jdbcType=VARCHAR},
+      SETPLACE = #{setplace,jdbcType=VARCHAR},
+      SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=DECIMAL},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

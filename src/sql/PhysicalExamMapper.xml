@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_PHYSICALEXAMINATION" >
+
+  <resultMap id="T_PhysicalExam" type="PhysicalExam" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="SCHEDULEDATE" property="scheduledate" jdbcType="DATE" />
+    <result column="RECEIVEDATE" property="receivedate" jdbcType="DATE" />
+    <result column="TECHNOLOGICALPROCESSID" property="technologicalProcessId" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, 
+    NAME, 
+    ADDRESS, 
+    TELEPHONE, 
+    REMARKS, 
+    TYPE, 
+    SCHEDULEDATE, 
+    RECEIVEDATE, 
+    TECHNOLOGICALPROCESSID
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="T_PhysicalExam" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PHYSICALEXAMINATION
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_PHYSICALEXAMINATION
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  
+  <insert id="insert" parameterType="PhysicalExam" >
+    insert into T_PHYSICALEXAMINATION (ID, NAME, ADDRESS, 
+      TELEPHONE, REMARKS, TYPE, 
+      SCHEDULEDATE, RECEIVEDATE, TECHNOLOGICALPROCESSID
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{scheduledate,jdbcType=DATE}, #{receivedate,jdbcType=DATE}, #{technologicalprocessid,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="PhysicalExam" >
+    insert into T_PHYSICALEXAMINATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE,
+      </if>
+      <if test="receivedate != null" >
+        RECEIVEDATE,
+      </if>
+      <if test="technologicalprocessid != null" >
+        TECHNOLOGICALPROCESSID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="receivedate != null" >
+        #{receivedate,jdbcType=DATE},
+      </if>
+      <if test="technologicalprocessid != null" >
+        #{technologicalprocessid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="PhysicalExam" >
+    update T_PHYSICALEXAMINATION
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledate != null" >
+        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      </if>
+      <if test="receivedate != null" >
+        RECEIVEDATE = #{receivedate,jdbcType=DATE},
+      </if>
+      <if test="technologicalprocessid != null" >
+        TECHNOLOGICALPROCESSID = #{technologicalprocessid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="PhysicalExam" >
+    update T_PHYSICALEXAMINATION
+    set NAME = #{name,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      RECEIVEDATE = #{receivedate,jdbcType=DATE},
+      TECHNOLOGICALPROCESSID = #{technologicalprocessid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
