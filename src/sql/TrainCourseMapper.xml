@@ -28,7 +28,7 @@
     UPDATEDATE
   </sql>
   
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+  <select id="selectByPrimaryKey" resultMap="T_TrainCourse" parameterType="java.math.BigDecimal" >
     select 
     <include refid="Base_Column_List" />
     from T_TRAINCOURSE
