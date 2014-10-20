@@ -138,9 +138,12 @@
 							<li><a id="certificatesButt" href="#certificates"
 								data-toggle="tab">证件信息</a></li>
 							<li><a id="flightButt" href="#flight" data-toggle="tab">航班信息</a></li>
-							<li><a id="expressButt" href="#express" data-toggle="tab">快递信息</a></li>
-							<li><a id="workflowTabButt" href="#workflowTab"
-								data-toggle="tab">工作流</a></li>
+							<li><a id="hotelButt" href="#hotel" data-toggle="tab">酒店信息</a></li>
+							<li><a id="physicalExamButt" href="#physicalExam" data-toggle="tab">体检信息</a></li>
+							<li><a id="channelButt" href="#channel" data-toggle="tab">渠道信息</a></li>
+							<li><a id="trainingButt" href="#training" data-toggle="tab">培训信息</a></li>
+							<li><a id="activitiesButt" href="#activities" data-toggle="tab">公司活动</a></li>
+							<li><a id="workflowTabButt" href="#workflowTab" data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</s:if>
 					</ul>
@@ -496,86 +499,58 @@
 							</form>
 						</div>
 						
-						<!-- 快递信息 -->
-						<div class="tab-pane fade" id="express">
-							<form id="expressForm" class="form-horizontal"
-								action="${menu2Id}!saveExpress.jspa" method="post">
+						<!-- 酒店信息 -->
+						<div class="tab-pane fade" id="hotel">
+							<form id="hotelForm" class="form-horizontal"
+								action="" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${express.id}">
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="expressnumber">快递号：</label>
-											<div class="controls">
-												<input type="text" maxlength="15" id="expressnumber" data-required="true" desc="快递号"
-													name="express.expressnumber" value="${express.expressnumber}"
-													class="input-large" />
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="company">快递公司：</label>
-											<div class="controls">
-												<input type="text" maxlength="15" id="company" data-required="true" desc="快递公司"
-													name="express.company" value="${express.company}"
-													class="input-large" />
-												
-											</div>
-										</div>
-									</div>
-								</dir>
-								
-								<dir class="row">
-									<div class="span5 pull-left">
-										<div class="control-group">
-											<label class="control-label" for="inputTelephone">公司电话：</label>
-											<div class="controls">
-												<input type="text" size="20" id="inputTelephone"
-													name="express.telephone" data-required="true" desc="公司电话"
-													value="${express.telephone}" class=" input-large" />
-											</div>
-										</div>
-									</div>
-									
-									<div class="span5 pull-left">
-										<div class="control-group">
-											<label class="control-label" for="inputAddress">收货地址：</label>
-											<div class="controls">
-												<input type="text" size="20" id="inputAddress"
-													name="express.address" data-required="true" desc="收货地址"
-													value="${express.address}" class="input-large" />
-											</div>
-										</div>
-									</div>
-								</dir>
-								
-								<dir class="row">
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="delivergoodsdate">发货日期：</label>
-											<div class="controls">
-												<input type="text" id="delivergoodsdate"
-													name="express.delivergoodsdate" data-required="true" desc="发货日期"
-													value="<s:date name="express.delivergoodsdate" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-large" />
-											</div>
-										</div>
-									</div>
-									<div class="span5">
-										<div class="control-group">
-											<label class="control-label" for="arrivedate">到货日期：</label>
-											<div class="controls">
-												<input type="text" id="arrivedate" desc="到货日期"
-													name="express.arrivedate" value="<s:date name="express.arrivedate" format="yyyy-MM-dd" />"
-													readonly class="form_datetime input-large" />
-											</div>
-										</div>
-									</div>
-								</dir>
-								
+								<input type="hidden" name="express.id" value="${hotel.id}">
+							</form>
+						</div>
+						
+						<!-- 体检信息 -->
+						<div class="tab-pane fade" id="physicalExam">
+							<form id="physicalExamForm" class="form-horizontal"
+								action="" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="express.id" value="${physicalExam.id}">
+							</form>
+						</div>
+						
+						<!-- 渠道信息 -->
+						<div class="tab-pane fade" id="channel">
+							<form id="channelForm" class="form-horizontal"
+								action="" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="express.id" value="${channel.id}">
+							</form>
+						</div>
+						
+						<!-- 培训信息 -->
+						<div class="tab-pane fade" id="training">
+							<form id="trainingForm" class="form-horizontal"
+								action="" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="express.id" value="${training.id}">
+							</form>
+						</div>
+						
+						<!-- 公司活动 -->
+						<div class="tab-pane fade" id="activities">
+							<form id="activitiesForm" class="form-horizontal"
+								action="" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="express.id" value="${activities.id}">
 							</form>
 						</div>
 
