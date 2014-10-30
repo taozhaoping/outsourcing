@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="M_ACTIVITIES" >
+<mapper namespace="M_activities" >
 
   <resultMap id="T_Activities" type="Activities" >
-    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <id column="ID" property="id"  />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
     <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
     <result column="SETTIME" property="setTime" jdbcType="VARCHAR" />
     <result column="SETPLACE" property="setPlace" jdbcType="VARCHAR" />
     <result column="SCHEDULETIME" property="scheduleTime" jdbcType="VARCHAR" />
-    <result column="USERID" property="userId" jdbcType="DECIMAL" />
+    <result column="USERID" property="userId"  />
+    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
     <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
   </resultMap>
   
@@ -23,52 +24,74 @@
     SETPLACE, 
     SCHEDULETIME, 
     USERID, 
+    USERNAME，
     TELEPHONE, 
     CREATEDATE, 
     UPDATEDATE
   </sql>
   
-  <select id="selectByPrimaryKey" resultMap="T_Activities" parameterType="java.math.BigDecimal" >
+  <sql id="where">
+		<where>
+	  <if test="id != null" >
+        and ID = #{ID,jdbcType=VARCHAR}
+      </if>
+	  <if test="name != null" >
+        AND NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="description != null" >
+        AND DESCRIPTION = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduledate != null" >
+        AND SCHEDULEDATE = #{scheduledate,jdbcType=DATE}
+      </if>
+      <if test="settime != null" >
+        AND SETTIME = #{settime,jdbcType=VARCHAR}
+      </if>
+      <if test="setplace != null" >
+        AND SETPLACE = #{setplace,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduletime != null" >
+        AND SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR}
+      </if>
+      <if test="userid != null" >
+        AND USERID = #{userid}
+      </if>
+		</where>
+	</sql>
+  
+  <select id="select" resultMap="T_Activities" parameterType="Activities" >
     select 
     <include refid="Base_Column_List" />
     from T_ACTIVITIES
-    where ID = #{id,jdbcType=DECIMAL}
+    where ID = #{id}
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+  <select id="list" resultMap="T_Activities" parameterType="Activities">
+		select
+		<include refid="Base_Column_List" />
+		from T_ACTIVITIES
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="count" resultType="Integer" parameterType="Activities">
+		select
+			count(id)
+		from T_ACTIVITIES
+		<include refid="where" />
+	</select>
+  
+  <delete id="delete" parameterType="Activities" >
     delete from T_ACTIVITIES
-    where ID = #{id,jdbcType=DECIMAL}
+    where ID = #{id}
   </delete>
   
   <insert id="insert" parameterType="Activities" >
-    insert into T_ACTIVITIES (
-      ID, 
-      NAME, 
-      DESCRIPTION, 
-      SCHEDULEDATE, 
-      SETTIME, 
-      SETPLACE, 
-      SCHEDULETIME, 
-      USERID, 
-      TELEPHONE, 
-      CREATEDATE, 
-      UPDATEDATE
-      )values (
-      #{id,jdbcType=DECIMAL}, 
-      #{name,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, 
-      #{scheduledate,jdbcType=DATE}, 
-      #{settime,jdbcType=VARCHAR}, 
-      #{setplace,jdbcType=VARCHAR}, 
-      #{scheduletime,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=DECIMAL}, 
-      #{telephone,jdbcType=VARCHAR}, 
-      #{createdate,jdbcType=VARCHAR}, 
-      #{updatedate,jdbcType=VARCHAR}
-      )
-  </insert>
-  
-  <insert id="insertSelective" parameterType="Activities" >
+  	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_Activities.nextval from dual
+		</selectKey>
     insert into T_ACTIVITIES
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -95,6 +118,9 @@
       <if test="userid != null" >
         USERID,
       </if>
+      <if test="userName != null" >
+        USERNAME,
+      </if>
       <if test="telephone != null" >
         TELEPHONE,
       </if>
@@ -107,7 +133,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=DECIMAL},
+        #{id},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -128,7 +154,10 @@
         #{scheduletime,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
-        #{userid,jdbcType=DECIMAL},
+        #{userid},
+      </if>
+      <if test="userName != null" >
+        #{userName},
       </if>
       <if test="telephone != null" >
         #{telephone,jdbcType=VARCHAR},
@@ -142,7 +171,7 @@
     </trim>
   </insert>
   
-  <update id="updateByPrimaryKeySelective" parameterType="Activities" >
+  <update id="update" parameterType="Activities" >
     update T_ACTIVITIES
     <set >
       <if test="name != null" >
@@ -164,7 +193,10 @@
         SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
-        USERID = #{userid,jdbcType=DECIMAL},
+        USERID = #{userid},
+      </if>
+      <if test="userName != null" >
+        USERNAME = #{userName},
       </if>
       <if test="telephone != null" >
         TELEPHONE = #{telephone,jdbcType=VARCHAR},
@@ -176,21 +208,7 @@
         UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=DECIMAL}
+    where ID = #{id}
   </update>
-  
-  <update id="updateByPrimaryKey" parameterType="Activities" >
-    update T_ACTIVITIES
-    set NAME = #{name,jdbcType=VARCHAR},
-      DESCRIPTION = #{description,jdbcType=VARCHAR},
-      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
-      SETTIME = #{settime,jdbcType=VARCHAR},
-      SETPLACE = #{setplace,jdbcType=VARCHAR},
-      SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR},
-      USERID = #{userid,jdbcType=DECIMAL},
-      TELEPHONE = #{telephone,jdbcType=VARCHAR},
-      CREATEDATE = #{createdate,jdbcType=VARCHAR},
-      UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=DECIMAL}
-  </update>
+
 </mapper>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
-<classPathEntry location="E:\workspace\outsourcing\WEB-APP\WEB-INF\lib\ojdbc14.jar" />
+<classPathEntry location="E:\git workspace\outsourcing\WEB-APP\WEB-INF\lib\ojdbc14.jar" />
 <!--驱动包的绝对路径-->   
   <context id="context1" >
     <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.18.124.32:1521:orcl" userId="OSFI" password="agile932" />
@@ -18,8 +18,12 @@
     <table tableName="SYS_RESOURCEINFO" domainObjectName="Resourceinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="t_TechnologicalProcess" domainObjectName="TechnologicalProcess" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="SYS_NOTICE" domainObjectName="notice" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
-     -->
     <table tableName="t_Entry_Process" domainObjectName="EntryProcess" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+     -->
+    <table tableName="T_HOTEL" domainObjectName="Hotel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+    <table tableName="T_PHYSICALEXAMINATION" domainObjectName="PhysicalExam" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+    <table tableName="T_TRAINCOURSE" domainObjectName="TrainCourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+    <table tableName="T_ACTIVITIES" domainObjectName="Activities" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
      
   <!-- 未生成
     <table tableName="SYS_ROLE_TO_AUTHORITIES" domainObjectName="RoleToAuthorities" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  

@@ -50,6 +50,7 @@ create table t_Activities
    setPlace           VARCHAR(20),  --集合地点
    ScheduleTime       VARCHAR(10),  --预计活动时间
    userid             NUMBER,       --负责人
+   userName           VARCHAR(20),  --负责人姓名
    Telephone          VARCHAR(15),  --负责人电话
    createDate         VARCHAR(20),  --创建时间
    updateDate         VARCHAR(20),  --修改时间

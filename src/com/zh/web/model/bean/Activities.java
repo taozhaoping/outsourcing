@@ -2,6 +2,11 @@ package com.zh.web.model.bean;
 
 import java.util.Date;
 
+/**
+ * 活动信息表
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public class Activities {
     /**
      * id
@@ -74,6 +79,11 @@ public class Activities {
      * @mbggenerated Mon Oct 20 16:39:07 CST 2014
      */
     private Integer userId;
+    
+    /**
+     * 负责人姓名
+     */
+    private String userName;
 
     /**
      * 负责人电话
@@ -187,4 +197,13 @@ public class Activities {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 }

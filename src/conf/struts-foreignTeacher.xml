@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	   <!-- 
+		*
+		* 外教管理
+		*
+		* -->
+	<package name="staffAdmin" namespace="/staffAdmin" extends="struts-base">
+		<!-- 活动管理-->
+		<action name="activities" class="com.zh.web.action.ActivitiesAction" method="execute">
+			<result name="success">/pages/staffAdmin/activities/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/activities/edit.jsp</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">staffAdmin</param>  
+    			<param name="namespace">/staffAdmin</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+		</action>
+		
+		<!-- 培训管理-->
+		<action name="train" class="com.zh.web.action.TrainCourseAction" method="execute">
+			<result name="success">/pages/staffAdmin/train/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/train/edit.jsp</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">train</param>  
+    			<param name="namespace">/staffAdmin</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+		</action>
+	</package>
+</struts>

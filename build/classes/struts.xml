@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!--
-		- =============================================== - struts拦截器配置注入 -
+		=============================================== - struts拦截器配置注入 -
 		@author Flouny.Caesar - @date 2009-12-25 -
 		===============================================
 	-->
@@ -12,10 +12,15 @@
 	<include file="conf/struts-validate-code.xml" />
 	<!-- 登陆 -->
 	<include file="conf/struts-login.xml" />
-	
+	<!-- 主页 -->
 	<include file="conf/struts-main.xml" />
+	<!-- 工作流 -->
+	<include file="conf/struts-workflow.xml" />
+	<!-- 外教管理-->
+	<include file="conf/struts-foreignTeacher.xmll" />
+	
 	<!--
-		- =============================================== -
+		===============================================
 		struts取消Struts2标签的布局 - @author Flouny.Caesar - @date 2009-12-25 -
 		===============================================
 	-->

@@ -16,6 +16,8 @@
 	<include file="conf/struts-main.xml" />
 	<!-- 工作流 -->
 	<include file="conf/struts-workflow.xml" />
+	<!-- 外教管理-->
+	<include file="conf/struts-foreignTeacher.xmll" />
 	
 	<!--
 		===============================================
