@@ -13,6 +13,8 @@
     <result column="USERID" property="userId"  />
     <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
     <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDATEDATE" property="updateDate" jdbcType="DATE" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -33,7 +35,7 @@
   <sql id="where">
 		<where>
 	  <if test="id != null" >
-        and ID = #{ID,jdbcType=VARCHAR}
+        and ID = #{id,jdbcType=VARCHAR}
       </if>
 	  <if test="name != null" >
         AND NAME = #{name,jdbcType=VARCHAR}
@@ -41,20 +43,20 @@
       <if test="description != null" >
         AND DESCRIPTION = #{description,jdbcType=VARCHAR}
       </if>
-      <if test="scheduledate != null" >
-        AND SCHEDULEDATE = #{scheduledate,jdbcType=DATE}
+      <if test="scheduleDate != null" >
+        AND SCHEDULEDATE = #{scheduleDate,jdbcType=DATE}
       </if>
-      <if test="settime != null" >
-        AND SETTIME = #{settime,jdbcType=VARCHAR}
+      <if test="setTime != null" >
+        AND SETTIME = #{setTime,jdbcType=VARCHAR}
       </if>
-      <if test="setplace != null" >
-        AND SETPLACE = #{setplace,jdbcType=VARCHAR}
+      <if test="setPlace != null" >
+        AND SETPLACE = #{setPlace,jdbcType=VARCHAR}
       </if>
-      <if test="scheduletime != null" >
-        AND SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR}
+      <if test="scheduleTime != null" >
+        AND SCHEDULETIME = #{scheduleTime,jdbcType=VARCHAR}
       </if>
-      <if test="userid != null" >
-        AND USERID = #{userid}
+      <if test="userId != null" >
+        AND USERID = #{userId}
       </if>
 		</where>
 	</sql>
@@ -103,19 +105,19 @@
       <if test="description != null" >
         DESCRIPTION,
       </if>
-      <if test="scheduledate != null" >
+      <if test="scheduleDate != null" >
         SCHEDULEDATE,
       </if>
-      <if test="settime != null" >
+      <if test="setTime != null" >
         SETTIME,
       </if>
-      <if test="setplace != null" >
+      <if test="setPlace != null" >
         SETPLACE,
       </if>
-      <if test="scheduletime != null" >
+      <if test="scheduleTime != null" >
         SCHEDULETIME,
       </if>
-      <if test="userid != null" >
+      <if test="userId != null" >
         USERID,
       </if>
       <if test="userName != null" >
@@ -124,10 +126,10 @@
       <if test="telephone != null" >
         TELEPHONE,
       </if>
-      <if test="createdate != null" >
+      <if test="createDate != null" >
         CREATEDATE,
       </if>
-      <if test="updatedate != null" >
+      <if test="updateDate != null" >
         UPDATEDATE,
       </if>
     </trim>
@@ -141,19 +143,19 @@
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="scheduledate != null" >
-        #{scheduledate,jdbcType=DATE},
+      <if test="scheduleDate != null" >
+        #{scheduleDate,jdbcType=DATE},
       </if>
-      <if test="settime != null" >
-        #{settime,jdbcType=VARCHAR},
+      <if test="setTime != null" >
+        #{setTime,jdbcType=VARCHAR},
       </if>
-      <if test="setplace != null" >
+      <if test="setPlace != null" >
         #{setplace,jdbcType=VARCHAR},
       </if>
-      <if test="scheduletime != null" >
-        #{scheduletime,jdbcType=VARCHAR},
+      <if test="scheduleTime != null" >
+        #{scheduleTime,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null" >
+      <if test="userId != null" >
         #{userid},
       </if>
       <if test="userName != null" >
@@ -162,11 +164,11 @@
       <if test="telephone != null" >
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null" >
-        #{createdate,jdbcType=VARCHAR},
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="updatedate != null" >
-        #{updatedate,jdbcType=VARCHAR},
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,20 +182,20 @@
       <if test="description != null" >
         DESCRIPTION = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="scheduledate != null" >
-        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      <if test="scheduleDate != null" >
+        SCHEDULEDATE = #{scheduleDate,jdbcType=DATE},
       </if>
-      <if test="settime != null" >
-        SETTIME = #{settime,jdbcType=VARCHAR},
+      <if test="setTime != null" >
+        SETTIME = #{setTime,jdbcType=VARCHAR},
       </if>
-      <if test="setplace != null" >
-        SETPLACE = #{setplace,jdbcType=VARCHAR},
+      <if test="setPlace != null" >
+        SETPLACE = #{setPlace,jdbcType=VARCHAR},
       </if>
-      <if test="scheduletime != null" >
-        SCHEDULETIME = #{scheduletime,jdbcType=VARCHAR},
+      <if test="scheduleTime != null" >
+        SCHEDULETIME = #{scheduleTime,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null" >
-        USERID = #{userid},
+      <if test="userId != null" >
+        USERID = #{userId},
       </if>
       <if test="userName != null" >
         USERNAME = #{userName},
@@ -201,11 +203,11 @@
       <if test="telephone != null" >
         TELEPHONE = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="createdate != null" >
-        CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      <if test="createDate != null" >
+        CREATEDATE = #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="updatedate != null" >
-        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      <if test="updateDate != null" >
+        UPDATEDATE = #{updateDate,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id}

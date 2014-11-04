@@ -43,7 +43,7 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 		}
 		List<String> authoritySession = (List<String>)request.getSession().getAttribute(
 				VariableUtil.AUTHORITY);
-		if(authoritySession.contains(actionName))
+		if(null != authoritySession && authoritySession.contains(actionName))
 		{
 			return invocation.invoke();
 		}
