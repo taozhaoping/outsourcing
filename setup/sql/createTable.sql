@@ -34,6 +34,8 @@ drop table SYS_ROLE_TO_AUTHORITIES cascade constraints;
 
 drop table SYS_ROLE_TO_MENU cascade constraints;
 
+drop table SYS_PARAM cascade constraints;
+
 drop index USER_LOGINNAME_INDEX;
 
 drop table SYS_USER cascade constraints;
@@ -164,7 +166,7 @@ comment on table SYS_MENU is
 /*==============================================================*/
 /* Table: sys_resourceInfo                                    */
 /*==============================================================*/
-create  table SYS_RESOURCEINFO 
+create table SYS_RESOURCEINFO 
 (
    id                 NUMBER               not null,
    name               VARCHAR2(30 BYTE), --资源名称
@@ -340,3 +342,5 @@ alter table sys_user
    add constraint FK_SYS_USER_REFERENCE_SYS_ENTE foreign key (enterprise_id)
       references sys_enterprise (id);
 */
+
+commit;

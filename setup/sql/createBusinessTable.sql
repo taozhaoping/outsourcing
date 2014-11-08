@@ -633,3 +633,5 @@ WHEN OTHERS THEN
 DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_TECHNOLOGICALPROCESS');
 END;
 */
+
+commit;
