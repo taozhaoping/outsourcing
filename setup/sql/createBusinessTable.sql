@@ -380,11 +380,14 @@ create table t_Entry_Process
    name               VARCHAR(25),         --姓名
    englishName        VARCHAR(25),         --英文名
    Nationality        VARCHAR(20),         --国籍
+   DOMICILE 		  VARCHAR(100),
    yearBirth          VARCHAR(6),          --出生年份
    Birthday           DATE,                --生日
    state              VARCHAR(12),          --状态
    mail               VARCHAR(25),         --电子邮件
    Phone              VARCHAR(20),         --手机号码
+   SKYPE			  VARCHAR(50), 
+   WECHAT			  VARCHAR(50), 
    createTime         VARCHAR(20),         --创建日期
    updateTime         VARCHAR(20),         --修改日期
    workUserId         NUMBER,              --流程发起人
