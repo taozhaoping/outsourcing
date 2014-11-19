@@ -116,10 +116,10 @@
 										<td><s:property value="#activities.userName"/></td>
 										<td><s:property value="#activities.telephone"/></td>
 										<s:if test="#activities.enabled==0">
-											<td>激活</td>
+											<td>有效</td>
 										</s:if>
 										<s:else>
-											<td>停用</td>
+											<td>无效</td>
 										</s:else>
 										
 									</tr>

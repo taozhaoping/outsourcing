@@ -96,28 +96,106 @@
 					<div class="well">
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="home">
-									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
+									<input type="hidden" name="activities.id" value="${activities.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
-									<div class="control-group" id="name_div">
-										<label class="control-label" for="name_input">名称：</label>
-										<div class="controls">
-											<input type="text" data-required="true" maxlength="50"  id="name_input" name="enterprise.name" value="${enterprise.name}" class="input-xlarge">
+									<dir class="row">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputname">活动名称：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputname"
+														name="activities.name"
+														value="${activities.name}"
+														data-required="true" desc="活动名称" class="input-large">
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="inputaddress">地址：</label>
-										<div class="controls">
-											<input type="text" id="inputaddress" maxlength="100" data-required="true" name="enterprise.address" value="${enterprise.address}" class="input-xlarge">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputscheduleDate">预定时间：</label>
+												<div class="controls">
+													<input type="text" size="15" id="inputscheduleDate"
+														name="activities.scheduleDate"
+														value="<s:date name="activities.scheduleDate" format="yyyy-MM-dd" />"
+														data-required="true" desc="预定时间" readonly class="form_datetime input-large">
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="inputaddress">电话：</label>
-										<div class="controls">
-											<input type="text" id="inputaddress" maxlength="15" data-pattern="(^(\d{3,4}-)?\d{7,8})$|(1[3,5,7,8,9]{1}[0-9]{9})" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
+								</dir>					
+								<dir class="row">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputsetPlace">集合地点：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputsetPlace"
+														name="activities.setPlace"
+														value="${activities.setPlace}"
+														data-required="true" desc="集合地点" class="input-large">
+												</div>
+											</div>
 										</div>
-									</div>						
-								
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputsetTime">集合时间：</label>
+												<div class="controls">
+													<input type="text" size="15" id="inputsetTime"
+														name="activities.setTime"
+														value="<s:date name="activities.setTime" format="yyyy-MM-dd" />"
+														data-required="true" desc="集合时间" readonly class="form_datetime input-large">
+												</div>
+											</div>
+										</div>
+								</dir>
+								<dir class="row">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputuserName">负责人：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputuserName"
+														name="activities.userName"
+														value="${activities.userName}"
+														data-required="true" desc="负责人" class="input-large">
+												</div>
+											</div>
+										</div>
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputtelephone">电话：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputtelephone"
+														name="activities.telephone"
+														value="${activities.telephone}"
+														data-required="true" desc="电话" class="input-large">
+												</div>
+											</div>
+										</div>
+								</dir>
+								<dir class="row">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputscheduleTime">活动耗时：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputscheduleTime"
+														name="activities.scheduleTime"
+														value="${activities.scheduleTime}"
+														data-required="true" desc="活动耗时" class="input-large">
+												</div>
+											</div>
+										</div>
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label" for="inputenabled">状态：</label>
+												<div class="controls">
+													<select id="inputenabled" class="input-large" data-required="true" desc="状态"
+													name="activities.enabled">
+													<option value="0">有效</option>
+													<option value="1">无效</option>
+												</select>
+												</div>
+											</div>
+										</div>
+								</dir>
 							</div>
 						</div>
 					</div>
