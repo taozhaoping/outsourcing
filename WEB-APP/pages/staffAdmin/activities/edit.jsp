@@ -17,6 +17,7 @@
 	href="<%=path%>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
+<link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
@@ -152,10 +153,10 @@
 											<div class="control-group">
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
-													<input type="text" maxlength="15" id="inputuserName"
-														name="activities.userName"
-														value="${activities.userName}"
-														data-required="true" desc="负责人" class="input-large">
+													
+													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人"  >
+													<option id="userNameOption" value=""></option>
+												</select>
 												</div>
 											</div>
 										</div>
@@ -187,7 +188,7 @@
 											<div class="control-group">
 												<label class="control-label" for="inputenabled">状态：</label>
 												<div class="controls">
-													<select id="inputenabled" class="input-large" data-required="true" desc="状态"
+													<select id="inputenabled" class="input-large" desc="状态"
 													name="activities.enabled">
 													<option value="0">有效</option>
 													<option value="1">无效</option>
@@ -208,12 +209,19 @@
 		<script src="<%=path%>/js/bootstrap.js"></script>
 		<script src="<%=path %>/js/collapsePulg.js"></script>
 		<script src="<%=path %>/js/common.js"></script>
+		<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
 		<script src="<%=path %>/js/jquery-validate.js"></script>
+		<script src="<%=path%>/js/select2/select2.js"></script>
+		<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
 			var id='${menuId}';
 			var menuId='${menu2Id}';
 			var url=$("#"+menuId).attr('url');
+			$("select").select2();
+			$("#userName").val("${activities.userName}")
+			.trigger("change");
+			selectUsers("userName");
 			
 			
 		</script>

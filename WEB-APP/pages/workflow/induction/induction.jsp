@@ -1247,54 +1247,6 @@
 			// 执行一些动作...
 		});
 
-		// 选择用户
-		function selectUsers(id) {
-			$.ajax({
-				type : "POST", //访问WebService使用Post方式请求
-				url : basePath + "/home/userInfo!queryUsers.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-				data : {}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
-				dataType : 'json', //WebService 会返回Json类型
-				traditional : false, //不要序列化参数
-				error : function(err, textStatus) {
-					//alert("error: " + err + " textStatus: " + textStatus);
-				},
-				success : function(result) {//回调函数，result，返回值
-					//填充到table中
-					fillUserList(result, id);
-				}
-			});
-		}
-
-		//展示用户选择列表
-		function fillUserList(userList, id) {
-			//清空上次的查询结果
-			$("#" + id + "Option").nextAll("option").remove();
-			var selectOptionValue = $("#" + id).attr("value");
-			//动态生成用户列表
-			for ( var i = 0; i < userList.length; i++) {
-				var user = userList[i];
-				if("airportPeopleId" == id){
-					if(user.id == selectOptionValue){
-						$("#" + id + "Option").clone(true).attr("selected", "selected").attr(
-								"id", user.id).val(user.id).html(
-								user.name + "(" + user.loginName + ")").insertAfter(
-								"#" + id + "Option");
-						
-					}else{
-						$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-								"id", user.id).val(user.id).html(
-								user.name + "(" + user.loginName + ")").insertAfter(
-								"#" + id + "Option");
-						
-					}
-				}else{
-					$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-							"id", user.id).val(user.loginName).html(
-							user.name + "(" + user.loginName + ")").insertAfter(
-							"#" + id + "Option");
-				}
-			}
-		}
 
 		//发起按钮确认
 		$("#startBtnConfirm").click(function() {

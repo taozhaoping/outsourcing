@@ -54,6 +54,7 @@ create table t_Activities
    Telephone          VARCHAR(15),  --负责人电话
    createDate         VARCHAR(20),  --创建时间
    updateDate         VARCHAR(20),  --修改时间
+   enabled            VARCHAR(1),  --状态
    constraint PK_ACTIVITIES primary key (id)
 );
 

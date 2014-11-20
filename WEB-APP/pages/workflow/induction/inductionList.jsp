@@ -247,7 +247,7 @@
 				$('#curPage').val("");
 			});
 			
-			/*
+			
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数
 		        totalPages: totalPage,
@@ -267,7 +267,7 @@
 		        	//document.getElementsByName("operateForm")[0].submit(); 
 		        }
 		    });
-			*/
+			
 		});
 		
 		function addObject(name)

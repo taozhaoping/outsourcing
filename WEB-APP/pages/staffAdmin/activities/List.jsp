@@ -102,6 +102,7 @@
 									<th>负责人</th>
 									<th>电话</th>
 									<th>状态</th>
+									<th style="width: 26px;"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -121,7 +122,11 @@
 										<s:else>
 											<td>无效</td>
 										</s:else>
-										
+										<td>
+											<a title="修改" href="${menu2Id}!editor.jspa?id=<s:property value='#activities.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
+											<a title="状态" href="${menu2Id}!save.jspa?id=<s:property value='#activities.id'/>&view=enabled&enabled=<s:property value='#activities.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+												class="icon-remove"></i></a>
+										</td>
 									</tr>
 								</s:iterator>
 							</tbody>
@@ -135,9 +140,7 @@
 			</div>
 		</div>
 	</div>
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
-		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-	</form>
+
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>
@@ -159,6 +162,7 @@
 			//展开一级菜单
 			collapseMenu(id);
 			
+			
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数
 		        totalPages: totalPage,
@@ -178,6 +182,7 @@
 		        	//document.getElementsByName("operateForm")[0].submit(); 
 		        }
 		    });
+			
 			
 		});
 		

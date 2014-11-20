@@ -111,6 +111,16 @@ public class Activities extends IDataObject {
      * @mbggenerated Mon Oct 20 16:39:07 CST 2014
      */
     private String updateDate;
+    
+    private String enabled;
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 
 	public Integer getId() {
 		return id;

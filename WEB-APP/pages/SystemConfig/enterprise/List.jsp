@@ -115,8 +115,8 @@
 											<td>停用</td>
 										</s:else>
 										<td>
-											<a href="${menu2Id}!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<a href="${menu2Id}!save.jspa?id=<s:property value='#enterprise.id'/>&view=enabled&enabled=<s:property value='#enterprise.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a title="修改" href="${menu2Id}!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
+											<a title="状态" href="${menu2Id}!save.jspa?id=<s:property value='#enterprise.id'/>&view=enabled&enabled=<s:property value='#enterprise.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-remove"></i></a>
 										</td>
 									</tr>
