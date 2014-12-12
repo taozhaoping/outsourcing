@@ -14,6 +14,7 @@ drop table t_TechnologicalProcess cascade constraints;
 drop table t_TrainCourse cascade constraints;
 drop table t_trainingOfPersonnel cascade constraints;
 drop table t_Entry_Process cascade constraints;
+drop table t_contact_record cascade constraints;
 
 drop sequence SEQUENCE_t_Activities;
 drop sequence SEQUENCE_t_ActivitiesUser;
@@ -29,7 +30,30 @@ drop sequence SEQUENCE_T_Personnel_Record;
 drop sequence SEQUENCE_t_Technological;
 drop sequence SEQUENCE_t_TrainCourse;
 drop sequence SEQUENCE_t_trainingOfPersonnel;
+drop sequence SEQUENCE_t_contact_record;
 
+/*==============================================================*/
+/* DBMS name:      ORACLE Version 11g                           */
+/* Created on:     2014/8/12 8:46:12                            */
+/*==============================================================*/
+
+/*==============================================================*/
+/* Table: Activities                                          */
+/* Table: 通讯记录表                                          */
+/*==============================================================*/
+create table t_contact_record
+(
+   id                 NUMBER               not null,
+   createDate       date,  --创建时间
+   TechnologicalProcessID NUMBER,
+   descr            varchar(250),
+   constraint PK_CONTACT_RECORD primary key (id)
+);
+/*注释*/
+COMMENT ON table t_Activities IS '通话记录';
+comment on column t_Activities.id is '主键';
+comment on column t_Activities.createDate is '创建时间';
+comment on column t_Activities.descr is '描述';
 
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
