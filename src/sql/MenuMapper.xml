@@ -60,7 +60,7 @@
 			PARENTID, 
 			REORDER
 		from sys_role_to_menu rm left join sys_menu m on rm.menu_id=m.id
-		where role_id = #{id}
+		where role_id = #{id} ORDER BY REORDER
 	</select>
 
 	<select id="select" resultMap="T_Menu" parameterType="Menu">

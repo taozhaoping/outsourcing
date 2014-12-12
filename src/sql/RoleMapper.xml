@@ -47,7 +47,7 @@
 		select
 			ID, NAME, DESCRIBE, CREATETIME, UPDATETIME
 		from SYS_ROLE
-		where id = #{id}
+		where id = #{id} ORDER BY id
 	</select>
 
 	<select id="select" resultMap="T_Role" parameterType="Role">

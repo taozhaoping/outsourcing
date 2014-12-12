@@ -247,7 +247,6 @@
 				$('#curPage').val("");
 			});
 			
-			
 			$.jqPaginator('#pagination', {
 				//设置分页的总页数
 		        totalPages: totalPage,
