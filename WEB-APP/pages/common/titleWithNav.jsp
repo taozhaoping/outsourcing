@@ -39,7 +39,7 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a tabindex="-1" id="recruitmentBtn" href="javascript:void();">外事招聘流程</a>
+						<a tabindex="-1" id="recruitmentBtn" href="javascript:void();">外教招聘流程</a>
 					</li>
 					<!-- 
 					<li class="divider"></li>

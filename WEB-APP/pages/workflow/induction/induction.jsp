@@ -507,6 +507,92 @@
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="express.id" value="${hotel.id}">
+								
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="hotelName">酒店名称：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="酒店名称" id="hotelName"
+													name="hotel.name"
+													value="${hotel.name }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="roomNumber">房间号：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="房间号" id="roomNumber"
+													name="hotel.roomNumber"
+													value="${hotel.roomNumber }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="roomType">房间类型：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="房间类型" id="roomType"
+													name="hotel.roomType"
+													value="${hotel.roomType }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="address">酒店地址：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="酒店地址" id="address"
+													name="hotel.address"
+													value="${hotel.address }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="telephone">酒店电话：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="酒店电话" id="telephone"
+													name="hotel.telephone"
+													value="${hotel.telephone }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="checkinDate">入住日期：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="入住日期" id="checkinDate"
+													name="hotel.checkinDate"
+													value="<s:date name="hotel.checkinDate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="checkInDay">预计入住天数：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="预计入住天数" id="checkInDay"
+													name="hotel.CheckInDay"
+													value="${hotel.checkInDay }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
 							</form>
 						</div>
 						
@@ -518,6 +604,92 @@
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="express.id" value="${physicalExam.id}">
+								
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="PEName">体检医院：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="体检医院" id="PEName"
+													name="physicalExam.name"
+													value="${physicalExam.name }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="PEAdress">体检地址：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="体检地址" id="PEAdress"
+													name="physicalExam.address"
+													value="${physicalExam.address }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="PEtelephone">医院电话：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="医院电话" id="PEtelephone"
+													name="physicalExam.telephone"
+													value="${physicalExam.telephone }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="PERemarks">医院备注：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="医院备注" id="PERemarks"
+													name="physicalExam.remarks"
+													value="${physicalExam.remarks }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5 pull-left">
+										<div class="control-group">
+											<label class="control-label" for="PEType">种类：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="种类" id="PEType"
+													name="physicalExam.type"
+													value="${physicalExam.type }"
+													class="input-large" />
+											</div>
+										</div>
+									</div>
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="PEScheduleDate">预定时间：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="预定时间" id="PEScheduleDate"
+													name="physicalExam.scheduleDate"
+													value="<s:date name="physicalExam.scheduleDate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
+								<dir class="row">
+									<div class="span5">
+										<div class="control-group">
+											<label class="control-label" for="PEReceiveDate">报告领取日期 ：</label>
+											<div class="controls">
+												<input type="text" data-required="true" desc="报告领取日期 " id="PEReceiveDate"
+													name="physicalExam.receiveDate"
+													value="<s:date name="physicalExam.receiveDate" format="yyyy-MM-dd" />"
+													readonly class="form_datetime input-large" />
+											</div>
+										</div>
+									</div>
+								</dir>
 							</form>
 						</div>
 						
