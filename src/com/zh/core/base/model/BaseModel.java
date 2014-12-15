@@ -21,6 +21,8 @@ public class BaseModel {
 	
 	private Integer id;
 	
+	private String nameSpace;
+	
 	private String menuId;
 	
 	private String menu2Id;
@@ -151,6 +153,14 @@ public class BaseModel {
 
 	public void setJsonList(String jsonList) {
 		this.jsonList = jsonList;
+	}
+
+	public String getNameSpace() {
+		return nameSpace;
+	}
+
+	public void setNameSpace(String nameSpace) {
+		this.nameSpace = nameSpace;
 	}
 	
 }

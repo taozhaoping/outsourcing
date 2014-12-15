@@ -89,15 +89,15 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
-											value="${technologicalProcess.id}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="entryProcess.id"
+											value="${entryProcess.id}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">流程描述：
 									<input type="text" id="inputDescription"
-										name="technologicalProcess.description"
-										value="${technologicalProcess.description}"
+										name="entryProcess.description"
+										value="${entryProcess.description}"
 										class="input-large">
 										</label>
 								</div>
@@ -106,20 +106,20 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">当前状态：
-									<input type="text" maxlength="15" id="inputState" name="technologicalProcess.state"
-										value="${technologicalProcess.state}" class="input-large">
+									<input type="text" maxlength="15" id="inputState" name="entryProcess.state"
+										value="${entryProcess.state}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">创建时间：
 										<input type="text" id="createTimeStart"
-											name="technologicalProcess.createtimeStart"
-											value="${technologicalProcess.createtimeStart}"
+											name="entryProcess.createtimeStart"
+											value="${entryProcess.createtimeStart}"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="createTimeEnd"
-											name="technologicalProcess.createtimeEnd"
-											value="${technologicalProcess.createtimeEnd}"
+											name="entryProcess.createtimeEnd"
+											value="${entryProcess.createtimeEnd}"
 											class="form_datetime input-small">
 									</label>
 								</div>
@@ -161,7 +161,7 @@
 								<s:iterator value="entryProcessList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
@@ -179,7 +179,7 @@
 											<s:property value="#tp.approver"/>
 										</td>
 										<td>
-											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/<s:property value="nameSpace"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>

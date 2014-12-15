@@ -22,6 +22,16 @@ public class ContactRecordModel extends BaseModel {
 	private EntryProcess entryProcess = new EntryProcess();
 	
 	private List<EntryProcess> entryProcessList = new ArrayList<EntryProcess>();
+	
+	private String FormId;
+	
+	public String getFormId() {
+		return FormId;
+	}
+
+	public void setFormId(String formId) {
+		FormId = formId;
+	}
 
 	public List<EntryProcess> getEntryProcessList() {
 		return entryProcessList;

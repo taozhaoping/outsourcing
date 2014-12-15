@@ -125,7 +125,7 @@ public class InductionAction extends BaseAction {
 				.queryList(entryProcess, pager);
 		this.inductionModel
 				.setEntryProcessList(entryProcessList);
-
+		
 		return Action.SUCCESS;
 	}
 

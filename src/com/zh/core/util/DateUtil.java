@@ -41,6 +41,7 @@ public class DateUtil {
 	 public static String getNowDateShort() {
 	  Date currentTime = new Date();
 	  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	  formatter.setTimeZone(TimeZone.getTimeZone("UCT"));
 	  String dateString = formatter.format(currentTime);
 	  return dateString;
 	 }
@@ -674,15 +675,5 @@ public class DateUtil {
 
 	  return true;
 	 }
-
-	 public static void main(String[] args) throws Exception {
-	  try {
-	   //System.out.print(Integer.valueOf(getTwoDay("2006-11-03 12:22:10", "2006-11-02 11:22:09")));
-	  } catch (Exception e) {
-	   throw new Exception();
-	  }
-	  //System.out.println("sss");
-	 }
-
 
 }

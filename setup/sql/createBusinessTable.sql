@@ -44,7 +44,7 @@ drop sequence SEQUENCE_t_contact_record;
 create table t_contact_record
 (
    id                 NUMBER               not null,
-   createDate       date,  --创建时间
+   createDate       VARCHAR(30),  --创建时间
    TechnologicalProcessID NUMBER,
    descr            varchar(250),
    constraint PK_CONTACT_RECORD primary key (id)
@@ -618,6 +618,12 @@ start with 1
  cache 10
 order;
 
+create sequence SEQUENCE_t_contact_record
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
 /*** 创建触发器 ***/
 /*
 CREATE OR REPLACE TRIGGER TECHNOLOGICALPROCESS_T

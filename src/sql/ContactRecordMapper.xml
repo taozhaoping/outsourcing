@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_ContactRecord">
+	<resultMap id="T_ContactRecord" type="ContactRecord">
+		<id column="ID" property="id" />
+		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
+		<result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, 
+		DESCR, 
+		CREATEDATE,
+		TECHNOLOGICALPROCESSID
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="descr != null">
+				and DESCR = #{descr,jdbcType=VARCHAR}
+			</if>
+			<if test="createdate != null">
+				and CREATEDATE = #{createdate,jdbcType=VARCHAR}
+			</if>
+			<if test="technologicalprocessid != null">
+				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
+			</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="T_ContactRecord" parameterType="ContactRecord">
+		select
+		<include refid="Base_Column_List" />
+		from T_CONTACT_RECORD
+		where ID = #{id}
+	</select>
+
+	<select id="list" resultMap="T_ContactRecord" parameterType="ContactRecord">
+		select
+		<include refid="Base_Column_List" />
+		from T_CONTACT_RECORD
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause} desc
+		</if>
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="ContactRecord">
+		select
+		count(id)
+		from T_CONTACT_RECORD
+		<include refid="where" />
+	</select>
+
+	<insert id="insert" parameterType="ContactRecord">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_contact_record.nextval from dual
+		</selectKey>
+		insert into T_CONTACT_RECORD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="descr != null">
+				DESCR,
+			</if>
+			<if test="createdate != null">
+				CREATEDATE,
+			</if>
+			<if test="technologicalprocessid != null">
+				TECHNOLOGICALPROCESSID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="descr != null">
+				#{descr,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=VARCHAR},
+			</if>
+			<if test="technologicalprocessid != null">
+				#{technologicalprocessid},
+			</if>
+		</trim>
+	</insert>
+
+</mapper>
