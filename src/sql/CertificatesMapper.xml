@@ -100,7 +100,7 @@
 	<select id="count" resultType="Integer" parameterType="Certificates">
 		select
 		count(id)
-		from T_TECHNOLOGICALPROCESS
+		from T_CERTIFICATES
 		<include refid="where" />
 	</select>
 
