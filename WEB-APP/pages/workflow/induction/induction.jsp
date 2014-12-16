@@ -142,7 +142,7 @@
 							<li><a id="physicalExamButt" href="#physicalExam" data-toggle="tab">体检信息</a></li>
 							<li><a id="channelButt" href="#channel" data-toggle="tab">渠道信息</a></li>
 							<li><a id="trainingButt" href="#training" data-toggle="tab">培训信息</a></li>
-							<li><a id="activitiesButt" href="#activities" data-toggle="tab">公司活动</a></li>
+							<li><a id="activitiesButt" href="#activity" data-toggle="tab">公司活动</a></li>
 							<li><a id="workflowTabButt" href="#workflowTab" data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</s:if>
@@ -701,6 +701,7 @@
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="express.id" value="${channel.id}">
+								渠道信息
 							</form>
 						</div>
 						
@@ -712,17 +713,23 @@
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="express.id" value="${training.id}">
+								
+								<button class="btn btn-small btn-primary" type="button"
+								data-toggle="modal" data-target="">添加培训</button>
 							</form>
 						</div>
 						
 						<!-- 公司活动 -->
-						<div class="tab-pane fade" id="activities">
+						<div class="tab-pane fade" id="activity">
 							<form id="activitiesForm" class="form-horizontal"
 								action="" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="express.id" value="${activities.id}">
+								
+								<button class="btn btn-small btn-primary" type="button"
+								data-toggle="modal" data-target="">添加活动</button>
 							</form>
 						</div>
 
