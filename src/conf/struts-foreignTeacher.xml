@@ -53,5 +53,27 @@
     			<param name="menu2Id">${menu2Id}</param>
 			</result>
 		</action>
+		
+				<!-- 记录查看 -->
+		<action name="queryrecord" class="com.zh.web.action.QueryRecordAction" method="execute">
+			<result name="success">/pages/staffAdmin/queryrecord/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/queryrecord/edit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">queryrecord</param>  
+    			<param name="namespace">/staffAdmin</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+    			<param name="formId">${formId}</param>
+    			<param name="tabID">${tabID}</param>
+			</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">queryrecord</param>  
+    			<param name="namespace">/staffAdmin</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>

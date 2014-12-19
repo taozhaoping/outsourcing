@@ -18,12 +18,12 @@ import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.service.ContactRecordService;
 import com.zh.web.service.EntryProcessService;
 
-public class ContactRecordAction extends BaseAction {
+public class QueryRecordAction extends BaseAction {
 
 	private ContactRecordModel contactRecordModel = new ContactRecordModel();
 
 	private static Logger LOGGER = LoggerFactory
-			.getLogger(ContactRecordAction.class);
+			.getLogger(QueryRecordAction.class);
 
 	@Autowired
 	private EntryProcessService entryProcessService;
@@ -36,9 +36,6 @@ public class ContactRecordAction extends BaseAction {
 		/* 获取基本信息 */
 		EntryProcess entryProcess = this.contactRecordModel.getEntryProcess();
 
-		/* 获取当前登录用户 */
-		User user = queryUser();
-		entryProcess.setWorkuserid(user.getId());
 		Pager pager = this.contactRecordModel.getPageInfo();
 		Integer count = entryProcessService.count(entryProcess);
 		pager.setTotalRow(count);
