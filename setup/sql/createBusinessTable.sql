@@ -450,6 +450,7 @@ create table t_TrainCourse
    userId             NUMBER,      --课程教师
    createDate         VARCHAR(20), --创建时间
    updateDate         VARCHAR(20), --修改时间
+   enabled            VARCHAR(1),  --状态
    constraint PK_TRAINCOURSE primary key (id)
 );
 

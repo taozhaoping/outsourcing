@@ -13,6 +13,7 @@
     <result column="USERID" property="userid" jdbcType="DECIMAL" />
     <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
     <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR" />
+    <result column="ENABLED" property="enabled" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -25,33 +26,71 @@
     NAME, 
     USERID, 
     CREATEDATE, 
-    UPDATEDATE
+    UPDATEDATE,
+    enabled
   </sql>
   
-  <select id="selectByPrimaryKey" resultMap="T_TrainCourse" parameterType="java.math.BigDecimal" >
+    <sql id="where">
+		<where>
+	  <if test="id != null" >
+        and ID = #{id,jdbcType=VARCHAR}
+      </if>
+	  <if test="name != null" >
+        AND TRAINTYPE = #{traintype,jdbcType=VARCHAR}
+      </if>
+      <if test="description != null" >
+        AND SCHEDULEDATE = #{scheduledate,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleDate != null" >
+        AND ADDRESS = #{address,jdbcType=DATE}
+      </if>
+      <if test="setTime != null" >
+        AND COURSEDATE = #{coursedate,jdbcType=VARCHAR}
+      </if>
+      <if test="setPlace != null" >
+        AND DESCRIPTION = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleTime != null" >
+        AND NAME = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null" >
+        AND USERID = #{userId}
+      </if>
+      <if test="enabled != null" >
+        AND enabled = #{enabled}
+      </if>
+		</where>
+	</sql>
+	
+  <select id="select" resultMap="T_TrainCourse" parameterType="TrainCourse" >
     select 
     <include refid="Base_Column_List" />
     from T_TRAINCOURSE
-    where ID = #{id,jdbcType=DECIMAL}
+    where ID = #{id}
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
-    delete from T_TRAINCOURSE
-    where ID = #{id,jdbcType=DECIMAL}
-  </delete>
-  
+  <select id="list" resultMap="T_TrainCourse" parameterType="TrainCourse"> 
+		select
+		<include refid="Base_Column_List" />
+		from T_TRAINCOURSE
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+		
+	<select id="count" resultType="Integer" parameterType="TrainCourse">
+		select
+			count(id)
+		from T_TRAINCOURSE
+		<include refid="where" />
+	</select>
+	
   <insert id="insert" parameterType="TrainCourse" >
-    insert into T_TRAINCOURSE (ID, TRAINTYPE, SCHEDULEDATE, 
-      ADDRESS, COURSEDATE, DESCRIPTION, 
-      NAME, USERID, CREATEDATE, 
-      UPDATEDATE)
-    values (#{id,jdbcType=DECIMAL}, #{traintype,jdbcType=VARCHAR}, #{scheduledate,jdbcType=DATE}, 
-      #{address,jdbcType=VARCHAR}, #{coursedate,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{userid,jdbcType=DECIMAL}, #{createdate,jdbcType=VARCHAR}, 
-      #{updatedate,jdbcType=VARCHAR})
-  </insert>
-  
-  <insert id="insertSelective" parameterType="TrainCourse" >
+  	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_TrainCourse.nextval from dual
+	</selectKey>
+		
     insert into T_TRAINCOURSE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -87,7 +126,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=DECIMAL},
+        #{id},
       </if>
       <if test="traintype != null" >
         #{traintype,jdbcType=VARCHAR},
@@ -108,7 +147,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
-        #{userid,jdbcType=DECIMAL},
+        #{userid},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=VARCHAR},
@@ -119,7 +158,7 @@
     </trim>
   </insert>
   
-  <update id="updateByPrimaryKeySelective" parameterType="TrainCourse" >
+  <update id="update" parameterType="TrainCourse" >
     update T_TRAINCOURSE
     <set >
       <if test="traintype != null" >
@@ -141,7 +180,7 @@
         NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
-        USERID = #{userid,jdbcType=DECIMAL},
+        USERID = #{userid},
       </if>
       <if test="createdate != null" >
         CREATEDATE = #{createdate,jdbcType=VARCHAR},
@@ -150,20 +189,7 @@
         UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=DECIMAL}
+    where ID = #{id}
   </update>
   
-  <update id="updateByPrimaryKey" parameterType="TrainCourse" >
-    update T_TRAINCOURSE
-    set TRAINTYPE = #{traintype,jdbcType=VARCHAR},
-      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
-      ADDRESS = #{address,jdbcType=VARCHAR},
-      COURSEDATE = #{coursedate,jdbcType=VARCHAR},
-      DESCRIPTION = #{description,jdbcType=VARCHAR},
-      NAME = #{name,jdbcType=VARCHAR},
-      USERID = #{userid,jdbcType=DECIMAL},
-      CREATEDATE = #{createdate,jdbcType=VARCHAR},
-      UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=DECIMAL}
-  </update>
 </mapper>
