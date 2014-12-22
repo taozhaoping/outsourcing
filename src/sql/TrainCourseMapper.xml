@@ -4,15 +4,15 @@
  
 <resultMap id="T_TrainCourse" type="TrainCourse" >
     <id column="ID" property="id" jdbcType="DECIMAL" />
-    <result column="TRAINTYPE" property="traintype" jdbcType="VARCHAR" />
-    <result column="SCHEDULEDATE" property="scheduledate" jdbcType="DATE" />
+    <result column="TRAINTYPE" property="trainType" jdbcType="VARCHAR" />
+    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
     <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
-    <result column="COURSEDATE" property="coursedate" jdbcType="VARCHAR" />
+    <result column="COURSEDATE" property="courseDate" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="USERID" property="userid" jdbcType="DECIMAL" />
-    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
-    <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR" />
+    <result column="USERID" property="userId" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updateDate" jdbcType="VARCHAR" />
     <result column="ENABLED" property="enabled" jdbcType="VARCHAR" />
   </resultMap>
   
@@ -35,22 +35,22 @@
 	  <if test="id != null" >
         and ID = #{id,jdbcType=VARCHAR}
       </if>
-	  <if test="name != null" >
-        AND TRAINTYPE = #{traintype,jdbcType=VARCHAR}
-      </if>
-      <if test="description != null" >
-        AND SCHEDULEDATE = #{scheduledate,jdbcType=VARCHAR}
+	  <if test="trainType != null" >
+        AND TRAINTYPE = #{trainType,jdbcType=VARCHAR}
       </if>
       <if test="scheduleDate != null" >
+        AND SCHEDULEDATE = #{scheduleDate,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null" >
         AND ADDRESS = #{address,jdbcType=DATE}
       </if>
-      <if test="setTime != null" >
-        AND COURSEDATE = #{coursedate,jdbcType=VARCHAR}
+      <if test="courseDate != null" >
+        AND COURSEDATE = #{courseDate,jdbcType=VARCHAR}
       </if>
-      <if test="setPlace != null" >
+      <if test="description != null" >
         AND DESCRIPTION = #{description,jdbcType=VARCHAR}
       </if>
-      <if test="scheduleTime != null" >
+      <if test="name != null" >
         AND NAME = #{name,jdbcType=VARCHAR}
       </if>
       <if test="userId != null" >
@@ -96,16 +96,16 @@
       <if test="id != null" >
         ID,
       </if>
-      <if test="traintype != null" >
+      <if test="trainType != null" >
         TRAINTYPE,
       </if>
-      <if test="scheduledate != null" >
+      <if test="scheduleDate != null" >
         SCHEDULEDATE,
       </if>
       <if test="address != null" >
         ADDRESS,
       </if>
-      <if test="coursedate != null" >
+      <if test="courseDate != null" >
         COURSEDATE,
       </if>
       <if test="description != null" >
@@ -114,31 +114,34 @@
       <if test="name != null" >
         NAME,
       </if>
-      <if test="userid != null" >
+      <if test="userId != null" >
         USERID,
       </if>
-      <if test="createdate != null" >
+      <if test="createDate != null" >
         CREATEDATE,
       </if>
-      <if test="updatedate != null" >
+      <if test="updateDate != null" >
         UPDATEDATE,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id},
       </if>
-      <if test="traintype != null" >
-        #{traintype,jdbcType=VARCHAR},
+      <if test="trainType != null" >
+        #{trainType,jdbcType=VARCHAR},
       </if>
-      <if test="scheduledate != null" >
-        #{scheduledate,jdbcType=DATE},
+      <if test="scheduleDate != null" >
+        #{scheduleDate,jdbcType=DATE},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="coursedate != null" >
-        #{coursedate,jdbcType=VARCHAR},
+      <if test="courseDate != null" >
+        #{courseDate,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -146,14 +149,17 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null" >
-        #{userid},
+      <if test="userId != null" >
+        #{userId},
       </if>
-      <if test="createdate != null" >
-        #{createdate,jdbcType=VARCHAR},
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="updatedate != null" >
-        #{updatedate,jdbcType=VARCHAR},
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -161,17 +167,17 @@
   <update id="update" parameterType="TrainCourse" >
     update T_TRAINCOURSE
     <set >
-      <if test="traintype != null" >
-        TRAINTYPE = #{traintype,jdbcType=VARCHAR},
+      <if test="trainType != null" >
+        TRAINTYPE = #{trainType,jdbcType=VARCHAR},
       </if>
-      <if test="scheduledate != null" >
-        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
+      <if test="scheduleDate != null" >
+        SCHEDULEDATE = #{scheduleDate,jdbcType=DATE},
       </if>
       <if test="address != null" >
         ADDRESS = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="coursedate != null" >
-        COURSEDATE = #{coursedate,jdbcType=VARCHAR},
+      <if test="courseDate != null" >
+        COURSEDATE = #{courseDate,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         DESCRIPTION = #{description,jdbcType=VARCHAR},
@@ -179,14 +185,17 @@
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null" >
-        USERID = #{userid},
+      <if test="userId != null" >
+        USERID = #{userId},
       </if>
-      <if test="createdate != null" >
-        CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      <if test="createDate != null" >
+        CREATEDATE = #{createDate,jdbcType=VARCHAR},
       </if>
-      <if test="updatedate != null" >
-        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      <if test="updateDate != null" >
+        UPDATEDATE = #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+         ENABLED = #{enabled,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id}

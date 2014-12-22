@@ -89,6 +89,8 @@ public class TrainCourse extends IDataObject {
      * @mbggenerated Mon Oct 20 16:39:07 CST 2014
      */
     private String updateDate;
+    
+    private String enabled;
 
 	public Integer getId() {
 		return id;
@@ -168,6 +170,14 @@ public class TrainCourse extends IDataObject {
 
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
 	}
 
   

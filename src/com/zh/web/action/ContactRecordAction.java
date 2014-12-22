@@ -119,4 +119,30 @@ public class ContactRecordAction extends BaseAction {
 		return contactRecordModel;
 	}
 
+	public ContactRecordModel getContactRecordModel() {
+		return contactRecordModel;
+	}
+
+	public void setContactRecordModel(ContactRecordModel contactRecordModel) {
+		this.contactRecordModel = contactRecordModel;
+	}
+
+	public EntryProcessService getEntryProcessService() {
+		return entryProcessService;
+	}
+
+	public void setEntryProcessService(EntryProcessService entryProcessService) {
+		this.entryProcessService = entryProcessService;
+	}
+
+	public ContactRecordService getContactRecordService() {
+		return contactRecordService;
+	}
+
+	public void setContactRecordService(ContactRecordService contactRecordService) {
+		this.contactRecordService = contactRecordService;
+	}
+	
+	
+
 }
