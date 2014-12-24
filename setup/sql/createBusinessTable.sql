@@ -69,8 +69,8 @@ create table t_Activities
    id                 NUMBER               not null,
    name               VARCHAR(20),  --活动名称
    Description        VARCHAR(50),  --活动描述
-   ScheduleDate       DATE,         --预定时间
-   setTime            VARCHAR(10),  --集合时间
+   ScheduleDate       VARCHAR(20),  --预定时间
+   setTime            VARCHAR(20),  --集合时间
    setPlace           VARCHAR(20),  --集合地点
    ScheduleTime       VARCHAR(10),  --预计活动时间
    userid             NUMBER,       --负责人
@@ -442,7 +442,7 @@ create table t_TrainCourse
 (
    id                 NUMBER               not null,
    TrainType          VARCHAR(2),  --培训类别
-   ScheduleDate       DATE,        --预定时间
+   ScheduleDate       VARCHAR(20), --预定时间
    Address            VARCHAR(20), --地址
    CourseDate         VARCHAR(2),  --课程时间
    Description        VARCHAR(50), --课程描述

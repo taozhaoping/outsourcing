@@ -5,7 +5,7 @@
 <resultMap id="T_TrainCourse" type="TrainCourse" >
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="TRAINTYPE" property="trainType" jdbcType="VARCHAR" />
-    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
+    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="VARCHAR" />
     <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
     <result column="COURSEDATE" property="courseDate" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
@@ -42,7 +42,7 @@
         AND SCHEDULEDATE = #{scheduleDate,jdbcType=VARCHAR}
       </if>
       <if test="address != null" >
-        AND ADDRESS = #{address,jdbcType=DATE}
+        AND ADDRESS = #{address,jdbcType=VARCHAR}
       </if>
       <if test="courseDate != null" >
         AND COURSEDATE = #{courseDate,jdbcType=VARCHAR}
@@ -135,7 +135,7 @@
         #{trainType,jdbcType=VARCHAR},
       </if>
       <if test="scheduleDate != null" >
-        #{scheduleDate,jdbcType=DATE},
+        #{scheduleDate,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -171,7 +171,7 @@
         TRAINTYPE = #{trainType,jdbcType=VARCHAR},
       </if>
       <if test="scheduleDate != null" >
-        SCHEDULEDATE = #{scheduleDate,jdbcType=DATE},
+        SCHEDULEDATE = #{scheduleDate,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         ADDRESS = #{address,jdbcType=VARCHAR},

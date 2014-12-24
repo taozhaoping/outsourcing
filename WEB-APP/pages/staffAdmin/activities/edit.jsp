@@ -47,6 +47,8 @@
 <link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" />
 <link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon"
 	type="image/x-icon" />
+<link rel="stylesheet"
+	href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css" />
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
@@ -106,8 +108,7 @@
 												<label class="control-label" for="inputname">活动名称：</label>
 												<div class="controls">
 													<input type="text" maxlength="15" id="inputname"
-														name="activities.name"
-														value="${activities.name}"
+														name="activities.name" value="${activities.name}"
 														data-required="true" desc="活动名称" class="input-large">
 												</div>
 											</div>
@@ -118,42 +119,31 @@
 												<div class="controls">
 													<input type="text" size="15" id="inputscheduleDate"
 														name="activities.scheduleDate"
-														value="<s:date name="activities.scheduleDate" format="yyyy-MM-dd" />"
+														value="${activities.scheduleDate}"
 														data-required="true" desc="预定时间" readonly class="form_datetime input-large">
 												</div>
 											</div>
 										</div>
 								</dir>					
 								<dir class="row">
-										<div class="span5">
+										<div class="span9">
 											<div class="control-group">
 												<label class="control-label" for="inputsetPlace">集合地点：</label>
 												<div class="controls">
 													<input type="text" maxlength="15" id="inputsetPlace"
 														name="activities.setPlace"
 														value="${activities.setPlace}"
-														data-required="true" desc="集合地点" class="input-large">
+														data-required="true" desc="集合地点" class="input-xxlarge">
 												</div>
 											</div>
 										</div>
-										<div class="span5">
-											<div class="control-group">
-												<label class="control-label" for="inputsetTime">集合时间：</label>
-												<div class="controls">
-													<input type="text" size="15" id="inputsetTime"
-														name="activities.setTime"
-														value="<s:date name="activities.setTime" format="yyyy-MM-dd" />"
-														data-required="true" desc="集合时间" readonly class="form_datetime input-large">
-												</div>
-											</div>
-										</div>
+										
 								</dir>
 								<dir class="row">
 										<div class="span5">
 											<div class="control-group">
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
-													
 													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人"  >
 													<option id="userNameOption" value=""></option>
 												</select>
@@ -179,8 +169,7 @@
 												<div class="controls">
 													<input type="text" maxlength="15" id="inputscheduleTime"
 														name="activities.scheduleTime"
-														value="${activities.scheduleTime}"
-														data-required="true" desc="活动耗时" class="input-large">
+														value="${activities.scheduleTime}"  desc="活动耗时" class="input-large">
 												</div>
 											</div>
 										</div>
@@ -207,23 +196,33 @@
 		</div>
 		<%@ include file="/pages/common/footer.jsp"%>
 		<script src="<%=path%>/js/bootstrap.js"></script>
-		<script src="<%=path %>/js/collapsePulg.js"></script>
-		<script src="<%=path %>/js/common.js"></script>
-		<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
-		<script src="<%=path %>/js/jquery-validate.js"></script>
-		<script src="<%=path%>/js/select2/select2.js"></script>
-		<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
+	<script src="<%=path%>/js/collapsePulg.js"></script>
+	<script src="<%=path%>/js/common.js"></script>
+	<script src="<%=path%>/js/jquery-validate.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script src="<%=path%>/js/json2.js"></script>
+	<script src="<%=path%>/js/select2/select2.js"></script>
+	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
 		<script type="text/javascript">
 			$("[rel=tooltip]").tooltip();
 			var id='${menuId}';
 			var menuId='${menu2Id}';
 			var url=$("#"+menuId).attr('url');
 			$("select").select2();
+			selectUsers("userName");
 			$("#userName").val("${activities.userName}")
 			.trigger("change");
-			selectUsers("userName");
-			
-			
+			$("#inputenabled").val("${activities.enabled}").trigger("change");
+			$(".form_datetime").datetimepicker({
+				language : 'zh-CN',
+				format : 'yyyy-mm-dd hh:ii:00',
+				weekStart : 1,
+				todayBtn : 1,
+				todayHighlight : 1,
+				//startView : 2,
+				//minView : 2,
+				autoclose : true
+			});
 		</script>
 </body>
 </html>

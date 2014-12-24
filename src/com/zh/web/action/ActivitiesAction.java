@@ -55,6 +55,19 @@ public class ActivitiesAction extends BaseAction {
 	public String save(){
 		LOGGER.debug("save()");
 		Activities activities = activitiesModel.getActivities();
+		//判断当前是设置成启动状态还是停用状态
+		String view = this.activitiesModel.getView();
+		if(null != view && "enabled".equals(view)){
+			
+			String enabled = this.activitiesModel.getEnabled();
+			Integer id = this.activitiesModel.getId();
+			if("0".equals(enabled)){
+				activities.setEnabled("1");
+			}else{
+				activities.setEnabled("0");
+			}
+			activities.setId(id);
+		}
 		
 		//判断是新增还是修改
 		Integer id = activities.getId();

@@ -10,9 +10,6 @@ import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.Pager;
 import com.zh.web.model.TrainCourseModel;
-import com.zh.web.model.bean.Activities;
-import com.zh.web.model.bean.ContactRecord;
-import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.TrainCourse;
 import com.zh.web.service.TrainCourseService;
 
@@ -23,6 +20,11 @@ import com.zh.web.service.TrainCourseService;
  * @author mail taozhaoping@gmail.com
  */
 public class TrainCourseAction extends BaseAction {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(TrainCourseAction.class);
@@ -61,6 +63,20 @@ public class TrainCourseAction extends BaseAction {
 		LOGGER.debug("save()");
 		TrainCourse trainCourse = trainCourseModel.getTrainCourse();
 
+		//判断当前是设置成启动状态还是停用状态
+		String view = this.trainCourseModel.getView();
+		if(null != view && "enabled".equals(view)){
+			
+			String enabled = this.trainCourseModel.getEnabled();
+			Integer id = this.trainCourseModel.getId();
+			if("0".equals(enabled)){
+				trainCourse.setEnabled("1");
+			}else{
+				trainCourse.setEnabled("0");
+			}
+			trainCourse.setId(id);
+		}
+		
 		// 判断是新增还是修改
 		Integer id = trainCourse.getId();
 		if (null == id || 0 == id) {

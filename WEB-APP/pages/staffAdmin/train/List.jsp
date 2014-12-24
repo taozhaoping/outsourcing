@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -54,6 +55,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
@@ -94,29 +96,36 @@
 							<thead>
 								<tr>
 									<th>序号</th>
-									<th>企业名称</th>
-									<th>企业地址</th>
-									<th>企业电话</th>
+									<th>培训类型</th>
+									<th>预定时间</th>
+									<th>名称</th>
+									<th>地址</th>
+									<th>课程教师</th>
 									<th>状态</th>
 									<th style="width: 26px;"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="enterpriseList" var="enterprise" status="index">
+								<s:iterator value="trainCourseList" var="trainCourse" status="index">
 									<tr>
 										<td><s:property value="#index.index + 1"/></td>
-										<td><s:property value="#enterprise.name"/></td>
-										<td><s:property value="#enterprise.address"/></td>
-										<td><s:property value="#enterprise.phonecall"/></td>
-										<s:if test="#enterprise.enabled==0">
+										<td><s:property value="#trainCourse.trainType"/></td>
+										<td><s:property value="#trainCourse.scheduleDate"/></td>
+										<td><s:property value="#trainCourse.name"/></td>
+										<td><s:property value="#trainCourse.address"/></td>
+										<td>
+											<s:set id="userNameid" value="#trainCourse.userId"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+										</td>
+										<s:if test="#trainCourse.enabled==0">
 											<td>激活</td>
 										</s:if>
 										<s:else>
 											<td>停用</td>
 										</s:else>
 										<td>
-											<a href="${menu2Id}!editor.jspa?id=<s:property value='#enterprise.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<a href="${menu2Id}!save.jspa?id=<s:property value='#enterprise.id'/>&view=enabled&enabled=<s:property value='#enterprise.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="${menu2Id}!editor.jspa?id=<s:property value='#trainCourse.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
+											<a href="${menu2Id}!save.jspa?id=<s:property value='#trainCourse.id'/>&view=enabled&enabled=<s:property value='#trainCourse.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-remove"></i></a>
 										</td>
 									</tr>

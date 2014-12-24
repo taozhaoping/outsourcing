@@ -44,7 +44,7 @@ public class Activities extends IDataObject {
      *
      * @mbggenerated Mon Oct 20 16:39:07 CST 2014
      */
-    private Date scheduleDate;
+    private String scheduleDate;
 
     /**
      * 集合时间
@@ -146,11 +146,11 @@ public class Activities extends IDataObject {
 		this.description = description;
 	}
 
-	public Date getScheduleDate() {
+	public String getScheduleDate() {
 		return scheduleDate;
 	}
 
-	public void setScheduleDate(Date scheduleDate) {
+	public void setScheduleDate(String scheduleDate) {
 		this.scheduleDate = scheduleDate;
 	}
 

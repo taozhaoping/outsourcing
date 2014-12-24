@@ -96,7 +96,6 @@
 									<th>序号</th>
 									<th>活动名称</th>
 									<th>预定时间</th>
-									<th>集合时间</th>
 									<th>集合地点</th>
 									<th>活动耗时</th>
 									<th>负责人</th>
@@ -111,7 +110,6 @@
 										<td><s:property value="#index.index + 1"/></td>
 										<td><s:property value="#activities.name"/></td>
 										<td><s:property value="#activities.scheduleDate"/></td>
-										<td><s:property value="#activities.setTime"/></td>
 										<td><s:property value="#activities.setPlace"/></td>
 										<td><s:property value="#activities.scheduleTime"/></td>
 										<td><s:property value="#activities.userName"/></td>

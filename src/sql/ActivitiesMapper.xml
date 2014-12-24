@@ -6,7 +6,7 @@
     <id column="ID" property="id"  />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
-    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
+    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="VARCHAR" />
     <result column="SETTIME" property="setTime" jdbcType="VARCHAR" />
     <result column="SETPLACE" property="setPlace" jdbcType="VARCHAR" />
     <result column="SCHEDULETIME" property="scheduleTime" jdbcType="VARCHAR" />
@@ -46,7 +46,7 @@
         AND DESCRIPTION = #{description,jdbcType=VARCHAR}
       </if>
       <if test="scheduleDate != null" >
-        AND SCHEDULEDATE = #{scheduleDate,jdbcType=DATE}
+        AND SCHEDULEDATE = #{scheduleDate,jdbcType=VARCHAR}
       </if>
       <if test="setTime != null" >
         AND SETTIME = #{setTime,jdbcType=VARCHAR}
@@ -152,7 +152,7 @@
         #{description,jdbcType=VARCHAR},
       </if>
       <if test="scheduleDate != null" >
-        #{scheduleDate,jdbcType=DATE},
+        #{scheduleDate,jdbcType=VARCHAR},
       </if>
       <if test="setTime != null" >
         #{setTime,jdbcType=VARCHAR},
@@ -194,7 +194,7 @@
         DESCRIPTION = #{description,jdbcType=VARCHAR},
       </if>
       <if test="scheduleDate != null" >
-        SCHEDULEDATE = #{scheduleDate,jdbcType=DATE},
+        SCHEDULEDATE = #{scheduleDate,jdbcType=VARCHAR},
       </if>
       <if test="setTime != null" >
         SETTIME = #{setTime,jdbcType=VARCHAR},
