@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_TRAININGOFPERSONNEL" >
+ 
+<resultMap id="T_TrainingOfPersonnel" type="TrainingOfPersonnel" >
+    <id column="ID" property="id"  />
+    <id column="trainCourseId" property="trainCourseId"  />
+    <id column="technologicalProcessId" property="technologicalProcessId" />
+    <result column="CREATEDATE" property="createDate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="T_Training" type="TrainingOfPersonnel" extends="T_TrainingOfPersonnel">
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, 
+    trainCourseId, 
+    technologicalProcessId, 
+    CREATEDATE
+  </sql>
+  
+    <sql id="where">
+		<where>
+	  <if test="id != null" >
+        and ID = #{id}
+      </if>
+	  <if test="trainCourseId != null" >
+        AND trainCourseId = #{trainCourseId}
+      </if>
+      <if test="technologicalProcessId != null" >
+        AND technologicalProcessId = #{technologicalProcessId}
+      </if>
+		</where>
+	</sql>
+	
+  <select id="select" resultMap="T_TrainingOfPersonnel" parameterType="TrainingOfPersonnel" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_TRAININGOFPERSONNEL
+    where ID = #{id}
+  </select>
+  
+  <select id="list" resultMap="T_Training" parameterType="TrainingOfPersonnel"> 
+		select
+			t.ID, 
+    trainCourseId, 
+    technologicalProcessId, 
+    name,
+    CREATEDATE
+		from T_TRAININGOFPERSONNEL t left join t_entry_process e on t.technologicalprocessid=e.id
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+		
+	<select id="count" resultType="Integer" parameterType="TrainingOfPersonnel">
+		select
+			count(id)
+		from T_TRAININGOFPERSONNEL
+		<include refid="where" />
+	</select>
+	
+  <insert id="insert" parameterType="TrainingOfPersonnel" >
+  	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_trainingOfPersonnel.nextval from dual
+	</selectKey>
+		
+    insert into T_TRAININGOFPERSONNEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="trainCourseId != null" >
+        trainCourseId,
+      </if>
+      <if test="technologicalProcessId != null" >
+        technologicalProcessId,
+      </if>
+      <if test="createDate != null" >
+        CREATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="trainCourseId != null" >
+        #{trainCourseId},
+      </if>
+      <if test="technologicalProcessId != null" >
+        #{technologicalProcessId},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  	<delete id="delete" parameterType="TrainingOfPersonnel">
+		delete from T_TRAININGOFPERSONNEL
+		where ID = #{id}
+	</delete>
+	
+</mapper>

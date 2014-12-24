@@ -47,6 +47,8 @@
 		<typeAlias alias="PhysicalExam" type="com.zh.web.model.bean.PhysicalExam" />
 		<!-- 培训课程 -->
 		<typeAlias alias="TrainCourse" type="com.zh.web.model.bean.TrainCourse" />
+		<!-- 培训课程人员名单-->
+		<typeAlias alias="TrainingOfPersonnel" type="com.zh.web.model.bean.TrainingOfPersonnel" />
 		<!-- 记录维护 -->
 		<typeAlias alias="ContactRecord" type="com.zh.web.model.bean.ContactRecord" />
 		

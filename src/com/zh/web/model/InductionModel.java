@@ -52,11 +52,6 @@ public class InductionModel extends BaseModel {
 	private List<FileInfo> fileInfoList = new ArrayList<FileInfo>();
 	
 	/**
-	 * 表单的编号 
-	 */
-	private String formId;
-	
-	/**
 	 * 审批者
 	 */
 	private String assign;
@@ -104,14 +99,6 @@ public class InductionModel extends BaseModel {
 	private String filesFileName = null;
 	private String filesContentType = null;
 	private String fileNumber;
-	
-	public String getFormId() {
-		return formId;
-	}
-
-	public void setFormId(String formId) {
-		this.formId = formId;
-	}
 
 	public String getAssign() {
 		return assign;

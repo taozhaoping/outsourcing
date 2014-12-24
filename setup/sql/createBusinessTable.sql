@@ -463,6 +463,7 @@ create table t_trainingOfPersonnel
    id                 NUMBER               not null,
    TrainCourseId      NUMBER,     --培训课程id
    TechnologicalProcessId NUMBER, --培训人员id
+   createDate         VARCHAR(20), --创建时间
    constraint PK_TRAININGOFPERSONNEL primary key (id)
 );
 

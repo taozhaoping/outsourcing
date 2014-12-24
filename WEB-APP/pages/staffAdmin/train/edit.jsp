@@ -85,7 +85,7 @@
 				class="divider">/</span></li>
 			<li><span class="active" id="navigation1"></span></li>
 		</ul>
-
+<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 		<div class="container-fluid">
 
 			<div class="row-fluid">
@@ -223,48 +223,45 @@
 											</div>
 										</div>
 									</div>
-
 								</dir>
-
-
 							</form>
 						</div>
 						<!-- 报名信息 -->
 						<div class="tab-pane fade" id="contactrecordtab">
-							<form id="contactrecordForm" class="form-horizontal"
-								action="${menu2Id}!saveContactRecord.jspa" method="post">
+							<form id="trainingForm" class="form-horizontal"
+								action="${menu2Id}!saveTraining.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="tabID" value="contactrecordButt">
+								<input type="hidden" name="id" value="${trainCourse.id}">
+								<input type="hidden" name="trainingOfPersonnel.trainCourseId" value="${trainCourse.id}">
+								<input type="hidden" id="technologicalProcessId" name="trainingOfPersonnel.technologicalProcessId" value="">
+								
+								<button class="btn btn-small btn-primary" type="button"
+								data-toggle="modal" data-target="#startConfirm">添加人员</button>
+							</form>
 								<table class="table">
 									<thead>
 										<tr>
 											<th style="width: 32px;">序号</th>
-											<th style="width: 240px;">联系时间</th>
-											<th>描述</th>
+											<th style="width: 240px;">学员编号</th>
+											<th style="width: 240px;">学员姓名</th>
+											<th style="width: 240px;">加入时间</th>
 										</tr>
 									</thead>
 
 									<tbody id="ContactRecordSearch">
-										<tr>
-											<!-- 保存证件列表 -->
-											<td><input type="hidden" name="formId"
-												value="${entryProcess.id}"> <input type="hidden"
-												name="menu2Id" value="${menu2Id}"> <input
-												type="hidden" name="menuId" value="${menuId}"></td>
-											<td></td>
-											<td><input style="width: 70%" type="text"
-												id="contactRecordDescr" name="contactRecord.descr" /></td>
-
-										</tr>
-										<s:iterator value="contactRecordList" var="tp" status="index">
+										<s:iterator value="trainingOfPersonnelList" var="tp" status="index">
 											<tr>
-												<td><s:property value="#tp.id" /></td>
-												<td><s:property value="#tp.createdate" /></td>
-												<td><s:property value="#tp.descr" /></td>
+												<td><s:property value="#index.index + 1"/></td>
+												<td><s:property value="#tp.technologicalProcessId" /></td>
+												<td><s:property value="#tp.name" /></td>
+												<td><s:property value="#tp.createDate" /></td>
 											</tr>
 										</s:iterator>
 									</tbody>
 
 								</table>
-							</form>
 							<div class="pagination">
 								<ul id="pagination">
 								</ul>
@@ -276,20 +273,44 @@
 
 		</div>
 	</div>
-
-	<div>
-		<form action="${menu2Id}!editor.jspa" id="queryForm" method="post">
-			<input id="curPage" name="pageInfo.curPage"
-				value="${pageInfo.curPage}" type="hidden" /> <input type="hidden"
-				name="formId" value="${entryProcess.id}"> <input
-				type="hidden" name="menu2Id" value="${menu2Id}"> <input
-				type="hidden" name="menuId" value="${menuId}">
-		</form>
-	</div>
-
 	<div class="hide">
 		<a id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm"
 			data-toggle="modal"></a>
+	</div>
+	
+	<div>
+		<form action="${menu2Id}!editor.jspa" id="queryForm" method="post">
+		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="formId" value="${entryProcess.id}">
+		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+		<input type="hidden" name="menuId" value="${menuId}">
+		</form>
+	</div>
+	
+	<!-- 添加人员 -->
+	<div class="modal small hide fade" id="startConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">人员添加</h3>
+		</div>
+		<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label  pull-left" for="modalAssign">人员：</label>
+					<div class="controls">
+						<select id="modalAssign" class="input-large">
+						<option selected="selected" id="modalAssignOption">&nbsp;</option>
+					</select>
+
+					</div>
+				</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="startBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
 	</div>
 
 	<div class="modal small hide fade" id="forMchangefirm" tabindex="-1"
@@ -345,8 +366,8 @@
 		$("select").select2();
 		selectUsers("userId");
 		
-		$("#userId").val("${trainCourse.userId}").trigger("change");
-		
+		//$("#userId").val("${trainCourse.userId}").trigger("change");
+		$("#userId").val("${trainCourse.userId}");
 		$("#trainCoursetrainType").val("${trainCourse.trainType}").trigger(
 		"change");
 
@@ -365,6 +386,47 @@
 			//startView : 2,
 			//minView : 2,
 			autoclose : true
+		});
+		
+		$.jqPaginator('#pagination', {
+			//设置分页的总页数
+	        totalPages: totalPage,
+	        //设置分页的总条目数
+	        totalCounts:totalRow,
+	        pageSize:pageSize,
+	        //最多显示的页码
+	        visiblePages: 10,
+	        currentPage: curPage,
+	        onPageChange: function (num, type) {
+	           if("init"==type){
+	        	 	return false;  
+	        	}
+	           	$('#curPage').val(num);
+	           	action = $("#queryForm").attr("action");
+				setTabID("queryForm", action);
+	        	$('#queryForm').submit();
+	        	//document.getElementsByName("operateForm")[0].submit(); 
+	        }
+	    });
+		
+		//开始选择，用户选择框打开
+		$('#startConfirm').on('show.bs.modal', function() {
+			// 执行一些动作...
+			selectEntryProcess("modalAssign");
+		});
+		
+		//添加人员按钮确认
+		$("#startBtnConfirm").click(function() {
+			var assign = $("#modalAssign").val();
+			assign = $.trim(assign);
+			if (assign == null || assign == "") {
+				return;
+			} else {
+				$("#technologicalProcessId").val(assign);
+				action = $("#trainingForm").attr("action");
+				setTabID("contactrecordForm", action);
+				$("#trainingForm").submit();
+			}
 		});
 
 		//进入指定的tbs
@@ -417,12 +479,7 @@
 				setTabID("editForm", action);
 				//validate = $('#editForm').validate();
 				$("#editForm").submit();
-			} else if ("contactrecordButt" == currTab) {
-
-				action = $("#contactrecordForm").attr("action");
-				setTabID("contactrecordForm", action);
-				$("#contactrecordForm").submit();
-			}
+			} 
 		}
 
 		/*判断当前form是否变更*/

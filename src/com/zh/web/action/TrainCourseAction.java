@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.TrainCourseModel;
 import com.zh.web.model.bean.TrainCourse;
+import com.zh.web.model.bean.TrainingOfPersonnel;
 import com.zh.web.service.TrainCourseService;
+import com.zh.web.service.TrainingOfPersonnelService;
 
 /**
  * 培训管理
@@ -33,6 +36,9 @@ public class TrainCourseAction extends BaseAction {
 
 	@Autowired
 	private TrainCourseService trainCourseService;
+	
+	@Autowired
+	private TrainingOfPersonnelService trainingOfPersonnelService;
 
 	public String execute() {
 		TrainCourse trainCourse = trainCourseModel.getTrainCourse();
@@ -55,6 +61,17 @@ public class TrainCourseAction extends BaseAction {
 			TrainCourse trainCourseReult = trainCourseService
 					.query(trainCourse);
 			this.trainCourseModel.setTrainCourse(trainCourseReult);
+			
+			//获取报名学员信息
+			TrainingOfPersonnel trainingOfPersonnel = this.trainCourseModel.getTrainingOfPersonnel();
+			trainingOfPersonnel.setTrainCourseId(id);
+			Pager pager = this.trainCourseModel.getPageInfo();
+			
+			Integer count = trainingOfPersonnelService.count(trainingOfPersonnel);
+			
+			pager.setTotalRow(count);
+			List<TrainingOfPersonnel> trainingOfPersonnelList = trainingOfPersonnelService.queryList(trainingOfPersonnel, pager);
+			this.trainCourseModel.setTrainingOfPersonnelList(trainingOfPersonnelList);
 		}
 		return Action.EDITOR;
 	}
@@ -85,6 +102,23 @@ public class TrainCourseAction extends BaseAction {
 			trainCourseService.update(trainCourse);
 		}
 		return Action.EDITOR_SUCCESS;
+	}
+	
+	public String saveTraining()
+	{
+		TrainingOfPersonnel trainingOfPersonnel = trainCourseModel.getTrainingOfPersonnel();
+		Integer trainCourseId = trainingOfPersonnel.getTrainCourseId();
+		Integer technologicalProcessId = trainingOfPersonnel.getTechnologicalProcessId();
+		if (trainCourseId == null || trainCourseId == 0)
+		{
+			throw new ProjectException("课程编号不允许为null");
+		}
+		if (technologicalProcessId == null || technologicalProcessId == 0)
+		{
+			throw new ProjectException("学员编号不允许为null");
+		}
+		trainingOfPersonnelService.insert(trainingOfPersonnel);
+		return "save";
 	}
 
 	@Override

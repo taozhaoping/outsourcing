@@ -112,5 +112,19 @@
 			</result>
 		</action>
 		
+		<!-- 接口信息， 返回都是json格式-->
+		
+		<action name="interface" class="com.zh.base.action.InterfaceAction">
+			<!-- 查询所有的用户 -->
+			<result name="usersjson" type="json">
+				<param name="root">interfaceModel.userList</param>
+			</result>
+			
+			<!-- 查询所有入职人员信息 -->
+			<result name="entryProcessjson" type="json">
+				<param name="root">interfaceModel.entryProcessList</param>
+			</result>
+			
+		</action>
 	</package>
 </struts>

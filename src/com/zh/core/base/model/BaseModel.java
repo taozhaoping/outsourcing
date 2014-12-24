@@ -55,6 +55,11 @@ public class BaseModel {
 	private String reultObject;
 	
 	/**
+	 * 表单的编号 
+	 */
+	private String formId;
+	
+	/**
 	 * 传入的json格式列表
 	 */
 	private String jsonList;
@@ -161,6 +166,14 @@ public class BaseModel {
 
 	public void setNameSpace(String nameSpace) {
 		this.nameSpace = nameSpace;
+	}
+
+	public String getFormId() {
+		return formId;
+	}
+
+	public void setFormId(String formId) {
+		this.formId = formId;
 	}
 	
 }

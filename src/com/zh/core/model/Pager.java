@@ -80,7 +80,13 @@ public class Pager {
 	}
 
 	public void setTotalRow(int totalRow) {
-		totalPage = (totalRow + pageSize - 1) / pageSize;
+		if (totalRow == 0)
+		{
+			totalPage = 1;
+		}else
+		{
+			totalPage = (totalRow + pageSize - 1) / pageSize ;
+		}
 		this.totalRow = totalRow;
 		if (totalPage < curPage) {
 			curPage = totalPage;
