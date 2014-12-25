@@ -47,6 +47,7 @@ import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
+import com.zh.web.model.bean.Hotel;
 import com.zh.web.model.bean.TrainCourse;
 import com.zh.web.model.bean.TrainingOfPersonnel;
 import com.zh.web.service.CertificatesService;
@@ -54,6 +55,7 @@ import com.zh.web.service.EntryProcessService;
 import com.zh.web.service.ExpressService;
 import com.zh.web.service.FileInfoService;
 import com.zh.web.service.FlightService;
+import com.zh.web.service.HotelService;
 import com.zh.web.service.TrainCourseService;
 import com.zh.web.service.TrainingOfPersonnelService;
 
@@ -110,6 +112,9 @@ public class InductionAction extends BaseAction {
 
 	@Autowired
 	private TrainingOfPersonnelService trainingOfPersonnelService;
+	
+	@Autowired
+	private HotelService hotelService;
 
 	@Override
 	public Object getModel() {
@@ -217,6 +222,25 @@ public class InductionAction extends BaseAction {
 		return "save";
 	}
 
+	public String saveHotel() {
+		String formId = this.inductionModel.getFormId();
+		if (null == formId && "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		Hotel hotel = this.inductionModel.getHotel();
+		hotel.setTechnologicalProcessId(Integer.valueOf(formId));
+		Integer id = hotel.getId();
+
+		if (null != id && id > 0) {
+			hotelService.update(hotel);
+		} else {
+			hotelService.insert(hotel);
+		}
+
+		return "save";
+	}
+	
 	// 保存航班信息
 	public String saveFlight() {
 		String formId = this.inductionModel.getFormId();
@@ -332,6 +356,11 @@ public class InductionAction extends BaseAction {
 			fileInfo.setTechnologicalprocessid(id);
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
 			
+			//酒店信息
+			Hotel hotel = new Hotel();
+			hotel.setTechnologicalProcessId(id);
+			Hotel hotelReult = hotelService.query(hotel);
+			
 			//培训课程信息
 			List<TrainCourse> trainCourseList = this.inductionModel.getTrainCourseList();
 			TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
@@ -361,6 +390,7 @@ public class InductionAction extends BaseAction {
 						.list2json(fileInfoList));
 				this.inductionModel.setExpress(expressReult);
 				this.inductionModel.setFlight(flightReult);
+				this.inductionModel.setHotel(hotelReult);
 			}
 
 		} else {

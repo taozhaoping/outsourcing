@@ -1,217 +1,221 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="M_HOTEL" >
+<mapper namespace="M_HOTEL">
 
-  <resultMap id="t_Hotel" type="Hotel" >
-    <id column="ID" property="id" jdbcType="DECIMAL" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
-    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
-    <result column="ROOMNUMBER" property="roomNumber" jdbcType="VARCHAR" />
-    <result column="ROOMTYPE" property="roomType" jdbcType="VARCHAR" />
-    <result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
-    <result column="SCHEDULEDAY" property="scheduleDay" jdbcType="VARCHAR" />
-    <result column="CHECKINDATE" property="checkinDate" jdbcType="DATE" />
-    <result column="CHECKINDAY" property="checkinDay" jdbcType="VARCHAR" />
-    <result column="PRICE" property="price" jdbcType="VARCHAR" />
-    <result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" jdbcType="DECIMAL" />
-  </resultMap>
-  
-  <sql id="Base_Column_List" >
-    ID, 
-    NAME, 
-    ADDRESS, 
-    TELEPHONE, 
-    ROOMNUMBER, 
-    ROOMTYPE, 
-    SCHEDULEDATE, 
-    SCHEDULEDAY, 
-    CHECKINDATE, 
-    CHECKINDAY, 
-    PRICE, 
-    CREATEDATE, 
-    UPDATEDATE, 
-    TECHNOLOGICALPROCESSID
-  </sql>
- 
-  <select id="selectByPrimaryKey" resultMap="t_Hotel" parameterType="java.math.BigDecimal" >
-    select 
-    <include refid="Base_Column_List" />
-    from T_HOTEL
-    where ID = #{id,jdbcType=DECIMAL}
-  </select>
- 
-  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
-    delete from T_HOTEL
-    where ID = #{id,jdbcType=DECIMAL}
-  </delete>
-  
-  <insert id="insert" parameterType="Hotel" >
-    insert into T_HOTEL (ID, NAME, ADDRESS, 
-      TELEPHONE, ROOMNUMBER, ROOMTYPE, 
-      SCHEDULEDATE, SCHEDULEDAY, CHECKINDATE, 
-      CHECKINDAY, PRICE, CREATEDATE, 
-      UPDATEDATE, TECHNOLOGICALPROCESSID)
-    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{telephone,jdbcType=VARCHAR}, #{roomnumber,jdbcType=VARCHAR}, #{roomtype,jdbcType=VARCHAR}, 
-      #{scheduledate,jdbcType=DATE}, #{scheduleday,jdbcType=VARCHAR}, #{checkindate,jdbcType=DATE}, 
-      #{checkinday,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{createdate,jdbcType=VARCHAR}, 
-      #{updatedate,jdbcType=VARCHAR}, #{technologicalprocessid,jdbcType=DECIMAL})
-  </insert>
-  
-  <insert id="insertSelective" parameterType="Hotel" >
-    insert into T_HOTEL
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="name != null" >
-        NAME,
-      </if>
-      <if test="address != null" >
-        ADDRESS,
-      </if>
-      <if test="telephone != null" >
-        TELEPHONE,
-      </if>
-      <if test="roomnumber != null" >
-        ROOMNUMBER,
-      </if>
-      <if test="roomtype != null" >
-        ROOMTYPE,
-      </if>
-      <if test="scheduledate != null" >
-        SCHEDULEDATE,
-      </if>
-      <if test="scheduleday != null" >
-        SCHEDULEDAY,
-      </if>
-      <if test="checkindate != null" >
-        CHECKINDATE,
-      </if>
-      <if test="checkinday != null" >
-        CHECKINDAY,
-      </if>
-      <if test="price != null" >
-        PRICE,
-      </if>
-      <if test="createdate != null" >
-        CREATEDATE,
-      </if>
-      <if test="updatedate != null" >
-        UPDATEDATE,
-      </if>
-      <if test="technologicalprocessid != null" >
-        TECHNOLOGICALPROCESSID,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=DECIMAL},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="roomnumber != null" >
-        #{roomnumber,jdbcType=VARCHAR},
-      </if>
-      <if test="roomtype != null" >
-        #{roomtype,jdbcType=VARCHAR},
-      </if>
-      <if test="scheduledate != null" >
-        #{scheduledate,jdbcType=DATE},
-      </if>
-      <if test="scheduleday != null" >
-        #{scheduleday,jdbcType=VARCHAR},
-      </if>
-      <if test="checkindate != null" >
-        #{checkindate,jdbcType=DATE},
-      </if>
-      <if test="checkinday != null" >
-        #{checkinday,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        #{price,jdbcType=VARCHAR},
-      </if>
-      <if test="createdate != null" >
-        #{createdate,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedate != null" >
-        #{updatedate,jdbcType=VARCHAR},
-      </if>
-      <if test="technologicalprocessid != null" >
-        #{technologicalprocessid,jdbcType=DECIMAL},
-      </if>
-    </trim>
-  </insert>
-  
-  <update id="updateByPrimaryKeySelective" parameterType="Hotel" >
-    update T_HOTEL
-    <set >
-      <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        ADDRESS = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="telephone != null" >
-        TELEPHONE = #{telephone,jdbcType=VARCHAR},
-      </if>
-      <if test="roomnumber != null" >
-        ROOMNUMBER = #{roomnumber,jdbcType=VARCHAR},
-      </if>
-      <if test="roomtype != null" >
-        ROOMTYPE = #{roomtype,jdbcType=VARCHAR},
-      </if>
-      <if test="scheduledate != null" >
-        SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
-      </if>
-      <if test="scheduleday != null" >
-        SCHEDULEDAY = #{scheduleday,jdbcType=VARCHAR},
-      </if>
-      <if test="checkindate != null" >
-        CHECKINDATE = #{checkindate,jdbcType=DATE},
-      </if>
-      <if test="checkinday != null" >
-        CHECKINDAY = #{checkinday,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        PRICE = #{price,jdbcType=VARCHAR},
-      </if>
-      <if test="createdate != null" >
-        CREATEDATE = #{createdate,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedate != null" >
-        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
-      </if>
-      <if test="technologicalprocessid != null" >
-        TECHNOLOGICALPROCESSID = #{technologicalprocessid,jdbcType=DECIMAL},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=DECIMAL}
-  </update>
-  
-  <update id="updateByPrimaryKey" parameterType="Hotel" >
-    update T_HOTEL
-    set NAME = #{name,jdbcType=VARCHAR},
-      ADDRESS = #{address,jdbcType=VARCHAR},
-      TELEPHONE = #{telephone,jdbcType=VARCHAR},
-      ROOMNUMBER = #{roomnumber,jdbcType=VARCHAR},
-      ROOMTYPE = #{roomtype,jdbcType=VARCHAR},
-      SCHEDULEDATE = #{scheduledate,jdbcType=DATE},
-      SCHEDULEDAY = #{scheduleday,jdbcType=VARCHAR},
-      CHECKINDATE = #{checkindate,jdbcType=DATE},
-      CHECKINDAY = #{checkinday,jdbcType=VARCHAR},
-      PRICE = #{price,jdbcType=VARCHAR},
-      CREATEDATE = #{createdate,jdbcType=VARCHAR},
-      UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
-      TECHNOLOGICALPROCESSID = #{technologicalprocessid,jdbcType=DECIMAL}
-    where ID = #{id,jdbcType=DECIMAL}
-  </update>
+	<resultMap id="t_Hotel" type="Hotel">
+		<id column="ID" property="id" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+		<result column="ROOMNUMBER" property="roomNumber" jdbcType="VARCHAR" />
+		<result column="ROOMTYPE" property="roomType" jdbcType="VARCHAR" />
+		<result column="SCHEDULEDATE" property="scheduleDate" jdbcType="DATE" />
+		<result column="SCHEDULEDAY" property="scheduleDay" jdbcType="VARCHAR" />
+		<result column="CHECKINDATE" property="checkinDate" jdbcType="DATE" />
+		<result column="CHECKINDAY" property="checkinDay" jdbcType="VARCHAR" />
+		<result column="PRICE" property="price" jdbcType="VARCHAR" />
+		<result column="TECHNOLOGICALPROCESSID" property="technologicalProcessId" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID,
+		NAME,
+		ADDRESS,
+		TELEPHONE,
+		ROOMNUMBER,
+		ROOMTYPE,
+		SCHEDULEDATE,
+		SCHEDULEDAY,
+		CHECKINDATE,
+		CHECKINDAY,
+		PRICE,
+		CREATEDATE,
+		UPDATEDATE,
+		TECHNOLOGICALPROCESSID
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				and ANME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="technologicalProcessId != null">
+				AND TechnologicalProcessID = #{technologicalProcessId}
+			</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="t_Hotel" parameterType="Hotel">
+		select
+		<include refid="Base_Column_List" />
+		from T_HOTEL
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultMap="t_Hotel" parameterType="Hotel">
+		select
+		<include refid="Base_Column_List" />
+		from T_HOTEL
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="Hotel">
+		select
+		count(id)
+		from T_HOTEL
+		<include refid="where" />
+	</select>
+
+	<delete id="delete" parameterType="Hotel">
+		delete from T_HOTEL
+		where ID = #{id}
+	</delete>
+
+	<insert id="insert" parameterType="Hotel">
+	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_Hotel.nextval from dual
+		</selectKey>
+		insert into T_HOTEL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="telephone != null">
+				TELEPHONE,
+			</if>
+			<if test="roomNumber != null">
+				ROOMNUMBER,
+			</if>
+			<if test="roomType != null">
+				ROOMTYPE,
+			</if>
+			<if test="scheduleDate != null">
+				SCHEDULEDATE,
+			</if>
+			<if test="scheduleDay != null">
+				SCHEDULEDAY,
+			</if>
+			<if test="checkinDate != null">
+				CHECKINDATE,
+			</if>
+			<if test="checkinDay != null">
+				CHECKINDAY,
+			</if>
+			<if test="price != null">
+				PRICE,
+			</if>
+			<if test="createDate != null">
+				CREATEDATE,
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE,
+			</if>
+			<if test="technologicalProcessId != null">
+				TECHNOLOGICALPROCESSID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="roomNumber != null">
+				#{roomNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="roomType != null">
+				#{roomType,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleDate != null">
+				#{scheduleDate,jdbcType=DATE},
+			</if>
+			<if test="scheduleDay != null">
+				#{scheduleDay,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleDay != null">
+				#{checkinDate,jdbcType=DATE},
+			</if>
+			<if test="checkinDate != null">
+				#{checkinDate,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=VARCHAR},
+			</if>
+			<if test="technologicalProcessId != null">
+				#{technologicalProcessId},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="Hotel">
+		update T_HOTEL
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="roomNumber != null">
+				ROOMNUMBER = #{roomNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="roomType != null">
+				ROOMTYPE = #{roomType,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleDate != null">
+				SCHEDULEDATE = #{scheduleDate,jdbcType=DATE},
+			</if>
+			<if test="scheduleDay != null">
+				SCHEDULEDAY = #{scheduleDay,jdbcType=VARCHAR},
+			</if>
+			<if test="checkinDate != null">
+				CHECKINDATE = #{checkinDate,jdbcType=DATE},
+			</if>
+			<if test="checkinDay != null">
+				CHECKINDAY = #{checkinDay,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				PRICE = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate,jdbcType=VARCHAR},
+			</if>
+			<if test="technologicalProcessId != null">
+				TECHNOLOGICALPROCESSID = #{technologicalProcessId},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
 </mapper>

@@ -500,14 +500,13 @@
 								</dir>
 							</form>
 						</div>
-						
 						<!-- 酒店信息 -->
 						<div class="tab-pane fade" id="hotel">
 							<form id="hotelForm" class="form-horizontal"
-								action="" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
+								action="${menu2Id}!saveHotel.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="hotel.id" value="${hotel.id}">
 								
 								<dir class="row">
@@ -517,7 +516,7 @@
 											<div class="controls">
 												<input type="text" data-required="true" desc="酒店名称" id="hotelName"
 													name="hotel.name"
-													value="${hotel.name }"
+													value="${hotel.name}"
 													class="input-large" />
 											</div>
 										</div>
@@ -528,7 +527,7 @@
 											<div class="controls">
 												<input type="text" data-required="true" desc="房间号" id="roomNumber"
 													name="hotel.roomNumber"
-													value="${hotel.roomNumber }"
+													value="${hotel.roomNumber}"
 													class="input-large" />
 											</div>
 										</div>
@@ -541,7 +540,7 @@
 											<div class="controls">
 												<input type="text" data-required="true" desc="房间类型" id="roomType"
 													name="hotel.roomType"
-													value="${hotel.roomType }"
+													value="${hotel.roomType}"
 													class="input-large" />
 											</div>
 										</div>
@@ -552,7 +551,7 @@
 											<div class="controls">
 												<input type="text" data-required="true" desc="酒店地址" id="address"
 													name="hotel.address"
-													value="${hotel.address }"
+													value="${hotel.address}"
 													class="input-large" />
 											</div>
 										</div>
@@ -588,8 +587,8 @@
 											<label class="control-label" for="checkInDay">预计入住天数：</label>
 											<div class="controls">
 												<input type="text" data-required="true" desc="预计入住天数" id="checkInDay"
-													name="hotel.CheckInDay"
-													value="${hotel.checkInDay}"
+													name="hotel.checkinDay"
+													value="${hotel.checkinDay}"
 													class="input-large" />
 											</div>
 										</div>
@@ -1429,7 +1428,13 @@
 				action = $("#expressForm").attr("action");
 				setTabID("expressForm",action);
 				$("#expressForm").submit();
-			}
+			} else if ("hotelButt" == currTab) {
+
+				//validate = $('#expressForm').validate();
+				action = $("#hotelForm").attr("action");
+				setTabID("hotelForm",action);
+				$("#hotelForm").submit();
+			} 
 		}
 		
 		function setTabID(name,action)

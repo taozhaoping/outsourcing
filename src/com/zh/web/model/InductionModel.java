@@ -309,5 +309,21 @@ public class InductionModel extends BaseModel {
 	public void setTrainCourseList(List<TrainCourse> trainCourseList) {
 		this.trainCourseList = trainCourseList;
 	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public PhysicalExam getPhysicalExam() {
+		return physicalExam;
+	}
+
+	public void setPhysicalExam(PhysicalExam physicalExam) {
+		this.physicalExam = physicalExam;
+	}
 	
 }
