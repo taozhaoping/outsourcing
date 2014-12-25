@@ -309,6 +309,8 @@ create table t_PhysicalExamination
    type               VARCHAR(2),  --种类
    ScheduleDate       DATE,        --预定时间
    ReceiveDate        DATE,        --报告领取日期 
+   createDate         VARCHAR(20), --创建时间
+   updateDate         VARCHAR(20), --修改时间
    TechnologicalProcessID NUMBER,  --人员ID
    constraint PK_PHYSICALEXAMINATION primary key (id)
 );

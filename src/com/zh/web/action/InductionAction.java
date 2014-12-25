@@ -48,6 +48,7 @@ import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
 import com.zh.web.model.bean.Hotel;
+import com.zh.web.model.bean.PhysicalExam;
 import com.zh.web.model.bean.TrainCourse;
 import com.zh.web.model.bean.TrainingOfPersonnel;
 import com.zh.web.service.CertificatesService;
@@ -56,6 +57,7 @@ import com.zh.web.service.ExpressService;
 import com.zh.web.service.FileInfoService;
 import com.zh.web.service.FlightService;
 import com.zh.web.service.HotelService;
+import com.zh.web.service.PhysicalExamService;
 import com.zh.web.service.TrainCourseService;
 import com.zh.web.service.TrainingOfPersonnelService;
 
@@ -115,6 +117,9 @@ public class InductionAction extends BaseAction {
 	
 	@Autowired
 	private HotelService hotelService;
+	
+	@Autowired
+	private PhysicalExamService physicalExamService;
 
 	@Override
 	public Object getModel() {
@@ -222,6 +227,33 @@ public class InductionAction extends BaseAction {
 		return "save";
 	}
 
+	/**
+	 * 保存体检信息
+	 * @return
+	 */
+	public String savePhysicalExam()
+	{
+		String formId = this.inductionModel.getFormId();
+		if (null == formId && "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！");
+		}
+		PhysicalExam physicalExam = this.inductionModel.getPhysicalExam();
+		physicalExam.setTechnologicalProcessId(Integer.valueOf(formId));
+		Integer id = physicalExam.getId();
+
+		if (null != id && id > 0) {
+			physicalExamService.update(physicalExam);
+		} else {
+			physicalExamService.insert(physicalExam);
+		}
+
+		return "save";
+	}
+	/**
+	 * 保存酒店信息
+	 * @return
+	 */
 	public String saveHotel() {
 		String formId = this.inductionModel.getFormId();
 		if (null == formId && "".equals(formId)) {
@@ -361,6 +393,11 @@ public class InductionAction extends BaseAction {
 			hotel.setTechnologicalProcessId(id);
 			Hotel hotelReult = hotelService.query(hotel);
 			
+			//体检信息
+			PhysicalExam physicalExam = new PhysicalExam();
+			physicalExam.setTechnologicalProcessId(id);
+			PhysicalExam physicalExamReult = physicalExamService.query(physicalExam);
+			
 			//培训课程信息
 			List<TrainCourse> trainCourseList = this.inductionModel.getTrainCourseList();
 			TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
@@ -391,6 +428,7 @@ public class InductionAction extends BaseAction {
 				this.inductionModel.setExpress(expressReult);
 				this.inductionModel.setFlight(flightReult);
 				this.inductionModel.setHotel(hotelReult);
+				this.inductionModel.setPhysicalExam(physicalExamReult);
 			}
 
 		} else {

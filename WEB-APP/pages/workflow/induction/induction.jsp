@@ -600,7 +600,7 @@
 						<!-- 体检信息 -->
 						<div class="tab-pane fade" id="physicalExam">
 							<form id="physicalExamForm" class="form-horizontal"
-								action="" method="post">
+								action="${menu2Id}!savePhysicalExam.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
@@ -622,7 +622,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEAdress">体检地址：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="体检地址" id="PEAdress"
+												<input type="text" desc="体检地址" id="PEAdress"
 													name="physicalExam.address"
 													value="${physicalExam.address }"
 													class="input-large" />
@@ -646,7 +646,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PERemarks">医院备注：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="医院备注" id="PERemarks"
+												<input type="text" desc="医院备注" id="PERemarks"
 													name="physicalExam.remarks"
 													value="${physicalExam.remarks }"
 													class="input-large" />
@@ -683,7 +683,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEReceiveDate">报告领取日期 ：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="报告领取日期 " id="PEReceiveDate"
+												<input type="text" desc="报告领取日期 " id="PEReceiveDate"
 													name="physicalExam.receiveDate"
 													value="<s:date name="physicalExam.receiveDate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -1434,7 +1434,15 @@
 				action = $("#hotelForm").attr("action");
 				setTabID("hotelForm",action);
 				$("#hotelForm").submit();
-			} 
+			} else if ("physicalExamButt" == currTab) {
+
+				//validate = $('#expressForm').validate();
+				action = $("#physicalExamForm").attr("action");
+				setTabID("physicalExamForm",action);
+				$("#physicalExamForm").submit();
+			}
+			
+			
 		}
 		
 		function setTabID(name,action)
