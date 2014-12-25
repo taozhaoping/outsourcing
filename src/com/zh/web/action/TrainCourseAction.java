@@ -36,7 +36,7 @@ public class TrainCourseAction extends BaseAction {
 
 	@Autowired
 	private TrainCourseService trainCourseService;
-	
+
 	@Autowired
 	private TrainingOfPersonnelService trainingOfPersonnelService;
 
@@ -61,17 +61,21 @@ public class TrainCourseAction extends BaseAction {
 			TrainCourse trainCourseReult = trainCourseService
 					.query(trainCourse);
 			this.trainCourseModel.setTrainCourse(trainCourseReult);
-			
-			//获取报名学员信息
-			TrainingOfPersonnel trainingOfPersonnel = this.trainCourseModel.getTrainingOfPersonnel();
+
+			// 获取报名学员信息
+			TrainingOfPersonnel trainingOfPersonnel = this.trainCourseModel
+					.getTrainingOfPersonnel();
 			trainingOfPersonnel.setTrainCourseId(id);
 			Pager pager = this.trainCourseModel.getPageInfo();
-			
-			Integer count = trainingOfPersonnelService.count(trainingOfPersonnel);
-			
+
+			Integer count = trainingOfPersonnelService
+					.count(trainingOfPersonnel);
+
 			pager.setTotalRow(count);
-			List<TrainingOfPersonnel> trainingOfPersonnelList = trainingOfPersonnelService.queryList(trainingOfPersonnel, pager);
-			this.trainCourseModel.setTrainingOfPersonnelList(trainingOfPersonnelList);
+			List<TrainingOfPersonnel> trainingOfPersonnelList = trainingOfPersonnelService
+					.queryList(trainingOfPersonnel, pager);
+			this.trainCourseModel
+					.setTrainingOfPersonnelList(trainingOfPersonnelList);
 		}
 		return Action.EDITOR;
 	}
@@ -80,20 +84,20 @@ public class TrainCourseAction extends BaseAction {
 		LOGGER.debug("save()");
 		TrainCourse trainCourse = trainCourseModel.getTrainCourse();
 
-		//判断当前是设置成启动状态还是停用状态
+		// 判断当前是设置成启动状态还是停用状态
 		String view = this.trainCourseModel.getView();
-		if(null != view && "enabled".equals(view)){
-			
+		if (null != view && "enabled".equals(view)) {
+
 			String enabled = this.trainCourseModel.getEnabled();
 			Integer id = this.trainCourseModel.getId();
-			if("0".equals(enabled)){
+			if ("0".equals(enabled)) {
 				trainCourse.setEnabled("1");
-			}else{
+			} else {
 				trainCourse.setEnabled("0");
 			}
 			trainCourse.setId(id);
 		}
-		
+
 		// 判断是新增还是修改
 		Integer id = trainCourse.getId();
 		if (null == id || 0 == id) {
@@ -103,18 +107,17 @@ public class TrainCourseAction extends BaseAction {
 		}
 		return Action.EDITOR_SUCCESS;
 	}
-	
-	public String saveTraining()
-	{
-		TrainingOfPersonnel trainingOfPersonnel = trainCourseModel.getTrainingOfPersonnel();
+
+	public String saveTraining() {
+		TrainingOfPersonnel trainingOfPersonnel = trainCourseModel
+				.getTrainingOfPersonnel();
 		Integer trainCourseId = trainingOfPersonnel.getTrainCourseId();
-		Integer technologicalProcessId = trainingOfPersonnel.getTechnologicalProcessId();
-		if (trainCourseId == null || trainCourseId == 0)
-		{
+		Integer technologicalProcessId = trainingOfPersonnel
+				.getTechnologicalProcessId();
+		if (trainCourseId == null || trainCourseId == 0) {
 			throw new ProjectException("课程编号不允许为null");
 		}
-		if (technologicalProcessId == null || technologicalProcessId == 0)
-		{
+		if (technologicalProcessId == null || technologicalProcessId == 0) {
 			throw new ProjectException("学员编号不允许为null");
 		}
 		trainingOfPersonnelService.insert(trainingOfPersonnel);
