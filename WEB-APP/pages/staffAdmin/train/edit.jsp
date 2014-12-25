@@ -133,9 +133,9 @@
 											<div class="controls">
 												<select id="trainCoursetrainType" class="input-large"
 													desc="课程种类" name="trainCourse.trainType">
-													<option value="A">A类</option>
-													<option value="B">B类</option>
-													<option value="C">C类</option>
+													<option value="1">入职培训</option>
+													<option value="2">岗位培训</option>
+													<option value="5">其他培训</option>
 												</select>
 											</div>
 										</div>

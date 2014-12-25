@@ -92,6 +92,8 @@
 						<button id="formButton" class="btn btn-primary" type="button">
 							<i class="icon-save"></i> 保存
 						</button>
+						<a class="btn" id="backList" href="">
+							返回</a>
 						<input type="hidden" id="hasEditAuth" value="1">
 
 				</div>

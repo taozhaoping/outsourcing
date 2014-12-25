@@ -109,7 +109,15 @@
 								<s:iterator value="trainCourseList" var="trainCourse" status="index">
 									<tr>
 										<td><s:property value="#index.index + 1"/></td>
-										<td><s:property value="#trainCourse.trainType"/></td>
+										<s:if test="#trainCourse.trainType==1">
+											<td>入职培训</td>
+										</s:if>
+										<s:elseif test="2">
+											<td>岗位培训</td>
+										</s:elseif>
+										<s:else>
+											<td>其他培训</td>
+										</s:else>
 										<td><s:property value="#trainCourse.scheduleDate"/></td>
 										<td><s:property value="#trainCourse.name"/></td>
 										<td><s:property value="#trainCourse.address"/></td>

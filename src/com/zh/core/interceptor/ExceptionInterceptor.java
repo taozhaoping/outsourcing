@@ -42,9 +42,7 @@ public class ExceptionInterceptor extends AbstractInterceptor {
 				ProjectException be = (ProjectException) e;
 				errorMsg = be.getManager();
 				
-				be.getCause().printStackTrace();
-				be.printStackTrace(); // 开发时打印异常信息，方便调试
-				LOGGER.error(be.getManager() + be.getMessage());
+				LOGGER.error(be.getManager());
 				
 			} else if (e instanceof RuntimeException) {
 				// 未知的运行时异常
@@ -67,7 +65,7 @@ public class ExceptionInterceptor extends AbstractInterceptor {
 			 */
 			request.setAttribute("errorMsg", errorMsg);
 
-			LOGGER.error(errorMsg, e);
+			//LOGGER.error(errorMsg, e);
 
 
 			return "error";

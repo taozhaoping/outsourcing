@@ -64,23 +64,17 @@
 			<h1>Oops!</h1>
 			<p class="info">Something happened that we didn't expect.</p>
 			<p>
-				<i class="icon-home"></i>
+				<a class="btn btn-link btn-large" href="<%=path %>/login/login.jspa"><i  class="icon-home"></i></a>
 			</p>
-			<p>
-				<a href="<%=path %>/login/login.jspa">Back to the home page</a>
-				${errorMsg}
-			</p>
+				
+				<p class="text-error text-center">${errorMsg}</p>
 		</div>
 	</div>
 
 	<script src="<%=path %>/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
-		$(function() {
-			$('.demo-cancel-click').click(function() {
-				return false;
-			});
-		});
+		
 	</script>
 </body>
 </html>
