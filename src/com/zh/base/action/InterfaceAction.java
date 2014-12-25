@@ -10,7 +10,9 @@ import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.BaseAction;
 import com.zh.web.model.bean.EntryProcess;
+import com.zh.web.model.bean.TrainCourse;
 import com.zh.web.service.EntryProcessService;
+import com.zh.web.service.TrainCourseService;
 
 public class InterfaceAction extends BaseAction {
 
@@ -26,6 +28,9 @@ public class InterfaceAction extends BaseAction {
 	
 	@Autowired
 	private EntryProcessService entryProcessService;
+	
+	@Autowired
+	private TrainCourseService trainCourseService; 
 	
 	private InterfaceModel interfaceModel = new InterfaceModel();
 
@@ -49,6 +54,10 @@ public class InterfaceAction extends BaseAction {
 		return "usersjson";
 	}
 	
+	/**
+	 * 获取入职员工信息
+	 * @return
+	 */
 	public String queryEntryProcess() {
 		LOGGER.debug("entryProcess() ");
 		//所有所有激活的用户
@@ -57,6 +66,23 @@ public class InterfaceAction extends BaseAction {
 		List<EntryProcess> entryProcessList = entryProcessService.queryList(entryProcess);
 		this.interfaceModel.setEntryProcessList(entryProcessList);
 		return "entryProcessjson";
+	}
+	
+	/**
+	 * 获取培训信息
+	 * @return
+	 */
+	public String queryTrainCourse()
+	{
+		LOGGER.debug("TrainCourse() ");
+		//所有所有激活的用户
+		String type = interfaceModel.getType();
+		TrainCourse trainCourse = interfaceModel.getTrainCourse();
+		trainCourse.setTrainType(type);
+		trainCourse.setEnabled("0");
+		List<TrainCourse> trainCourseList = trainCourseService.queryList(trainCourse);
+		this.interfaceModel.setTrainCourseList(trainCourseList);
+		return "trainCoursejson";
 	}
 
 	public Object getModel() {

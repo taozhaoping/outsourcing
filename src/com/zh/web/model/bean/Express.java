@@ -4,6 +4,11 @@ import java.util.Date;
 
 import com.zh.core.model.IDataObject;
 
+/**
+ * 快递信息
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public class Express extends IDataObject {
     /**
 	 * 

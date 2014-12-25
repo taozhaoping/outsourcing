@@ -9,6 +9,10 @@ import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
+import com.zh.web.model.bean.Hotel;
+import com.zh.web.model.bean.PhysicalExam;
+import com.zh.web.model.bean.TrainCourse;
+import com.zh.web.model.bean.TrainingOfPersonnel;
 
 public class InductionModel extends BaseModel {
 
@@ -40,6 +44,16 @@ public class InductionModel extends BaseModel {
 	private Express express = new Express();
 	
 	/**
+	 * 酒店信息
+	 */
+	private Hotel hotel = new Hotel();
+	
+	/**
+	 * 体检信息
+	 */
+	private PhysicalExam physicalExam = new PhysicalExam();
+	
+	/**
 	 * 航班信息
 	 */
 	private Flight flight = new Flight();
@@ -48,6 +62,10 @@ public class InductionModel extends BaseModel {
 	 * 文件信息
 	 */
 	private FileInfo fileInfo = new FileInfo();
+	
+	private TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
+	
+	private List<TrainCourse> trainCourseList = new ArrayList<TrainCourse>();
 	
 	private List<FileInfo> fileInfoList = new ArrayList<FileInfo>();
 	
@@ -274,6 +292,22 @@ public class InductionModel extends BaseModel {
 
 	public void setEntryProcessList(List<EntryProcess> entryProcessList) {
 		this.entryProcessList = entryProcessList;
+	}
+
+	public TrainingOfPersonnel getTrainingOfPersonnel() {
+		return trainingOfPersonnel;
+	}
+
+	public void setTrainingOfPersonnel(TrainingOfPersonnel trainingOfPersonnel) {
+		this.trainingOfPersonnel = trainingOfPersonnel;
+	}
+
+	public List<TrainCourse> getTrainCourseList() {
+		return trainCourseList;
+	}
+
+	public void setTrainCourseList(List<TrainCourse> trainCourseList) {
+		this.trainCourseList = trainCourseList;
 	}
 	
 }

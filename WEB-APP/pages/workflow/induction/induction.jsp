@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -56,6 +57,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%>
@@ -506,7 +508,7 @@
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${hotel.id}">
+								<input type="hidden" name="hotel.id" value="${hotel.id}">
 								
 								<dir class="row">
 									<div class="span5 pull-left">
@@ -587,7 +589,7 @@
 											<div class="controls">
 												<input type="text" data-required="true" desc="预计入住天数" id="checkInDay"
 													name="hotel.CheckInDay"
-													value="${hotel.checkInDay }"
+													value="${hotel.checkInDay}"
 													class="input-large" />
 											</div>
 										</div>
@@ -603,7 +605,7 @@
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${physicalExam.id}">
+								<input type="hidden" name="physicalExam.id" value="${physicalExam.id}">
 								
 								<dir class="row">
 									<div class="span5">
@@ -700,7 +702,7 @@
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${channel.id}">
+								
 								渠道信息
 							</form>
 						</div>
@@ -708,15 +710,63 @@
 						<!-- 培训信息 -->
 						<div class="tab-pane fade" id="training">
 							<form id="trainingForm" class="form-horizontal"
-								action="" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${training.id}">
+								action="${menu2Id}!saveTrainCourse.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}" /> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
+								<input type="hidden" name="formId" value="${entryProcess.id}" />
+								<input type="hidden" name="tabID" value="trainingButt" />
+								<input type="hidden" id="trainCourseId" name="trainingOfPersonnel.trainCourseId" value="" />
 								
 								<button class="btn btn-small btn-primary" type="button"
-								data-toggle="modal" data-target="">添加培训</button>
+								data-toggle="modal" data-target="#popupfirm">添加培训</button>
 							</form>
+							<table class="table">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>培训类型</th>
+									<th>预定时间</th>
+									<th>名称</th>
+									<th>地址</th>
+									<th>课程教师</th>
+									<th>状态</th>
+									<th style="width: 26px;"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<s:iterator value="trainCourseList" var="trainCourse" status="index">
+									<tr>
+										<td><s:property value="#index.index + 1"/></td>
+										<s:if test="#trainCourse.trainType==1">
+											<td>入职培训</td>
+										</s:if>
+										<s:elseif test="2">
+											<td>岗位培训</td>
+										</s:elseif>
+										<s:else>
+											<td>其他培训</td>
+										</s:else>
+										<td><s:property value="#trainCourse.scheduleDate"/></td>
+										<td><s:property value="#trainCourse.name"/></td>
+										<td><s:property value="#trainCourse.address"/></td>
+										<td>
+											<s:set id="userNameid" value="#trainCourse.userId"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+										</td>
+										<s:if test="#trainCourse.enabled==0">
+											<td>有效</td>
+										</s:if>
+										<s:else>
+											<td>无效</td>
+										</s:else>
+										<td>
+											<a href="${menu2Id}!saveTrainCourse.jspa?id=<s:property value='#trainCourse.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&tabID=trainingButt"><i
+												class="icon-remove"></i></a>
+										</td>
+									</tr>
+								</s:iterator>
+							</tbody>
+						</table>
 						</div>
 						
 						<!-- 公司活动 -->
@@ -726,7 +776,6 @@
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
 									type="hidden" name="formId" value="${entryProcess.id}">
-								<input type="hidden" name="express.id" value="${activities.id}">
 								
 								<button class="btn btn-small btn-primary" type="button"
 								data-toggle="modal" data-target="">添加活动</button>
@@ -944,6 +993,32 @@
 		<a id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm"
 			data-toggle="modal"></a>
 	</div>
+	
+	<!-- 添加培训 -->
+	<div class="modal small hide fade" id="popupfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel1">人员添加</h3>
+		</div>
+		<div class="modal-body">
+				<div class="control-group">
+					<label id="modalAssignLable" class="control-label  pull-left" for="popupModalAssign">人员：</label>
+					<div class="controls">
+						<select id="popupModalAssign" class="input-large">
+						<option selected="selected" id="popupModalAssignOption">&nbsp;</option>
+					</select>
+					</div>
+				</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="popupBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+	
 	<!-- 发起流程 -->
 	<div class="modal small hide fade" id="startConfirm" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1200,7 +1275,7 @@
 			obj.receivedate = $("input[id='certificatesReceivedate']")[index].value;
 			obj.validstartdate = $("input[id='certificatesValidstartdate']")[index].value;
 			obj.validenddate = $("input[id='certificatesValidenddate']")[index].value;
-			obj.entryProcessid = $("#inputId").val();
+			obj.technologicalprocessid = $("#inputId").val();
 			return obj;
 		}
 
@@ -1305,7 +1380,7 @@
 
 		//提交按钮
 		$("#formButton").click(function() {
-			currTab = $("#tabID").val();
+			//currTab = $("#tabID").val();
 			saveForm();
 		});
 
@@ -1313,9 +1388,10 @@
 			saveForm();
 		});
 
-		//当前tbs
+		//旧的tbs
+		var oldTab = tabID;
+		//当前tab
 		var currTab = tabID;
-
 		//判读当前tab，需要保存那个form
 		function saveForm() {
 			var action;
@@ -1365,16 +1441,17 @@
 				actionName = action.substring(0,index);
 			}
 			$("#" + name).attr("action",
-					actionName + "?tabID=" + $("#tabID").val());	
+					actionName + "?tabID=" + currTab);	
 		}
 
 		/*判断当前form是否变更*/
 		var entryProcessId = "${entryProcess.id}";
 		function ischangeForm(id) {
 			//获取当前需要保存的tabid
-			currTab = $("#tabID").val();
+			oldTab = $("#tabID").val();
 			//设置新的tab
 			$("#tabID").val(id);
+			currTab = id;
 			//判断是否变更过
 			if ("1" == $("#formChanged").val()) {
 				$("#Ejectfirm").click();
@@ -1387,8 +1464,36 @@
 			ischangeForm(this.id);
 		});
 
+		//开始选择，培训选择框打开
+		$('#popupfirm').on('show.bs.modal', function(x,xx) {
+			// 执行一些动作...
+			if ("trainingButt" == currTab)
+			{
+				$('#startModalLabel1').html("添加培训");
+				$('#modalAssignLable').html("培训课程:");
+				selectTrainCourse("popupModalAssign","1");
+				$("#popupModalAssign").select2();
+			}
+			
+		});
+		
+		//弹出框公共确认按钮
+		$("#popupBtnConfirm").click(function(x) {
+			if ("trainingButt" == currTab)
+			{
+				var assign = $("#popupModalAssign").val();
+				assign = $.trim(assign);
+				if (assign == null || assign == "") {
+					return;
+				} else {
+					$("#trainCourseId").val(assign);
+					$("#trainingForm").submit();
+				}
+			}
+		});
+		
 		//开始选择，用户选择框打开
-		$('#startConfirm').on('show.bs.modal', function() {
+		$('#startConfirm').on('show.bs.modal', function(x) {
 			// 执行一些动作...
 			selectUsers("modalAssign");
 			//审核状态
@@ -1402,12 +1507,12 @@
 		});
 
 		//选择框隐藏
-		$('#startConfirm').on('hidden.bs.modal', function() {
+		$('#startConfirm').on('hidden.bs.modal', function(x) {
 			// 执行一些动作...
 		});
 
 		//批准选择，用户选择框打开
-		$('#approveConfirm').on('show.bs.modal', function() {
+		$('#approveConfirm').on('show.bs.modal', function(x) {
 			// 执行一些动作...
 			selectUsers("modalNextAssign");
 			//审核状态
@@ -1426,9 +1531,8 @@
 			// 执行一些动作...
 		});
 
-
 		//发起按钮确认
-		$("#startBtnConfirm").click(function() {
+		$("#startBtnConfirm").click(function(x) {
 			var assign = $("#modalAssign").val();
 			assign = $.trim(assign);
 			if (assign == null || assign == "") {
@@ -1440,7 +1544,7 @@
 		});
 
 		//批准按钮确认
-		$("#approveBtnConfirm").click(function() {
+		$("#approveBtnConfirm").click(function(x) {
 			var assign = $("#modalNextAssign").val();
 			assign = $.trim(assign);
 			if (assign == null || assign == "") {
@@ -1453,7 +1557,7 @@
 		});
 
 		//拒绝按钮确认
-		$("#rejectBtnConfirm").click(function() {
+		$("#rejectBtnConfirm").click(function(x) {
 			$("#awf_assignFlag").val("0");
 			$("#approveWF").submit();
 		});

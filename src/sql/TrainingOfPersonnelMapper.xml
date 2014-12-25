@@ -34,6 +34,12 @@
 		</where>
 	</sql>
 	
+	<delete id="delete" parameterType="TrainingOfPersonnel">
+		delete from
+		T_TRAININGOFPERSONNEL
+		<include refid="where" />
+	</delete>
+	
   <select id="select" resultMap="T_TrainingOfPersonnel" parameterType="TrainingOfPersonnel" >
     select 
     <include refid="Base_Column_List" />
@@ -97,10 +103,5 @@
       </if>
     </trim>
   </insert>
-  
-  	<delete id="delete" parameterType="TrainingOfPersonnel">
-		delete from T_TRAININGOFPERSONNEL
-		where ID = #{id}
-	</delete>
 	
 </mapper>

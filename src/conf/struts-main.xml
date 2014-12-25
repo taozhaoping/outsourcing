@@ -125,6 +125,10 @@
 				<param name="root">interfaceModel.entryProcessList</param>
 			</result>
 			
+			<!-- 查询所有培训信息 -->
+			<result name="trainCoursejson" type="json">
+				<param name="root">interfaceModel.trainCourseList</param>
+			</result>
 		</action>
 	</package>
 </struts>

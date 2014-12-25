@@ -6,10 +6,12 @@ import java.util.List;
 import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
 import com.zh.web.model.bean.EntryProcess;
-import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.model.bean.TrainCourse;
 
 public class InterfaceModel extends BaseModel {
 
+	private String type;
+	
 	private User user = new User();
 	
 	private List<User> userList = new ArrayList<User>();
@@ -17,6 +19,10 @@ public class InterfaceModel extends BaseModel {
 	private EntryProcess entryProcess = new EntryProcess();
 
 	private List<EntryProcess> entryProcessList = new ArrayList<EntryProcess>();
+	
+	private TrainCourse trainCourse = new TrainCourse();
+	
+	private List<TrainCourse> trainCourseList = new ArrayList<TrainCourse>();
 
 	public User getUser() {
 		return user;
@@ -48,6 +54,30 @@ public class InterfaceModel extends BaseModel {
 
 	public void setEntryProcessList(List<EntryProcess> entryProcessList) {
 		this.entryProcessList = entryProcessList;
+	}
+
+	public TrainCourse getTrainCourse() {
+		return trainCourse;
+	}
+
+	public void setTrainCourse(TrainCourse trainCourse) {
+		this.trainCourse = trainCourse;
+	}
+
+	public List<TrainCourse> getTrainCourseList() {
+		return trainCourseList;
+	}
+
+	public void setTrainCourseList(List<TrainCourse> trainCourseList) {
+		this.trainCourseList = trainCourseList;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

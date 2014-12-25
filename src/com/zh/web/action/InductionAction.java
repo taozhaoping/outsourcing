@@ -47,11 +47,15 @@ import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.Express;
 import com.zh.web.model.bean.FileInfo;
 import com.zh.web.model.bean.Flight;
+import com.zh.web.model.bean.TrainCourse;
+import com.zh.web.model.bean.TrainingOfPersonnel;
 import com.zh.web.service.CertificatesService;
 import com.zh.web.service.EntryProcessService;
 import com.zh.web.service.ExpressService;
 import com.zh.web.service.FileInfoService;
 import com.zh.web.service.FlightService;
+import com.zh.web.service.TrainCourseService;
+import com.zh.web.service.TrainingOfPersonnelService;
 
 public class InductionAction extends BaseAction {
 	
@@ -100,6 +104,12 @@ public class InductionAction extends BaseAction {
 	
 	@Autowired
 	private ExpressService expressService;
+	
+	@Autowired
+	private TrainCourseService trainCourseService;
+
+	@Autowired
+	private TrainingOfPersonnelService trainingOfPersonnelService;
 
 	@Override
 	public Object getModel() {
@@ -230,6 +240,33 @@ public class InductionAction extends BaseAction {
 				.toString());
 		return "save";
 	}
+	
+	//保存培训信息
+		public String saveTrainCourse() {
+			String formId = this.inductionModel.getFormId();
+			Integer id = this.inductionModel.getId();
+			String view = this.inductionModel.getView();
+			if (null == formId || "".equals(formId)) {
+				throw ProjectException
+						.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+			}
+			if (null != view && ( null == id || "".equals(id) )) {
+				throw ProjectException
+						.createException("当前的培训编号不允许为空！");
+			}
+			TrainingOfPersonnel trainingOfPersonnel = this.inductionModel.getTrainingOfPersonnel();
+			trainingOfPersonnel.setTechnologicalProcessId(Integer.valueOf(formId));
+			
+			if ( null != view && "delete".equals(view))
+			{
+				trainingOfPersonnel.setTrainCourseId(id);
+				trainingOfPersonnelService.delete(trainingOfPersonnel);
+			}else
+			{
+				trainingOfPersonnelService.insert(trainingOfPersonnel);
+			}
+			return "save";
+		}
 
 	// 保存表单
 	public String save() {
@@ -274,34 +311,46 @@ public class InductionAction extends BaseAction {
 			// 获取基本信息
 			EntryProcess process = entryProcessService
 					.query(entryProcess);
-
+			Integer id = process.getId();
 			// 获取证件信息
 			Certificates certificates = new Certificates();
-			certificates.setTechnologicalprocessid(process.getId());
+			certificates.setTechnologicalprocessid(id);
 			List<Certificates> certificatesList = certificatesService
 					.queryList(certificates);
 			// 获取航班信息
 			Flight flight = new Flight();
-			flight.setTechnologicalprocessid(process.getId());
+			flight.setTechnologicalprocessid(id);
 			Flight flightReult = flightService.query(flight);
 			
 			//快递信息
 			Express express = new Express();
-			express.setTechnologicalprocessid(process.getId());
+			express.setTechnologicalprocessid(id);
 			Express expressReult = expressService.query(express);
 
 			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
-			fileInfo.setTechnologicalprocessid(process.getId());
+			fileInfo.setTechnologicalprocessid(id);
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
-
+			
+			//培训课程信息
+			List<TrainCourse> trainCourseList = this.inductionModel.getTrainCourseList();
+			TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
+			trainingOfPersonnel.setTechnologicalProcessId(id);
+			List<TrainingOfPersonnel> trainingOfPersonnellist = trainingOfPersonnelService.queryList(trainingOfPersonnel);
+			for (TrainingOfPersonnel trainingOf : trainingOfPersonnellist) {
+				TrainCourse trainCourse = new TrainCourse();
+				trainCourse.setId(trainingOf.getTrainCourseId());
+				TrainCourse train = trainCourseService.query(trainCourse);
+				trainCourseList.add(train);
+			}
+			
 			// 判断数据库中是否存在该数据
-			if (null != process && process.getId() != null
-					&& process.getId() > 0) {
+			if (null != process && id != null
+					&& id > 0) {
 				// 获取工作流信息
 				// String workflowId = process.getWorkflowid();
 				// 设置权限标识
-				setAuthFlag(process.getId());
+				setAuthFlag(id);
 
 				// 判断当前工作流节点的审批人,只有当前审批人拥有修改权限，其他人只有查看权限
 				this.inductionModel.setEntryProcess(process);
@@ -338,8 +387,8 @@ public class InductionAction extends BaseAction {
 		}
 		
 		//获取用户列表，
-		User user = new User();
-		List<User> List = userInfoService.queryList(user);
+		//User user = new User();
+		//List<User> List = userInfoService.queryList(user);
 		
 		return Action.EDITOR;
 	}
