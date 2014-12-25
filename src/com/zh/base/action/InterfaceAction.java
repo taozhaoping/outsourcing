@@ -5,12 +5,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.zh.base.model.InterfaceModel;
 import com.zh.base.model.bean.User;
 import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.BaseAction;
+import com.zh.web.model.bean.Activities;
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.TrainCourse;
+import com.zh.web.service.ActivitiesService;
 import com.zh.web.service.EntryProcessService;
 import com.zh.web.service.TrainCourseService;
 
@@ -31,6 +34,9 @@ public class InterfaceAction extends BaseAction {
 	
 	@Autowired
 	private TrainCourseService trainCourseService; 
+	
+	@Autowired
+	private ActivitiesService activitiesService;
 	
 	private InterfaceModel interfaceModel = new InterfaceModel();
 
@@ -85,6 +91,22 @@ public class InterfaceAction extends BaseAction {
 		return "trainCoursejson";
 	}
 
+	/**
+	 * 获取活动信息
+	 * @return
+	 */
+	public String queryActivities()
+	{
+		LOGGER.debug("Activities() ");
+		//所有所有激活的用户
+		//String type = interfaceModel.getType();
+		Activities activities = interfaceModel.getActivities();
+		activities.setEnabled("0");
+		List<Activities> activitiesList = activitiesService.queryList(activities);
+		this.interfaceModel.setActivitiesList(activitiesList);
+		return "activitiesjson";
+	}
+	
 	public Object getModel() {
 		return interfaceModel;
 	}

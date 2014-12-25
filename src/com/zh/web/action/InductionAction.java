@@ -42,6 +42,8 @@ import com.zh.core.util.GlobEnv;
 import com.zh.core.util.JSONUtil;
 import com.zh.core.util.LoggerUtil;
 import com.zh.web.model.InductionModel;
+import com.zh.web.model.bean.Activities;
+import com.zh.web.model.bean.ActivitiesUser;
 import com.zh.web.model.bean.Certificates;
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.Express;
@@ -51,6 +53,8 @@ import com.zh.web.model.bean.Hotel;
 import com.zh.web.model.bean.PhysicalExam;
 import com.zh.web.model.bean.TrainCourse;
 import com.zh.web.model.bean.TrainingOfPersonnel;
+import com.zh.web.service.ActivitiesService;
+import com.zh.web.service.ActivitiesUserService;
 import com.zh.web.service.CertificatesService;
 import com.zh.web.service.EntryProcessService;
 import com.zh.web.service.ExpressService;
@@ -62,7 +66,7 @@ import com.zh.web.service.TrainCourseService;
 import com.zh.web.service.TrainingOfPersonnelService;
 
 public class InductionAction extends BaseAction {
-	
+
 	/**
 	 * 入职工作流
 	 */
@@ -102,24 +106,30 @@ public class InductionAction extends BaseAction {
 
 	@Autowired
 	ProcessEngineFactoryBean processEngine;
-	
+
 	@Autowired
 	private UserInfoService userInfoService;
-	
+
 	@Autowired
 	private ExpressService expressService;
-	
+
 	@Autowired
 	private TrainCourseService trainCourseService;
 
 	@Autowired
 	private TrainingOfPersonnelService trainingOfPersonnelService;
-	
+
 	@Autowired
 	private HotelService hotelService;
-	
+
 	@Autowired
 	private PhysicalExamService physicalExamService;
+
+	@Autowired
+	private ActivitiesService activitiesService;
+
+	@Autowired
+	private ActivitiesUserService activitiesUserService;
 
 	@Override
 	public Object getModel() {
@@ -136,16 +146,14 @@ public class InductionAction extends BaseAction {
 		 * procInstList){ System.out.println("businessKey: " +
 		 * pi.getBusinessKey() + " id: " + pi.getId()); }
 		 */
-		EntryProcess entryProcess = this.inductionModel
-				.getEntryProcess();
+		EntryProcess entryProcess = this.inductionModel.getEntryProcess();
 		Pager pager = this.inductionModel.getPageInfo();
 		Integer count = entryProcessService.count(entryProcess);
 		pager.setTotalRow(count);
-		List<EntryProcess> entryProcessList = entryProcessService
-				.queryList(entryProcess, pager);
-		this.inductionModel
-				.setEntryProcessList(entryProcessList);
-		
+		List<EntryProcess> entryProcessList = entryProcessService.queryList(
+				entryProcess, pager);
+		this.inductionModel.setEntryProcessList(entryProcessList);
+
 		return Action.SUCCESS;
 	}
 
@@ -153,7 +161,7 @@ public class InductionAction extends BaseAction {
 	 * 保存证件列表信息(传入的事json格式对象字符串)
 	 * 
 	 * @return
-	 * @throws ParameterException 
+	 * @throws ParameterException
 	 */
 	public String saveCertificates() throws ParameterException {
 		String jsonList = this.inductionModel.getJsonList();
@@ -166,20 +174,17 @@ public class InductionAction extends BaseAction {
 		certificatesService.insertList(list);
 		return "save";
 	}
-	
-	public String saveExpress()
-	{
+
+	public String saveExpress() {
 		Express express = this.inductionModel.getExpress();
 		Integer id = express.getId();
 		String fromID = this.inductionModel.getFormId();
 		if (null == fromID || "".equals(fromID)) {
 			throw new ProjectException("编号不允许为null");
 		}
-		if(null != id&& id > 0)
-		{
+		if (null != id && id > 0) {
 			expressService.update(express);
-		}else
-		{
+		} else {
 			express.setTechnologicalprocessid(Integer.valueOf(fromID));
 			expressService.insert(express);
 		}
@@ -218,9 +223,8 @@ public class InductionAction extends BaseAction {
 			fileInfo.setName(fileName);
 			fileInfo.setType(this.getInductionModel().getFilesContentType());
 			fileInfoService.insert(fileInfo);
-		}else
-		{
-			//修改数据
+		} else {
+			// 修改数据
 			fileInfo.setTechnologicalprocessid(Integer.valueOf(fromId));
 			fileInfoService.update(fileInfo);
 		}
@@ -229,14 +233,13 @@ public class InductionAction extends BaseAction {
 
 	/**
 	 * 保存体检信息
+	 * 
 	 * @return
 	 */
-	public String savePhysicalExam()
-	{
+	public String savePhysicalExam() {
 		String formId = this.inductionModel.getFormId();
 		if (null == formId && "".equals(formId)) {
-			throw ProjectException
-					.createException("当前的流程编号不允许为空！");
+			throw ProjectException.createException("当前的流程编号不允许为空！");
 		}
 		PhysicalExam physicalExam = this.inductionModel.getPhysicalExam();
 		physicalExam.setTechnologicalProcessId(Integer.valueOf(formId));
@@ -250,8 +253,10 @@ public class InductionAction extends BaseAction {
 
 		return "save";
 	}
+
 	/**
 	 * 保存酒店信息
+	 * 
 	 * @return
 	 */
 	public String saveHotel() {
@@ -272,7 +277,7 @@ public class InductionAction extends BaseAction {
 
 		return "save";
 	}
-	
+
 	// 保存航班信息
 	public String saveFlight() {
 		String formId = this.inductionModel.getFormId();
@@ -296,39 +301,60 @@ public class InductionAction extends BaseAction {
 				.toString());
 		return "save";
 	}
-	
-	//保存培训信息
-		public String saveTrainCourse() {
-			String formId = this.inductionModel.getFormId();
-			Integer id = this.inductionModel.getId();
-			String view = this.inductionModel.getView();
-			if (null == formId || "".equals(formId)) {
-				throw ProjectException
-						.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
-			}
-			if (null != view && ( null == id || "".equals(id) )) {
-				throw ProjectException
-						.createException("当前的培训编号不允许为空！");
-			}
-			TrainingOfPersonnel trainingOfPersonnel = this.inductionModel.getTrainingOfPersonnel();
-			trainingOfPersonnel.setTechnologicalProcessId(Integer.valueOf(formId));
-			
-			if ( null != view && "delete".equals(view))
-			{
-				trainingOfPersonnel.setTrainCourseId(id);
-				trainingOfPersonnelService.delete(trainingOfPersonnel);
-			}else
-			{
-				trainingOfPersonnelService.insert(trainingOfPersonnel);
-			}
-			return "save";
+
+	// 保存培训信息
+	public String saveTrainCourse() {
+		String formId = this.inductionModel.getFormId();
+		Integer id = this.inductionModel.getId();
+		String view = this.inductionModel.getView();
+		if (null == formId || "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
 		}
+		if (null != view && (null == id || "".equals(id))) {
+			throw ProjectException.createException("当前的培训编号不允许为空！");
+		}
+		TrainingOfPersonnel trainingOfPersonnel = this.inductionModel
+				.getTrainingOfPersonnel();
+		trainingOfPersonnel.setTechnologicalProcessId(Integer.valueOf(formId));
+
+		if (null != view && "delete".equals(view)) {
+			trainingOfPersonnel.setTrainCourseId(id);
+			trainingOfPersonnelService.delete(trainingOfPersonnel);
+		} else {
+			trainingOfPersonnelService.insert(trainingOfPersonnel);
+		}
+		return "save";
+	}
+
+	// 保存活动信息
+	public String saveActivities() {
+		String formId = this.inductionModel.getFormId();
+		Integer id = this.inductionModel.getId();
+		String view = this.inductionModel.getView();
+		if (null == formId || "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		if (null != view && (null == id || "".equals(id))) {
+			throw ProjectException.createException("当前的活动编号不允许为空！");
+		}
+		ActivitiesUser activitiesUser = this.inductionModel.getActivitiesUser();
+		activitiesUser.setTechnologicalProcessId(Integer.valueOf(formId));
+
+		if (null != view && "delete".equals(view)) {
+			activitiesUser.setActivitiesId(id);
+			activitiesUserService.delete(activitiesUser);
+		} else {
+			activitiesUserService.insert(activitiesUser);
+		}
+		return "save";
+	}
 
 	// 保存表单
 	public String save() {
 		LOGGER.debug("save()");
-		EntryProcess entryProcess = this.inductionModel
-				.getEntryProcess();
+		EntryProcess entryProcess = this.inductionModel.getEntryProcess();
 		Integer id = entryProcess.getId();
 
 		if (null != id && id > 0) {
@@ -343,8 +369,7 @@ public class InductionAction extends BaseAction {
 		}
 		// 设置权限标志位
 		setAuthFlag(entryProcess.getId());
-		this.inductionModel
-				.setFormId(entryProcess.getId().toString());
+		this.inductionModel.setFormId(entryProcess.getId().toString());
 		return "save";
 	}
 
@@ -365,8 +390,7 @@ public class InductionAction extends BaseAction {
 			// technologicalProcess.setWorkuserid(queryUserId());
 
 			// 获取基本信息
-			EntryProcess process = entryProcessService
-					.query(entryProcess);
+			EntryProcess process = entryProcessService.query(entryProcess);
 			Integer id = process.getId();
 			// 获取证件信息
 			Certificates certificates = new Certificates();
@@ -377,8 +401,8 @@ public class InductionAction extends BaseAction {
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(id);
 			Flight flightReult = flightService.query(flight);
-			
-			//快递信息
+
+			// 快递信息
 			Express express = new Express();
 			express.setTechnologicalprocessid(id);
 			Express expressReult = expressService.query(express);
@@ -387,32 +411,48 @@ public class InductionAction extends BaseAction {
 			FileInfo fileInfo = new FileInfo();
 			fileInfo.setTechnologicalprocessid(id);
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
-			
-			//酒店信息
+
+			// 酒店信息
 			Hotel hotel = new Hotel();
 			hotel.setTechnologicalProcessId(id);
 			Hotel hotelReult = hotelService.query(hotel);
-			
-			//体检信息
+
+			// 体检信息
 			PhysicalExam physicalExam = new PhysicalExam();
 			physicalExam.setTechnologicalProcessId(id);
-			PhysicalExam physicalExamReult = physicalExamService.query(physicalExam);
-			
-			//培训课程信息
-			List<TrainCourse> trainCourseList = this.inductionModel.getTrainCourseList();
+			PhysicalExam physicalExamReult = physicalExamService
+					.query(physicalExam);
+
+			// 培训课程信息
+			List<TrainCourse> trainCourseList = this.inductionModel
+					.getTrainCourseList();
 			TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
 			trainingOfPersonnel.setTechnologicalProcessId(id);
-			List<TrainingOfPersonnel> trainingOfPersonnellist = trainingOfPersonnelService.queryList(trainingOfPersonnel);
+			List<TrainingOfPersonnel> trainingOfPersonnellist = trainingOfPersonnelService
+					.queryList(trainingOfPersonnel);
 			for (TrainingOfPersonnel trainingOf : trainingOfPersonnellist) {
 				TrainCourse trainCourse = new TrainCourse();
 				trainCourse.setId(trainingOf.getTrainCourseId());
 				TrainCourse train = trainCourseService.query(trainCourse);
 				trainCourseList.add(train);
 			}
-			
+
+			// 活动信息
+			List<Activities> activitiesList = this.inductionModel
+					.getActivitiesList();
+			ActivitiesUser activitiesUser = new ActivitiesUser();
+			activitiesUser.setTechnologicalProcessId(id);
+			List<ActivitiesUser> activitiesUserllist = activitiesUserService
+					.queryList(activitiesUser);
+			for (ActivitiesUser actUser : activitiesUserllist) {
+				Activities activities = new Activities();
+				activities.setId(actUser.getActivitiesId());
+				Activities act = activitiesService.query(activities);
+				activitiesList.add(act);
+			}
+
 			// 判断数据库中是否存在该数据
-			if (null != process && id != null
-					&& id > 0) {
+			if (null != process && id != null && id > 0) {
 				// 获取工作流信息
 				// String workflowId = process.getWorkflowid();
 				// 设置权限标识
@@ -433,8 +473,7 @@ public class InductionAction extends BaseAction {
 
 		} else {
 			// 新建表单时候
-			EntryProcess entryProcess = this.inductionModel
-					.getEntryProcess();
+			EntryProcess entryProcess = this.inductionModel.getEntryProcess();
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			entryProcess.setWorkuserid(userID);
@@ -453,11 +492,11 @@ public class InductionAction extends BaseAction {
 			this.inductionModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}
-		
-		//获取用户列表，
-		//User user = new User();
-		//List<User> List = userInfoService.queryList(user);
-		
+
+		// 获取用户列表，
+		// User user = new User();
+		// List<User> List = userInfoService.queryList(user);
+
 		return Action.EDITOR;
 	}
 
@@ -472,8 +511,7 @@ public class InductionAction extends BaseAction {
 		variables.put("nextAssignee", assignee);
 
 		ProcessInstance processInstance = runtimeService
-				.startProcessInstanceByKey("induction", businessKey,
-						variables);
+				.startProcessInstanceByKey("induction", businessKey, variables);
 
 		// 流程id
 		String workflowId = processInstance.getId();
@@ -508,8 +546,7 @@ public class InductionAction extends BaseAction {
 		String assignFlag = this.inductionModel.getAssignFlag();
 
 		// 当前任务的id
-		String curTaskId = this.inductionModel.getEntryProcess()
-				.getTaskId();
+		String curTaskId = this.inductionModel.getEntryProcess().getTaskId();
 		// 工作流的id，即流程的id
 		String workflowId = this.inductionModel.getEntryProcess()
 				.getWorkflowid();
@@ -654,150 +691,139 @@ public class InductionAction extends BaseAction {
 			LOGGER.error("message:" + e.getMessage() + " cause:" + e.getCause());
 		}
 	}
-	
-	
+
 	/***
 	 * 审核工作流的发放
 	 */
-	public String auditRelease(){
-		//不同的节点去查不同的数据库表
-		//当前节点
+	public String auditRelease() {
+		// 不同的节点去查不同的数据库表
+		// 当前节点
 		String curState = this.inductionModel.getState();
-		//表单Id
+		// 表单Id
 		String formId = this.inductionModel.getFormId();
-		
-		//审核结果
+
+		// 审核结果
 		List<String> auditRet = new ArrayList<String>();
-		
-		if("发起".equalsIgnoreCase(curState)){
+
+		if ("发起".equalsIgnoreCase(curState)) {
 			EntryProcess entryProcess = new EntryProcess();
 			entryProcess.setId(Integer.parseInt(formId));
-			
+
 			// 获取基本信息
 			EntryProcess process = entryProcessService.query(entryProcess);
 			String description = process.getDescription();
-			if(null == description || description.isEmpty()){
+			if (null == description || description.isEmpty()) {
 				auditRet.add("描述");
 			}
 			String name = process.getName();
-			if(null == name || name.isEmpty()){
+			if (null == name || name.isEmpty()) {
 				auditRet.add("姓名");
 			}
-			
+
 			String englishName = process.getEnglishname();
-			if(null == englishName || englishName.isEmpty()){
+			if (null == englishName || englishName.isEmpty()) {
 				auditRet.add("英文名");
 			}
-			
+
 			String nationality = process.getNationality();
-			if(null == nationality || nationality.isEmpty()){
+			if (null == nationality || nationality.isEmpty()) {
 				auditRet.add("国籍");
 			}
-			
+
 			String currentlocation = process.getCurrentlocation();
-			if(null == currentlocation || currentlocation.isEmpty()){
+			if (null == currentlocation || currentlocation.isEmpty()) {
 				auditRet.add("目前所在地(国家)");
 			}
-			
+
 			String yearbirth = process.getYearbirth();
-			if(null == yearbirth || yearbirth.isEmpty()){
+			if (null == yearbirth || yearbirth.isEmpty()) {
 				auditRet.add("出生年份");
 			}
-			
+
 			Date birthday = process.getBirthday();
-			if(null == birthday){
+			if (null == birthday) {
 				auditRet.add("生日");
 			}
-			
+
 			String contracttype = process.getContracttype();
-			if(null == contracttype || contracttype.isEmpty()){
+			if (null == contracttype || contracttype.isEmpty()) {
 				auditRet.add("合同种类");
 			}
-			
+
 			String contractdate = process.getContractdate();
-			if(null == contractdate || contractdate.isEmpty()){
+			if (null == contractdate || contractdate.isEmpty()) {
 				auditRet.add("合同有效期");
 			}
-			
+
 			String passportNO = process.getPassportno();
-			if(null == passportNO || passportNO.isEmpty()){
+			if (null == passportNO || passportNO.isEmpty()) {
 				auditRet.add("护照号");
 			}
-			
+
 			String passportDate = process.getPassportnodate();
-			if(null == passportDate || passportDate.isEmpty()){
+			if (null == passportDate || passportDate.isEmpty()) {
 				auditRet.add("护照有效期");
 			}
-			
+
 			String mail = process.getMail();
-			if(null == mail || mail.isEmpty()){
+			if (null == mail || mail.isEmpty()) {
 				auditRet.add("电子邮箱");
 			}
-			
-			
-		}else if("办证".equalsIgnoreCase(curState)){
+
+		} else if ("办证".equalsIgnoreCase(curState)) {
 			// 获取证件信息
 			Certificates certificates = new Certificates();
 			certificates.setTechnologicalprocessid(Integer.parseInt(formId));
-			List<Certificates> certificatesList = certificatesService.queryList(certificates);
+			List<Certificates> certificatesList = certificatesService
+					.queryList(certificates);
 			List<String> requiredField = new ArrayList<String>();
 			requiredField.add("1");
 			requiredField.add("2");
 			requiredField.add("8");
 			requiredField.add("9");
 			/**
-			<select id='certificatesType' class='input-medium' >
-				<option value='1'>工作许可证</option>
-				<option value='2'>邀请函</option>
-				<option value='3'>公司邀请函</option>
-				<option value='4'>暂住证</option>
-				<option value='5'>工作签</option>
-				<option value='6'>入境章页</option>
-				<option value='7'>保险</option>
-				<option value='8'>外国专家证</option>
-				<option value='9'>居留许可</option>
-			</select>
-			*/
-			
-			for(Certificates cer : certificatesList){
+			 * <select id='certificatesType' class='input-medium' > <option
+			 * value='1'>工作许可证</option> <option value='2'>邀请函</option> <option
+			 * value='3'>公司邀请函</option> <option value='4'>暂住证</option> <option
+			 * value='5'>工作签</option> <option value='6'>入境章页</option> <option
+			 * value='7'>保险</option> <option value='8'>外国专家证</option> <option
+			 * value='9'>居留许可</option> </select>
+			 */
+
+			for (Certificates cer : certificatesList) {
 				requiredField.remove(cer.getType());
 			}
-			
-			if(!requiredField.isEmpty()){
+
+			if (!requiredField.isEmpty()) {
 				auditRet.add("证件信息:");
-				for(String str : requiredField){
-					if("1".equals(str)){
+				for (String str : requiredField) {
+					if ("1".equals(str)) {
 						auditRet.add("工作许可证");
-					}else if("2".equals(str)){
+					} else if ("2".equals(str)) {
 						auditRet.add("邀请函");
-						
-					}else if("8".equals(str)){
+
+					} else if ("8".equals(str)) {
 						auditRet.add("外国专家证");
-						
-					}else if("9".equals(str)){
+
+					} else if ("9".equals(str)) {
 						auditRet.add("居留许可");
 					}
 				}
 			}
-			
+
 			// 获取附件信息
 			FileInfo fileInfo = new FileInfo();
 			fileInfo.setTechnologicalprocessid(Integer.parseInt(formId));
 			List<FileInfo> fileInfoList = fileInfoService.queryList(fileInfo);
-			
+
 			/***
-  			<option value="1">护照</option>
-			<option value="2">毕业证</option>
-			<option value="3">简历</option>
-			<option value="4">Profile Form</option>
-			<option value="5">其他证件(TEFL、家属证明)</option>
-			<option value="6">合同word版本</option>
-			<option value="7">合同签字版本</option>
-			<option value="8">工作许可证</option>
-			<option value="9">邀请函</option>
-			<option value="10">公司邀请函</option>
-			<option value="11">外国专家证</option>
-			<option value="12">居留许可</option
+			 * <option value="1">护照</option> <option value="2">毕业证</option>
+			 * <option value="3">简历</option> <option value="4">Profile
+			 * Form</option> <option value="5">其他证件(TEFL、家属证明)</option> <option
+			 * value="6">合同word版本</option> <option value="7">合同签字版本</option>
+			 * <option value="8">工作许可证</option> <option value="9">邀请函</option>
+			 * <option value="10">公司邀请函</option> <option
+			 * value="11">外国专家证</option> <option value="12">居留许可</option
 			 */
 			List<String> fileRequiredField = new ArrayList<String>();
 			fileRequiredField.add("1");
@@ -812,120 +838,119 @@ public class InductionAction extends BaseAction {
 			fileRequiredField.add("10");
 			fileRequiredField.add("11");
 			fileRequiredField.add("12");
-			
-			for(FileInfo file : fileInfoList){
+
+			for (FileInfo file : fileInfoList) {
 				fileRequiredField.remove(file.getNametype());
 			}
-		
-			if(!fileRequiredField.isEmpty()){
+
+			if (!fileRequiredField.isEmpty()) {
 				auditRet.add("附件信息(需要上传的附件):");
-				for(String str : fileRequiredField){
-					if("1".equals(str)){
+				for (String str : fileRequiredField) {
+					if ("1".equals(str)) {
 						auditRet.add("护照");
-					}else if("2".equals(str)){
+					} else if ("2".equals(str)) {
 						auditRet.add("毕业证");
-					}else if("3".equals(str)){
+					} else if ("3".equals(str)) {
 						auditRet.add("简历");
-					}else if("4".equals(str)){
+					} else if ("4".equals(str)) {
 						auditRet.add("Profile Form");
-					}else if("5".equals(str)){
+					} else if ("5".equals(str)) {
 						auditRet.add("其他证件(TEFL、家属证明)");
-					}else if("6".equals(str)){
+					} else if ("6".equals(str)) {
 						auditRet.add("合同word版本");
-					}else if("7".equals(str)){
+					} else if ("7".equals(str)) {
 						auditRet.add("合同签字版本");
-					}else if("8".equals(str)){
+					} else if ("8".equals(str)) {
 						auditRet.add("工作许可证");
-					}else if("9".equals(str)){
+					} else if ("9".equals(str)) {
 						auditRet.add("邀请函");
-					}else if("10".equals(str)){
+					} else if ("10".equals(str)) {
 						auditRet.add("公司邀请函");
-					}else if("11".equals(str)){
+					} else if ("11".equals(str)) {
 						auditRet.add("外国专家证");
-					}else if("12".equals(str)){
+					} else if ("12".equals(str)) {
 						auditRet.add("居留许可");
 					}
 				}
 			}
-			
-		}else if("邀请".equalsIgnoreCase(curState)){
-			//快递信息
+
+		} else if ("邀请".equalsIgnoreCase(curState)) {
+			// 快递信息
 			Express express = new Express();
 			express.setTechnologicalprocessid(Integer.parseInt(formId));
 			Express expressResult = expressService.query(express);
-			//快递单号
+			// 快递单号
 			String expressNumber = expressResult.getExpressnumber();
-			if(null == expressNumber || expressNumber.isEmpty()){
+			if (null == expressNumber || expressNumber.isEmpty()) {
 				auditRet.add("快递单号");
 			}
-			
-			//快递公司
+
+			// 快递公司
 			String company = expressResult.getCompany();
-			if(null == company || company.isEmpty()){
+			if (null == company || company.isEmpty()) {
 				auditRet.add("快递公司");
 			}
-			
-			//发货日期
+
+			// 发货日期
 			Date delivergoodsdate = expressResult.getDelivergoodsdate();
-			if(null == delivergoodsdate){
+			if (null == delivergoodsdate) {
 				auditRet.add("发货日期");
 			}
-			
-			//公司电话
+
+			// 公司电话
 			String telephone = expressResult.getTelephone();
-			if(null == telephone || telephone.isEmpty()){
+			if (null == telephone || telephone.isEmpty()) {
 				auditRet.add("公司电话");
 			}
-			
-			//收货地址
+
+			// 收货地址
 			String address = expressResult.getAddress();
-			if(null == address || address.isEmpty()){
+			if (null == address || address.isEmpty()) {
 				auditRet.add("收货地址");
 			}
-		
-		}else if("航班确认".equalsIgnoreCase(curState)){
+
+		} else if ("航班确认".equalsIgnoreCase(curState)) {
 			// 获取航班信息
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(Integer.parseInt(formId));
 			Flight flightResult = flightService.query(flight);
-			
-			//航班号
+
+			// 航班号
 			String flightNumber = flightResult.getFlightnumber();
-			if(null == flightNumber || flightNumber.isEmpty()){
+			if (null == flightNumber || flightNumber.isEmpty()) {
 				auditRet.add("航班号");
 			}
-			
-			//接机人
+
+			// 接机人
 			Integer airportpeopleid = flightResult.getAirportpeopleid();
-			if(null == airportpeopleid){
+			if (null == airportpeopleid) {
 				auditRet.add("接机人");
 			}
-			
-			//起飞时间
+
+			// 起飞时间
 			Date startdate = flightResult.getStartdate();
-			if(null == startdate){
+			if (null == startdate) {
 				auditRet.add("起飞时间");
 			}
-			
-			//到达时间
+
+			// 到达时间
 			Date enddate = flightResult.getEnddate();
-			if(null == enddate){
+			if (null == enddate) {
 				auditRet.add("到达时间");
 			}
-			
-			//到达机场
+
+			// 到达机场
 			String place = flightResult.getPlace();
-			if(null == place || place.isEmpty()){
+			if (null == place || place.isEmpty()) {
 				auditRet.add("到达机场");
 			}
-		}else {
-			
+		} else {
+
 		}
 
 		this.inductionModel.setAuditRet(auditRet);
 		return "audit";
 	}
-	
 
 	/***
 	 * 表单的id
@@ -936,8 +961,7 @@ public class InductionAction extends BaseAction {
 
 		EntryProcess entryProcess = new EntryProcess();
 		entryProcess.setId(id);
-		EntryProcess process = entryProcessService
-				.query(entryProcess);
+		EntryProcess process = entryProcessService.query(entryProcess);
 		// 表单的当前审批人
 		String assignee = process.getApprover();
 		// 当前登录的用户
@@ -1068,5 +1092,5 @@ public class InductionAction extends BaseAction {
 	public void setExpressService(ExpressService expressService) {
 		this.expressService = expressService;
 	}
-	
+
 }

@@ -3,7 +3,10 @@ package com.zh.web.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zh.core.base.model.BaseModel;
+import com.zh.web.model.bean.Activities;
+import com.zh.web.model.bean.ActivitiesUser;
 import com.zh.web.model.bean.Certificates;
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.Express;
@@ -54,6 +57,16 @@ public class InductionModel extends BaseModel {
 	private PhysicalExam physicalExam = new PhysicalExam();
 	
 	/**
+	 * 活动人员信息
+	 */
+	private ActivitiesUser activitiesUser = new ActivitiesUser();
+	
+	/**
+	 * 活动信息
+	 */
+	private List<Activities> activitiesList = new ArrayList<Activities>();
+	
+	/**
 	 * 航班信息
 	 */
 	private Flight flight = new Flight();
@@ -63,8 +76,14 @@ public class InductionModel extends BaseModel {
 	 */
 	private FileInfo fileInfo = new FileInfo();
 	
+	/**
+	 * 培训人员信息
+	 */
 	private TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
 	
+	/**
+	 * 培训信息
+	 */
 	private List<TrainCourse> trainCourseList = new ArrayList<TrainCourse>();
 	
 	private List<FileInfo> fileInfoList = new ArrayList<FileInfo>();
@@ -324,6 +343,22 @@ public class InductionModel extends BaseModel {
 
 	public void setPhysicalExam(PhysicalExam physicalExam) {
 		this.physicalExam = physicalExam;
+	}
+
+	public ActivitiesUser getActivitiesUser() {
+		return activitiesUser;
+	}
+
+	public void setActivitiesUser(ActivitiesUser activitiesUser) {
+		this.activitiesUser = activitiesUser;
+	}
+
+	public List<Activities> getActivitiesList() {
+		return activitiesList;
+	}
+
+	public void setActivitiesList(List<Activities> activitiesList) {
+		this.activitiesList = activitiesList;
 	}
 	
 }

@@ -144,7 +144,7 @@
 							<li><a id="physicalExamButt" href="#physicalExam" data-toggle="tab">体检信息</a></li>
 							<li><a id="channelButt" href="#channel" data-toggle="tab">渠道信息</a></li>
 							<li><a id="trainingButt" href="#training" data-toggle="tab">培训信息</a></li>
-							<li><a id="activitiesButt" href="#activity" data-toggle="tab">公司活动</a></li>
+							<li><a id="activityButt" href="#activity" data-toggle="tab">公司活动</a></li>
 							<li><a id="workflowTabButt" href="#workflowTab" data-toggle="tab">工作流</a></li>
 							<li><a id="annexButt" href="#annex" data-toggle="tab">附件</a></li>
 						</s:if>
@@ -771,14 +771,53 @@
 						<!-- 公司活动 -->
 						<div class="tab-pane fade" id="activity">
 							<form id="activitiesForm" class="form-horizontal"
-								action="" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
-								
+								action="${menu2Id}!saveActivities.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}" /> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
+								<input type="hidden" name="formId" value="${entryProcess.id}" />
+								<input type="hidden" name="tabID" value="activityButt" />
+								<input type="hidden" id="activitiesId" name="activitiesUser.activitiesId" value="" />
 								<button class="btn btn-small btn-primary" type="button"
-								data-toggle="modal" data-target="">添加活动</button>
+								data-toggle="modal" data-target="#popupfirm">添加活动</button>
 							</form>
+							<table class="table">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>活动名称</th>
+									<th>预定时间</th>
+									<th>集合地点</th>
+									<th>活动耗时</th>
+									<th>负责人</th>
+									<th>电话</th>
+									<th>状态</th>
+									<th style="width: 26px;"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<s:iterator value="activitiesList" var="activities" status="index">
+									<tr>
+										<td><s:property value="#index.index + 1"/></td>
+										<td><s:property value="#activities.name"/></td>
+										<td><s:property value="#activities.scheduleDate"/></td>
+										<td><s:property value="#activities.setPlace"/></td>
+										<td><s:property value="#activities.scheduleTime"/></td>
+										<td><s:property value="#activities.userName"/></td>
+										<td><s:property value="#activities.telephone"/></td>
+										<s:if test="#activities.enabled==0">
+											<td>有效</td>
+										</s:if>
+										<s:else>
+											<td>无效</td>
+										</s:else>
+										<td>
+											<a href="${menu2Id}!saveActivities.jspa?id=<s:property value='#activities.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&tabID=activityButt"><i
+												class="icon-remove"></i></a>
+										</td>
+									</tr>
+								</s:iterator>
+							</tbody>
+						</table>
 						</div>
 
 						<!-- 工作流 -->
@@ -1486,6 +1525,12 @@
 				$('#modalAssignLable').html("培训课程:");
 				selectTrainCourse("popupModalAssign","1");
 				$("#popupModalAssign").select2();
+			} else if( "activityButt" == currTab)
+			{
+				$('#startModalLabel1').html("添加活动");
+				$('#modalAssignLable').html("活动:");
+				selectActivities("popupModalAssign","1");
+				$("#popupModalAssign").select2();
 			}
 			
 		});
@@ -1501,6 +1546,16 @@
 				} else {
 					$("#trainCourseId").val(assign);
 					$("#trainingForm").submit();
+				}
+			}else if( "activityButt" == currTab)
+			{
+				var assign = $("#popupModalAssign").val();
+				assign = $.trim(assign);
+				if (assign == null || assign == "") {
+					return;
+				} else {
+					$("#activitiesId").val(assign);
+					$("#activitiesForm").submit();
 				}
 			}
 		});

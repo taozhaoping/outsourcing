@@ -51,6 +51,24 @@ $(function() {
 });
 
 //培训信息
+function selectActivities(id) {
+	$.ajax({
+		type : "POST", //访问WebService使用Post方式请求
+		url : basePath + "/home/interface!queryActivities.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+		data : {}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+		dataType : 'json', //WebService 会返回Json类型
+		traditional : false, //不要序列化参数
+		error : function(err, textStatus) {
+			//alert("error: " + err + " textStatus: " + textStatus);
+		},
+		success : function(result) {//回调函数，result，返回值
+			//填充到table中
+			fillTrainCourseList(result, id);
+		}
+	});
+}
+
+//培训信息
 function selectTrainCourse(id,type) {
 	$.ajax({
 		type : "POST", //访问WebService使用Post方式请求

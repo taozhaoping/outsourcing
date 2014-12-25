@@ -101,7 +101,8 @@ create table t_ActivitiesUser
 (
    id                 NUMBER,
    ActivitiesId       NUMBER,  --活动信息id
-   Userid             NUMBER,   --人员id
+   TechnologicalProcessID             NUMBER,   --人员id
+   createDate         VARCHAR(20),  --创建时间
    constraint PK_ActivitiesUser primary key (id)
 );
 

@@ -41,6 +41,8 @@
 
 		<!-- 公司活动 -->
 		<typeAlias alias="Activities" type="com.zh.web.model.bean.Activities" />
+		<!-- 活动人员 -->
+		<typeAlias alias="ActivitiesUser" type="com.zh.web.model.bean.ActivitiesUser" />
 		<!-- 酒店信息 -->
 		<typeAlias alias="Hotel" type="com.zh.web.model.bean.Hotel" />
 		<!-- 体检信息 -->

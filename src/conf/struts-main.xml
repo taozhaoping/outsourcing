@@ -129,6 +129,11 @@
 			<result name="trainCoursejson" type="json">
 				<param name="root">interfaceModel.trainCourseList</param>
 			</result>
+			
+			<!-- 查询所有活动信息 -->
+			<result name="activitiesjson" type="json">
+				<param name="root">interfaceModel.activitiesList</param>
+			</result>
 		</action>
 	</package>
 </struts>

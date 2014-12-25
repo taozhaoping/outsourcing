@@ -7,6 +7,81 @@ set define off
 spool trigger.log
 
 prompt
+prompt Creating trigger ACTIVITIESUSER_T
+prompt =============================
+prompt
+CREATE OR REPLACE TRIGGER ACTIVITIESUSER_T
+BEFORE DELETE OR INSERT OR UPDATE
+ON T_ACTIVITIESUSER
+FOR EACH ROW
+DECLARE
+createDate    varchar2(20);
+BEGIN
+IF DELETING THEN
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Delete Trigger Operation in table T_ACTIVITIESUSER');
+  END;
+END IF;
+IF INSERTING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    :new.CREATEDATE := createDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_ACTIVITIESUSER');
+  END;
+END IF;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ACTIVITIESUSER');
+END;
+/
+
+prompt
+prompt Creating trigger ACTIVITIES_T
+prompt =============================
+prompt
+prompt
+CREATE OR REPLACE TRIGGER ACTIVITIES_T
+BEFORE DELETE OR INSERT OR UPDATE
+ON T_ACTIVITIES
+FOR EACH ROW
+DECLARE
+createDate    varchar2(20);
+modifyDate    varchar2(20);
+BEGIN
+IF DELETING THEN
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Delete Trigger Operation in table T_ACTIVITIES');
+  END;
+END IF;
+IF INSERTING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
+    :new.CREATEDATE := createDate;
+    :new.UPDATEDATE := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_ACTIVITIES');
+  END;
+END IF;
+IF UPDATING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into modifyDate from dual;
+    :new.UPDATEDATE := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Update Trigger Operation in table T_ACTIVITIES');
+  END;
+END IF;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ACTIVITIES');
+END;
+/
+
+prompt
 prompt Creating trigger PHYSICALEXAMINATION_T
 prompt =============================
 prompt

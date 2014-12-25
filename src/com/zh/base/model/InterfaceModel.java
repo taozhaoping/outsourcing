@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
+import com.zh.web.model.bean.Activities;
+import com.zh.web.model.bean.ActivitiesUser;
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.TrainCourse;
 
@@ -23,6 +25,17 @@ public class InterfaceModel extends BaseModel {
 	private TrainCourse trainCourse = new TrainCourse();
 	
 	private List<TrainCourse> trainCourseList = new ArrayList<TrainCourse>();
+	
+	/**
+	 * 活动人员信息
+	 */
+	private Activities activities = new Activities();
+	
+	/**
+	 * 活动信息
+	 */
+	private List<Activities> activitiesList = new ArrayList<Activities>();
+	
 
 	public User getUser() {
 		return user;
@@ -78,6 +91,22 @@ public class InterfaceModel extends BaseModel {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Activities getActivities() {
+		return activities;
+	}
+
+	public void setActivities(Activities activities) {
+		this.activities = activities;
+	}
+
+	public List<Activities> getActivitiesList() {
+		return activitiesList;
+	}
+
+	public void setActivitiesList(List<Activities> activitiesList) {
+		this.activitiesList = activitiesList;
 	}
 
 }
