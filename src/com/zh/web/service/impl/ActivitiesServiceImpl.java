@@ -25,8 +25,6 @@ public class ActivitiesServiceImpl implements ActivitiesService {
 
 	@Override
 	public void update(Activities activities) {
-		String update = DateUtil.getCreated();
-		activities.setUpdateDate(update);
 		activitiesDao.update(activities);
 	}
 
@@ -56,8 +54,6 @@ public class ActivitiesServiceImpl implements ActivitiesService {
 
 	@Override
 	public Integer insert(Activities activities) {
-		String update = DateUtil.getCreated();
-		activities.setCreateDate(update);
 		return (Integer)activitiesDao.insert(activities);
 	}
 
