@@ -459,6 +459,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
+		var nameSpace = '${nameSpace}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
