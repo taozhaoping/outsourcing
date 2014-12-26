@@ -8,6 +8,11 @@ import com.zh.core.model.IDataObject;
 import com.zh.core.model.Pager;
 import com.zh.web.model.bean.Certificates;
 
+/**
+ * 证件信息接口
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public interface CertificatesService {
 
 	/**

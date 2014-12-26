@@ -112,7 +112,7 @@
 										<s:if test="#trainCourse.trainType==1">
 											<td>入职培训</td>
 										</s:if>
-										<s:elseif test="2">
+										<s:elseif test="#trainCourse.trainType==2">
 											<td>岗位培训</td>
 										</s:elseif>
 										<s:else>

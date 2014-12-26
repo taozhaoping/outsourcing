@@ -160,7 +160,7 @@
 								<s:iterator value="entryProcessList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
@@ -178,7 +178,7 @@
 											<s:property value="#tp.approver"/>
 										</td>
 										<td>
-											<a href="<%=path%>/workflow/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>

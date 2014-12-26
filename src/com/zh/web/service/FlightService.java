@@ -5,6 +5,11 @@ import java.util.List;
 import com.zh.core.model.Pager;
 import com.zh.web.model.bean.Flight;
 
+/**
+ * 航班信息接口
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public interface FlightService {
 
 	/**

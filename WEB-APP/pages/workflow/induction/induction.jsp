@@ -739,7 +739,7 @@
 										<s:if test="#trainCourse.trainType==1">
 											<td>入职培训</td>
 										</s:if>
-										<s:elseif test="2">
+										<s:elseif test="#trainCourse.trainType==2">
 											<td>岗位培训</td>
 										</s:elseif>
 										<s:else>
@@ -1177,6 +1177,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
+		var nameSpace = '${nameSpace}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();

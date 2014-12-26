@@ -12,9 +12,9 @@ $(function() {
 	$("#menu2Name").text(headText);
 	$("#navigation").text(headText);
 	//导航链接
-	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId);
+	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&nameSpace=" + nameSpace);
 	// 返回按钮
-	$("#backList").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId);
+	$("#backList").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&nameSpace=" + nameSpace);
 
 	// 展开一级菜单
 	collapseMenu(id);

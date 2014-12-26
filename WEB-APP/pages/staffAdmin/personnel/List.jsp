@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@  taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -13,10 +13,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet" type="text/css"
-	href="<%=path%>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
+<link rel="stylesheet" href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css"/>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jqPaginator.min.js"></script>
 <!-- Demo page code -->
@@ -42,10 +42,12 @@
 	font-weight: bold;
 }
 </style>
-<link href="<%=path%>/img/favicon_32.ico" rel="bookmark" type="image/x-icon"/>
+<link href="<%=path%>/img/favicon_32.ico" rel="bookmark"
+	type="image/x-icon" />
 <link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" />
-<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon" type="image/x-icon"/>
-<link rel="stylesheet" href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css"/>
+<link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon"
+	type="image/x-icon" />
+<link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
@@ -81,46 +83,36 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="row-fluid">
-				
-					<div>
-						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
+					<div class="btn-toolbar">
+						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&nameSpace=${nameSpace}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
 							
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
-											value="${technologicalProcess.id}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="personnel.id"
+											value="${personnel.id}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">流程描述：
 									<input type="text" id="inputDescription"
-										name="technologicalProcess.description"
-										value="${technologicalProcess.description}"
+										name="personnel.description"
+										value="${personnel.description}"
 										class="input-large">
 										</label>
 								</div>
 							</dir>
 							
 							<dir class="row">
-								<div class="span5">
+								<div class="span9">
 									<label class="control-label">当前状态：
-									<input type="text" maxlength="15" id="inputState" name="technologicalProcess.state"
-										value="${technologicalProcess.state}" class="input-large">
-										</label>
-								</div>
-								<div class="span4">
-									<label class="control-label">创建时间：
-										<input type="text" id="createTimeStart"
-											name="technologicalProcess.createtimeStart"
-											value="${technologicalProcess.createtimeStart}"
-											class="form_datetime input-small">
-											至
-										<input type="text" id="createTimeEnd"
-											name="technologicalProcess.createtimeEnd"
-											value="${technologicalProcess.createtimeEnd}"
-											class="form_datetime input-small">
+										<select id="inputState" class="input-large" name="personnel.state" desc="状态"  >
+											<option value="0">请选择</option>
+											<option value="0">未外派</option>
+											<option value="1">外派中</option>
+											<option value="2">离职</option>
+										</select>
 									</label>
 								</div>
 								
@@ -135,51 +127,46 @@
 								</div>
 							</dir>
 						</form>
+						
 					</div>
-					
-					
 					<div class="well">
 						<table class="table">
 							<thead>
 								<tr>
 									<th>流程编号</th>
 									<th>姓名</th>
-									<th>流程描述</th>
-									<!-- 
-									<th>姓名</th>
 									<th>英文名</th>
-									 -->
-									<th>流程发起人</th>
+									<th>描述</th>
 									<th>创建时间</th>
-									<th>修改时间</th>
 									<th>当前状态</th>
-									<th>当前审批人</th>
 									<th style="width: 32px;">操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="technologicalProcessList" var="tp" status="index">
+								<s:iterator value="personnelList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&nameSpace=${nameSpace}&menuId=${menuId}&menu2Id=${menu2Id}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
 										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.description"/></td>
-										<!-- 
-										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.englishname" />
-										 -->
-										<td><s:property value="#tp.workUserName"/> </td>
-										<td><s:property value="#tp.createtime"/> </td>
-										<td><s:property value="#tp.updatetime"/> </td>
-										<td><s:property value="#tp.state"/></td>
+										<td><s:property value="#tp.description"/></td>
+										<td><s:property value="#tp.createDate"/> </td>
 										<td>
-											<s:property value="#tp.approver"/>
+											<s:if test="#tp.state==0">
+											未外派
+											</s:if>
+											<s:elseif test="#tp.state==1">
+												外派中
+											</s:elseif>
+											<s:elseif test="#tp.state==2">
+												离职
+											</s:elseif>
 										</td>
 										<td>
-											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&nameSpace=${nameSpace}&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>
@@ -196,13 +183,12 @@
 		</div>
 	</div>
 	
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" method="post">
-		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
+	<script src="<%=path%>/js/select2/select2.js"></script>
+	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
@@ -221,7 +207,7 @@
 			$("#navigation").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
-			
+			$("select").select2();
 			//日期控件
 			$(".form_datetime").datetimepicker({
 				language : 'zh-CN',
@@ -261,10 +247,11 @@
 		        visiblePages: 10,
 		        currentPage: curPage,
 		        onPageChange: function (num, type) {
-		           if("init"==type){
+		           if("init"==type)
+		        	{
 		        	 	return false;  
 		        	}
-		           	$('#curPage').val(num);
+		           $('#curPage').val(num);
 		        	$('#queryForm').submit();
 		        	//document.getElementsByName("operateForm")[0].submit(); 
 		        }

@@ -175,6 +175,10 @@ public class InductionAction extends BaseAction {
 		return "save";
 	}
 
+	/**
+	 * 快递信息
+	 * @return
+	 */
 	public String saveExpress() {
 		Express express = this.inductionModel.getExpress();
 		Integer id = express.getId();

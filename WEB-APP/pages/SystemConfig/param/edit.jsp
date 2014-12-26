@@ -195,6 +195,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
+		var nameSpace = '${nameSpace}';
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
