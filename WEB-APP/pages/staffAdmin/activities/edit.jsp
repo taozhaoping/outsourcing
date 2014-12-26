@@ -112,6 +112,8 @@
 					<div id="myTabContent" class="tab-content">
 						<!-- 活动信息 -->
 						<div class="tab-pane active" id="home">
+							<form id="editForm" class="form-horizontal" action="${menu2Id}!save.jspa" method="post">
+			<div class="row-fluid">
 									<input type="hidden" name="activities.id" value="${activities.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
@@ -201,6 +203,8 @@
 										
 								</dir>
 							</div>
+							</form>
+						</div>
 						<!-- 报名信息 -->
 						<div class="tab-pane fade" id="contactrecordtab">
 							<form id="trainingForm" class="form-horizontal"
@@ -429,11 +433,8 @@
 
 		//判读当前tab，需要保存那个form
 		function saveForm() {
-			var action;
-			if ("homeButt" == currTab) {
 				//validate = $('#editForm').validate();
 				$("#editForm").submit();
-			} 
 		}
 
 		/*判断当前form是否变更*/
