@@ -53,6 +53,8 @@
 		<typeAlias alias="TrainingOfPersonnel" type="com.zh.web.model.bean.TrainingOfPersonnel" />
 		<!-- 记录维护 -->
 		<typeAlias alias="ContactRecord" type="com.zh.web.model.bean.ContactRecord" />
+		<!-- 正式员工信息 -->
+		<typeAlias alias="Personnel" type="com.zh.web.model.bean.Personnel" />
 		
 		
 	</typeAliases>

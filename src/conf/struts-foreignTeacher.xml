@@ -16,6 +16,15 @@
 				<param name="menuId">${menuId}</param>
 				<param name="menu2Id">${menu2Id}</param>
 			</result>
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">activities</param>  
+    			<param name="namespace">/staffAdmin</param>
+    			<param name="menuId">${menuId}</param>
+    			<param name="menu2Id">${menu2Id}</param>
+    			<param name="id">${id}</param>
+    			<param name="tabID">${tabID}</param>
+			</result>
 		</action>
 
 		<!-- 培训管理 -->

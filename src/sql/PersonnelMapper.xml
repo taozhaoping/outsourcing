@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_Personnel">
+	<resultMap id="T_Personnel" type="Personnel">
+		<id column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="ENGLISHNAME" property="englishName" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="DOMICILE" property="domicile" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="NATIONALITY" property="nationality" jdbcType="VARCHAR" />
+		<result column="YEARBIRTH" property="yearBirth" jdbcType="VARCHAR" />
+		<result column="BIRTHDAY" property="birthDay" jdbcType="DATE" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="PASSPORTNO" property="passportno" jdbcType="VARCHAR" />
+		<result column="PASSPORTDATE" property="passportDate" jdbcType="DATE" />
+		<result column="VISATYPE" property="visaType" jdbcType="VARCHAR" />
+		<result column="VISADATE" property="visaDate" jdbcType="DATE" />
+		<result column="CONTRACTTYPE" property="contractType" jdbcType="VARCHAR" />
+		<result column="CONTRACTDATE" property="contractDate" jdbcType="DATE" />
+		<result column="CREATEDATE" property="createDate" jdbcType="VARCHAR" />
+		<result column="UPDATEDATE" property="updateDate" jdbcType="VARCHAR" />
+		<result column="MAIL" property="mail" jdbcType="VARCHAR" />
+		<result column="RES1" property="res1" jdbcType="VARCHAR" />
+		<result column="RES2" property="res2" jdbcType="VARCHAR" />
+		<result column="RES3" property="res3" jdbcType="VARCHAR" />
+		<result column="RES4" property="res4" jdbcType="VARCHAR" />
+		<result column="RES5" property="res5" jdbcType="VARCHAR" />
+		<result column="RES6" property="res6" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+
+		ID, NAME, ENGLISHNAME, DESCRIPTION, DOMICILE, PHONE, NATIONALITY,
+		YEARBIRTH, BIRTHDAY,
+		STATE, PASSPORTNO, PASSPORTDATE, VISATYPE, VISADATE, CONTRACTTYPE,
+		CONTRACTDATE,
+		CREATEDATE, UPDATEDATE, MAIL, RES1, RES2, RES3, RES4, RES5, RES6
+	</sql>
+	
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="name != null">
+				and NAME like CONCAT('${name}','%' )
+			</if>
+			<if test="englishName != null">
+				and ENGLISHNAME like CONCAT('${englishName}','%' )
+			</if>
+			<if test="nationality != null">
+				and NATIONALITY = #{nationality,jdbcType=VARCHAR}
+			</if>
+			<if test="state != null">
+				and STATE = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="passportno != null">
+				and PASSPORTNO = #{passportno,jdbcType=VARCHAR}
+			</if>
+			<if test="passportDate != null">
+				and PASSPORTDATE = #{passportDate,jdbcType=DATE}
+			</if>
+			<if test="visaType != null">
+				and VISATYPE = #{visaType,jdbcType=VARCHAR}
+			</if>
+			<if test="visaDate != null">
+				and VISADATE = #{visaDate,jdbcType=DATE}
+			</if>
+			<if test="contractType != null">
+				and CONTRACTTYPE = #{contractType,jdbcType=VARCHAR}
+			</if>
+			<if test="contractDate != null">
+				and CONTRACTDATE = #{contractDate,jdbcType=DATE}
+			</if>
+			<if test="createDate != null">
+				and CREATEDATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				and UPDATEDATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="count" resultType="Integer" parameterType="Personnel">
+		select
+		count(id)
+		from T_PERSONNEL
+		<include refid="where" />
+	</select>
+	
+	<select id="select" resultMap="T_Personnel" parameterType="Personnel">
+		select
+		<include refid="Base_Column_List" />
+		from T_PERSONNEL
+		where ID = #{id,jdbcType=DECIMAL}
+	</select>
+	
+	<select id="list" resultMap="T_Personnel" parameterType="Personnel">
+		select
+		<include refid="Base_Column_List" />
+		from T_PERSONNEL
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType="Personnel">
+
+		delete from T_PERSONNEL
+		where ID = #{id,jdbcType=DECIMAL}
+	</delete>
+
+	<insert id="insert" parameterType="Personnel">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_T_Personnel.nextval from dual
+		</selectKey>
+		insert into T_PERSONNEL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="englishName != null">
+				ENGLISHNAME,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+			<if test="domicile != null">
+				DOMICILE,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="nationality != null">
+				NATIONALITY,
+			</if>
+			<if test="yearBirth != null">
+				YEARBIRTH,
+			</if>
+			<if test="birthDay != null">
+				BIRTHDAY,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="passportno != null">
+				PASSPORTNO,
+			</if>
+			<if test="passportDate != null">
+				PASSPORTDATE,
+			</if>
+			<if test="visaType != null">
+				VISATYPE,
+			</if>
+			<if test="visaDate != null">
+				VISADATE,
+			</if>
+			<if test="contractType != null">
+				CONTRACTTYPE,
+			</if>
+			<if test="contractDate != null">
+				CONTRACTDATE,
+			</if>
+			<if test="createDate != null">
+				CREATEDATE,
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE,
+			</if>
+			<if test="mail != null">
+				MAIL,
+			</if>
+			<if test="res1 != null">
+				RES1,
+			</if>
+			<if test="res2 != null">
+				RES2,
+			</if>
+			<if test="res3 != null">
+				RES3,
+			</if>
+			<if test="res4 != null">
+				RES4,
+			</if>
+			<if test="res5 != null">
+				RES5,
+			</if>
+			<if test="res6 != null">
+				RES6,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=DECIMAL},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="englishName != null">
+				#{englishName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				#{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="nationality != null">
+				#{nationality,jdbcType=VARCHAR},
+			</if>
+			<if test="yearBirth != null">
+				#{yearBirth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDay != null">
+				#{birthDay,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="passportno != null">
+				#{passportno,jdbcType=VARCHAR},
+			</if>
+			<if test="passportDate != null">
+				#{passportDate,jdbcType=DATE},
+			</if>
+			<if test="visaType != null">
+				#{visaType,jdbcType=VARCHAR},
+			</if>
+			<if test="visaDate != null">
+				#{visaDate,jdbcType=DATE},
+			</if>
+			<if test="contractType != null">
+				#{contractType,jdbcType=VARCHAR},
+			</if>
+			<if test="contractDate != null">
+				#{contractDate,jdbcType=DATE},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="res1 != null">
+				#{res1,jdbcType=VARCHAR},
+			</if>
+			<if test="res2 != null">
+				#{res2,jdbcType=VARCHAR},
+			</if>
+			<if test="res3 != null">
+				#{res3,jdbcType=VARCHAR},
+			</if>
+			<if test="res4 != null">
+				#{res4,jdbcType=VARCHAR},
+			</if>
+			<if test="res5 != null">
+				#{res5,jdbcType=VARCHAR},
+			</if>
+			<if test="res6 != null">
+				#{res6,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="Personnel">
+
+		update T_PERSONNEL
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="englishName != null">
+				ENGLISHNAME = #{englishName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				DOMICILE = #{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="nationality != null">
+				NATIONALITY = #{nationality,jdbcType=VARCHAR},
+			</if>
+			<if test="yearBirth != null">
+				YEARBIRTH = #{yearBirth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDay != null">
+				BIRTHDAY = #{birthDay,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="passportno != null">
+				PASSPORTNO = #{passportno,jdbcType=VARCHAR},
+			</if>
+			<if test="passportDate != null">
+				PASSPORTDATE = #{passportDate,jdbcType=DATE},
+			</if>
+			<if test="visaType != null">
+				VISATYPE = #{visaType,jdbcType=VARCHAR},
+			</if>
+			<if test="visaDate != null">
+				VISADATE = #{visaDate,jdbcType=DATE},
+			</if>
+			<if test="contractType != null">
+				CONTRACTTYPE = #{contractType,jdbcType=VARCHAR},
+			</if>
+			<if test="contractDate != null">
+				CONTRACTDATE = #{contractDate,jdbcType=DATE},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				MAIL = #{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="res1 != null">
+				RES1 = #{res1,jdbcType=VARCHAR},
+			</if>
+			<if test="res2 != null">
+				RES2 = #{res2,jdbcType=VARCHAR},
+			</if>
+			<if test="res3 != null">
+				RES3 = #{res3,jdbcType=VARCHAR},
+			</if>
+			<if test="res4 != null">
+				RES4 = #{res4,jdbcType=VARCHAR},
+			</if>
+			<if test="res5 != null">
+				RES5 = #{res5,jdbcType=VARCHAR},
+			</if>
+			<if test="res6 != null">
+				RES6 = #{res6,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=DECIMAL}
+	</update>
+
+</mapper>

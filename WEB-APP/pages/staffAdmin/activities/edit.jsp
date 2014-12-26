@@ -18,7 +18,10 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
+<link rel="stylesheet"
+	href="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jqPaginator.min.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
 #line-chart {
@@ -58,7 +61,7 @@
 <body class="">
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
-	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
+	<%@ include file="/pages/common/sidebarWithNav.jsp"%>
 
 	<div class="content">
 		<div class="header">
@@ -67,7 +70,7 @@
 					<span class="number">53</span>tickets
 				</p>
 				<p class="stat">
-					<span class="number"><s:property value="#session.taskSize"/></span>tasks
+					<span class="number"><s:property value="#session.taskSize" /></span>tasks
 				</p>
 				<p class="stat">
 					<span class="number">15</span>waiting
@@ -78,27 +81,37 @@
 		</div>
 
 		<ul class="breadcrumb">
-			<li><a href="<%=path%>/home/main.jspa">主页</a> <span class="divider">/</span></li>
-			<li><a href="" id="navigation"></a> <span class="divider">/</span></li>
-			<li class="active">编辑</li>
+			<li><a href="<%=path%>/home/main.jspa">主页</a> <span
+				class="divider">/</span></li>
+			<li><span class="active" id="navigation1"></span></li>
 		</ul>
-		
+<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 		<div class="container-fluid">
-		<form id="editForm" class="form-horizontal" action="${menu2Id}!save.jspa" method="post">
+
 			<div class="row-fluid">
-				<div class="row-fluid">
-				
-					<div class="btn-toolbar">
-						<button class="btn btn-primary" type="submit">
-							<i class="icon-save"></i> 保存
-						</button>
-						<a class="btn" id="backList" href="">
+				<div class="btn-toolbar">
+					<button id="formButton" class="btn btn-primary" type="button">
+						<i class="icon-save"></i> 保存
+					</button>
+					<a class="btn" id="backList" href="">
 							返回</a>
-						<div class="btn-group"></div>
-					</div>
-					<div class="well">
-						<div id="myTabContent" class="tab-content">
-							<div class="tab-pane active" id="home">
+					<div class="btn-group"></div>
+					<input type="hidden" id="hasEditAuth" value="1">
+
+				</div>
+				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
+				<input type="hidden" id="formChanged" name="formChanged" value="0" />
+				<div class="well">
+					<ul class="nav nav-tabs">
+						<li><a id="homeButt" href="#home" data-toggle="tab">活动信息</a></li>
+						<s:if test="activities.id!=null&&activities.id!=''">
+							<li><a id="contactrecordButt" href="#contactrecordtab"
+								data-toggle="tab">人员名单</a></li>
+						</s:if>
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<!-- 活动信息 -->
+						<div class="tab-pane active" id="home">
 									<input type="hidden" name="activities.id" value="${activities.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
@@ -125,20 +138,7 @@
 											</div>
 										</div>
 								</dir>					
-								<dir class="row">
-										<div class="span9">
-											<div class="control-group">
-												<label class="control-label" for="inputsetPlace">集合地点：</label>
-												<div class="controls">
-													<input type="text" maxlength="15" id="inputsetPlace"
-														name="activities.setPlace"
-														value="${activities.setPlace}"
-														data-required="true" desc="集合地点" class="input-xxlarge">
-												</div>
-											</div>
-										</div>
-										
-								</dir>
+								
 								<dir class="row">
 										<div class="span5">
 											<div class="control-group">
@@ -186,16 +186,130 @@
 											</div>
 										</div>
 								</dir>
+								<dir class="row">
+										<div class="span9">
+											<div class="control-group">
+												<label class="control-label" for="inputsetPlace">集合地点：</label>
+												<div class="controls">
+													<input type="text" maxlength="15" id="inputsetPlace"
+														name="activities.setPlace"
+														value="${activities.setPlace}"
+														data-required="true" desc="集合地点" class="input-xxlarge">
+												</div>
+											</div>
+										</div>
+										
+								</dir>
+							</div>
+						<!-- 报名信息 -->
+						<div class="tab-pane fade" id="contactrecordtab">
+							<form id="trainingForm" class="form-horizontal"
+								action="${menu2Id}!saveActivitiesUser.jspa" method="post">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="tabID" value="contactrecordButt">
+								<input type="hidden" name="id" value="${activities.id}">
+								<input type="hidden" name="activitiesUser.activitiesId" value="${activities.id}">
+								<input type="hidden" id="technologicalProcessId" name="activitiesUser.technologicalProcessId" value="">
+								
+								<button class="btn btn-small btn-primary" type="button"
+								data-toggle="modal" data-target="#startConfirm">添加人员</button>
+							</form>
+								<table class="table">
+									<thead>
+										<tr>
+											<th style="width: 32px;">序号</th>
+											<th style="width: 240px;">学员编号</th>
+											<th style="width: 240px;">学员姓名</th>
+											<th style="width: 240px;">加入时间</th>
+										</tr>
+									</thead>
+
+									<tbody id="ContactRecordSearch">
+										<s:iterator value="activitiesUserList" var="tp" status="index">
+											<tr>
+												<td><s:property value="#index.index + 1"/></td>
+												<td><s:property value="#tp.technologicalProcessId" /></td>
+												<td><s:property value="#tp.name" /></td>
+												<td><s:property value="#tp.createDate" /></td>
+											</tr>
+										</s:iterator>
+									</tbody>
+
+								</table>
+							<div class="pagination">
+								<ul id="pagination">
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+		</div>
+	</div>
+	<div class="hide">
+		<a id="Ejectfirm" name="Ejectfirm" href="#forMchangefirm"
+			data-toggle="modal"></a>
+	</div>
+	
+	<div>
+		<form action="${menu2Id}!editor.jspa" id="queryForm" method="post">
+		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="formId" value="${entryProcess.id}">
+		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+		<input type="hidden" name="menuId" value="${menuId}">
 		</form>
+	</div>
+	
+	<!-- 添加人员 -->
+	<div class="modal small hide fade" id="startConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">人员添加</h3>
 		</div>
+		<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label  pull-left" for="modalAssign">人员：</label>
+					<div class="controls">
+						<select id="modalAssign" class="input-large">
+						<option selected="selected" id="modalAssignOption">&nbsp;</option>
+					</select>
+
+					</div>
+				</div>
 		</div>
-		<%@ include file="/pages/common/footer.jsp"%>
-		<script src="<%=path%>/js/bootstrap.js"></script>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="startBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+
+	<div class="modal small hide fade" id="forMchangefirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">警告</h3>
+		</div>
+		<div class="modal-body">
+			<p class="error-text">
+				<i class="icon-warning-sign modal-icon"></i>当前页面已经修改过,请先保存."确认" 保存
+				"取消" 不保存
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="formChangefirmBtn">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+
+	<%@ include file="/pages/common/footer.jsp"%>
+	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path%>/js/collapsePulg.js"></script>
 	<script src="<%=path%>/js/common.js"></script>
 	<script src="<%=path%>/js/jquery-validate.js"></script>
@@ -203,26 +317,148 @@
 	<script src="<%=path%>/js/json2.js"></script>
 	<script src="<%=path%>/js/select2/select2.js"></script>
 	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
-		<script type="text/javascript">
-			$("[rel=tooltip]").tooltip();
-			var id='${menuId}';
-			var menuId='${menu2Id}';
-			var url=$("#"+menuId).attr('url');
-			$("select").select2();
-			selectUsers("userName");
-			$("#userName").val("${activities.userName}")
-			.trigger("change");
-			$("#inputenabled").val("${activities.enabled}").trigger("change");
-			$(".form_datetime").datetimepicker({
-				language : 'zh-CN',
-				format : 'yyyy-mm-dd hh:ii:00',
-				weekStart : 1,
-				todayBtn : 1,
-				todayHighlight : 1,
-				//startView : 2,
-				//minView : 2,
-				autoclose : true
+	<script
+		src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script type="text/javascript">
+		$("[rel=tooltip]").tooltip();
+		var id = '${menuId}';
+		var menuId = '${menu2Id}';
+		var row_count = 0;
+		var url = $("#" + menuId).attr('url');
+		var headText = $("#" + menuId).text();
+		$("#navigation1").text(headText);
+		//当前tbs
+		var currTab = tabID;
+		var totalPage = ${pageInfo.totalPage};
+		var totalRow = ${pageInfo.totalRow};
+		var pageSize = ${pageInfo.pageSize};
+		var curPage = ${pageInfo.curPage};
+
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol + "//" + localObj.host + "/"
+				+ contextPath;
+		$("select").select2();
+		selectUsers("userName");
+		$("#userName").val("${activities.userName}")
+		.trigger("change");
+		$("#inputenabled").val("${activities.enabled}").trigger("change");
+		
+		
+		$(".form_datetime").datetimepicker({
+			language : 'zh-CN',
+			format : 'yyyy-mm-dd hh:ii:00',
+			weekStart : 1,
+			todayBtn : 1,
+			todayHighlight : 1,
+			//startView : 2,
+			//minView : 2,
+			autoclose : true
+		});
+		
+		$.jqPaginator('#pagination', {
+			//设置分页的总页数
+	        totalPages: totalPage,
+	        //设置分页的总条目数
+	        totalCounts:totalRow,
+	        pageSize:pageSize,
+	        //最多显示的页码
+	        visiblePages: 10,
+	        currentPage: curPage,
+	        onPageChange: function (num, type) {
+	           if("init"==type){
+	        	 	return false;  
+	        	}
+	           	$('#curPage').val(num);
+	           	action = $("#queryForm").attr("action");
+				setTabID("queryForm", action);
+	        	$('#queryForm').submit();
+	        	//document.getElementsByName("operateForm")[0].submit(); 
+	        }
+	    });
+		
+		//开始选择，用户选择框打开
+		$('#startConfirm').on('show.bs.modal', function() {
+			// 执行一些动作...
+			selectEntryProcess("modalAssign");
+		});
+		
+		//添加人员按钮确认
+		$("#startBtnConfirm").click(function() {
+			var assign = $("#modalAssign").val();
+			assign = $.trim(assign);
+			if (assign == null || assign == "") {
+				return;
+			} else {
+				$("#technologicalProcessId").val(assign);
+				action = $("#trainingForm").attr("action");
+				setTabID("contactrecordForm", action);
+				$("#trainingForm").submit();
+			}
+		});
+		
+		//tab页签添加事件
+		$("li a[data-toggle='tab']").click(function() {
+			ischangeForm(this.id);
+		});
+		//提交按钮
+		$("#formButton").click(function() {
+			currTab = $("#tabID").val();
+			saveForm();
+		});
+
+		$("#formChangefirmBtn").click(function() {
+			saveForm();
+		});
+	
+			//判断表单是否修改过
+			$("form :input").change(function() {
+				$("#formChanged").val("1");
 			});
-		</script>
+
+			//所有时间控件变更
+			$(".form_datetime").change(function() {
+				$("#formChanged").val("1");
+			});
+
+			//所有select控件变更
+			$("tbody select").change(function() {
+				$("#formChanged").val("1");
+			});
+
+		//判读当前tab，需要保存那个form
+		function saveForm() {
+			var action;
+			if ("homeButt" == currTab) {
+				//validate = $('#editForm').validate();
+				$("#editForm").submit();
+			} 
+		}
+
+		/*判断当前form是否变更*/
+		var entryProcessId = "${entryProcess.id}";
+		function ischangeForm(id) {
+			//获取当前需要保存的tabid
+			currTab = $("#tabID").val();
+			//设置新的tab
+			$("#tabID").val(id);
+			//判断是否变更过
+			if ("1" == $("#formChanged").val()) {
+				$("#Ejectfirm").click();
+				$("#formChanged").val("0");
+			}
+		}
+		function setTabID(name,action)
+		{
+			var index=action.indexOf("?tabID=");
+			actionName=action;
+			if(  index > 0 )
+			{
+				actionName = action.substring(0,index);
+			}
+			$("#" + name).attr("action",
+					actionName + "?tabID=" + currTab);	
+		}
+	</script>
 </body>
 </html>

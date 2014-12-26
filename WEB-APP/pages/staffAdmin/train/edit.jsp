@@ -103,14 +103,14 @@
 				<input type="hidden" id="formChanged" name="formChanged" value="0" />
 				<div class="well">
 					<ul class="nav nav-tabs">
-						<li><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
+						<li><a id="homeButt" href="#home" data-toggle="tab">培训信息</a></li>
 						<s:if test="trainCourse.id!=null&&trainCourse.id!=''">
 							<li><a id="contactrecordButt" href="#contactrecordtab"
 								data-toggle="tab">人员名单</a></li>
 						</s:if>
 					</ul>
 					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade" id="home">
+						<div class="tab-pane active" id="home">
 							<form id="editForm" class="form-horizontal"
 								action="${menu2Id}!save.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
@@ -402,8 +402,6 @@
 	        	 	return false;  
 	        	}
 	           	$('#curPage').val(num);
-	           	action = $("#queryForm").attr("action");
-				setTabID("queryForm", action);
 	        	$('#queryForm').submit();
 	        	//document.getElementsByName("operateForm")[0].submit(); 
 	        }
@@ -423,25 +421,11 @@
 				return;
 			} else {
 				$("#technologicalProcessId").val(assign);
-				action = $("#trainingForm").attr("action");
-				setTabID("contactrecordForm", action);
 				$("#trainingForm").submit();
 			}
 		});
 
-		//进入指定的tbs
-		var tabID = "${tabID}";
-		if (null != tabID && "" != tabID) {
-			$("#" + tabID).parent().addClass("active");
-			$("#" + tabID.substring(0, tabID.length - 4) + "tab").removeClass(
-					"fade").addClass("active");
-		} else {
-			tabID = "homeButt";
-			$("#tabID").val("homeButt");
-			$("#homeButt").parent().addClass("active");
-			$("#home").removeClass("fade").addClass("active");
-		}
-
+		
 		//tab页签添加事件
 		$("li a[data-toggle='tab']").click(function() {
 			ischangeForm(this.id);
@@ -475,8 +459,6 @@
 		function saveForm() {
 			var action;
 			if ("homeButt" == currTab) {
-				action = $("#editForm").attr("action");
-				setTabID("editForm", action);
 				//validate = $('#editForm').validate();
 				$("#editForm").submit();
 			} 
@@ -496,15 +478,6 @@
 			}
 		}
 
-		function setTabID(name, action) {
-			var index = action.indexOf("?tabID=");
-			actionName = action;
-			if (index > 0) {
-				actionName = action.substring(0, index);
-			}
-			$("#" + name).attr("action",
-					actionName + "?tabID=" + $("#tabID").val());
-		}
 	</script>
 </body>
 </html>

@@ -2,19 +2,20 @@
 drop table t_Activities cascade constraints;
 drop table t_ActivitiesUser cascade constraints;
 drop table t_Certificates cascade constraints;
+drop table t_contact_record cascade constraints;
 drop table t_Express cascade constraints;
 drop table t_FileInfo cascade constraints;
-drop table t_FinancialAffairs cascade constraints;
+drop table t_FinancialAffairs cascade constraints;--
 drop table t_Flight cascade constraints;
 drop table t_Hotel cascade constraints;
 drop table t_PhysicalExamination cascade constraints;
-drop table T_Personnel cascade constraints;
-drop table T_Personnel_Record cascade constraints;
+drop table T_Personnel cascade constraints;--
+drop table T_Personnel_Record cascade constraints;--
 drop table t_TechnologicalProcess cascade constraints;
 drop table t_TrainCourse cascade constraints;
 drop table t_trainingOfPersonnel cascade constraints;
 drop table t_Entry_Process cascade constraints;
-drop table t_contact_record cascade constraints;
+
 
 drop sequence SEQUENCE_t_Activities;
 drop sequence SEQUENCE_t_ActivitiesUser;
@@ -325,25 +326,48 @@ create table T_Personnel
    id                 NUMBER               not null,
    name               VARCHAR(25), --姓名
    EnglishName        VARCHAR(25), --英文名
+   description		  varchar(200), --描述
+   DOMICILE 		  VARCHAR(100),--户籍地
+   Phone              VARCHAR(20),  --手机号码
    Nationality        VARCHAR(20), --国籍
    YearBirth          VARCHAR(6),  --出生年份
    Birthday           DATE,        --生日
    State              VARCHAR(20),  --状态
-   PassportDate       DATE,        --护照日期
+   PassportNo         VARCHAR(30),  --护照号
+   PassportDate       DATE,        --护照有效期
    visaType           VARCHAR(1),  --签证类型
-   visaDate           DATE,        --签证日期
+   visaDate           DATE,        --签证有效期
    contractType       VARCHAR(1),  --合同类型
-   contractStartDate  DATE,        --合同签订日期
-   InsuranceEndDate   DATE,        --保险到期日 
-   school             VARCHAR(50), --所在学校
-   intentionSchool    VARCHAR(50), --意向学校
-   schoolFeedback     VARCHAR(100),--学校反馈
-   createTime         DATE,        --创建日期
-   updateTime         DATE,        --修改日期
+   contractDate       DATE,  --合同有效期
+   createDate         VARCHAR(20),        --创建日期
+   updateDate         VARCHAR(20),         --修改日期
    mail               VARCHAR(25), --电子邮箱
+   res1               VARCHAR(150),        --扩展字段1
+   res2               VARCHAR(150),        --扩展字段2
+   res3               VARCHAR(150),        --扩展字段3
+   res4               VARCHAR(150),        --扩展字段4
+   res5               VARCHAR(150),        --扩展字段5
+   res6               VARCHAR(150),        --扩展字段6
    constraint PK_T_PERSONNEL primary key (id)
 );
 
+COMMENT ON table T_Personnel IS '员工正式表 ';
+comment on column T_Personnel.name is '姓名';
+comment on column T_Personnel.EnglishName is '英文名';
+comment on column T_Personnel.description is '描述';
+comment on column T_Personnel.DOMICILE is '户籍地';
+comment on column T_Personnel.Phone is '手机号';
+comment on column T_Personnel.Nationality is '国籍';
+comment on column T_Personnel.YearBirth is '出生年份';
+comment on column T_Personnel.Birthday is '生日';
+comment on column T_Personnel.State is '状态';
+comment on column T_Personnel.PassportNo is '护照号';
+comment on column T_Personnel.PassportDate is '护照有效期';
+comment on column T_Personnel.visaType is '签证类型';
+comment on column T_Personnel.visaDate is '签证有效期';
+comment on column T_Personnel.contractType is '合同类型';
+comment on column T_Personnel.contractDate is '合同有效期';
+comment on column T_Personnel.mail is '电子邮件';
 /*==============================================================*/
 /* Table: T_Personnel_Record                                  */
 /* Table: 记录表                                                */
