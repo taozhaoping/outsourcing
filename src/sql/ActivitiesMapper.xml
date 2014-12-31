@@ -37,7 +37,7 @@
   <sql id="where">
 		<where>
 	  <if test="id != null" >
-        and ID = #{id,jdbcType=VARCHAR}
+        and ID = #{id}
       </if>
 	  <if test="name != null" >
         AND NAME = #{name,jdbcType=VARCHAR}

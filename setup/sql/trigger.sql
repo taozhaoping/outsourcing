@@ -7,6 +7,37 @@ set define off
 spool trigger.log
 
 prompt
+prompt Creating trigger PERSONNEL_RECORD_T
+prompt =============================
+prompt
+CREATE OR REPLACE TRIGGER PERSONNEL_RECORD_T
+BEFORE DELETE OR INSERT OR UPDATE
+ON T_PERSONNEL_RECORD
+FOR EACH ROW
+DECLARE
+createDate    varchar2(20);
+BEGIN
+IF DELETING THEN
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Delete Trigger Operation in table T_PERSONNEL_RECORD');
+  END;
+END IF;
+IF INSERTING THEN
+  BEGIN
+    select TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') into createDate from dual;
+    :new.CREATEDATE := createDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_PERSONNEL_RECORD');
+  END;
+END IF;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_PERSONNEL_RECORD');
+END;
+/
+
+prompt
 prompt Creating trigger PERSONNEL_T
 prompt =============================
 prompt

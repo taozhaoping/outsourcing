@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_PersonnelRecord" >
+  <resultMap id="T_PersonnelRecord" type="PersonnelRecord" >
+  
+    <id column="ID" property="id"  />
+    <result column="PERSONNELTYPE" property="personnelType" jdbcType="VARCHAR" />
+    <result column="APPOINTMENTDATE" property="appointmentDate" jdbcType="DATE" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="PERSONNELID" property="personnelId"  />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PERSONNELTYPE, APPOINTMENTDATE, CONTENT, CREATEDATE, PERSONNELID
+  </sql>
+  
+  <sql id="where">
+		<where>
+	  <if test="id != null" >
+        and ID = #{id}
+      </if>
+      <if test="personnelType != null" >
+        AND PERSONNELTYPE = #{personnelType,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentDate != null" >
+        AND APPOINTMENTDATE = #{appointmentDate,jdbcType=DATE},
+      </if>
+      <if test="content != null" >
+        AND CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        AND CREATEDATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelId != null" >
+        AND PERSONNELID = #{personnelId},
+      </if>
+		</where>
+	</sql>
+  
+  <select id="select" resultMap="T_PersonnelRecord" parameterType="PersonnelRecord" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PERSONNEL_RECORD
+    where ID = #{id}
+  </select>
+  
+    <select id="list" resultMap="T_PersonnelRecord" parameterType="PersonnelRecord">
+		select
+		<include refid="Base_Column_List" />
+		from T_PERSONNEL_RECORD
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="count" resultType="Integer" parameterType="PersonnelRecord">
+		select
+			count(id)
+		from T_PERSONNEL_RECORD
+		<include refid="where" />
+	</select>
+  
+  <delete id="delete" parameterType="PersonnelRecord" >
+    delete from T_PERSONNEL_RECORD
+    where ID = #{id}
+  </delete>
+  
+  <insert id="insert" parameterType="PersonnelRecord" >
+  <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_T_Personnel_Record.nextval from dual
+		</selectKey>
+    insert into T_PERSONNEL_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="personnelType != null" >
+        PERSONNELTYPE,
+      </if>
+      <if test="appointmentDate != null" >
+        APPOINTMENTDATE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="createDate != null" >
+        CREATEDATE,
+      </if>
+      <if test="personnelId != null" >
+        PERSONNELID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="personnelType != null" >
+        #{personnelType,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentDate != null" >
+        #{appointmentDate,jdbcType=DATE},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelId != null" >
+        #{personnelId},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="PersonnelRecord" >
+   
+    update T_PERSONNEL_RECORD
+    <set >
+      <if test="personnelType != null" >
+        PERSONNELTYPE = #{personnelType,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentDate != null" >
+        APPOINTMENTDATE = #{appointmentDate,jdbcType=DATE},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATEDATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelId != null" >
+        PERSONNELID = #{personnelId},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+</mapper>

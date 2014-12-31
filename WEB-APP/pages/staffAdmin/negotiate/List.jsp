@@ -89,13 +89,13 @@
 							
 							<dir class="row">
 								<div class="span5">
-									<label class="control-label">员工编号：
+									<label class="control-label">流程编号：
 										<input type="text" maxlength="15" id="inputId" name="personnel.id"
 											value="${personnel.id}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
-									<label class="control-label">员工描述：
+									<label class="control-label">流程描述：
 									<input type="text" id="inputDescription"
 										name="personnel.description"
 										value="${personnel.description}"
@@ -133,7 +133,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>员工编号</th>
+									<th>流程编号</th>
 									<th>姓名</th>
 									<th>英文名</th>
 									<th>描述</th>

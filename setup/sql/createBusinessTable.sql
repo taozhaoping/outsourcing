@@ -378,7 +378,7 @@ create table T_Personnel_Record
    PersonnelType      VARCHAR(1),  --类型
    appointmentDate    DATE,        --预约时间
    Content            VARCHAR(500),--记录内容
-   createTime         DATE,        --创建时间
+   createDate         DATE,        --创建时间
    PersonnelID        NUMBER,       --人员ID
    constraint PK_Personnel_Record primary key (id)
 );
