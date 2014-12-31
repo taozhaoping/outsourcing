@@ -64,7 +64,7 @@ public class UserInfoAction extends BaseAction {
 		{
 			User user = new User();
 			user.setLoginName(loginName);
-			User userInfo = userInfoService.query(user);
+			User userInfo = userInfoService.validatorUserName(user);
 			if(null != userInfo)
 			{
 				bool = false;
