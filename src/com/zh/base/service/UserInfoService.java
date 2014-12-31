@@ -13,10 +13,6 @@ import com.zh.core.model.Pager;
 public interface UserInfoService {
 	
 	/**
-	 * 查询用户名是否存在
-	 */
-	public User validatorUserName(User user);
-	/**
 	 * 查询信息
 	 * @param 
 	 * @return

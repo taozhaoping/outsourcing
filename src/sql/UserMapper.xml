@@ -87,13 +87,6 @@
 			order by id desc
 	</select>
 	
-	<select id="validatorUserName" resultMap="T_User" parameterType="User">
-		select
-		<include refid="Base_Column_List" />
-		from SYS_USER
-		where loginName=#{loginName}
-	</select>
-	
 	<select id="select" resultMap="T_User" parameterType="User">
 		select
 		<include refid="Base_Column_List" />

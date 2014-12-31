@@ -159,10 +159,4 @@ public class UserInfoServiceImpl implements UserInfoService {
 		this.identityService = identityService;
 	}
 
-	@Override
-	public User validatorUserName(User user) {
-		// TODO Auto-generated method stub
-		return userInfoDAO.query("validatorUserName", user);
-	}
-
 }

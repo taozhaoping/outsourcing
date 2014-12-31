@@ -43,6 +43,10 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 		if (element == null) {
 			logger.debug("Hold up method , Get method result and create cache........!");
 			result = invocation.proceed();
+			if (null == result)
+			{
+				return null;
+			}
 			element = new Element(cacheKey, (Serializable) result);
 			cache.put(element);
 		}
