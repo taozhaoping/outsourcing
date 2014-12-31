@@ -367,30 +367,18 @@
 									<tr>
 										<th style="width: 32px;">序号</th>
 										<th style="width: 240px;">联系时间</th>
+										<th style="width: 240px;">预约时间</th>
 										<th>描述</th>
 									</tr>
 								</thead>
 								
 								<tbody id="ContactRecordSearch">
-									<tr>
-										<!-- 保存证件列表 -->
-										<td>
-											<input type="hidden" name="formId" value="${entryProcess.id}">
-											<input type="hidden" name="menu2Id" value="${menu2Id}"> 
-											<input type="hidden" name="menuId" value="${menuId}">
-										</td>
-										<td>
-										</td>
-										<td>
-											<input style="width:70%" type="text" id="contactRecordDescr"
-											name="contactRecord.descr" />
-										</td>
 									
-									</tr>
 									<s:iterator value="contactRecordList" var="tp" status="index">
 										<tr>
 											<td><s:property value="#tp.id" /></td>
 											<td><s:property value="#tp.createdate" /></td>
+											<td><s:date format="yyyy-MM-dd" name="#tp.reserveDate"/></td>
 											<td><s:property value="#tp.descr" /></td>
 										</tr>
 									</s:iterator>

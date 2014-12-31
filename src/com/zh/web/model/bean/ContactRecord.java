@@ -1,5 +1,7 @@
 package com.zh.web.model.bean;
 
+import java.util.Date;
+
 import com.zh.core.model.IDataObject;
 
 /**
@@ -23,6 +25,11 @@ public class ContactRecord extends IDataObject {
      * 创建时间
      */
     private String createdate;
+    
+    /**
+     * 预约时间
+     */
+    private Date reserveDate;
     
     /**
      * 联系人主键
@@ -59,6 +66,14 @@ public class ContactRecord extends IDataObject {
 
 	public void setTechnologicalprocessid(Integer technologicalprocessid) {
 		this.technologicalprocessid = technologicalprocessid;
+	}
+
+	public Date getReserveDate() {
+		return reserveDate;
+	}
+
+	public void setReserveDate(Date reserveDate) {
+		this.reserveDate = reserveDate;
 	}
     
     

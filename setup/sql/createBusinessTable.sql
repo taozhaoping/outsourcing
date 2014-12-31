@@ -46,6 +46,7 @@ create table t_contact_record
 (
    id                 NUMBER               not null,
    createDate       VARCHAR(30),  --创建时间
+   ReserveDate           date,    --预约时间
    TechnologicalProcessID NUMBER,
    descr            varchar(250),
    constraint PK_CONTACT_RECORD primary key (id)

@@ -367,6 +367,7 @@
 									<tr>
 										<th style="width: 32px;">序号</th>
 										<th style="width: 240px;">联系时间</th>
+										<th style="width: 240px;">预约时间</th>
 										<th>描述</th>
 									</tr>
 								</thead>
@@ -382,6 +383,11 @@
 										<td>
 										</td>
 										<td>
+											<input type="text" id="contactRecordReserveDate"
+													name="contactRecord.reserveDate"
+													desc="护照有效期" readonly class="form_datetime input-large">
+										</td>
+										<td>
 											<input style="width:70%" type="text" id="contactRecordDescr"
 											name="contactRecord.descr" />
 										</td>
@@ -391,6 +397,7 @@
 										<tr>
 											<td><s:property value="#tp.id" /></td>
 											<td><s:property value="#tp.createdate" /></td>
+											<td><s:date format="yyyy-MM-dd" name="#tp.reserveDate"/></td>
 											<td><s:property value="#tp.descr" /></td>
 										</tr>
 									</s:iterator>

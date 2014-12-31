@@ -5,12 +5,14 @@
 		<id column="ID" property="id" />
 		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
 		<result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+		<result column="RESERVEDATE" property="reserveDate" jdbcType="DATE" />
 		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		ID, 
 		DESCR, 
 		CREATEDATE,
+		RESERVEDATE,
 		TECHNOLOGICALPROCESSID
 	</sql>
 
@@ -24,6 +26,9 @@
 			</if>
 			<if test="createdate != null">
 				and CREATEDATE = #{createdate,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDate != null">
+				and RESERVEDATE = #{reserveDate,jdbcType=DATE}
 			</if>
 			<if test="technologicalprocessid != null">
 				and TECHNOLOGICALPROCESSID = #{technologicalprocessid}
@@ -70,6 +75,9 @@
 			<if test="createdate != null">
 				CREATEDATE,
 			</if>
+			<if test="reserveDate != null">
+				RESERVEDATE,
+			</if>
 			<if test="technologicalprocessid != null">
 				TECHNOLOGICALPROCESSID,
 			</if>
@@ -83,6 +91,9 @@
 			</if>
 			<if test="createdate != null">
 				#{createdate,jdbcType=VARCHAR},
+			</if>
+			<if test="reserveDate != null">
+				#{reserveDate,jdbcType=DATE},
 			</if>
 			<if test="technologicalprocessid != null">
 				#{technologicalprocessid},
