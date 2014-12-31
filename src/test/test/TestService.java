@@ -1,10 +1,14 @@
 package test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zh.base.service.UserInfoService;
+import com.zh.core.model.Pager;
+import com.zh.web.model.bean.Personnel;
+import com.zh.web.service.PersonnelService;
 
 public class TestService {
 
@@ -13,17 +17,16 @@ public class TestService {
 
 	@Test
 	public void init() throws  Exception {
-		UserInfoService userInfoService = (UserInfoService) applicationContext
-				.getBean("userInfoService");
-		String str = userInfoService.queryListJson();
-		System.out.println(str);
-//		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
-//		technologicalProcess.setId(1);
-//		technologicalProcess.setName("测试");
-//		technologicalProcessService.insert(technologicalProcess);
-		//TechnologicalProcess reult = technologicalProcessService.query(technologicalProcess);
-		//System.out.println(reult.);
+		PersonnelService personnelService = (PersonnelService) applicationContext.getBean("personnelService");
 		
+		Personnel personnel = new Personnel();
+		
+		Pager pager = new Pager();
+		Integer count = personnelService.count(personnel);
+		pager.setTotalRow(count);
+		
+		List<Personnel> reult = personnelService.queryList(personnel, pager);
+		System.out.println(reult.size());
 	}
 
 

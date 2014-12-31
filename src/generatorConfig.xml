@@ -23,8 +23,9 @@
     <table tableName="T_PHYSICALEXAMINATION" domainObjectName="PhysicalExam" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="T_TRAINCOURSE" domainObjectName="TrainCourse" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="T_ACTIVITIES" domainObjectName="Activities" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
-      -->
     <table tableName="T_Personnel" domainObjectName="Personnel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+      -->
+    <table tableName="T_Personnel_Record" domainObjectName="PersonnelRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
   <!-- 未生成
     <table tableName="SYS_ROLE_TO_AUTHORITIES" domainObjectName="RoleToAuthorities" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
     <table tableName="SYS_ROLE_TO_MENU" domainObjectName="RoleToMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
