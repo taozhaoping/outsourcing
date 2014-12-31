@@ -826,7 +826,7 @@
 							<s:if
 								test="%{entryProcess.state != null && entryProcess.state != ''&& entryProcess.state != '发起' && entryProcess.state != '结束'}">
 								<img alt="流程没有发起或已结束"
-									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=recruitment&processInstanceId=${entryProcess.workflowid}"
+									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=induction&processInstanceId=${entryProcess.workflowid}"
 									id="workflowShowPic">
 							</s:if>
 							<s:else>
@@ -859,13 +859,11 @@
 			</div>
 
 			<!-- 创建工作流 -->
-			<form action="${menu2Id}!createWorkflow.jspa" method="post"
-				id="createWF">
-				<input type="hidden" name="formId" id="cwf_formId"
-					value="${entryProcess.id}"> <input type="hidden"
-					name="assign" id="cwf_assign"> <input type="hidden"
-					name="menu2Id" value="${menu2Id}"> <input type="hidden"
-					name="menuId" value="${menuId}">
+			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId" value="${entryProcess.id}">
+				<input type="hidden" name="assign" id="cwf_assign"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}">
+				<input type="hidden" name="menuId" value="${menuId}">
 			</form>
 
 			<!-- 批准工作流 -->
@@ -1643,7 +1641,7 @@
 			$.ajax({
 				type : "POST", //访问WebService使用Post方式请求
 				async:false,//同步操作
-				url : basePath + "/workflow/recruitment!auditRelease.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+				url : basePath + "/workflow/induction!auditRelease.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
 				data : {state:curState, formId:formId}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
 				dataType : 'json', //WebService 会返回Json类型
 				traditional : false, //不要序列化参数

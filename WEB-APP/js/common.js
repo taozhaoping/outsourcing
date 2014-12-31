@@ -163,20 +163,20 @@ function fillUserList(userList, id) {
 		if("airportPeopleId" == id){
 			if(user.id == selectOptionValue){
 				$("#" + id + "Option").clone(true).attr("selected", "selected").attr(
-						"value", user.id).val(user.id).html(
+						"id", user.id).val(user.id).html(
 						user.name + "(" + user.loginName + ")").insertAfter(
 						"#" + id + "Option");
 				
 			}else{
 				$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-						"value", user.id).val(user.id).html(
+						"id", user.id).val(user.id).html(
 						user.name + "(" + user.loginName + ")").insertAfter(
 						"#" + id + "Option");
 				
 			}
 		}else{
 			$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-					"value", user.id).val(user.id).html(
+					"id", user.id).val(user.loginName).html(
 					user.name + "(" + user.loginName + ")").insertAfter(
 					"#" + id + "Option");
 		}

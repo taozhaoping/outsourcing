@@ -515,7 +515,7 @@ public class InductionAction extends BaseAction {
 		variables.put("nextAssignee", assignee);
 
 		ProcessInstance processInstance = runtimeService
-				.startProcessInstanceByKey("induction", businessKey, variables);
+				.startProcessInstanceByKey("entry", businessKey, variables);
 
 		// 流程id
 		String workflowId = processInstance.getId();
@@ -620,7 +620,7 @@ public class InductionAction extends BaseAction {
 							processInstance.getProcessDefinitionId())
 					.singleResult();
 
-			String resourceName = "induction.png";
+			String resourceName = "entry.png";
 			/*
 			 * if (resourceType.equals("image")) { resourceName =
 			 * processDefinition.getDiagramResourceName(); } else if
