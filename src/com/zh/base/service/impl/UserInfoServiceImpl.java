@@ -100,6 +100,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void insert(User user) {
 		LOGGER.debug("insert(User user)");
+		user.setEnabled("0");
 		userInfoDAO.insert(user);
 		//同步用户到工作流用户
 		org.activiti.engine.identity.User activitiUser = identityService.newUser(user.getLoginName().toString());
