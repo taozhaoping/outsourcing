@@ -61,7 +61,11 @@ public class TechnologicalProcessServiceImpl implements
 			}
 			//当前审批者
 			String approver = tp.getApprover();
-			if(null != approver && !"".equals(approver.trim())){
+			if("-1".equals(approver)){
+				tp.setApprover("");
+			}
+			
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
 				user = new User();
 				user.setLoginName(approver);
 				User ret = userInfoDAO.query(user);
