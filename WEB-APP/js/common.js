@@ -156,7 +156,7 @@ function selectUsers(id) {
 function fillUserList(userList, id) {
 	//清空上次的查询结果
 	$("#" + id + "Option").nextAll("option").remove();
-	var selectOptionValue = $("#" + id).attr("value");
+	var selectOptionValue = $("#" + id).attr("selectId");
 	//动态生成用户列表
 	for ( var i = 0; i < userList.length; i++) {
 		var user = userList[i];

@@ -451,7 +451,7 @@
 												</select>
 												 -->
 												
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人"  >
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人" selectId ="${flight.airportpeopleid}">
 													<option id="airportPeopleIdOption" value=""></option>
 												</select>
 											</div>
@@ -932,8 +932,6 @@
 			$(".container-fluid button").attr("disabled", "disabled");
 		}
 
-		//初始化接机人
-		selectUsers("airportPeopleId");
 		
 		//基本信息
 		//$("#contracttype").select2();
@@ -974,8 +972,10 @@
 		}
 		//航班信息
 		//$("#airportPeopleId").select2();
-		$("#airportpeopleid").val("${flight.airportpeopleid}")
+		$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}")
 				.trigger("change");
+		//初始化接机人
+		selectUsers("airportPeopleId");
 
 		//附件
 		//$("select").select2();
@@ -1274,6 +1274,7 @@
 			// 执行一些动作...
 		});
 
+		/*
 		// 选择用户
 		function selectUsers(id) {
 			$.ajax({
@@ -1296,7 +1297,7 @@
 		function fillUserList(userList, id) {
 			//清空上次的查询结果
 			$("#" + id + "Option").nextAll("option").remove();
-			var selectOptionValue = $("#" + id).attr("value");
+			var selectOptionValue = $("#" + id).attr("selectId");
 			//动态生成用户列表
 			for ( var i = 0; i < userList.length; i++) {
 				var user = userList[i];
@@ -1323,6 +1324,7 @@
 			}
 		}
 
+		*/
 		//发起按钮确认
 		$("#startBtnConfirm").click(function() {
 			var assign = $("#modalAssign").val();
