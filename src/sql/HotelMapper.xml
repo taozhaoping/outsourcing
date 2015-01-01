@@ -151,11 +151,11 @@
 			<if test="scheduleDay != null">
 				#{scheduleDay,jdbcType=VARCHAR},
 			</if>
-			<if test="scheduleDay != null">
+			<if test="checkinDate != null">
 				#{checkinDate,jdbcType=DATE},
 			</if>
-			<if test="checkinDate != null">
-				#{checkinDate,jdbcType=VARCHAR},
+			<if test="checkinDay != null">
+				#{checkinDay,jdbcType=VARCHAR},
 			</if>
 			<if test="price != null">
 				#{price,jdbcType=VARCHAR},
@@ -167,7 +167,7 @@
 				#{updateDate,jdbcType=VARCHAR},
 			</if>
 			<if test="technologicalProcessId != null">
-				#{technologicalProcessId},
+				#{technologicalProcessId,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>

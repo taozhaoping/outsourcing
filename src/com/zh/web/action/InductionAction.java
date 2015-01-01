@@ -774,7 +774,6 @@ public class InductionAction extends BaseAction {
 				auditRet.add("电子邮箱");
 			}
 
-		} else if ("办证".equalsIgnoreCase(curState)) {
 			// 获取证件信息
 			Certificates certificates = new Certificates();
 			certificates.setTechnologicalprocessid(Integer.parseInt(formId));
@@ -878,76 +877,142 @@ public class InductionAction extends BaseAction {
 				}
 			}
 
-		} else if ("邀请".equalsIgnoreCase(curState)) {
-			// 快递信息
-			Express express = new Express();
-			express.setTechnologicalprocessid(Integer.parseInt(formId));
-			Express expressResult = expressService.query(express);
-			// 快递单号
-			String expressNumber = expressResult.getExpressnumber();
-			if (null == expressNumber || expressNumber.isEmpty()) {
-				auditRet.add("快递单号");
-			}
-
-			// 快递公司
-			String company = expressResult.getCompany();
-			if (null == company || company.isEmpty()) {
-				auditRet.add("快递公司");
-			}
-
-			// 发货日期
-			Date delivergoodsdate = expressResult.getDelivergoodsdate();
-			if (null == delivergoodsdate) {
-				auditRet.add("发货日期");
-			}
-
-			// 公司电话
-			String telephone = expressResult.getTelephone();
-			if (null == telephone || telephone.isEmpty()) {
-				auditRet.add("公司电话");
-			}
-
-			// 收货地址
-			String address = expressResult.getAddress();
-			if (null == address || address.isEmpty()) {
-				auditRet.add("收货地址");
-			}
-
-		} else if ("航班确认".equalsIgnoreCase(curState)) {
 			// 获取航班信息
 			Flight flight = new Flight();
 			flight.setTechnologicalprocessid(Integer.parseInt(formId));
 			Flight flightResult = flightService.query(flight);
-
-			// 航班号
-			String flightNumber = flightResult.getFlightnumber();
-			if (null == flightNumber || flightNumber.isEmpty()) {
-				auditRet.add("航班号");
+			if(null == flightResult){
+				auditRet.add("航班信息");
+				
+			}else{
+				// 航班号
+				String flightNumber = flightResult.getFlightnumber();
+				if (null == flightNumber || flightNumber.isEmpty()) {
+					auditRet.add("航班号");
+				}
+				
+				// 接机人
+				Integer airportpeopleid = flightResult.getAirportpeopleid();
+				if (null == airportpeopleid) {
+					auditRet.add("接机人");
+				}
+				
+				// 起飞时间
+				Date startdate = flightResult.getStartdate();
+				if (null == startdate) {
+					auditRet.add("起飞时间");
+				}
+				
+				// 到达时间
+				Date enddate = flightResult.getEnddate();
+				if (null == enddate) {
+					auditRet.add("到达时间");
+				}
+				
+				// 到达机场
+				String place = flightResult.getPlace();
+				if (null == place || place.isEmpty()) {
+					auditRet.add("到达机场");
+				}
+				
 			}
 
-			// 接机人
-			Integer airportpeopleid = flightResult.getAirportpeopleid();
-			if (null == airportpeopleid) {
-				auditRet.add("接机人");
+			
+			//酒店信息
+			Hotel hotel = new Hotel();
+			hotel.setTechnologicalProcessId(Integer.parseInt(formId));
+			Hotel hotelRet = hotelService.query(hotel);
+			if(null == hotelRet){
+				auditRet.add("酒店信息");
+			}else{
+				String hotelName = hotelRet.getName();
+				if(null == hotelName){
+					auditRet.add("酒店名称");
+				}
+				
+				String roomNumber = hotelRet.getRoomNumber();
+				if(null == roomNumber){
+					auditRet.add("房间号");
+				}
+				
+				String roomType = hotelRet.getRoomType();
+				if(null == roomType){
+					auditRet.add("房间类型");
+				}
+				
+				String hotelAddress = hotelRet.getAddress();
+				if(null == hotelAddress){
+					auditRet.add("酒店地址");
+				}
+				
+				String telephone = hotelRet.getTelephone();
+				if(null == telephone){
+					auditRet.add("酒店电话");
+				}
+				
+				Date checkinDate = hotelRet.getCheckinDate();
+				if(null == checkinDate){
+					auditRet.add("入住日期");
+				}
+				
+				String checkinDay = hotelRet.getCheckinDay();
+				if(null == checkinDay){
+					auditRet.add("预计入住天数");
+				}
 			}
-
-			// 起飞时间
-			Date startdate = flightResult.getStartdate();
-			if (null == startdate) {
-				auditRet.add("起飞时间");
+			
+			//体检信息
+			PhysicalExam physicalExam = new PhysicalExam();
+			physicalExam.setTechnologicalProcessId(Integer.parseInt(formId));
+			PhysicalExam physicalExamRet = physicalExamService.query(physicalExam);
+			if(null == physicalExamRet){
+				auditRet.add("体检信息");
+			}else{
+				String hospitalName = physicalExamRet.getName();
+				if(null == hospitalName){
+					auditRet.add("体检医院");
+				}
+				
+				String hospitalAddress = physicalExamRet.getAddress();
+				if(null == hospitalAddress){
+					auditRet.add("体检地址");
+				}
+				
+				String type = physicalExamRet.getType();
+				if(null == type){
+					auditRet.add("种类");
+				}
+				
+				Date scheduleDate = physicalExamRet.getScheduleDate();
+				if(null == scheduleDate){
+					auditRet.add("预定时间");
+				}
+				
+				Date receiveDate = physicalExamRet.getReceiveDate();
+				if(null == receiveDate){
+					auditRet.add("报告领取日期");
+				}
 			}
-
-			// 到达时间
-			Date enddate = flightResult.getEnddate();
-			if (null == enddate) {
-				auditRet.add("到达时间");
+			
+			//渠道信息
+			//TODO
+			
+			//培训信息
+			TrainingOfPersonnel trainingOfPersonnel = new TrainingOfPersonnel();
+			trainingOfPersonnel.setTechnologicalProcessId(Integer.parseInt(formId));
+			TrainingOfPersonnel trainingOfPersonnelRet = trainingOfPersonnelService.query(trainingOfPersonnel);
+			if(null == trainingOfPersonnelRet){
+				auditRet.add("培训信息");
 			}
-
-			// 到达机场
-			String place = flightResult.getPlace();
-			if (null == place || place.isEmpty()) {
-				auditRet.add("到达机场");
+			
+			//公司活动
+			ActivitiesUser activitiesUser = new ActivitiesUser(); 
+			activitiesUser.setTechnologicalProcessId(Integer.valueOf(formId));
+			ActivitiesUser activitiesUserRet = activitiesUserService.query(activitiesUser);
+			if(null == activitiesUserRet){
+				auditRet.add("公司活动");
 			}
+			
 		} else {
 
 		}

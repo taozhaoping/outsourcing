@@ -44,7 +44,7 @@
     select 
     <include refid="Base_Column_List" />
     from t_ActivitiesUser
-    where ID = #{id}
+    <include refid="where" />
   </select>
   
   <select id="list" resultMap="T_Activities" parameterType="ActivitiesUser"> 

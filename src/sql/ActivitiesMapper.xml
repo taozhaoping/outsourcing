@@ -70,7 +70,7 @@
     select 
     <include refid="Base_Column_List" />
     from T_ACTIVITIES
-    where ID = #{id}
+    <include refid="where" />
   </select>
   
   <select id="list" resultMap="T_Activities" parameterType="Activities">
