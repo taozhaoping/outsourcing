@@ -23,7 +23,12 @@ public class EntryProcessServiceImpl implements EntryProcessService {
 
 	@Override
 	public EntryProcess query(EntryProcess entryProcess) {
-		return entryProcessDao.query(entryProcess);
+		EntryProcess ep = entryProcessDao.query(entryProcess);
+		User user = new User();
+		user.setId(Integer.valueOf(ep.getWorkuserid()));
+		User reult = userInfoDAO.query(user);
+		ep.setWorkUserName(reult.getName());
+		return ep;
 	}
 
 	@Override
