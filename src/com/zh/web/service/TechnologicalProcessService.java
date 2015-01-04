@@ -4,6 +4,11 @@ import java.util.List;
 import com.zh.core.model.Pager;
 import com.zh.web.model.bean.TechnologicalProcess;
 
+/**
+ * 招聘人员信息接口
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public interface TechnologicalProcessService {
 
 	/**

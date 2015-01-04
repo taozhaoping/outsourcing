@@ -15,6 +15,7 @@ drop table t_TechnologicalProcess cascade constraints;
 drop table t_TrainCourse cascade constraints;
 drop table t_trainingOfPersonnel cascade constraints;
 drop table t_Entry_Process cascade constraints;
+drop table t_The_franchisee cascade constraints;
 
 
 drop sequence SEQUENCE_t_Activities;
@@ -32,11 +33,40 @@ drop sequence SEQUENCE_t_Technological;
 drop sequence SEQUENCE_t_TrainCourse;
 drop sequence SEQUENCE_t_trainingOfPersonnel;
 drop sequence SEQUENCE_t_contact_record;
-
+drop sequence SEQUENCE_t_The_franchisee;
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
 /* Created on:     2014/8/12 8:46:12                            */
 /*==============================================================*/
+
+/*==============================================================*/
+/* Table: t_The_franchisee                                      */
+/* Table: 加盟商信息                                                                                                                                              */
+/*==============================================================*/
+create table t_The_franchisee
+(
+   id                 NUMBER               not null,
+   createDate         VARCHAR(20),  --创建时间
+   updateDate         VARCHAR(20),  --修改时间
+   name               VARCHAR(25),  --名称
+   descr              varchar(250), --描述
+   address            VARCHAR(100), --地址
+   status             VARCHAR(1),   --状态
+   contract_type      VARCHAR(1),   --合同类型
+   contract_start_Date VARCHAR(20), --合同开始时间
+   contract_end_Date VARCHAR(20),   --合同结束时间
+   
+   constraint PK_The_franchisee primary key (id)
+);
+/*注释*/
+COMMENT ON table t_The_franchisee IS '加盟商信息';
+COMMENT on column t_The_franchisee.id is '主键';
+COMMENT on column t_Activities.createDate is '创建时间';
+COMMENT on column t_Activities.updateDate is '修改时间';
+COMMENT on column t_Activities.name is '名称';
+COMMENT on column t_Activities.descr is '描述';
+COMMENT on column t_Activities.address is '地址';
+COMMENT on column t_Activities.status is '状态';
 
 /*==============================================================*/
 /* Table: Activities                                          */
@@ -48,7 +78,7 @@ create table t_contact_record
    createDate       VARCHAR(30),  --创建时间
    ReserveDate           date,    --预约时间
    TechnologicalProcessID NUMBER,
-   descr            varchar(250),
+   descr            VARCHAR(250),
    constraint PK_CONTACT_RECORD primary key (id)
 );
 /*注释*/
@@ -385,6 +415,7 @@ create table T_Personnel_Record
 );
 
 /*==============================================================*/
+/* 招聘员工信息表                                                                                                                                                         */
 /* Table: TechnologicalProcess                                */
 /*==============================================================*/
 create table t_TechnologicalProcess 

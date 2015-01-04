@@ -2,6 +2,11 @@ package com.zh.web.model.bean;
 
 import com.zh.core.model.IDataObject;
 
+/**
+ * 培训人员信息表 
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public class TrainingOfPersonnel extends IDataObject {
 
 	 private Integer id;

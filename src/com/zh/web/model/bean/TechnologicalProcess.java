@@ -4,6 +4,11 @@ import java.util.Date;
 
 import com.zh.core.model.IDataObject;
 
+/**
+ * 招聘人员信息表
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public class TechnologicalProcess extends IDataObject{
     /**
 	 * 
