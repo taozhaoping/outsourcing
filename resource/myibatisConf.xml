@@ -57,6 +57,8 @@
 		<typeAlias alias="Personnel" type="com.zh.web.model.bean.Personnel" />
 		<!-- 洽谈记录 -->
 		<typeAlias alias="PersonnelRecord" type="com.zh.web.model.bean.PersonnelRecord" />
+		<!-- 加盟商 -->
+		<typeAlias alias="Franchisee" type="com.zh.web.model.bean.Franchisee" />
 	</typeAliases>
 
 	<plugins>

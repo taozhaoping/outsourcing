@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_Franchisee" >
+  <resultMap id="T_Franchisee" type="Franchisee" >
+    <id column="ID" property="id" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCR" property="descr" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CONTRACT_TYPE" property="contractType" jdbcType="VARCHAR" />
+    <result column="CONTRACT_START_DATE" property="contractStartDate" jdbcType="VARCHAR" />
+    <result column="CONTRACT_END_DATE" property="contractEndDate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, CREATEDATE, UPDATEDATE, NAME, DESCR, ADDRESS, STATUS, CONTRACT_TYPE, CONTRACT_START_DATE, 
+    CONTRACT_END_DATE
+  </sql>
+  
+  <sql id="where">
+  	<where>
+  		<if test="id != null" >
+        and id = #{id}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="contractType != null" >
+        and contractType = #{contractType,jdbcType=VARCHAR}
+      </if>
+      <if test="contractStartDate != null" >
+        and contractStartDate = #{contractStartDate,jdbcType=VARCHAR}
+      </if>
+      <if test="contractEndDate != null" >
+        and contractEndDate = #{contractEndDate,jdbcType=VARCHAR}
+      </if>
+  	</where>
+  </sql>
+  
+  <select id="select" resultMap="T_Franchisee" parameterType="Franchisee" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_THE_FRANCHISEE
+   <include refid="where" />
+  </select>
+  
+  	<select id="list" resultMap="T_Franchisee" parameterType="Franchisee">
+		select
+		<include refid="Base_Column_List" />
+		from T_THE_FRANCHISEE
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="count" resultType="Integer" parameterType="Franchisee">
+		select
+			count(id)
+		from T_THE_FRANCHISEE
+		<include refid="where" />
+	</select>
+  
+  <delete id="delete" parameterType="Franchisee" >
+    delete from T_THE_FRANCHISEE
+    where ID = #{id}
+  </delete>
+  
+  <insert id="insert" parameterType="Franchisee" >
+ 	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_The_franchisee.nextval from dual
+	</selectKey>
+    insert into T_THE_FRANCHISEE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="descr != null" >
+        DESCR,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="contractType != null" >
+        CONTRACT_TYPE,
+      </if>
+      <if test="contractStartDate != null" >
+        CONTRACT_START_DATE,
+      </if>
+      <if test="contractEndDate != null" >
+        CONTRACT_END_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null" >
+        #{contractStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="contractEndDate != null" >
+        #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="Franchisee" >
+    update T_THE_FRANCHISEE
+    <set >
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        DESCR = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null" >
+        CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStartDate != null" >
+        CONTRACT_START_DATE = #{contractStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="contractEndDate != null" >
+        CONTRACT_END_DATE = #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+
+</mapper>

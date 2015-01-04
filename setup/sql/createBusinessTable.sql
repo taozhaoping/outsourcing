@@ -685,6 +685,14 @@ start with 1
  minvalue 1
  cache 10
 order;
+
+create sequence SEQUENCE_t_The_franchisee
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
 /*** 创建触发器 ***/
 /*
 CREATE OR REPLACE TRIGGER TECHNOLOGICALPROCESS_T
