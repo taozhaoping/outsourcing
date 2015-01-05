@@ -114,6 +114,7 @@
 								action="${menu2Id}!save.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="nameSpace" value="${nameSpace}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -379,6 +380,7 @@
 											<input type="hidden" name="formId" value="${entryProcess.id}">
 											<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 											<input type="hidden" name="menuId" value="${menuId}">
+											<input type="hidden" name="nameSpace" value="${nameSpace}">
 										</td>
 										<td>
 										</td>

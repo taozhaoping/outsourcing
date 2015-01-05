@@ -83,7 +83,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
+						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&nameSpace=${nameSpace}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
 							
 							<dir class="row">

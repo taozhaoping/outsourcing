@@ -115,7 +115,8 @@
 								action="${menu2Id}!save.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="trainCourse.id" value="${trainCourse.id}">
+									type="hidden" name="nameSpace" value="${nameSpace}">
+									<input type="hidden" name="trainCourse.id" value="${trainCourse.id}">
 								<dir class="row">
 									<div class="span5 pull-left">
 										<div class="control-group">
@@ -284,6 +285,7 @@
 		<input type="hidden" name="formId" value="${entryProcess.id}">
 		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 		<input type="hidden" name="menuId" value="${menuId}">
+		<input type="hidden" name="nameSpace" value="${nameSpace}">
 		</form>
 	</div>
 	

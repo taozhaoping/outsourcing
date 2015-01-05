@@ -117,6 +117,7 @@
 									<input type="hidden" name="activities.id" value="${activities.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
+									<input type="hidden" name="nameSpace" value="${nameSpace}">
 									<dir class="row">
 										<div class="span5">
 											<div class="control-group">
@@ -211,6 +212,7 @@
 								action="${menu2Id}!saveActivitiesUser.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="nameSpace" value="${nameSpace}">
 								<input type="hidden" name="tabID" value="contactrecordButt">
 								<input type="hidden" name="id" value="${activities.id}">
 								<input type="hidden" name="activitiesUser.activitiesId" value="${activities.id}">
@@ -263,6 +265,7 @@
 		<input type="hidden" name="formId" value="${entryProcess.id}">
 		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 		<input type="hidden" name="menuId" value="${menuId}">
+		<input type="hidden" name="nameSpace" value="${nameSpace}">
 		</form>
 	</div>
 	
@@ -360,7 +363,8 @@
 			//minView : 2,
 			autoclose : true
 		});
-		
+		if ("" != "${activities.id}")
+		{
 		$.jqPaginator('#pagination', {
 			//设置分页的总页数
 	        totalPages: totalPage,
@@ -406,6 +410,17 @@
 		$("li a[data-toggle='tab']").click(function() {
 			ischangeForm(this.id);
 		});
+		//判断表单是否修改过
+		$("form :input").change(function() {
+			$("#formChanged").val("1");
+		});
+
+		//所有时间控件变更
+		$(".form_datetime").change(function() {
+			$("#formChanged").val("1");
+		});
+		
+		}
 		//提交按钮
 		$("#formButton").click(function() {
 			currTab = $("#tabID").val();
@@ -416,15 +431,7 @@
 			saveForm();
 		});
 	
-			//判断表单是否修改过
-			$("form :input").change(function() {
-				$("#formChanged").val("1");
-			});
-
-			//所有时间控件变更
-			$(".form_datetime").change(function() {
-				$("#formChanged").val("1");
-			});
+		
 
 			//所有select控件变更
 			$("tbody select").change(function() {
