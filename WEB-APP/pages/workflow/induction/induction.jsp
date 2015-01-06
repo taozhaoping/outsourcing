@@ -153,8 +153,9 @@
 						<div class="tab-pane fade" id="home">
 							<form id="editForm" class="form-horizontal"
 								action="${menu2Id}!save.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -428,9 +429,10 @@
 						<div class="tab-pane fade" id="flight">
 							<form id="flightForm" class="form-horizontal"
 								action="${menu2Id}!saveFlight.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="flight.id" value="${flight.id}">
 								<dir class="row">
 									<div class="span5">
@@ -506,6 +508,7 @@
 								action="${menu2Id}!saveHotel.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="formId" value="${entryProcess.id}">
 								<input type="hidden" name="hotel.id" value="${hotel.id}">
 								
@@ -601,9 +604,10 @@
 						<div class="tab-pane fade" id="physicalExam">
 							<form id="physicalExamForm" class="form-horizontal"
 								action="${menu2Id}!savePhysicalExam.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="physicalExam.id" value="${physicalExam.id}">
 								
 								<dir class="row">
@@ -698,10 +702,10 @@
 						<div class="tab-pane fade" id="channel">
 							<form id="channelForm" class="form-horizontal"
 								action="" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${entryProcess.id}">
-								
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="formId" value="${entryProcess.id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								渠道信息
 							</form>
 						</div>
@@ -712,6 +716,7 @@
 								action="${menu2Id}!saveTrainCourse.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}" /> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="formId" value="${entryProcess.id}" />
 								<input type="hidden" name="tabID" value="trainingButt" />
 								<input type="hidden" id="trainCourseId" name="trainingOfPersonnel.trainCourseId" value="" />
@@ -759,7 +764,7 @@
 											<td>无效</td>
 										</s:else>
 										<td>
-											<a href="${menu2Id}!saveTrainCourse.jspa?id=<s:property value='#trainCourse.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&tabID=trainingButt"><i
+											<a href="${menu2Id}!saveTrainCourse.jspa?id=<s:property value='#trainCourse.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=trainingButt"><i
 												class="icon-remove"></i></a>
 										</td>
 									</tr>
@@ -774,6 +779,7 @@
 								action="${menu2Id}!saveActivities.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}" /> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="formId" value="${entryProcess.id}" />
 								<input type="hidden" name="tabID" value="activityButt" />
 								<input type="hidden" id="activitiesId" name="activitiesUser.activitiesId" value="" />
@@ -811,7 +817,7 @@
 											<td>无效</td>
 										</s:else>
 										<td>
-											<a href="${menu2Id}!saveActivities.jspa?id=<s:property value='#activities.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&tabID=activityButt"><i
+											<a href="${menu2Id}!saveActivities.jspa?id=<s:property value='#activities.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=activityButt"><i
 												class="icon-remove"></i></a>
 										</td>
 									</tr>
@@ -864,21 +870,23 @@
 				<input type="hidden" name="assign" id="cwf_assign"> 
 				<input type="hidden" name="menu2Id" value="${menu2Id}">
 				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
 			</form>
 
 			<!-- 批准工作流 -->
 			<form action="${menu2Id}!approveWorkflow.jspa" method="post"
 				id="approveWF">
 				<input type="hidden" name="formId" id="awf_formId"
-					value="${entryProcess.id}"> <input type="hidden"
-					name="entryProcess.workflowid" id="awf_formId"
-					value="${entryProcess.workflowid}"> <input
-					type="hidden" name="entryProcess.taskId" id="taskId"
-					value="${entryProcess.taskId}"> <input
-					type="hidden" name="assign" id="awf_assign"> <input
-					type="hidden" name="assignFlag" id="awf_assignFlag"> <input
-					type="hidden" name="menu2Id" value="${menu2Id}"> <input
-					type="hidden" name="menuId" value="${menuId}">
+					value="${entryProcess.id}"> 
+				<input type="hidden" name="entryProcess.workflowid" id="awf_formId"
+					value="${entryProcess.workflowid}"> 
+				<input type="hidden" name="entryProcess.taskId" id="taskId"
+					value="${entryProcess.taskId}"> 
+				<input type="hidden" name="assign" id="awf_assign"> 
+				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
 			</form>
 		</div>
 	</div>
@@ -891,6 +899,7 @@
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 			<input type="hidden" name="menuId" value="${menuId}">
 			<input type="hidden" id="jsonList" name="jsonList" />
+			<input type="hidden" name="spaceId" value="${spaceId}">
 		</form>
 	</div>
 
@@ -909,6 +918,7 @@
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 			<input type="hidden" name="formId" value="${entryProcess.id}">
 			<input type="hidden" name="tabID" value="annexButt">
+			<input type="hidden" name="spaceId" value="${spaceId}">
 			<div class="modal-body">
 				<dir class="row">
 					<div class="control-group">
@@ -972,6 +982,7 @@
 			action="${menu2Id}!saveFile.jspa" method="post">
 			<input type="hidden" name="menuId" value="${menuId}"> 
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="spaceId" value="${spaceId}">
 			<input type="hidden" name="formId" value="${entryProcess.id}">
 			<input type="hidden" name="tabID" value="annexButt">
 			<input type="hidden" id="FileInfoId" name="fileInfo.id" value="">
@@ -1335,13 +1346,31 @@
 				nametype="简历";
 			  break;
 			case '4':
-				nametype="无犯罪记录";
+				nametype="Profile Form";
 			  break;
 			case '5':
-				nametype="TEFL证";
+				nametype="其他证件(TEFL、家属证明)";
 			  break;
 			case '6':
-				nametype="档案表";
+				nametype="合同word版本";
+			  break;
+			case '7':
+				nametype="合同签字版本";
+			  break;
+			case '8':
+				nametype="工作许可证";
+			  break;
+			case '9':
+				nametype="邀请函";
+			  break;
+			case '10':
+				nametype="公司邀请函";
+			  break;
+			case '11':
+				nametype="外国专家证";
+			  break;
+			case '12':
+				nametype="居留许可";
 			  break;
 			default:
 				nametype="护照";
@@ -1424,6 +1453,7 @@
 		});
 
 		$("#formChangefirmBtn").click(function() {
+			currTab = oldTab;
 			saveForm();
 		});
 

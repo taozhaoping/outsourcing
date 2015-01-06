@@ -148,8 +148,9 @@
 						<div class="tab-pane fade" id="home">
 							<form id="editForm" class="form-horizontal"
 								action="${menu2Id}!save.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -424,9 +425,10 @@
 						<div class="tab-pane fade" id="flight">
 							<form id="flightForm" class="form-horizontal"
 								action="${menu2Id}!saveFlight.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${technologicalProcess.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="spaceId" value="${spaceId}">
+								<input type="hidden" name="formId" value="${technologicalProcess.id}">
 								<input type="hidden" name="flight.id" value="${flight.id}">
 								<dir class="row">
 									<div class="span5">
@@ -501,9 +503,10 @@
 						<div class="tab-pane fade" id="express">
 							<form id="expressForm" class="form-horizontal"
 								action="${menu2Id}!saveExpress.jspa" method="post">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="formId" value="${technologicalProcess.id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="spaceId" value="${spaceId}">
+								<input type="hidden" name="formId" value="${technologicalProcess.id}">
 								<input type="hidden" name="express.id" value="${express.id}">
 								<dir class="row">
 									<div class="span5">
@@ -622,25 +625,27 @@
 			<form action="${menu2Id}!createWorkflow.jspa" method="post"
 				id="createWF">
 				<input type="hidden" name="formId" id="cwf_formId"
-					value="${technologicalProcess.id}"> <input type="hidden"
-					name="assign" id="cwf_assign"> <input type="hidden"
-					name="menu2Id" value="${menu2Id}"> <input type="hidden"
-					name="menuId" value="${menuId}">
+					value="${technologicalProcess.id}"> 
+				<input type="hidden" name="assign" id="cwf_assign"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
 			</form>
 
 			<!-- 批准工作流 -->
 			<form action="${menu2Id}!approveWorkflow.jspa" method="post"
 				id="approveWF">
 				<input type="hidden" name="formId" id="awf_formId"
-					value="${technologicalProcess.id}"> <input type="hidden"
-					name="technologicalProcess.workflowid" id="awf_formId"
-					value="${technologicalProcess.workflowid}"> <input
-					type="hidden" name="technologicalProcess.taskId" id="taskId"
-					value="${technologicalProcess.taskId}"> <input
-					type="hidden" name="assign" id="awf_assign"> <input
-					type="hidden" name="assignFlag" id="awf_assignFlag"> <input
-					type="hidden" name="menu2Id" value="${menu2Id}"> <input
-					type="hidden" name="menuId" value="${menuId}">
+					value="${technologicalProcess.id}"> 
+				<input type="hidden" name="technologicalProcess.workflowid" id="awf_formId"
+					value="${technologicalProcess.workflowid}"> 
+				<input type="hidden" name="technologicalProcess.taskId" id="taskId"
+					value="${technologicalProcess.taskId}"> 
+				<input type="hidden" name="assign" id="awf_assign"> 
+				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
 			</form>
 		</div>
 	</div>
@@ -652,6 +657,7 @@
 			<input type="hidden" name="formId" value="${technologicalProcess.id}">
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 			<input type="hidden" name="menuId" value="${menuId}">
+			<input type="hidden" name="spaceId" value="${spaceId}">
 			<input type="hidden" id="jsonList" name="jsonList" />
 		</form>
 	</div>
@@ -669,6 +675,7 @@
 			action="${menu2Id}!saveFile.jspa" method="post">
 			<input type="hidden" name="menuId" value="${menuId}"> 
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="spaceId" value="${spaceId}">
 			<input type="hidden" name="formId" value="${technologicalProcess.id}">
 			<input type="hidden" name="tabID" value="annexButt">
 			<div class="modal-body">
@@ -734,6 +741,7 @@
 			action="${menu2Id}!saveFile.jspa" method="post">
 			<input type="hidden" name="menuId" value="${menuId}"> 
 			<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+			<input type="hidden" name="spaceId" value="${spaceId}">
 			<input type="hidden" name="formId" value="${technologicalProcess.id}">
 			<input type="hidden" name="tabID" value="annexButt">
 			<input type="hidden" id="FileInfoId" name="fileInfo.id" value="">
@@ -916,7 +924,7 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-
+		$("select").select2();
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
@@ -978,7 +986,7 @@
 		selectUsers("airportPeopleId");
 
 		//附件
-		//$("select").select2();
+		//
 		//$('#fileForm').validate();
 		//$('#fileEditorForm').validate();
 		
@@ -1062,23 +1070,41 @@
 			var nametype = "";
 			switch(fileInfo.nametype)
 			{
-			case '2':
-				nametype="毕业证";
-			  break;
-			case '3':
-				nametype="简历";
-			  break;
-			case '4':
-				nametype="无犯罪记录";
-			  break;
-			case '5':
-				nametype="TEFL证";
-			  break;
-			case '6':
-				nametype="档案表";
-			  break;
-			default:
-				nametype="护照";
+				case '2':
+					nametype="毕业证";
+				  break;
+				case '3':
+					nametype="简历";
+				  break;
+				case '4':
+					nametype="Profile Form";
+				  break;
+				case '5':
+					nametype="其他证件(TEFL、家属证明)";
+				  break;
+				case '6':
+					nametype="合同word版本";
+				  break;
+				case '7':
+					nametype="合同签字版本";
+				  break;
+				case '8':
+					nametype="工作许可证";
+				  break;
+				case '9':
+					nametype="邀请函";
+				  break;
+				case '10':
+					nametype="公司邀请函";
+				  break;
+				case '11':
+					nametype="外国专家证";
+				  break;
+				case '12':
+					nametype="居留许可";
+				  break;
+				default:
+					nametype="护照";
 			}
 			addTd(row,"<lable  id='nametype'>" + nametype + "</label>");
 			addTd(row,"<lable>" + fileInfo.descr + "</label>");
@@ -1086,7 +1112,6 @@
 			addTd(row,
 					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button><button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
-			$("select[id='fileInfoNametype']").last().select2();
 		}
 		
 		function initFileInfo(obj,nameType)
