@@ -84,9 +84,9 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}" id="queryForm" method="post">
+						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-							
+							<input type="hidden" name="spaceId" value="${spaceId}">
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：

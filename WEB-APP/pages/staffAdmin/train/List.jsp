@@ -149,8 +149,9 @@
 			</div>
 		</div>
 	</div>
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}" id="queryForm" method="post">
+	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
 		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="spaceId" value="${spaceId}">
 	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>

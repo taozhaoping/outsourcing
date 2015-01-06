@@ -85,7 +85,7 @@
 					<div>
 						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-							
+							<input type="hidden" name="spaceId" value="${spaceId}">
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
@@ -161,7 +161,7 @@
 								<s:iterator value="entryProcessList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
@@ -179,7 +179,7 @@
 											<s:property value="#tp.approver"/>
 										</td>
 										<td>
-											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>
@@ -196,9 +196,6 @@
 		</div>
 	</div>
 	
-	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" method="post">
-		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path %>/js/collapsePulg.js"></script>

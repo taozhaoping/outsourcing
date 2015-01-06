@@ -84,7 +84,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<a class="btn btn-primary" href="role!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
+						<a class="btn btn-primary" href="role!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
@@ -110,7 +110,7 @@
 										<td><s:property value="#role.createtime" /></td>
 										<td><s:property value="#role.updatetime" /></td>
 										<td><a
-											href="role!editor.jspa?id=<s:property value='#role.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											href="role!editor.jspa?id=<s:property value='#role.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-pencil"></i></a> <!-- 
 											<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
 											 --></td>
@@ -130,6 +130,7 @@
 	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}"
 		id="queryForm" method="post">
 		<input id="curPage" name="pageInfo.curPage"	value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="spaceId" value="${spaceId}">
 	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>

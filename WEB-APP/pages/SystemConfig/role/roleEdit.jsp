@@ -112,6 +112,7 @@
 								<input type="hidden" name="role.id" value="${role.id}">
 								<input type="hidden" name="menuId" value="${menuId}">
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" id="authoritiesListInputJson" name="authoritiesListJsonValue">
 								<input type="hidden" id="menuListInputJson" name="menuListJsonValue">
 								

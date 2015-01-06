@@ -98,8 +98,9 @@
 							<div class="tab-pane active" id="home">
 
 								<input type="hidden" name="sysParam.id" value="${sysParam.id}">
-								<input type="hidden" name="menuId" value="${menuId}"> <input
-									type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="menuId" value="${menuId}"> 
+								<input type="hidden" name="menu2Id" value="${menu2Id}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group" id="name_div">

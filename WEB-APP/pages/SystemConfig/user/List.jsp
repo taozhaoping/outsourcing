@@ -84,7 +84,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
+						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
@@ -121,9 +121,9 @@
 											<td>停用</td>
 										</s:else>
 										<td>
-											<a href="${menu2Id}!editor.jspa?id=<s:property value='#userInfo.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
+											<a href="${menu2Id}!editor.jspa?id=<s:property value='#userInfo.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i class="icon-pencil"></i></a> 
 											<s:if test="#userInfo.id!=1">
-											<a href="${menu2Id}!save.jspa?id=<s:property value='#userInfo.id'/>&view=enabled&enabled=<s:property value='#userInfo.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="${menu2Id}!save.jspa?id=<s:property value='#userInfo.id'/>&view=enabled&enabled=<s:property value='#userInfo.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-remove"></i></a>											
 											</s:if>
 										</td>
@@ -142,6 +142,7 @@
 	</div>
 	<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}" id="queryForm" method="post">
 		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="spaceId" value="${spaceId}">
 	</form>
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>

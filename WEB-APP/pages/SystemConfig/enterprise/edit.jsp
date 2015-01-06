@@ -99,6 +99,7 @@
 									<input type="hidden" name="enterprise.id" value="${enterprise.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
+									<input type="hidden" name="spaceId" value="${spaceId}">
 									<div class="control-group" id="name_div">
 										<label class="control-label" for="name_input">名称：</label>
 										<div class="controls">
