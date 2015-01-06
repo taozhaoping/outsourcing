@@ -445,17 +445,16 @@
 										<div class="control-group">
 											<label class="control-label" for="airportPeopleId">接机人：</label>
 											<div class="controls">
-												<!-- 
-												<select id="airportPeopleId" class="input-large"
-													name="flight.airportPeopleId">
-													<option value="A">测试1</option>
-													<option value="B">测试2</option>
+												 <select id="airportPeopleId" class="input-large select2-offscreen" name="flight.airportpeopleid" data-required="true" desc="接机人"  tabindex="-1" title="接机人：">
+													<s:iterator value="userList" var="user" status="index">
+													<option value="${user.id}">${user.name}(${user.loginName})</option>
+													</s:iterator>
 												</select>
-												 -->
-												
+												<!-- 
 												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人" selectId ="${flight.airportpeopleid}">
 													<option id="airportPeopleIdOption" value=""></option>
 												</select>
+												 -->
 											</div>
 										</div>
 									</div>
@@ -814,11 +813,15 @@
 			<div class="control-group">
 				<label class="control-label pull-left" for="modalAssign">审批人：</label>
 				<!-- 
-			<input type="text" id="modalAssign" class="input-large pull-right">
-			 -->
+				<input type="text" id="modalAssign" class="input-large pull-right">
+				<option selected="selected" id="modalAssignOption">&nbsp;</option>
+				 -->
 				<select id="modalAssign" class="input-large pull-right">
-					<option selected="selected" id="modalAssignOption">&nbsp;</option>
+					<s:iterator value="userList" var="user" status="index">
+						<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					</s:iterator>
 				</select>
+				
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -843,10 +846,13 @@
 			<div class="control-group">
 				<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
 				<!-- 
-			<input type="text" id="modalNextAssign" class="input-large pull-right">
-			 -->
+				<input type="text" id="modalNextAssign" class="input-large pull-right">
+				<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
+			 	-->
 				<select id="modalNextAssign" class="input-large pull-right">
-					<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
+					<s:iterator value="userList" var="user" status="index">
+					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					</s:iterator>
 				</select>
 			</div>
 
@@ -979,10 +985,9 @@
 		}
 		//航班信息
 		//$("#airportPeopleId").select2();
-		$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}")
-				.trigger("change");
+		//$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}").trigger("change");
 		//初始化接机人
-		selectUsers("airportPeopleId","form");
+		//selectUsers("airportPeopleId","form");
 
 		//附件
 		//
@@ -1262,7 +1267,7 @@
 		//开始选择，用户选择框打开
 		$('#startConfirm').on('show.bs.modal', function() {
 			// 执行一些动作...
-			selectUsers("modalAssign",'assign');
+			//selectUsers("modalAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写
@@ -1281,7 +1286,7 @@
 		//批准选择，用户选择框打开
 		$('#approveConfirm').on('show.bs.modal', function() {
 			// 执行一些动作...
-			selectUsers("modalNextAssign",'assign');
+			//selectUsers("modalNextAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写

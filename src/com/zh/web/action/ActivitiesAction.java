@@ -1,9 +1,13 @@
 package com.zh.web.action;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zh.base.model.bean.User;
+import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
@@ -11,7 +15,6 @@ import com.zh.core.model.Pager;
 import com.zh.web.model.ActivitiesModel;
 import com.zh.web.model.bean.Activities;
 import com.zh.web.model.bean.ActivitiesUser;
-import com.zh.web.model.bean.TrainingOfPersonnel;
 import com.zh.web.service.ActivitiesService;
 import com.zh.web.service.ActivitiesUserService;
 
@@ -23,6 +26,12 @@ import com.zh.web.service.ActivitiesUserService;
  */
 public class ActivitiesAction extends BaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9046635623724345893L;
+
+
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(ActivitiesAction.class);
 
@@ -31,6 +40,9 @@ public class ActivitiesAction extends BaseAction {
 
 	@Autowired
 	private ActivitiesUserService activitiesUserService;
+	
+	@Autowired
+	private UserInfoService userInfoService;
 
 	private ActivitiesModel activitiesModel = new ActivitiesModel();
 
@@ -68,6 +80,8 @@ public class ActivitiesAction extends BaseAction {
 					.queryList(activitiesUser, pager);
 			this.activitiesModel.setActivitiesUserList(activitiesUserList);
 		}
+		
+		getUserList();
 		return Action.EDITOR;
 	}
 	
@@ -118,6 +132,17 @@ public class ActivitiesAction extends BaseAction {
 	public Object getModel() {
 		// TODO Auto-generated method stub
 		return activitiesModel;
+	}
+	
+	/**
+	 * 获取用户列表
+	 */
+	private void getUserList(){
+		// 获取激活的用户列表
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.activitiesModel.setUserList(userList);
 	}
 
 	public ActivitiesService getActivitiesService() {

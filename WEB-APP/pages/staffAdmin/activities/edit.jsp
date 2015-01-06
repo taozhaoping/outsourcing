@@ -146,9 +146,14 @@
 											<div class="control-group">
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
-													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人" selectId ="${activities.userName}">
-													<option id="userNameOption" value=""></option>
-												</select>
+													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人">
+														<!-- 
+														<option id="userNameOption" value=""></option>
+														 -->
+														<s:iterator value="userList" var="user" status="index">
+														<option value="${user.id}">${user.name}(${user.loginName})</option>
+														</s:iterator>
+													</select>
 												</div>
 											</div>
 										</div>
@@ -345,7 +350,9 @@
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
 				+ contextPath;
 		$("select").select2();
+		/*
 		selectUsers("userName","form");
+		*/
 		$("#userName").val("${activities.userName}")
 		.trigger("change");
 		$("#inputenabled").val("${activities.enabled}").trigger("change");

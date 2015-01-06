@@ -337,10 +337,7 @@ public class RecruitmentAction extends BaseAction {
 			LOGGER.debug("create form()...");
 		}
 		
-		//获取用户列表，
-		User user = new User();
-		List<User> List = userInfoService.queryList(user);
-		
+		getUserList();
 		return Action.EDITOR;
 	}
 
@@ -864,6 +861,17 @@ public class RecruitmentAction extends BaseAction {
 		if (curUserId.equals(workUserId) && isStart) {
 			this.recruitmentModel.setHasSubmitAuth("1");
 		}
+	}
+	
+	/**
+	 * 获取用户列表
+	 */
+	private void getUserList(){
+		// 获取激活的用户列表
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.recruitmentModel.setUserList(userList);
 	}
 
 	public RecruitmentModel getRecruitmentModel() {

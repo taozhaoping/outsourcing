@@ -455,10 +455,13 @@
 													<option value="A">测试1</option>
 													<option value="B">测试2</option>
 												</select>
+													<option id="airportPeopleIdOption" value=""></option>
 												 -->
 												
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人" selectId ="${flight.airportpeopleid}">
-													<option id="airportPeopleIdOption" value=""></option>
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人">
+													<s:iterator value="userList" var="user" status="index">
+													<option value="${user.id}">${user.name}(${user.loginName})</option>
+													</s:iterator>
 												</select>
 											</div>
 										</div>
@@ -1054,8 +1057,13 @@
 					<label id="modalAssignLable" class="control-label  pull-left" for="popupModalAssign">人员：</label>
 					<div class="controls">
 						<select id="popupModalAssign" class="input-large">
-						<option selected="selected" id="popupModalAssignOption">&nbsp;</option>
-					</select>
+							<!-- 
+							<option selected="selected" id="popupModalAssignOption">&nbsp;</option>
+							 -->
+							<s:iterator value="userList" var="user" status="index">
+							<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+							</s:iterator>
+						</select>
 					</div>
 				</div>
 		</div>
@@ -1081,10 +1089,13 @@
 			<div class="control-group">
 				<label class="control-label pull-left" for="modalAssign">审批人：</label>
 				<!-- 
-			<input type="text" id="modalAssign" class="input-large pull-right">
+				<input type="text" id="modalAssign" class="input-large pull-right">
+				<option selected="selected" id="modalAssignOption">&nbsp;</option>
 			 -->
 				<select id="modalAssign" class="input-large pull-right">
-					<option selected="selected" id="modalAssignOption">&nbsp;</option>
+					<s:iterator value="userList" var="user" status="index">
+					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					</s:iterator>
 				</select>
 			</div>
 		</div>
@@ -1190,7 +1201,7 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-
+		$("select").select2();
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
@@ -1247,11 +1258,10 @@
 		}
 		//航班信息
 		//$("#airportPeopleId").select2();
-		$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}")
-				.trigger("change");
+		//$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}").trigger("change");
 		
 		//初始化接机人
-		selectUsers("airportPeopleId","form");
+		//selectUsers("airportPeopleId","form");
 
 		//附件
 		//$("select").select2();
@@ -1593,7 +1603,7 @@
 		//开始选择，用户选择框打开
 		$('#startConfirm').on('show.bs.modal', function(x) {
 			// 执行一些动作...
-			selectUsers("modalAssign",'assign');
+			//selectUsers("modalAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写
@@ -1612,7 +1622,7 @@
 		//批准选择，用户选择框打开
 		$('#approveConfirm').on('show.bs.modal', function(x) {
 			// 执行一些动作...
-			selectUsers("modalNextAssign",'assign');
+			//selectUsers("modalNextAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写

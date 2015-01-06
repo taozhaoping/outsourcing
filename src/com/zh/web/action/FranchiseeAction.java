@@ -9,6 +9,12 @@ import com.zh.web.service.FranchiseeService;
 
 public class FranchiseeAction extends BaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4069746645463359419L;
+
+
 	private FranchiseeModel franchiseeModel = new FranchiseeModel();
 	
 	@Autowired

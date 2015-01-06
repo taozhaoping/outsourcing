@@ -147,9 +147,13 @@
 										<div class="control-group">
 											<label class="control-label" for="userId">讲师：</label>
 											<div class="controls">
-												<select id="userId" class="input-large"
-													name="trainCourse.userId" desc="讲师" selectId ="${trainCourse.userId}">
+												<select id="userId" class="input-large" name="trainCourse.userId" desc="讲师">
+													<!-- 
 													<option id="userIdOption" value=""></option>
+													 -->
+													<s:iterator value="userList" var="user" status="index">
+													<option value="${user.id}">${user.name}(${user.loginName})</option>
+													</s:iterator>
 												</select>
 											</div>
 										</div>
@@ -373,7 +377,7 @@
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
 				+ contextPath;
 		$("select").select2();
-		selectUsers("userId","form");
+		//selectUsers("userId","form");
 		
 		//$("#userId").val("${trainCourse.userId}").trigger("change");
 		//$("#userId").val("${trainCourse.userId}");

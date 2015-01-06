@@ -496,11 +496,7 @@ public class InductionAction extends BaseAction {
 			this.inductionModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}
-
-		// 获取用户列表，
-		// User user = new User();
-		// List<User> List = userInfoService.queryList(user);
-
+		getUserList();
 		return Action.EDITOR;
 	}
 
@@ -1064,6 +1060,17 @@ public class InductionAction extends BaseAction {
 		if (curUserId.equals(workUserId) && isStart) {
 			this.inductionModel.setHasSubmitAuth("1");
 		}
+	}
+	
+	/**
+	 * 获取用户列表
+	 */
+	private void getUserList(){
+		// 获取激活的用户列表
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.inductionModel.setUserList(userList);
 	}
 
 	public InductionModel getInductionModel() {

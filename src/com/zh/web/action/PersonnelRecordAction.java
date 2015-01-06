@@ -12,6 +12,11 @@ import com.zh.web.service.EntryProcessService;
 
 public class PersonnelRecordAction extends BaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5036914294891638980L;
+
 	private PersonnelRecordModel personnelRecordModel = new PersonnelRecordModel();
 
 	private static Logger LOGGER = LoggerFactory

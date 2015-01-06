@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.zh.base.model.bean.User;
+import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
@@ -39,6 +41,9 @@ public class TrainCourseAction extends BaseAction {
 
 	@Autowired
 	private TrainingOfPersonnelService trainingOfPersonnelService;
+	
+	@Autowired
+	private UserInfoService userInfoService;
 
 	public String execute() {
 		TrainCourse trainCourse = trainCourseModel.getTrainCourse();
@@ -77,6 +82,8 @@ public class TrainCourseAction extends BaseAction {
 			this.trainCourseModel
 					.setTrainingOfPersonnelList(trainingOfPersonnelList);
 		}
+		
+		getUserList();
 		return Action.EDITOR;
 	}
 
@@ -130,6 +137,17 @@ public class TrainCourseAction extends BaseAction {
 		return trainCourseModel;
 	}
 
+	/**
+	 * 获取用户列表
+	 */
+	private void getUserList(){
+		// 获取激活的用户列表
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.trainCourseModel.setUserList(userList);
+	}
+	
 	public TrainCourseModel getTrainCourseModel() {
 		return trainCourseModel;
 	}

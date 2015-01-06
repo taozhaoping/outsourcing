@@ -1,8 +1,10 @@
 package com.zh.core.base.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.zh.base.model.bean.User;
 import com.zh.core.model.Pager;
 
 /**
@@ -64,6 +66,11 @@ public class BaseModel {
 	 */
 	private String jsonList;
 
+	/**
+	 * 所有的用户集合
+	 */
+	private List<User> userList;
+	
 	public Pager getPageInfo() {
 		return pageInfo;
 	}
@@ -174,6 +181,14 @@ public class BaseModel {
 
 	public void setFormId(String formId) {
 		this.formId = formId;
+	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 	
 }

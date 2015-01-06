@@ -19,6 +19,11 @@ import com.zh.web.service.TechnologicalProcessService;
 
 public class QueryRecordAction extends BaseAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 86822026221231807L;
+
 	private ContactRecordModel contactRecordModel = new ContactRecordModel();
 
 	private static Logger LOGGER = LoggerFactory
