@@ -911,7 +911,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var nameSpace = '${nameSpace}';
+		var spaceId = '${spaceId}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
@@ -1062,23 +1062,41 @@
 			var nametype = "";
 			switch(fileInfo.nametype)
 			{
-			case '2':
-				nametype="毕业证";
-			  break;
-			case '3':
-				nametype="简历";
-			  break;
-			case '4':
-				nametype="无犯罪记录";
-			  break;
-			case '5':
-				nametype="TEFL证";
-			  break;
-			case '6':
-				nametype="档案表";
-			  break;
-			default:
-				nametype="护照";
+				case '2':
+					nametype="毕业证";
+				  break;
+				case '3':
+					nametype="简历";
+				  break;
+				case '4':
+					nametype="Profile Form";
+				  break;
+				case '5':
+					nametype="其他证件(TEFL、家属证明)";
+				  break;
+				case '6':
+					nametype="合同word版本";
+				  break;
+				case '7':
+					nametype="合同签字版本";
+				  break;
+				case '8':
+					nametype="工作许可证";
+				  break;
+				case '9':
+					nametype="邀请函";
+				  break;
+				case '10':
+					nametype="公司邀请函";
+				  break;
+				case '11':
+					nametype="外国专家证";
+				  break;
+				case '12':
+					nametype="居留许可";
+				  break;
+				default:
+					nametype="护照";
 			}
 			addTd(row,"<lable  id='nametype'>" + nametype + "</label>");
 			addTd(row,"<lable>" + fileInfo.descr + "</label>");
