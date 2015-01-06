@@ -211,9 +211,9 @@ comment on column t_Express.TechnologicalProcessID is '人员id';
 create table t_FileInfo 
 (
    id                 NUMBER               not null,
-   name               VARCHAR(30),        --文件名
+   name               VARCHAR(100),        --文件名
    nameType           VARCHAR(10),        --文件类型
-   TYPE                 VARCHAR(20),        --种类
+   TYPE               VARCHAR(100),       --种类
    Descr              VARCHAR(100),       --描述
    createDate         VARCHAR(30),        --创建时间
    updateDate         VARCHAR(30),        --修改时间
