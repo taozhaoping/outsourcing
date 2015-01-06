@@ -172,13 +172,14 @@ function fillUserList(userList, id, type) {
 						"id", user.id).val(user.id).html(
 						user.name + "(" + user.loginName + ")").insertAfter(
 						"#" + id + "Option");
+				//设置选中项
+				$("#" + id + "Option").val(user.id).trigger("change");
 				
 			}else{
 				$("#" + id + "Option").clone(true).removeAttr("selected").attr(
 						"id", user.id).val(user.id).html(
 						user.name + "(" + user.loginName + ")").insertAfter(
 						"#" + id + "Option");
-				
 			}
 		}else{
 			$("#" + id + "Option").clone(true).removeAttr("selected").attr(
