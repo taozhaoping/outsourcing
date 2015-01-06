@@ -32,6 +32,11 @@ public class ContactRecord extends IDataObject {
     private Date reserveDate;
     
     /**
+     * 谈话类型
+     */
+    private String type;
+    
+    /**
      * 联系人主键
      */
     private Integer technologicalprocessid;
@@ -75,6 +80,13 @@ public class ContactRecord extends IDataObject {
 	public void setReserveDate(Date reserveDate) {
 		this.reserveDate = reserveDate;
 	}
-    
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
     
 }

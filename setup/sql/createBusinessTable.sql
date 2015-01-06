@@ -78,7 +78,8 @@ create table t_contact_record
    createDate       VARCHAR(30),  --创建时间
    ReserveDate           date,    --预约时间
    TechnologicalProcessID NUMBER,
-   descr            VARCHAR(250),
+   descr            VARCHAR(250), --描述
+   type            VARCHAR(1),    --类型
    constraint PK_CONTACT_RECORD primary key (id)
 );
 /*注释*/
@@ -86,6 +87,7 @@ COMMENT ON table t_Activities IS '通话记录';
 comment on column t_Activities.id is '主键';
 comment on column t_Activities.createDate is '创建时间';
 comment on column t_Activities.descr is '描述';
+comment on column t_Activities.type is '类型';
 
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */

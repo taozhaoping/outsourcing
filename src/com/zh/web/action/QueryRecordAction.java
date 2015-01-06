@@ -7,16 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.ContactRecordModel;
 import com.zh.web.model.bean.ContactRecord;
-import com.zh.web.model.bean.EntryProcess;
+import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.ContactRecordService;
-import com.zh.web.service.EntryProcessService;
+import com.zh.web.service.TechnologicalProcessService;
 
 public class QueryRecordAction extends BaseAction {
 
@@ -26,7 +25,7 @@ public class QueryRecordAction extends BaseAction {
 			.getLogger(QueryRecordAction.class);
 
 	@Autowired
-	private EntryProcessService entryProcessService;
+	private TechnologicalProcessService technologicalProcessService;
 
 	@Autowired
 	private ContactRecordService contactRecordService;
@@ -34,14 +33,14 @@ public class QueryRecordAction extends BaseAction {
 	public String execute() {
 
 		/* 获取基本信息 */
-		EntryProcess entryProcess = this.contactRecordModel.getEntryProcess();
+		TechnologicalProcess technologicalProcess = this.contactRecordModel.getTechnologicalProcess();
 
 		Pager pager = this.contactRecordModel.getPageInfo();
-		Integer count = entryProcessService.count(entryProcess);
+		Integer count = technologicalProcessService.count(technologicalProcess);
 		pager.setTotalRow(count);
-		List<EntryProcess> entryProcessList = entryProcessService.queryList(
-				entryProcess, pager);
-		this.contactRecordModel.setEntryProcessList(entryProcessList);
+		List<TechnologicalProcess> technologicalProcessList = technologicalProcessService.queryList(
+				technologicalProcess, pager);
+		this.contactRecordModel.setTechnologicalProcessList(technologicalProcessList);
 
 		return Action.SUCCESS;
 	}
@@ -50,13 +49,13 @@ public class QueryRecordAction extends BaseAction {
 		LOGGER.debug("editor()");
 
 		String businessKey = this.contactRecordModel.getFormId();
-		EntryProcess entryProcess = new EntryProcess();
-		entryProcess.setId(Integer.parseInt(businessKey));
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(Integer.parseInt(businessKey));
 		// technologicalProcess.setWorkuserid(queryUserId());
 
 		// 获取基本信息
-		EntryProcess process = entryProcessService.query(entryProcess);
-		contactRecordModel.setEntryProcess(process);
+		TechnologicalProcess process = technologicalProcessService.query(technologicalProcess);
+		contactRecordModel.setTechnologicalProcess(process);
 
 		/* 获取联系记录 */
 		ContactRecord contactRecord = new ContactRecord();
@@ -74,21 +73,21 @@ public class QueryRecordAction extends BaseAction {
 
 	public String save() {
 		LOGGER.debug("save()");
-		EntryProcess entryProcess = this.contactRecordModel.getEntryProcess();
-		Integer id = entryProcess.getId();
+		TechnologicalProcess technologicalProcess = this.contactRecordModel.getTechnologicalProcess();
+		Integer id = technologicalProcess.getId();
 
 		if (null != id && id > 0) {
-			entryProcessService.update(entryProcess);
+			technologicalProcessService.update(technologicalProcess);
 			LOGGER.debug("update()...");
 		} else {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
-			entryProcess.setWorkuserid(userID);
-			entryProcessService.insert(entryProcess);
+			technologicalProcess.setWorkuserid(userID);
+			technologicalProcessService.insert(technologicalProcess);
 			LOGGER.debug("insert()...");
 		}
 
-		this.contactRecordModel.setFormId(entryProcess.getId().toString());
+		this.contactRecordModel.setFormId(technologicalProcess.getId().toString());
 		return Action.EDITOR_SUCCESS;
 	}
 

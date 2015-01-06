@@ -8,20 +8,24 @@ import com.zh.web.model.bean.ContactRecord;
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.TechnologicalProcess;
 
+/**
+ * 通讯记录
+ * @author taozhaoping 26078
+ * @author mail taozhaoping@gmail.com
+ */
 public class ContactRecordModel extends BaseModel {
 
 	private ContactRecord contactRecord = new ContactRecord();
 	
 	private List<ContactRecord> ContactRecordList = new ArrayList<ContactRecord>();
 	
-	private TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 	
 	/**
 	 * 基础信息
 	 */
-	private EntryProcess entryProcess = new EntryProcess();
+	private TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 	
-	private List<EntryProcess> entryProcessList = new ArrayList<EntryProcess>();
+	private List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
 	
 	private String FormId;
 	
@@ -33,20 +37,13 @@ public class ContactRecordModel extends BaseModel {
 		FormId = formId;
 	}
 
-	public List<EntryProcess> getEntryProcessList() {
-		return entryProcessList;
+	public List<TechnologicalProcess> getTechnologicalProcessList() {
+		return technologicalProcessList;
 	}
 
-	public void setEntryProcessList(List<EntryProcess> entryProcessList) {
-		this.entryProcessList = entryProcessList;
-	}
-
-	public EntryProcess getEntryProcess() {
-		return entryProcess;
-	}
-
-	public void setEntryProcess(EntryProcess entryProcess) {
-		this.entryProcess = entryProcess;
+	public void setTechnologicalProcessList(
+			List<TechnologicalProcess> technologicalProcessList) {
+		this.technologicalProcessList = technologicalProcessList;
 	}
 
 	public TechnologicalProcess getTechnologicalProcess() {

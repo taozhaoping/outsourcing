@@ -100,7 +100,7 @@
 				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 				<input type="hidden" id="formChanged" name="formChanged" value="0" />
 				<s:set name="ProcessId"
-					value="entryProcess.id!=null&&entryProcess.id!=''" />
+					value="technologicalProcess.id!=null&&technologicalProcess.id!=''" />
 				<div class="well">
 					<ul class="nav nav-tabs">
 						<li><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
@@ -121,10 +121,8 @@
 											<label class="control-label" for="inputId">编号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
-													id="inputId" name="entryProcess.id"
-													value="${entryProcess.id}" class="input-large"> <input
-													type="hidden" name="entryProcess.id"
-													value="${entryProcess.id}">
+													id="inputId" name="technologicalProcess.id"
+													value="${technologicalProcess.id}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -133,8 +131,8 @@
 											<label class="control-label" for="description">描述：</label>
 											<div class="controls">
 												<input type="text" id="description"
-													name="entryProcess.description"
-													value="${entryProcess.description}" 
+													name="technologicalProcess.description"
+													value="${technologicalProcess.description}" 
 													desc="描述" class="input-large">
 											</div>
 										</div>
@@ -147,8 +145,8 @@
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
 												<input type="text" data-required="true" desc="姓名"
-													maxlength="15" id="inputName" name="entryProcess.name"
-													value="${entryProcess.name}" class="input-large">
+													maxlength="15" id="inputName" name="technologicalProcess.name"
+													value="${technologicalProcess.name}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -157,8 +155,8 @@
 											<label class="control-label" for="inputEnglishname">英文名：</label>
 											<div class="controls">
 												<input type="text" id="inputEnglishname"
-													name="entryProcess.englishname"
-													value="${entryProcess.englishname}" data-required="true"
+													name="technologicalProcess.englishname"
+													value="${technologicalProcess.englishname}" data-required="true"
 													desc="英文名" class="input-large">
 											</div>
 										</div>
@@ -171,8 +169,8 @@
 											<label class="control-label" for="inputnationality">国籍：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputnationality"
-													name="entryProcess.nationality"
-													value="${entryProcess.nationality}" 
+													name="technologicalProcess.nationality"
+													value="${technologicalProcess.nationality}" 
 													desc="国籍" class="input-large">
 											</div>
 										</div>
@@ -182,8 +180,8 @@
 											<label class="control-label" for="inputCurrentlocation">目前所在地(国家)：</label>
 											<div class="controls">
 												<input type="text" id="inputCurrentlocation"
-													name="entryProcess.currentlocation"
-													value="${entryProcess.currentlocation}"
+													name="technologicalProcess.currentlocation"
+													value="${technologicalProcess.currentlocation}"
 													 desc="目前所在地(国家)" class="input-large">
 											</div>
 										</div>
@@ -196,8 +194,8 @@
 											<label class="control-label" for="inputyearbirth">出生年份：</label>
 											<div class="controls">
 												<input type="text" id="inputyearbirth"
-													name="entryProcess.yearbirth"
-													value="${entryProcess.yearbirth}" 
+													name="technologicalProcess.yearbirth"
+													value="${technologicalProcess.yearbirth}" 
 													desc="出生年份" class="input-large">
 											</div>
 										</div>
@@ -207,8 +205,8 @@
 											<label class="control-label" for="inputBirthday">生日：</label>
 											<div class="controls">
 												<input type="text" size="15" id="inputBirthday"
-													name="entryProcess.birthday"
-													value="<s:date name="entryProcess.birthday" format="yyyy-MM-dd" />"
+													name="technologicalProcess.birthday"
+													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
 													data-required="true" desc="生日" readonly
 													class="form_datetime input-large">
 											</div>
@@ -224,7 +222,7 @@
 											<div class="controls">
 												<select id="contracttype" class="input-large"
 													 desc="合同种类"
-													name="entryProcess.contracttype">
+													name="technologicalProcess.contracttype">
 													<option value=""></option>
 													<option value="A">A类</option>
 													<option value="B">B类</option>
@@ -239,8 +237,8 @@
 											<label class="control-label" for="inputContractdate">合同有效期：</label>
 											<div class="controls">
 												<input type="text" id="inputContractdate"
-													name="entryProcess.contractdate"
-													value="${entryProcess.contractdate}" 
+													name="technologicalProcess.contractdate"
+													value="${technologicalProcess.contractdate}" 
 													desc="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
@@ -253,8 +251,8 @@
 											<label class="control-label" for="inputPassportno">护照号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputPassportno"
-													name="entryProcess.passportno"
-													value="${entryProcess.passportno}" 
+													name="technologicalProcess.passportno"
+													value="${technologicalProcess.passportno}" 
 													desc="护照号" class="input-large">
 											</div>
 										</div>
@@ -265,8 +263,8 @@
 											<label class="control-label" for="inputPassportnodate">护照有效期：</label>
 											<div class="controls">
 												<input type="text" id="inputPassportnodate"
-													name="entryProcess.passportnodate"
-													value="${entryProcess.passportnodate}"
+													name="technologicalProcess.passportnodate"
+													value="${technologicalProcess.passportnodate}"
 													desc="护照有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
@@ -279,7 +277,7 @@
 											<label class="control-label" for="inputMail">电子邮箱：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputMail"
-													name="entryProcess.mail" value="${entryProcess.mail}"
+													name="technologicalProcess.mail" value="${technologicalProcess.mail}"
 													 desc="电子邮箱" class="input-large">
 											</div>
 										</div>
@@ -288,8 +286,8 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPhone">手机号码：</label>
 											<div class="controls">
-												<input type="text" id="inputPhone" name="entryProcess.Phone"
-													value="${entryProcess.phone}" class="input-large">
+												<input type="text" id="inputPhone" name="technologicalProcess.Phone"
+													value="${technologicalProcess.phone}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -301,8 +299,8 @@
 											<label class="control-label" for="inputWechat">WeChat：</label>
 											<div class="controls">
 												<input type="text" id="inputWechat"
-													name="entryProcess.wechat"
-													ventryProcesslProcess.wechat}"
+													name="technologicalProcess.wechat"
+													value="${technologicalProcess.wechat}"
 													class="input-large">
 											</div>
 										</div>
@@ -312,8 +310,8 @@
 										<div class="control-group">
 											<label class="control-label" for="inputSkype">Skype：</label>
 											<div class="controls">
-												<input type="text" id="inputSkype" name="entryProcess.skype"
-													value="${entryProcess.skype}" class="input-large">
+												<input type="text" id="inputSkype" name="technologicalProcess.skype"
+													value="${technologicalProcess.skype}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -324,10 +322,10 @@
 										<div class="control-group">
 											<label class="control-label" for="inputWorkuserid">创建者：</label>
 											<div class="controls">
-												<s:set id="userNameid" value="entryProcess.workuserid"></s:set>
+												<s:set id="userNameid" value="technologicalProcess.workuserid"></s:set>
 												<input type="text" id="inputWorkuserid" disabled="disabled"
-													name="entryProcess.workUserName"
-													value="${entryProcess.workUserName}" readonly
+													name="technologicalProcess.workUserName"
+													value="${technologicalProcess.workUserName}" readonly
 													class="input-large">
 											</div>
 										</div>
@@ -336,8 +334,8 @@
 										<div class="control-group">
 											<label class="control-label" for="inputState">当前状态：</label>
 											<div class="controls">
-												<input type="text" id="inputState" name="entryProcess.state"
-													readonly="readonly" value="${entryProcess.state}"
+												<input type="text" id="inputState" name="technologicalProcess.state"
+													readonly="readonly" value="${technologicalProcess.state}"
 													class="input-large">
 											</div>
 										</div>
@@ -350,8 +348,8 @@
 											<label class="control-label" for="inputDomicile">户籍地址：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputDomicile"
-													name="entryProcess.domicile"
-													value="${entryProcess.domicile}" desc="户籍地址"
+													name="technologicalProcess.domicile"
+													value="${technologicalProcess.domicile}" desc="户籍地址"
 													class="input-large">
 											</div>
 										</div>
@@ -402,7 +400,7 @@
 	<div>
 		<form action="${menu2Id}!editor.jspa" id="queryForm" method="post">
 		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
-		<input type="hidden" name="formId" value="${entryProcess.id}">
+		<input type="hidden" name="formId" value="${technologicalProcess.id}">
 		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 		<input type="hidden" name="menuId" value="${menuId}">
 		<input type="hidden" name="spaceId" value="${spaceId}">
@@ -467,7 +465,7 @@
 
 		//基本信息
 		//$("#contracttype").select2();
-		$("#contracttype").val("${entryProcess.contracttype}")
+		$("#contracttype").val("${technologicalProcess.contracttype}")
 				.trigger("change");
 
 		//判断表单是否修改过
@@ -528,7 +526,7 @@
 		}
 
 		/*判断当前form是否变更*/
-		var entryProcessId = "${entryProcess.id}";
+		var entryProcessId = "${technologicalProcess.id}";
 		function ischangeForm(id) {
 			//获取当前需要保存的tabid
 			currTab = $("#tabID").val();
