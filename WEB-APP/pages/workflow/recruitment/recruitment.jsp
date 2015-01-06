@@ -983,7 +983,7 @@
 		$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}")
 				.trigger("change");
 		//初始化接机人
-		selectUsers("airportPeopleId");
+		selectUsers("airportPeopleId","form");
 
 		//附件
 		//
@@ -1263,7 +1263,7 @@
 		//开始选择，用户选择框打开
 		$('#startConfirm').on('show.bs.modal', function() {
 			// 执行一些动作...
-			selectUsers("modalAssign");
+			selectUsers("modalAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写
@@ -1282,7 +1282,7 @@
 		//批准选择，用户选择框打开
 		$('#approveConfirm').on('show.bs.modal', function() {
 			// 执行一些动作...
-			selectUsers("modalNextAssign");
+			selectUsers("modalNextAssign",'assign');
 			//审核状态
 			var auditRet = auditStatus();
 			//存在必填没有填写

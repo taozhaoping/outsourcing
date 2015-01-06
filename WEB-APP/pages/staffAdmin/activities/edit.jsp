@@ -146,7 +146,7 @@
 											<div class="control-group">
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
-													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人"  >
+													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人" selectId ="${activities.userName}">
 													<option id="userNameOption" value=""></option>
 												</select>
 												</div>
@@ -346,7 +346,7 @@
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
 				+ contextPath;
 		$("select").select2();
-		selectUsers("userName");
+		selectUsers("userName","form");
 		$("#userName").val("${activities.userName}")
 		.trigger("change");
 		$("#inputenabled").val("${activities.enabled}").trigger("change");

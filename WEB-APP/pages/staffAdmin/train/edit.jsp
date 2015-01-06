@@ -148,7 +148,7 @@
 											<label class="control-label" for="userId">讲师：</label>
 											<div class="controls">
 												<select id="userId" class="input-large"
-													name="trainCourse.userId" desc="负责人">
+													name="trainCourse.userId" desc="讲师" selectId ="${trainCourse.userId}">
 													<option id="userIdOption" value=""></option>
 												</select>
 											</div>
@@ -374,7 +374,7 @@
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
 				+ contextPath;
 		$("select").select2();
-		selectUsers("userId");
+		selectUsers("userId","form");
 		
 		//$("#userId").val("${trainCourse.userId}").trigger("change");
 		//$("#userId").val("${trainCourse.userId}");

@@ -134,8 +134,14 @@ function fillEntryProcessList(entryProcessList, id) {
 }
 
 
-//选择用户
-function selectUsers(id) {
+
+/**
+ * 选择用户 
+ * @param id select的id
+ * @param type 列表展示类型。 表单的人员选择：‘form’ 审批的人员选择:‘assign’
+ * 
+ */
+function selectUsers(id, type) {
 	$.ajax({
 		type : "POST", //访问WebService使用Post方式请求
 		url : basePath + "/home/interface!queryUsers.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
@@ -147,20 +153,20 @@ function selectUsers(id) {
 		},
 		success : function(result) {//回调函数，result，返回值
 			//填充到table中
-			fillUserList(result, id);
+			fillUserList(result, id, type);
 		}
 	});
 }
 
 //展示用户选择列表
-function fillUserList(userList, id) {
+function fillUserList(userList, id, type) {
 	//清空上次的查询结果
 	$("#" + id + "Option").nextAll("option").remove();
 	var selectOptionValue = $("#" + id).attr("selectId");
 	//动态生成用户列表
 	for ( var i = 0; i < userList.length; i++) {
 		var user = userList[i];
-		if("airportPeopleId" == id){
+		if("assign" != type){
 			if(user.id == selectOptionValue){
 				$("#" + id + "Option").clone(true).attr("selected", "selected").attr(
 						"id", user.id).val(user.id).html(
@@ -176,7 +182,7 @@ function fillUserList(userList, id) {
 			}
 		}else{
 			$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-					"id", user.id).val(user.id).html(
+					"id", user.id).val(user.loginName).html(
 					user.name + "(" + user.loginName + ")").insertAfter(
 					"#" + id + "Option");
 		}
