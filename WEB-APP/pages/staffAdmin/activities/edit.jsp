@@ -85,7 +85,6 @@
 				class="divider">/</span></li>
 			<li><span class="active" id="navigation1"></span></li>
 		</ul>
-<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 		<div class="container-fluid">
 
 			<div class="row-fluid">
@@ -117,7 +116,7 @@
 									<input type="hidden" name="activities.id" value="${activities.id}">
 									<input type="hidden" name="menuId" value="${menuId}">
 									<input type="hidden" name="menu2Id" value="${menu2Id}">
-									<input type="hidden" name="nameSpace" value="${nameSpace}">
+									<input type="hidden" name="spaceId" value="${spaceId}">
 									<dir class="row">
 										<div class="span5">
 											<div class="control-group">
@@ -212,7 +211,7 @@
 								action="${menu2Id}!saveActivitiesUser.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
-								<input type="hidden" name="nameSpace" value="${nameSpace}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="tabID" value="contactrecordButt">
 								<input type="hidden" name="id" value="${activities.id}">
 								<input type="hidden" name="activitiesUser.activitiesId" value="${activities.id}">
@@ -265,7 +264,7 @@
 		<input type="hidden" name="formId" value="${entryProcess.id}">
 		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 		<input type="hidden" name="menuId" value="${menuId}">
-		<input type="hidden" name="nameSpace" value="${nameSpace}">
+		<input type="hidden" name="spaceId" value="${spaceId}">
 		</form>
 	</div>
 	
@@ -330,7 +329,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var nameSpace = '${nameSpace}';
+		var spaceId = '${spaceId}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
@@ -386,6 +385,14 @@
 	        }
 	    });
 		
+		var tabID = "${tabID}";
+		if (null != tabID && "" != tabID) {
+			$("#contactrecordtab").parent().addClass("active");
+			$("#contactrecordtab").removeClass("fade")
+					.addClass("active");
+			$("#home").removeClass("active").addClass("fade");
+		}
+		
 		//开始选择，用户选择框打开
 		$('#startConfirm').on('show.bs.modal', function() {
 			// 执行一些动作...
@@ -431,8 +438,6 @@
 			saveForm();
 		});
 	
-		
-
 			//所有select控件变更
 			$("tbody select").change(function() {
 				$("#formChanged").val("1");

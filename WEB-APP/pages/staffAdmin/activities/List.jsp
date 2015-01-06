@@ -84,7 +84,7 @@
 			<div class="row-fluid">
 				<div class="row-fluid">
 					<div class="btn-toolbar">
-						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}">
+						<a class="btn btn-primary" href="${menu2Id}!editor.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 							<i class="icon-plus"></i> 新增
 						</a>
 						<div class="btn-group"></div>
@@ -121,8 +121,8 @@
 											<td>无效</td>
 										</s:else>
 										<td>
-											<a title="修改" href="${menu2Id}!editor.jspa?id=<s:property value='#activities.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i class="icon-pencil"></i></a> 
-											<a title="状态" href="${menu2Id}!save.jspa?id=<s:property value='#activities.id'/>&view=enabled&enabled=<s:property value='#activities.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a title="修改" href="${menu2Id}!editor.jspa?id=<s:property value='#activities.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i class="icon-pencil"></i></a> 
+											<a title="状态" href="${menu2Id}!save.jspa?id=<s:property value='#activities.id'/>&view=enabled&enabled=<s:property value='#activities.enabled'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-remove"></i></a>
 										</td>
 									</tr>

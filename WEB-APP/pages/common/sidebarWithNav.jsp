@@ -12,7 +12,7 @@
 		<ul id="<s:property value="action" />" class="nav nav-list collapse">
 			<s:iterator value="#menu.menuList" id="menuTwo">
 				<li><a 
-					href="<%=pathTop %>/<s:property value="nameSpace"/>/<s:property value="url"/>?nameSpace=<s:property value="nameSpace"/>&menuId=<s:property value="#menu.action" />&menu2Id=<s:property value="action"/>"
+					href="<%=pathTop %>/<s:property value="nameSpace"/>/<s:property value="url"/>?spaceId=<s:property value="nameSpace"/>&menuId=<s:property value="#menu.action" />&menu2Id=<s:property value="action"/>"
 					id="<s:property value="action"/>" url="<%=pathTop %>/<s:property value="nameSpace"/>/<s:property value="url"/>"><s:property value="name" /></a></li>
 			</s:iterator>
 		</ul>

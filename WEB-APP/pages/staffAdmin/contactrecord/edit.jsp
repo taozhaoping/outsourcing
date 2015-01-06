@@ -114,7 +114,7 @@
 								action="${menu2Id}!save.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
-								<input type="hidden" name="nameSpace" value="${nameSpace}">
+								<input type="hidden" name="spaceId" value="${spaceId}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -380,7 +380,7 @@
 											<input type="hidden" name="formId" value="${entryProcess.id}">
 											<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 											<input type="hidden" name="menuId" value="${menuId}">
-											<input type="hidden" name="nameSpace" value="${nameSpace}">
+											<input type="hidden" name="spaceId" value="${spaceId}">
 										</td>
 										<td>
 										</td>
@@ -468,7 +468,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var nameSpace = '${nameSpace}';
+		var spaceId = '${spaceId}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();

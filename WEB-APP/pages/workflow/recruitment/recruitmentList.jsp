@@ -83,7 +83,7 @@
 				<div class="row-fluid">
 				
 					<div>
-						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&nameSpace=${nameSpace}" id="queryForm" method="post">
+						<form action="${menu2Id}.jspa?menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}" id="queryForm" method="post">
 							<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
 							
 							<dir class="row">
@@ -161,7 +161,7 @@
 								<s:iterator value="technologicalProcessList" var="tp" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}">
 												<s:property value="#tp.id"/>
 											</a>
 										</td>
@@ -179,7 +179,7 @@
 											<s:property value="#tp.approver"/>
 										</td>
 										<td>
-											<a href="<%=path%>/${nameSpace}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}"><i
 												class="icon-pencil"></i></a>
 										</td>
 									</tr>
@@ -208,6 +208,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id='${menuId}';
 		var menuid='${menu2Id}';
+		var spaceId = '${spaceId}';
 		var totalPage = ${pageInfo.totalPage};
 		var totalRow = ${pageInfo.totalRow};
 		var pageSize = ${pageInfo.pageSize};

@@ -85,7 +85,6 @@
 				class="divider">/</span></li>
 			<li><span class="active" id="navigation1"></span></li>
 		</ul>
-<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 		<div class="container-fluid">
 
 			<div class="row-fluid">
@@ -115,7 +114,7 @@
 								action="${menu2Id}!save.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}"> <input
-									type="hidden" name="nameSpace" value="${nameSpace}">
+									type="hidden" name="spaceId" value="${spaceId}">
 									<input type="hidden" name="trainCourse.id" value="${trainCourse.id}">
 								<dir class="row">
 									<div class="span5 pull-left">
@@ -149,7 +148,7 @@
 											<label class="control-label" for="userId">讲师：</label>
 											<div class="controls">
 												<select id="userId" class="input-large"
-													name="trainCourse.userId" data-required="true" desc="负责人">
+													name="trainCourse.userId" desc="负责人">
 													<option id="userIdOption" value=""></option>
 												</select>
 											</div>
@@ -233,6 +232,7 @@
 								action="${menu2Id}!saveTraining.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}"> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+								<input type="hidden" name="spaceId" value="${spaceId}"> 
 								<input type="hidden" name="tabID" value="contactrecordButt">
 								<input type="hidden" name="id" value="${trainCourse.id}">
 								<input type="hidden" name="trainingOfPersonnel.trainCourseId" value="${trainCourse.id}">
@@ -285,7 +285,7 @@
 		<input type="hidden" name="formId" value="${entryProcess.id}">
 		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
 		<input type="hidden" name="menuId" value="${menuId}">
-		<input type="hidden" name="nameSpace" value="${nameSpace}">
+		<input type="hidden" name="spaceId" value="${spaceId}">
 		</form>
 	</div>
 	
@@ -350,17 +350,24 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var nameSpace = '${nameSpace}';
+		var spaceId = '${spaceId}';
 		var row_count = 0;
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-		//当前tbs
-		var currTab = tabID;
+		
 		var totalPage = ${pageInfo.totalPage};
 		var totalRow = ${pageInfo.totalRow};
 		var pageSize = ${pageInfo.pageSize};
 		var curPage = ${pageInfo.curPage};
+		
+		var tabID = "${tabID}";
+		if (null != tabID && "" != tabID) {
+			$("#contactrecordtab").parent().addClass("active");
+			$("#contactrecordtab").removeClass("fade")
+					.addClass("active");
+			$("#home").removeClass("active").addClass("fade");
+		}
 
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
@@ -370,7 +377,7 @@
 		selectUsers("userId");
 		
 		//$("#userId").val("${trainCourse.userId}").trigger("change");
-		$("#userId").val("${trainCourse.userId}");
+		//$("#userId").val("${trainCourse.userId}");
 		$("#trainCoursetrainType").val("${trainCourse.trainType}").trigger(
 		"change");
 
@@ -391,6 +398,8 @@
 			autoclose : true
 		});
 		
+		if ( "" != "${trainCourse.id}")
+		{
 		$.jqPaginator('#pagination', {
 			//设置分页的总页数
 	        totalPages: totalPage,
@@ -433,6 +442,23 @@
 		$("li a[data-toggle='tab']").click(function() {
 			ischangeForm(this.id);
 		});
+		
+		//判断表单是否修改过
+		$("form :input").change(function() {
+			$("#formChanged").val("1");
+		});
+
+		//所有时间控件变更
+		$(".form_datetime").change(function() {
+			$("#formChanged").val("1");
+		});
+
+		//所有select控件变更
+		$("tbody select").change(function() {
+			$("#formChanged").val("1");
+		});
+		
+		}
 		//提交按钮
 		$("#formButton").click(function() {
 			currTab = $("#tabID").val();
@@ -443,28 +469,12 @@
 			saveForm();
 		});
 	
-			//判断表单是否修改过
-			$("form :input").change(function() {
-				$("#formChanged").val("1");
-			});
-
-			//所有时间控件变更
-			$(".form_datetime").change(function() {
-				$("#formChanged").val("1");
-			});
-
-			//所有select控件变更
-			$("tbody select").change(function() {
-				$("#formChanged").val("1");
-			});
+			
 
 		//判读当前tab，需要保存那个form
 		function saveForm() {
-			var action;
-			if ("homeButt" == currTab) {
 				//validate = $('#editForm').validate();
 				$("#editForm").submit();
-			} 
 		}
 
 		/*判断当前form是否变更*/
