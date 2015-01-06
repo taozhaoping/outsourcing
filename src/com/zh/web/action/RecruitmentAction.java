@@ -736,34 +736,39 @@ public class RecruitmentAction extends BaseAction {
 			Express express = new Express();
 			express.setTechnologicalprocessid(Integer.parseInt(formId));
 			Express expressResult = expressService.query(express);
-			//快递单号
-			String expressNumber = expressResult.getExpressnumber();
-			if(null == expressNumber || expressNumber.isEmpty()){
-				auditRet.add("快递单号");
-			}
-			
-			//快递公司
-			String company = expressResult.getCompany();
-			if(null == company || company.isEmpty()){
-				auditRet.add("快递公司");
-			}
-			
-			//发货日期
-			Date delivergoodsdate = expressResult.getDelivergoodsdate();
-			if(null == delivergoodsdate){
-				auditRet.add("发货日期");
-			}
-			
-			//公司电话
-			String telephone = expressResult.getTelephone();
-			if(null == telephone || telephone.isEmpty()){
-				auditRet.add("公司电话");
-			}
-			
-			//收货地址
-			String address = expressResult.getAddress();
-			if(null == address || address.isEmpty()){
-				auditRet.add("收货地址");
+			if(null == expressResult){
+				auditRet.add("快递信息");
+				
+			}else{
+				//快递单号
+				String expressNumber = expressResult.getExpressnumber();
+				if(null == expressNumber || expressNumber.isEmpty()){
+					auditRet.add("快递单号");
+				}
+				
+				//快递公司
+				String company = expressResult.getCompany();
+				if(null == company || company.isEmpty()){
+					auditRet.add("快递公司");
+				}
+				
+				//发货日期
+				Date delivergoodsdate = expressResult.getDelivergoodsdate();
+				if(null == delivergoodsdate){
+					auditRet.add("发货日期");
+				}
+				
+				//公司电话
+				String telephone = expressResult.getTelephone();
+				if(null == telephone || telephone.isEmpty()){
+					auditRet.add("公司电话");
+				}
+				
+				//收货地址
+				String address = expressResult.getAddress();
+				if(null == address || address.isEmpty()){
+					auditRet.add("收货地址");
+				}
 			}
 		
 		}else if("航班确认".equalsIgnoreCase(curState)){
@@ -772,34 +777,39 @@ public class RecruitmentAction extends BaseAction {
 			flight.setTechnologicalprocessid(Integer.parseInt(formId));
 			Flight flightResult = flightService.query(flight);
 			
-			//航班号
-			String flightNumber = flightResult.getFlightnumber();
-			if(null == flightNumber || flightNumber.isEmpty()){
-				auditRet.add("航班号");
-			}
-			
-			//接机人
-			Integer airportpeopleid = flightResult.getAirportpeopleid();
-			if(null == airportpeopleid){
-				auditRet.add("接机人");
-			}
-			
-			//起飞时间
-			Date startdate = flightResult.getStartdate();
-			if(null == startdate){
-				auditRet.add("起飞时间");
-			}
-			
-			//到达时间
-			Date enddate = flightResult.getEnddate();
-			if(null == enddate){
-				auditRet.add("到达时间");
-			}
-			
-			//到达机场
-			String place = flightResult.getPlace();
-			if(null == place || place.isEmpty()){
-				auditRet.add("到达机场");
+			if(null == flightResult){
+				auditRet.add("航班信息");
+				
+			}else{
+				//航班号
+				String flightNumber = flightResult.getFlightnumber();
+				if(null == flightNumber || flightNumber.isEmpty()){
+					auditRet.add("航班号");
+				}
+				
+				//接机人
+				Integer airportpeopleid = flightResult.getAirportpeopleid();
+				if(null == airportpeopleid){
+					auditRet.add("接机人");
+				}
+				
+				//起飞时间
+				Date startdate = flightResult.getStartdate();
+				if(null == startdate){
+					auditRet.add("起飞时间");
+				}
+				
+				//到达时间
+				Date enddate = flightResult.getEnddate();
+				if(null == enddate){
+					auditRet.add("到达时间");
+				}
+				
+				//到达机场
+				String place = flightResult.getPlace();
+				if(null == place || place.isEmpty()){
+					auditRet.add("到达机场");
+				}
 			}
 		}else {
 			
