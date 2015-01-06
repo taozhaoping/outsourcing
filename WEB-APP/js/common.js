@@ -12,9 +12,9 @@ $(function() {
 	$("#menu2Name").text(headText);
 	$("#navigation").text(headText);
 	//导航链接
-	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&nameSpace=" + nameSpace);
+	$("#navigation").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&spaceId=" + spaceId);
 	// 返回按钮
-	$("#backList").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&nameSpace=" + nameSpace);
+	$("#backList").attr("href", url + "?menuId=" + id + "&menu2Id=" + menuId + "&spaceId=" + spaceId);
 
 	// 展开一级菜单
 	collapseMenu(id);
@@ -176,7 +176,7 @@ function fillUserList(userList, id) {
 			}
 		}else{
 			$("#" + id + "Option").clone(true).removeAttr("selected").attr(
-					"id", user.id).val(user.loginName).html(
+					"id", user.id).val(user.id).html(
 					user.name + "(" + user.loginName + ")").insertAfter(
 					"#" + id + "Option");
 		}

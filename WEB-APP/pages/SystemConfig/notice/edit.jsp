@@ -147,7 +147,7 @@
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
 		var menuId = '${menu2Id}';
-		var nameSpace = '${nameSpace}';
+		var spaceId = '${spaceId}';
 		var url = $("#" + menuId).attr('url');
 
 		$("#inputroleId").select2();
