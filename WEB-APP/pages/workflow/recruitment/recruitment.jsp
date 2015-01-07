@@ -818,13 +818,10 @@
 			</div>
 			<div class="control-group">
 				<label class="control-label pull-left" for="modalAssign">审批人：</label>
-				<!-- 
-				<input type="text" id="modalAssign" class="input-large pull-right">
-				<option selected="selected" id="modalAssignOption">&nbsp;</option>
-				 -->
 				<select id="modalAssign" class="input-large pull-right">
+					<option value=""></option>
 					<s:iterator value="userList" var="user" status="index">
-						<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
 					</s:iterator>
 				</select>
 				
@@ -851,11 +848,8 @@
 			</div>
 			<div class="control-group">
 				<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
-				<!-- 
-				<input type="text" id="modalNextAssign" class="input-large pull-right">
-				<option selected="selected" id="modalNextAssignOption">&nbsp;</option>
-			 	-->
 				<select id="modalNextAssign" class="input-large pull-right">
+					<option value=""></option>
 					<s:iterator value="userList" var="user" status="index">
 					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
 					</s:iterator>

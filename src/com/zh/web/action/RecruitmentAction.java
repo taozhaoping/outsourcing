@@ -698,7 +698,7 @@ public class RecruitmentAction extends BaseAction {
 			}
 		
 			if(!fileRequiredField.isEmpty()){
-				auditRet.add("附件信息(需要上传的附件):");
+				auditRet.add("附件:");
 				for(String str : fileRequiredField){
 					if("1".equals(str)){
 						auditRet.add("护照");
