@@ -14,6 +14,7 @@ import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.ContactRecordModel;
 import com.zh.web.model.bean.ContactRecord;
+import com.zh.web.model.bean.ContactRecordVW;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.ContactRecordService;
 import com.zh.web.service.TechnologicalProcessService;
@@ -32,24 +33,24 @@ public class ContactRecordAction extends BaseAction {
 
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
-
+	
 	@Autowired
 	private ContactRecordService contactRecordService;
 
 	public String execute() {
 
 		/* 获取基本信息 */
-		TechnologicalProcess technologicalProcess = this.contactRecordModel.getTechnologicalProcess();
+		ContactRecordVW contactRecordVW = this.contactRecordModel.getContactRecordVW();
 
 		/* 获取当前登录用户 */
 		User user = queryUser();
-		technologicalProcess.setWorkuserid(user.getId());
+		contactRecordVW.setWorkUserId(user.getId());
 		Pager pager = this.contactRecordModel.getPageInfo();
-		Integer count = technologicalProcessService.count(technologicalProcess);
+		Integer count = contactRecordService.countVW(contactRecordVW);
 		pager.setTotalRow(count);
-		List<TechnologicalProcess> technologicalProcessList = technologicalProcessService.queryList(
-				technologicalProcess, pager);
-		this.contactRecordModel.setTechnologicalProcessList(technologicalProcessList);
+		List<ContactRecordVW> contactRecordVWList = contactRecordService.queryVWList(
+				contactRecordVW, pager);
+		this.contactRecordModel.setContactRecordVWList(contactRecordVWList);
 
 		return Action.SUCCESS;
 	}

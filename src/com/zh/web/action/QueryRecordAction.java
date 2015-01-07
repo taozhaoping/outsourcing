@@ -7,12 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.ContactRecordModel;
 import com.zh.web.model.bean.ContactRecord;
+import com.zh.web.model.bean.ContactRecordVW;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.ContactRecordService;
 import com.zh.web.service.TechnologicalProcessService;
@@ -38,15 +40,15 @@ public class QueryRecordAction extends BaseAction {
 	public String execute() {
 
 		/* 获取基本信息 */
-		TechnologicalProcess technologicalProcess = this.contactRecordModel.getTechnologicalProcess();
+		ContactRecordVW contactRecordVW = this.contactRecordModel.getContactRecordVW();
 
 		Pager pager = this.contactRecordModel.getPageInfo();
-		Integer count = technologicalProcessService.count(technologicalProcess);
+		Integer count = contactRecordService.countVW(contactRecordVW);
 		pager.setTotalRow(count);
-		List<TechnologicalProcess> technologicalProcessList = technologicalProcessService.queryList(
-				technologicalProcess, pager);
-		this.contactRecordModel.setTechnologicalProcessList(technologicalProcessList);
-
+		List<ContactRecordVW> contactRecordVWList = contactRecordService.queryVWList(
+				contactRecordVW, pager);
+		this.contactRecordModel.setContactRecordVWList(contactRecordVWList);
+		
 		return Action.SUCCESS;
 	}
 

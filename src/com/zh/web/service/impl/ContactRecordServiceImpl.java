@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import com.zh.core.model.Pager;
 import com.zh.core.util.DateUtil;
 import com.zh.web.dao.ContactRecordDao;
+import com.zh.web.dao.ContactRecordVWDao;
 import com.zh.web.model.bean.ContactRecord;
+import com.zh.web.model.bean.ContactRecordVW;
 import com.zh.web.service.ContactRecordService;
 
 @Component("contactRecordService")
@@ -15,6 +17,9 @@ public class ContactRecordServiceImpl implements ContactRecordService {
 
 	@Autowired
 	private ContactRecordDao contactRecordDao;
+	
+	@Autowired
+	private ContactRecordVWDao 	contactRecordVWDao;
 	
 	@Override
 	public ContactRecord query(ContactRecord contactRecord) {
@@ -48,6 +53,19 @@ public class ContactRecordServiceImpl implements ContactRecordService {
 		String update = DateUtil.getStringDate();
 		contactRecord.setCreatedate(update);
 		return contactRecordDao.insert(contactRecord);
+	}
+
+	@Override
+	public List<ContactRecordVW> queryVWList(ContactRecordVW contactRecordVW,
+			Pager page) {
+		// TODO Auto-generated method stub
+		return contactRecordVWDao.selectPageList("list_VW", contactRecordVW,page);
+	}
+
+	@Override
+	public Integer countVW(ContactRecordVW contactRecordVW) {
+		// TODO Auto-generated method stub
+		return contactRecordVWDao.count("count_VW",contactRecordVW);
 	}
 
 }

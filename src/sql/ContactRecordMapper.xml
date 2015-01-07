@@ -9,6 +9,17 @@
 		<result column="RESERVEDATE" property="reserveDate" jdbcType="DATE" />
 		<result column="TECHNOLOGICALPROCESSID" property="technologicalprocessid" />
 	</resultMap>
+	
+	<resultMap type="ContactRecordVW" id="VW_ContactRecord">
+		<id column="ID" property="id" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="WORKUSERID" property="workUserId" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
+		<result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="VARCHAR" />
+		<result column="RESERVEDATE" property="reserveDate" jdbcType="DATE" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		ID, 
 		DESCR, 
@@ -57,12 +68,98 @@
 			order by ${orderByClause} desc
 		</if>
 	</select>
+	
+		<select id="list_VW" resultMap="VW_ContactRecord" parameterType="ContactRecordVW">
+		select
+			ID, 
+			NAME,
+			WORKUSERID,
+			STATE,
+			DESCR, 
+			CREATEDATE,
+			TYPE,
+			RESERVEDATE
+		from T_CONTACT_RECORD_VW
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="name != null">
+				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="workUserId != null">
+				and WORKUSERID = #{workUserId,jdbcType=VARCHAR}
+			</if>
+			<if test="state != null and state != ''">
+				and STATE = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="descr != null">
+				and DESCR = #{descr,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeStart != null and createtimeStart != ''">
+				and CREATEDATE <![CDATA[>=]]> #{createtimeStart,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeEnd != null and createtimeEnd != ''">
+				and CREATEDATE <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateStart != null and reserveDateStart != ''">
+				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateEnd != null and reserveDateEnd != ''">
+				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="orderByClause != null">
+			order by ${orderByClause} desc
+		</if>
+	</select>
 
 	<select id="count" resultType="Integer" parameterType="ContactRecord">
 		select
 		count(id)
 		from T_CONTACT_RECORD
 		<include refid="where" />
+	</select>
+	
+	<select id="count_VW" resultType="Integer" parameterType="ContactRecordVW">
+		select
+			count(id)
+		from T_CONTACT_RECORD_VW
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="name != null">
+				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="workUserId != null">
+				and WORKUSERID = #{workUserId,jdbcType=VARCHAR}
+			</if>
+			<if test="state != null and state != ''">
+				and STATE = #{state,jdbcType=VARCHAR}
+			</if>
+			<if test="descr != null">
+				and DESCR = like CONCAT('${descr}','%' )
+			</if>
+			<if test="createtimeStart != null and createtimeStart != ''">
+				and CREATEDATE <![CDATA[>=]]> #{createtimeStart,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeEnd != null and createtimeEnd != ''">
+				and CREATEDATE <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateStart != null and reserveDateStart != ''">
+				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateEnd != null and reserveDateEnd != ''">
+				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
 
 	<insert id="insert" parameterType="ContactRecord">

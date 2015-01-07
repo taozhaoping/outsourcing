@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.zh.core.base.model.BaseModel;
 import com.zh.web.model.bean.ContactRecord;
-import com.zh.web.model.bean.EntryProcess;
+import com.zh.web.model.bean.ContactRecordVW;
 import com.zh.web.model.bean.TechnologicalProcess;
 
 /**
@@ -23,36 +23,13 @@ public class ContactRecordModel extends BaseModel {
 	/**
 	 * 基础信息
 	 */
-	private TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+	TechnologicalProcess technologicalProcess = new TechnologicalProcess();
 	
-	private List<TechnologicalProcess> technologicalProcessList = new ArrayList<TechnologicalProcess>();
+	private ContactRecordVW contactRecordVW = new ContactRecordVW();
+	
+	private List<ContactRecordVW> contactRecordVWList = new ArrayList<ContactRecordVW>();
 	
 	private String FormId;
-	
-	public String getFormId() {
-		return FormId;
-	}
-
-	public void setFormId(String formId) {
-		FormId = formId;
-	}
-
-	public List<TechnologicalProcess> getTechnologicalProcessList() {
-		return technologicalProcessList;
-	}
-
-	public void setTechnologicalProcessList(
-			List<TechnologicalProcess> technologicalProcessList) {
-		this.technologicalProcessList = technologicalProcessList;
-	}
-
-	public TechnologicalProcess getTechnologicalProcess() {
-		return technologicalProcess;
-	}
-
-	public void setTechnologicalProcess(TechnologicalProcess technologicalProcess) {
-		this.technologicalProcess = technologicalProcess;
-	}
 
 	public ContactRecord getContactRecord() {
 		return contactRecord;
@@ -69,7 +46,37 @@ public class ContactRecordModel extends BaseModel {
 	public void setContactRecordList(List<ContactRecord> contactRecordList) {
 		ContactRecordList = contactRecordList;
 	}
-	
-	
-	
+
+	public ContactRecordVW getContactRecordVW() {
+		return contactRecordVW;
+	}
+
+	public void setContactRecordVW(ContactRecordVW contactRecordVW) {
+		this.contactRecordVW = contactRecordVW;
+	}
+
+	public List<ContactRecordVW> getContactRecordVWList() {
+		return contactRecordVWList;
+	}
+
+	public void setContactRecordVWList(List<ContactRecordVW> contactRecordVWList) {
+		this.contactRecordVWList = contactRecordVWList;
+	}
+
+	public String getFormId() {
+		return FormId;
+	}
+
+	public void setFormId(String formId) {
+		FormId = formId;
+	}
+
+	public TechnologicalProcess getTechnologicalProcess() {
+		return technologicalProcess;
+	}
+
+	public void setTechnologicalProcess(TechnologicalProcess technologicalProcess) {
+		this.technologicalProcess = technologicalProcess;
+	}
+		
 }

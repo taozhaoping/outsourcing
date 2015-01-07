@@ -150,6 +150,16 @@ public abstract class BaseDao<IdataObject> {
 		return sqlSessionTemplate.selectOne(namespace + "count", data);
 	}
 
+	/**
+	 * 获取数据总数
+	 * @param data
+	 * @return
+	 */
+	public int count(String sqlId,IdataObject data) 
+	{
+		return sqlSessionTemplate.selectOne(namespace + sqlId, data);
+	}
+	
 	public String getNamespace() {
 		return namespace;
 	}
