@@ -148,11 +148,14 @@
 											<label class="control-label" for="userId">讲师：</label>
 											<div class="controls">
 												<select id="userId" class="input-large" name="trainCourse.userId" desc="讲师">
-													<!-- 
-													<option id="userIdOption" value=""></option>
-													 -->
+													<option value=""></option>
 													<s:iterator value="userList" var="user" status="index">
-													<option value="${user.id}">${user.name}(${user.loginName})</option>
+													<s:if test='trainCourse.userId == #user.id'>
+														<option value="${user.id}" selected="selected">${user.name}(${user.loginName})</option>
+													</s:if>
+													<s:else>
+														<option value="${user.id}">${user.name}(${user.loginName})</option>
+													</s:else>
 													</s:iterator>
 												</select>
 											</div>

@@ -147,11 +147,14 @@
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
 													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人">
-														<!-- 
-														<option id="userNameOption" value=""></option>
-														 -->
+														<option value=""></option>
 														<s:iterator value="userList" var="user" status="index">
-														<option value="${user.id}">${user.name}(${user.loginName})</option>
+														<s:if test='activities.userName == #user.id'>
+															<option value="${user.id}" selected="selected">${user.name}(${user.loginName})</option>
+														</s:if>
+														<s:else>
+															<option value="${user.id}">${user.name}(${user.loginName})</option>
+														</s:else>
 														</s:iterator>
 													</select>
 												</div>

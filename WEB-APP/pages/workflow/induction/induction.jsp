@@ -459,8 +459,14 @@
 												 -->
 												
 												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人">
+													<option value=""></option>
 													<s:iterator value="userList" var="user" status="index">
-													<option value="${user.id}">${user.name}(${user.loginName})</option>
+													<s:if test='flight.airportpeopleid == #user.id'>
+														<option value="${user.id}" selected="selected">${user.name}(${user.loginName})</option>
+													</s:if>
+													<s:else>
+														<option value="${user.id}">${user.name}(${user.loginName})</option>
+													</s:else>
 													</s:iterator>
 												</select>
 											</div>
