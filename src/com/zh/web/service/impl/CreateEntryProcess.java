@@ -6,7 +6,7 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
-import org.activiti.engine.delegate.TaskListener;
+import org.activiti.engine.delegate.JavaDelegate;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ import com.zh.web.service.TechnologicalProcessService;
  * 
  */
 @Component("createEntryProcess")
-public class CreateEntryProcess implements TaskListener {
+public class CreateEntryProcess implements JavaDelegate {
 
 	/**
 	 * 
@@ -50,7 +50,6 @@ public class CreateEntryProcess implements TaskListener {
 	@Autowired
 	private EntryProcessService entryProcessService;
 
-	@Override
 	public void notify(DelegateTask task) {
 		LOGGER.debug("CreateEntryProcess notify(DelegateTask task)");
 		
@@ -162,6 +161,97 @@ public class CreateEntryProcess implements TaskListener {
 		entryProcessService.insert(entryProcess);
 		
 		LOGGER.debug("新建入职流程:"+entryProcess.getId());
+	}
+
+	@Override
+	public void execute(DelegateExecution delegateexecution) throws Exception {
+		// TODO Auto-generated method stub
+		
+		String businessKey = delegateexecution.getProcessBusinessKey();
+		
+		
+		//招聘人员信息表
+		TechnologicalProcess technologicalProcess = new TechnologicalProcess();
+		technologicalProcess.setId(Integer.parseInt(businessKey));
+		TechnologicalProcess retProcess = technologicalProcessService.query(technologicalProcess);
+		String url = retProcess.getUrl();
+		
+		//入职人员 induction
+		EntryProcess entryProcess = new EntryProcess();
+		// 设置当前用户为流程发起人
+		entryProcess.setWorkuserid(Integer.parseInt("12"));
+		entryProcess.setState("发起");
+		
+		if(null != url){
+			entryProcess.setUrl(url.replace("recruitment", "induction"));
+		}
+		
+		//姓名
+		String retProcessName = retProcess.getName();
+		if (null == retProcessName || retProcessName.isEmpty()) {
+			entryProcess.setName(retProcessName);
+		}
+
+		//英文名
+		String englishName = retProcess.getEnglishname();
+		if (null == englishName || englishName.isEmpty()) {
+			entryProcess.setEnglishname(englishName);
+		}
+
+		//国籍
+		String nationality = retProcess.getNationality();
+		if (null == nationality || nationality.isEmpty()) {
+			entryProcess.setNationality(nationality);
+		}
+
+		//目前所在地(国家)
+		String currentlocation = retProcess.getCurrentlocation();
+		if (null == currentlocation || currentlocation.isEmpty()) {
+			entryProcess.setCurrentlocation(currentlocation);
+		}
+
+		//出生年份
+		String yearbirth = retProcess.getYearbirth();
+		if (null == yearbirth || yearbirth.isEmpty()) {
+			entryProcess.setYearbirth(yearbirth);
+		}
+
+		//生日
+		Date birthday = retProcess.getBirthday();
+		if (null == birthday) {
+			entryProcess.setBirthday(birthday);
+		}
+
+		//合同种类
+		String contracttype = retProcess.getContracttype();
+		if (null == contracttype || contracttype.isEmpty()) {
+			entryProcess.setContracttype(contracttype);
+		}
+
+		//合同有效期
+		String contractdate = retProcess.getContractdate();
+		if (null == contractdate || contractdate.isEmpty()) {
+			entryProcess.setContractdate(contractdate);
+		}
+
+		//护照号
+		String passportNO = retProcess.getPassportno();
+		if (null == passportNO || passportNO.isEmpty()) {
+			entryProcess.setPassportno(passportNO);
+		}
+
+		//护照有效期
+		String passportDate = retProcess.getPassportnodate();
+		if (null == passportDate || passportDate.isEmpty()) {
+			entryProcess.setPassportnodate(passportDate);
+		}
+
+		//电子邮箱
+		String mail = retProcess.getMail();
+		if (null == mail || mail.isEmpty()) {
+			entryProcess.setMail(mail);
+		}
+		entryProcessService.insert(entryProcess);
 	}
 
 }
