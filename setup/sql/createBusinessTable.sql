@@ -54,19 +54,23 @@ create table t_The_franchisee
    status             VARCHAR(1),   --状态
    contract_type      VARCHAR(1),   --合同类型
    contract_start_Date VARCHAR(20), --合同开始时间
-   contract_end_Date VARCHAR(20),   --合同结束时间
-   
+   contract_end_Date  VARCHAR(20),   --合同结束时间
+   createUserId       VARCHAR(20)    --创建人
    constraint PK_The_franchisee primary key (id)
 );
 /*注释*/
 COMMENT ON table t_The_franchisee IS '加盟商信息';
 COMMENT on column t_The_franchisee.id is '主键';
-COMMENT on column t_Activities.createDate is '创建时间';
-COMMENT on column t_Activities.updateDate is '修改时间';
-COMMENT on column t_Activities.name is '名称';
-COMMENT on column t_Activities.descr is '描述';
-COMMENT on column t_Activities.address is '地址';
-COMMENT on column t_Activities.status is '状态';
+COMMENT on column t_The_franchisee.createDate is '创建时间';
+COMMENT on column t_The_franchisee.updateDate is '修改时间';
+COMMENT on column t_The_franchisee.name is '名称';
+COMMENT on column t_The_franchisee.descr is '描述';
+COMMENT on column t_The_franchisee.address is '地址';
+COMMENT on column t_The_franchisee.status is '状态';
+COMMENT on column t_The_franchisee.contract_type is '合同类型';
+COMMENT on column t_The_franchisee.contract_start_Date is '合同开始时间';
+COMMENT on column t_The_franchisee.contract_end_Date is '合同结束时间';
+COMMENT on column t_The_franchisee.createUserId is '创建人';
 
 /*==============================================================*/
 /* Table: Activities                                          */

@@ -773,8 +773,10 @@
 											<td>无效</td>
 										</s:else>
 										<td>
+											<s:if test='hasApprove=="1" || hasSubmitAuth=="1"'>
 											<a href="${menu2Id}!saveTrainCourse.jspa?id=<s:property value='#trainCourse.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=trainingButt"><i
 												class="icon-remove"></i></a>
+											</s:if>
 										</td>
 									</tr>
 								</s:iterator>
@@ -826,8 +828,10 @@
 											<td>无效</td>
 										</s:else>
 										<td>
+											<s:if test='hasApprove=="1" || hasSubmitAuth=="1"'>
 											<a href="${menu2Id}!saveActivities.jspa?id=<s:property value='#activities.id'/>&formId=${entryProcess.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=activityButt"><i
 												class="icon-remove"></i></a>
+											</s:if>
 										</td>
 									</tr>
 								</s:iterator>
@@ -1202,29 +1206,17 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-		$("select").select2();
+		
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
 				+ contextPath;
 
-		//是否具有编辑权限
-		var hasEdit = $("#hasEditAuth").val();
-		if (hasEdit == "1") {
-
-		} else {
-			$(".container-fluid input").attr("disabled", "disabled");
-			$(".container-fluid select").attr("disabled", "disabled");
-			$(".container-fluid button").attr("disabled", "disabled");
-		}
-
-
-		
 		//基本信息
 		//$("#contracttype").select2();
 		$("#contracttype").val("${entryProcess.contracttype}").trigger(
 				"change");
-
+		
 		//证件信息初始化
 		//$("#certificatesType").select2();
 		//$("#certificatesType").val("${certificates.type}").trigger("change");
@@ -1253,10 +1245,22 @@
 			//$("#certificatesUpdateDate").last().val(new Date(certificates.updateDate).format("yyyy-MM-dd"));
 			
 		}
-		if(certificatesList.length == 0 )
+		if(hasEdit == "1" && certificatesList.length == 0 )
 		{
 			addNew();
 		}
+		
+		//是否具有编辑权限
+		var hasEdit = $("#hasEditAuth").val();
+		if (hasEdit == "1") {
+			$("select").select2();
+		} else {
+			$(".container-fluid input").attr("disabled", "disabled");
+			$(".container-fluid select").attr("disabled", "disabled");
+			$(".container-fluid button").attr("disabled", "disabled");
+			
+		}
+		
 		//航班信息
 		//$("#airportPeopleId").select2();
 		//$("#airportpeopleid").val("${flight.airportpeopleid}").attr("selectId","${flight.airportpeopleid}").trigger("change");
@@ -1308,10 +1312,17 @@
 			addTd(row,
 					"<input type='text' size='15' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
 			*/
-			addTd(row,
+			if (hasEdit == "1")
+			{
+				addTd(row,
 					"<p><button class='btn btn-mini icon-plus' onclick='addNew();' type='button'></button><button class='btn btn-mini icon-minus' onclick='del(this);' type='button'></button></p>");
+				$("select[id='certificatesType']").last().select2();	
+			}else
+			{
+					$("select[id='certificatesType']").prop("disabled", true);		
+			}
 			search.append(row);
-			$("select[id='certificatesType']").last().select2();
+			
 			$("#certificatesSearch .form_datetime").datetimepicker({
 				language : 'zh-CN',
 				format : 'yyyy-mm-dd',

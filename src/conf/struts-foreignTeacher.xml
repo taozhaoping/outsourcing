@@ -138,5 +138,30 @@
 				<param name="spaceId">${spaceId}</param>
 			</result>
 		</action>
+		
+		<!-- 加盟商维护 -->
+		<action name="franchisee" class="com.zh.web.action.FranchiseeAction"
+			method="execute">
+			<result name="success">/pages/staffAdmin/franchisee/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/franchisee/edit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">franchisee</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="formId">${formId}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">franchisee</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+		</action>
 	</package>
 </struts>

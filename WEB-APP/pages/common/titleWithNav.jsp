@@ -47,6 +47,9 @@
 					<li>
 						<a tabindex="-1" id="inductionBtn" href="javascript:void();">外教入职流程</a>
 					</li>
+					<li>
+						<a tabindex="-1" id="applyfranchiseeBtn" href="javascript:void();">加盟商申请流程</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
@@ -92,5 +95,11 @@
 		window.location.href = basePath + "/workflow/induction!editor.jspa?menuId=workflow&menu2Id=induction";
 	});
 	
-	
+	$("#applyfranchiseeBtn").click( function () {
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		//跳转到登陆页面
+		window.location.href = basePath + "/workflow/applyfranchisee!editor.jspa?menuId=workflow&menu2Id=applyfranchisee";
+	});
 </script>

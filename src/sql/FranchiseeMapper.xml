@@ -12,11 +12,13 @@
     <result column="CONTRACT_TYPE" property="contractType" jdbcType="VARCHAR" />
     <result column="CONTRACT_START_DATE" property="contractStartDate" jdbcType="VARCHAR" />
     <result column="CONTRACT_END_DATE" property="contractEndDate" jdbcType="VARCHAR" />
+    <result column="CREATEUSERID" property="createUserId" />
+    
   </resultMap>
   
   <sql id="Base_Column_List" >
     ID, CREATEDATE, UPDATEDATE, NAME, DESCR, ADDRESS, STATUS, CONTRACT_TYPE, CONTRACT_START_DATE, 
-    CONTRACT_END_DATE
+    CONTRACT_END_DATE,createUserId
   </sql>
   
   <sql id="where">
@@ -38,6 +40,9 @@
       </if>
       <if test="contractEndDate != null" >
         and contractEndDate = #{contractEndDate,jdbcType=VARCHAR}
+      </if>
+      <if test="createUserId != null" >
+        and CREATEUSERID = #{createUserId,jdbcType=VARCHAR}
       </if>
   	</where>
   </sql>
@@ -107,6 +112,9 @@
       <if test="contractEndDate != null" >
         CONTRACT_END_DATE,
       </if>
+       <if test="createUserId != null" >
+        and CREATEUSERID，
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -138,6 +146,9 @@
       </if>
       <if test="contractEndDate != null" >
         #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+         #{createUserId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -171,6 +182,9 @@
       </if>
       <if test="contractEndDate != null" >
         CONTRACT_END_DATE = #{contractEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATEUSERID = #{createUserId,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id}

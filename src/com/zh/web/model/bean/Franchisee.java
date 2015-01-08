@@ -82,6 +82,8 @@ public class Franchisee extends IDataObject {
      * @mbggenerated Sun Jan 04 10:22:32 CST 2015
      */
     private String contractEndDate;
+    
+    private Integer createUserId;
 
 	public Integer getId() {
 		return id;
@@ -161,6 +163,14 @@ public class Franchisee extends IDataObject {
 
 	public void setContractEndDate(String contractEndDate) {
 		this.contractEndDate = contractEndDate;
+	}
+
+	public Integer getCreateUserId() {
+		return createUserId;
+	}
+
+	public void setCreateUserId(Integer createUserId) {
+		this.createUserId = createUserId;
 	}
 
 }
