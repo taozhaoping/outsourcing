@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jqPaginator.min.js"></script>
+<link rel="stylesheet" href="<%=path%>/js/select2/select2.css">
 <!-- Demo page code -->
 <style type="text/css">
 #line-chart {
@@ -89,39 +90,61 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
-											value="${technologicalProcess.id}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="contactRecordVW.id"
+											value="${contactRecordVW.id}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
-									<label class="control-label">流程描述：
-									<input type="text" id="inputDescription"
-										name="technologicalProcess.description"
-										value="${technologicalProcess.description}"
-										class="input-large">
+									<label class="control-label">当前状态：
+									<input type="text" maxlength="15" id="inputState" name="contactRecordVW.state"
+										value="${contactRecordVW.state}" class="input-large">
 										</label>
 								</div>
 							</dir>
 							
 							<dir class="row">
 								<div class="span5">
-									<label class="control-label">当前状态：
-									<input type="text" maxlength="15" id="inputState" name="technologicalProcess.state"
-										value="${technologicalProcess.state}" class="input-large">
-										</label>
-								</div>
-								<div class="span4">
 									<label class="control-label">创建时间：
 										<input type="text" id="createTimeStart"
-											name="technologicalProcess.createtimeStart"
-											value="${technologicalProcess.createtimeStart}"
+											name="contactRecordVW.createtimeStart"
+											value="${contactRecordVW.createtimeStart}"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="createTimeEnd"
-											name="technologicalProcess.createtimeEnd"
-											value="${technologicalProcess.createtimeEnd}"
+											name="contactRecordVW.createtimeEnd"
+											value="${contactRecordVW.createtimeEnd}"
 											class="form_datetime input-small">
 									</label>
+								</div>
+								<div class="span4">
+									<label class="control-label">预约时间：
+										<input type="text" id="reserveDateStart"
+											name="contactRecordVW.reserveDateStart"
+											value="${contactRecordVW.reserveDateStart}"
+											class="form_datetime input-small">
+											至
+										<input type="text" id="reserveDateEnd"
+											name="contactRecordVW.reserveDateEnd"
+											value="${contactRecordVW.reserveDateEnd}"
+											class="form_datetime input-small">
+									</label>
+								</div>
+							</dir>
+							<dir class="row">
+								<div class="span5">
+									<label class="control-label">预约时间：
+									<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+													name="contactRecordVW.type">
+													<option value="">请选择</option>
+													<option value="1">已经签约</option>
+													<option value="2">正在洽谈</option>
+													<option value="3">有意向</option>
+													<option value="4">潜在外教</option>
+									</select>
+									</label>		
+								</div>
+								<div class="span4">
+									
 								</div>
 								
 								<div class="span3">
@@ -158,7 +181,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="technologicalProcessList" var="tp" status="index">
+								<s:iterator value="contactRecordVWList" var="tp" status="index">
 									<tr>
 										<td>
 											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
@@ -166,18 +189,25 @@
 											</a>
 										</td>
 										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.description"/></td>
-										<!-- 
-										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.englishname" />
-										 -->
-										<td><s:property value="#tp.workUserName"/> </td>
-										<td><s:property value="#tp.createtime"/> </td>
-										<td><s:property value="#tp.updatetime"/> </td>
-										<td><s:property value="#tp.state"/></td>
+										<td><s:property value="#tp.descr"/></td>
+										<td><s:property value="#tp.workUserId"/> </td>
 										<td>
-											<s:property value="#tp.approver"/>
+											<s:if test="#tp.type==1">
+												已经签约
+											</s:if>
+											<s:elseif test="#tp.type==2">
+												正在洽谈
+											</s:elseif>
+											<s:elseif test="#tp.type==3">
+												有意向
+											</s:elseif>
+											<s:elseif test="#tp.type==4">
+												潜在外教
+											</s:elseif>
 										</td>
+										<td><s:property value="#tp.createdate"/> </td>
+										<td><s:property value="#tp.reserveDate"/> </td>
+										<td><s:property value="#tp.state"/></td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-pencil"></i></a>
@@ -201,6 +231,8 @@
 	<script src="<%=path %>/js/collapsePulg.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="<%=path%>/js/select2/select2.js"></script>
+	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		var id='${menuId}';
@@ -218,7 +250,7 @@
 			$("#navigation").text(headText);
 			//展开一级菜单
 			collapseMenu(id);
-			
+			$("#contracttype").select2();
 			//日期控件
 			$(".form_datetime").datetimepicker({
 				language : 'zh-CN',

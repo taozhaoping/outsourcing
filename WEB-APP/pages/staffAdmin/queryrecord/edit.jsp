@@ -115,14 +115,14 @@
 								<input type="hidden" name="menuId" value="${menuId}"> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}">
 								<input type="hidden" name="spaceId" value="${spaceId}">
+								<input type="hidden" name="technologicalProcess.id" value="${technologicalProcess.id}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
 											<label class="control-label" for="inputId">编号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
-													id="inputId" name="technologicalProcess.id"
-													value="${technologicalProcess.id}" class="input-large">
+													id="inputId" value="${technologicalProcess.id}" class="input-large">
 											</div>
 										</div>
 									</div>

@@ -115,13 +115,14 @@
 								<input type="hidden" name="menuId" value="${menuId}"> <input
 									type="hidden" name="menu2Id" value="${menu2Id}">
 								<input type="hidden" name="spaceId" value="${spaceId}">
+								<input type="hidden" name="technologicalProcess.id" value="${technologicalProcess.id}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
 											<label class="control-label" for="inputId">编号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
-													id="inputId" name="technologicalProcess.id"
+													id="inputId"
 													value="${technologicalProcess.id}" class="input-large">
 											</div>
 										</div>
@@ -384,7 +385,7 @@
 										<td>
 										</td>
 										<td>
-											<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+											<select id="contactRecordType" class="input-large" data-required="true" desc="合同种类"
 													name="contactRecord.type">
 													<option value="">请选择</option>
 													<option value="1">已经签约</option>
@@ -508,7 +509,7 @@
 				+ contextPath;
 
 		//基本信息
-		//$("#contracttype").select2();
+		$("select").select2();
 		$("#contracttype").val("${technologicalProcess.contracttype}")
 				.trigger("change");
 

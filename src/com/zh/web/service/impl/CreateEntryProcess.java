@@ -12,6 +12,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.zh.web.model.bean.EntryProcess;
 import com.zh.web.model.bean.TechnologicalProcess;
@@ -24,6 +25,7 @@ import com.zh.web.service.TechnologicalProcessService;
  * @author 21829
  * 
  */
+@Component("createEntryProcess")
 public class CreateEntryProcess implements TaskListener {
 
 	/**

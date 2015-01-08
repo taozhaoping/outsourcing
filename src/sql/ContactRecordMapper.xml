@@ -108,7 +108,7 @@
 			<if test="reserveDateEnd != null and reserveDateEnd != ''">
 				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
 			</if>
-			<if test="type != null">
+			<if test="type != null and type != ''">
 				and TYPE = #{type,jdbcType=VARCHAR}
 			</if>
 		</where>
@@ -156,7 +156,7 @@
 			<if test="reserveDateEnd != null and reserveDateEnd != ''">
 				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
 			</if>
-			<if test="type != null">
+			<if test="type != null and type != ''">
 				and TYPE = #{type,jdbcType=VARCHAR}
 			</if>
 		</where>
