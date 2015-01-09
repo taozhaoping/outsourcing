@@ -113,7 +113,7 @@
         CONTRACT_END_DATE,
       </if>
        <if test="createUserId != null" >
-        and CREATEUSERID，
+        CREATEUSERID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >

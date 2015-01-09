@@ -5,23 +5,25 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.zh.base.model.bean.User;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
+import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.FranchiseeModel;
-import com.zh.web.model.bean.ContactRecord;
-import com.zh.web.model.bean.ContactRecordVW;
+import com.zh.web.model.bean.ActivitiesUser;
 import com.zh.web.model.bean.Franchisee;
-import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.model.bean.MailList;
 import com.zh.web.service.FranchiseeService;
+import com.zh.web.service.MailListService;
 
 public class FranchiseeAction extends BaseAction {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4069746645463359419L;
+	private static final long serialVersionUID = 1L;
 
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(FranchiseeAction.class);
@@ -30,6 +32,9 @@ public class FranchiseeAction extends BaseAction {
 
 	@Autowired
 	private FranchiseeService franchiseeService;
+
+	@Autowired
+	private MailListService mailListService;
 
 	public String execute() {
 		/* 获取基本信息 */
@@ -58,12 +63,17 @@ public class FranchiseeAction extends BaseAction {
 			// 获取基本信息
 			Franchisee franchiseeReult = franchiseeService.query(franchisee);
 			franchiseeModel.setFranchisee(franchiseeReult);
-
+			
+			//获取通讯录
+			MailList mailList = new MailList();
+			List<MailList> mailListList = mailListService.queryList(mailList);
+			this.franchiseeModel.setMailListList(mailListList);
 		} else {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			franchisee.setCreateUserId(userID);
 			franchisee.setStatus("0");
+			 this.franchiseeModel.setFranchisee(franchisee);
 		}
 		return Action.EDITOR;
 	}
@@ -87,11 +97,60 @@ public class FranchiseeAction extends BaseAction {
 		this.franchiseeModel.setFormId(franchisee.getId().toString());
 		return Action.EDITOR_SUCCESS;
 	}
+	
+	public String saveMailList()
+	{
+		LOGGER.debug("saveMailList()");
+		String formId = this.franchiseeModel.getFormId();
+		Integer id = this.franchiseeModel.getId();
+		String view = this.franchiseeModel.getView();
+		if (null == formId || "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		if (null != view && (null == id || "".equals(id))) {
+			throw ProjectException.createException("当前的活动编号不允许为空！");
+		}
+		MailList mailList = this.franchiseeModel.getMailList();
+		mailList.setFranchiseeId(Integer.valueOf(formId));
+
+		if (null != view && "delete".equals(view)) {
+			mailList.setId(id);
+			mailListService.delete(mailList);
+		} else {
+			mailListService.insert(mailList);
+		}
+		return "save";
+	}
 
 	@Override
 	public Object getModel() {
 		// TODO Auto-generated method stub
 		return franchiseeModel;
+	}
+
+	public FranchiseeModel getFranchiseeModel() {
+		return franchiseeModel;
+	}
+
+	public void setFranchiseeModel(FranchiseeModel franchiseeModel) {
+		this.franchiseeModel = franchiseeModel;
+	}
+
+	public FranchiseeService getFranchiseeService() {
+		return franchiseeService;
+	}
+
+	public void setFranchiseeService(FranchiseeService franchiseeService) {
+		this.franchiseeService = franchiseeService;
+	}
+
+	public MailListService getMailListService() {
+		return mailListService;
+	}
+
+	public void setMailListService(MailListService mailListService) {
+		this.mailListService = mailListService;
 	}
 
 }

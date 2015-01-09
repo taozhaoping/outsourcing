@@ -78,7 +78,7 @@
 			<result name="editor">/pages/workflow/franchisee/edit.jsp</result>
 			<result name="save" type="redirectAction">
 				<param name="method">editor</param>
-				<param name="actionName">franchisee</param>
+				<param name="actionName">applyfranchisee</param>
 				<param name="namespace">/workflow</param>
 				<param name="menuId">${menuId}</param>
 				<param name="menu2Id">${menu2Id}</param>
@@ -87,7 +87,7 @@
 				<param name="spaceId">${spaceId}</param>
 			</result>
 			<result name="editorSuccess" type="redirectAction">
-				<param name="actionName">franchisee</param>
+				<param name="actionName">applyfranchisee</param>
 				<param name="namespace">/workflow</param>
 				<param name="menuId">${menuId}</param>
 				<param name="menu2Id">${menu2Id}</param>

@@ -16,6 +16,7 @@ drop table t_TrainCourse cascade constraints;
 drop table t_trainingOfPersonnel cascade constraints;
 drop table t_Entry_Process cascade constraints;
 drop table t_The_franchisee cascade constraints;
+drop table t_Mail_list cascade constraints;
 
 
 drop sequence SEQUENCE_t_Activities;
@@ -34,11 +35,34 @@ drop sequence SEQUENCE_t_TrainCourse;
 drop sequence SEQUENCE_t_trainingOfPersonnel;
 drop sequence SEQUENCE_t_contact_record;
 drop sequence SEQUENCE_t_The_franchisee;
+drop sequence SEQUENCE_t_Mail_list;
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
 /* Created on:     2014/8/12 8:46:12                            */
 /*==============================================================*/
 
+/*==============================================================*/
+/* Table: t_Mail_list                                      */
+/* Table: 通讯录                                                                                                                                                     */
+/*==============================================================*/
+create table t_Mail_list
+(
+   id                 NUMBER               not null,
+   createDate         VARCHAR(20),  --创建时间
+   updateDate         VARCHAR(20),  --修改时间
+   phone              VARCHAR(20),  --电话号码
+   name               VARCHAR(25),  --姓名
+   franchiseeId       NUMBER,       --加盟商ID
+  constraint PK_The_franchisee primary key (id)
+);
+/*注释*/
+COMMENT ON table t_Mail_list IS '加盟商信息';
+COMMENT on column t_Mail_list.id is '主键';
+COMMENT on column t_Mail_list.createDate is '创建时间';
+COMMENT on column t_Mail_list.updateDate is '修改时间';
+COMMENT on column t_Mail_list.name is '姓名';
+COMMENT on column t_Mail_list.phone is '电话号码';
+COMMENT on column t_Mail_list.franchiseeId is '加盟商ID';
 /*==============================================================*/
 /* Table: t_The_franchisee                                      */
 /* Table: 加盟商信息                                                                                                                                              */
@@ -693,6 +717,13 @@ start with 1
 order;
 
 create sequence SEQUENCE_t_The_franchisee
+start with 100000
+ maxvalue 999999999
+ minvalue 100000
+ cache 10
+order;
+
+create sequence SEQUENCE_t_Mail_list
 start with 1
  maxvalue 999999999
  minvalue 1

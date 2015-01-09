@@ -1,14 +1,11 @@
 package test;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.zh.core.model.Pager;
-import com.zh.web.model.bean.Personnel;
-import com.zh.web.service.PersonnelService;
+import com.zh.web.model.bean.Franchisee;
+import com.zh.web.service.FranchiseeService;
 
 public class TestService {
 
@@ -17,16 +14,24 @@ public class TestService {
 
 	@Test
 	public void init() throws  Exception {
-		PersonnelService personnelService = (PersonnelService) applicationContext.getBean("personnelService");
+		FranchiseeService franchiseeService = (FranchiseeService) applicationContext.getBean("franchiseeService");
 		
-		Personnel personnel = new Personnel();
+		Franchisee personnel = new Franchisee();
 		
-		Pager pager = new Pager();
-		Integer count = personnelService.count(personnel);
+		personnel.setName("温州3");
+		personnel.setAddress("温州3");
+		personnel.setDescr("温州3");
+		personnel.setCreateUserId(1);
+		personnel.setStatus("0");
+		/*Pager pager = new Pager();
+		Integer count = mailListService.count(personnel);
 		pager.setTotalRow(count);
 		
-		List<Personnel> reult = personnelService.queryList(personnel, pager);
-		System.out.println(reult.size());
+		List<MailList> reult = mailListService.queryList(personnel, pager);
+		System.out.println(reult.size());*/
+		
+		Integer reult = franchiseeService.insert(personnel);
+		System.out.println(reult);
 	}
 
 
