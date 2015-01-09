@@ -929,7 +929,8 @@
 		var url = $("#" + menuId).attr('url');
 		var headText = $("#" + menuId).text();
 		$("#navigation1").text(headText);
-		
+		//是否具有编辑权限
+		var hasEdit = $("#hasEditAuth").val();
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol + "//" + localObj.host + "/"
@@ -973,8 +974,7 @@
 			addNew();
 		}
 		
-		//是否具有编辑权限
-		var hasEdit = $("#hasEditAuth").val();
+		
 		if (hasEdit == "1") {
 			$("select").select2();
 		} else {
