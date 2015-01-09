@@ -250,15 +250,15 @@
 						</div>
 						<!-- 通讯录 -->
 						<div class="tab-pane fade" id="maillist">
-							<form id="mailList" class="form-horizontal"
+							<form id="mailListForm" class="form-horizontal"
 								action="${menu2Id}!saveMailList.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}" /> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
 								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="formId" value="${franchisee.id}" />
 								<input type="hidden" name="tabID" value="maillistButt" />
-								<input type="hidden" id="mailListName" name="mailList.id" value="" />
-								<input type="hidden" id="mailListPhone" name="mailList.id" value="" />
+								<input type="hidden" id="mailListName" name="mailList.name" value="" />
+								<input type="hidden" id="mailListPhone" name="mailList.phone" value="" />
 								<button class="btn btn-small btn-primary" type="button"
 								data-toggle="modal" data-target="#popupfirm">添加通讯录</button>
 							</form>
@@ -322,7 +322,7 @@
 		</div>
 		<div class="modal-body">
 				<dir class="row">
-					<div class="span5">
+					<div class="span3">
 						<div class="control-group">
 							<label class="control-label" for="popupName">姓名：</label>
 							<div class="controls">
@@ -334,7 +334,7 @@
 
 				</dir>
 				<dir class="row">
-					<div class="span5">
+					<div class="span3">
 						<div class="control-group">
 							<label class="control-label" for="popupPhone">号码：</label>
 							<div class="controls">
@@ -436,7 +436,7 @@
 		var tabID = "${tabID}";
 		if (null != tabID && "" != tabID) {
 			$("#" + tabID).parent().addClass("active");
-			$("#" + tabID.substring(0, tabID.length - 4) +"tab").removeClass("fade")
+			$("#" + tabID.substring(0, tabID.length - 4)).removeClass("fade")
 					.addClass("active");
 		} else {
 			tabID = "homeButt";
@@ -475,17 +475,10 @@
 		//判读当前tab，需要保存那个form
 		function saveForm() {
 			var action;
-			if ("homeButt" == currTab) {
-				action = $("#editForm").attr("action");
-				setTabID("editForm", action);
-				//validate = $('#editForm').validate();
-				$("#editForm").submit();
-			} else if ("contactrecordButt" == currTab) {
-				
-				action = $("#maillistForm").attr("action");
-				setTabID("maillistForm", action);
-				$("#maillistForm").submit();
-			}
+			action = $("#editForm").attr("action");
+			setTabID("editForm", action);
+			//validate = $('#editForm').validate();
+			$("#editForm").submit();
 		}
 
 		/*判断当前form是否变更*/
