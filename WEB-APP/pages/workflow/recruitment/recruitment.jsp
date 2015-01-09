@@ -171,7 +171,7 @@
 												<input type="text" id="description"
 													name="technologicalProcess.description"
 													value="${technologicalProcess.description}"
-													data-required="true" desc="描述" class="input-large">
+													data-required="true" placeholder="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -182,7 +182,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名"
+												<input type="text" data-required="true" placeholder="姓名"
 													maxlength="15" id="inputName"
 													name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
@@ -196,7 +196,7 @@
 												<input type="text" id="inputEnglishname"
 													name="technologicalProcess.englishname"
 													value="${technologicalProcess.englishname}"
-													data-required="true" desc="英文名" class="input-large">
+													data-required="true" placeholder="英文名" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -210,7 +210,7 @@
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
 													value="${technologicalProcess.nationality}"
-													data-required="true" desc="国籍" class="input-large">
+													data-required="true" placeholder="国籍" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -221,7 +221,7 @@
 												<input type="text" id="inputCurrentlocation"
 													name="technologicalProcess.currentlocation" 
 													value="${technologicalProcess.currentlocation}"
-													data-required="true" desc="目前所在地(国家)" class="input-large">
+													data-required="true" placeholder="目前所在地(国家)" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -235,7 +235,7 @@
 												<input type="text" id="inputyearbirth"
 													name="technologicalProcess.yearbirth"
 													value="${technologicalProcess.yearbirth}"
-													data-required="true" data-pattern="^[0-9]{4}$" desc="出生年份" class="input-large">
+													data-required="true" data-pattern="^[0-9]{4}$" placeholder="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -246,7 +246,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="technologicalProcess.birthday"
 													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
-													data-required="true" desc="生日" readonly class="form_datetime input-large">
+													data-required="true" placeholder="生日" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -258,7 +258,7 @@
 										<div class="control-group">
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
-												<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+												<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
 													name="technologicalProcess.contracttype">
 													<option value=""></option>
 													<option value="A">A类</option>
@@ -276,7 +276,7 @@
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
 													value="${technologicalProcess.contractdate}"
-													data-required="true" desc="合同有效期" readonly class="form_datetime input-large">
+													data-required="true" placeholder="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -290,7 +290,7 @@
 												<input type="text" maxlength="15" id="inputPassportno"
 													name="technologicalProcess.passportno"
 													value="${technologicalProcess.passportno}"
-													data-required="true" desc="护照号" class="input-large">
+													data-required="true" placeholder="护照号" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -302,7 +302,7 @@
 												<input type="text" id="inputPassportnodate"
 													name="technologicalProcess.passportnodate" 
 													value="${technologicalProcess.passportnodate}"
-													data-required="true" desc="护照有效期" readonly class="form_datetime input-large">
+													data-required="true" placeholder="护照有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -317,7 +317,7 @@
 													name="technologicalProcess.mail"
 													value="${technologicalProcess.mail}" data-required="true"
 													data-pattern="^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$"
-													desc="电子邮箱" class="input-large">
+													placeholder="电子邮箱" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -325,7 +325,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPhone">手机号码：</label>
 											<div class="controls">
-												<input type="text" id="inputPhone"
+												<input type="number" id="inputPhone"
 													name="technologicalProcess.Phone"
 													value="${technologicalProcess.phone}" class="input-large">
 											</div>
@@ -391,7 +391,7 @@
 												<input type="text" maxlength="15" id="inputDomicile"
 													name="technologicalProcess.domicile"
 													value="${technologicalProcess.domicile}"
-													desc="户籍地址" class="input-large">
+													placeholder="户籍地址" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -435,7 +435,7 @@
 										<div class="control-group">
 											<label class="control-label" for="flightnumber">航班号：</label>
 											<div class="controls">
-												<input type="text" maxlength="25"  data-required="true" desc="航班号" id="flightnumber"
+												<input type="text" maxlength="25"  data-required="true" placeholder="航班号" id="flightnumber"
 													name="flight.flightnumber" value="${flight.flightnumber}"
 													class="input-large" />
 											</div>
@@ -445,7 +445,7 @@
 										<div class="control-group">
 											<label class="control-label" for="airportPeopleId">接机人：</label>
 											<div class="controls">
-												 <select id="airportPeopleId" class="input-large select2-offscreen" name="flight.airportpeopleid" data-required="true" desc="接机人"  tabindex="-1" title="接机人：">
+												 <select id="airportPeopleId" class="input-large select2-offscreen" name="flight.airportpeopleid" data-required="true" placeholder="接机人"  tabindex="-1" title="接机人：">
 													<option value=""></option>
 													<s:iterator value="userList" var="user" status="index">
 													<s:if test='flight.airportpeopleid == #user.id'>
@@ -457,7 +457,7 @@
 													</s:iterator>
 												</select>
 												<!-- 
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人" selectId ="${flight.airportpeopleid}">
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" placeholder="接机人" selectId ="${flight.airportpeopleid}">
 													<option id="airportPeopleIdOption" value=""></option>
 												</select>
 												 -->
@@ -470,7 +470,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputstartdate">起飞时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="起飞时间" id="inputstartdate"
+												<input type="text" data-required="true" placeholder="起飞时间" id="inputstartdate"
 													name="flight.startdate"
 													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -481,7 +481,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenddate">到达时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="到达时间" id="inputenddate"
+												<input type="text" data-required="true" placeholder="到达时间" id="inputenddate"
 													name="flight.enddate"
 													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -494,7 +494,7 @@
 										<div class="control-group">
 											<label class="control-label" for="place">到达机场：</label>
 											<div class="controls">
-												<input type="text" maxlength="25" id="place" data-required="true" desc="到达机场"
+												<input type="text" maxlength="25" id="place" data-required="true" placeholder="到达机场"
 													name="flight.place" value="${flight.place}"
 													class="input-large" />
 											</div>
@@ -518,7 +518,7 @@
 										<div class="control-group">
 											<label class="control-label" for="expressnumber">快递号：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="expressnumber" data-required="true" desc="快递号"
+												<input type="text" maxlength="15" id="expressnumber" data-required="true" placeholder="快递号"
 													name="express.expressnumber" value="${express.expressnumber}"
 													class="input-large" />
 											</div>
@@ -528,7 +528,7 @@
 										<div class="control-group">
 											<label class="control-label" for="company">快递公司：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="company" data-required="true" desc="快递公司"
+												<input type="text" maxlength="15" id="company" data-required="true" placeholder="快递公司"
 													name="express.company" value="${express.company}"
 													class="input-large" />
 												
@@ -543,7 +543,7 @@
 											<label class="control-label" for="inputTelephone">公司电话：</label>
 											<div class="controls">
 												<input type="text" size="20" id="inputTelephone"
-													name="express.telephone" data-required="true" desc="公司电话"
+													name="express.telephone" data-required="true" placeholder="公司电话"
 													value="${express.telephone}" class=" input-large" />
 											</div>
 										</div>
@@ -554,7 +554,7 @@
 											<label class="control-label" for="inputAddress">收货地址：</label>
 											<div class="controls">
 												<input type="text" size="20" id="inputAddress"
-													name="express.address" data-required="true" desc="收货地址"
+													name="express.address" data-required="true" placeholder="收货地址"
 													value="${express.address}" class="input-large" />
 											</div>
 										</div>
@@ -567,7 +567,7 @@
 											<label class="control-label" for="delivergoodsdate">发货日期：</label>
 											<div class="controls">
 												<input type="text" id="delivergoodsdate"
-													name="express.delivergoodsdate" data-required="true" desc="发货日期"
+													name="express.delivergoodsdate" data-required="true" placeholder="发货日期"
 													value="<s:date name="express.delivergoodsdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
 											</div>
@@ -577,7 +577,7 @@
 										<div class="control-group">
 											<label class="control-label" for="arrivedate">到货日期：</label>
 											<div class="controls">
-												<input type="text" id="arrivedate" desc="到货日期"
+												<input type="text" id="arrivedate" placeholder="到货日期"
 													name="express.arrivedate" value="<s:date name="express.arrivedate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
 											</div>

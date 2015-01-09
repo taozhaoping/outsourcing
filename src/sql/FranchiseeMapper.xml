@@ -26,22 +26,22 @@
   		<if test="id != null" >
         and id = #{id}
       </if>
-      <if test="name != null" >
+      <if test="name != null and name != ''" >
         and name = #{name,jdbcType=VARCHAR}
       </if>
-      <if test="status != null" >
+      <if test="status != null and status != ''" >
         and status = #{status,jdbcType=VARCHAR}
       </if>
-      <if test="contractType != null" >
-        and contractType = #{contractType,jdbcType=VARCHAR}
+      <if test="contractType != null and contractType != ''" >
+        and CONTRACT_TYPE = #{contractType,jdbcType=VARCHAR}
       </if>
-      <if test="contractStartDate != null" >
-        and contractStartDate = #{contractStartDate,jdbcType=VARCHAR}
+      <if test="contractStartDate != null and contractStartDate != ''" >
+        and CONTRACT_START_DATE = #{contractStartDate,jdbcType=VARCHAR}
       </if>
-      <if test="contractEndDate != null" >
-        and contractEndDate = #{contractEndDate,jdbcType=VARCHAR}
+      <if test="contractEndDate != null and contractEndDate != ''" >
+        and CONTRACT_END_DATE = #{contractEndDate,jdbcType=VARCHAR}
       </if>
-      <if test="createUserId != null" >
+      <if test="createUserId != null and createUserId != ''" >
         and CREATEUSERID = #{createUserId,jdbcType=VARCHAR}
       </if>
   	</where>

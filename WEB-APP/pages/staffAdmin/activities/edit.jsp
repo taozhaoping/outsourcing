@@ -124,7 +124,7 @@
 												<div class="controls">
 													<input type="text" maxlength="15" id="inputname"
 														name="activities.name" value="${activities.name}"
-														data-required="true" desc="活动名称" class="input-large">
+														data-required="true" placeholder="活动名称" class="input-large">
 												</div>
 											</div>
 										</div>
@@ -135,7 +135,7 @@
 													<input type="text" size="15" id="inputscheduleDate"
 														name="activities.scheduleDate"
 														value="${activities.scheduleDate}"
-														data-required="true" desc="预定时间" readonly class="form_datetime input-large">
+														data-required="true" placeholder="预定时间" readonly class="form_datetime input-large">
 												</div>
 											</div>
 										</div>
@@ -146,7 +146,7 @@
 											<div class="control-group">
 												<label class="control-label" for="inputuserName">负责人：</label>
 												<div class="controls">
-													<select id="userName" class="input-large" name="activities.userName" data-required="true" desc="负责人">
+													<select id="userName" class="input-large" name="activities.userName" data-required="true" placeholder="负责人">
 														<option value=""></option>
 														<s:iterator value="userList" var="user" status="index">
 														<s:if test='activities.userName == #user.id'>
@@ -164,10 +164,10 @@
 											<div class="control-group">
 												<label class="control-label" for="inputtelephone">电话：</label>
 												<div class="controls">
-													<input type="text" maxlength="15" id="inputtelephone"
+													<input type="number" maxlength="15" id="inputtelephone"
 														name="activities.telephone"
 														value="${activities.telephone}"
-														data-required="true" desc="电话" class="input-large">
+														data-required="true" placeholder="电话" class="input-large">
 												</div>
 											</div>
 										</div>
@@ -177,9 +177,9 @@
 											<div class="control-group">
 												<label class="control-label" for="inputscheduleTime">活动耗时：</label>
 												<div class="controls">
-													<input type="text" maxlength="15" id="inputscheduleTime"
+													<input type="number" id="inputscheduleTime"
 														name="activities.scheduleTime"
-														value="${activities.scheduleTime}"  desc="活动耗时" class="input-large">
+														value="${activities.scheduleTime}"  placeholder="活动耗时" class="input-large">
 												</div>
 											</div>
 										</div>
@@ -187,7 +187,7 @@
 											<div class="control-group">
 												<label class="control-label" for="inputenabled">状态：</label>
 												<div class="controls">
-													<select id="inputenabled" class="input-large" desc="状态"
+													<select id="inputenabled" class="input-large" placeholder="状态"
 													name="activities.enabled">
 													<option value="0">有效</option>
 													<option value="1">无效</option>
@@ -204,7 +204,7 @@
 													<input type="text" maxlength="15" id="inputsetPlace"
 														name="activities.setPlace"
 														value="${activities.setPlace}"
-														data-required="true" desc="集合地点" class="input-xxlarge">
+														data-required="true" placeholder="集合地点" class="input-xxlarge">
 												</div>
 											</div>
 										</div>

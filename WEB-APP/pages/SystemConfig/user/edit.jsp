@@ -229,7 +229,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputmobileNumber">手机号码:</label>
 											<div class="controls">
-												<input type="text" id="inputmobileNumber"  maxlength="15"
+												<input type="number" id="inputmobileNumber"  maxlength="15"
 													data-required="true" name="userInfo.mobileNumber"
 													value="${userInfo.mobileNumber}" class="input-xlarge">
 											</div>
@@ -241,7 +241,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputqq">QQ:</label>
 											<div class="controls">
-												<input type="text" id="inputqq" name="userInfo.qq"  maxlength="18"
+												<input type="number" id="inputqq" name="userInfo.qq"  maxlength="18"
 													value="${userInfo.qq}" class="input-xlarge">
 											</div>
 										</div>

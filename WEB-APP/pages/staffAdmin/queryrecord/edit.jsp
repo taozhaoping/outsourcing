@@ -133,7 +133,7 @@
 												<input type="text" id="description"
 													name="technologicalProcess.description"
 													value="${technologicalProcess.description}" 
-													desc="描述" class="input-large">
+													placeholder="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -144,7 +144,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名"
+												<input type="text" data-required="true" placeholder="姓名"
 													maxlength="15" id="inputName" name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
 											</div>
@@ -157,7 +157,7 @@
 												<input type="text" id="inputEnglishname"
 													name="technologicalProcess.englishname"
 													value="${technologicalProcess.englishname}" data-required="true"
-													desc="英文名" class="input-large">
+													placeholder="英文名" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -171,7 +171,7 @@
 												<input type="text" maxlength="15" id="inputnationality"
 													name="technologicalProcess.nationality"
 													value="${technologicalProcess.nationality}" 
-													desc="国籍" class="input-large">
+													placeholder="国籍" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -182,7 +182,7 @@
 												<input type="text" id="inputCurrentlocation"
 													name="technologicalProcess.currentlocation"
 													value="${technologicalProcess.currentlocation}"
-													 desc="目前所在地(国家)" class="input-large">
+													 placeholder="目前所在地(国家)" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -196,7 +196,7 @@
 												<input type="text" id="inputyearbirth"
 													name="technologicalProcess.yearbirth"
 													value="${technologicalProcess.yearbirth}" 
-													desc="出生年份" class="input-large">
+													placeholder="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -207,7 +207,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="technologicalProcess.birthday"
 													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
-													data-required="true" desc="生日" readonly
+													data-required="true" placeholder="生日" readonly
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -221,7 +221,7 @@
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
 												<select id="contracttype" class="input-large"
-													 desc="合同种类"
+													 placeholder="合同种类"
 													name="technologicalProcess.contracttype">
 													<option value=""></option>
 													<option value="A">A类</option>
@@ -239,7 +239,7 @@
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
 													value="${technologicalProcess.contractdate}" 
-													desc="合同有效期" readonly class="form_datetime input-large">
+													placeholder="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -253,7 +253,7 @@
 												<input type="text" maxlength="15" id="inputPassportno"
 													name="technologicalProcess.passportno"
 													value="${technologicalProcess.passportno}" 
-													desc="护照号" class="input-large">
+													placeholder="护照号" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -265,7 +265,7 @@
 												<input type="text" id="inputPassportnodate"
 													name="technologicalProcess.passportnodate"
 													value="${technologicalProcess.passportnodate}"
-													desc="护照有效期" readonly class="form_datetime input-large">
+													placeholder="护照有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -278,7 +278,7 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputMail"
 													name="technologicalProcess.mail" value="${technologicalProcess.mail}"
-													 desc="电子邮箱" class="input-large">
+													 placeholder="电子邮箱" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -286,7 +286,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPhone">手机号码：</label>
 											<div class="controls">
-												<input type="text" id="inputPhone" name="technologicalProcess.Phone"
+												<input type="number" id="inputPhone" name="technologicalProcess.Phone"
 													value="${technologicalProcess.phone}" class="input-large">
 											</div>
 										</div>
@@ -349,7 +349,7 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputDomicile"
 													name="technologicalProcess.domicile"
-													value="${technologicalProcess.domicile}" desc="户籍地址"
+													value="${technologicalProcess.domicile}" placeholder="户籍地址"
 													class="input-large">
 											</div>
 										</div>

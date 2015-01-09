@@ -121,7 +121,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">课程名称：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名"
+												<input type="text" data-required="true" placeholder="姓名"
 													maxlength="15" id="inputName" name="trainCourse.name"
 													value="${trainCourse.name}" class="input-large">
 											</div>
@@ -132,7 +132,7 @@
 											<label class="control-label" for="trainCoursetrainType">课程类型：</label>
 											<div class="controls">
 												<select id="trainCoursetrainType" class="input-large"
-													desc="课程种类" name="trainCourse.trainType">
+													placeholder="课程种类" name="trainCourse.trainType">
 													<option value="1">入职培训</option>
 													<option value="2">岗位培训</option>
 													<option value="5">其他培训</option>
@@ -147,7 +147,7 @@
 										<div class="control-group">
 											<label class="control-label" for="userId">讲师：</label>
 											<div class="controls">
-												<select id="userId" class="input-large" name="trainCourse.userId" desc="讲师">
+												<select id="userId" class="input-large" name="trainCourse.userId" placeholder="讲师">
 													<option value=""></option>
 													<s:iterator value="userList" var="user" status="index">
 													<s:if test='trainCourse.userId == #user.id'>
@@ -165,7 +165,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenabled">状态：</label>
 											<div class="controls">
-												<select id="inputenabled" class="input-large" desc="状态"
+												<select id="inputenabled" class="input-large" placeholder="状态"
 													name="trainCourse.enabled">
 													<option value="0">有效</option>
 													<option value="1">无效</option>
@@ -183,7 +183,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="trainCourse.scheduleDate"
 													value="${trainCourse.scheduleDate}"
-													desc="开课时间" readonly class="form_datetime input-large">
+													placeholder="开课时间" readonly class="form_datetime input-large">
 
 											</div>
 										</div>
@@ -192,7 +192,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputcourseDate">课时：</label>
 											<div class="controls">
-												<select id="inputcourseDate" class="input-large" desc="课时"
+												<select id="inputcourseDate" class="input-large" placeholder="课时"
 													name="trainCourse.courseDate">
 													<option value="1">1小时</option>
 													<option value="2">1个半小时</option>
@@ -212,7 +212,7 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputnationality"
 													name="trainCourse.description"
-													value="${trainCourse.description}" desc="描述"
+													value="${trainCourse.description}" placeholder="描述"
 													class="input-xxlarge">
 											</div>
 										</div>
@@ -226,7 +226,7 @@
 											<div class="controls">
 												<input type="text" id="inputCurrentlocation"
 													name="trainCourse.address" value="${trainCourse.address}"
-													desc="培训地址" class="input-xxlarge">
+													placeholder="培训地址" class="input-xxlarge">
 											</div>
 										</div>
 									</div>

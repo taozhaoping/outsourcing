@@ -90,24 +90,34 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">加盟编号：
-										<input type="text" maxlength="15" id="inputId" name="franchisee.id"
-											value="${franchisee.id}" class="input-large">
+										<input type="number" maxlength="15" id="inputId" name="franchisee.id"
+											value="" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
-									
+									<label class="control-label">名称：
+										<input type="text" maxlength="15" id="inputId" name="franchisee.name"
+											value="${franchisee.name}" class="input-large">
+										</label>
 								</div>
 							</dir>
 							
 							
 							<dir class="row">
 								<div class="span5">
-									
+									<label class="control-label">合同种类：
+										<select id="contracttype" class="input-large"
+													 placeholder="合同种类"
+													name="franchisee.contractType">
+													<option value="">请选择</option>
+													<option value="A">A类</option>
+													<option value="B">B类</option>
+													<option value="C">C类</option>
+												</select>
 								</div>
 								<div class="span4">
 									
 								</div>
-								
 								<div class="span3">
 									<button class="btn" type="button" id="btnSubmit">
 										<i class=" icon-search"></i> 搜索

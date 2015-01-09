@@ -176,7 +176,7 @@
 												<input type="text" id="description"
 													name="entryProcess.description"
 													value="${entryProcess.description}"
-													data-required="true" desc="描述" class="input-large">
+													data-required="true" placeholder="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -187,7 +187,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名"
+												<input type="text" data-required="true" placeholder="姓名"
 													maxlength="15" id="inputName"
 													name="entryProcess.name"
 													value="${entryProcess.name}" class="input-large">
@@ -201,7 +201,7 @@
 												<input type="text" id="inputEnglishname"
 													name="entryProcess.englishname"
 													value="${entryProcess.englishname}"
-													data-required="true" desc="英文名" class="input-large">
+													data-required="true" placeholder="英文名" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -215,7 +215,7 @@
 												<input type="text" maxlength="15" id="inputnationality"
 													name="entryProcess.nationality"
 													value="${entryProcess.nationality}"
-													data-required="true" desc="国籍" class="input-large">
+													data-required="true" placeholder="国籍" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -226,7 +226,7 @@
 												<input type="text" id="inputCurrentlocation"
 													name="entryProcess.currentlocation" 
 													value="${entryProcess.currentlocation}"
-													data-required="true" desc="目前所在地(国家)" class="input-large">
+													data-required="true" placeholder="目前所在地(国家)" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -240,7 +240,7 @@
 												<input type="text" id="inputyearbirth"
 													name="entryProcess.yearbirth"
 													value="${entryProcess.yearbirth}"
-													data-required="true" desc="出生年份" class="input-large">
+													data-required="true" placeholder="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -251,7 +251,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="entryProcess.birthday"
 													value="<s:date name="entryProcess.birthday" format="yyyy-MM-dd" />"
-													data-required="true" desc="生日" readonly class="form_datetime input-large">
+													data-required="true" placeholder="生日" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -263,7 +263,7 @@
 										<div class="control-group">
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
-												<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+												<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
 													name="entryProcess.contracttype">
 													<option value=""></option>
 													<option value="A">A类</option>
@@ -281,7 +281,7 @@
 												<input type="text" id="inputContractdate"
 													name="entryProcess.contractdate"
 													value="${entryProcess.contractdate}"
-													data-required="true" desc="合同有效期" readonly class="form_datetime input-large">
+													data-required="true" placeholder="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -295,7 +295,7 @@
 												<input type="text" maxlength="15" id="inputPassportno"
 													name="entryProcess.passportno"
 													value="${entryProcess.passportno}"
-													data-required="true" desc="护照号" class="input-large">
+													data-required="true" placeholder="护照号" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -307,7 +307,7 @@
 												<input type="text" id="inputPassportnodate"
 													name="entryProcess.passportnodate" 
 													value="${entryProcess.passportnodate}"
-													data-required="true" desc="护照有效期" readonly class="form_datetime input-large">
+													data-required="true" placeholder="护照有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -321,7 +321,7 @@
 												<input type="text" maxlength="15" id="inputMail"
 													name="entryProcess.mail"
 													value="${entryProcess.mail}" data-required="true"
-													desc="电子邮箱" class="input-large">
+													placeholder="电子邮箱" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -329,7 +329,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPhone">手机号码：</label>
 											<div class="controls">
-												<input type="text" id="inputPhone"
+												<input type="number" id="inputPhone"
 													name="entryProcess.Phone"
 													value="${entryProcess.phone}" class="input-large">
 											</div>
@@ -395,7 +395,7 @@
 												<input type="text" maxlength="15" id="inputDomicile"
 													name="entryProcess.domicile"
 													value="${entryProcess.domicile}"
-													desc="户籍地址" class="input-large">
+													placeholder="户籍地址" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -439,7 +439,7 @@
 										<div class="control-group">
 											<label class="control-label" for="flightnumber">航班号：</label>
 											<div class="controls">
-												<input type="text" maxlength="25"  data-required="true" desc="航班号" id="flightnumber"
+												<input type="text" maxlength="25"  data-required="true" placeholder="航班号" id="flightnumber"
 													name="flight.flightnumber" value="${flight.flightnumber}"
 													class="input-large" />
 											</div>
@@ -458,7 +458,7 @@
 													<option id="airportPeopleIdOption" value=""></option>
 												 -->
 												
-												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" desc="接机人">
+												<select id="airportPeopleId" class="input-large" name="flight.airportpeopleid" data-required="true" placeholder="接机人">
 													<option value=""></option>
 													<s:iterator value="userList" var="user" status="index">
 													<s:if test='flight.airportpeopleid == #user.id'>
@@ -478,7 +478,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputstartdate">起飞时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="起飞时间" id="inputstartdate"
+												<input type="text" data-required="true" placeholder="起飞时间" id="inputstartdate"
 													name="flight.startdate"
 													value="<s:date name="flight.startdate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -489,7 +489,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputenddate">到达时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="到达时间" id="inputenddate"
+												<input type="text" data-required="true" placeholder="到达时间" id="inputenddate"
 													name="flight.enddate"
 													value="<s:date name="flight.enddate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -502,7 +502,7 @@
 										<div class="control-group">
 											<label class="control-label" for="place">到达机场：</label>
 											<div class="controls">
-												<input type="text" maxlength="25" id="place" data-required="true" desc="到达机场"
+												<input type="text" maxlength="25" id="place" data-required="true" placeholder="到达机场"
 													name="flight.place" value="${flight.place}"
 													class="input-large" />
 											</div>
@@ -526,7 +526,7 @@
 										<div class="control-group">
 											<label class="control-label" for="hotelName">酒店名称：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="酒店名称" id="hotelName"
+												<input type="text" data-required="true" placeholder="酒店名称" id="hotelName"
 													name="hotel.name"
 													value="${hotel.name}"
 													class="input-large" />
@@ -537,7 +537,7 @@
 										<div class="control-group">
 											<label class="control-label" for="roomNumber">房间号：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="房间号" id="roomNumber"
+												<input type="text" data-required="true" placeholder="房间号" id="roomNumber"
 													name="hotel.roomNumber"
 													value="${hotel.roomNumber}"
 													class="input-large" />
@@ -550,7 +550,7 @@
 										<div class="control-group">
 											<label class="control-label" for="roomType">房间类型：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="房间类型" id="roomType"
+												<input type="text" data-required="true" placeholder="房间类型" id="roomType"
 													name="hotel.roomType"
 													value="${hotel.roomType}"
 													class="input-large" />
@@ -561,7 +561,7 @@
 										<div class="control-group">
 											<label class="control-label" for="address">酒店地址：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="酒店地址" id="address"
+												<input type="text" data-required="true" placeholder="酒店地址" id="address"
 													name="hotel.address"
 													value="${hotel.address}"
 													class="input-large" />
@@ -574,7 +574,7 @@
 										<div class="control-group">
 											<label class="control-label" for="telephone">酒店电话：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="酒店电话" id="telephone"
+												<input type="number" data-required="true" placeholder="酒店电话" id="telephone"
 													name="hotel.telephone"
 													value="${hotel.telephone }"
 													class="input-large" />
@@ -585,7 +585,7 @@
 										<div class="control-group">
 											<label class="control-label" for="checkinDate">入住日期：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="入住日期" id="checkinDate"
+												<input type="text" data-required="true" placeholder="入住日期" id="checkinDate"
 													name="hotel.checkinDate"
 													value="<s:date name="hotel.checkinDate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -598,7 +598,7 @@
 										<div class="control-group">
 											<label class="control-label" for="checkInDay">预计入住天数：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="预计入住天数" id="checkInDay"
+												<input type="number" data-required="true" placeholder="预计入住天数" id="checkInDay"
 													name="hotel.checkinDay"
 													value="${hotel.checkinDay}"
 													class="input-large" />
@@ -624,7 +624,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEName">体检医院：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="体检医院" id="PEName"
+												<input type="text" data-required="true" placeholder="体检医院" id="PEName"
 													name="physicalExam.name"
 													value="${physicalExam.name }"
 													class="input-large" />
@@ -635,7 +635,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEAdress">体检地址：</label>
 											<div class="controls">
-												<input type="text" desc="体检地址" id="PEAdress"
+												<input type="text" placeholder="体检地址" id="PEAdress"
 													name="physicalExam.address"
 													value="${physicalExam.address }"
 													class="input-large" />
@@ -648,7 +648,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEtelephone">医院电话：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="医院电话" id="PEtelephone"
+												<input type="number" data-required="true" placeholder="医院电话" id="PEtelephone"
 													name="physicalExam.telephone"
 													value="${physicalExam.telephone }"
 													class="input-large" />
@@ -659,7 +659,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PERemarks">医院备注：</label>
 											<div class="controls">
-												<input type="text" desc="医院备注" id="PERemarks"
+												<input type="text" placeholder="医院备注" id="PERemarks"
 													name="physicalExam.remarks"
 													value="${physicalExam.remarks }"
 													class="input-large" />
@@ -672,7 +672,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEType">种类：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="种类" id="PEType"
+												<input type="text" data-required="true" placeholder="种类" id="PEType"
 													name="physicalExam.type"
 													value="${physicalExam.type }"
 													class="input-large" />
@@ -683,7 +683,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEScheduleDate">预定时间：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="预定时间" id="PEScheduleDate"
+												<input type="text" data-required="true" placeholder="预定时间" id="PEScheduleDate"
 													name="physicalExam.scheduleDate"
 													value="<s:date name="physicalExam.scheduleDate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />
@@ -696,7 +696,7 @@
 										<div class="control-group">
 											<label class="control-label" for="PEReceiveDate">报告领取日期 ：</label>
 											<div class="controls">
-												<input type="text" desc="报告领取日期 " id="PEReceiveDate"
+												<input type="text" placeholder="报告领取日期 " id="PEReceiveDate"
 													name="physicalExam.receiveDate"
 													value="<s:date name="physicalExam.receiveDate" format="yyyy-MM-dd" />"
 													readonly class="form_datetime input-large" />

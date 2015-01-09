@@ -139,7 +139,7 @@
 												<input type="text" id="franchiseeName"
 													name="franchisee.name"
 													value="${franchisee.name}" 
-													desc="描述" class="input-large">
+													placeholder="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -150,7 +150,7 @@
 										<div class="control-group">
 											<label class="control-label" for="franchiseeDescr">描述：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="描述"
+												<input type="text" data-required="true" placeholder="描述"
 													maxlength="15" id="franchiseeDescr" name="franchisee.descr"
 													value="${franchisee.descr}" class="input-large">
 											</div>
@@ -163,7 +163,7 @@
 												<input type="text" id="franchiseeAddress"
 													name="franchisee.address"
 													value="${franchisee.address}" data-required="true"
-													desc="地址" class="input-large">
+													placeholder="地址" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -175,7 +175,7 @@
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
 												<select id="contracttype" class="input-large"
-													 desc="合同种类"
+													 placeholder="合同种类"
 													name="franchisee.contractType">
 													<option value="">请选择</option>
 													<option value="A">A类</option>
@@ -192,7 +192,7 @@
 												<input type="text" id="franchiseeAddress"
 													name="franchisee.createUserId" disabled="disabled"
 													value="<%=userName.queryUserName(request.getAttribute("franchisee.createUserId").toString()) %>"
-													desc="创建人" class="input-large">
+													placeholder="创建人" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -206,7 +206,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractStartDate"
 													value="${franchisee.contractStartDate}"
-													desc="合同开始时间" readonly
+													placeholder="合同开始时间" readonly
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -218,7 +218,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractEndDate"
 													value="${franchisee.contractEndDate}"
-													desc="合同结束时间" readonly
+													placeholder="合同结束时间" readonly
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -231,7 +231,7 @@
 											<label class="control-label" for="franchiseeStatus">状态：</label>
 											<div class="controls">
 												<select id="franchiseeStatus" class="input-large"  disabled="disabled"
-													 desc="状态" readonly value="${franchisee.status}"
+													 placeholder="状态" readonly value="${franchisee.status}"
 													name="franchisee.status">
 													<option value="0">发起</option>
 													<option value="1"></option>
@@ -327,7 +327,7 @@
 							<label class="control-label" for="popupName">姓名：</label>
 							<div class="controls">
 								<input type="text" id="popupName"
-								desc="姓名" class="input-large">
+								placeholder="姓名" class="input-large">
 							</div>
 						</div>
 					</div>
@@ -339,7 +339,7 @@
 							<label class="control-label" for="popupPhone">号码：</label>
 							<div class="controls">
 								<input type="text" id="popupPhone"
-								desc="号码" class="input-large">
+								placeholder="号码" class="input-large">
 							</div>
 						</div>
 					</div>

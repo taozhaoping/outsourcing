@@ -124,7 +124,7 @@
 												<input type="text" id="description"
 													name="personnel.description"
 													value="${personnel.description}" data-required="true"
-													desc="描述" class="input-large">
+													placeholder="描述" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -134,7 +134,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
-												<input type="text" data-required="true" desc="姓名"
+												<input type="text" data-required="true" placeholder="姓名"
 													maxlength="15" id="inputName" name="personnel.name"
 													value="${personnel.name}" class="input-large">
 											</div>
@@ -147,7 +147,7 @@
 												<input type="text" id="inputEnglishName"
 													name="personnel.englishName"
 													value="${personnel.englishName}" data-required="true"
-													desc="英文名" class="input-large">
+													placeholder="英文名" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -160,7 +160,7 @@
 												<input type="text" maxlength="15" id="inputnationality"
 													name="personnel.nationality"
 													value="${personnel.nationality}" data-required="true"
-													desc="国籍" class="input-large">
+													placeholder="国籍" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -170,7 +170,7 @@
 											<div class="controls">
 												<input type="text" maxlength="15" id="inputDomicile"
 													name="personnel.domicile" value="${personnel.domicile}"
-													desc="户籍地址" class="input-large">
+													placeholder="户籍地址" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -182,7 +182,7 @@
 											<div class="controls">
 												<input type="text" id="inputyearBirth"
 													name="personnel.yearBirth" value="${personnel.yearBirth}"
-													data-required="true" desc="出生年份" class="input-large">
+													data-required="true" placeholder="出生年份" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -193,7 +193,7 @@
 												<input type="text" size="15" id="inputBirthDay"
 													name="personnel.birthDay"
 													value="<s:date name="personnel.birthDay" format="yyyy-MM-dd" />"
-													data-required="true" desc="生日" readonly
+													data-required="true" placeholder="生日" readonly
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -204,7 +204,7 @@
 												<label class="control-label" for="contracttype">合同种类：</label>
 												<div class="controls">
 													<select id="contracttype" class="input-large"
-														data-required="true" desc="合同种类"
+														data-required="true" placeholder="合同种类"
 														name="personnel.contracttype">
 														<option value=""></option>
 														<option value="A">A类</option>
@@ -221,7 +221,7 @@
 													<input type="text" id="inputContractDate"
 														name="personnel.contractDate"
 														value="<s:date name="personnel.contractDate" format="yyyy-MM-dd" />"
-														data-required="true" desc="合同有效期" readonly
+														data-required="true" placeholder="合同有效期" readonly
 														class="form_datetime input-large">
 												</div>
 											</div>
@@ -235,7 +235,7 @@
 													<input type="text" maxlength="15" id="inputPassportno"
 														name="personnel.passportno"
 														value="${personnel.passportno}" data-required="true"
-														desc="护照号" class="input-large">
+														placeholder="护照号" class="input-large">
 												</div>
 											</div>
 										</div>
@@ -247,7 +247,7 @@
 													<input type="text" id="inputPassportDate"
 														name="personnel.passportDate"
 														value="<s:date name="personnel.passportDate" format="yyyy-MM-dd" />"
-														data-required="true" desc="护照有效期" readonly
+														data-required="true" placeholder="护照有效期" readonly
 														class="form_datetime input-large">
 												</div>
 											</div>
@@ -259,7 +259,7 @@
 												<label class="control-label" for="inputMail">电子邮箱：</label>
 												<div class="controls">
 													<input type="text" maxlength="15" id="inputMail"
-														name="personnel.mail" value="${personnel.mail}" desc="电子邮箱" class="input-large">
+														name="personnel.mail" value="${personnel.mail}" placeholder="电子邮箱" class="input-large">
 												</div>
 											</div>
 										</div>

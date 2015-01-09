@@ -89,7 +89,7 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="text" maxlength="15" id="inputId" name="technologicalProcess.id"
+										<input type="number" maxlength="15" id="inputId" name="technologicalProcess.id"
 											value="${technologicalProcess.id}" class="input-large">
 										</label>
 								</div>

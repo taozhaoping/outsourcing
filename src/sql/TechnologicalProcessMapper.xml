@@ -84,16 +84,16 @@
 			<if test="description != null and description !=''">
 				and DESCRIPTION like CONCAT('${description}','%' )
 			</if>
-			<if test="englishname != null">
+			<if test="englishname != null and englishname !=''">
 				and ENGLISHNAME = #{englishname,jdbcType=VARCHAR}
 			</if>
-			<if test="nationality != null">
+			<if test="nationality != null and nationality !=''">
 				and NATIONALITY = #{nationality,jdbcType=VARCHAR}
 			</if>
-			<if test="yearbirth != null">
+			<if test="yearbirth != null and yearbirth !=''">
 				and YEARBIRTH = #{yearbirth,jdbcType=VARCHAR}
 			</if>
-			<if test="birthday != null">
+			<if test="birthday != null and birthday !=''">
 				and BIRTHDAY = #{birthday,jdbcType=DATE}
 			</if>
 			<if test="state != null and state != ''">
@@ -126,10 +126,10 @@
 			<if test="updatetime != null">
 				and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
 			</if>
-			<if test="workuserid != null">
+			<if test="workuserid != null and workuserid != ''">
 				and WORKUSERID = #{workuserid}
 			</if>
-			<if test="contracttype != null">
+			<if test="contracttype != null and contracttype != ''">
 				and CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR}
 			</if>
 			<if test="passportno != null">
@@ -144,7 +144,7 @@
 			<if test="currentlocation != null">
 				and CURRENTLOCATION = #{currentlocation,jdbcType=VARCHAR}
 			</if>
-			<if test="workflowid != null">
+			<if test="workflowid != null and workflowid != ''">
 				and WORKFLOWID = #{workflowid,jdbcType=VARCHAR}
 			</if>
 			<if test="approver != null">

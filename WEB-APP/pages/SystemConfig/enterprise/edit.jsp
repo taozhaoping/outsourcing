@@ -115,7 +115,7 @@
 									<div class="control-group">
 										<label class="control-label" for="inputaddress">电话：</label>
 										<div class="controls">
-											<input type="text" id="inputaddress" maxlength="15" data-pattern="(^(\d{3,4}-)?\d{7,8})$|(1[3,5,7,8,9]{1}[0-9]{9})" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
+											<input type="number" id="inputaddress" maxlength="15" data-pattern="(^(\d{3,4}-)?\d{7,8})$|(1[3,5,7,8,9]{1}[0-9]{9})" name="enterprise.phonecall" value="${enterprise.phonecall}" class="input-xlarge">
 										</div>
 									</div>						
 								

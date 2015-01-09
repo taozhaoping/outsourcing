@@ -90,7 +90,7 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="text" maxlength="15" id="inputId" name="contactRecordVW.id"
+										<input type="number" maxlength="15" id="inputId" name="contactRecordVW.id"
 											value="${contactRecordVW.id}" class="input-large">
 										</label>
 								</div>
@@ -133,7 +133,7 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">预约时间：
-									<select id="contracttype" class="input-large" data-required="true" desc="合同种类"
+									<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
 													name="contactRecordVW.type">
 													<option value="">请选择</option>
 													<option value="1">已经签约</option>

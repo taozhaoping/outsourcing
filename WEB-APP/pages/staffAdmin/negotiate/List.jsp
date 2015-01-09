@@ -107,7 +107,7 @@
 							<dir class="row">
 								<div class="span9">
 									<label class="control-label">当前状态：
-										<select id="inputState" class="input-large" name="personnel.state" desc="状态"  >
+										<select id="inputState" class="input-large" name="personnel.state" placeholder="状态"  >
 											<option value="0">请选择</option>
 											<option value="0">未外派</option>
 											<option value="1">外派中</option>
