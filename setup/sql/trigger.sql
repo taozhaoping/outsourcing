@@ -880,5 +880,48 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table SYS_NOTICE');
 END;
 /
 
+prompt
+prompt Creating trigger CHANGE_T
+prompt ==============================
+prompt
+CREATE OR REPLACE TRIGGER CHANGE_T
+BEFORE DELETE OR INSERT OR UPDATE
+ON T_CHANGE
+FOR EACH ROW
+DECLARE
+createDate    date;
+modifyDate    date;
+BEGIN
+IF DELETING THEN
+  BEGIN
+    DBMS_OUTPUT.PUT_LINE('Delete Trigger Operation in table T_CHANGE');
+  END;
+END IF;
+IF INSERTING THEN
+  BEGIN
+    select SYSDATE into createDate from dual;
+    select SYSDATE into modifyDate from dual;
+    :new.CREATE_DATE := createDate;
+    :new.UPDATE_DATE := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_CHANGE');
+  END;
+END IF;
+IF UPDATING THEN
+  BEGIN
+    select SYSDATE into modifyDate from dual;
+    :new.UPDATE_DATE := modifyDate;
+    EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Failed Update Trigger Operation in table T_CHANGE');
+  END;
+END IF;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_CHANGE');
+END;
+/
+
 
 spool off

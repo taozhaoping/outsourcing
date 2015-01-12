@@ -561,6 +561,34 @@ COMMENT ON table t_trainingOfPersonnel IS '培训人员信息表 ';
 comment on column t_trainingOfPersonnel.TrainCourseId is '培训课程id';
 comment on column t_trainingOfPersonnel.TechnologicalProcessId is '培训人员id';
 
+/**
+ * 流程表单表
+ */
+create table T_CHANGE(
+	ID NUMBER not null primary key,--ID
+	CHANGE_NUMBER VARCHAR2(90), --变更编号
+	CATEGORY NUMBER(10),	--类别
+	DESCRIPTION VARCHAR2(4000), --描述
+	STATUS VARCHAR2(50), --状态
+	OWNER NUMBER, --创建者
+	CREATE_DATE DATE, --创建时间
+	UPDATE_DATE DATE, --修改时间
+	DELETE_FLAG NUMBER, --删除标志
+	WORKFLOW_ID VARCHAR2(50), --工作流id
+	APPROVER NUMBER,--当前审批人
+	TASK_ID	 VARCHAR2(50), --当前任务id
+	URL		 VARCHAR2(150),--表单的url
+	RES1     VARCHAR2(150),--扩展字段1
+	RES2     VARCHAR2(150),--扩展字段2
+	RES3     VARCHAR2(150),--扩展字段3
+	RES4     VARCHAR2(150),--扩展字段4
+	RES5     VARCHAR2(150),--扩展字段5
+	RES6     VARCHAR2(150)--扩展字段6
+)
+
+
+
+
 /* 表的外键创建  开始                                               */
 /* 
 alter table t_ActivitiesUser
@@ -727,6 +755,13 @@ create sequence SEQUENCE_t_Mail_list
 start with 1
  maxvalue 999999999
  minvalue 1
+ cache 10
+order;
+
+create sequence SEQUENCE_T_CHANGE
+start with 6000
+ maxvalue 999999999
+ minvalue 6000
  cache 10
 order;
 
