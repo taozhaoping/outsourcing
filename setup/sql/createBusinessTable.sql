@@ -63,6 +63,7 @@ COMMENT on column t_Mail_list.updateDate is '修改时间';
 COMMENT on column t_Mail_list.name is '姓名';
 COMMENT on column t_Mail_list.phone is '电话号码';
 COMMENT on column t_Mail_list.franchiseeId is '加盟商ID';
+
 /*==============================================================*/
 /* Table: t_The_franchisee                                      */
 /* Table: 加盟商信息                                                                                                                                              */
@@ -111,11 +112,11 @@ create table t_contact_record
    constraint PK_CONTACT_RECORD primary key (id)
 );
 /*注释*/
-COMMENT ON table t_Activities IS '通话记录';
-comment on column t_Activities.id is '主键';
-comment on column t_Activities.createDate is '创建时间';
-comment on column t_Activities.descr is '描述';
-comment on column t_Activities.type is '类型';
+COMMENT ON table t_contact_record IS '通话记录';
+comment on column t_contact_record.id is '主键';
+comment on column t_contact_record.createDate is '创建时间';
+comment on column t_contact_record.descr is '描述';
+comment on column t_contact_record.type is '类型';
 
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
