@@ -18,6 +18,12 @@ import com.zh.web.model.bean.MailList;
 import com.zh.web.service.FranchiseeService;
 import com.zh.web.service.MailListService;
 
+/**
+ * 加盟申请流程
+ * 
+ * @author 21829
+ *
+ */
 public class FranchiseeAction extends BaseAction {
 
 	/**
