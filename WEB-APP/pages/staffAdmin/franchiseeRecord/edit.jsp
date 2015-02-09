@@ -107,7 +107,7 @@
 					<ul class="nav nav-tabs">
 						<li><a id="homeButt" href="#home" data-toggle="tab">基本信息</a></li>
 						<li><a id="maillistButt" href="#maillist" data-toggle="tab">通讯录</a></li>
-						<li><a id="contactrecordButt" href="#contactrecordtab" data-toggle="tab">联系记录</a></li>
+						<li><a id="franchiseeRecordButt" href="#franchiseeRecord" data-toggle="tab">联系记录</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade" id="home">
@@ -276,7 +276,7 @@
 										<!-- 通讯录 -->
 										<s:iterator value="mailListList" var="tp" status="index">
 										<tr>
-											<td><s:property value="#tp.id" /></td>
+											<td><s:property value="#index.index+1" /></td>
 											<td><s:property value="#tp.name" /></td>
 											<td>
 												<s:property value="#tp.phone" />
@@ -293,20 +293,17 @@
 								</tbody>
 								
 							</table>
-							<div class="pagination">
-								<ul id="pagination">
-								</ul>
-							</div>
+							
 						</div>
 						<!-- 联系记录 -->
-						<div class="tab-pane fade" id="contactrecordtab">
+						<div class="tab-pane fade" id="franchiseeRecord">
 							<form id="franchiseeRecordForm" class="form-horizontal"
 											action="${menu2Id}!saveFranchiseeRecord.jspa" method="post">
 								<input type="hidden" name="menuId" value="${menuId}" /> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
 								<input type="hidden" name="spaceId" value="${spaceId}">
 								<input type="hidden" name="formId" value="${franchisee.id}" />
-								<input type="hidden" name="tabID" value="maillistButt" />
+								<input type="hidden" name="tabID" value="franchiseeRecordButt" />
 								<input type="hidden" id="franchiseeRecorddescr" name="franchiseeRecord.descr" value="" />
 								<input type="hidden" id="franchiseeRecordreserveDate" name="franchiseeRecord.reserveDate" value="" />
 								<input type="hidden" id="franchiseeRecordtype" name="franchiseeRecord.type" value="" />
@@ -325,9 +322,9 @@
 								</thead>
 								
 								<tbody id="ContactRecordSearch">
-									<s:iterator value="contactRecordList" var="tp" status="index">
+									<s:iterator value="franchiseeRecordList" var="tp" status="index">
 										<tr>
-											<td><s:property value="#tp.id" /></td>
+											<td><s:property value="#index.index+1" /></td>
 											<td><s:property value="#tp.createdate" /></td>
 											<td>
 												<s:if test="#tp.type==1">
@@ -465,6 +462,16 @@
 				id="franchiseeRecordBtnConfirm">确认</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
+	</div>
+	
+		<div>
+		<form action="${menu2Id}!editor.jspa" id="queryForm" method="post">
+		<input id="curPage" name="pageInfo.curPage" value="${pageInfo.curPage}" type="hidden"/>
+		<input type="hidden" name="formId" value="${franchisee.id}">
+		<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+		<input type="hidden" name="menuId" value="${menuId}">
+		<input type="hidden" name="spaceId" value="${spaceId}">
+		</form>
 	</div>
 	
 	<div class="modal small hide fade" id="forMchangefirm" tabindex="-1"
@@ -636,6 +643,27 @@
 			$("#" + name).attr("action",
 					actionName + "?tabID=" + $("#tabID").val());	
 		}
+		
+		$.jqPaginator('#pagination', {
+			//设置分页的总页数
+	        totalPages: totalPage,
+	        //设置分页的总条目数
+	        totalCounts:totalRow,
+	        pageSize:pageSize,
+	        //最多显示的页码
+	        visiblePages: 10,
+	        currentPage: curPage,
+	        onPageChange: function (num, type) {
+	           if("init"==type){
+	        	 	return false;  
+	        	}
+	           	$('#curPage').val(num);
+	           	action = $("#queryForm").attr("action");
+				setTabID("queryForm", action);
+	        	$('#queryForm').submit();
+	        	//document.getElementsByName("operateForm")[0].submit(); 
+	        }
+	    });
 		
 	</script>
 </body>

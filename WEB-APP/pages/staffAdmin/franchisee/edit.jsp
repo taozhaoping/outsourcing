@@ -278,7 +278,7 @@
 										<!-- 通讯录 -->
 										<s:iterator value="mailListList" var="tp" status="index">
 										<tr>
-											<td><s:property value="#tp.id" /></td>
+											<td><s:property value="#index.index+1" /></td>
 											<td><s:property value="#tp.name" /></td>
 											<td>
 												<s:property value="#tp.phone" />

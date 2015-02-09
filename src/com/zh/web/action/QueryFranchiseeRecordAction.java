@@ -15,9 +15,11 @@ import com.zh.web.model.FranchiseeRecordModel;
 import com.zh.web.model.bean.Franchisee;
 import com.zh.web.model.bean.FranchiseeRecord;
 import com.zh.web.model.bean.FranchiseeRecordVW;
+import com.zh.web.model.bean.MailList;
 import com.zh.web.model.bean.TechnologicalProcess;
 import com.zh.web.service.FranchiseeRecordService;
 import com.zh.web.service.FranchiseeService;
+import com.zh.web.service.MailListService;
 import com.zh.web.service.TechnologicalProcessService;
 
 public class QueryFranchiseeRecordAction extends BaseAction {
@@ -38,18 +40,23 @@ public class QueryFranchiseeRecordAction extends BaseAction {
 	@Autowired
 	private FranchiseeRecordService franchiseeRecordService;
 
+	@Autowired
+	private MailListService mailListService;
+
 	public String execute() {
 
 		/* 获取基本信息 */
-		FranchiseeRecordVW franchiseeRecordVW = this.franchiseeRecordModel.getFranchiseeRecordVW();
+		FranchiseeRecordVW franchiseeRecordVW = this.franchiseeRecordModel
+				.getFranchiseeRecordVW();
 
 		Pager pager = this.franchiseeRecordModel.getPageInfo();
 		Integer count = franchiseeRecordService.countVW(franchiseeRecordVW);
 		pager.setTotalRow(count);
-		List<FranchiseeRecordVW> franchiseeRecordVWList = franchiseeRecordService.queryVWList(
-				franchiseeRecordVW, pager);
-		this.franchiseeRecordModel.setFranchiseeRecordVWList(franchiseeRecordVWList);
-		
+		List<FranchiseeRecordVW> franchiseeRecordVWList = franchiseeRecordService
+				.queryVWList(franchiseeRecordVW, pager);
+		this.franchiseeRecordModel
+				.setFranchiseeRecordVWList(franchiseeRecordVWList);
+
 		return Action.SUCCESS;
 	}
 
@@ -65,6 +72,12 @@ public class QueryFranchiseeRecordAction extends BaseAction {
 		Franchisee franchiseeReult = franchiseeService.query(franchisee);
 		franchiseeRecordModel.setFranchisee(franchiseeReult);
 
+		// 获取通讯录
+		MailList mailList = new MailList();
+		mailList.setFranchiseeId(franchiseeReult.getId());
+		List<MailList> mailListList = mailListService.queryList(mailList);
+		this.franchiseeRecordModel.setMailListList(mailListList);
+
 		/* 获取联系记录 */
 		FranchiseeRecord franchiseeRecord = new FranchiseeRecord();
 		franchiseeRecord.setFranchiseeID(Integer.parseInt(businessKey));
@@ -73,9 +86,10 @@ public class QueryFranchiseeRecordAction extends BaseAction {
 		Integer count = franchiseeRecordService.count(franchiseeRecord);
 		pager.setTotalRow(count);
 
-		List<FranchiseeRecord> franchiseeRecordList = franchiseeRecordService.queryList(
-				franchiseeRecord, pager);
-		this.franchiseeRecordModel.setFranchiseeRecordList(franchiseeRecordList);
+		List<FranchiseeRecord> franchiseeRecordList = franchiseeRecordService
+				.queryList(franchiseeRecord, pager);
+		this.franchiseeRecordModel
+				.setFranchiseeRecordList(franchiseeRecordList);
 		return Action.EDITOR;
 	}
 
@@ -97,6 +111,31 @@ public class QueryFranchiseeRecordAction extends BaseAction {
 		return Action.EDITOR_SUCCESS;
 	}
 
+	public String saveMailList()
+	{
+		LOGGER.debug("saveMailList()");
+		String formId = this.franchiseeRecordModel.getFormId();
+		Integer id = this.franchiseeRecordModel.getId();
+		String view = this.franchiseeRecordModel.getView();
+		if (null == formId || "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		if (null != view && (null == id || "".equals(id))) {
+			throw ProjectException.createException("当前的活动编号不允许为空！");
+		}
+		MailList mailList = this.franchiseeRecordModel.getMailList();
+		mailList.setFranchiseeId(Integer.valueOf(formId));
+
+		if (null != view && "delete".equals(view)) {
+			mailList.setId(id);
+			mailListService.delete(mailList);
+		} else {
+			mailListService.insert(mailList);
+		}
+		return "save";
+	}
+	
 	/**
 	 * 保存联系记录
 	 * 

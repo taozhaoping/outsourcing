@@ -72,6 +72,7 @@ public class FranchiseeAction extends BaseAction {
 			
 			//获取通讯录
 			MailList mailList = new MailList();
+			mailList.setFranchiseeId(franchiseeReult.getId());
 			List<MailList> mailListList = mailListService.queryList(mailList);
 			this.franchiseeModel.setMailListList(mailListList);
 		} else {

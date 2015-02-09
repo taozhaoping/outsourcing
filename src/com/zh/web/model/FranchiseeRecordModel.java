@@ -7,6 +7,7 @@ import com.zh.core.base.model.BaseModel;
 import com.zh.web.model.bean.Franchisee;
 import com.zh.web.model.bean.FranchiseeRecord;
 import com.zh.web.model.bean.FranchiseeRecordVW;
+import com.zh.web.model.bean.MailList;
 
 /**
  * 通讯记录
@@ -19,6 +20,9 @@ public class FranchiseeRecordModel extends BaseModel {
 	
 	private List<FranchiseeRecord> franchiseeRecordList = new ArrayList<FranchiseeRecord>();
 	
+	private MailList mailList = new MailList();
+	
+	private List<MailList> mailListList = new ArrayList<MailList>();
 	
 	/**
 	 * 基础信息
@@ -80,6 +84,22 @@ public class FranchiseeRecordModel extends BaseModel {
 
 	public void setFormId(String formId) {
 		FormId = formId;
+	}
+
+	public MailList getMailList() {
+		return mailList;
+	}
+
+	public void setMailList(MailList mailList) {
+		this.mailList = mailList;
+	}
+
+	public List<MailList> getMailListList() {
+		return mailListList;
+	}
+
+	public void setMailListList(List<MailList> mailListList) {
+		this.mailListList = mailListList;
 	}
 	
 }

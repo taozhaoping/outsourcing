@@ -16,8 +16,10 @@ import com.zh.web.model.FranchiseeRecordModel;
 import com.zh.web.model.bean.Franchisee;
 import com.zh.web.model.bean.FranchiseeRecord;
 import com.zh.web.model.bean.FranchiseeRecordVW;
+import com.zh.web.model.bean.MailList;
 import com.zh.web.service.FranchiseeRecordService;
 import com.zh.web.service.FranchiseeService;
+import com.zh.web.service.MailListService;
 
 public class FranchiseeRecordAction extends BaseAction {
 
@@ -36,6 +38,9 @@ public class FranchiseeRecordAction extends BaseAction {
 	
 	@Autowired
 	private FranchiseeRecordService franchiseeRecordService;
+	
+	@Autowired
+	private MailListService mailListService;
 
 	public String execute() {
 
@@ -66,6 +71,12 @@ public class FranchiseeRecordAction extends BaseAction {
 		// 获取基本信息
 			Franchisee franchiseeReult = franchiseeService.query(franchisee);
 		franchiseeRecordModel.setFranchisee(franchiseeReult);
+		
+		//获取通讯录
+		MailList mailList = new MailList();
+		mailList.setFranchiseeId(franchiseeReult.getId());
+		List<MailList> mailListList = mailListService.queryList(mailList);
+		this.franchiseeRecordModel.setMailListList(mailListList);
 
 		/* 获取联系记录 */
 		FranchiseeRecord franchiseeRecord = new FranchiseeRecord();
@@ -98,6 +109,31 @@ public class FranchiseeRecordAction extends BaseAction {
 
 		this.franchiseeRecordModel.setFormId(franchisee.getId().toString());
 		return Action.EDITOR_SUCCESS;
+	}
+	
+	public String saveMailList()
+	{
+		LOGGER.debug("saveMailList()");
+		String formId = this.franchiseeRecordModel.getFormId();
+		Integer id = this.franchiseeRecordModel.getId();
+		String view = this.franchiseeRecordModel.getView();
+		if (null == formId || "".equals(formId)) {
+			throw ProjectException
+					.createException("当前的流程编号不允许为空！请先保存当前流程的基本信息");
+		}
+		if (null != view && (null == id || "".equals(id))) {
+			throw ProjectException.createException("当前的活动编号不允许为空！");
+		}
+		MailList mailList = this.franchiseeRecordModel.getMailList();
+		mailList.setFranchiseeId(Integer.valueOf(formId));
+
+		if (null != view && "delete".equals(view)) {
+			mailList.setId(id);
+			mailListService.delete(mailList);
+		} else {
+			mailListService.insert(mailList);
+		}
+		return "save";
 	}
 
 	/**
