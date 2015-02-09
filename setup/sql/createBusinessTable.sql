@@ -790,6 +790,13 @@ start with 6000
  cache 10
 order;
 
+create sequence SEQ_FRANCHISEE_CHANGE_NUMBER
+start with 1
+ maxvalue 999999999
+ minvalue 1
+ cache 10
+order;
+
 create sequence SEQUENCE_t_franchisee_record
 start with 1
  maxvalue 999999999
