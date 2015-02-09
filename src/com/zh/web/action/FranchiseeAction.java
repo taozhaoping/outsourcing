@@ -2,6 +2,10 @@ package com.zh.web.action;
 
 import java.util.List;
 
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.spring.ProcessEngineFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +16,6 @@ import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.FranchiseeModel;
-import com.zh.web.model.bean.ActivitiesUser;
 import com.zh.web.model.bean.Franchisee;
 import com.zh.web.model.bean.MailList;
 import com.zh.web.service.FranchiseeService;
@@ -41,6 +44,18 @@ public class FranchiseeAction extends BaseAction {
 
 	@Autowired
 	private MailListService mailListService;
+	
+	@Autowired
+	private ProcessEngineFactoryBean processEngine;
+	
+	@Autowired
+	protected RuntimeService runtimeService;
+
+	@Autowired
+	protected TaskService taskService;
+
+	@Autowired
+	protected RepositoryService repositoryService;
 
 	public String execute() {
 		/* 获取基本信息 */
