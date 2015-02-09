@@ -18,6 +18,7 @@ drop table t_Entry_Process cascade constraints;
 drop table t_The_franchisee cascade constraints;
 drop table t_Mail_list cascade constraints;
 drop table t_franchisee_record cascade constraints;
+drop table T_CHANGE cascade constraints;
 
 drop sequence SEQUENCE_t_Activities;
 drop sequence SEQUENCE_t_ActivitiesUser;
@@ -37,6 +38,7 @@ drop sequence SEQUENCE_t_contact_record;
 drop sequence SEQUENCE_t_The_franchisee;
 drop sequence SEQUENCE_t_Mail_list;
 drop sequence SEQUENCE_t_franchisee_record;
+drop sequence SEQUENCE_T_CHANGE;
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
 /* Created on:     2014/8/12 8:46:12                            */
