@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_FranchiseeRecord">
+	<resultMap id="T_FranchiseeRecord" type="FranchiseeRecord">
+		<id column="ID" property="id" />
+		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
+		<result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="VARCHAR" />
+		<result column="RESERVEDATE" property="reserveDate" jdbcType="DATE" />
+		<result column="FRANCHISEEID" property="franchiseeID" />
+	</resultMap>
+	
+	<resultMap type="FranchiseeRecordVW" id="VW_FranchiseeRecord">
+		<id column="ID" property="id" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="CREATEUSERID" property="createUserId"/>
+		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
+		<result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="VARCHAR" />
+		<result column="RESERVEDATE" property="reserveDate" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, 
+		DESCR, 
+		CREATEDATE,
+		TYPE,
+		RESERVEDATE,
+		FRANCHISEEID
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="descr != null">
+				and DESCR = #{descr,jdbcType=VARCHAR}
+			</if>
+			<if test="createdate != null">
+				and CREATEDATE = #{createdate,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDate != null">
+				and RESERVEDATE = #{reserveDate,jdbcType=DATE}
+			</if>
+			<if test="franchiseeID != null">
+				and FRANCHISEEID = #{franchiseeID}
+			</if>
+			<if test="type != null">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="T_FranchiseeRecord" parameterType="FranchiseeRecord">
+		select
+		<include refid="Base_Column_List" />
+		from t_franchisee_record
+		where ID = #{id}
+	</select>
+
+	<select id="list" resultMap="T_FranchiseeRecord" parameterType="FranchiseeRecord">
+		select
+		<include refid="Base_Column_List" />
+		from t_franchisee_record
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause} desc
+		</if>
+	</select>
+	
+		<select id="list_VW" resultMap="VW_FranchiseeRecord" parameterType="FranchiseeRecordVW">
+		select
+			ID, 
+			NAME,
+			createUserId,
+			DESCR, 
+			CREATEDATE,
+			TYPE,
+			RESERVEDATE
+		from t_franchisee_record_VW
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="name != null">
+				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="createUserId != null">
+				and createUserId = #{createUserId}
+			</if>
+			<if test="createtimeStart != null and createtimeStart != ''">
+				and CREATEDATE <![CDATA[>=]]> #{createtimeStart,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeEnd != null and createtimeEnd != ''">
+				and CREATEDATE <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateStart != null and reserveDateStart != ''">
+				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateEnd != null and reserveDateEnd != ''">
+				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null and type != ''">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="orderByClause != null">
+			order by ${orderByClause} desc
+		</if>
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="FranchiseeRecord">
+		select
+		count(id)
+		from t_franchisee_record
+		<include refid="where" />
+	</select>
+	
+	<select id="count_VW" resultType="Integer" parameterType="FranchiseeRecordVW">
+		select
+			count(id)
+		from t_franchisee_record_VW
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="name != null">
+				and NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="createUserId != null">
+				and createUserId = #{createUserId}
+			</if>
+			<if test="createtimeStart != null and createtimeStart != ''">
+				and CREATEDATE <![CDATA[>=]]> #{createtimeStart,jdbcType=VARCHAR}
+			</if>
+			<if test="createtimeEnd != null and createtimeEnd != ''">
+				and CREATEDATE <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateStart != null and reserveDateStart != ''">
+				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=VARCHAR}
+			</if>
+			<if test="reserveDateEnd != null and reserveDateEnd != ''">
+				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null and type != ''">
+				and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="FranchiseeRecord">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_t_franchisee_record.nextval from dual
+		</selectKey>
+		insert into t_franchisee_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="descr != null">
+				DESCR,
+			</if>
+			<if test="createdate != null">
+				CREATEDATE,
+			</if>
+			<if test="reserveDate != null">
+				RESERVEDATE,
+			</if>
+			<if test="franchiseeID != null">
+				FRANCHISEEID,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="descr != null">
+				#{descr,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=VARCHAR},
+			</if>
+			<if test="reserveDate != null">
+				#{reserveDate,jdbcType=DATE},
+			</if>
+			<if test="franchiseeID != null">
+				#{franchiseeID},
+			</if>
+			<if test="type != null">
+				#{type},
+			</if>
+		</trim>
+	</insert>
+
+</mapper>

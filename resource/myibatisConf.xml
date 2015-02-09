@@ -56,6 +56,11 @@
 		
 		<typeAlias alias="ContactRecordVW" type="com.zh.web.model.bean.ContactRecordVW" />
 		
+		<!-- 加盟商维护 -->
+		<typeAlias alias="FranchiseeRecord" type="com.zh.web.model.bean.FranchiseeRecord" />
+		
+		<typeAlias alias="FranchiseeRecordVW" type="com.zh.web.model.bean.FranchiseeRecordVW" />
+				
 		<!-- 正式员工信息 -->
 		<typeAlias alias="Personnel" type="com.zh.web.model.bean.Personnel" />
 		<!-- 洽谈记录 -->

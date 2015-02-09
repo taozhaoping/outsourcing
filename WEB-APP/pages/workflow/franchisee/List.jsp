@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@  taglib uri="/struts-tags" prefix="s"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -54,6 +55,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
@@ -161,7 +163,10 @@
 										<td><s:property value="#tp.contractType"/> </td>
 										<td><s:property value="#tp.contractStartDate"/> </td>
 										<td><s:property value="#tp.contractEndDate"/> </td>
-										<td><s:property value="#tp.createUserId"/></td>
+										<td>
+											<s:set id="userNameid" value="#tp.createUserId"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+										</td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-pencil"></i></a>

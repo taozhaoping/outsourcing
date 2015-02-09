@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@  taglib uri="/struts-tags" prefix="s"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -54,6 +55,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
@@ -132,7 +134,7 @@
 							</dir>
 							<dir class="row">
 								<div class="span5">
-									<label class="control-label">预约时间：
+									<label class="control-label">预约类型：
 									<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
 													name="contactRecordVW.type">
 													<option value="">请选择</option>
@@ -190,7 +192,10 @@
 										</td>
 										<td><s:property value="#tp.name"/></td>
 										<td><s:property value="#tp.descr"/></td>
-										<td><s:property value="#tp.workUserId"/> </td>
+										<td>
+											<s:set id="userNameid" value="#tp.workUserId"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+										</td>
 										<td>
 											<s:if test="#tp.type==1">
 												已经签约

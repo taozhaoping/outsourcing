@@ -92,15 +92,21 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="number" maxlength="15" id="inputId" name="contactRecordVW.id"
-											value="${contactRecordVW.id}" class="input-large">
+										<input type="number" maxlength="15" id="inputId" name="franchiseeRecordVW.id"
+											value="${franchiseeRecordVW.id}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
-									<label class="control-label">当前状态：
-									<input type="text" maxlength="15" id="inputState" name="contactRecordVW.state"
-										value="${contactRecordVW.state}" class="input-large">
-										</label>
+									<label class="control-label">预约类型：
+									<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
+													name="franchiseeRecordVW.type">
+													<option value="">请选择</option>
+													<option value="1">已经签约</option>
+													<option value="2">正在洽谈</option>
+													<option value="3">有意向</option>
+													<option value="4">潜在外教</option>
+									</select>
+									</label>	
 								</div>
 							</dir>
 							
@@ -108,42 +114,33 @@
 								<div class="span5">
 									<label class="control-label">创建时间：
 										<input type="text" id="createTimeStart"
-											name="contactRecordVW.createtimeStart"
-											value="${contactRecordVW.createtimeStart}"
+											name="franchiseeRecordVW.createtimeStart"
+											value="${franchiseeRecordVW.createtimeStart}"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="createTimeEnd"
-											name="contactRecordVW.createtimeEnd"
-											value="${contactRecordVW.createtimeEnd}"
+											name="franchiseeRecordVW.createtimeEnd"
+											value="${franchiseeRecordVW.createtimeEnd}"
 											class="form_datetime input-small">
 									</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">预约时间：
 										<input type="text" id="reserveDateStart"
-											name="contactRecordVW.reserveDateStart"
-											value="${contactRecordVW.reserveDateStart}"
+											name="franchiseeRecordVW.reserveDateStart"
+											value="${franchiseeRecordVW.reserveDateStart}"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="reserveDateEnd"
-											name="contactRecordVW.reserveDateEnd"
-											value="${contactRecordVW.reserveDateEnd}"
+											name="franchiseeRecordVW.reserveDateEnd"
+											value="${franchiseeRecordVW.reserveDateEnd}"
 											class="form_datetime input-small">
 									</label>
 								</div>
 							</dir>
 							<dir class="row">
 								<div class="span5">
-									<label class="control-label">预约类型：
-									<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
-													name="contactRecordVW.type">
-													<option value="">请选择</option>
-													<option value="1">已经签约</option>
-													<option value="2">正在洽谈</option>
-													<option value="3">有意向</option>
-													<option value="4">潜在外教</option>
-									</select>
-									</label>		
+										
 								</div>
 								<div class="span4">
 									
@@ -169,17 +166,15 @@
 								<tr>
 									<th>流程编号</th>
 									<th>姓名</th>
-									<th>流程描述</th>
 									<th>流程发起人</th>
 									<th>联系状态</th>
 									<th>联系时间</th>
 									<th>预约时间</th>
-									<th>当前状态</th>
 									<th style="width: 32px;">操作</th>
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="contactRecordVWList" var="tp" status="index">
+								<s:iterator value="franchiseeRecordVWList" var="tp" status="index">
 									<tr>
 										<td>
 											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
@@ -187,9 +182,8 @@
 											</a>
 										</td>
 										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.descr"/></td>
 										<td>
-											<s:set id="userNameid" value="#tp.workUserId"></s:set>
+											<s:set id="userNameid" value="#tp.createUserId"></s:set>
 											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
 										</td>
 										<td>
@@ -208,7 +202,6 @@
 										</td>
 										<td><s:property value="#tp.createdate"/> </td>
 										<td><s:property value="#tp.reserveDate"/> </td>
-										<td><s:property value="#tp.state"/></td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
 												class="icon-pencil"></i></a>

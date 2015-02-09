@@ -54,8 +54,59 @@
 				<param name="spaceId">${spaceId}</param>
 			</result>
 		</action>
+		
+		<!-- 加盟商记录维护 -->
+		<action name="franchiseerecord" class="com.zh.web.action.FranchiseeRecordAction"
+			method="execute">
+			<result name="success">
+	/pages/staffAdmin/franchiseeRecord/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/franchiseeRecord/edit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">franchiseerecord</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="formId">${formId}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">franchiseerecord</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+		</action>
 
-		<!-- 记录维护 -->
+<!-- 外教记录查看 -->
+		<action name="franchiseequeryrecord" class="com.zh.web.action.QueryFranchiseeRecordAction"
+			method="execute">
+			<result name="success">/pages/staffAdmin/queryfranchiseeRecord/List.jsp</result>
+			<result name="editor">/pages/staffAdmin/queryfranchiseeRecord/edit.jsp</result>
+			<result name="save" type="redirectAction">
+				<param name="method">editor</param>
+				<param name="actionName">franchiseequeryrecord</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="formId">${formId}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+			<result name="editorSuccess" type="redirectAction">
+				<param name="actionName">franchiseequeryrecord</param>
+				<param name="namespace">/staffAdmin</param>
+				<param name="menuId">${menuId}</param>
+				<param name="menu2Id">${menu2Id}</param>
+				<param name="tabID">${tabID}</param>
+				<param name="spaceId">${spaceId}</param>
+			</result>
+		</action>
+		
+		<!-- 外教记录维护 -->
 		<action name="contactrecord" class="com.zh.web.action.ContactRecordAction"
 			method="execute">
 			<result name="success">/pages/staffAdmin/contactrecord/List.jsp</result>
@@ -80,7 +131,7 @@
 			</result>
 		</action>
 
-		<!-- 记录查看 -->
+		<!-- 外教记录查看 -->
 		<action name="queryrecord" class="com.zh.web.action.QueryRecordAction"
 			method="execute">
 			<result name="success">/pages/staffAdmin/queryrecord/List.jsp</result>

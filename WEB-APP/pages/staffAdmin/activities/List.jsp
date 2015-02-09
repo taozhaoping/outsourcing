@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@  page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -54,6 +55,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 	<!--<![endif]-->
 	<%@ include file="/pages/common/titleWithNav.jsp"%>
 	<%@ include file="/pages/common/sidebarWithNav.jsp"%> 
@@ -112,7 +114,10 @@
 										<td><s:property value="#activities.scheduleDate"/></td>
 										<td><s:property value="#activities.setPlace"/></td>
 										<td><s:property value="#activities.scheduleTime"/></td>
-										<td><s:property value="#activities.userName"/></td>
+										<td><s:property value="#activities.userName"/>
+											<s:set id="userNameid" value="#activities.userName"></s:set>
+											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+										</td>
 										<td><s:property value="#activities.telephone"/></td>
 										<s:if test="#activities.enabled==0">
 											<td>有效</td>
