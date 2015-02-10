@@ -3,7 +3,8 @@
 <mapper namespace="M_CHANGE">
 	<resultMap id="T_CHANGE" type="com.zh.web.model.bean.Change">
 		<id column="ID" property="id" jdbcType="DECIMAL" />
-		<result column="CHANGE_NUMBER" property="changeNumber" jdbcType="VARCHAR" />
+		<result column="CHANGE_NUMBER" property="changeNumber"
+			jdbcType="VARCHAR" />
 		<result column="CATEGORY" property="category" jdbcType="DECIMAL" />
 		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
 		<result column="STATUS" property="status" jdbcType="VARCHAR" />
@@ -24,31 +25,126 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		ID, CHANGE_NUMBER, CATEGORY, DESCRIPTION, STATUS, OWNER, CREATE_DATE,
+		ID, 
+		CHANGE_NUMBER, 
+		CATEGORY, 
+		DESCRIPTION, 
+		STATUS, 
+		OWNER,
+		CREATE_DATE,
 		UPDATE_DATE,
-		DELETE_FLAG, WORKFLOW_ID, APPROVER, TASK_ID, URL, RES1, RES2, RES3, RES4, RES5,
+		DELETE_FLAG, 
+		WORKFLOW_ID, 
+		APPROVER, 
+		TASK_ID,
+		URL, 
+		RES1, 
+		RES2, 
+		RES3, 
+		RES4, 
+		RES5,
 		RES6
 	</sql>
 
-	<select id="selectByPrimaryKey" resultMap="T_CHANGE"
-		parameterType="java.math.BigDecimal">
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id,jdbcType=DECIMAL}
+			</if>
+			<if test="changeNumber != null">
+				and CHANGE_NUMBER = #{changeNumber,jdbcType=VARCHAR}
+			</if>
+			<if test="category != null">
+				and CATEGORY= #{category,jdbcType=DECIMAL}
+			</if>
+			<if test="description != null">
+				and DESCRIPTION = #{description,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				and STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="owner != null">
+				and OWNER = #{owner,jdbcType=DECIMAL}
+			</if>
+			<if test="createDate != null">
+				and CREATE_DATE = #{createDate,jdbcType=DATE}
+			</if>
+			<if test="updateDate != null">
+				and UPDATE_DATE = #{updateDate,jdbcType=DATE}
+			</if>
+			<if test="deleteFlag != null">
+				and DELETE_FLAG = #{deleteFlag,jdbcType=DECIMAL}
+			</if>
+			<if test="workflowId != null">
+				and WORKFLOW_ID = #{workflowId,jdbcType=VARCHAR}
+			</if>
+			<if test="approver != null">
+				and APPROVER = #{approver,jdbcType=DECIMAL}
+			</if>
+			<if test="taskId != null">
+				and TASK_ID = #{taskId,jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				and URL = #{url,jdbcType=VARCHAR}
+			</if>
+			<if test="res1 != null">
+				and RES1 = #{res1,jdbcType=VARCHAR}
+			</if>
+			<if test="res2 != null">
+				and RES2 = #{res2,jdbcType=VARCHAR}
+			</if>
+			<if test="res3 != null">
+				and RES3 = #{res3,jdbcType=VARCHAR}
+			</if>
+			<if test="res4 != null">
+				and RES4 = #{res4,jdbcType=VARCHAR}
+			</if>
+			<if test="res5 != null">
+				and RES5 = #{res5,jdbcType=VARCHAR}
+			</if>
+			<if test="res6 != null">
+				and RES6 = #{res6,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="T_CHANGE"
+		parameterType="com.zh.web.model.bean.Change">
 		select
 		<include refid="Base_Column_List" />
 		from T_CHANGE
-		where ID = #{id,jdbcType=DECIMAL}
+		<include refid="where" />
 	</select>
 	
-	<select id="sequence" resultType="Long" parameterType = "String">
-  		select SEQ_FRANCHISEE_CHANGE_NUMBER.nextval from dual
-  	</select>
+	<select id="list" resultMap="T_CHANGE" parameterType="com.zh.web.model.bean.Change">
+		select
+		<include refid="Base_Column_List" />
+		from T_CHANGE
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="count" resultType="Integer" parameterType="com.zh.web.model.bean.Change">
+		select
+			count(id)
+		from T_CHANGE
+		<include refid="where" />
+	</select>
+
+	<select id="sequence" resultType="Long" parameterType="String">
+		select SEQ_FRANCHISEE_CHANGE_NUMBER.nextval from dual
+	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
-		delete from T_CHANGE
+		delete from
+		T_CHANGE
 		where ID = #{id,jdbcType=DECIMAL}
 	</delete>
 
 	<insert id="insert" parameterType="com.zh.web.model.bean.Change">
-	 	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+		<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
 			select SEQUENCE_T_CHANGE.nextval from dual
 		</selectKey>
 		insert into T_CHANGE
@@ -174,7 +270,7 @@
 	</insert>
 
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.zh.web.model.bean.Change">
+	<update id="update" parameterType="com.zh.web.model.bean.Change">
 		update T_CHANGE
 		<set>
 			<if test="changeNumber != null">
@@ -238,23 +334,32 @@
 	<update id="updateByPrimaryKey" parameterType="com.zh.web.model.bean.Change">
 		update T_CHANGE
 		set CHANGE_NUMBER = #{changeNumber,jdbcType=VARCHAR},
-		CATEGORY = #{category,jdbcType=DECIMAL},
-		DESCRIPTION = #{description,jdbcType=VARCHAR},
+		CATEGORY =
+		#{category,jdbcType=DECIMAL},
+		DESCRIPTION =
+		#{description,jdbcType=VARCHAR},
 		STATUS = #{status,jdbcType=VARCHAR},
 		OWNER = #{owner,jdbcType=DECIMAL},
-		CREATE_DATE = #{createDate,jdbcType=DATE},
+		CREATE_DATE =
+		#{createDate,jdbcType=DATE},
 		UPDATE_DATE = #{updateDate,jdbcType=DATE},
 		DELETE_FLAG = #{deleteFlag,jdbcType=DECIMAL},
-		WORKFLOW_ID = #{workflowId,jdbcType=VARCHAR},
-		APPROVER = #{approver,jdbcType=DECIMAL},
+		WORKFLOW_ID =
+		#{workflowId,jdbcType=VARCHAR},
+		APPROVER =
+		#{approver,jdbcType=DECIMAL},
 		TASK_ID = #{taskId,jdbcType=VARCHAR},
-		URL = #{url,jdbcType=VARCHAR},
+		URL
+		= #{url,jdbcType=VARCHAR},
 		RES1 = #{res1,jdbcType=VARCHAR},
-		RES2 = #{res2,jdbcType=VARCHAR},
+		RES2 =
+		#{res2,jdbcType=VARCHAR},
 		RES3 = #{res3,jdbcType=VARCHAR},
-		RES4 = #{res4,jdbcType=VARCHAR},
+		RES4 =
+		#{res4,jdbcType=VARCHAR},
 		RES5 = #{res5,jdbcType=VARCHAR},
-		RES6 = #{res6,jdbcType=VARCHAR}
+		RES6 =
+		#{res6,jdbcType=VARCHAR}
 		where ID = #{id,jdbcType=DECIMAL}
 	</update>
 </mapper>
