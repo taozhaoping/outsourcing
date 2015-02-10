@@ -3,6 +3,7 @@ package com.zh.web.service;
 import java.util.List;
 
 import com.zh.core.model.Pager;
+import com.zh.web.model.bean.Change;
 import com.zh.web.model.bean.Franchisee;
 import com.zh.web.model.bean.FranchiseeBO;
 
@@ -19,6 +20,14 @@ public interface FranchiseeService {
 	 * @return
 	 */
 	public Franchisee query(Franchisee franchisee);
+	
+	
+	/**
+	 * 查询信息
+	 * @param  change
+	 * @return change
+	 */
+	public Change query(Change change);
 	
 	/**
 	 * 修改

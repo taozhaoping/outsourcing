@@ -83,23 +83,28 @@ public class FranchiseeAction extends BaseAction {
 	public String editor() {
 		LOGGER.debug("editor()");
 		Franchisee franchisee = new Franchisee();
+		//变更的基础信息
+		Change change = this.franchiseeModel.getChange();
+		
 		String businessKey = this.franchiseeModel.getFormId();
 		if (null != businessKey && Integer.parseInt(businessKey) > 0) {
 
-			franchisee.setId(Integer.parseInt(businessKey));
+			change.setId(Integer.parseInt(businessKey));
+			
+			Change changeRet = franchiseeService.query(change);
+			franchiseeModel.setChange(changeRet);
+			
+			franchisee.setId(Integer.parseInt(changeRet.getRes1()));
 
 			// 获取基本信息
 			Franchisee franchiseeReult = franchiseeService.query(franchisee);
 			franchiseeModel.setFranchisee(franchiseeReult);
-			
 			//获取通讯录
 			MailList mailList = new MailList();
 			mailList.setFranchiseeId(franchiseeReult.getId());
 			List<MailList> mailListList = mailListService.queryList(mailList);
 			this.franchiseeModel.setMailListList(mailListList);
 		} else {
-			//变更的基础信息
-			Change change = this.franchiseeModel.getChange();
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			//设置创建者

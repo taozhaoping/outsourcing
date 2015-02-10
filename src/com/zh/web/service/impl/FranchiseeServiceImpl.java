@@ -33,6 +33,11 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	}
 
 	@Override
+	public Change query(Change change) {
+		return changeDao.query(change);
+	}
+
+	@Override
 	public void update(Franchisee franchisee) {
 		franchiseeDao.update(franchisee);
 	}

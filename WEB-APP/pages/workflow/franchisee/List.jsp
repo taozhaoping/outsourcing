@@ -136,7 +136,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>加盟编号</th>
+									<th>流程编号</th>
 									<th>名称</th>
 									<th>地址</th>
 									<th>状态</th>
