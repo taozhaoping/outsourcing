@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zh.core.model.Pager;
 import com.zh.web.model.bean.Franchisee;
+import com.zh.web.model.bean.FranchiseeBO;
 
 /**
  *  加盟商接口
@@ -57,4 +58,34 @@ public interface FranchiseeService {
 	 * @param 
 	 */
 	public Integer insert(Franchisee franchisee);
+	
+	
+	/**
+	 * 新建加盟表单
+	 * @param franchiseeBo
+	 * @return 新增后的结果
+	 */
+	public FranchiseeBO insert(FranchiseeBO franchiseeBo);
+	
+	
+	/**
+	 * 查询列表
+	 * @param 
+	 * @return
+	 */
+	public List<FranchiseeBO> queryList(FranchiseeBO franchiseeBo);
+	
+	/**
+	 * 查询列表，带分页
+	 * @param 
+	 * @return
+	 */
+	public List<FranchiseeBO> queryList(FranchiseeBO franchiseeBo , Pager page);
+	
+	/**
+	 * 查询数量
+	 * @param 
+	 * @return
+	 */
+	public Integer count(FranchiseeBO franchiseeBo);
 }

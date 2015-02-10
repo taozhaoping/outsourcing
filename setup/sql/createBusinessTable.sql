@@ -39,6 +39,7 @@ drop sequence SEQUENCE_t_The_franchisee;
 drop sequence SEQUENCE_t_Mail_list;
 drop sequence SEQUENCE_t_franchisee_record;
 drop sequence SEQUENCE_T_CHANGE;
+drop sequence SEQ_FRANCHISEE_CHANGE_NUMBER;
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
 /* Created on:     2014/8/12 8:46:12                            */
@@ -845,5 +846,40 @@ WHEN OTHERS THEN
 DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_TECHNOLOGICALPROCESS');
 END;
 */
+
+create or replace view V_THE_FRANCHISEE_CHANGE as 
+select c.ID,
+       c.CHANGE_NUMBER,
+       c.CATEGORY,
+       c.DESCRIPTION,
+       c.STATUS,
+       c.OWNER,
+       c.CREATE_DATE,
+       c.UPDATE_DATE,
+       c.DELETE_FLAG,
+       c.WORKFLOW_ID,
+       c.APPROVER,
+       c.TASK_ID,
+       c.URL,
+       c.RES1,
+       c.RES2,
+       c.RES3,
+       c.RES4,
+       c.RES5,
+       c.RES6,
+       f.ID as F_ID,
+       f.CREATEDATE as F_CREATEDATE,
+       f.UPDATEDATE as F_UPDATEDATE,
+       f.NAME as F_NAME,
+       f.DESCR as F_DESCR,
+       f.ADDRESS as F_ADDRESS,
+       f.STATUS as F_STATUS,
+       f.CONTRACT_TYPE as F_CONTRACT_TYPE,
+       f.CONTRACT_START_DATE as F_CONTRACT_START_DATE,
+       f.CONTRACT_END_DATE as F_CONTRACT_END_DATE,
+       f.CREATEUSERID as F_CREATEUSERID
+  from t_change c, T_THE_FRANCHISEE f
+ where c.res1 = f.id;
+
 
 commit;

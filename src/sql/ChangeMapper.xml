@@ -37,6 +37,10 @@
 		from T_CHANGE
 		where ID = #{id,jdbcType=DECIMAL}
 	</select>
+	
+	<select id="sequence" resultType="Long" parameterType = "String">
+  		select SEQ_FRANCHISEE_CHANGE_NUMBER.nextval from dual
+  	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
 		delete from T_CHANGE
@@ -44,25 +48,9 @@
 	</delete>
 
 	<insert id="insert" parameterType="com.zh.web.model.bean.Change">
-		insert into T_CHANGE (ID, CHANGE_NUMBER, CATEGORY,
-		DESCRIPTION, STATUS, OWNER,
-		CREATE_DATE, UPDATE_DATE, DELETE_FLAG,
-		WORKFLOW_ID, APPROVER, TASK_ID,
-		URL, RES1, RES2, RES3,
-		RES4, RES5, RES6)
-		values (#{id,jdbcType=DECIMAL}, #{changeNumber,jdbcType=VARCHAR},
-		#{category,jdbcType=DECIMAL},
-		#{description,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{owner,jdbcType=DECIMAL},
-		#{createDate,jdbcType=DATE}, #{updateDate,jdbcType=DATE},
-		#{deleteFlag,jdbcType=DECIMAL},
-		#{workflowId,jdbcType=VARCHAR}, #{approver,jdbcType=DECIMAL}, #{taskId,jdbcType=VARCHAR},
-		#{url,jdbcType=VARCHAR}, #{res1,jdbcType=VARCHAR},
-		#{res2,jdbcType=VARCHAR}, #{res3,jdbcType=VARCHAR},
-		#{res4,jdbcType=VARCHAR}, #{res5,jdbcType=VARCHAR},
-		#{res6,jdbcType=VARCHAR})
-	</insert>
-
-	<insert id="insertSelective" parameterType="com.zh.web.model.bean.Change">
+	 	<selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+			select SEQUENCE_T_CHANGE.nextval from dual
+		</selectKey>
 		insert into T_CHANGE
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">

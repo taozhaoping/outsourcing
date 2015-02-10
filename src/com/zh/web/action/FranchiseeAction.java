@@ -16,7 +16,9 @@ import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
 import com.zh.core.model.Pager;
 import com.zh.web.model.FranchiseeModel;
+import com.zh.web.model.bean.Change;
 import com.zh.web.model.bean.Franchisee;
+import com.zh.web.model.bean.FranchiseeBO;
 import com.zh.web.model.bean.MailList;
 import com.zh.web.service.FranchiseeService;
 import com.zh.web.service.MailListService;
@@ -64,12 +66,17 @@ public class FranchiseeAction extends BaseAction {
 		/* 获取当前登录用户 */
 		User user = queryUser();
 		franchisee.setCreateUserId(user.getId());
+		
+		FranchiseeBO franchiseeBO = this.franchiseeModel.getFranchiseeBO();
+		
+		franchiseeBO.setFranchisee(franchisee);
+		
+		
 		Pager pager = this.franchiseeModel.getPageInfo();
-		Integer count = franchiseeService.count(franchisee);
+		Integer count = franchiseeService.count(franchiseeBO);
 		pager.setTotalRow(count);
-		List<Franchisee> franchiseeList = franchiseeService.queryList(
-				franchisee, pager);
-		this.franchiseeModel.setFranchiseeList(franchiseeList);
+		List<FranchiseeBO> franchiseeBOList = franchiseeService.queryList(franchiseeBO, pager);
+		this.franchiseeModel.setFranchiseeBOList(franchiseeBOList);
 		return Action.SUCCESS;
 	}
 
@@ -91,11 +98,33 @@ public class FranchiseeAction extends BaseAction {
 			List<MailList> mailListList = mailListService.queryList(mailList);
 			this.franchiseeModel.setMailListList(mailListList);
 		} else {
+			//变更的基础信息
+			Change change = this.franchiseeModel.getChange();
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
-			franchisee.setCreateUserId(userID);
-			franchisee.setStatus("0");
-			 this.franchiseeModel.setFranchisee(franchisee);
+			//设置创建者
+			change.setOwner(userID);
+			//状态
+			change.setStatus("发起");
+
+			String path = this.getRequest().getContextPath();
+			// 一级菜单
+			String menuId = this.franchiseeModel.getMenuId();
+			// 二级菜单
+			String menu2Id = this.franchiseeModel.getMenu2Id();
+			// 保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
+					+ menuId + "&menu2Id=" + menu2Id;
+			change.setUrl(url);
+			
+			FranchiseeBO franchiseeBo = new FranchiseeBO();
+			franchiseeBo.setChange(change);
+			franchiseeBo.setFranchisee(franchisee);
+			
+			franchiseeBo = franchiseeService.insert(franchiseeBo);
+			
+			this.franchiseeModel.setFranchisee(franchiseeBo.getFranchisee());
+			this.franchiseeModel.setChange(franchiseeBo.getChange());
 		}
 		return Action.EDITOR;
 	}

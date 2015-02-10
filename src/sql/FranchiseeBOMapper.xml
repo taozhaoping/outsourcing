@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="M_FranchiseeBO">
+
+	<resultMap id="T_FranchiseeBO" type="com.zh.web.model.bean.FranchiseeBO">
+		<result column="F_ID" property="fId" />
+		<result column="F_CREATEDATE" property="fCreatedate" jdbcType="VARCHAR" />
+		<result column="F_UPDATEDATE" property="fUpdatedate" jdbcType="VARCHAR" />
+		<result column="F_NAME" property="fName" jdbcType="VARCHAR" />
+		<result column="F_DESCR" property="fDescr" jdbcType="VARCHAR" />
+		<result column="F_ADDRESS" property="fAddress" jdbcType="VARCHAR" />
+		<result column="F_STATUS" property="fStatus" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_TYPE" property="fContractType" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_START_DATE" property="fContractStartDate" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_END_DATE" property="fContractEndDate" jdbcType="VARCHAR" />
+		<result column="F_CREATEUSERID" property="fCreateUserId" />
+		
+		<result column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="CHANGE_NUMBER" property="changeNumber" jdbcType="VARCHAR" />
+		<result column="CATEGORY" property="category" jdbcType="DECIMAL" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="OWNER" property="owner" jdbcType="DECIMAL" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="DECIMAL" />
+		<result column="WORKFLOW_ID" property="workflowId" jdbcType="VARCHAR" />
+		<result column="APPROVER" property="approver" jdbcType="DECIMAL" />
+		<result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="RES1" property="res1" jdbcType="VARCHAR" />
+		<result column="RES2" property="res2" jdbcType="VARCHAR" />
+		<result column="RES3" property="res3" jdbcType="VARCHAR" />
+		<result column="RES4" property="res4" jdbcType="VARCHAR" />
+		<result column="RES5" property="res5" jdbcType="VARCHAR" />
+		<result column="RES6" property="res6" jdbcType="VARCHAR" />
+		
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, CHANGE_NUMBER, CATEGORY, DESCRIPTION, STATUS, OWNER, CREATE_DATE,
+		UPDATE_DATE, DELETE_FLAG, WORKFLOW_ID, APPROVER, TASK_ID, URL, RES1,
+		RES2, RES3, RES4, RES5, RES6, F_ID, F_CREATEDATE, F_UPDATEDATE,
+		F_NAME, F_DESCR, F_ADDRESS, F_STATUS, F_CONTRACT_TYPE,
+		F_CONTRACT_START_DATE, F_CONTRACT_END_DATE, F_CREATEUSERID
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="id != null">
+				and ID = #{id}
+			</if>
+			<if test="fName != null and fName != ''">
+				and F_NAME like CONCAT('${fName}','%' )
+			</if>
+			<if test="fContractType != null and fContractType != ''">
+				and F_CONTRACT_TYPE = #{fContractType, jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="select" resultMap="T_FranchiseeBO" parameterType="com.zh.web.model.bean.FranchiseeBO">
+		select
+		<include refid="Base_Column_List" />
+		from V_THE_FRANCHISEE_CHANGE
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultMap="T_FranchiseeBO" parameterType="com.zh.web.model.bean.FranchiseeBO">
+		select
+		<include refid="Base_Column_List" />
+		from V_THE_FRANCHISEE_CHANGE
+		<include refid="where" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+
+	<select id="count" resultType="Integer" parameterType="com.zh.web.model.bean.FranchiseeBO">
+		select
+		count(id)
+		from V_THE_FRANCHISEE_CHANGE
+		<include refid="where" />
+	</select>
+</mapper>

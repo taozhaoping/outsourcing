@@ -110,6 +110,7 @@
 							<li><a id="maillistButt" href="#maillist"
 								data-toggle="tab">通讯录</a></li>
 						</s:if>
+						<li><a id="workflowTabButt" href="#workflowTab" data-toggle="tab">工作流</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade" id="home">
@@ -121,14 +122,15 @@
 								<input type="hidden" name="franchisee.id" value="${franchisee.id}">
 								<input type="hidden" name="franchisee.status" value="${franchisee.status}">
 								<input type="hidden" name="franchisee.createUserId" value="${franchisee.createUserId}">
+								<input type="hidden" name="change.id" value="${change.id}">
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputId">编号：</label>
+											<label class="control-label" for="inputId">流程编号：</label>
 											<div class="controls">
 												<input type="text" maxlength="15" disabled="disabled"
 													id="inputId"
-													value="${franchisee.id}" class="input-large">
+													value="${change.changeNumber}" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -187,11 +189,11 @@
 									</div>
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="franchiseeAddress">创建人：</label>
+											<label class="control-label" for="changeOwner">创建人：</label>
 											<div class="controls">
-												<input type="text" id="franchiseeAddress"
-													name="franchisee.createUserId" disabled="disabled"
-													value="<%=userName.queryUserName(request.getAttribute("franchisee.createUserId").toString()) %>"
+												<input type="text" id="changeOwner"
+													name="change.owner" disabled="disabled"
+													value="${change.owner}"
 													placeholder="创建人" class="input-large">
 											</div>
 										</div>
@@ -228,8 +230,13 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="franchiseeStatus">状态：</label>
+											<label class="control-label" for="changeStatus">状态：</label>
 											<div class="controls">
+													<input type="text" id="changeStatus"
+													name="change.status" disabled="disabled"
+													value="${change.status}"
+													placeholder="状态" class="input-large">
+												<!-- 
 												<select id="franchiseeStatus" class="input-large"  disabled="disabled"
 													 placeholder="状态" readonly value="${franchisee.status}"
 													name="franchisee.status">
@@ -237,6 +244,7 @@
 													<option value="1"></option>
 													<option value="2"></option>
 												</select>
+												 -->
 											</div>
 										</div>
 									</div>
@@ -296,6 +304,21 @@
 								
 							</table>
 						</div>
+						
+						<!-- 工作流 -->
+						<div class="tab-pane fade" id="workflowTab">
+							<!-- 如果发起了则显示工作 -->
+							<s:if
+								test="%{change.status != null && change.status != ''&& change.status != '发起' && change.status != '结束'}">
+								<img alt="流程没有发起或已结束"
+									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=applyfranchisee&processInstanceId=${change.workflowid}"
+									id="workflowShowPic">
+							</s:if>
+							<s:else>
+								<span>没有匹配的工作流(没有发起或已结束)</span>
+							</s:else>
+						</div>
+						
 					</div>
 				</div>
 			</div>

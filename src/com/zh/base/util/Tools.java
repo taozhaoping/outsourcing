@@ -1,6 +1,7 @@
 package com.zh.base.util;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 
 public class Tools {
 	
@@ -37,6 +38,18 @@ public class Tools {
 		
 		retStr.append(addressArray[0].substring(0, len) + "***" + addressCenter + addressTail);
 		return retStr.toString();
+	}
+	
+	
+	/**
+	 * 格式化 数值
+	 * @param swiftNumber 流水号 例如：1
+	 * @param STR_FORMAT  需要格式    0000
+	 * @return 0001
+	 */
+	public static String numFormat(Long swiftNumber,String STR_FORMAT){
+	    DecimalFormat df = new DecimalFormat(STR_FORMAT);
+	    return df.format(swiftNumber);
 	}
 	
 	public static void main(String[] args) {

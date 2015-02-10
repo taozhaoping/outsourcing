@@ -91,15 +91,15 @@
 							<input type="hidden" name="spaceId" value="${spaceId}">
 							<dir class="row">
 								<div class="span5">
-									<label class="control-label">加盟编号：
-										<input type="number" maxlength="15" id="inputId" name="franchisee.id"
+									<label class="control-label">流程编号：
+										<input type="number" maxlength="15" id="inputId" name="franchiseeBO.id"
 											value="" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">名称：
-										<input type="text" maxlength="15" id="inputId" name="franchisee.name"
-											value="${franchisee.name}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="franchiseeBO.fName"
+											value="${franchiseeBO.fName}" class="input-large">
 										</label>
 								</div>
 							</dir>
@@ -108,9 +108,7 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">合同种类：
-										<select id="contracttype" class="input-large"
-													 placeholder="合同种类"
-													name="franchisee.contractType">
+										<select id="contracttype" class="input-large" placeholder="合同种类" name="franchiseeBO.fContractType">
 													<option value="">请选择</option>
 													<option value="A">A类</option>
 													<option value="B">B类</option>
@@ -139,7 +137,7 @@
 							<thead>
 								<tr>
 									<th>加盟编号</th>
-									<th>姓名</th>
+									<th>名称</th>
 									<th>地址</th>
 									<th>状态</th>
 									<th>合同类型</th>
@@ -150,22 +148,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="franchiseeList" var="tp" status="index">
+								<s:iterator value="franchiseeBOList" var="tp" status="index">
 									<tr>
 										<td>
 											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
-												<s:property value="#tp.id"/>
+												<s:property value="#tp.changeNumber"/>
 											</a>
 										</td>
-										<td><s:property value="#tp.name"/></td>
-										<td><s:property value="#tp.address"/></td>
-										<td><s:property value="#tp.status"/> </td>
-										<td><s:property value="#tp.contractType"/> </td>
-										<td><s:property value="#tp.contractStartDate"/> </td>
-										<td><s:property value="#tp.contractEndDate"/> </td>
+										<td><s:property value="#tp.fName"/></td>
+										<td><s:property value="#tp.fAddress"/></td>
+										<td><s:property value="#tp.fStatus"/> </td>
+										<td><s:property value="#tp.fContractType"/> </td>
+										<td><s:property value="#tp.fContractStartDate"/> </td>
+										<td><s:property value="#tp.fContractEndDate"/> </td>
 										<td>
-											<s:set id="userNameid" value="#tp.createUserId"></s:set>
-											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+											 <s:property value="#tp.owner"/>
 										</td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
