@@ -100,4 +100,18 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 		return franchiseeBODao.count(franchiseeBo);
 	}
 
+	@Override
+	public void update(Change change) {
+		changeDao.update(change);
+	}
+
+	@Override
+	public void update(FranchiseeBO franchiseeBo) {
+		Change change = franchiseeBo.getChange();
+		Franchisee franchisee = franchiseeBo.getFranchisee();
+		
+		changeDao.update(change);
+		franchiseeDao.update(franchisee);
+	}
+
 }

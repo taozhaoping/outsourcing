@@ -136,12 +136,22 @@ public class FranchiseeAction extends BaseAction {
 
 	public String save() {
 		LOGGER.debug("save()");
+		
 		Franchisee franchisee = this.franchiseeModel.getFranchisee();
-		Integer id = franchisee.getId();
+		Change change = this.franchiseeModel.getChange();
+		
+		Integer fId = franchisee.getId();
+		Integer cId = change.getId();
 
-		if (null != id && id > 0) {
-			franchiseeService.update(franchisee);
+		if (null != fId && fId > 0 && null != cId && cId > 0) {
+			FranchiseeBO franchiseeBO = this.franchiseeModel.getFranchiseeBO();
+			
+			franchiseeBO.setChange(change);
+			franchiseeBO.setFranchisee(franchisee);
+			
+			franchiseeService.update(franchiseeBO);
 			LOGGER.debug("update()...");
+			
 		} else {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();

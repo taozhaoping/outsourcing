@@ -232,10 +232,10 @@
 										<div class="control-group">
 											<label class="control-label" for="changeStatus">状态：</label>
 											<div class="controls">
-													<input type="text" id="changeStatus"
-													name="change.status" disabled="disabled"
-													value="${change.status}"
-													placeholder="状态" class="input-large">
+												<input type="text" id="changeStatus"
+												name="change.status" readonly
+												value="${change.status}"
+												placeholder="状态" class="input-large">
 												<!-- 
 												<select id="franchiseeStatus" class="input-large"  disabled="disabled"
 													 placeholder="状态" readonly value="${franchisee.status}"
@@ -267,6 +267,7 @@
 								<input type="hidden" name="tabID" value="maillistButt" />
 								<input type="hidden" id="mailListName" name="mailList.name" value="" />
 								<input type="hidden" id="mailListPhone" name="mailList.phone" value="" />
+								<input type="hidden" name="change.id" value="${change.id}">
 								<button class="btn btn-small btn-primary" type="button"
 								data-toggle="modal" data-target="#popupfirm">添加通讯录</button>
 							</form>

@@ -3,8 +3,7 @@
 <mapper namespace="M_CHANGE">
 	<resultMap id="T_CHANGE" type="com.zh.web.model.bean.Change">
 		<id column="ID" property="id" jdbcType="DECIMAL" />
-		<result column="CHANGE_NUMBER" property="changeNumber"
-			jdbcType="VARCHAR" />
+		<result column="CHANGE_NUMBER" property="changeNumber" jdbcType="VARCHAR" />
 		<result column="CATEGORY" property="category" jdbcType="DECIMAL" />
 		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
 		<result column="STATUS" property="status" jdbcType="VARCHAR" />
@@ -271,7 +270,7 @@
 
 
 	<update id="update" parameterType="com.zh.web.model.bean.Change">
-		update T_CHANGE
+		update T_CHANGE set
 		<set>
 			<if test="changeNumber != null">
 				CHANGE_NUMBER = #{changeNumber,jdbcType=VARCHAR},

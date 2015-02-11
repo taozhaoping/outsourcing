@@ -36,6 +36,18 @@ public interface FranchiseeService {
 	public void update(Franchisee franchisee);
 	
 	/**
+	 * 修改
+	 * @param 
+	 */
+	public void update(Change change);
+	
+	/**
+	 * 修改
+	 * @param 
+	 */
+	public void update(FranchiseeBO franchiseeBo);
+	
+	/**
 	 * 查询列表
 	 * @param 
 	 * @return
