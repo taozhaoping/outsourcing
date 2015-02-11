@@ -123,6 +123,7 @@
 								<input type="hidden" name="franchisee.status" value="${franchisee.status}">
 								<input type="hidden" name="franchisee.createUserId" value="${franchisee.createUserId}">
 								<input type="hidden" name="change.id" value="${change.id}">
+								<input type="hidden" name="formId" value="${change.id}" />
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
@@ -263,7 +264,8 @@
 								<input type="hidden" name="menuId" value="${menuId}" /> 
 								<input type="hidden" name="menu2Id" value="${menu2Id}" /> 
 								<input type="hidden" name="spaceId" value="${spaceId}">
-								<input type="hidden" name="formId" value="${franchisee.id}" />
+								<input type="hidden" name="formId" value="${change.id}" />
+								<input type="hidden" name="franchisee.id" value="${franchisee.id}">
 								<input type="hidden" name="tabID" value="maillistButt" />
 								<input type="hidden" id="mailListName" name="mailList.name" value="" />
 								<input type="hidden" id="mailListPhone" name="mailList.phone" value="" />
@@ -294,7 +296,7 @@
 											</td>
 											<td><s:property value="#tp.createdate" /></td>
 											<td>
-												<a href="${menu2Id}!saveMailList.jspa?id=<s:property value='#tp.id'/>&formId=${franchisee.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=maillistButt"><i
+												<a href="${menu2Id}!saveMailList.jspa?id=<s:property value='#tp.id'/>&formId=${change.id}&view=delete&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}&tabID=maillistButt"><i
 												class="icon-remove"></i></a>
 										</td>
 										</tr>

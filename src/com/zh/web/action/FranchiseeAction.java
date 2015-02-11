@@ -87,6 +87,7 @@ public class FranchiseeAction extends BaseAction {
 		Change change = this.franchiseeModel.getChange();
 		
 		String businessKey = this.franchiseeModel.getFormId();
+		
 		if (null != businessKey && Integer.parseInt(businessKey) > 0) {
 
 			change.setId(Integer.parseInt(businessKey));
@@ -160,8 +161,8 @@ public class FranchiseeAction extends BaseAction {
 			LOGGER.debug("insert()...");
 		}
 
-		this.franchiseeModel.setFormId(franchisee.getId().toString());
-		return Action.EDITOR_SUCCESS;
+		this.franchiseeModel.setFormId(change.getId().toString());
+		return "save";
 	}
 	
 	public String saveMailList()
@@ -178,7 +179,8 @@ public class FranchiseeAction extends BaseAction {
 			throw ProjectException.createException("当前的活动编号不允许为空！");
 		}
 		MailList mailList = this.franchiseeModel.getMailList();
-		mailList.setFranchiseeId(Integer.valueOf(formId));
+		Franchisee franchisee = this.franchiseeModel.getFranchisee();
+		mailList.setFranchiseeId(franchisee.getId());
 
 		if (null != view && "delete".equals(view)) {
 			mailList.setId(id);

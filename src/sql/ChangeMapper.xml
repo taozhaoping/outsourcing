@@ -270,7 +270,7 @@
 
 
 	<update id="update" parameterType="com.zh.web.model.bean.Change">
-		update T_CHANGE set
+		update T_CHANGE
 		<set>
 			<if test="changeNumber != null">
 				CHANGE_NUMBER = #{changeNumber,jdbcType=VARCHAR},
