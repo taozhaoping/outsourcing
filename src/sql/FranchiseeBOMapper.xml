@@ -3,17 +3,17 @@
 <mapper namespace="M_FranchiseeBO">
 
 	<resultMap id="T_FranchiseeBO" type="com.zh.web.model.bean.FranchiseeBO">
-		<result column="F_ID" property="fId" />
-		<result column="F_CREATEDATE" property="fCreatedate" jdbcType="VARCHAR" />
-		<result column="F_UPDATEDATE" property="fUpdatedate" jdbcType="VARCHAR" />
-		<result column="F_NAME" property="fName" jdbcType="VARCHAR" />
-		<result column="F_DESCR" property="fDescr" jdbcType="VARCHAR" />
-		<result column="F_ADDRESS" property="fAddress" jdbcType="VARCHAR" />
-		<result column="F_STATUS" property="fStatus" jdbcType="VARCHAR" />
-		<result column="F_CONTRACT_TYPE" property="fContractType" jdbcType="VARCHAR" />
-		<result column="F_CONTRACT_START_DATE" property="fContractStartDate" jdbcType="VARCHAR" />
-		<result column="F_CONTRACT_END_DATE" property="fContractEndDate" jdbcType="VARCHAR" />
-		<result column="F_CREATEUSERID" property="fCreateUserId" />
+		<result column="F_ID" property="fcId" />
+		<result column="F_CREATEDATE" property="fcCreatedate" jdbcType="VARCHAR" />
+		<result column="F_UPDATEDATE" property="fcUpdatedate" jdbcType="VARCHAR" />
+		<result column="F_NAME" property="fcName" jdbcType="VARCHAR" />
+		<result column="F_DESCR" property="fcDescr" jdbcType="VARCHAR" />
+		<result column="F_ADDRESS" property="fcAddress" jdbcType="VARCHAR" />
+		<result column="F_STATUS" property="fcStatus" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_TYPE" property="fcContractType" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_START_DATE" property="fcContractStartDate" jdbcType="VARCHAR" />
+		<result column="F_CONTRACT_END_DATE" property="fcContractEndDate" jdbcType="VARCHAR" />
+		<result column="F_CREATEUSERID" property="fcCreateUserId" />
 		
 		<result column="ID" property="id" jdbcType="DECIMAL" />
 		<result column="CHANGE_NUMBER" property="changeNumber" jdbcType="VARCHAR" />
@@ -50,11 +50,11 @@
 			<if test="id != null">
 				and ID = #{id}
 			</if>
-			<if test="fName != null and fName != ''">
-				and F_NAME like CONCAT('${fName}','%' )
+			<if test="fcName != null and fcName != ''">
+				and F_NAME like CONCAT('${fcName}','%' )
 			</if>
-			<if test="fContractType != null and fContractType != ''">
-				and F_CONTRACT_TYPE = #{fContractType, jdbcType=VARCHAR}
+			<if test="fcContractType != null and fcContractType != ''">
+				and F_CONTRACT_TYPE = #{fcContractType, jdbcType=VARCHAR}
 			</if>
 		</where>
 	</sql>

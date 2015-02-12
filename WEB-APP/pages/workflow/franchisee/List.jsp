@@ -148,25 +148,24 @@
 								</tr>
 							</thead>
 							<tbody>
-								<s:iterator value="franchiseeBOList" var="tp" status="index">
+								<s:iterator value="franchiseeBOList" var="fb" status="index">
 									<tr>
 										<td>
-											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
-												<s:property value="#tp.changeNumber"/>
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#fb.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<s:property value="#fb.changeNumber"/>
 											</a>
 										</td>
-										<td><s:property value="#tp.fName"/></td>
-										<td><s:property value="#tp.fAddress"/></td>
-										<td><s:property value="#tp.fStatus"/> </td>
-										<td><s:property value="#tp.fContractType"/> </td>
-										<td><s:property value="#tp.fContractStartDate"/> </td>
-										<td><s:property value="#tp.fContractEndDate"/> </td>
+										<td><s:property value="#fb.fcName"/></td>
+										<td><s:property value="#fb.fcAddress"/></td>
+										<td><s:property value="#fb.status"/></td>
+										<td><s:property value="#fb.fcContractType"/></td>
+										<td><s:property value="#fb.fcContractStartDate"/></td>
+										<td><s:property value="#fb.fcContractEndDate"/></td>
+										<td><s:property value="#fb.owner"/></td>
 										<td>
-											 <s:property value="#tp.owner"/>
-										</td>
-										<td>
-											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i
-												class="icon-pencil"></i></a>
+											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#fb.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<i class="icon-pencil"></i>
+											</a>
 										</td>
 									</tr>
 								</s:iterator>

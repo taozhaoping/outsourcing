@@ -21,27 +21,27 @@ public class FranchiseeBO extends IDataObject{
 	
 	private Change change = new Change();
 
-	private Integer fId;
+	private Integer fcId;
 
-	private String fCreatedate;
+	private String fcCreatedate;
 
-	private String fUpdatedate;
+	private String fcUpdatedate;
 
-	private String fName;
+	private String fcName;
 
-	private String fDescr;
+	private String fcDescr;
 
-	private String fAddress;
+	private String fcAddress;
 
-	private String fStatus;
+	private String fcStatus;
 
-	private String fContractType;
+	private String fcContractType;
 
-	private String fContractStartDate;
+	private String fcContractStartDate;
 
-	private String fContractEndDate;
+	private String fcContractEndDate;
 
-	private Integer fCreateUserId;
+	private Integer fcCreateUserId;
 	
 	/**
 	 * 主键id
@@ -138,103 +138,104 @@ public class FranchiseeBO extends IDataObject{
 	 */
 	private String res6;   //VARCHAR2(150)--扩展字段6
 
-	public Integer getfId() {
-		return fId;
+
+	public Integer getFcId() {
+		return fcId;
 	}
 
-	public void setfId(Integer fId) {
-		this.fId = fId;
-		this.franchisee.setId(fId);
+	public void setFcId(Integer fcId) {
+		this.fcId = fcId;
+		this.franchisee.setId(fcId);
 	}
 
-	public String getfCreatedate() {
-		return fCreatedate;
+	public String getFcCreatedate() {
+		return fcCreatedate;
 	}
 
-	public void setfCreatedate(String fCreatedate) {
-		this.fCreatedate = fCreatedate;
-		this.franchisee.setCreatedate(fCreatedate);
+	public void setFcCreatedate(String fcCreatedate) {
+		this.fcCreatedate = fcCreatedate;
+		this.franchisee.setCreatedate(fcCreatedate);
 	}
 
-	public String getfUpdatedate() {
-		return fUpdatedate;
+	public String getFcUpdatedate() {
+		return fcUpdatedate;
 	}
 
-	public void setfUpdatedate(String fUpdatedate) {
-		this.fUpdatedate = fUpdatedate;
-		this.franchisee.setUpdatedate(fUpdatedate);
+	public void setFcUpdatedate(String fcUpdatedate) {
+		this.fcUpdatedate = fcUpdatedate;
+		this.franchisee.setUpdatedate(fcUpdatedate);
 	}
 
-	public String getfName() {
-		return fName;
+	public String getFcName() {
+		return fcName;
 	}
 
-	public void setfName(String fName) {
-		this.fName = fName;
-		this.franchisee.setName(fName);
+	public void setFcName(String fcName) {
+		this.fcName = fcName;
+		this.franchisee.setName(fcName);
 	}
 
-	public String getfDescr() {
-		return fDescr;
+	public String getFcDescr() {
+		return fcDescr;
 	}
 
-	public void setfDescr(String fDescr) {
-		this.fDescr = fDescr;
-		this.franchisee.setDescr(fDescr);
+	public void setFcDescr(String fcDescr) {
+		this.fcDescr = fcDescr;
+		this.franchisee.setDescr(fcDescr);
 	}
 
-	public String getfAddress() {
-		return fAddress;
+	public String getFcAddress() {
+		return fcAddress;
 	}
 
-	public void setfAddress(String fAddress) {
-		this.fAddress = fAddress;
-		this.franchisee.setAddress(fAddress);
+	public void setFcAddress(String fcAddress) {
+		this.fcAddress = fcAddress;
+		this.franchisee.setAddress(fcAddress);
 	}
 
-	public String getfStatus() {
-		return fStatus;
+	public String getFcStatus() {
+		return fcStatus;
 	}
 
-	public void setfStatus(String fStatus) {
-		this.fStatus = fStatus;
-		this.franchisee.setStatus(fStatus);
+	public void setFcStatus(String fcStatus) {
+		this.fcStatus = fcStatus;
+		this.franchisee.setStatus(fcStatus);
 	}
 
-	public String getfContractType() {
-		return fContractType;
+	public String getFcContractType() {
+		return fcContractType;
 	}
 
-	public void setfContractType(String fContractType) {
-		this.fContractType = fContractType;
-		this.franchisee.setContractType(fContractType);
+	public void setFcContractType(String fcContractType) {
+		this.fcContractType = fcContractType;
+		this.franchisee.setContractType(fcContractType);
 	}
 
-	public String getfContractStartDate() {
-		return fContractStartDate;
+	public String getFcContractStartDate() {
+		return fcContractStartDate;
 	}
 
-	public void setfContractStartDate(String fContractStartDate) {
-		this.fContractStartDate = fContractStartDate;
-		this.franchisee.setContractStartDate(fContractStartDate);
+	public void setFcContractStartDate(String fcContractStartDate) {
+		this.fcContractStartDate = fcContractStartDate;
+		this.franchisee.setContractStartDate(fcContractStartDate);
 	}
 
-	public String getfContractEndDate() {
-		return fContractEndDate;
+	public String getFcContractEndDate() {
+		return fcContractEndDate;
 	}
 
-	public void setfContractEndDate(String fContractEndDate) {
-		this.fContractEndDate = fContractEndDate;
-		this.franchisee.setContractEndDate(fContractEndDate);
+	public void setFcContractEndDate(String fcContractEndDate) {
+		this.fcContractEndDate = fcContractEndDate;
+		this.franchisee.setContractEndDate(fcContractEndDate);
 	}
 
-	public Integer getfCreateUserId() {
-		return fCreateUserId;
+	public Integer getFcCreateUserId() {
+		return fcCreateUserId;
 	}
 
-	public void setfCreateUserId(Integer fCreateUserId) {
-		this.fCreateUserId = fCreateUserId;
-		this.franchisee.setCreateUserId(fCreateUserId);
+	public void setFcCreateUserId(Integer fcCreateUserId) {
+		this.fcCreateUserId = fcCreateUserId;
+		this.franchisee.setCreateUserId(fcCreateUserId);
 	}
 
 	public Integer getId() {
@@ -415,17 +416,17 @@ public class FranchiseeBO extends IDataObject{
 	public void setFranchisee(Franchisee franchisee) {
 		this.franchisee = franchisee;
 		
-		this.fId = franchisee.getId();
-		this.fCreatedate = franchisee.getCreatedate();
-		this.fUpdatedate = franchisee.getUpdatedate();
-		this.fName = franchisee.getName();
-		this.fDescr = franchisee.getDescr();
-		this.fAddress = franchisee.getAddress();
-		this.fStatus = franchisee.getStatus();
-		this.fContractType = franchisee.getContractType();
-		this.fContractStartDate = franchisee.getContractStartDate();
-		this.fContractEndDate = franchisee.getContractEndDate();
-		this.fCreateUserId = franchisee.getCreateUserId();
+		this.fcId = franchisee.getId();
+		this.fcCreatedate = franchisee.getCreatedate();
+		this.fcUpdatedate = franchisee.getUpdatedate();
+		this.fcName = franchisee.getName();
+		this.fcDescr = franchisee.getDescr();
+		this.fcAddress = franchisee.getAddress();
+		this.fcStatus = franchisee.getStatus();
+		this.fcContractType = franchisee.getContractType();
+		this.fcContractStartDate = franchisee.getContractStartDate();
+		this.fcContractEndDate = franchisee.getContractEndDate();
+		this.fcCreateUserId = franchisee.getCreateUserId();
 		
 	}
 
