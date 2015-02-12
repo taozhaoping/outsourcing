@@ -91,14 +91,51 @@
 
 			<div class="row-fluid">
 				<div class="btn-toolbar">
+					<s:if test='hasApprove=="1" || hasSubmitAuth=="1"'>
 						<button id="formButton" class="btn btn-primary" type="button">
 							<i class="icon-save"></i> 保存
 						</button>
-						<a class="btn" id="backList" href="">
-							返回</a>
 						<input type="hidden" id="hasEditAuth" value="1">
+					</s:if>
+					<s:else>
+						<button class="btn" type="button" disabled="disabled">
+							<i class="icon-save"></i> 保存
+						</button>
+						<input type="hidden" id="hasEditAuth" value="0">
+					</s:else>
 
+					<div class="pull-right">
+						<s:if test='%{hasApprove!=null && hasApprove=="1"}'>
+							<button class="btn" type="button" id="approveBtn"
+								data-toggle="modal" data-target="#approveConfirm">
+								<i class="icon-ok"></i> 批准
+							</button>
+
+							<button class="btn" type="button" id="rejectBtn"
+								data-toggle="modal" data-target="#rejectConfirm">
+								<i class="icon-ok"></i> 拒绝
+							</button>
+						</s:if>
+
+						<s:if test='%{hasSubmitAuth!=null && hasSubmitAuth=="1"}'>
+							<button class="btn" type="button" id="startBtn"
+								data-toggle="modal" data-target="#startConfirm">
+								<i class="icon-ok"></i> 发起
+							</button>
+						</s:if>
+					</div>
 				</div>
+			
+				<!-- 
+				<div class="btn-toolbar">
+					<button id="formButton" class="btn btn-primary" type="button">
+						<i class="icon-save"></i> 保存
+					</button>
+					<a class="btn" id="backList" href="">
+						返回</a>
+					<input type="hidden" id="hasEditAuth" value="1">
+				</div>
+				 -->
 				<input type="hidden" id="tabID" name="tabID" value="${tabID}">
 				<input type="hidden" id="formChanged" name="formChanged" value="0" />
 				<s:set name="ProcessId"
@@ -326,6 +363,31 @@
 				</div>
 			</div>
 
+			<!-- 创建工作流 -->
+			<form action="${menu2Id}!createWorkflow.jspa" method="post" id="createWF">
+				<input type="hidden" name="formId" id="cwf_formId" value="${change.id}">
+				<input type="hidden" name="assign" id="cwf_assign"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}">
+				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
+			</form>
+
+			<!-- 批准工作流 -->
+			<form action="${menu2Id}!approveWorkflow.jspa" method="post"
+				id="approveWF">
+				<input type="hidden" name="formId" id="awf_formId"
+					value="${change.id}"> 
+				<input type="hidden" name="change.workflowId" id="awf_formId"
+					value="${change.workflowId}"> 
+				<input type="hidden" name="change.taskId" id="taskId"
+					value="${change.taskId}"> 
+				<input type="hidden" name="assign" id="awf_assign"> 
+				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
+				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
+				<input type="hidden" name="menuId" value="${menuId}">
+				<input type="hidden" name="spaceId" value="${spaceId}">
+			</form>
+
 		</div>
 	</div>
 
@@ -371,6 +433,62 @@
 		<div class="modal-footer">
 			<button class="btn btn-danger" data-dismiss="modal"
 				id="popupBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+
+	<!-- 批准流程 -->
+	<div class="modal small hide fade" id="approveConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="approveModalLabel">流程审批</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="approveConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<label class="control-label pull-left" for="modalNextAssign">审批人：</label>
+				<select id="modalNextAssign" class="input-large pull-right">
+					<option value=""></option>
+					<s:iterator value="userList" var="user" status="index">
+					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					</s:iterator>
+				</select>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="approveBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+	
+	<!-- 拒绝流程 -->
+	<div class="modal small hide fade" id="rejectConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="approveModalLabel">流程审批</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="approveConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<p class="error-text">
+					<i class="icon-warning-sign modal-icon"></i>您确认拒绝流程吗?
+				</p>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="rejectBtnConfirm">确认</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>

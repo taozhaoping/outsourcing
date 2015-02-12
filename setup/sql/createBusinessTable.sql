@@ -601,7 +601,7 @@ create table T_CHANGE(
 	UPDATE_DATE DATE, --修改时间
 	DELETE_FLAG NUMBER, --删除标志
 	WORKFLOW_ID VARCHAR2(50), --工作流id
-	APPROVER NUMBER,--当前审批人
+	APPROVER VARCHAR2(50),--当前审批人
 	TASK_ID	 VARCHAR2(50), --当前任务id
 	URL		 VARCHAR2(150),--表单的url
 	RES1     VARCHAR2(150),--扩展字段1

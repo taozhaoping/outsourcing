@@ -32,6 +32,15 @@ public class FranchiseeModel extends BaseModel {
 	 */
 	private MailList mailList = new MailList();
 	
+	/**
+	 * 审批者
+	 */
+	private String assign;
+	
+	/***
+	 * 批准、拒绝  <0：拒绝 1：批准>
+	 */
+	private String assignFlag;
 	
 	/***
 	 * 流程实例id
@@ -73,6 +82,22 @@ public class FranchiseeModel extends BaseModel {
 
 	public void setFranchiseeList(List<Franchisee> franchiseeList) {
 		this.franchiseeList = franchiseeList;
+	}
+
+	public String getAssign() {
+		return assign;
+	}
+
+	public void setAssign(String assign) {
+		this.assign = assign;
+	}
+
+	public String getAssignFlag() {
+		return assignFlag;
+	}
+
+	public void setAssignFlag(String assignFlag) {
+		this.assignFlag = assignFlag;
 	}
 
 	public MailList getMailList() {

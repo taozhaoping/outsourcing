@@ -12,7 +12,7 @@
 		<result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
 		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="DECIMAL" />
 		<result column="WORKFLOW_ID" property="workflowId" jdbcType="VARCHAR" />
-		<result column="APPROVER" property="approver" jdbcType="DECIMAL" />
+		<result column="APPROVER" property="approver" jdbcType="VARCHAR" />
 		<result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
 		<result column="URL" property="url" jdbcType="VARCHAR" />
 		<result column="RES1" property="res1" jdbcType="VARCHAR" />

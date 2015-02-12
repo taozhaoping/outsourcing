@@ -102,7 +102,12 @@ public class FranchiseeBO extends IDataObject{
 	/**
 	 * 当前审批人
 	 */
-	private Integer approver;// NUMBER,--当前审批人
+	private String approver;// NUMBER,--当前审批人
+	
+	/**
+	 * 当前审批人名
+	 */
+	private String approverName;// NUMBER,--当前审批人
 	
 	/**
 	 * 当前任务id
@@ -343,13 +348,22 @@ public class FranchiseeBO extends IDataObject{
 		this.change.setWorkflowId(workflowId);
 	}
 
-	public Integer getApprover() {
+	public String getApprover() {
 		return approver;
 	}
 
-	public void setApprover(Integer approver) {
+	public void setApprover(String approver) {
 		this.approver = approver;
 		this.change.setApprover(approver);
+	}
+
+	public String getApproverName() {
+		return approverName;
+	}
+
+	public void setApproverName(String approverName) {
+		this.approverName = approverName;
+		this.change.setApproverName(approverName);
 	}
 
 	public String getTaskId() {

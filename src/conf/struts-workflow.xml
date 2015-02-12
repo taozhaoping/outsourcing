@@ -86,7 +86,7 @@
 				<param name="tabID">${tabID}</param>
 				<param name="spaceId">${spaceId}</param>
 			</result>
-			<result name="editorSuccess" type="redirectAction">
+			<result name="createSuccess" type="redirectAction">
 				<param name="actionName">applyfranchisee</param>
 				<param name="namespace">/workflow</param>
 				<param name="menuId">${menuId}</param>

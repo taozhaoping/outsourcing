@@ -70,7 +70,12 @@ public class Change extends IDataObject {
 	/**
 	 * 当前审批人
 	 */
-	private Integer approver;// NUMBER,--当前审批人
+	private String approver;// NUMBER,--当前审批人
+	
+	/**
+	 * 当前审批人名
+	 */
+	private String approverName;// --当前审批人
 	
 	/**
 	 * 当前任务id
@@ -200,12 +205,20 @@ public class Change extends IDataObject {
 		this.workflowId = workflowId;
 	}
 
-	public Integer getApprover() {
+	public String getApprover() {
 		return approver;
 	}
 
-	public void setApprover(Integer approver) {
+	public void setApprover(String approver) {
 		this.approver = approver;
+	}
+
+	public String getApproverName() {
+		return approverName;
+	}
+
+	public void setApproverName(String approverName) {
+		this.approverName = approverName;
 	}
 
 	public String getTaskId() {
