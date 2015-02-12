@@ -178,7 +178,7 @@
 											<div class="controls">
 												<input type="text" id="franchiseeName"
 													name="franchisee.name"
-													value="${franchisee.name}" 
+													value="${franchisee.name}" data-required="true"
 													placeholder="描述" class="input-large">
 											</div>
 										</div>
@@ -190,7 +190,7 @@
 										<div class="control-group">
 											<label class="control-label" for="franchiseeDescr">描述：</label>
 											<div class="controls">
-												<input type="text" data-required="true" placeholder="描述"
+												<input type="text" placeholder="描述"
 													maxlength="15" id="franchiseeDescr" name="franchisee.descr"
 													value="${franchisee.descr}" class="input-large">
 											</div>
@@ -215,7 +215,7 @@
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
 												<select id="contracttype" class="input-large"
-													 placeholder="合同种类"
+													 placeholder="合同种类" data-required="true"
 													name="franchisee.contractType">
 													<option value="">请选择</option>
 													<option value="A">A类</option>
@@ -246,6 +246,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractStartDate"
 													value="${franchisee.contractStartDate}"
+													data-required="true"
 													placeholder="合同开始时间" readonly
 													class="form_datetime input-large">
 											</div>
@@ -258,6 +259,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractEndDate"
 													value="${franchisee.contractEndDate}"
+													data-required="true"
 													placeholder="合同结束时间" readonly
 													class="form_datetime input-large">
 											</div>
