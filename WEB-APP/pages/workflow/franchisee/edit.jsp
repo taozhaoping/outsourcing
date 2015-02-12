@@ -684,6 +684,24 @@
 			$("#" + name).attr("action", actionName + "?tabID=" + $("#tabID").val());	
 		}
 		
+		//开始选择，用户选择框打开
+		$('#startConfirm').on('show.bs.modal', function(x) {
+			// 执行一些动作...
+			//selectUsers("modalAssign",'assign');
+			//审核状态
+			var auditRet = auditStatus();
+			//存在必填没有填写
+			if (auditRet.length > 0) {
+				$("#startBtnConfirm").attr("disabled", "disabled");
+				$("#startBtnConfirm").removeClass("btn-danger");
+				$("#startConfirmMsg").html("缺少下列必填字段：" + auditRet);
+			}
+		});
+
+		//选择框隐藏
+		$('#startConfirm').on('hidden.bs.modal', function(x) {
+			// 执行一些动作...
+		});
 		//批准选择，用户选择框打开
 		$('#approveConfirm').on('show.bs.modal', function(x) {
 			// 执行一些动作...
@@ -697,6 +715,11 @@
 				$("#approveConfirmMsg").html("缺少下列必填字段：" + auditRet);
 
 			}
+		});
+		
+		//选择框隐藏
+		$('#approveConfirm').on('hidden.bs.modal', function() {
+			// 执行一些动作...
 		});
 		
 		//发起按钮确认
@@ -743,7 +766,7 @@
 				type : "POST", //访问WebService使用Post方式请求
 				async : false,//同步操作
 				url : basePath + "/workflow/applyfranchisee!auditRelease.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-				data : {state:curState, formId:formId}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+				data : {status:curState, formId:formId}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
 				dataType : 'json', //WebService 会返回Json类型
 				traditional : false, //不要序列化参数
 				error : function(err, textStatus) {
