@@ -98,8 +98,8 @@
 								</div>
 								<div class="span4">
 									<label class="control-label">名称：
-										<input type="text" maxlength="15" id="inputId" name="franchiseeBO.fName"
-											value="${franchiseeBO.fName}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="franchiseeBO.fcName"
+											value="${franchiseeBO.fcName}" class="input-large">
 										</label>
 								</div>
 							</dir>
@@ -108,7 +108,7 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">合同种类：
-										<select id="contracttype" class="input-large" placeholder="合同种类" name="franchiseeBO.fContractType">
+										<select id="contracttype" class="input-large" placeholder="合同种类" name="franchiseeBO.fcContractType">
 													<option value="">请选择</option>
 													<option value="A">A类</option>
 													<option value="B">B类</option>

@@ -429,6 +429,8 @@
 
 		//基本信息
 		$("select").select2();
+		$("#contracttype").val("${franchisee.contractType}").trigger("change");
+		
 		$("#franchiseeStatus").prop("disabled", true);
 		
 		if (fromId != null && fromId !='')
