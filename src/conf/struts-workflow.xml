@@ -94,6 +94,11 @@
 				<param name="tabID">${tabID}</param>
 				<param name="spaceId">${spaceId}</param>
 			</result>
+			
+			<!-- 审核当前状态的必填字段 -->
+			<result name="audit" type="json">
+				<param name="root">franchiseeModel.auditRet</param>
+			</result>
 		</action>
 	</package>
 </struts>

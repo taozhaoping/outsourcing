@@ -2,6 +2,7 @@ package com.zh.web.action;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zh.base.model.bean.User;
+import com.zh.base.service.UserInfoService;
 import com.zh.core.base.action.Action;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.exception.ProjectException;
@@ -60,6 +62,9 @@ public class FranchiseeAction extends BaseAction {
 
 	@Autowired
 	private MailListService mailListService;
+	
+	@Autowired
+	private UserInfoService userInfoService;
 
 	@Autowired
 	private ProcessEngineFactoryBean processEngine;
@@ -153,6 +158,9 @@ public class FranchiseeAction extends BaseAction {
 			this.franchiseeModel.setFranchisee(franchiseeBo.getFranchisee());
 			this.franchiseeModel.setChange(franchiseeBo.getChange());
 		}
+		//查询批准的用户
+		getUserList();
+		
 		return Action.EDITOR;
 	}
 
@@ -449,6 +457,49 @@ public class FranchiseeAction extends BaseAction {
 		}
 	}
 
+	/**
+	 * 获取用户列表
+	 */
+	private void getUserList(){
+		// 获取激活的用户列表
+		User user = new User();
+		user.setEnabled("0");
+		List<User> userList = userInfoService.queryList(user);
+		this.franchiseeModel.setUserList(userList);
+	}
+	
+	/***
+	 * 审核工作流的发放
+	 */
+	public String auditRelease() {
+		// 不同的节点去查不同的数据库表
+		// 当前节点
+		String curState = this.franchiseeModel.getStatus();
+		// 表单Id
+		String formId = this.franchiseeModel.getFormId();
+
+		// 审核结果
+		List<String> auditRet = new ArrayList<String>();
+
+		if ("发起".equalsIgnoreCase(curState)) {
+			Change change = new Change();
+			change.setId(Integer.parseInt(formId));
+
+			// 获取基本信息
+			Change retChange = franchiseeService.query(change);
+			String description = retChange.getDescription();
+			if (null == description || description.isEmpty()) {
+				//auditRet.add("描述");
+			}
+			
+		} else {
+
+		}
+
+		this.franchiseeModel.setAuditRet(auditRet);
+		return "audit";
+	}
+	
 	@Override
 	public Object getModel() {
 		return franchiseeModel;

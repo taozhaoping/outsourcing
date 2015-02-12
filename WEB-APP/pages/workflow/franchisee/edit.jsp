@@ -351,7 +351,7 @@
 							<s:if
 								test="%{change.status != null && change.status != ''&& change.status != '发起' && change.status != '结束'}">
 								<img alt="流程没有发起或已结束"
-									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=applyfranchisee&processInstanceId=${change.workflowid}"
+									src="${menu2Id}!loadTraceImg.jspa?menuId=workflow&menu2Id=applyfranchisee&processInstanceId=${change.workflowId}"
 									id="workflowShowPic">
 							</s:if>
 							<s:else>
@@ -373,14 +373,10 @@
 			</form>
 
 			<!-- 批准工作流 -->
-			<form action="${menu2Id}!approveWorkflow.jspa" method="post"
-				id="approveWF">
-				<input type="hidden" name="formId" id="awf_formId"
-					value="${change.id}"> 
-				<input type="hidden" name="change.workflowId" id="awf_formId"
-					value="${change.workflowId}"> 
-				<input type="hidden" name="change.taskId" id="taskId"
-					value="${change.taskId}"> 
+			<form action="${menu2Id}!approveWorkflow.jspa" method="post" id="approveWF">
+				<input type="hidden" name="formId" id="awf_formId" value="${change.id}"> 
+				<input type="hidden" name="change.workflowId" id="awf_formId" value="${change.workflowId}">
+				<input type="hidden" name="change.taskId" id="taskId" value="${change.taskId}"> 
 				<input type="hidden" name="assign" id="awf_assign"> 
 				<input type="hidden" name="assignFlag" id="awf_assignFlag"> 
 				<input type="hidden" name="menu2Id" value="${menu2Id}"> 
@@ -433,6 +429,35 @@
 		<div class="modal-footer">
 			<button class="btn btn-danger" data-dismiss="modal"
 				id="popupBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		</div>
+	</div>
+
+	<!-- 发起流程 -->
+	<div class="modal small hide fade" id="startConfirm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel">流程发起</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<p class="text-error" id="startConfirmMsg"></p>
+			</div>
+			<div class="control-group">
+				<label class="control-label pull-left" for="modalAssign">审批人：</label>
+				<select id="modalAssign" class="input-large pull-right">
+					<option value=""></option>
+					<s:iterator value="userList" var="user" status="index">
+					<option value="${user.loginName}">${user.name}(${user.loginName})</option>
+					</s:iterator>
+				</select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="startBtnConfirm">确认</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>
@@ -534,6 +559,9 @@
 		var headText = $("#" + menuId).text();
 		var fromId = '${franchisee.id}';
 		$("#navigation1").text(headText);
+		//是否具有编辑权限
+		var hasEdit = $("#hasEditAuth").val();
+		
 		
 		var totalPage = ${pageInfo.totalPage};
 		var totalRow = ${pageInfo.totalRow};
@@ -546,7 +574,15 @@
 				+ contextPath;
 
 		//基本信息
-		$("select").select2();
+		if (hasEdit == "1") {
+			$("select").select2();
+		} else {
+			$(".container-fluid input").attr("disabled", "disabled");
+			$(".container-fluid select").attr("disabled", "disabled");
+			$(".container-fluid button").attr("disabled", "disabled");
+			
+		}
+		
 		$("#contracttype").val("${franchisee.contractType}").trigger("change");
 		
 		$("#franchiseeStatus").prop("disabled", true);
@@ -637,16 +673,88 @@
 			}
 		}
 
-		function setTabID(name,action)
-		{
+		function setTabID(name,action) {
 			var index=action.indexOf("?tabID=");
 			actionName=action;
 			if(  index > 0 )
 			{
 				actionName = action.substring(0,index);
 			}
-			$("#" + name).attr("action",
-					actionName + "?tabID=" + $("#tabID").val());	
+			$("#" + name).attr("action", actionName + "?tabID=" + $("#tabID").val());	
+		}
+		
+		//批准选择，用户选择框打开
+		$('#approveConfirm').on('show.bs.modal', function(x) {
+			// 执行一些动作...
+			//selectUsers("modalNextAssign",'assign');
+			//审核状态
+			var auditRet = auditStatus();
+			//存在必填没有填写
+			if (auditRet.length > 0) {
+				$("#approveBtnConfirm").attr("disabled", "disabled");
+				$("#approveBtnConfirm").removeClass("btn-danger");
+				$("#approveConfirmMsg").html("缺少下列必填字段：" + auditRet);
+
+			}
+		});
+		
+		//发起按钮确认
+		$("#startBtnConfirm").click(function(x) {
+			var assign = $("#modalAssign").val();
+			assign = $.trim(assign);
+			if (assign == null || assign == "") {
+				return;
+			} else {
+				$("#cwf_assign").val(assign);
+				$("#createWF").submit();
+			}
+		});
+
+		//批准按钮确认
+		$("#approveBtnConfirm").click(function(x) {
+			var assign = $("#modalNextAssign").val();
+			assign = $.trim(assign);
+			if (assign == null || assign == "") {
+				return;
+			} else {
+				$("#awf_assign").val(assign);
+				$("#awf_assignFlag").val("1");
+				$("#approveWF").submit();
+			}
+		});
+
+		//拒绝按钮确认
+		$("#rejectBtnConfirm").click(function(x) {
+			$("#awf_assignFlag").val("0");
+			$("#approveWF").submit();
+		});
+
+		/**
+		 * 审核当前的必填字段是否填写
+		 * 
+		 */
+		function auditStatus() {
+			var curState = "${change.status}";
+			var formId = "${change.id}";
+			var auditRet = new Array();
+
+			$.ajax({
+				type : "POST", //访问WebService使用Post方式请求
+				async:false,//同步操作
+				url : basePath + "/workflow/applyfranchisee!auditRelease.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
+				data : {state:curState, formId:formId}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
+				dataType : 'json', //WebService 会返回Json类型
+				traditional : false, //不要序列化参数
+				error : function(err, textStatus) {
+					//alert("error: " + err + " textStatus: " + textStatus);
+				},
+				success : function(result) {//回调函数，result，返回值
+					//alert(result);
+					auditRet = result;
+				}
+			});
+			
+			return auditRet;
 		}
 		
 	</script>

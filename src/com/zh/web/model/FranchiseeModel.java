@@ -58,6 +58,11 @@ public class FranchiseeModel extends BaseModel {
 	private String hasSubmitAuth;
 	
 	/**
+	 * 当前工作流的状态
+	 */
+	private String status;
+	
+	/**
 	 * 审核结果
 	 */
 	private List<String> auditRet;
@@ -170,6 +175,14 @@ public class FranchiseeModel extends BaseModel {
 
 	public void setFranchiseeBOList(List<FranchiseeBO> franchiseeBOList) {
 		this.franchiseeBOList = franchiseeBOList;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
