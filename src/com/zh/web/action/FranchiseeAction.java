@@ -487,15 +487,50 @@ public class FranchiseeAction extends BaseAction {
 
 			// 获取基本信息
 			Change retChange = franchiseeService.query(change);
-			String description = retChange.getDescription();
-			if (null == description || description.isEmpty()) {
-				//auditRet.add("描述");
+			
+			String fcId = retChange.getRes1();
+			
+			Franchisee franchisee = new Franchisee();
+			franchisee.setId(Integer.parseInt(fcId));
+			
+			Franchisee retFranchisee = franchiseeService.query(franchisee);
+			
+			String name = retFranchisee.getName();
+			if (null == name || name.isEmpty()) {
+				auditRet.add("名称");
+			}
+			
+			String address = retFranchisee.getAddress();
+			if (null == address || address.isEmpty()) {
+				auditRet.add("地址");
+			}
+			
+			String contractType = retFranchisee.getContractType();
+			if (null == contractType || contractType.isEmpty()) {
+				auditRet.add("合同种类");
+			}
+			
+			String contractStartDate = retFranchisee.getContractStartDate();
+			if (null == contractStartDate || contractStartDate.isEmpty()) {
+				auditRet.add("合同开始时间");
+			}
+			
+			String contractEndDate = retFranchisee.getContractEndDate();
+			if (null == contractEndDate || contractEndDate.isEmpty()) {
+				auditRet.add("合同结束时间");
+			}
+			
+			MailList mailList = new MailList();
+			mailList.setFranchiseeId(franchisee.getId());
+			
+			List<MailList> retList = mailListService.queryList(mailList);
+			if(retList.isEmpty()){
+				auditRet.add("通讯录");
 			}
 			
 		} else {
 
 		}
-
 		this.franchiseeModel.setAuditRet(auditRet);
 		return "audit";
 	}

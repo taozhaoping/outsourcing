@@ -543,14 +543,13 @@
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
 	<script src="<%=path%>/js/collapsePulg.js"></script>
-	<script src="<%=path%>/js/common.js"></script>
 	<script src="<%=path%>/js/jquery-validate.js"></script>
 	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.js"></script>
 	<script src="<%=path%>/js/json2.js"></script>
 	<script src="<%=path%>/js/select2/select2.js"></script>
 	<script src="<%=path%>/js/select2/select2_locale_zh-CN.js"></script>
-	<script
-		src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="<%=path%>/js/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="<%=path%>/js/common.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		var id = '${menuId}';
@@ -564,16 +563,16 @@
 		//是否具有编辑权限
 		var hasEdit = $("#hasEditAuth").val();
 		
-		
+		/*
 		var totalPage = ${pageInfo.totalPage};
 		var totalRow = ${pageInfo.totalRow};
 		var pageSize = ${pageInfo.pageSize};
 		var curPage = ${pageInfo.curPage};
-
+		*/
+		
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
-		var basePath = localObj.protocol + "//" + localObj.host + "/"
-				+ contextPath;
+		var basePath = localObj.protocol + "//" + localObj.host + "/" + contextPath;
 
 		//基本信息
 		if (hasEdit == "1") {
@@ -742,7 +741,7 @@
 
 			$.ajax({
 				type : "POST", //访问WebService使用Post方式请求
-				async:false,//同步操作
+				async : false,//同步操作
 				url : basePath + "/workflow/applyfranchisee!auditRelease.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
 				data : {state:curState, formId:formId}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
 				dataType : 'json', //WebService 会返回Json类型
