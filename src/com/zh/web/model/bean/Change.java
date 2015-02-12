@@ -41,6 +41,12 @@ public class Change extends IDataObject {
 	 */
 	private Integer owner;// NUMBER(10), --创建者
 	
+	
+	/**
+	 * 创建者名称
+	 */
+	private String ownerName; // 创建者名称
+	
 	/**
 	 * 创建时间
 	 */
@@ -152,6 +158,14 @@ public class Change extends IDataObject {
 
 	public void setOwner(Integer owner) {
 		this.owner = owner;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 
 	public Date getCreateDate() {

@@ -73,6 +73,12 @@ public class FranchiseeBO extends IDataObject{
 	 */
 	private Integer owner;// NUMBER(10), --创建者
 	
+	
+	/**
+	 * 创建者名称
+	 */
+	private String ownerName; //创建者名称
+	
 	/**
 	 * 创建时间
 	 */
@@ -292,6 +298,15 @@ public class FranchiseeBO extends IDataObject{
 		this.change.setOwner(owner);
 	}
 
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+		this.change.setOwnerName(ownerName);
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -443,6 +458,7 @@ public class FranchiseeBO extends IDataObject{
 		this.description = change.getDescription();
 		this.status = change.getStatus();
 		this.owner = change.getOwner();
+		this.ownerName = change.getOwnerName();
 		this.createDate = change.getCreateDate();
 		this.updateDate = change.getUpdateDate();
 		this.deleteFlag = change.getDeleteFlag();

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.zh.base.dao.UserInfoDAO;
+import com.zh.base.model.bean.User;
 import com.zh.base.util.Tools;
 import com.zh.core.model.Pager;
 import com.zh.web.dao.ChangeDao;
@@ -27,6 +29,9 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	@Autowired
 	private ChangeDao changeDao;
 	
+	@Autowired
+	private UserInfoDAO userInfoDAO;
+	
 	@Override
 	public Franchisee query(Franchisee franchisee) {
 		return franchiseeDao.query(franchisee);
@@ -34,7 +39,13 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 
 	@Override
 	public Change query(Change change) {
-		return changeDao.query(change);
+		Change retChange = changeDao.query(change);
+		//设置创建者名称
+		User user = new User();
+		user.setId(retChange.getOwner());
+		User reult = userInfoDAO.query(user);
+		retChange.setOwnerName(reult.getName());
+		return retChange;
 	}
 
 	@Override
@@ -44,11 +55,13 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 
 	@Override
 	public List<Franchisee> queryList(Franchisee franchisee) {
+		franchisee.setOrderByClause("CREATEDATE DESC");
 		return franchiseeDao.queryList(franchisee);
 	}
 
 	@Override
 	public List<Franchisee> queryList(Franchisee franchisee, Pager page) {
+		franchisee.setOrderByClause("CREATEDATE DESC");
 		return franchiseeDao.queryPageList(franchisee, page);
 	}
 
@@ -87,12 +100,34 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 
 	@Override
 	public List<FranchiseeBO> queryList(FranchiseeBO franchiseeBo) {
-		return franchiseeBODao.queryList(franchiseeBo);
+		franchiseeBo.setOrderByClause("CHANGE_NUMBER DESC");
+		List<FranchiseeBO> retList = franchiseeBODao.queryList(franchiseeBo);
+		for(FranchiseeBO fc : retList){
+			User user = new User();
+			//创建者
+			user.setId(fc.getOwner());
+			User reult = userInfoDAO.query(user);
+			if(null != reult){
+				fc.setOwnerName(reult.getName());
+			}
+		}
+		return retList;
 	}
 
 	@Override
 	public List<FranchiseeBO> queryList(FranchiseeBO franchiseeBo, Pager page) {
-		return franchiseeBODao.queryPageList(franchiseeBo, page);
+		franchiseeBo.setOrderByClause("CHANGE_NUMBER DESC");
+		List<FranchiseeBO> retList = franchiseeBODao.queryPageList(franchiseeBo, page);
+		for(FranchiseeBO fc : retList){
+			User user = new User();
+			//创建者
+			user.setId(fc.getOwner());
+			User reult = userInfoDAO.query(user);
+			if(null != reult){
+				fc.setOwnerName(reult.getName());
+			}
+		}
+		return retList;
 	}
 
 	@Override

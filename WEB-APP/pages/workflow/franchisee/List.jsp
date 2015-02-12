@@ -161,7 +161,7 @@
 										<td><s:property value="#fb.fcContractType"/></td>
 										<td><s:property value="#fb.fcContractStartDate"/></td>
 										<td><s:property value="#fb.fcContractEndDate"/></td>
-										<td><s:property value="#fb.owner"/></td>
+										<td><s:property value="#fb.ownerName"/></td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#fb.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 												<i class="icon-pencil"></i>

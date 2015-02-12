@@ -193,8 +193,8 @@
 											<label class="control-label" for="changeOwner">创建人：</label>
 											<div class="controls">
 												<input type="text" id="changeOwner"
-													name="change.owner" disabled="disabled"
-													value="${change.owner}"
+													name="change.ownerName" disabled="disabled"
+													value="${change.ownerName}"
 													placeholder="创建人" class="input-large">
 											</div>
 										</div>
