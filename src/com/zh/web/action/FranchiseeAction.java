@@ -80,15 +80,16 @@ public class FranchiseeAction extends BaseAction {
 
 	public String execute() {
 		/* 获取基本信息 */
-		Franchisee franchisee = this.franchiseeModel.getFranchisee();
+		//Franchisee franchisee = this.franchiseeModel.getFranchisee();
 
 		/* 获取当前登录用户 */
 		User user = queryUser();
-		franchisee.setCreateUserId(user.getId());
+		//创建用户id
+		Integer fcCreateUserId = user.getId();
 
 		FranchiseeBO franchiseeBO = this.franchiseeModel.getFranchiseeBO();
 
-		franchiseeBO.setFranchisee(franchisee);
+		franchiseeBO.setFcCreateUserId(fcCreateUserId);
 
 		Pager pager = this.franchiseeModel.getPageInfo();
 		Integer count = franchiseeService.count(franchiseeBO);

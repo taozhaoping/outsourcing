@@ -92,13 +92,13 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="number" maxlength="15" id="inputId" name="franchiseeBO.id"
-											value="" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="franchiseeBO.changeNumber"
+											value="${franchiseeBO.changeNumber}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
 									<label class="control-label">名称：
-										<input type="text" maxlength="15" id="inputId" name="franchiseeBO.fcName"
+										<input type="text" maxlength="15" id="inputName" name="franchiseeBO.fcName"
 											value="${franchiseeBO.fcName}" class="input-large">
 										</label>
 								</div>
@@ -108,12 +108,12 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">合同种类：
-										<select id="contracttype" class="input-large" placeholder="合同种类" name="franchiseeBO.fcContractType">
-													<option value="">请选择</option>
-													<option value="A">A类</option>
-													<option value="B">B类</option>
-													<option value="C">C类</option>
-												</select>
+										<select id="contractType" class="input-large" placeholder="合同种类" name="franchiseeBO.fcContractType">
+											<option value="">请选择</option>
+											<option value="A">A类</option>
+											<option value="B">B类</option>
+											<option value="C">C类</option>
+										</select>
 								</div>
 								<div class="span4">
 									

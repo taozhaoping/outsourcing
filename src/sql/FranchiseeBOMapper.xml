@@ -47,11 +47,14 @@
 
 	<sql id="where">
 		<where>
-			<if test="id != null">
+			<if test="id != null and id != ''">
 				and ID = #{id}
 			</if>
 			<if test="fcName != null and fcName != ''">
 				and F_NAME like CONCAT('${fcName}','%' )
+			</if>
+			<if test="changeNumber != null and changeNumber != ''">
+				and CHANGE_NUMBER like CONCAT('${changeNumber}','%' )
 			</if>
 			<if test="fcContractType != null and fcContractType != ''">
 				and F_CONTRACT_TYPE = #{fcContractType, jdbcType=VARCHAR}
