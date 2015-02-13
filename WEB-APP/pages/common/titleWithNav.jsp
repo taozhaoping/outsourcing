@@ -38,18 +38,28 @@
 					新建<i class="icon-caret-down"></i>
 				</a>
 				<ul class="dropdown-menu">
+					<!-- 
 					<li>
 						<a tabindex="-1" id="recruitmentBtn" href="javascript:void();">外教招聘流程</a>
 					</li>
-					<!-- 
 					<li class="divider"></li>
-					 -->
 					<li>
 						<a tabindex="-1" id="inductionBtn" href="javascript:void();">外教入职流程</a>
 					</li>
 					<li>
 						<a tabindex="-1" id="applyfranchiseeBtn" href="javascript:void();">加盟商申请流程</a>
 					</li>
+					 -->
+					<s:iterator value="#session.menuList" status="statu" id="menu">
+						<s:if test='action == "workflow"'>
+	      					<s:iterator value="#menu.menuList" id="menuTwo">
+      						<li>
+								<a tabindex="-1" id="${action}Btn" onclick="redirect('${nameSpace}','${action}')" href="javascript:void();"><s:property value="name" /></a>
+							</li>
+	      					</s:iterator>
+	    				</s:if>
+					</s:iterator>
+					
 				</ul>
 			</li>
 		</ul>
@@ -79,6 +89,16 @@
 		window.location.href = basePath + "/login/login.jspa";
 	});
 	
+	
+	function redirect(nameSpace, action){
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		var hrefStr = basePath + "/" +nameSpace +"/"+ action +"!editor.jspa?menuId="+nameSpace+"&menu2Id="+action;
+		//跳转到登陆页面
+		window.location.href = hrefStr;
+	}
+	/*
 	$("#recruitmentBtn").click( function () {
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
@@ -102,4 +122,5 @@
 		//跳转到登陆页面
 		window.location.href = basePath + "/workflow/applyfranchisee!editor.jspa?menuId=workflow&menu2Id=applyfranchisee";
 	});
+	*/
 </script>
