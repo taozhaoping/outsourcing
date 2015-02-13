@@ -110,6 +110,20 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 			if(null != reult){
 				fc.setOwnerName(reult.getName());
 			}
+			//当前审批者
+			String approver = fc.getApprover();
+			if("-1".equals(approver)){
+				fc.setApprover("");
+			}
+			
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					fc.setApproverName(ret.getName());
+				}
+			}
 		}
 		return retList;
 	}
@@ -125,6 +139,19 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 			User reult = userInfoDAO.query(user);
 			if(null != reult){
 				fc.setOwnerName(reult.getName());
+			}
+			//当前审批者
+			String approver = fc.getApprover();
+			if("-1".equals(approver)){
+				fc.setApprover("");
+			}
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					fc.setApproverName(ret.getName());
+				}
 			}
 		}
 		return retList;

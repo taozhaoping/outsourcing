@@ -138,12 +138,15 @@
 								<tr>
 									<th>流程编号</th>
 									<th>名称</th>
+									<!-- 
 									<th>地址</th>
-									<th>状态</th>
+									 -->
 									<th>合同类型</th>
 									<th>合同开始时间</th>
 									<th>合同结束时间</th>
-									<th>创建人</th>
+									<th>当前状态</th>
+									<th>流程创建人</th>
+									<th>当前审批人</th>
 									<th style="width: 32px;">操作</th>
 								</tr>
 							</thead>
@@ -156,12 +159,15 @@
 											</a>
 										</td>
 										<td><s:property value="#fb.fcName"/></td>
+										<!-- 
 										<td><s:property value="#fb.fcAddress"/></td>
-										<td><s:property value="#fb.status"/></td>
+										 -->
 										<td><s:property value="#fb.fcContractType"/></td>
 										<td><s:property value="#fb.fcContractStartDate"/></td>
 										<td><s:property value="#fb.fcContractEndDate"/></td>
+										<td><s:property value="#fb.status"/></td>
 										<td><s:property value="#fb.ownerName"/></td>
+										<td><s:property value="#fb.approverName"/></td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#fb.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
 												<i class="icon-pencil"></i>
