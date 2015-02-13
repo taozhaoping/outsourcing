@@ -225,6 +225,8 @@
 				forceParse : true
 			});
 			
+			$("#contractType").val("${franchiseeBO.fcContractType}").trigger("change");
+			
 			//提交按钮
 			$("#btnSubmit").click(function(){
 				$('#curPage').val("");
@@ -234,10 +236,10 @@
 			//清空按钮
 			$("#btnClear").click(function(){
 				$("#inputId").val("");
-				$("#inputDescription").val("");
-				$("#inputState").val("");
-				$("#createTimeStart").val("");
-				$("#createTimeEnd").val("");
+				$("#inputName").val("");
+				$("#contractType").val("");
+				//$("#createTimeStart").val("");
+				//$("#createTimeEnd").val("");
 				$('#curPage').val("");
 			});
 			
