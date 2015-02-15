@@ -156,10 +156,45 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 		}
 		return retList;
 	}
+	
+	
+	@Override
+	public List<FranchiseeBO> queryPageListByPermission(FranchiseeBO franchiseeBo, Pager page) {
+		franchiseeBo.setOrderByClause("CHANGE_NUMBER DESC");
+		List<FranchiseeBO> retList = franchiseeBODao.queryPageListByPermission(franchiseeBo, page);
+		for(FranchiseeBO fc : retList){
+			User user = new User();
+			//创建者
+			user.setId(fc.getOwner());
+			User reult = userInfoDAO.query(user);
+			if(null != reult){
+				fc.setOwnerName(reult.getName());
+			}
+			//当前审批者
+			String approver = fc.getApprover();
+			if("-1".equals(approver)){
+				fc.setApprover("");
+			}
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					fc.setApproverName(ret.getName());
+				}
+			}
+		}
+		return retList;
+	}
 
 	@Override
 	public Integer count(FranchiseeBO franchiseeBo) {
 		return franchiseeBODao.count(franchiseeBo);
+	}
+
+	@Override
+	public Integer countByPermission(FranchiseeBO franchiseeBo) {
+		return franchiseeBODao.countByPermission(franchiseeBo);
 	}
 
 	@Override

@@ -104,9 +104,23 @@ public interface FranchiseeService {
 	public List<FranchiseeBO> queryList(FranchiseeBO franchiseeBo , Pager page);
 	
 	/**
+	 * 查询列表，带分页，根据权限，创建者，审批者
+	 * @param 
+	 * @return
+	 */
+	public List<FranchiseeBO> queryPageListByPermission(FranchiseeBO franchiseeBo , Pager page);
+	
+	/**
 	 * 查询数量
 	 * @param 
 	 * @return
 	 */
 	public Integer count(FranchiseeBO franchiseeBo);
+
+	/**
+	 * 查询数量
+	 * @param 
+	 * @return
+	 */
+	public Integer countByPermission(FranchiseeBO franchiseeBo);
 }

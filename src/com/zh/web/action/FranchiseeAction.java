@@ -85,17 +85,32 @@ public class FranchiseeAction extends BaseAction {
 		/* 获取当前登录用户 */
 		User user = queryUser();
 		//创建用户id
-		Integer fcCreateUserId = user.getId();
-
+		Integer owner = user.getId();
+		//用户名
+		String loginName = user.getLoginName();
+		//角色id
+		String roleId = user.getRoleId();
 		FranchiseeBO franchiseeBO = this.franchiseeModel.getFranchiseeBO();
 
-		franchiseeBO.setFcCreateUserId(fcCreateUserId);
-
-		Pager pager = this.franchiseeModel.getPageInfo();
-		Integer count = franchiseeService.count(franchiseeBO);
-		pager.setTotalRow(count);
-		List<FranchiseeBO> franchiseeBOList = franchiseeService.queryList(
-				franchiseeBO, pager);
+		List<FranchiseeBO> franchiseeBOList = new ArrayList<FranchiseeBO>();
+		//角色id为1的为超级管理员，查看所有的流程
+		if("1".equalsIgnoreCase(roleId)){
+			
+			Pager pager = this.franchiseeModel.getPageInfo();
+			Integer count = franchiseeService.count(franchiseeBO);
+			pager.setTotalRow(count);
+			franchiseeBOList = franchiseeService.queryList(franchiseeBO, pager);
+		}else{
+			//创建者为当前用户
+			franchiseeBO.setOwner(owner);
+			//当前用户为审批者
+			franchiseeBO.setApprover(loginName);
+			Pager pager = this.franchiseeModel.getPageInfo();
+			Integer count = franchiseeService.countByPermission(franchiseeBO);
+			pager.setTotalRow(count);
+			franchiseeBOList = franchiseeService.queryPageListByPermission(franchiseeBO, pager);
+			
+		}
 		this.franchiseeModel.setFranchiseeBOList(franchiseeBOList);
 		return Action.SUCCESS;
 	}

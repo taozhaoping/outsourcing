@@ -25,7 +25,7 @@
 		<result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
 		<result column="DELETE_FLAG" property="deleteFlag" jdbcType="DECIMAL" />
 		<result column="WORKFLOW_ID" property="workflowId" jdbcType="VARCHAR" />
-		<result column="APPROVER" property="approver" jdbcType="DECIMAL" />
+		<result column="APPROVER" property="approver" jdbcType="VARCHAR" />
 		<result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
 		<result column="URL" property="url" jdbcType="VARCHAR" />
 		<result column="RES1" property="res1" jdbcType="VARCHAR" />
@@ -61,6 +61,32 @@
 			</if>
 		</where>
 	</sql>
+	
+	<sql id="whereByPermission">
+		<where>
+			<if test="id != null and id != ''">
+				and ID = #{id}
+			</if>
+			<if test="fcName != null and fcName != ''">
+				and F_NAME like CONCAT('${fcName}','%' )
+			</if>
+			<if test="changeNumber != null and changeNumber != ''">
+				and CHANGE_NUMBER like CONCAT('${changeNumber}','%' )
+			</if>
+			<if test="fcContractType != null and fcContractType != ''">
+				and F_CONTRACT_TYPE = #{fcContractType, jdbcType=VARCHAR}
+			</if>
+			<if test="owner != null and owner != '' and approver != null and approver != ''">
+				and (OWNER = #{owner} or APPROVER = #{approver})
+			</if>
+			<if test="owner != null and owner != '' and (approver == null or approver == '')">
+				and OWNER = #{owner}
+			</if>
+			<if test="(owner == null and owner == '' ) and approver != null and approver != ''">
+				and APPROVER = #{approver}
+			</if>
+		</where>
+	</sql>
 
 
 	<select id="select" resultMap="T_FranchiseeBO" parameterType="com.zh.web.model.bean.FranchiseeBO">
@@ -79,11 +105,28 @@
 			order by ${orderByClause}
 		</if>
 	</select>
+	
+	<select id="listByPermission" resultMap="T_FranchiseeBO" parameterType="com.zh.web.model.bean.FranchiseeBO">
+		select
+		<include refid="Base_Column_List" />
+		from V_THE_FRANCHISEE_CHANGE
+		<include refid="whereByPermission" />
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
 
 	<select id="count" resultType="Integer" parameterType="com.zh.web.model.bean.FranchiseeBO">
 		select
 		count(id)
 		from V_THE_FRANCHISEE_CHANGE
 		<include refid="where" />
+	</select>
+	
+	<select id="countByPermission" resultType="Integer" parameterType="com.zh.web.model.bean.FranchiseeBO">
+		select
+		count(id)
+		from V_THE_FRANCHISEE_CHANGE
+		<include refid="whereByPermission" />
 	</select>
 </mapper>

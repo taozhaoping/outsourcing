@@ -119,6 +119,18 @@ public abstract class BaseDao<IdataObject> {
 		return selectPageList("list", data, page);
 	}
 	
+	
+	/**
+	 * 根据权限查询列表(创建者、或者审批者)
+	 * @param data
+	 * @param page
+	 * @return 根据权限查询出来的流程列表
+	 * @throws ProjectException
+	 */
+	public List<IdataObject> queryPageListByPermission(IdataObject data,Pager page) throws ProjectException{
+		return selectPageList("listByPermission", data, page);
+	}
+	
 	public List<IdataObject> selectPageList(String sqlID ,IdataObject data,Pager page) throws ProjectException
 	{
 		if( null == page )
@@ -145,9 +157,17 @@ public abstract class BaseDao<IdataObject> {
 	 * @param data
 	 * @return
 	 */
-	public int count(IdataObject data) 
-	{
+	public int count(IdataObject data) {
 		return sqlSessionTemplate.selectOne(namespace + "count", data);
+	}
+
+	/**
+	 * 根据)权限获取数据总数，创建者和当前审批者
+	 * @param data
+	 * @return
+	 */
+	public int countByPermission(IdataObject data) {
+		return sqlSessionTemplate.selectOne(namespace + "countByPermission", data);
 	}
 
 	/**
