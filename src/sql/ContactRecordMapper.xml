@@ -151,10 +151,10 @@
 				and CREATEDATE <![CDATA[<=]]> #{createtimeEnd,jdbcType=VARCHAR}
 			</if>
 			<if test="reserveDateStart != null and reserveDateStart != ''">
-				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=VARCHAR}
+				and RESERVEDATE <![CDATA[>=]]> #{reserveDateStart,jdbcType=DATE}
 			</if>
 			<if test="reserveDateEnd != null and reserveDateEnd != ''">
-				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=VARCHAR}
+				and RESERVEDATE <![CDATA[<=]]> #{reserveDateEnd,jdbcType=DATE}
 			</if>
 			<if test="type != null and type != ''">
 				and TYPE = #{type,jdbcType=VARCHAR}

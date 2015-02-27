@@ -12,6 +12,11 @@ import com.zh.core.model.IDataObject;
 public class ContactRecordVW extends IDataObject {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * 主键
 	 */
     private Integer id;
@@ -46,9 +51,9 @@ public class ContactRecordVW extends IDataObject {
     
     private String createtimeEnd;
     
-    private String reserveDateStart;
+    private Date reserveDateStart;
 
-    private String reserveDateEnd;
+    private Date reserveDateEnd;
     
 	public Integer getId() {
 		return id;
@@ -130,20 +135,19 @@ public class ContactRecordVW extends IDataObject {
 		this.createtimeEnd = createtimeEnd;
 	}
 
-	public String getReserveDateStart() {
+	public Date getReserveDateStart() {
 		return reserveDateStart;
 	}
 
-	public void setReserveDateStart(String reserveDateStart) {
+	public void setReserveDateStart(Date reserveDateStart) {
 		this.reserveDateStart = reserveDateStart;
 	}
 
-	public String getReserveDateEnd() {
+	public Date getReserveDateEnd() {
 		return reserveDateEnd;
 	}
 
-	public void setReserveDateEnd(String reserveDateEnd) {
+	public void setReserveDateEnd(Date reserveDateEnd) {
 		this.reserveDateEnd = reserveDateEnd;
 	}
-    
 }

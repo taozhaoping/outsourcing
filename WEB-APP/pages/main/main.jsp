@@ -188,12 +188,15 @@
 								</thead>
 								<tbody>
 									<s:iterator value="noticeList" var="notice" status="index">
-										<a href="main!queryNotice.jspa?id=<s:property value='#notice.id'/>">
 										<tr>
 											<td>
 												<s:property value="#index.index+1"/>
 											</td>
-											<td><s:property value="#notice.title"/></td>
+											<td>
+												<a href="main!queryNotice.jspa?id=<s:property value='#notice.id'/>">
+													<s:property value="#notice.title"/>
+												</a>
+											</td>
 											<td><s:property value="#notice.createdate"/></td>
 										</tr>
 										</a>
@@ -206,28 +209,38 @@
 
 				<div class="row-fluid">
 					<div class="block span6">
-						<div class="block-heading">
-							<span class="block-icon pull-right"> <a href="#"
-								class="demo-cancel-click" rel="tooltip" title="Click to refresh"><i
-									class="icon-refresh"></i></a>
-							</span> <a href="#widget2container" data-toggle="collapse">新入职员工</a>
-						</div>
+						<a href="#widget2container" class="block-heading" data-toggle="collapse">待联系外教</a>
+						
 						<div id="widget2container" class="block-body collapse in">
 							<table class="table list">
 								<thead>
 									<tr>
 										<th>编号</th>
-										<th>描述</th>
-										<th>状态</th>
+										<th>姓名</th>
+										<th>联系状态</th>
 									</tr>
 								</thead>
 								<tbody>
-									<s:iterator value="taskList" var="task" status="index">
+									<s:iterator value="contactRecordVWList" var="tp" status="index">
 										<tr>
-											<td><a href="#"><s:property value="#task.id"/></a></td>
-											<td><s:property value="#task.name"/></td>
 											<td>
-												<a href="#">查看</a> 
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<s:property value="#tp.id"/>
+											</a>
+											</td>
+											<td>
+												<s:if test="#tp.type==1">
+													已经签约
+												</s:if>
+												<s:elseif test="#tp.type==2">
+													正在洽谈
+												</s:elseif>
+												<s:elseif test="#tp.type==3">
+													有意向
+												</s:elseif>
+												<s:elseif test="#tp.type==4">
+													潜在外教
+												</s:elseif>
 											</td>
 										</tr>
 									</s:iterator>
@@ -235,22 +248,45 @@
 							</table>
 						</div>
 					</div>
+					
 					<div class="block span6">
-						<p class="block-heading">员工合同到期</p>
-						<div class="block-body">
-							<h2>Built with Less</h2>
-							<p>The CSS is built with Less. There is a compiled version
-								included if you prefer plain CSS.</p>
-							<p>Fava bean jícama seakale beetroot courgette shallot
-								amaranth pea garbanzo carrot radicchio peanut leek pea sprouts
-								arugula brussels sprout green bean. Spring onion broccoli
-								chicory shallot winter purslane pumpkin gumbo cabbage squash
-								beet greens lettuce celery. Gram zucchini swiss chard mustard
-								burdock radish brussels sprout groundnut. Asparagus horseradish
-								beet greens broccoli brussels.</p>
-							<p>
-								<a class="btn btn-primary btn-large">Learn more &raquo;</a>
-							</p>
+						<a href="#widget3container" class="block-heading" data-toggle="collapse">待联系加盟商</a>
+						
+						<div id="widget3container" class="block-body collapse in">
+							<table class="table list">
+								<thead>
+									<tr>
+										<th>编号</th>
+										<th>姓名</th>
+										<th>联系状态</th>
+									</tr>
+								</thead>
+								<tbody>
+									<s:iterator value="franchiseeRecordVWList" var="tp" status="index">
+										<tr>
+											<td>
+											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<s:property value="#tp.id"/>
+											</a>
+											</td>
+											<td>
+												<s:if test="#tp.type==1">
+													已经签约
+												</s:if>
+												<s:elseif test="#tp.type==2">
+													正在洽谈
+												</s:elseif>
+												<s:elseif test="#tp.type==3">
+													有意向
+												</s:elseif>
+												<s:elseif test="#tp.type==4">
+													潜在外教
+												</s:elseif>
+											</td>
+										</tr>
+									</s:iterator>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

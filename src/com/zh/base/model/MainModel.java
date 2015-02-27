@@ -7,6 +7,8 @@ import com.zh.base.model.bean.Notice;
 import com.zh.base.model.bean.Role;
 import com.zh.base.model.bean.User;
 import com.zh.core.base.model.BaseModel;
+import com.zh.web.model.bean.ContactRecordVW;
+import com.zh.web.model.bean.FranchiseeRecordVW;
 import com.zh.web.model.bean.TechnologicalProcess;
 
 public class MainModel extends BaseModel {
@@ -32,6 +34,16 @@ public class MainModel extends BaseModel {
 	 * 系统公告
 	 */
 	private List<Notice> noticeList = new ArrayList<Notice>();
+	
+	/**
+	 * 待联系外教
+	 */
+	private List<ContactRecordVW> contactRecordVWList = new ArrayList<ContactRecordVW>();
+	
+	/**
+	 * 待联系加盟商
+	 */
+	private List<FranchiseeRecordVW> franchiseeRecordVWList = new ArrayList<FranchiseeRecordVW>();
 	
 	/**
 	 * 任务数量
@@ -111,5 +123,20 @@ public class MainModel extends BaseModel {
 		this.notice = notice;
 	}
 
-	
+	public List<ContactRecordVW> getContactRecordVWList() {
+		return contactRecordVWList;
+	}
+
+	public void setContactRecordVWList(List<ContactRecordVW> contactRecordVWList) {
+		this.contactRecordVWList = contactRecordVWList;
+	}
+
+	public List<FranchiseeRecordVW> getFranchiseeRecordVWList() {
+		return franchiseeRecordVWList;
+	}
+
+	public void setFranchiseeRecordVWList(
+			List<FranchiseeRecordVW> franchiseeRecordVWList) {
+		this.franchiseeRecordVWList = franchiseeRecordVWList;
+	}
 }

@@ -24,7 +24,11 @@ import com.zh.core.model.Pager;
 import com.zh.core.model.VariableUtil;
 import com.zh.core.util.BCrypt;
 import com.zh.core.util.JSONUtil;
+import com.zh.web.model.bean.ContactRecordVW;
+import com.zh.web.model.bean.FranchiseeRecordVW;
 import com.zh.web.model.bean.TechnologicalProcess;
+import com.zh.web.service.ContactRecordService;
+import com.zh.web.service.FranchiseeRecordService;
 import com.zh.web.service.TechnologicalProcessService;
 
 public class mainAction extends BaseAction {
@@ -49,6 +53,12 @@ public class mainAction extends BaseAction {
 
 	@Autowired
 	private TechnologicalProcessService technologicalProcessService;
+	
+	@Autowired
+	private ContactRecordService contactRecordService;
+	
+	@Autowired
+	private FranchiseeRecordService franchiseeRecordService;
 	
 	/**
 	 * 
@@ -127,6 +137,21 @@ public class mainAction extends BaseAction {
 		//page.setTotalRow(size);
 		List<Notice> noticeList = noticeService.queryList(notice, page);
 		this.getMainModel().setNoticeList(noticeList);
+		
+		//待联系的外教
+		ContactRecordVW contactRecordVW = new ContactRecordVW();
+		contactRecordVW.setWorkUserId(user.getId());
+		Pager pager = this.getMainModel().getPageInfo();
+		pager.setPageSize(5);
+		List<ContactRecordVW> contactRecordVWList = contactRecordService.queryVWList(contactRecordVW, pager);
+		this.getMainModel().setContactRecordVWList(contactRecordVWList);
+		
+		//待联系的加盟商
+		FranchiseeRecordVW franchiseeRecordVW = new FranchiseeRecordVW(); 
+		franchiseeRecordVW.setCreateUserId(user.getId());
+		List<FranchiseeRecordVW> franchiseeRecordVWList = franchiseeRecordService.queryVWList(franchiseeRecordVW, pager);
+		this.getMainModel().setFranchiseeRecordVWList(franchiseeRecordVWList);
+		
 		return Action.SUCCESS;
 	}
 	
