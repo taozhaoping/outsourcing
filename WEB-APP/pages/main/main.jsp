@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page import="com.zh.base.util.JspUtil" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -51,6 +52,7 @@
 <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <body class="">
+<jsp:useBean id="userName" class="com.zh.base.util.JspUtil" scope="session"></jsp:useBean>
 <!--<![endif]-->
 	<s:if test="%{#request.role.menuList != null}">
 		<s:set name="menuList" scope="session" value="#request.role.menuList"></s:set>
@@ -224,9 +226,12 @@
 									<s:iterator value="contactRecordVWList" var="tp" status="index">
 										<tr>
 											<td>
-											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
-												<s:property value="#tp.id"/>
-											</a>
+												<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+													<s:property value="#tp.id"/>
+												</a>
+											</td>
+											<td>
+												<s:property value="#tp.createUserId"/>
 											</td>
 											<td>
 												<s:if test="#tp.type==1">
@@ -265,9 +270,12 @@
 									<s:iterator value="franchiseeRecordVWList" var="tp" status="index">
 										<tr>
 											<td>
-											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
-												<s:property value="#tp.id"/>
-											</a>
+												<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+													<s:property value="#tp.id"/>
+												</a>
+											</td>
+											<td>
+												<s:property value="#tp.workUserId"/>
 											</td>
 											<td>
 												<s:if test="#tp.type==1">

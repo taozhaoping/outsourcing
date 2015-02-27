@@ -128,12 +128,12 @@
 									<label class="control-label">预约时间：
 										<input type="text" id="reserveDateStart"
 											name="franchiseeRecordVW.reserveDateStart"
-											value="${franchiseeRecordVW.reserveDateStart}"
+											value="<s:date name="franchiseeRecordVW.reserveDateStart" format="yyyy-MM-dd" />"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="reserveDateEnd"
 											name="franchiseeRecordVW.reserveDateEnd"
-											value="${franchiseeRecordVW.reserveDateEnd}"
+											value="<s:date name="franchiseeRecordVW.reserveDateEnd" format="yyyy-MM-dd" />"
 											class="form_datetime input-small">
 									</label>
 								</div>

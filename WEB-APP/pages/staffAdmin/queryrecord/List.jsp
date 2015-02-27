@@ -122,12 +122,12 @@
 									<label class="control-label">预约时间：
 										<input type="text" id="reserveDateStart"
 											name="contactRecordVW.reserveDateStart"
-											value="${contactRecordVW.reserveDateStart}"
+											value="<s:date name="contactRecordVW.reserveDateStart" format="yyyy-MM-dd" />"
 											class="form_datetime input-small">
 											至
 										<input type="text" id="reserveDateEnd"
 											name="contactRecordVW.reserveDateEnd"
-											value="${contactRecordVW.reserveDateEnd}"
+											value="<s:date name="contactRecordVW.reserveDateEnd" format="yyyy-MM-dd" />"
 											class="form_datetime input-small">
 									</label>
 								</div>

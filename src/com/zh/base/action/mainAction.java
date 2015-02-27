@@ -1,6 +1,9 @@
 package com.zh.base.action;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.activiti.engine.TaskService;
@@ -141,6 +144,19 @@ public class mainAction extends BaseAction {
 		//待联系的外教
 		ContactRecordVW contactRecordVW = new ContactRecordVW();
 		contactRecordVW.setWorkUserId(user.getId());
+		Date reserveDateStart = new Date();
+		Date reserveDateEnd = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			reserveDateStart = format.parse(format.format(reserveDateStart));
+			reserveDateEnd = format.parse(format.format(reserveDateEnd));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		contactRecordVW.setReserveDateStart(reserveDateStart);
+		contactRecordVW.setReserveDateEnd(reserveDateEnd);
 		Pager pager = this.getMainModel().getPageInfo();
 		pager.setPageSize(5);
 		List<ContactRecordVW> contactRecordVWList = contactRecordService.queryVWList(contactRecordVW, pager);
@@ -149,6 +165,8 @@ public class mainAction extends BaseAction {
 		//待联系的加盟商
 		FranchiseeRecordVW franchiseeRecordVW = new FranchiseeRecordVW(); 
 		franchiseeRecordVW.setCreateUserId(user.getId());
+		franchiseeRecordVW.setReserveDateStart(reserveDateStart);
+		franchiseeRecordVW.setReserveDateEnd(reserveDateEnd);
 		List<FranchiseeRecordVW> franchiseeRecordVWList = franchiseeRecordService.queryVWList(franchiseeRecordVW, pager);
 		this.getMainModel().setFranchiseeRecordVWList(franchiseeRecordVWList);
 		
