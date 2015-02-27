@@ -11,7 +11,7 @@
 					<i	class="icon-user"></i>${sessionScope.userInfo.name}(${sessionScope.userInfo.loginName}) <i class="icon-caret-down"></i>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="javascript:void(0)">我的账号</a></li>
+					<li><a tabindex="-1" id="personalBtn" href="javascript:void(0)">我的账号</a></li>
 					<li class="divider"></li>
 					<li><a tabindex="-1" class="visible-phone" href="javascript:void(0)">设置</a></li>
 					<li class="divider visible-phone"></li>
@@ -98,6 +98,15 @@
 		//跳转到登陆页面
 		window.location.href = hrefStr;
 	}
+	
+	$("#personalBtn").click( function () {
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+		//跳转到用户信息
+		window.location.href = basePath + "/home/main!queryPersonal.jspa";
+	});
+	
 	/*
 	$("#recruitmentBtn").click( function () {
 		var localObj = window.location;

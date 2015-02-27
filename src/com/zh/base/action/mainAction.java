@@ -130,6 +130,51 @@ public class mainAction extends BaseAction {
 		return Action.SUCCESS;
 	}
 	
+	public String queryPersonal() {
+		User user = new User();
+		User currUser = this.queryUser();
+		if (null == currUser)
+		{
+			throw new ProjectException("当前未登陆!");
+		}
+		Integer id = currUser.getId();
+		user.setId(id);
+		User userReult = userInfoService.query(user);
+		this.mainModel.setUser(userReult);
+		return "personal";
+	}
+
+	public String save() {
+		LOGGER.debug("save()");
+		User currUser = this.queryUser();
+		if (null == currUser)
+		{
+			throw new ProjectException("当前未登陆!");
+		}
+		User user = this.mainModel.getUser();
+
+		Integer id = user.getId();
+		if ( id == null || id.equals(0))
+		{
+			throw new ProjectException("当前修改的数据错误!");
+		}
+		
+		
+		if (currUser.getId() != user.getId())
+		{
+			throw new ProjectException("当前登陆用户和修改的用户不匹配，无法修改!");
+		}
+
+		String passWord = mainModel.getNewPassWord();
+
+		if (null != passWord && !"".equals(passWord)) {
+			String bcryptPassword = BCrypt.hashpw(passWord, BCrypt.gensalt(12));
+			user.setUserPassword(bcryptPassword);
+		}
+		userInfoService.update(user);
+		return "save";
+	}
+	
 	/**
 	 * 查看系统公告
 	 * @return

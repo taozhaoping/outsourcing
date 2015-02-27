@@ -18,6 +18,8 @@
 				<param name="root">mainModel.dataMap</param>
 			</result>
 			<result name="notice">/pages/main/notice.jsp</result>
+			<result name="personal">/pages/common/personal.jsp</result>
+			<result name="save">/pages/main/main.jsp</result>
 		</action>
 		
 		<!-- 公司公告 -->
