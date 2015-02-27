@@ -32,6 +32,13 @@ public interface EntryProcessService {
 	 * @return
 	 */
 	public List<EntryProcess> queryList(EntryProcess entryProcess , Pager page);
+
+	/**
+	 * 查询列表，带分页
+	 * @param 
+	 * @return
+	 */
+	public List<EntryProcess> queryListByPermission(EntryProcess entryProcess , Pager page);
 	
 	/**
 	 * 查询数量
@@ -39,6 +46,13 @@ public interface EntryProcessService {
 	 * @return
 	 */
 	public Integer count(EntryProcess entryProcess);
+
+	/**
+	 * 查询数量
+	 * @param 
+	 * @return
+	 */
+	public Integer countByPermission(EntryProcess entryProcess);
 	
 	/**
 	 * 删除

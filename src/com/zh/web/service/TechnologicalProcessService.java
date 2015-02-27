@@ -46,6 +46,20 @@ public interface TechnologicalProcessService {
 	public Integer count(TechnologicalProcess technologicalProcess);
 	
 	/**
+	 * 查询列表，带分页
+	 * @param 
+	 * @return
+	 */
+	public List<TechnologicalProcess> queryListByPermission(TechnologicalProcess technologicalProcess , Pager page);
+	
+	/**
+	 * 查询数量
+	 * @param 
+	 * @return
+	 */
+	public Integer countByPermission(TechnologicalProcess technologicalProcess);
+	
+	/**
 	 * 删除
 	 * @param 
 	 */

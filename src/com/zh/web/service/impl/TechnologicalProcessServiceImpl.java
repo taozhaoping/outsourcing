@@ -96,4 +96,42 @@ public class TechnologicalProcessServiceImpl implements
 		technologicalProcessDao.insert(technologicalProcess);
 	}
 
+	@Override
+	public List<TechnologicalProcess> queryListByPermission(
+			TechnologicalProcess technologicalProcess, Pager page) {
+		//排序-创建时间，降序
+		technologicalProcess.setOrderByClause("CREATETIME DESC");
+		List<TechnologicalProcess> retList = technologicalProcessDao.queryPageListByPermission(technologicalProcess, page);
+		for(TechnologicalProcess tp : retList){
+			User user = new User();
+			//创建者
+			user.setId(Integer.valueOf(tp.getWorkuserid()));
+			User reult = userInfoDAO.query(user);
+			if(null != reult){
+				tp.setWorkUserName(reult.getName());
+			}
+			//当前审批者
+			String approver = tp.getApprover();
+			if("-1".equals(approver)){
+				tp.setApprover("");
+			}
+			
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					tp.setApprover(ret.getName());
+				}
+			}
+			
+		}
+		return retList;
+	}
+
+	@Override
+	public Integer countByPermission(TechnologicalProcess technologicalProcess) {
+		return technologicalProcessDao.countByPermission(technologicalProcess);
+	}
+
 }

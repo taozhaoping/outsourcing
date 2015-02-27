@@ -82,7 +82,7 @@
 			<if test="owner != null and owner != '' and (approver == null or approver == '')">
 				and OWNER = #{owner}
 			</if>
-			<if test="(owner == null and owner == '' ) and approver != null and approver != ''">
+			<if test="(owner == null or owner == '' ) and approver != null and approver != ''">
 				and APPROVER = #{approver}
 			</if>
 		</where>

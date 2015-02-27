@@ -109,6 +109,14 @@ public class RecruitmentAction extends BaseAction {
 
 	public String execute() {
 		LOGGER.debug("execute()");
+		/* 获取当前登录用户 */
+		User user = queryUser();
+		//创建用户id
+		Integer owner = user.getId();
+		//用户名
+		String loginName = user.getLoginName();
+		//角色id
+		String roleId = user.getRoleId();
 		/*
 		 * //获取工作流的实例 List<ProcessInstance> procInstList =
 		 * runtimeService.createProcessInstanceQuery()
@@ -116,16 +124,27 @@ public class RecruitmentAction extends BaseAction {
 		 * procInstList){ System.out.println("businessKey: " +
 		 * pi.getBusinessKey() + " id: " + pi.getId()); }
 		 */
-		TechnologicalProcess technologicalProcess = this.recruitmentModel
-				.getTechnologicalProcess();
-		Pager pager = this.recruitmentModel.getPageInfo();
-		Integer count = technologicalProcessService.count(technologicalProcess);
-		pager.setTotalRow(count);
-		List<TechnologicalProcess> technologicalProcessList = technologicalProcessService
-				.queryList(technologicalProcess, pager);
-		this.recruitmentModel
-				.setTechnologicalProcessList(technologicalProcessList);
-
+		//角色id为1的为超级管理员，查看所有的流程
+		if("1".equalsIgnoreCase(roleId)){
+			TechnologicalProcess technologicalProcess = this.recruitmentModel
+					.getTechnologicalProcess();
+			Pager pager = this.recruitmentModel.getPageInfo();
+			Integer count = technologicalProcessService.count(technologicalProcess);
+			pager.setTotalRow(count);
+			List<TechnologicalProcess> technologicalProcessList = technologicalProcessService
+					.queryList(technologicalProcess, pager);
+			this.recruitmentModel.setTechnologicalProcessList(technologicalProcessList);
+		
+		}else{
+			TechnologicalProcess technologicalProcess = this.recruitmentModel.getTechnologicalProcess();
+			technologicalProcess.setApprover(loginName);
+			technologicalProcess.setWorkuserid(owner);
+			Pager pager = this.recruitmentModel.getPageInfo();
+			Integer count = technologicalProcessService.countByPermission(technologicalProcess);
+			pager.setTotalRow(count);
+			List<TechnologicalProcess> technologicalProcessList = technologicalProcessService.queryListByPermission(technologicalProcess, pager);
+			this.recruitmentModel.setTechnologicalProcessList(technologicalProcessList);
+		}
 		return Action.SUCCESS;
 	}
 

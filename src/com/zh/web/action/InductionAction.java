@@ -139,6 +139,14 @@ public class InductionAction extends BaseAction {
 
 	public String execute() {
 		LOGGER.debug("execute()");
+		/* 获取当前登录用户 */
+		User user = queryUser();
+		//创建用户id
+		Integer owner = user.getId();
+		//用户名
+		String loginName = user.getLoginName();
+		//角色id
+		String roleId = user.getRoleId();
 		/*
 		 * //获取工作流的实例 List<ProcessInstance> procInstList =
 		 * runtimeService.createProcessInstanceQuery()
@@ -146,13 +154,26 @@ public class InductionAction extends BaseAction {
 		 * procInstList){ System.out.println("businessKey: " +
 		 * pi.getBusinessKey() + " id: " + pi.getId()); }
 		 */
-		EntryProcess entryProcess = this.inductionModel.getEntryProcess();
-		Pager pager = this.inductionModel.getPageInfo();
-		Integer count = entryProcessService.count(entryProcess);
-		pager.setTotalRow(count);
-		List<EntryProcess> entryProcessList = entryProcessService.queryList(
-				entryProcess, pager);
-		this.inductionModel.setEntryProcessList(entryProcessList);
+		//角色id为1的为超级管理员，查看所有的流程
+		if("1".equalsIgnoreCase(roleId)){
+			EntryProcess entryProcess = this.inductionModel.getEntryProcess();
+			Pager pager = this.inductionModel.getPageInfo();
+			Integer count = entryProcessService.count(entryProcess);
+			pager.setTotalRow(count);
+			List<EntryProcess> entryProcessList = entryProcessService.queryList(entryProcess, pager);
+			this.inductionModel.setEntryProcessList(entryProcessList);
+		
+		}else{
+			//创建者是当前用户或者审批者是当前用户的流程
+			EntryProcess entryProcess = this.inductionModel.getEntryProcess();
+			entryProcess.setApprover(loginName);
+			entryProcess.setWorkuserid(owner);
+			Pager pager = this.inductionModel.getPageInfo();
+			Integer count = entryProcessService.countByPermission(entryProcess);
+			pager.setTotalRow(count);
+			List<EntryProcess> entryProcessList = entryProcessService.queryListByPermission(entryProcess, pager);
+			this.inductionModel.setEntryProcessList(entryProcessList);
+		}
 
 		return Action.SUCCESS;
 	}

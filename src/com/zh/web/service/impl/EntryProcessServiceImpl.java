@@ -95,4 +95,43 @@ public class EntryProcessServiceImpl implements EntryProcessService {
 		entryProcessDao.insert(entryProcess);
 	}
 
+	@Override
+	public List<EntryProcess> queryListByPermission(EntryProcess entryProcess,
+			Pager page) {
+		//排序-创建时间，降序
+		entryProcess.setOrderByClause("CREATETIME DESC");
+		List<EntryProcess> retList = entryProcessDao.queryPageListByPermission(entryProcess, page);
+		for(EntryProcess ep : retList){
+			User user = new User();
+			//创建者
+			user.setId(Integer.valueOf(ep.getWorkuserid()));
+			User reult = userInfoDAO.query(user);
+			if(null != reult){
+				ep.setWorkUserName(reult.getName());
+			}
+			//当前审批者
+			String approver = ep.getApprover();
+			if("-1".equals(approver)){
+				ep.setApprover("");
+			}
+			
+			if(null != approver && !"".equals(approver.trim()) && !"-1".equals(approver)){
+				user = new User();
+				user.setLoginName(approver);
+				User ret = userInfoDAO.query(user);
+				if(null != ret){
+					ep.setApprover(ret.getName());
+				}
+			}
+		}
+		
+		return retList;
+	}
+
+	@Override
+	public Integer countByPermission(EntryProcess entryProcess) {
+		// TODO Auto-generated method stub
+		return entryProcessDao.countByPermission(entryProcess);
+	}
+
 }
