@@ -42,9 +42,12 @@ public class FranchiseeMainAction extends BaseAction{
 		/* 获取基本信息 */
 		Franchisee franchisee = this.franchiseeModel.getFranchisee();
 
+		//获取所有审批完成的加盟商数据
+		franchisee.setStatus("完成");
 		/* 获取当前登录用户 */
-		User user = queryUser();
-		franchisee.setCreateUserId(user.getId());
+		
+		//User user = queryUser();
+		//franchisee.setCreateUserId(user.getId());
 		Pager pager = this.franchiseeModel.getPageInfo();
 		Integer count = franchiseeService.count(franchisee);
 		pager.setTotalRow(count);
