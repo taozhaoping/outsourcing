@@ -21,6 +21,11 @@ public class FranchiseeRecordVW extends IDataObject {
 	 */
     private Integer id;
     
+    /**
+     * 流程编号
+     */
+    private String changeNumber;
+    
     private String name;
     
     /**
@@ -142,6 +147,14 @@ public class FranchiseeRecordVW extends IDataObject {
 
 	public void setCreateUserId(Integer createUserId) {
 		this.createUserId = createUserId;
+	}
+
+	public String getChangeNumber() {
+		return changeNumber;
+	}
+
+	public void setChangeNumber(String changeNumber) {
+		this.changeNumber = changeNumber;
 	}
     
 }

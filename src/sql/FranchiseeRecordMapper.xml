@@ -12,6 +12,7 @@
 	
 	<resultMap type="FranchiseeRecordVW" id="VW_FranchiseeRecord">
 		<id column="ID" property="id" />
+		<result column="change_Number" property="changeNumber" jdbcType="VARCHAR" />
 		<result column="NAME" property="name" jdbcType="VARCHAR" />
 		<result column="CREATEUSERID" property="createUserId"/>
 		<result column="DESCR" property="descr" jdbcType="VARCHAR" />
@@ -71,6 +72,7 @@
 		<select id="list_VW" resultMap="VW_FranchiseeRecord" parameterType="FranchiseeRecordVW">
 		select
 			ID, 
+			change_Number,
 			NAME,
 			createUserId,
 			DESCR, 
@@ -79,8 +81,8 @@
 			RESERVEDATE
 		from t_franchisee_record_VW
 		<where>
-			<if test="id != null">
-				and id = #{id}
+			<if test="changeNumber != null">
+				and change_Number = #{changeNumber}
 			</if>
 			<if test="name != null">
 				and NAME = #{name,jdbcType=VARCHAR}
@@ -121,8 +123,8 @@
 			count(id)
 		from t_franchisee_record_VW
 		<where>
-			<if test="id != null">
-				and id = #{id}
+			<if test="changeNumber != null">
+				and change_Number = #{changeNumber}
 			</if>
 			<if test="name != null">
 				and NAME = #{name,jdbcType=VARCHAR}

@@ -92,8 +92,8 @@
 							<dir class="row">
 								<div class="span5">
 									<label class="control-label">流程编号：
-										<input type="number" maxlength="15" id="inputId" name="franchiseeRecordVW.id"
-											value="${franchiseeRecordVW.id}" class="input-large">
+										<input type="text" maxlength="15" id="inputId" name="franchiseeRecordVW.changeNumber"
+											value="${franchiseeRecordVW.changeNumber}" class="input-large">
 										</label>
 								</div>
 								<div class="span4">
@@ -178,7 +178,7 @@
 									<tr>
 										<td>
 											<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
-												<s:property value="#tp.id"/>
+												<s:property value="#tp.changeNumber"/>
 											</a>
 										</td>
 										<td><s:property value="#tp.name"/></td>

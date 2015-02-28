@@ -610,8 +610,29 @@ create table T_CHANGE(
 	RES4     VARCHAR2(150),--扩展字段4
 	RES5     VARCHAR2(150),--扩展字段5
 	RES6     VARCHAR2(150)--扩展字段6
-)
+);
 
+/*注释*/
+COMMENT ON table T_CHANGE IS '流程表单表 ';
+comment on column T_CHANGE.ID is 'ID';
+comment on column T_CHANGE.CHANGE_NUMBER is '变更编号';
+comment on column T_CHANGE.CATEGORY is '类别';
+comment on column T_CHANGE.DESCRIPTION is '描述';
+comment on column T_CHANGE.STATUS is '状态';
+comment on column T_CHANGE.OWNER is '创建者';
+comment on column T_CHANGE.CREATE_DATE is '创建时间';
+comment on column T_CHANGE.UPDATE_DATE is '修改时间';
+comment on column T_CHANGE.DELETE_FLAG is '删除标志';
+comment on column T_CHANGE.WORKFLOW_ID is '工作流id';
+comment on column T_CHANGE.APPROVER is '当前审批人';
+comment on column T_CHANGE.TASK_ID is '当前任务id';
+comment on column T_CHANGE.URL is '表单的url';
+comment on column T_CHANGE.RES1 is '扩展字段1';
+comment on column T_CHANGE.RES2 is '扩展字段2';
+comment on column T_CHANGE.RES3 is '扩展字段3';
+comment on column T_CHANGE.RES4 is '扩展字段4';
+comment on column T_CHANGE.RES5 is '扩展字段5';
+comment on column T_CHANGE.RES6 is '扩展字段6';
 
 
 

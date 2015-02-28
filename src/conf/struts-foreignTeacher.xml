@@ -191,7 +191,7 @@
 		</action>
 		
 		<!-- 加盟商维护 -->
-		<action name="franchisee" class="com.zh.web.action.FranchiseeAction"
+		<action name="franchisee" class="com.zh.web.action.FranchiseeMainAction"
 			method="execute">
 			<result name="success">/pages/staffAdmin/franchisee/List.jsp</result>
 			<result name="editor">/pages/staffAdmin/franchisee/edit.jsp</result>
