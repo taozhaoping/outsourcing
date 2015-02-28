@@ -229,7 +229,7 @@
 			
 			//提交按钮
 			$("#btnSubmit").click(function(){
-				$('#curPage').val("");
+				$('#curPage').val("1");
 				$('#queryForm').submit();
 			});
 			

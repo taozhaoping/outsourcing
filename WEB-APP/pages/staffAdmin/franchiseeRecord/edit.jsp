@@ -228,13 +228,10 @@
 										<div class="control-group">
 											<label class="control-label" for="franchiseeStatus">状态：</label>
 											<div class="controls">
-												<select id="franchiseeStatus" class="input-large"  disabled="disabled"
-													 placeholder="状态" readonly value="${franchisee.status}"
-													name="franchisee.status">
-													<option value="0">发起</option>
-													<option value="1"></option>
-													<option value="2"></option>
-												</select>
+												<input type="text" size="15" id="franchiseeStatus"
+													name="franchisee.status" disabled="disabled"
+													placeholder="状态" readonly value="${franchisee.status}"
+													class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
