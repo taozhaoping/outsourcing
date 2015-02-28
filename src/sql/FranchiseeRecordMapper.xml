@@ -81,10 +81,10 @@
 			RESERVEDATE
 		from t_franchisee_record_VW
 		<where>
-			<if test="changeNumber != null">
+			<if test="changeNumber != null and changeNumber != ''">
 				and change_Number = #{changeNumber}
 			</if>
-			<if test="name != null">
+			<if test="name != null and name != ''">
 				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="createUserId != null">
@@ -123,10 +123,10 @@
 			count(id)
 		from t_franchisee_record_VW
 		<where>
-			<if test="changeNumber != null">
+			<if test="changeNumber != null and changeNumber != ''">
 				and change_Number = #{changeNumber}
 			</if>
-			<if test="name != null">
+			<if test="name != null and name != ''">
 				and NAME = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="createUserId != null">

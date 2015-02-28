@@ -23,5 +23,6 @@ select b.f_id id,
               where a.createdate = (select max(createdate)
                                       from t_franchisee_record d
                                      where a.franchiseeid = d.franchiseeid)) c
-    on c.FRANCHISEEID = b.f_id;
+    on c.FRANCHISEEID = b.f_id
+   where b.STATUS != '完成';
 
