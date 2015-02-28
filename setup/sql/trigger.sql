@@ -914,15 +914,19 @@ END;
 
 prompt
 prompt Creating trigger CHANGE_T
-prompt ==============================
+prompt =========================
 prompt
-CREATE OR REPLACE TRIGGER CHANGE_T
+CREATE OR REPLACE TRIGGER OSFI.CHANGE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_CHANGE
 FOR EACH ROW
 DECLARE
 createDate    date;
 modifyDate    date;
+newStatus varchar2(50);
+oldStatus varchar2(50);
+newRes1 varchar2(50);
+oldRes1 varchar2(50);
 BEGIN
 IF DELETING THEN
   BEGIN
@@ -931,6 +935,14 @@ IF DELETING THEN
 END IF;
 IF INSERTING THEN
   BEGIN
+    newStatus := :new.STATUS;
+    oldStatus := :old.STATUS;
+    newRes1 := :new.res1;
+    oldRes1 := :old.res1;
+    
+    if newStatus is not null THEN
+      UPDATE T_THE_FRANCHISEE SET STATUS = newStatus WHERE ID = nvl(newRes1,oldRes1);
+    END IF;
     select SYSDATE into createDate from dual;
     select SYSDATE into modifyDate from dual;
     :new.CREATE_DATE := createDate;
@@ -938,20 +950,34 @@ IF INSERTING THEN
     EXCEPTION
     WHEN OTHERS THEN
     DBMS_OUTPUT.PUT_LINE('Failed Insert Trigger Operation in table T_CHANGE');
+    DBMS_OUTPUT.put_line('sqlcode : ' ||sqlcode); 
+    DBMS_OUTPUT.put_line('sqlerrm : ' ||sqlerrm);
   END;
 END IF;
 IF UPDATING THEN
   BEGIN
+    newStatus := :new.STATUS;
+    oldStatus := :old.STATUS;
+    newRes1 := :new.res1;
+    oldRes1 := :old.res1;
+    
+    if newStatus != oldStatus THEN
+      UPDATE T_THE_FRANCHISEE SET STATUS = newStatus WHERE ID = nvl(newRes1,oldRes1);
+    END IF;
     select SYSDATE into modifyDate from dual;
     :new.UPDATE_DATE := modifyDate;
     EXCEPTION
     WHEN OTHERS THEN
     DBMS_OUTPUT.PUT_LINE('Failed Update Trigger Operation in table T_CHANGE');
+    DBMS_OUTPUT.put_line('sqlcode : ' ||sqlcode); 
+    DBMS_OUTPUT.put_line('sqlerrm : ' ||sqlerrm);
   END;
 END IF;
 EXCEPTION
 WHEN OTHERS THEN
 DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_CHANGE');
+DBMS_OUTPUT.put_line('sqlcode : ' ||sqlcode); 
+DBMS_OUTPUT.put_line('sqlerrm : ' ||sqlerrm);
 END;
 /
 

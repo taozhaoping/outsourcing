@@ -101,7 +101,7 @@ create table t_The_franchisee
    name               VARCHAR(25),  --名称
    descr              varchar(250), --描述
    address            VARCHAR(100), --地址
-   status             VARCHAR(1),   --状态
+   status             VARCHAR(10),   --状态
    contract_type      VARCHAR(1),   --合同类型
    contract_start_Date VARCHAR(20), --合同开始时间
    contract_end_Date  VARCHAR(20),   --合同结束时间
