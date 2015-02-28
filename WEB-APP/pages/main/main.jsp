@@ -226,7 +226,7 @@
 									<s:iterator value="contactRecordVWList" var="tp" status="index">
 										<tr>
 											<td>
-												<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<a href="<%=path%>/staffAdmin/contactrecord!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=memorandum&menu2Id=contactrecord&spaceId=staffAdmin">
 													<s:property value="#tp.id"/>
 												</a>
 											</td>
@@ -270,7 +270,7 @@
 									<s:iterator value="franchiseeRecordVWList" var="tp" status="index">
 										<tr>
 											<td>
-												<a href="<%=path%>/${spaceId}/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}">
+												<a href="<%=path%>/staffAdmin/franchiseerecord!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=memorandum&menu2Id=franchiseerecord&spaceId=staffAdmin">
 													<s:property value="#tp.id"/>
 												</a>
 											</td>
