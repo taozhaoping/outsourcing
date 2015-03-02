@@ -57,7 +57,7 @@ create table t_franchisee_record
    franchiseeID NUMBER,
    descr            VARCHAR(250), --描述
    type            VARCHAR(1),    --类型
-   constraint PK_CONTACT_RECORD primary key (id)
+   constraint PK_franchisee_record primary key (id)
 );
 /*注释*/
 COMMENT ON table t_franchisee_record IS '通话记录';
@@ -78,7 +78,7 @@ create table t_Mail_list
    phone              VARCHAR(20),  --电话号码
    name               VARCHAR(25),  --姓名
    franchiseeId       NUMBER,       --加盟商ID
-  constraint PK_The_franchisee primary key (id)
+  constraint PK_Mail_list primary key (id)
 );
 /*注释*/
 COMMENT ON table t_Mail_list IS '加盟商信息';
@@ -105,7 +105,7 @@ create table t_The_franchisee
    contract_type      VARCHAR(1),   --合同类型
    contract_start_Date VARCHAR(20), --合同开始时间
    contract_end_Date  VARCHAR(20),   --合同结束时间
-   createUserId       VARCHAR(20)    --创建人
+   createUserId       VARCHAR(20),    --创建人
    constraint PK_The_franchisee primary key (id)
 );
 /*注释*/
@@ -197,7 +197,8 @@ create table t_ActivitiesUser
 /*注释*/
 COMMENT ON table t_ActivitiesUser IS '活动人员表 ';
 comment on column t_ActivitiesUser.ActivitiesId is '活动信息id';
-comment on column t_ActivitiesUser.Userid is '人员id';
+comment on column t_ActivitiesUser.TechnologicalProcessID is '人员id';
+comment on column t_ActivitiesUser.createDate is '创建时间';
 
 /*==============================================================*/
 /* Table: Certificates                                        */

@@ -7,10 +7,10 @@
 @@activiti//createAct//activiti.oracle.create.history.sql
 @@activiti//createAct//activiti.oracle.create.identity.sql
 --systabel
-@@createTable.sql
+--@@createTable.sql
 --businessTable
-@@createBusinessTable.sql
+--@@createBusinessTable.sql
 --trigger
-@@trigger.sql
+--@@trigger.sql
 --init data
-@@init(20141108).sql
+--@@init(20141108).sql

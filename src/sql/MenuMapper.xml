@@ -19,31 +19,28 @@
 	<sql id="where">
 		<where>
 			<if test="id != null">
-				#{id}
+				id = #{id} 
 			</if>
 			<if test="name != null">
-				#{name,jdbcType=VARCHAR}
+				name = #{name,jdbcType=VARCHAR}
 			</if>
 			<if test="nameSpace != null">
-				#{nameSpace,jdbcType=VARCHAR}
+				nameSpace=#{nameSpace,jdbcType=VARCHAR}
 			</if>
 			<if test="action != null">
-				#{action,jdbcType=VARCHAR}
+				action=#{action,jdbcType=VARCHAR}
 			</if>
 			<if test="url != null">
-				#{url,jdbcType=VARCHAR}
+				url=#{url,jdbcType=VARCHAR}
 			</if>
 			<if test="i18nKey != null">
-				#{i18nKey,jdbcType=VARCHAR}
+				i18nKey=#{i18nKey,jdbcType=VARCHAR}
 			</if>
-			<if test="enabled != null">
-				#{enabled,jdbcType=VARCHAR}
+			<if test="1 == 1">
+				enabled=0
 			</if>
 			<if test="parentid != null">
-				#{parentid}
-			</if>
-			<if test="reorder != null">
-				#{reorder}
+				parentid=#{parentid}
 			</if>
 		</where>
 	</sql>
@@ -60,7 +57,7 @@
 			PARENTID, 
 			REORDER
 		from sys_role_to_menu rm left join sys_menu m on rm.menu_id=m.id
-		where role_id = #{id} ORDER BY REORDER
+		where role_id = #{id} and ENABLED=0 ORDER BY REORDER
 	</select>
 
 	<select id="select" resultMap="T_Menu" parameterType="Menu">

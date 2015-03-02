@@ -3,14 +3,14 @@
 -- Created by 21829 on 2014/9/11, 19:09:36 --
 ---------------------------------------------
 
-set define off
-spool trigger.log
+--set define off
+--spool trigger.log
 
 
-prompt
-prompt Creating trigger PERSONNEL_RECORD_T
-prompt =============================
-prompt
+--
+-- Creating trigger PERSONNEL_RECORD_T
+-- =============================
+--
 CREATE OR REPLACE TRIGGER FRANCHISEE_RECORD_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_FRANCHISEE_RECORD
@@ -38,11 +38,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_FRANCHISEE_RECOR
 END;
 /
 
-prompt
-prompt Creating trigger MAIL_LIST_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger MAIL_LIST_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER MAIL_LIST_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_MAIL_LIST
@@ -82,11 +82,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_MAIL_LIST');
 END;
 /
 
-prompt
-prompt Creating trigger THE_FRANCHISEE_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger THE_FRANCHISEE_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER THE_FRANCHISEE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_THE_FRANCHISEE
@@ -126,10 +126,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_THE_FRANCHISEE')
 END;
 /
 
-prompt
-prompt Creating trigger PERSONNEL_RECORD_T
-prompt =============================
-prompt
+--
+-- Creating trigger PERSONNEL_RECORD_T
+-- =============================
+--
 CREATE OR REPLACE TRIGGER PERSONNEL_RECORD_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_PERSONNEL_RECORD
@@ -157,11 +157,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_PERSONNEL_RECORD
 END;
 /
 
-prompt
-prompt Creating trigger PERSONNEL_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger PERSONNEL_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER PERSONNEL_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_PERSONNEL
@@ -201,10 +201,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_PERSONNEL');
 END;
 /
 
-prompt
-prompt Creating trigger ACTIVITIESUSER_T
-prompt =============================
-prompt
+--
+-- Creating trigger ACTIVITIESUSER_T
+-- =============================
+--
 CREATE OR REPLACE TRIGGER ACTIVITIESUSER_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_ACTIVITIESUSER
@@ -232,11 +232,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ACTIVITIESUSER')
 END;
 /
 
-prompt
-prompt Creating trigger ACTIVITIES_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger ACTIVITIES_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER ACTIVITIES_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_ACTIVITIES
@@ -276,11 +276,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ACTIVITIES');
 END;
 /
 
-prompt
-prompt Creating trigger PHYSICALEXAMINATION_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger PHYSICALEXAMINATION_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER PHYSICALEXAMINATION_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_PHYSICALEXAMINATION
@@ -320,11 +320,11 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_PHYSICALEXAMINAT
 END;
 /
 
-prompt
-prompt Creating trigger HOTEL_T
-prompt =============================
-prompt
-prompt
+--
+-- Creating trigger HOTEL_T
+-- =============================
+--
+--
 CREATE OR REPLACE TRIGGER HOTEL_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_HOTEL
@@ -364,10 +364,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_HOTEL');
 END;
 /
 
-prompt
-prompt Creating trigger TRAININGOFPERSONNEL_T
-prompt =============================
-prompt
+--
+-- Creating trigger TRAININGOFPERSONNEL_T
+-- =============================
+--
 CREATE OR REPLACE TRIGGER TRAININGOFPERSONNEL_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_TRAININGOFPERSONNEL
@@ -395,10 +395,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_TRAININGOFPERSON
 END;
 /
 
-prompt
-prompt Creating trigger ACTIVITIES_T
-prompt =============================
-prompt
+--
+-- Creating trigger ACTIVITIES_T
+-- =============================
+--
 CREATE OR REPLACE TRIGGER ACTIVITIES_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_ACTIVITIES
@@ -438,10 +438,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ACTIVITIES');
 END;
 /
 
-prompt
-prompt Creating trigger CERTIFICATES_T
-prompt ===============================
-prompt
+--
+-- Creating trigger CERTIFICATES_T
+-- ===============================
+--
 CREATE OR REPLACE TRIGGER CERTIFICATES_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_CERTIFICATES
@@ -481,10 +481,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_CERTIFICATES');
 END;
 /
 
-prompt
-prompt Creating trigger FILEINFO_T
-prompt ===========================
-prompt
+--
+-- Creating trigger FILEINFO_T
+-- ===========================
+--
 CREATE OR REPLACE TRIGGER FILEINFO_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_FILEINFO
@@ -524,10 +524,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_FILEINFO');
 END;
 /
 
-prompt
-prompt Creating trigger HOTEL_T
-prompt ========================
-prompt
+--
+-- Creating trigger HOTEL_T
+-- ========================
+--
 CREATE OR REPLACE TRIGGER HOTEL_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_HOTEL
@@ -567,10 +567,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_HOTEL');
 END;
 /
 
-prompt
-prompt Creating trigger SYS_RESOURCEINFO_T
-prompt ===================================
-prompt
+--
+-- Creating trigger SYS_RESOURCEINFO_T
+-- ===================================
+--
 CREATE OR REPLACE TRIGGER SYS_RESOURCEINFO_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON SYS_RESOURCEINFO
@@ -610,10 +610,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table SYS_RESOURCEINFO')
 END;
 /
 
-prompt
-prompt Creating trigger SYS_ROLE_T
-prompt ===========================
-prompt
+--
+-- Creating trigger SYS_ROLE_T
+-- ===========================
+--
 CREATE OR REPLACE TRIGGER SYS_ROLE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON SYS_ROLE
@@ -653,10 +653,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table SYS_ROLE');
 END;
 /
 
-prompt
-prompt Creating trigger SYS_USER_T
-prompt ===========================
-prompt
+--
+-- Creating trigger SYS_USER_T
+-- ===========================
+--
 CREATE OR REPLACE TRIGGER SYS_USER_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON SYS_USER
@@ -696,10 +696,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table SYS_USER');
 END;
 /
 
-prompt
-prompt Creating trigger TECHNOLOGICALPROCESS_T
-prompt =======================================
-prompt
+--
+-- Creating trigger TECHNOLOGICALPROCESS_T
+-- =======================================
+--
 CREATE OR REPLACE TRIGGER TECHNOLOGICALPROCESS_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_TECHNOLOGICALPROCESS
@@ -740,10 +740,10 @@ END;
 /
 
 
-prompt
-prompt Creating trigger ENTRY_PROCESS_T
-prompt =======================================
-prompt
+--
+-- Creating trigger ENTRY_PROCESS_T
+-- =======================================
+--
 CREATE OR REPLACE TRIGGER ENTRY_PROCESS_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_ENTRY_PROCESS
@@ -783,10 +783,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_ENTRY_PROCESS');
 END;
 /
 
-prompt
-prompt Creating trigger TRAINCOURSE_T
-prompt ==============================
-prompt
+--
+-- Creating trigger TRAINCOURSE_T
+-- ==============================
+--
 CREATE OR REPLACE TRIGGER TRAINCOURSE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_TRAINCOURSE
@@ -826,10 +826,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_TRAINCOURSE');
 END;
 /
 
-prompt
-prompt Creating trigger PERSONNEL_T
-prompt ==============================
-prompt
+--
+-- Creating trigger PERSONNEL_T
+-- ==============================
+--
 CREATE OR REPLACE TRIGGER T_PERSONNEL_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_PERSONNEL
@@ -869,10 +869,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table T_PERSONNEL');
 END;
 /
 
-prompt
-prompt Creating trigger SYS_NOTICE_T
-prompt ==============================
-prompt
+--
+-- Creating trigger SYS_NOTICE_T
+-- ==============================
+--
 CREATE OR REPLACE TRIGGER SYS_NOTICE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON SYS_NOTICE
@@ -912,10 +912,10 @@ DBMS_OUTPUT.PUT_LINE('Failed Other Trigger Operation in table SYS_NOTICE');
 END;
 /
 
-prompt
-prompt Creating trigger CHANGE_T
-prompt =========================
-prompt
+--
+-- Creating trigger CHANGE_T
+-- =========================
+--
 CREATE OR REPLACE TRIGGER OSFI.CHANGE_T
 BEFORE DELETE OR INSERT OR UPDATE
 ON T_CHANGE
@@ -982,4 +982,4 @@ END;
 /
 
 
-spool off
+--spool off
