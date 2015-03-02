@@ -91,15 +91,20 @@
 						<button id="formButton" class="btn btn-primary" type="button">
 							<i class="icon-save"></i> 保存
 						</button>
+						<a class="btn" id="backList" href="">
+							返回</a>
 						<input type="hidden" id="hasEditAuth" value="1">
 					</s:if>
 					<s:else>
 						<button class="btn" type="button" disabled="disabled">
 							<i class="icon-save"></i> 保存
+						
 						</button>
+						<a class="btn" id="backList" href="">
+							返回</a>
 						<input type="hidden" id="hasEditAuth" value="0">
 					</s:else>
-
+						
 					<div class="pull-right">
 						<s:if test='%{hasApprove!=null && hasApprove=="1"}'>
 							<button class="btn" type="button" id="approveBtn"
@@ -258,7 +263,7 @@
 										<div class="control-group">
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
-												<select id="contracttype" class="input-large" data-required="true" placeholder="合同种类"
+												<select id="contracttype" class="input-large" placeholder="合同种类"
 													name="technologicalProcess.contracttype">
 													<option value=""></option>
 													<option value="A">A类</option>
@@ -276,7 +281,7 @@
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
 													value="${technologicalProcess.contractdate}"
-													data-required="true" placeholder="合同有效期" readonly class="form_datetime input-large">
+													placeholder="合同有效期" readonly class="form_datetime input-large">
 											</div>
 										</div>
 									</div>

@@ -95,12 +95,16 @@
 						<button id="formButton" class="btn btn-primary" type="button">
 							<i class="icon-save"></i> 保存
 						</button>
+						<a class="btn" id="backList" href="">
+							返回</a>
 						<input type="hidden" id="hasEditAuth" value="1">
 					</s:if>
 					<s:else>
 						<button class="btn" type="button" disabled="disabled">
 							<i class="icon-save"></i> 保存
 						</button>
+						<a class="btn" id="backList" href="">
+							返回</a>
 						<input type="hidden" id="hasEditAuth" value="0">
 					</s:else>
 
@@ -215,7 +219,7 @@
 											<label class="control-label" for="contracttype">合同种类：</label>
 											<div class="controls">
 												<select id="contracttype" class="input-large"
-													 placeholder="合同种类" data-required="true"
+													 placeholder="合同种类"
 													name="franchisee.contractType">
 													<option value="">请选择</option>
 													<option value="A">A类</option>
@@ -246,7 +250,6 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractStartDate"
 													value="${franchisee.contractStartDate}"
-													data-required="true"
 													placeholder="合同开始时间" readonly
 													class="form_datetime input-large">
 											</div>
@@ -259,7 +262,6 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractEndDate"
 													value="${franchisee.contractEndDate}"
-													data-required="true"
 													placeholder="合同结束时间" readonly
 													class="form_datetime input-large">
 											</div>
