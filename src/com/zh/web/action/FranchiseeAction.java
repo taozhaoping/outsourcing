@@ -167,7 +167,7 @@ public class FranchiseeAction extends BaseAction {
 			franchiseeBo.setChange(change);
 			franchiseeBo.setFranchisee(franchisee);
 
-			franchiseeBo = franchiseeService.insert(franchiseeBo);
+			//franchiseeBo = franchiseeService.insert(franchiseeBo);
 			// 提交权限
 			this.franchiseeModel.setHasSubmitAuth("1");
 
@@ -201,8 +201,37 @@ public class FranchiseeAction extends BaseAction {
 		} else {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
-			franchisee.setCreateUserId(userID);
-			franchiseeService.insert(franchisee);
+			//franchisee.setCreateUserId(userID);
+			//franchiseeService.insert(franchisee);
+			
+			// 设置创建者
+			change.setOwner(userID);
+			// 状态
+			change.setStatus("发起");
+
+			String path = this.getRequest().getContextPath();
+			// 一级菜单
+			String menuId = this.franchiseeModel.getMenuId();
+			// 二级菜单
+			String menu2Id = this.franchiseeModel.getMenu2Id();
+			// 保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
+					+ menuId + "&menu2Id=" + menu2Id;
+			change.setUrl(url);
+
+			FranchiseeBO franchiseeBo = new FranchiseeBO();
+			franchiseeBo.setChange(change);
+			franchiseeBo.setFranchisee(franchisee);
+
+			franchiseeBo = franchiseeService.insert(franchiseeBo);
+			
+			cId = franchiseeBo.getId();
+			// 提交权限
+			this.franchiseeModel.setHasSubmitAuth("1");
+
+			this.franchiseeModel.setFranchisee(franchiseeBo.getFranchisee());
+			this.franchiseeModel.setChange(franchiseeBo.getChange());
+			
 			LOGGER.debug("insert()...");
 		}
 		// 设置权限

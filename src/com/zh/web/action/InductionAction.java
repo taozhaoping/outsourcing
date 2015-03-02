@@ -389,7 +389,21 @@ public class InductionAction extends BaseAction {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			entryProcess.setWorkuserid(userID);
+			// 新建表单时候
+			entryProcess.setWorkuserid(userID);
+			entryProcess.setState("发起");
+
+			String path = this.getRequest().getContextPath();
+			// 一级菜单
+			String menuId = this.inductionModel.getMenuId();
+			// 二级菜单
+			String menu2Id = this.inductionModel.getMenu2Id();
+			// 保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
+					+ menuId + "&menu2Id=" + menu2Id;
+			entryProcess.setUrl(url);
 			entryProcessService.insert(entryProcess);
+			this.inductionModel.setHasSubmitAuth("1");
 			LOGGER.debug("insert()...");
 		}
 		// 设置权限标志位
@@ -513,7 +527,7 @@ public class InductionAction extends BaseAction {
 			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
 					+ menuId + "&menu2Id=" + menu2Id;
 			entryProcess.setUrl(url);
-			entryProcessService.insert(entryProcess);
+			//entryProcessService.insert(entryProcess);
 			this.inductionModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}

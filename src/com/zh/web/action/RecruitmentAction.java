@@ -264,7 +264,19 @@ public class RecruitmentAction extends BaseAction {
 			// 设置当前用户为流程发起人
 			Integer userID = queryUserId();
 			technologicalProcess.setWorkuserid(userID);
+			technologicalProcess.setState("发起");
+
+			String path = this.getRequest().getContextPath();
+			// 一级菜单
+			String menuId = this.recruitmentModel.getMenuId();
+			// 二级菜单
+			String menu2Id = this.recruitmentModel.getMenu2Id();
+			// 保存表单的链接信息
+			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
+					+ menuId + "&menu2Id=" + menu2Id;
+			technologicalProcess.setUrl(url);
 			technologicalProcessService.insert(technologicalProcess);
+			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("insert()...");
 		}
 		// 设置权限标志位
@@ -351,7 +363,7 @@ public class RecruitmentAction extends BaseAction {
 			String url = path + "/workflow/" + menu2Id + "!editor.jspa?menuId="
 					+ menuId + "&menu2Id=" + menu2Id;
 			technologicalProcess.setUrl(url);
-			technologicalProcessService.insert(technologicalProcess);
+			//technologicalProcessService.insert(technologicalProcess);
 			this.recruitmentModel.setHasSubmitAuth("1");
 			LOGGER.debug("create form()...");
 		}
