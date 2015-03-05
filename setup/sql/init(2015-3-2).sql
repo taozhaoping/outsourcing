@@ -1,79 +1,128 @@
 
 --sys_menu
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (40, '备忘录', 'memorandum', null, null, '0', 0, 4, null);
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (40, '备忘录', 'memorandum', null, null, '0', 0, 4, null);
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (41, '记录维护', 'contactrecord', 'contactrecord.jspa', null, '0', 40, 1, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (43, '加盟商记录维护', 'franchiseerecord', 'franchiseerecord.jspa', null, '0', 40, 3, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (44, '加盟商记录查看', 'franchiseequeryrecord', 'franchiseequeryrecord.jspa', null, '0', 40, 4, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (1, '系统配置', 'sysConfig', null, null, '0', 0, 1, null);
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (3, '用户列表', 'userInfo', 'userInfo.jspa', null, '0', 1, 2, 'home');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (4, '参数配置', 'param', 'param.jspa', null, '0', 1, 3, 'home');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (5, '角色列表', 'role', 'role.jspa', null, '0', 1, 4, 'home');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (10, '外教管理', 'staff', null, null, '0', 0, 2, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (11, '活动管理', 'activities', 'activities.jspa', null, '0', 10, 1, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (12, '培训管理', 'train', 'train.jspa', null, '0', 10, 2, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (20, '流程管理', 'workflow', null, null, '0', 0, 3, null);
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (21, '外教入职流程', 'induction', 'induction.jspa', null, '0', 20, 1, 'workflow');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (22, '外教招聘流程', 'recruitment', 'recruitment.jspa', null, '0', 20, 2, 'workflow');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (13, '花名册', 'roster', 'roster.jspa', null, '0', 10, 3, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (14, '洽谈维护', 'negotiate', 'negotiate.jspa', null, '0', 10, 4, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (23, '证件变更流程', 'documentchange', 'documentchange.jspa', null, '0', 20, 3, 'workflow');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (50, '加盟商管理', 'franchiseemaintain', null, null, '0', 0, 5, null);
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (51, '加盟商维护', 'franchisee', 'franchisee.jspa', null, '0', 50, 1, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (24, '加盟申请流程', 'applyfranchisee', 'applyfranchisee.jspa', null, '0', 20, 4, 'workflow');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (15, '外派记录', 'assignment', 'assignment.jspa', null, '0', 10, 5, 'staffAdmin');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (25, '外派申请流程', 'applyassignment', 'applyassignment.jspa', null, '0', 20, 5, null);
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (2, '企业列表', 'enterprise', 'enterprise.jspa', null, '0', 1, 1, 'home');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (30, '系统公告', 'notice', 'notice.jspa', null, '0', 1, 5, 'home');
+--
+--insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
+--values (42, '记录查看', 'queryrecord', 'queryrecord.jspa', null, '0', 40, 2, 'staffAdmin');
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (41, '记录维护', 'contactrecord', 'contactrecord.jspa', null, '0', 40, 1, 'staffAdmin');
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (43, '加盟商记录维护', 'franchiseerecord', 'franchiseerecord.jspa', null, '0', 40, 3, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (40, '备忘录', null, 'memorandum', null, null, '0', 0, 4);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (44, '加盟商记录查看', 'franchiseequeryrecord', 'franchiseequeryrecord.jspa', null, '0', 40, 4, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (41, '记录维护', 'staffAdmin', 'contactrecord', 'contactrecord.jspa', null, '0', 40, 1);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (1, '系统配置', 'sysConfig', null, null, '0', 0, 1, null);
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (43, '加盟商记录维护', 'staffAdmin', 'franchiseerecord', 'franchiseerecord.jspa', null, '0', 40, 3);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (3, '用户列表', 'userInfo', 'userInfo.jspa', null, '0', 1, 2, 'home');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (44, '加盟商记录查看', 'staffAdmin', 'franchiseequeryrecord', 'franchiseequeryrecord.jspa', null, '0', 40, 4);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (4, '参数配置', 'param', 'param.jspa', null, '0', 1, 3, 'home');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (1, '系统配置', null, 'sysConfig', null, null, '0', 0, 1);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (5, '角色列表', 'role', 'role.jspa', null, '0', 1, 4, 'home');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (3, '用户列表', 'home', 'userInfo', 'userInfo.jspa', null, '0', 1, 2);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (10, '外教管理', 'staff', null, null, '0', 0, 2, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (4, '参数配置', 'home', 'param', 'param.jspa', null, '0', 1, 3);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (11, '活动管理', 'activities', 'activities.jspa', null, '0', 10, 1, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (5, '角色列表', 'home', 'role', 'role.jspa', null, '0', 1, 4);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (12, '培训管理', 'train', 'train.jspa', null, '0', 10, 2, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (20, '流程管理', null, 'workflow', null, null, '0', 0, 3);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (20, '流程管理', 'workflow', null, null, '0', 0, 3, null);
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (22, '外教招聘流程', 'workflow', 'recruitment', 'recruitment.jspa', null, '0', 20, 2);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (21, '外教入职流程', 'induction', 'induction.jspa', null, '0', 20, 1, 'workflow');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (50, '加盟商管理', null, 'franchiseemaintain', null, null, '0', 0, 5);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (22, '外教招聘流程', 'recruitment', 'recruitment.jspa', null, '0', 20, 2, 'workflow');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (51, '加盟商维护', 'staffAdmin', 'franchisee', 'franchisee.jspa', null, '0', 50, 1);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (13, '花名册', 'roster', 'roster.jspa', null, '0', 10, 3, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (24, '加盟申请流程', 'workflow', 'applyfranchisee', 'applyfranchisee.jspa', null, '0', 20, 4);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (14, '洽谈维护', 'negotiate', 'negotiate.jspa', null, '0', 10, 4, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (2, '企业列表', 'home', 'enterprise', 'enterprise.jspa', null, '0', 1, 1);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (23, '证件变更流程', 'documentchange', 'documentchange.jspa', null, '0', 20, 3, 'workflow');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (30, '系统公告', 'home', 'notice', 'notice.jspa', null, '0', 1, 5);
 
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (50, '加盟商管理', 'franchiseemaintain', null, null, '0', 0, 5, null);
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (51, '加盟商维护', 'franchisee', 'franchisee.jspa', null, '0', 50, 1, 'staffAdmin');
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (24, '加盟申请流程', 'applyfranchisee', 'applyfranchisee.jspa', null, '0', 20, 4, 'workflow');
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (15, '外派记录', 'assignment', 'assignment.jspa', null, '0', 10, 5, 'staffAdmin');
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (25, '外派申请流程', 'applyassignment', 'applyassignment.jspa', null, '0', 20, 5, null);
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (2, '企业列表', 'enterprise', 'enterprise.jspa', null, '0', 1, 1, 'home');
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (30, '系统公告', 'notice', 'notice.jspa', null, '0', 1, 5, 'home');
-
-insert into SYS_MENU (ID, NAME, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER, NAMESPACE)
-values (42, '记录查看', 'queryrecord', 'queryrecord.jspa', null, '0', 40, 2, 'staffAdmin');
+insert into SYS_MENU (ID, NAME, NAMESPACE, ACTION, URL, I18N_KEY, ENABLED, PARENTID, REORDER)
+values (42, '记录查看', 'staffAdmin', 'queryrecord', 'queryrecord.jspa', null, '0', 40, 2);
 
 
 

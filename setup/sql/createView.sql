@@ -3,12 +3,14 @@
 /* Table: 联系记录视图                                                                                                                                            */
 /*==============================================================*/
 drop view t_contact_record_vw;
+drop view t_franchisee_record_VW;
+
 CREATE OR REPLACE VIEW t_contact_record_vw AS
 select b.id,name,workuserid,state,c.descr,c.type,c.reservedate,createdate from T_TECHNOLOGICALPROCESS b left join (select * from T_CONTACT_RECORD a where a.createdate=(select max(createdate) from T_CONTACT_RECORD b where a.technologicalprocessid=b.technologicalprocessid)) c 
 on c.technologicalprocessid=b.id ;
 
 --加盟商联系记录视图
-drop view t_franchisee_record_VW;
+
 CREATE OR REPLACE VIEW t_franchisee_record_VW AS
 select b.f_id id,
 	b.CHANGE_NUMBER,

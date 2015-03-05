@@ -16,3 +16,4 @@ grant create trigger to OSFI;
 grant drop any table to OSFI;
 grant insert any table to OSFI;
 grant update any table to OSFI;
+grant create view to OSFI;
