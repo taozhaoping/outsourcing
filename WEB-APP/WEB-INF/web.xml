@@ -3,16 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	
-	 <display-name>outsourcing</display-name>
+
+	<display-name>outsourcing</display-name>
+
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>app.root</param-value>
+	</context-param>
 
 	<!-- spring配置 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 		<!-- <listener-class>com.zh.core.listener.ClassListener</listener-class> -->
 	</listener>
-	
-	
+
+
 	<!-- 配置spring配置文件文件路径 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -42,13 +47,13 @@
 		<filter-name>SessionInvalidate</filter-name>
 		<url-pattern>/home/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!--过滤/workflow命名空间下所有action -->
 	<filter-mapping>
 		<filter-name>SessionInvalidate</filter-name>
 		<url-pattern>/workflow/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!--过滤*.jsp后缀的访问 -->
 	<filter-mapping>
 		<filter-name>JspInvalidate</filter-name>
@@ -58,8 +63,7 @@
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
-			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-		</filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
@@ -83,7 +87,7 @@
 	</session-config>
 	<!-- - =============================================== - Log4j Configuration 
 		- @author Flouny.Caesar - @date 2009-12-25 - =============================================== -->
-		<listener>
+	<listener>
 		<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
 	</listener>
 	<context-param>
@@ -95,18 +99,10 @@
 		<load-on-startup>0</load-on-startup> </servlet> -->
 	<!-- - =============================================== - JSTL Config - @author 
 		Flouny.Caesar - @date 2009-12-25 - =============================================== -->
-	<!-- 
-	<jsp-config>
-		<taglib>
-			<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
-			<taglib-location>/WEB-INF/tlds/c.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://flounycaesar-inc.com/jsp/custom/taglib/html</taglib-uri>
-			<taglib-location>/WEB-INF/tlds/h.tld</taglib-location>
-		</taglib>
-	</jsp-config>
-	 -->
+	<!-- <jsp-config> <taglib> <taglib-uri>http://java.sun.com/jstl/core</taglib-uri> 
+		<taglib-location>/WEB-INF/tlds/c.tld</taglib-location> </taglib> <taglib> 
+		<taglib-uri>http://flounycaesar-inc.com/jsp/custom/taglib/html</taglib-uri> 
+		<taglib-location>/WEB-INF/tlds/h.tld</taglib-location> </taglib> </jsp-config> -->
 	<!-- tiles配置 <context-param> <param-name>org.apache.tiles.CONTAINER_FACTORY</param-name> 
 		<param-value> org.apache.struts2.tiles.StrutsTilesContainerFactory </param-value> 
 		</context-param> <context-param> <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name> 

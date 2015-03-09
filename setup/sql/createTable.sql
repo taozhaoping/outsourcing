@@ -112,7 +112,7 @@ order;
 create table SYS_AUTHORITIES 
 (
    id                 NUMBER               not null,
-   name               VARCHAR2(25 BYTE), --权限名称
+   name               VARCHAR2(25 ), --权限名称
    enabled              NUMBER default '0',-- 是否启用 0启动 1:停用
    module             VARCHAR2(25)  --模块
 );
@@ -129,9 +129,9 @@ comment on table SYS_AUTHORITIES is
 create table SYS_ENTERPRISE 
 (
    id                 NUMBER               not null,
-   name               VARCHAR2(100 BYTE), --企业名称
-   address            VARCHAR2(150 BYTE), --企业地址
-   phoneCall          VARCHAR2(25 BYTE),  --企业电话
+   name               VARCHAR2(100 ), --企业名称
+   address            VARCHAR2(150 ), --企业地址
+   phoneCall          VARCHAR2(25 ),  --企业电话
    enabled              NUMBER default '0'  -- 是否启用 0启动 1:停用
 );
 
@@ -147,12 +147,12 @@ comment on table SYS_ENTERPRISE is
 create table SYS_MENU 
 (
    id                 NUMBER               not null,
-   name               VARCHAR2(150 BYTE), --菜单名称
-   NAMESPACE          VARCHAR2(30 BYTE), --NAMESPACE
-   action             VARCHAR2(150 BYTE), --菜单action
-   url                VARCHAR2(150 BYTE), --url地址
-   i18n_key           VARCHAR2(100 BYTE), --国际化
-   enabled              VARCHAR2(1 BYTE) default '0',-- 是否启用 0启动 1:停用
+   name               VARCHAR2(150 ), --菜单名称
+   NAMESPACE          VARCHAR2(30 ), --NAMESPACE
+   action             VARCHAR2(150 ), --菜单action
+   url                VARCHAR2(150 ), --url地址
+   i18n_key           VARCHAR2(100 ), --国际化
+   enabled              VARCHAR2(1 ) default '0',-- 是否启用 0启动 1:停用
    parentID           NUMBER, --父类id
    reorder            NUMBER --排序
 );
@@ -169,9 +169,9 @@ comment on table SYS_MENU is
 create table SYS_RESOURCEINFO 
 (
    id                 NUMBER               not null,
-   name               VARCHAR2(30 BYTE), --资源名称
-   value              VARCHAR2(30 BYTE), --资源属性
-   type               VARCHAR2(20 BYTE), --资源类别
+   name               VARCHAR2(30 ), --资源名称
+   value              VARCHAR2(30 ), --资源属性
+   type               VARCHAR2(20 ), --资源类别
    createTime         DATE,
    updateTime         DATE,
    enabled              NUMBER default '0'-- 是否启用 0启动 1:停用
@@ -189,8 +189,8 @@ comment on table SYS_RESOURCEINFO is
 create table SYS_ROLE 
 (
    id                 NUMBER               not null,
-   name               VARCHAR2(50 BYTE), --角色名称
-   describe           VARCHAR2(100 BYTE), --描述
+   name               VARCHAR2(50 ), --角色名称
+   describe           VARCHAR2(100 ), --描述
    createTime         DATE,
    updateTime         DATE
 );
@@ -228,12 +228,12 @@ comment on table SYS_ROLE_TO_MENU is
 create table SYS_PARAM
 (
   id                 NUMBER               not null,
-  emailService       VARCHAR2(50 BYTE)    ,--邮箱服务器地址
-  emailForm          VARCHAR2(50 BYTE)    ,--服务器邮箱名
-  emailUserName      VARCHAR2(50 BYTE)    ,--邮箱账号
-  emailPassword      VARCHAR2(50 BYTE)    , --邮箱密码
-  emailisAuth        VARCHAR2(1 BYTE)    ,--是否验证 0:验证，1不验证
-  emailUrlPassword   VARCHAR2(30 BYTE)   -- url秘钥
+  emailService       VARCHAR2(50 )    ,--邮箱服务器地址
+  emailForm          VARCHAR2(50 )    ,--服务器邮箱名
+  emailUserName      VARCHAR2(50 )    ,--邮箱账号
+  emailPassword      VARCHAR2(50 )    , --邮箱密码
+  emailisAuth        VARCHAR2(1 )    ,--是否验证 0:验证，1不验证
+  emailUrlPassword   VARCHAR2(30 )   -- url秘钥
 );
 
 alter table SYS_PARAM
@@ -245,25 +245,25 @@ alter table SYS_PARAM
 create table SYS_USER 
 (
    id                 NUMBER               not null,
-   loginName          VARCHAR2(20 BYTE)    not null, --登录账号
-   userPassword       VARCHAR2(100 BYTE)   not null, --登录密码
+   loginName          VARCHAR2(20 )    not null, --登录账号
+   userPassword       VARCHAR2(100 )   not null, --登录密码
    name               VARCHAR2(20), --姓名
-   enabled              VARCHAR2(1 BYTE) default '0',-- 是否启用 0启动 1:停用
-   userType           VARCHAR2(1 BYTE), --用户类型
+   enabled              VARCHAR2(1 ) default '0',-- 是否启用 0启动 1:停用
+   userType           VARCHAR2(1 ), --用户类型
    role_id            NUMBER, --角色id
    enterprise_id      NUMBER, --企业id
-   email              VARCHAR2(25 BYTE), --电子邮件
+   email              VARCHAR2(30 ), --电子邮件
    age                date, --出生日期
-   sex                VARCHAR2(1 BYTE),--性别
-   phone              VARCHAR2(20 BYTE), -- 座机号码
-   qq                 VARCHAR2(20 BYTE), --qq号码
-   mobile_number      VARCHAR2(20 BYTE), --手机号码
+   sex                VARCHAR2(1 ),--性别
+   phone              VARCHAR2(20 ), -- 座机号码
+   qq                 VARCHAR2(20 ), --qq号码
+   mobile_number      VARCHAR2(20 ), --手机号码
    entryTime          DATE, -- 入职时间
-   address            VARCHAR2(100 BYTE), --家庭住址
-   education_background VARCHAR2(1 BYTE),
+   address            VARCHAR2(100 ), --家庭住址
+   education_background VARCHAR2(1 ),
    createTime         DATE, --创建时间
    updateTime         DATE, --修改时间
-   nonce			  VARCHAR2(50 BYTE) --Email重置密码保存的随机数
+   nonce			  VARCHAR2(50 ) --Email重置密码保存的随机数
 );
 
 
