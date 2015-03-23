@@ -135,7 +135,7 @@
 											<label class="control-label" for="franchiseeName">名称：</label>
 											<div class="controls">
 												<input type="text" id="franchiseeName"
-													name="franchisee.name"
+													name="franchisee.name" data-required="true"
 													value="${franchisee.name}" 
 													placeholder="描述" class="input-large">
 											</div>
@@ -148,8 +148,8 @@
 										<div class="control-group">
 											<label class="control-label" for="franchiseeDescr">描述：</label>
 											<div class="controls">
-												<input type="text" data-required="true" placeholder="描述"
-													maxlength="15" id="franchiseeDescr" name="franchisee.descr"
+												<input type="text"  placeholder="描述"
+													maxlength="35" id="franchiseeDescr" name="franchisee.descr"
 													value="${franchisee.descr}" class="input-large">
 											</div>
 										</div>
@@ -160,7 +160,7 @@
 											<div class="controls">
 												<input type="text" id="franchiseeAddress"
 													name="franchisee.address"
-													value="${franchisee.address}" data-required="true"
+													value="${franchisee.address}" 
 													placeholder="地址" class="input-large">
 											</div>
 										</div>
@@ -201,7 +201,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputBirthday">合同开始时间：</label>
 											<div class="controls">
-												<input type="text" size="15" id="inputBirthday"
+												<input type="text" size="35" id="inputBirthday"
 													name="franchisee.contractStartDate"
 													value="${franchisee.contractStartDate}"
 													placeholder="合同开始时间" readonly
@@ -213,7 +213,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputBirthday">合同结束时间：</label>
 											<div class="controls">
-												<input type="text" size="15" id="inputBirthday"
+												<input type="text" size="35" id="inputBirthday"
 													name="franchisee.contractEndDate"
 													value="${franchisee.contractEndDate}"
 													placeholder="合同结束时间" readonly
@@ -228,7 +228,7 @@
 										<div class="control-group">
 											<label class="control-label" for="franchiseeStatus">状态：</label>
 											<div class="controls">
-												<input type="text" size="15" id="franchiseeStatus"
+												<input type="text" size="35" id="franchiseeStatus"
 													name="franchisee.status" disabled="disabled"
 													placeholder="状态" readonly value="${franchisee.status}"
 													class="form_datetime input-large">
@@ -376,7 +376,7 @@
 						<div class="control-group">
 							<label class="control-label" for="popupName">姓名：</label>
 							<div class="controls">
-								<input type="text" id="popupName"
+								<input type="text" id="popupName" data-required="true"
 								placeholder="姓名" class="input-large">
 							</div>
 						</div>
@@ -388,7 +388,7 @@
 						<div class="control-group">
 							<label class="control-label" for="popupPhone">号码：</label>
 							<div class="controls">
-								<input type="text" id="popupPhone"
+								<input type="text" id="popupPhone" data-required="true"
 								placeholder="号码" class="input-large">
 							</div>
 						</div>
@@ -417,7 +417,7 @@
 						<div class="control-group">
 							<label class="control-label" for="popupcontactRecordType">预约类型：</label>
 							<div class="controls">
-								<select id="popupcontactRecordType" class="input-large" data-required="true" placeholder="预约类型"
+								<select id="popupcontactRecordType" class="input-large"  placeholder="预约类型"
 													name="contactRecord.type">
 													<option value="">请选择</option>
 													<option value="1">已经签约</option>

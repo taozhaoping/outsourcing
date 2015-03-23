@@ -183,7 +183,7 @@
 												<input type="text" id="franchiseeName"
 													name="franchisee.name"
 													value="${franchisee.name}" data-required="true"
-													placeholder="描述" class="input-large">
+													placeholder="名称" class="input-large">
 											</div>
 										</div>
 									</div>
@@ -206,7 +206,7 @@
 											<div class="controls">
 												<input type="text" id="franchiseeAddress"
 													name="franchisee.address"
-													value="${franchisee.address}" data-required="true"
+													value="${franchisee.address}" 
 													placeholder="地址" class="input-large">
 											</div>
 										</div>

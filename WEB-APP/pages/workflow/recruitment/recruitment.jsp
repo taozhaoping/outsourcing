@@ -188,7 +188,7 @@
 											<label class="control-label" for="inputName">姓名：</label>
 											<div class="controls">
 												<input type="text" data-required="true" placeholder="姓名"
-													maxlength="15" id="inputName"
+													maxlength="35" id="inputName"
 													name="technologicalProcess.name"
 													value="${technologicalProcess.name}" class="input-large">
 											</div>
@@ -212,7 +212,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputnationality">国籍：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputnationality"
+												<input type="text" maxlength="35" id="inputnationality"
 													name="technologicalProcess.nationality"
 													value="${technologicalProcess.nationality}"
 													data-required="true" placeholder="国籍" class="input-large">
@@ -248,7 +248,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputBirthday">生日：</label>
 											<div class="controls">
-												<input type="text" size="15" id="inputBirthday"
+												<input type="text" size="35" id="inputBirthday"
 													name="technologicalProcess.birthday"
 													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
 													data-required="true" placeholder="生日" readonly class="form_datetime input-large">
@@ -292,7 +292,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPassportno">护照号：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputPassportno"
+												<input type="text" maxlength="35" id="inputPassportno"
 													name="technologicalProcess.passportno"
 													value="${technologicalProcess.passportno}"
 													data-required="true" placeholder="护照号" class="input-large">
@@ -318,7 +318,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputMail">电子邮箱：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputMail"
+												<input type="text" maxlength="35" id="inputMail"
 													name="technologicalProcess.mail"
 													value="${technologicalProcess.mail}" data-required="true"
 													data-pattern="^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$"
@@ -391,9 +391,9 @@
 								<dir class="row">
 									<div class="span5">
 										<div class="control-group">
-											<label class="control-label" for="inputDomicile">户籍地址：</label>
+											<label class="control-label" for="inputDomicile">家庭地址：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="inputDomicile"
+												<input type="text" maxlength="35" id="inputDomicile"
 													name="technologicalProcess.domicile"
 													value="${technologicalProcess.domicile}"
 													placeholder="户籍地址" class="input-large">
@@ -523,7 +523,7 @@
 										<div class="control-group">
 											<label class="control-label" for="expressnumber">快递号：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="expressnumber" data-required="true" placeholder="快递号"
+												<input type="text" maxlength="35" id="expressnumber" data-required="true" placeholder="快递号"
 													name="express.expressnumber" value="${express.expressnumber}"
 													class="input-large" />
 											</div>
@@ -533,7 +533,7 @@
 										<div class="control-group">
 											<label class="control-label" for="company">快递公司：</label>
 											<div class="controls">
-												<input type="text" maxlength="15" id="company" data-required="true" placeholder="快递公司"
+												<input type="text" maxlength="35" id="company" data-required="true" placeholder="快递公司"
 													name="express.company" value="${express.company}"
 													class="input-large" />
 												
@@ -724,7 +724,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputId">描述</label>
 						<div class="controls">
-							<input type="text" maxlength="15" class="input-large"
+							<input type="text" maxlength="35" class="input-large"
 								id="fileInfoDescr" name="fileInfo.descr" value="">
 						</div>
 					</div>
@@ -791,7 +791,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputId">描述</label>
 						<div class="controls">
-							<input type="text" maxlength="15" class="input-large"
+							<input type="text" maxlength="35" class="input-large"
 								id="fileInfoDescr" name="fileInfo.descr" value="">
 						</div>
 					</div>
@@ -1021,22 +1021,22 @@
 			row_count++;
 			var search = $('#certificatesSearch');
 			var row = $("<tr></tr>");
-			addTd(row, "<input type='hidden' size='15' id='certificatesId'>");
+			addTd(row, "<input type='hidden' size='35' id='certificatesId'>");
 			addTd(row,
 					"<select id='certificatesType' class='input-medium' ><option value='1'>工作许可证</option><option value='2'>邀请函</option><option value='3'>公司邀请函</option> <option value='4'>暂住证</option><option value='5'>工作签</option><option value='6'>入境章页</option><option value='7'>保险</option><option value='8'>外国专家证</option><option value='9'>居留许可</option></select>");
 			addTd(row,
-					"<input type='text' size='15' id='certificatesSerialNumber' class='input-small'>");
+					"<input type='text' size='35' id='certificatesSerialNumber' class='input-small'>");
 			addTd(row,
-					"<input type='text' size='15' id='certificatesHandledate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='35' id='certificatesHandledate' readonly class='form_datetime input-small'>");
 			addTd(row,
-					"<input type='text' size='15' id='certificatesReceivedate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='35' id='certificatesReceivedate' readonly class='form_datetime input-small'>");
 			addTd(row,
-					"<input type='text' size='15' id='certificatesValidstartdate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='35' id='certificatesValidstartdate' readonly class='form_datetime input-small'>");
 			addTd(row,
-					"<input type='text' size='15' id='certificatesValidenddate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='35' id='certificatesValidenddate' readonly class='form_datetime input-small'>");
 			/*
 			addTd(row,
-					"<input type='text' size='15' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
+					"<input type='text' size='35' id='certificatesUpdateDate' readonly class='form_datetime input-small'>");
 			*/
 			if (hasEdit == "1")
 			{
