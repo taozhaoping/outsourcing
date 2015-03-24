@@ -255,7 +255,7 @@
 					</div>
 					
 					<div class="block span6">
-						<a href="#widget3container" class="block-heading" data-toggle="collapse">待联系加盟商</a>
+						<a href="#widget3container" class="block-heading" data-toggle="collapse">待联系学校</a>
 						
 						<div id="widget3container" class="block-body collapse in">
 							<table class="table list">
@@ -288,7 +288,7 @@
 													有意向
 												</s:elseif>
 												<s:elseif test="#tp.type==4">
-													潜在外教
+													潜在客户
 												</s:elseif>
 											</td>
 										</tr>

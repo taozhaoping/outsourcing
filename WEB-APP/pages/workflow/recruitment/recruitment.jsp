@@ -716,6 +716,7 @@
 								<option value="10">公司邀请函</option>
 								<option value="11">外国专家证</option>
 								<option value="12">居留许可</option>
+								<option value="13">无犯罪记录</option>
 							</select>
 						</div>
 					</div>
@@ -783,6 +784,7 @@
 								<option value="10">公司邀请函</option>
 								<option value="11">外国专家证</option>
 								<option value="12">居留许可</option>
+								<option value="13">无犯罪记录</option>
 							</select>
 						</div>
 					</div>
@@ -1124,6 +1126,9 @@
 				  break;
 				case '12':
 					nametype="居留许可";
+				  break;
+				case '13':
+					nametype="无犯罪记录";
 				  break;
 				default:
 					nametype="护照";
