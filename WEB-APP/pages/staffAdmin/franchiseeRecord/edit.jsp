@@ -334,7 +334,7 @@
 													有意向
 												</s:elseif>
 												<s:elseif test="#tp.type==4">
-													潜在外教
+													潜在客户
 												</s:elseif>
 											</td>
 											<td><s:date format="yyyy-MM-dd" name="#tp.reserveDate"/></td>
@@ -423,7 +423,7 @@
 													<option value="1">已经签约</option>
 													<option value="2">正在洽谈</option>
 													<option value="3">有意向</option>
-													<option value="4">潜在外教</option>
+													<option value="4">潜在客户</option>
 								</select>
 							</div>
 						</div>

@@ -360,7 +360,18 @@
 						<!-- 证件信息 -->
 						<div class="tab-pane fade" id="contactrecordtab">
 							<form id="contactrecordForm" class="form-horizontal"
-											action="${menu2Id}!saveContactRecord.jspa" method="post">
+								action="${menu2Id}!saveContactRecord.jspa" method="post">
+								<input type="hidden" name="formId"
+									value="${technologicalProcess.id}"> <input
+									type="hidden" name="menu2Id" value="${menu2Id}"> <input
+									type="hidden" name="menuId" value="${menuId}"> <input
+									type="hidden" name="spaceId" value="${spaceId}">
+								<input type="hidden" id="reserveDate" name="contactRecord.reserveDate" value="">
+								<input type="hidden" id="type" name="contactRecord.type" value="">
+								<input type="hidden" id="descr" name="contactRecord.descr" value="">
+								<button class="btn btn-small btn-primary" type="button"
+									data-toggle="modal" data-target="#franchiseeRecordfirm">添加通话记录</button>
+							</form>
 							<table class="table">
 								<thead>
 									<tr>
@@ -384,7 +395,7 @@
 								</tbody>
 								
 							</table>
-							</form>
+							
 							<div class="pagination">
 								<ul id="pagination">
 								</ul>
@@ -394,6 +405,66 @@
 				</div>
 			</div>
 
+		</div>
+	</div>
+
+
+	<!-- 添加联系记录 -->
+	<div class="modal small hide fade" id="franchiseeRecordfirm"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="startModalLabel1">联系记录添加</h3>
+		</div>
+		<div class="modal-body">
+			<dir class="row">
+				<div class="span3">
+					<div class="control-group">
+						<label class="control-label" for="popupcontactRecordType">预约类型：</label>
+						<div class="controls">
+							<select id="popupcontactRecordType" class="input-large"
+								placeholder="预约类型" name="contactRecord.type">
+								<option value="">请选择</option>
+								<option value="1">已经签约</option>
+								<option value="2">正在洽谈</option>
+								<option value="3">有意向</option>
+								<option value="4">潜在外教</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</dir>
+			<dir class="row">
+				<div class="span3">
+					<div class="control-group">
+						<label class="control-label" for="popupcontactRecordReserveDate">预约时间：</label>
+						<div class="controls">
+							<input type="text" id="popupcontactRecordReserveDate"
+								placeholder="预约时间" readonly class="form_datetime input-large">
+						</div>
+					</div>
+				</div>
+
+			</dir>
+			<dir class="row">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" for="popupcontactRecordDescr">描述：</label>
+						<div class="controls">
+							<textarea rows="5" id="popupcontactRecordDescr"></textarea>
+						</div>
+					</div>
+				</div>
+
+			</dir>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-danger" data-dismiss="modal"
+				id="franchiseeRecordBtnConfirm">确认</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>
 
@@ -464,7 +535,7 @@
 				+ contextPath;
 
 		//基本信息
-		//$("#contracttype").select2();
+		$("select").select2();
 		$("#contracttype").val("${technologicalProcess.contracttype}")
 				.trigger("change");
 
@@ -482,6 +553,24 @@
 		$("tbody select").change(function() {
 			$("#formChanged").val("1");
 		});
+		
+		$("#franchiseeRecordBtnConfirm").click(function(x) {
+			var _contactRecordType = $("#popupcontactRecordType").val();
+			var _contactRecordReserveDate = $("#popupcontactRecordReserveDate").val();
+			var _contactRecordDescr = $("#popupcontactRecordDescr").val();
+			descr = $.trim(_contactRecordDescr);
+			if (descr == null || descr == "" || _contactRecordType == "" || _contactRecordReserveDate == ""){
+				return;
+			}else
+			{
+				action = $("#contactrecordForm").attr("action");
+				$("#type").val(_contactRecordType);
+				$("#reserveDate").val(_contactRecordReserveDate);
+				$("#descr").val(descr);
+				setTabID("contactrecordForm", action);
+				$("#contactrecordForm").submit();
+			}
+	});
 
 		//进入指定的tbs
 		var tabID = "${tabID}";
@@ -517,11 +606,6 @@
 				setTabID("editForm", action);
 				//validate = $('#editForm').validate();
 				$("#editForm").submit();
-			} else if ("contactrecordButt" == currTab) {
-				
-				action = $("#contactrecordForm").attr("action");
-				setTabID("contactrecordForm", action);
-				$("#contactrecordForm").submit();
 			}
 		}
 
