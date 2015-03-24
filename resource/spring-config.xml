@@ -134,23 +134,23 @@
 
 	<!-- 引用ehCache的配置  -->
 	
-	<bean id="defaultCacheManager"
+	<!--< bean id="defaultCacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation">
 			<value>classpath:ehcache.xml</value>
 		</property>
-	</bean>
+	</bean> -->
 
 	<!-- 定义ehCache的工厂，并设置所使用的Cache name  -->
 	
-	<bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+	<!-- <bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
 		<property name="cacheManager">
 			<ref local="defaultCacheManager" />
 		</property>
 		<property name="cacheName">
 			<value>DEFAULT_CACHE</value>
 		</property>
-	</bean>
+	</bean> -->
 	
 	<!-- 获取用户名实例注册 -->
 	<bean id="jspUtil" class="com.zh.base.util.JspUtil">
