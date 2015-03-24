@@ -1126,7 +1126,9 @@
 			addTd(row,"<lable>" + fileInfo.descr + "</label>");
 			addTd(row,"<lable>" + fileInfo.createdate + "</label>");
 			addTd(row,
-					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button><button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
+					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button>"+
+					"<button class='btn btn-mini icon-download-alt' onclick='downloadFile( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);' type='button'></button>"+
+					"<button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
 		}
 		
