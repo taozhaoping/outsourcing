@@ -222,7 +222,7 @@ public class FranchiseeAction extends BaseAction {
 			FranchiseeBO franchiseeBo = new FranchiseeBO();
 			franchiseeBo.setChange(change);
 			franchiseeBo.setFranchisee(franchisee);
-
+			
 			franchiseeBo = franchiseeService.insert(franchiseeBo);
 			
 			cId = franchiseeBo.getId();

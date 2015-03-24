@@ -165,7 +165,7 @@
 										<td><s:property value="#tp.contractEndDate"/> </td>
 										<td>
 											<s:set id="userNameid" value="#tp.createUserId"></s:set>
-											<%=userName.queryUserName(request.getAttribute("userNameid").toString()) %>
+											<%=userName.queryUserName(String.valueOf(request.getAttribute("userNameid"))) %>
 										</td>
 										<td>
 											<a href="<%=path%>/<s:property value="spaceId"/>/${menu2Id}!editor.jspa?formId=<s:property value='#tp.id'/>&menuId=${menuId}&menu2Id=${menu2Id}&spaceId=${spaceId}"><i

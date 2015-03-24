@@ -84,6 +84,7 @@ public class FranchiseeServiceImpl implements FranchiseeService {
 	public FranchiseeBO insert(FranchiseeBO franchiseeBo) {
 		Franchisee franchisee = franchiseeBo.getFranchisee();
 		Change change = franchiseeBo.getChange();
+		franchisee.setCreateUserId(change.getOwner());
 		//插入
 		franchiseeDao.insert(franchisee);
 		//保存加盟上的编号
