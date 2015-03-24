@@ -68,7 +68,10 @@
 				<p class="block-heading">登陆</p>
 				<div class="block-body">
 					<form method="post" name="loginform" id="loginform" action="login!loginUser.jspa">
+						<!-- 
 						<input type="hidden" name="token" value="${token}" />
+						 -->
+						
 						<div class="control-group">
 							<span style="color: red">${errorMessage}</span>
 						</div>
