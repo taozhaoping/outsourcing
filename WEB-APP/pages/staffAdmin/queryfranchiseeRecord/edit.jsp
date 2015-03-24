@@ -443,7 +443,7 @@
 
 				</dir>
 				<dir class="row">
-					<div class="span4">
+					<div class="span3">
 						<div class="control-group">
 							<label class="control-label" for="popupcontactRecordDescr">描述：</label>
 							<div class="controls">
