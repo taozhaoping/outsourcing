@@ -913,6 +913,12 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 		</div>
 	</div>
+	
+	<form id="downloadTemplate" name="downloadTemplate" action="<%=path%>/home/interfaceFile!downloadFile.jspa" 
+              method="post">
+    	<input type="hidden" value="" name="fileId" id="fileId" /> 
+    	<input type="hidden" value="" name="fileName" id="fileName" /> 
+    </form>
 
 	<%@ include file="/pages/common/footer.jsp"%>
 	<script src="<%=path%>/js/bootstrap.js"></script>
@@ -1127,7 +1133,7 @@
 			addTd(row,"<lable>" + fileInfo.createdate + "</label>");
 			addTd(row,
 					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button>"+
-					"<button class='btn btn-mini icon-download-alt' onclick='downloadFile( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);' type='button'></button>"+
+					"<button class='btn btn-mini icon-download-alt' onclick='downloadTemp( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);' type='button'></button>"+
 					"<button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
 		}

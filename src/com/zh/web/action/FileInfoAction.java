@@ -1,5 +1,6 @@
 package com.zh.web.action;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -44,7 +45,7 @@ public class FileInfoAction {
 	 * 
 	 * @return
 	 */
-	public InputStream downloadFile() {
+	public String downloadFile() {
 		InputStream fis = null;
 		//HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
 		try {
@@ -53,19 +54,20 @@ public class FileInfoAction {
 			File file = new File(filePath.toString().trim() + fileId.trim() + "//" + fileName.trim());
 
 			fis = new FileInputStream(file);
-			this.setFileInput(fis);
+			BufferedInputStream bin = new BufferedInputStream(fis);
+			this.setFileInput(bin);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			try {
+			/*try {
 				if(fis != null){
 					fis.close();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
-		return fis;
+		return Action.SUCCESS;
 	}
 
 	public String getFileId() {

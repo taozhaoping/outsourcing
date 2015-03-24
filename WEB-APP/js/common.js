@@ -215,21 +215,11 @@ var o = {
  * @param name fileInfo.name
  * 
  */
-function downloadFile(id, name){
-	//alert("id: " + id + " name: " + name);
-	$.ajax({
-		type : "POST", //访问WebService使用Post方式请求
-		async : false,
-		url : basePath + "/home/interfaceFile!downloadFile.jspa", //调用WebService的地址和方法名称组合 ---- WsURL/方法名
-		data : {fileId:id, fileName:name}, //这里是要传递的参数，格式为 data: "{paraName:paraValue}",下面将会看到       
-		dataType : 'json', //WebService 会返回Json类型
-		traditional : false, //不要序列化参数
-		error : function(err, textStatus) {
-			alert("error: " + err + " textStatus: " + textStatus);
-		},
-		success : function(result) {//回调函数，result，返回值
-			//填充到table中
-			
-		}
-	});
+function downloadTemp(id,fileName)
+{
+	
+	$("#fileId").attr("value",id);
+	$("#fileName").attr("value",fileName);
+    var downloadForm = document.downloadTemplate;
+    downloadForm.submit();
 }
