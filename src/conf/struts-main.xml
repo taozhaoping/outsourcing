@@ -137,5 +137,15 @@
 				<param name="root">interfaceModel.activitiesList</param>
 			</result>
 		</action>
+		
+		<!-- 下载附件 -->
+		<action name="interfaceFile" class="com.zh.web.action.FileInfoAction" method="downloadFile">  
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInput</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+        </action>
 	</package>
 </struts>

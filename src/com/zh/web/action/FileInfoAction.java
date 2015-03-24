@@ -30,6 +30,8 @@ public class FileInfoAction {
 	private String fileId;
 	
 	private String fileName;
+	
+	private InputStream fileInput;
 
 	public String execute() {
 		LOGGER.debug("execute()");
@@ -51,6 +53,7 @@ public class FileInfoAction {
 			File file = new File(filePath.toString().trim() + fileId.trim() + "//" + fileName.trim());
 
 			fis = new FileInputStream(file);
+			this.setFileInput(fis);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
@@ -80,4 +83,13 @@ public class FileInfoAction {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public InputStream getFileInput() {
+		return fileInput;
+	}
+
+	public void setFileInput(InputStream fileInput) {
+		this.fileInput = fileInput;
+	}
+	
 }

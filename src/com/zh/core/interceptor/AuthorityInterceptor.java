@@ -37,7 +37,7 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 		}
 		
 		//所有action名字为main的都不验证,interface为接口方法，也不验证
-		if("main".equals(actionName) || "interface".equals(actionName))
+		if("main".equals(actionName) || "interface".equals(actionName) || "interfaceFile".equals(actionName))
 		{
 			return invocation.invoke();
 		}
