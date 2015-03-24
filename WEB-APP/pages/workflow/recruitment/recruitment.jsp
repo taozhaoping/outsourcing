@@ -1132,8 +1132,8 @@
 			addTd(row,"<lable>" + fileInfo.descr + "</label>");
 			addTd(row,"<lable>" + fileInfo.createdate + "</label>");
 			addTd(row,
-					"<p><button class='btn btn-mini icon-pencil' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")' type='button'></button>"+
-					"<button class='btn btn-mini icon-download-alt' onclick='downloadTemp( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);' type='button'></button>"+
+					"<p><a data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")'><i class='icon-pencil'></i></a>"+
+					"<a style='margin-left:10px;' href='javascript:downloadTemp( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);'><i class='icon-download-alt'></i></a>"+
 					"<button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
 		}
