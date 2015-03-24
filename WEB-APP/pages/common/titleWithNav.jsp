@@ -94,7 +94,7 @@
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
-		var hrefStr = basePath + "/" +nameSpace +"/"+ action +"!editor.jspa?menuId="+nameSpace+"&menu2Id="+action;
+		var hrefStr = basePath + "/" +nameSpace +"/"+ action +"!editor.jspa?menuId="+nameSpace+"&menu2Id="+action+"&spaceId="+nameSpace;
 		//跳转到登陆页面
 		window.location.href = hrefStr;
 	}
