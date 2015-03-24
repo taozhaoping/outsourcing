@@ -1132,8 +1132,8 @@
 			addTd(row,"<lable>" + fileInfo.descr + "</label>");
 			addTd(row,"<lable>" + fileInfo.createdate + "</label>");
 			addTd(row,
-					"<p><a data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")'><i class='icon-pencil'></i></a>"+
-					"<a style='margin-left:10px;' href='javascript:downloadTemp( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);'><i class='icon-download-alt'></i></a>"+
+					"<p><a href='javascript:void(0);' title = '编辑' data-toggle='modal' data-target='#fileEditorfirm' onclick='initFileInfo(this," + fileInfo.nametype + ")'><i class='icon-pencil'></i></a>"+
+					"<a style='margin-left:10px;' title = '下载附件' href='javascript:downloadTemp( &quot;" + fileInfo.technologicalprocessid +" &quot;,  &quot;"+ fileInfo.name +" &quot;);'><i class='icon-download-alt'></i></a>"+
 					"<button class='btn btn-mini icon-minus hide' onclick='delFile(this);' type='button'></button></p>");
 			search.append(row);
 		}
