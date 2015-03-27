@@ -209,7 +209,7 @@
 												<input type="text" size="35" id="inputBirthday"
 													name="technologicalProcess.birthday"
 													value="<s:date name="technologicalProcess.birthday" format="yyyy-MM-dd" />"
-													placeholder="生日" readonly class="form_datetime input-large">
+													placeholder="生日" class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -239,7 +239,7 @@
 												<input type="text" id="inputContractdate"
 													name="technologicalProcess.contractdate"
 													value="${technologicalProcess.contractdate}"
-													placeholder="合同有效期" readonly
+													placeholder="合同有效期"
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -266,7 +266,7 @@
 												<input type="text" id="inputPassportnodate"
 													name="technologicalProcess.passportnodate"
 													value="${technologicalProcess.passportnodate}"
-													placeholder="护照有效期" readonly
+													placeholder="护照有效期"
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -456,7 +456,7 @@
 						<label class="control-label" for="popupcontactRecordReserveDate">预约时间：</label>
 						<div class="controls">
 							<input type="text" id="popupcontactRecordReserveDate"
-								placeholder="预约时间" readonly class="form_datetime input-large">
+								placeholder="预约时间" class="form_datetime input-large">
 						</div>
 					</div>
 				</div>

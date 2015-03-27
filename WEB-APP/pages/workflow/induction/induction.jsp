@@ -255,7 +255,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="entryProcess.birthday"
 													value="<s:date name="entryProcess.birthday" format="yyyy-MM-dd" />"
-													 placeholder="生日" readonly class="form_datetime input-large">
+													 placeholder="生日"  class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -285,7 +285,7 @@
 												<input type="text" id="inputContractdate"
 													name="entryProcess.contractdate"
 													value="${entryProcess.contractdate}"
-													 placeholder="合同有效期" readonly class="form_datetime input-large">
+													 placeholder="合同有效期"  class="form_datetime input-large">
 											</div>
 										</div>
 									</div>
@@ -311,7 +311,7 @@
 												<input type="text" id="inputPassportnodate"
 													name="entryProcess.passportnodate" 
 													value="${entryProcess.passportnodate}"
-													 placeholder="护照有效期" readonly class="form_datetime input-large">
+													 placeholder="护照有效期"  class="form_datetime input-large">
 											</div>
 										</div>
 									</div>

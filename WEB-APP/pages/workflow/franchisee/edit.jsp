@@ -250,7 +250,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractStartDate"
 													value="${franchisee.contractStartDate}"
-													placeholder="合同开始时间" readonly
+													placeholder="合同开始时间"
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -262,7 +262,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="franchisee.contractEndDate"
 													value="${franchisee.contractEndDate}"
-													placeholder="合同结束时间" readonly
+													placeholder="合同结束时间"
 													class="form_datetime input-large">
 											</div>
 										</div>

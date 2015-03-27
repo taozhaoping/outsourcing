@@ -135,7 +135,7 @@
 													<input type="text" size="15" id="inputscheduleDate"
 														name="activities.scheduleDate"
 														value="${activities.scheduleDate}"
-														data-required="true" placeholder="预定时间" readonly class="form_datetime input-large">
+														data-required="true" placeholder="预定时间" class="form_datetime input-large">
 												</div>
 											</div>
 										</div>

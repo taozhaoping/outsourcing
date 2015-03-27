@@ -183,7 +183,7 @@
 												<input type="text" size="15" id="inputBirthday"
 													name="trainCourse.scheduleDate"
 													value="${trainCourse.scheduleDate}"
-													placeholder="开课时间" readonly class="form_datetime input-large">
+													placeholder="开课时间"  class="form_datetime input-large">
 
 											</div>
 										</div>

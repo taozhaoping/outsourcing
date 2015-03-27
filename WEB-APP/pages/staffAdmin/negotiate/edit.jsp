@@ -193,7 +193,7 @@
 												<input type="text" size="15" id="inputBirthDay"
 													name="personnel.birthDay"
 													value="<s:date name="personnel.birthDay" format="yyyy-MM-dd" />"
-													data-required="true" placeholder="生日" readonly
+													data-required="true" placeholder="生日" 
 													class="form_datetime input-large">
 											</div>
 										</div>
@@ -221,7 +221,7 @@
 													<input type="text" id="inputContractDate"
 														name="personnel.contractDate"
 														value="<s:date name="personnel.contractDate" format="yyyy-MM-dd" />"
-														data-required="true" placeholder="合同有效期" readonly
+														data-required="true" placeholder="合同有效期"
 														class="form_datetime input-large">
 												</div>
 											</div>
@@ -247,7 +247,7 @@
 													<input type="text" id="inputPassportDate"
 														name="personnel.passportDate"
 														value="<s:date name="personnel.passportDate" format="yyyy-MM-dd" />"
-														data-required="true" placeholder="护照有效期" readonly
+														data-required="true" placeholder="护照有效期"
 														class="form_datetime input-large">
 												</div>
 											</div>
