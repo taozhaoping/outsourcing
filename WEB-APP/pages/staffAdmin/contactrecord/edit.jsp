@@ -595,7 +595,8 @@
 			var _contactRecordReserveDate = $("#popupcontactRecordReserveDate").val();
 			var _contactRecordDescr = $("#popupcontactRecordDescr").val();
 			descr = $.trim(_contactRecordDescr);
-			if (descr == null || descr == "" || _contactRecordType == "" || _contactRecordReserveDate == ""){
+			if ( _contactRecordType == ""){
+				
 				return;
 			}else
 			{
