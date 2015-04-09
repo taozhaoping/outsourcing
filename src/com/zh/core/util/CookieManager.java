@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieManager {
 	
 	private HttpServletRequest request;
-	@SuppressWarnings("unused")
+	
 	private HttpServletResponse response;
 	
 	public CookieManager(HttpServletRequest request, HttpServletResponse response) {
@@ -43,12 +43,12 @@ public class CookieManager {
 	}
 	
 	public void addCookie(String cookieName, String cookieValue, String domain, String path, int age) {
-//		Cookie cookie = new Cookie(cookieName, cookieValue);
-//		cookie.setPath(path);
-//		cookie.setMaxAge(age);
-//		cookie.setDomain(domain);
-		this.request.getSession().setAttribute("code", cookieValue);
-		//response.addCookie(cookie);
+		Cookie cookie = new Cookie(cookieName, cookieValue);
+		cookie.setPath(path);
+		cookie.setMaxAge(age);
+		cookie.setDomain(domain);
+		response.addCookie(cookie);
+		//this.request.getSession().setAttribute("code", cookieValue);
 	}
 	
 	public String getCookieValue(String cookieName) {

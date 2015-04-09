@@ -79,9 +79,11 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
   </div>
 </div>
-
+<script type="text/javascript" src="<%=path%>/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 	$("#exitBtn").click( function () {
+		$.removeCookie('j_username',{ expires: 14, path: '/' });
+		$.removeCookie('j_password',{ expires: 14, path: '/' });
 		var localObj = window.location;
 		var contextPath = localObj.pathname.split("/")[1];
 		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;

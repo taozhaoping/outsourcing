@@ -25,6 +25,7 @@ import com.zh.base.util.Tools;
 import com.zh.core.base.action.BaseAction;
 import com.zh.core.model.VariableUtil;
 import com.zh.core.util.BCrypt;
+import com.zh.core.util.EncryptUtil;
 
 
 public class LoginAction extends BaseAction {
@@ -48,7 +49,10 @@ public class LoginAction extends BaseAction {
 	
 	//加密后的字符串
 	private String passwordDigest;
-
+	
+	//标志从cookie中获取用户名密码
+	private String cookieFlag;
+	
 	/**
 	 * 系统用户接口
 	 */
@@ -60,39 +64,122 @@ public class LoginAction extends BaseAction {
 
 	public String excute() {
 		Object user = this.getSession().getAttribute(VariableUtil.SESSION_KEY);
-		if( null != user )
-		{
+		if (null != user) {
 			this.getSession().removeAttribute(VariableUtil.SESSION_KEY);
 			this.getSession().removeAttribute(VariableUtil.MENULIST);
 		}
+		/*
+		CookieManager cookieManager = new CookieManager(this.getRequest(), this.getResponse());
+		
+		String jUsername = cookieManager.getCookieValue("j_username");
+		String jPassword = cookieManager.getCookieValue("j_password");
+		
+		if(null != jPassword && null != jUsername && !jPassword.trim().isEmpty() && !jUsername.trim().isEmpty()){
+			
+			String username = EncryptUtil.decode(URLDecoder.decode(jUsername));
+			String password = EncryptUtil.decode(jPassword);
+			
+			if(null != password && null != username && !password.trim().isEmpty() && !username.trim().isEmpty()){
+				User queryUser = new User();
+				queryUser.setLoginName(username);
+				User retUser = userInfoService.query(queryUser);
+				
+				//密码验证
+				if (null != password && null != user && BCrypt.checkpw(password , retUser.getUserPassword())) {
+					//保存当前用户信息到session中
+					this.getSession().setAttribute(VariableUtil.SESSION_KEY, user);
+					return "success";
+				}
+			}
+		}
+		*/
 		return "creater";
 	}
 
 	public String loginUser() {
-		String code = (String) this.getRequest().getSession().getAttribute("code");
-		if (null == validecode || null == code || !validecode.toUpperCase().equals(code)) {
-			this.setErrorMessage(getText("COM.SSI.ERROR.CODE"));
-			return "creater";
-		}
-		String password = null;
-		if(null != userInfo.getUserPassword()){
-			password = userInfo.getUserPassword();
-		}else{
-			this.setErrorMessage(getText("COM.SSI.ERROR.USERNAME"));
-			return "creater";
-		}
-		userInfo.setUserPassword(null);
-		User user = userInfoService.query(userInfo);
 		
-		//密码验证
-		if (null != password && null != user && BCrypt.checkpw(password , user.getUserPassword())) {
-			//保存当前用户信息到session中
-			this.getSession().setAttribute(VariableUtil.SESSION_KEY, user);
-			return "success";
-		} else {
-			this.setErrorMessage(getText("COM.SSI.ERROR.USERNAME"));
-			return "creater";
+		if("1".equalsIgnoreCase(cookieFlag)){
+			String jUserName= userInfo.getLoginName();
+			String jPassword = userInfo.getUserPassword();
+			
+			if(null != jPassword && null != jUserName && !jPassword.trim().isEmpty() && !jUserName.trim().isEmpty()){
+				
+				String username = EncryptUtil.decode(jUserName);
+				String password = EncryptUtil.decode(jPassword);
+				
+				if(null != password && null != username && !password.trim().isEmpty() && !username.trim().isEmpty()){
+					User queryUser = new User();
+					queryUser.setLoginName(username);
+					User retUser = userInfoService.query(queryUser);
+					
+					//密码验证
+					if (null != password && null != retUser && password.equals(retUser.getUserPassword())) {
+						//保存当前用户信息到session中
+						this.getSession().setAttribute(VariableUtil.SESSION_KEY, retUser);
+						return "success";
+					}else{
+						return "creater";
+					}
+				}else{
+					return "creater";
+				}
+			}else{
+				return "creater";
+			}
+			
+		}else{
+			
+			String code = (String) this.getRequest().getSession().getAttribute("code");
+			if (null == validecode || null == code || !validecode.toUpperCase().equals(code)) {
+				this.setErrorMessage(getText("COM.SSI.ERROR.CODE"));
+				return "creater";
+			}
+			
+			String password = null;
+			if(null != userInfo.getUserPassword()){
+				password = userInfo.getUserPassword();
+			}else{
+				this.setErrorMessage(getText("COM.SSI.ERROR.USERNAME"));
+				return "creater";
+			}
+			userInfo.setUserPassword(null);
+			User user = userInfoService.query(userInfo);
+			
+			//密码验证
+			if (null != password && null != user && BCrypt.checkpw(password , user.getUserPassword())) {
+				//保存当前用户信息到session中
+				this.getSession().setAttribute(VariableUtil.SESSION_KEY, user);
+				
+				try{
+					//记住密码
+					String remember = userInfo.getRemember();
+					if("true".equalsIgnoreCase(remember)){
+						//保存账号、密码到cookie中
+						String userName = user.getLoginName();
+						String pwd = user.getUserPassword();
+						String encodeUserName = EncryptUtil.encode(userName);
+						String encodePwd = EncryptUtil.encode(pwd);
+						
+						this.getSession().setAttribute("j_username", encodeUserName);
+						this.getSession().setAttribute("j_password", encodePwd);
+						
+						//CookieManager cookieManager = new CookieManager(this.getRequest(), this.getResponse());
+						
+						//cookieManager.addCookie("j_username", encodeUserName, "","/", 60 * 60 * 24 * 14);
+						//cookieManager.addCookie("j_password", encodePwd, "","/", 60 * 60 * 24 * 14);
+					}
+				}catch(Exception e){
+					return "creater";
+				}
+				
+				return "success";
+			} else {
+				this.setErrorMessage(getText("COM.SSI.ERROR.USERNAME"));
+				return "creater";
+			}
 		}
+		
+		
 	}
 	
 	/***
@@ -299,6 +386,14 @@ public class LoginAction extends BaseAction {
 
 	public void setNewPassWord(String newPassWord) {
 		this.newPassWord = newPassWord;
+	}
+
+	public String getCookieFlag() {
+		return cookieFlag;
+	}
+
+	public void setCookieFlag(String cookieFlag) {
+		this.cookieFlag = cookieFlag;
 	}
 	
 }

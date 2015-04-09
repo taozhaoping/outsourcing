@@ -19,6 +19,18 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+	$().ready(function(){
+		var username = $("#id_jusername").val();
+		var password = $("#id_jpassword").val();
+		
+		if(username && password){
+			$.cookie('j_username', username, { expires: 14, path: '/' });
+			$.cookie('j_password', password, { expires: 14, path: '/' });
+		}
+	});
+</script>
 <!-- Demo page code -->
 <style type="text/css">
 #line-chart {
@@ -62,6 +74,8 @@
 		<s:set name="taskSize" scope="session" value="#request.taskNumber"></s:set>
 	</s:if>
 	
+	<input type="hidden" id="id_jusername" value="${sessionScope.j_username}">
+	<input type="hidden" id="id_jpassword" value="${sessionScope.j_password}">
 	
 	
 	<%@ include file="/pages/common/titleWithNav.jsp"%> 

@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/theme.css">
 <link rel="stylesheet" href="<%=path%>/css/font-awesome.css">
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/jquery.cookie.js"></script>
 <!-- Demo page code -->
 <style type="text/css">
 #line-chart {
@@ -44,6 +45,23 @@
 <link href="<%=path%>/img/favicon_32.ico" rel="bookmark" type="image/x-icon" /> 
 <link href="<%=path%>/img/favicon_32.ico" rel="icon" type="image/x-icon" /> 
 <link href="<%=path%>/img/favicon_32.ico" rel="shortcut icon" type="image/x-icon" />
+<script type="text/javascript">
+	$().ready(function(){
+		//$.cookie('j_username', 'username', { expires: 7, path: '/' });
+		//$.cookie('j_password', 'password', { expires: 7, path: '/' });
+		
+		if($.cookie('j_username') && $.cookie('j_password')){
+			$("#id_cookieFlag").val("1");
+			$("#id_isRemember").attr("checked", "checked");
+			
+			$("#userName").val($.cookie('j_username'));
+			$("#password").val($.cookie('j_password'));
+			
+			$("#loginform")[0].submit();
+		}
+	});
+</script>
+
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
@@ -65,12 +83,10 @@
 	<div class="row-fluid">
 		<div class="dialog">
 			<div class="block">
-				<p class="block-heading">登陆</p>
+				<p class="block-heading">登录</p>
 				<div class="block-body">
 					<form method="post" name="loginform" id="loginform" action="login!loginUser.jspa">
-						<!-- 
-						<input type="hidden" name="token" value="${token}" />
-						 -->
+						<input type="hidden" name="cookieFlag" id="id_cookieFlag" value="-1"/>
 						
 						<div class="control-group">
 							<span style="color: red">${errorMessage}</span>
@@ -97,9 +113,9 @@
 								<img id="imgUrl" onclick="showValidateCode()" title="点击刷新"></img>
 							</div>
 						</div>
-						<input type="submit" class="btn btn-primary pull-right" value="登陆">
+						<input type="submit" class="btn btn-primary pull-right" value="登录">
 						
-						<label class="remember-me"><input type="checkbox">记住密码</label>
+						<label class="remember-me"><input type="checkbox" id="id_isRemember" name="userInfo.remember" value="true">下次自动登录</label>
 						<div class="clearfix"></div>
 					</form>
 				</div>

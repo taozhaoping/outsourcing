@@ -71,9 +71,10 @@ public class ValidateCodeAction extends BaseAction {
 	 * 
 	 */
 	public String execute() {
-		CookieManager cookie = new CookieManager(this.getRequest(), this.getResponse());
+		//CookieManager cookie = new CookieManager(this.getRequest(), this.getResponse());
 		try {
-			cookie.addCookie("validateCode", createInputStream(ValidateImageManager.DISTURB_TYPE_DEFAULT));
+			//cookie.addCookie("validateCode", createInputStream(ValidateImageManager.DISTURB_TYPE_DEFAULT));
+			this.getRequest().getSession().setAttribute("code", createInputStream(ValidateImageManager.DISTURB_TYPE_DEFAULT));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
